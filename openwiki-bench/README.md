@@ -1,24 +1,36 @@
-# OpenWiki bench — three OpenCode Go flash models
+# OpenWiki bench — OpenCode Go flash models + Grok 4.6
 
-Isolated `openwiki@0.4.3 --init` runs of this repo through OpenCode Go
-(`https://opencode.ai/zen/go/v1`, openai-compatible). Same checkout (`32470cc`),
-same provider, different model IDs.
+Isolated OpenWiki `--init` runs of this repo at git SHA `32470cc2`. Flash models
+used stock `openwiki@0.4.3` through OpenCode Go (`https://opencode.ai/zen/go/v1`,
+openai-compatible). Grok 4.6 used the fork's host-agent integration
+(`host-agent/grok`): Grok researches and writes; OpenWiki MCP owns page jobs.
 
-| Dir | Model | Role in later fork routing |
-| --- | --- | --- |
-| `deepseek-v4-flash/` | DeepSeek V4 Flash | Planner (taxonomy) |
-| `glm-5.3-flash/` | GLM 5.3 Flash | Default page writer (style) |
-| `qwen3.8-flash/` | Qwen 3.8 Flash | Specialist pages (forensic) |
+| Dir | Model | Runtime | Role in later fork routing |
+| --- | --- | --- | --- |
+| `deepseek-v4-flash/` | DeepSeek V4 Flash | native `--init` | Planner (taxonomy) |
+| `grok-4.6/` | Grok 4.6 | host-agent MCP | Default page writer (style + finished wiki) |
+| `glm-5.3-flash/` | GLM 5.3 Flash | native `--init` | Workflow-page fallback (style; incomplete) |
+| `qwen3.8-flash/` | Qwen 3.8 Flash | native `--init` | Specialist pages (forensic; incomplete) |
 
 Comparison write-up: [COMPARISON.md](COMPARISON.md).
 
 ## How these were generated
+
+Flash models:
 
 ```bash
 OPENWIKI_PROVIDER=openai-compatible
 OPENAI_COMPATIBLE_BASE_URL=https://opencode.ai/zen/go/v1
 OPENWIKI_MODEL_ID=<model>
 openwiki --init --print --modelId <model>
+```
+
+Grok 4.6 (fork CLI + Grok Build, worktree `/tmp/grok-4.6`):
+
+```bash
+# OpenWiki MCP installed into Grok; then:
+grok --always-approve --cwd /tmp/grok-4.6 -m grok-4.6 --max-turns 200 \
+  -p "Resume OpenWiki init via MCP from this checkout"
 ```
 
 Each run used a detached git worktree under `/tmp/<model>/` so `AGENTS.md` /
@@ -28,24 +40,28 @@ before init (OpenWiki otherwise duplicates managed markers).
 
 GLM needed two retries: first run died on Node/undici `headersTimeout` after ~63
 minutes of planning; streaming died in 17s (`wrapModelCall` / `reasoning_content`).
-Third run used a patched 1h headersTimeout, no streaming.
+Third run used a patched 1h headersTimeout, no streaming. Grok's first host-agent
+pass hit `Max turns reached` at 12/24; resume with `--max-turns 200` finished.
 
 ## Snapshot
 
-Recorded 2026-08-29. DeepSeek finished. Qwen and GLM were still generating when
-this directory was first committed; later copies overwrite those folders.
+Recorded 2026-08-29. DeepSeek and Grok finished. Qwen and GLM were still
+generating (Qwen later died mid-restore; GLM still crawling) when those folders
+were first committed; later copies overwrite those folders.
 
 | Model | Started (UTC) | Finished | Plan pages | Notes |
 | --- | --- | --- | --- | --- |
-| deepseek-v4-flash | 05:37:24 | 09:38:37 (~4h) | 26 | `exit=0`, quickstart present |
-| qwen3.8-flash | 05:37:24 | — | 38 | Slow (~1 page / 45–50 min) |
-| glm-5.3-flash | 06:58:40 (3rd attempt) | — | 27 | Timeout-patched client |
+| deepseek-v4-flash | 05:37:24 | 09:38:37 (~4h) | 26 | `exit=0`, [quickstart](deepseek-v4-flash/quickstart.md) |
+| grok-4.6 | ~14:40 | 15:39:33 | 24 | host-agent complete after resume; [quickstart](grok-4.6/quickstart.md) |
+| qwen3.8-flash | 05:37:24 | — | 38 | Dead 15:08Z restore-missing-file; 9/38 |
+| glm-5.3-flash | 06:58:40 (3rd attempt) | — | 28 | Manual restart still generating |
 
-`*.run.log` is the wrapper log (start/exit only). `plans/*.summary.json` is a
-dump of each `.run.json` plan (titles, seeds, instructions) from mid-run.
+`*.run.log` is the wrapper log (start/exit only; gitignored as `*.log`).
+`plans/*.summary.json` dumps each plan (titles, seeds, instructions). Grok's
+summary is from the finished page manifest.
 
 ## Do not treat this as production wiki
 
 This is a model-quality artifact. Do not point `AGENTS.md` at these folders.
-The fork `manikanda-kumar/openwiki` (`6e2fc0f` + `2fc5850`) can later run one
-wiki with DeepSeek planning, GLM writing, Qwen on specialist prefixes.
+The fork `manikanda-kumar/openwiki` can later run one wiki with DeepSeek
+planning, Grok writing, Qwen on specialist prefixes (GLM as workflow fallback).
