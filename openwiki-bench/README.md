@@ -1,16 +1,18 @@
-# OpenWiki bench — OpenCode Go flash models + Grok 4.6
+# OpenWiki bench — OpenCode Go flash models + host agents
 
 Isolated OpenWiki `--init` runs of this repo at git SHA `32470cc2`. Flash models
 used stock `openwiki@0.4.3` through OpenCode Go (`https://opencode.ai/zen/go/v1`,
 openai-compatible). Grok 4.6 used the fork's host-agent integration
-(`host-agent/grok`): Grok researches and writes; OpenWiki MCP owns page jobs.
+(`host-agent/grok`). Host Qwen used OpenCode CLI + OpenWiki MCP
+(`host-agent/opencode`, model `opencode-go/qwen3.8-flash`).
 
 | Dir | Model | Runtime | Role in later fork routing |
 | --- | --- | --- | --- |
+| `qwen3.8-flash-opencode/` | Qwen 3.8 Flash | OpenCode host + MCP | Default page writer (depth + finished 19-page wiki) |
 | `deepseek-v4-flash/` | DeepSeek V4 Flash | native `--init` | Planner (taxonomy) |
-| `grok-4.6/` | Grok 4.6 | host-agent MCP | Default page writer (style + finished wiki) |
-| `glm-5.3-flash/` | GLM 5.3 Flash | native `--init` | Workflow-page fallback (style; incomplete) |
-| `qwen3.8-flash/` | Qwen 3.8 Flash | native `--init` | Specialist pages (forensic; incomplete) |
+| `grok-4.6/` | Grok 4.6 | host-agent MCP | Style / orientation fallback |
+| `glm-5.3-flash/` | GLM 5.3 Flash | native `--init` | Workflow-page fallback (incomplete) |
+| `qwen3.8-flash/` | Qwen 3.8 Flash | native `--init` | Forensic sample only (dead 9/38) |
 
 Comparison write-up: [COMPARISON.md](COMPARISON.md).
 
@@ -28,9 +30,16 @@ openwiki --init --print --modelId <model>
 Grok 4.6 (fork CLI + Grok Build, worktree `/tmp/grok-4.6`):
 
 ```bash
-# OpenWiki MCP installed into Grok; then:
 grok --always-approve --cwd /tmp/grok-4.6 -m grok-4.6 --max-turns 200 \
   -p "Resume OpenWiki init via MCP from this checkout"
+```
+
+Host Qwen (OpenCode 1.18.25 + fork MCP, worktree `/tmp/qwen3.8-flash-opencode`):
+
+```bash
+opencode run --auto --dir /tmp/qwen3.8-flash-opencode \
+  -m opencode-go/qwen3.8-flash --title openwiki-qwen-host \
+  "Initialize this repository's OpenWiki from the current source and tests."
 ```
 
 Each run used a detached git worktree under `/tmp/<model>/` so `AGENTS.md` /
@@ -45,15 +54,15 @@ pass hit `Max turns reached` at 12/24; resume with `--max-turns 200` finished.
 
 ## Snapshot
 
-Recorded 2026-08-29. DeepSeek and Grok finished. Qwen and GLM were still
-generating (Qwen later died mid-restore; GLM still crawling) when those folders
-were first committed; later copies overwrite those folders.
+Recorded 2026-08-29. DeepSeek, Grok, and host Qwen finished. Native Qwen died
+mid-restore. GLM still generating when this snapshot was updated.
 
 | Model | Started (UTC) | Finished | Plan pages | Notes |
 | --- | --- | --- | --- | --- |
+| qwen3.8-flash-opencode | 16:39:17 | 19:26:15 (~2.8h) | 19 | host-agent complete; [quickstart](qwen3.8-flash-opencode/quickstart.md) |
 | deepseek-v4-flash | 05:37:24 | 09:38:37 (~4h) | 26 | `exit=0`, [quickstart](deepseek-v4-flash/quickstart.md) |
 | grok-4.6 | ~14:40 | 15:39:33 | 24 | host-agent complete after resume; [quickstart](grok-4.6/quickstart.md) |
-| qwen3.8-flash | 05:37:24 | — | 38 | Dead 15:08Z restore-missing-file; 9/38 |
+| qwen3.8-flash | 05:37:24 | died 15:08 | 38 | restore-missing-file; 9/38 |
 | glm-5.3-flash | 06:58:40 (3rd attempt) | — | 28 | Manual restart still generating |
 
 `*.run.log` is the wrapper log (start/exit only; gitignored as `*.log`).
@@ -64,4 +73,4 @@ summary is from the finished page manifest.
 
 This is a model-quality artifact. Do not point `AGENTS.md` at these folders.
 The fork `manikanda-kumar/openwiki` can later run one wiki with DeepSeek
-planning, Grok writing, Qwen on specialist prefixes (GLM as workflow fallback).
+planning, host Qwen writing via OpenCode MCP, Grok as style fallback.
