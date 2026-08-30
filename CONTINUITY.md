@@ -1,0 +1,29 @@
+# Continuity Ledger
+
+- Goal (incl. success criteria): Compare OpenWiki quality on Open-Inspect (`manikanda-kumar/background-agents`) at SHA `32470cc2` across flash models and host agents; snapshot finished wikis under `openwiki-bench/` and push.
+- Constraints/Assumptions:
+  - Do not dirty `origin/main` with live wiki; worktrees under `/tmp/<model>/` only.
+  - `CLAUDE.md` is a symlink to `AGENTS.md` — copy a real file in worktrees before `--init`.
+  - Unset `OPENROUTER_API_KEY` for openai-compatible runs.
+  - Native Qwen is dead — do not relaunch.
+  - `*.log` gitignored; do not force-add.
+- Key decisions:
+  - Flash native path: stock `openwiki@0.4.3`, OpenCode Go `https://opencode.ai/zen/go/v1`.
+  - Host path: OpenCode CLI + fork MCP (`node /tmp/openwiki-fork/dist/cli/cli.js mcp --host opencode`).
+  - GLM finish: resume interrupted init run `554c65a3` via OpenCode host `opencode-go/glm-5.3-flash`; do not `openwiki_begin mode=update` while `.run.json` is still mode=init.
+  - Ranking (oracle, 2026-08-30): Host Qwen > GLM > DeepSeek > Grok > Native Qwen.
+  - Fork routing: DeepSeek planner, Host Qwen default pages, Host GLM workflow specialist, Grok style.
+- State: Bench complete. `origin/main` at `1b4ac55c`.
+- Done:
+  - DeepSeek native `--init` finished 2026-08-29T09:38:37Z.
+  - Grok 4.6 host-agent finished 2026-08-29T15:39:33Z.
+  - Host Qwen 3.8 flash finished 2026-08-29T19:26:15Z.
+  - Native Qwen died 9/38 (`Could not restore …environments-and-multi-repo.md`).
+  - GLM native wrote 23/28 then stalled ~5h on git-auth; host MCP resume finished 2026-08-30T13:48:07Z, 36 md, same runId.
+  - Snapshots + COMPARISON/README pushed: `ee0bbb2d`, `c27797ac`, `05b505a5`, `1b4ac55c`.
+- Now: Nothing remaining for the bench. Thread can be archived.
+- Next: none.
+- Open questions: none.
+- Working set:
+  - `openwiki-bench/{deepseek-v4-flash,grok-4.6,qwen3.8-flash,qwen3.8-flash-opencode,glm-5.3-flash,COMPARISON.md,README.md,plans/}`
+  - Live worktrees were `/tmp/qwen3.8-flash`, `/tmp/glm-5.3-flash`, `/tmp/deepseek-v4-flash`, `/tmp/grok-4.6`, `/tmp/qwen3.8-flash-opencode` (orb-local, not in git).
