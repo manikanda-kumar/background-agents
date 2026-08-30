@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e8a4cd186f732e59f76bef3de074a9dd8d627e15ae0c025980d06b31f97ba7f7",
+  "claims": [
+    {
+      "id": "claim_5b26e947e694485e986a0a80d6b5513b",
+      "statement": "The repo's test matrix is: all TypeScript packages use Vitest with co-located `*.test.ts` unit tests run in the Node environment (github-bot is the exception, keeping tests in a separate `test/` directory), while the Python planes (modal-infra, sandbox-runtime) use pytest suites under `tests/test_*.py` with pytest-asyncio in auto mode; the root `vitest.workspace.ts` joins all per-package Vitest configs.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L77-L89",
+          "version": "repo-lines-v1:sha256:ad02e7a2bfb53ef38b01ea4c489f025e6a591ba3dc62af814a7e9e61fb1aa7bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZTg2ZjY4N2VhMWVhMDRiYTk2Y2M4NzlmMmZmOTI5MjgwNDU4NWVmYTU4NmU3NjA3ODYwNzg4NWVjOTMwMjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY0NTliYTZlOTVhNjQxZWRiNmNhYzNjOGRiMzc1NGEwZmFkYjVhMjY3ODBjYTUwNTdlNDA4ZWUxNWQ3MGExYjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNjc2MjZiNzk2YTM5MzkwYWYwNzBlNjA2OGZjNzE5M2UzNGFjNzg5MWNkZjQ3YTg1MzJlN2EwZjYyMGYyMTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.config.ts",
+          "version": "repo-file-v1:sha256:b7a8326a3de6c463e6ddc2c9fac738c6d95de0626c6e3374501e774909306e58"
+        },
+        {
+          "resource": "repo://packages/github-bot/vitest.config.ts",
+          "version": "repo-file-v1:sha256:6195c570434d77584633d7943d9146364f956e96bd36e0a37da3dffc162b7851"
+        },
+        {
+          "resource": "repo://packages/modal-infra/pyproject.toml#L33-L34",
+          "version": "repo-lines-v1:sha256:0ade075d74c8cbda735e519e7ffb30ed38e42f8f44e5d0c4927188d26fb56fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODY3NmU2NDE0NjVhNjU1MWU5ZTljZmZkN2ZhYTFlNmE0MmY5YjcyNDgwOTgxM2M5MDNkN2VkY2I1MmYzMDA2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTAxZGZhOTgyZWZmZDMxZjAxMGVlOTdmMTM2ZTFmNWY3MDNlYjcwYTJjN2ZjODgzOWIxMTQyYzIwNTgwNGQ0YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjg3NTRhZDJmNDEwNTcwYzg5Yjk0MjRhNWIwMWQwYzZlYTJhZmUwZGQyM2I1ZjMyYzQyYzFlZmZmODZjNTJmMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjkwZDUxNGFmNjI5MGI5NGQ1MTZkMzdmNzljZGU3MGZmOTc4OWZiZTkzNTU3ODYzYmJhMWY5OTE4NGE5NTk3YSJ9"
+        },
+        {
+          "resource": "repo://vitest.workspace.ts",
+          "version": "repo-file-v1:sha256:584710da7ecb424ffbb859e2108519f3a613ca5922e9db6275f7a558e192037a"
+        }
+      ]
+    },
+    {
+      "id": "claim_ee927d28cea64c36ac2c062f4f0746f2",
+      "statement": "Per-package test entry points are `npm test -w <pkg>` for TypeScript units, `npm run test:integration -w @open-inspect/control-plane` for the workerd integration suite, and `pytest tests/ -v` run from inside `packages/modal-infra` or `packages/sandbox-runtime` for Python; Python formatting is `ruff check --fix && ruff format` from the package directory.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L49-L75",
+          "version": "repo-lines-v1:sha256:36c3d2ba805b7b843fe9d6b49213af38deee49bc114d953490858bda1dc49886:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczZDFhNzc2M2U2ZmExNDUzYWMyMjU3YzZmODRjM2RlY2IwNzVkMGNmM2VhZDNiZjJjYTYzODljZDM5MzVmYWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwZTdlYTI4YmI4ZDRmNTJmZDRjNjA1YjU4NTJmYzc3ZTEwZmUwOGYzZjI5ZGIwYjk5ZGJjODVjMDc0NDk0NzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVlZGFiN2Y5MzY4MjE4NTJkMjIwNjYzZjE1NzAxMjJjYjhiNDQ3MTI4OTM2OWY2OWI3MDYyNDViMTQ4OTMyMzEifQ"
+        },
+        {
+          "resource": "repo://docs/SETUP_GUIDE.md#L160-L191",
+          "version": "repo-lines-v1:sha256:9ef98329f6c7a6026428ad351b488e647546ea0c12891a2ec0a948e754f6f290:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3YzMwNDVlZjZlZGIzOTg4YjRkYWY3Njk5NTU2ZDkwOTJmZTZmNzk3ODE3MGY5OWI4NTkwOWQxNmE1ZTYwMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIxYzM2N2IwYTM4OGE3M2M2MjBiNDZjMjFlM2YxMTQwZWE2ZWFhZGU5ZWZkOTg5NmMzNTQ0ZTA1Njc4ZTkzMWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/package.json#L6-L15",
+          "version": "repo-lines-v1:sha256:130dcf03498aedbbaeda7835529d1b8581dbcaa7a7bb6f34d00439d1ef5419d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImViNGY2YTQ2MmQxMmUxMTM3NTBiNjU0M2M0M2M0MzA0ODYyMjkxMTViMjVhNWU3YTNhNWMxZDU3MmE1NWY5MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhNDhmODZlNTVhNjQzMjNlOTgwMjQ0NGQxOTdhODA5OGQ1YmQwNDBkNTYyZmM2NjliZTFlMTY4ZTZmZjFiYzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e971b2b356dc439dac855dd7cb49e4b9",
+      "statement": "Control-plane integration tests (`test/integration/**/*.test.ts`) execute inside a real workerd runtime via the `cloudflareTest()` plugin of `@cloudflare/vitest-pool-workers`, configured in `vitest.integration.config.ts` against the test-only `wrangler.jsonc` bindings (SESSION Durable Object with SQLite migration, D1, KV, R2).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/package.json#L11-L11",
+          "version": "repo-lines-v1:sha256:1a5e3d2b1ed0c8c07710d1292f9a92870dc4882046a4603f6451cf3b92943628:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWE1ZTNkMmIxZWQwYzhjMDc3MTBkMTI5MmY5YTkyODcwZGM0ODgyMDQ2YTQ2MDNmNjQ1MWNmM2I5Mjk0MzYyOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWE1ZTNkMmIxZWQwYzhjMDc3MTBkMTI5MmY5YTkyODcwZGM0ODgyMDQ2YTQ2MDNmNjQ1MWNmM2I5Mjk0MzYyOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzBlNGQ1Y2MwMTRhZjJjMjNiNzRiMjUzOTViYzEyMDBjYTIyY2FhNTUyZWFjMTFjODhhYjA5ZmQzZTU2MDMzMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAyOWJjYWM3YTRjMGVhNjkxYjA0ZDYzMWRhOTVjMzZkMDBkMjVjYWNlZDdhYzdlMDY1ZjRiMmMzYTRiYTFmMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L25-L50",
+          "version": "repo-lines-v1:sha256:189082db8b706dae644b0b2aa805d6eb7874400ab92def2995321582b81c627a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmOGNhMjFmMzIxODAwZGU0NTY2MTJmOTJjOGM4ZTA2YTE5Zjg0Y2M4MDIxZDQyYTM2Yzg5NDdhNzIyNTA5MzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4NDZmN2ZlMTg2MGI5OWNiZGNhZTE2ZjZlMzhkZTczYTU0ZjY1NmNkZDUxNmRjMzZhNTQ4ZjQ0YzFlYTUzYWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiZDQ3YTE3ZjlmZjI3ODI4ZTkwYjgxY2MwNGNiMzU1Njk1NzAwZTlhM2M4Njg3ZjZhNzg2MWY4NGIzMGRiZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0YTM3MWY1NmYyYmVjNDk3ZmZmOTQ0YjZlNjBhZmVlZGM3OGI5ODU0NzAxOGI0MDBiNGI1ZTZmZGVkMDgxNjQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/wrangler.jsonc",
+          "version": "repo-file-v1:sha256:6563608221940cad1dee2d53a18bd6b7ea4c759346dbefdac23c57fd9218e36a"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd41e0635d2b444fb0ba92fde7e4ec73",
+      "statement": "The integration suite automatically applies the production D1 schema: `readD1Migrations` parses `terraform/d1/migrations/` (the same directory Terraform applies in production) and injects it as a `TEST_MIGRATIONS` binding, and the global setup file `test/integration/apply-migrations.ts` calls `applyD1Migrations(env.DB, env.TEST_MIGRATIONS)` before tests run; migration-behavior tests replay individual migrations from that binding against hand-restored pre-migration schemas.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/test/integration/apply-migrations.ts",
+          "version": "repo-file-v1:sha256:dbd4619ccc0c98d49c7509e61e21a264942b89ed75cf15f02f2529ce4609913e"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/env.d.ts",
+          "version": "repo-file-v1:sha256:c55592b70f0800b856dd2d0f3ed74e9a3797177756bde99cb51db8db2dc24c3f"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/migration-0066-drop-automation-environment-id.test.ts#L50-L52",
+          "version": "repo-lines-v1:sha256:3a782b7fa9271969ec4d2cc860ced71750d3f660f0ac9442b4ba06b45df93de7:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjZjYjlkZTE3ZWZkMGEzMDJiNTM5ZTlmZTI4Y2I5ZjdhMTczOTQzMDRhNWMzMGI3MWU3M2ViNmQ2ZTVlYWYwOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmZjNzA2MDY2NDAzOTU3ZDhiN2VkZTM1MWMyMWJjZWJiZTExNWNhNTUwZjFkMDhlYWE2NmMzMTVkNmM4ODM2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjMyNGNkZTFmYWIwZTA2MzkyNmE0NjNmOTRhZThjOTUxM2U4YmRiMzhiMmE5NDYwNWI5OTgyMGUyNDA3Yzk1YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzdlYTMxZjkxNTJmNmM4ODY1NWQ1OTEzMTQ0Yjk0N2MzNTM0NDBhMjY4ZGRiYzE1ZGQyNDc4MDcyMWJmZGU4OSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L145-L145",
+          "version": "repo-lines-v1:sha256:94e653bfe6153d462f75d3d7040a2568f5ddd3ad165816a1c14dab0f60e5348d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRlNjUzYmZlNjE1M2Q0NjJmNzVkM2Q3MDQwYTI1NjhmNWRkZDNhZDE2NTgxNmExYzE0ZGFiMGY2MGU1MzQ4ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRlNjUzYmZlNjE1M2Q0NjJmNzVkM2Q3MDQwYTI1NjhmNWRkZDNhZDE2NTgxNmExYzE0ZGFiMGY2MGU1MzQ4ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjUyOWQzYzEwODRkOGFlNDNjZmU1NmUyMTE5ZjRkYmE4MzU5ZTM1M2ZhY2Q1NDU1NzY2YTY0ZGUwY2ViNWRhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Y4YWMwYWZkNGI5NzJlNzI4NjM3NTgxMjcxYTdjOGI0MmY0MTk4YTljYWQyMGY5ZjBiYjJmMTQ5ZWNiMGM3NyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L39-L47",
+          "version": "repo-lines-v1:sha256:25b45c242877bfd3c24bc292a2d6129e7983d724e0eaf0474ad3341b7c75c8e1:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTkzNmIxZmI0ZmZmMjE0ZDY3NDc5NzJhNzc4ZDkzZTAxM2ViOTZkODFhMzIzY2I3ZDNjODIxOWRkNzA0Yzg0NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzNlMjNiYWVhOTMyNjFkMjBmZjhlMTlhZWRkNGZmYjQwNGY3YjhiNDdiMzE1ZTIzZDk1MjQxYjc2MWUzNmZhNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWQyZWM1NWVmMzlmM2ZjY2IzNmViODdkMjM2M2E2YjdiODhkYTg1OWNiMmRlZWNhZTdlOWRhYTczZjRjYjE1MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2UzZTNjZmNiODdmNjU2ZDhiNjE4NTkzNzdiZDUwZDY3ZmJkNTU1NWNmMDNkMTk4NDE5MDliNmYzNDI3YzgwYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9344e9254d2d415582477751e3145289",
+      "statement": "The workers pool isolates D1 storage per test file, so integration test files run in parallel without interference; within a file all tests share one D1 instance and must call `cleanD1Tables()` from `test/integration/cleanup.ts` in `beforeEach`/`afterEach` — it issues a single `DELETE FROM …` across every table in the schema to prevent cross-test pollution.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/test/integration/cleanup.ts",
+          "version": "repo-file-v1:sha256:84f1c45bf05cbda09071aa720ddece405329b7869467bf6c126554cc18901b35"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/d1-session-index.test.ts#L8-L9",
+          "version": "repo-lines-v1:sha256:c939f9b739feb193d88a297f104edccedc3d053e5e826f592d89037c6e78b281:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTU1NzEzYWE3M2ZlMzZkZjc2ZGJlNTljOTk1NGZhNWRmNGUzMDMxZDg5MWU1ZWQxMTQxOWFhYjg5M2ZjZWU4NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2NiNzJhMmY4OGFhYzZmYjRkZDRiODk0YTFmM2FmNzhhNDM4NWZhMWI0NWVjMTE1MGIwYzBhNGMzYzE5ZjAzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTRjZmJhNWZkNjZmOWVmMjE0ZjQ2YmQzMDc5MDg5ZjliMDFkOGY5MTQ5OGM1NDIxNGFiZWFmZGE3YjJjYTYwYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDJmZDNjY2Q4MDdmNzBlZWIzYmI5ZjkwZTdjOTYyMTJjNWQ3ZmZlZGFkNDVjZDE3YzViOGU2ZDE4NjI4M2NlMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L25-L32",
+          "version": "repo-lines-v1:sha256:fe02e3b8fa192a73cec2425d935c6ef3153ca8508d37299c6f6a78ce9068960d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGY4Y2EyMWYzMjE4MDBkZTQ1NjYxMmY5MmM4YzhlMDZhMTlmODRjYzgwMjFkNDJhMzZjODk0N2E3MjI1MDkzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZThlZmYzNjRmZWQwYzU3ZmM0NWI0NTJmZTUzYzBlNWQ4MWVmNjg1YWIyNGJiYzdmZTM1ZmVjZGExNDhlZDFjYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGJkNDdhMTdmOWZmMjc4MjhlOTBiODFjYzA0Y2IzNTU2OTU3MDBlOWEzYzg2ODdmNmE3ODYxZjg0YjMwZGJmOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzY2ZjQ0MjdmOTI4NzllZDBjZWViMTNiMjdmMjU5NDdjZmI1MzE0OGJjYjdkZDY0Y2M5NjNhM2JiNTc4MTE3YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f86d323675b54f5e81c76dad3d897dfa",
+      "statement": "The integration helpers (`test/integration/helpers.ts`) give tests production-shaped fixtures: `initSession()`/`initNamedSession()` write a D1 session-index row through `SessionIndexStore` and then POST `/internal/init` to the real SESSION Durable Object; `queryDO()` executes raw SQL inside the DO via `runInSessionDO` (the `runInDurableObject` seam in `session-do-access.ts`, the one place the stub is typed as `SessionDO`); `seedEvents()`/`seedMessage()` insert rows directly into DO SQLite with a monotonically increasing `timeline_sequence`; `openClientWs()` upgrades through `SELF.fetch` and optionally completes the WS-token subscribe flow with `collectMessages` (which must start before the triggering send).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/test/integration/helpers.ts#L168-L238",
+          "version": "repo-lines-v1:sha256:4a0dfc0f12cb9b63767f3974b6bf10aa9724c20c8b19b3404fd352cb1c4ecf71:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwNGY0MGY1YzFiODQxMTA3NDQ4NWU5Njk4NGUzMjQ1N2Y5YWRhYTdlMTQ1YmRkYWIzMjA4ZWNjMDk2NTQ3ODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0ZTVmYjdjNDgwYzFlOTRmYmM5MTM2ZGZiZDIzODRkMDVhNmNjNGU3NDcyOWIxZDFiOWNmNmQzOTQ1OGEzNzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/helpers.ts#L259-L285",
+          "version": "repo-lines-v1:sha256:bf3a37b1e29335f87a80e6cedbf2b027cc30bdf77f6d39644cec6b1f80d3fa15:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmN2VkNzY2YmYwOGFmNzAxNzNkYjVhNDkzMjE1NzQyYTIyODQ2MDZjNzA4ZTJhZTIwODI3MjczZDIyNmJmNjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/helpers.ts#L389-L412",
+          "version": "repo-lines-v1:sha256:8b943065578d2535fe048dd7790486250c949638d1f9f43a2efbbbca02d3e716:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkYzYyZTIzZmM5Mzc2OGZmY2E1NDU2YWQ2MDU2OTI4NDllOGEwOTM5NjE0NmZjYTMzOGU0MDBiZTNkMjNlZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5ZDkxYjNlZjQ4Yjc4YWU2YjU4ZjQyNzI4MjZjMmU0ZTQyOWMzNTg3NmFkMDEwMTRmMzkwMWI0ODNiY2EzNGQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/session-do-access.ts",
+          "version": "repo-file-v1:sha256:adc4d69ec5c7fe6f7223b6f3e77e892d0fbe15577d63fa549fa0bcffe1963d31"
+        }
+      ]
+    },
+    {
+      "id": "claim_f31183fa4aa947dbb2a7f508ca96c170",
+      "statement": "`serviceFetch()` in the integration helpers sends requests with production-equivalent credentials: it signs each request with the shared sig1 scheme (`buildServiceAuthHeaders` against per-service `SERVICE_AUTH_SECRET_*` bindings) and, for `service: \"web\"`, additionally seeds a real Better Auth user/identity/session into D1 and attaches the HMAC-signed browser session cookie — so browser-owned route tests exercise the same compound credential as production.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/test/integration/helpers.ts#L50-L166",
+          "version": "repo-lines-v1:sha256:f1cdb216532dfd55cc3df4c9f22cc3eefa09dcdf08c59de3e6ac44c389c58a97:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4Zjk4NWZiMTMxYThiNGRhNjU0OTlkMmZiMDlhZDA5MDUwN2UzOTVhNjBhYTIxNWY5MTQ4ODVmZGJiMzdjMmI1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwOWUxODNkYjc1NjE3NDM4YzBhMWZjODg0ODY4MDFhNDkzMjhiMjU0OWFkMjg2OGY5MjYyOTFiNWUwOGQ4MmQ5IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJiZDcyMjE0NDE2NzlkMGMxZjRkNDBhMWM5NDE4NmY0MWVmYmU5Mzc0ODNjMGNhNGZiZjc4OTlhNTg1OWFkOGVjIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_755b726c04a847f98c253a38510c8f45",
+      "statement": "The integration harness pins runtime parity and a hermetic outbound world: Miniflare is pinned to `compatibilityDate: \"2024-09-23\"` with `nodejs_compat` to match the Terraform-managed production runtime; `luxon` is aliased to its CommonJS build because vite 8's ESM resolution breaks cron-parser under the workers pool (the scheduler would silently skip overdue automations); `outboundService` returns 404 for `*.modal.run`, deterministic fixtures for the OpenAI and xAI device-flow/token endpoints, and throws on any unexpected outbound request; and a `onUnhandledError` filter tolerates Better Auth's internal APIError rejections.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L154-L180",
+          "version": "repo-lines-v1:sha256:e93c43bb32653fc21418d463f8081f1f9b70766d01e808cccce917079a6f0161:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmMjU1NmUxMzlmODE5ZDFjNDEzNjkxMzY1ZWE1YTg1ZGFjNjQxNzNmNGNmMmU2ZjFjYjQ0N2UzOTljMTU3ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MDJkNWE2YTZiNmY0NDM3NmY2YTQ2MTUzOTAzNzJiYmMwMjIwNGMyYWY5NjllZGI1OTY2M2IwZjBlMTc4M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI4M2MwM2ZiZGY5YjM0NmFhNTUyNzg2YjVlZWJiM2FhZDRmYWM4M2FiOWU1YzZiNWQ1MTVhM2ViNTljZWVkNTIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L48-L52",
+          "version": "repo-lines-v1:sha256:36293d5ef459614acee42cf35de51f011e4526ebd369509603bf849409bc9340:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDhhNjUwZTFiZTI1NTUzZTAyNTk1M2M2Nzk5MTZlYWIzMGJjNGFiY2Q5ZWI5NDBjNjk3Y2ZmMzg5MGMzNTcwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM1Mjg5NDc4NjI2Y2FkZDBhNGY4ZThkMDYzNzQ5NjA4YWI1YjhiODIwNzMxMGYwMzI1OTY1MjJlZmJmYmYwOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmRiNzI3OGFkNWM1MmYyM2ZiN2RiMTU5YjgxYThiYWRlOTk1YjZkNGNiNDhiZGY4MGFmNTg0MjU3ZGJlYWZjZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGE3Y2ZlZGZmZjc4ZDBjYmQxZWNmOTA5OTg2MjgxYmU5NzI1NjBhYTYzY2M1MDljYjQ2NGVmMzAwOTJmNDY2YyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L52-L119",
+          "version": "repo-lines-v1:sha256:8a5ee1f332155521531727a40c15dbfe4e4ade8fbde8e5a81cb8cad46f2b588c:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzNTI4OTQ3ODYyNmNhZGQwYTRmOGU4ZDA2Mzc0OTYwOGFiNWI4YjgyMDczMTBmMDMyNTk2NTIyZWZiZmJmMDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxMWUxZWQ4MGQyYTI1NDZkMDg5YTY2YjI2NDE1ZDBhMmM1ZTljYmI5MDg2NmZlZWZhMzJkNWNmZTljNjU3OTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM0YTI4Yjk5NGRmYmNhZTBlNGUwZjEyZmQwNGY2OWI3YThkMTkzYzM4ODY1YmI3MGMwYzlkN2YxNWMxN2ZhNTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxZDczYTNjMDRmOTJmZGI2YzUwNDc0YjJhYmU2MTYxMTk1OGMwMGVlODBmN2Y3MWFmM2QxMzU3MDFkYWZjMTAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.integration.config.ts#L9-L17",
+          "version": "repo-lines-v1:sha256:e6ad61fe32b73f6425f47fdd43b59598783aafb7796e1b7a1e0207815e58adca:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGEwMDA4N2VlMGI3ODA2MDk2NTNiZjNlOGNhMzg5MDRjNGE4MTJjOTdjMjhlZDcxOGFjYjU0YmEyMzA2YjNjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGFjZjg5ZmJhODRmOTUzZWJiM2Y1NTdlNmE1MjVlY2RjNDVhM2M2MzFhYjU5M2JjZTcwMDMxZTAwNDcxMmY4ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjRmOTlmZmQyNjUzMWM5ZDBmMDJkYTVlN2RjNjYzYzFhYjZmYTk2NmExMzg2ODYyMmRmNDk5ODViNzkzMTJiYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzllNDFkYTA4YmU0NWRlOWM2NmJiMWQ4NzZjM2RkMGUxZGY4NTU4Zjk5NjAyZmJhNDc3Y2RmNjk4MWM5MjYyOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cb24628ada90413a821091474f6b6886",
+      "statement": "In CI the control-plane integration job is sharded 2× (`--shard=1/2`, `--shard=2/2`, `fail-fast: false`) with a 10-minute timeout, and `packages/control-plane/Dockerfile.test` packages the same `npm run test:integration` command into a self-contained `node:22-slim` image that pre-builds `@open-inspect/shared` and copies the D1 migrations, so the suite can run outside a checked-out workspace.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L158-L184",
+          "version": "repo-lines-v1:sha256:5cdaba8bfd7eca48bcf0146aed1504a033c7a23990d8c35d747012793c3fbfdb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4NzY4OGEwZTFjNWY1NjZlZjM5ZmYyOGY3ZDg0MzNhMDM0MjcxYTFjMDYwODgzZjczNDViMDJjZTFhNDU3NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjZTU1NmM2ODM1ZTVjMmIwZGVhYWM4YmUwN2M3Mjk2MDExOGRkMmMxM2Q5NmVlY2Y3YTg4NDg0MGYwNmU3ZDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxOTdiNzQ4ZTFjM2JkMmViOWUxZTJjYTljZWVhYjNlZDY3NWRhMzNjY2U1M2NlMmRiZjdmMTQxYTI4NDA0YzgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/Dockerfile.test",
+          "version": "repo-file-v1:sha256:965b137fe63b08209fe6f92aeaf949e7420e122ee1872cc24a87cceac208f4ac"
+        }
+      ]
+    },
+    {
+      "id": "claim_d65275a0a3b34987a75a67b175a65d63",
+      "statement": "Control-plane typechecking runs three separate tsc programs: the production `tsconfig.json` (no Node globals), `tsconfig.test.json` (adds Node types because co-located unit tests use `node:crypto`/`node:fs`/`import.meta.url`), and `test/integration/tsconfig.json`, which compiles against `@cloudflare/workers-types` plus the `cloudflare:test` module and merges the test `env` with the production `Env` via `env.d.ts`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/package.json#L12-L12",
+          "version": "repo-lines-v1:sha256:e14aacde25f8f2c61fa6bb60230771e410a4491a0769b57d995533b3331a65ec:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTE0YWFjZGUyNWY4ZjJjNjFmYTZiYjYwMjMwNzcxZTQxMGE0NDkxYTA3NjliNTdkOTk1NTMzYjMzMzFhNjVlYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTE0YWFjZGUyNWY4ZjJjNjFmYTZiYjYwMjMwNzcxZTQxMGE0NDkxYTA3NjliNTdkOTk1NTMzYjMzMzFhNjVlYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODVkZTI3ZGVkYjAzNjg4NzIwOTkzMDE5OTYzNGMzYjIwOWQ1YTkyOGI2YTY2OWQwMTZhY2MwYzg3ODcxM2NlYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzYzNGJkZjFlZGMwOThkNGFmM2ZlYzdkMWM1NDk3OGM2NTk5OWUwYzE2OWQyOTMwNjBkNmY1OWNiZWI1YzE4YiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/env.d.ts",
+          "version": "repo-file-v1:sha256:c55592b70f0800b856dd2d0f3ed74e9a3797177756bde99cb51db8db2dc24c3f"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/tsconfig.json",
+          "version": "repo-file-v1:sha256:5dcfc37c4be01fb49b5cfd98ece65e7f8ab72410c826617ae9d52cfb72936e62"
+        },
+        {
+          "resource": "repo://packages/control-plane/tsconfig.test.json",
+          "version": "repo-file-v1:sha256:4ec68d5de82c8e1a0a4d081907e309d973bc1be26fc86130d2972068a7ed3a2f"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fc0b3251791405aaaeb931b964c805f",
+      "statement": "`packages/shared/src/module-boundaries.test.ts` is an architecture-pinning test that parses every production module of `@open-inspect/shared` with the TypeScript AST and asserts implementation modules never import the package-root or shared-types barrels (including via `@open-inspect/shared` self-imports) and that the internal dependency graph has no runtime cycles and no compile-time cycles, with type-only edges classified separately. Agents must not weaken it to make an import that crosses these boundaries pass.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/module-boundaries.test.ts#L144-L212",
+          "version": "repo-lines-v1:sha256:8fd017c45634dcb04d247b0fe1952727ae0147ad6348a660104d96f02a32876e:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNTYzYjAzZmNhNzJjYzNhZWE5NWUxZTYyNDBjMDk1MTY5MjlhYTU2ZmFkNDhmOTM0ODQwZjBhNTAwMjJhOGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2Yjg1ZGI4ZTI4YjI4ODZlMzExMmRjZDJhZjgzNzA5NjYzNjEwOWFkNjdkNzQyZDhlZDY5ZDg1MDVmM2JhYmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkN2NhODIxNzQ0ODQ2Mzg0ODRjOWJiNWY4ZTlmZjM3OTYxOGU3MWY1YzViYzVhYzAyNTZiYmMxYTQwYmQ3NmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_efe838a25d324ab89412d7139b3fa8ca",
+      "statement": "`packages/shared/src/types/boundary-schemas.test.ts` pins the Zod schemas guarding every client/server boundary (`createSessionRequestSchema`, `clientMessageSchema`, `serverMessageSchema`, `sendPromptRequestSchema`, `sandboxEventSchema`, the Linear callback schemas, the automation repository schemas, and more) with both valid and malformed payloads — valid payloads must parse and partial/empty-string/type-confused payloads must be rejected — because these schemas are the wire contract the web client, bots, and sandbox runtime agree on.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/boundary-schemas.test.ts#L36-L103",
+          "version": "repo-lines-v1:sha256:8055eb1f550ab84cb956b5364e0ad688175e2cdd5ad95c7d72392ab694d31e6e:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5Mjc4MjE0ZDczMWMzZTJiZTBjMWMxNjMyODQ1OTA5ZWRlMThmY2U0ZWVjMGViMjI0NTk4YjcxYzI1MTFkM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyZjg3NTNiMzQ4YzllMTA5NjhlMDUwZTUzOTY5YTQ2MjBmNzAxMGFkYmFhZTdjNmFjZjU1NWEyZDZiOTFiZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmY2U0OTY4YmRiMzI1Nzk1YmMzMjQ5NzYzYjA1MmQ4ZWI1ODY0ZDQxMDdjMTE3N2U0MDU5NGJiYmI0NDdlODkifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/boundary-schemas.test.ts#L679-L729",
+          "version": "repo-lines-v1:sha256:50ec9d94871dce4a98b5f1ee776fcbcf404e464418580686ea4050eb4ec7e1cc:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhNWY1ZjQzZTAyMjY1M2I3YTBjZDk4MDViY2YxZTBkMGY1NzUzMzI5ODIwMmQ3MDM0NmU4ZTEwNzZlY2MwZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyYzI3MGVlMzY0NDRkMTNjZTg5NGMwOWQ0ZWI2MjMwZjExYzBjYzc3Y2M1ODQ3MDZlMjdhZWI2YzY1MTdjZTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3OGZiN2Y3MGRmZGI2MzY0NWFmMjVmNjIxZmRmODA1MGZlOGRlMjlmOTYyODkwZmM4YjJmNzVlYTVkMGE3ZDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_46757d5003cb4a9bb14540fc99b0b914",
+      "statement": "`packages/shared/src/types/type-contracts.test.ts` uses `expectTypeOf` to pin the compile-time relationship between the public Zod schemas and the hand-written TypeScript types (e.g. `CreateSessionRequest` must equal `z.output<typeof createSessionRequestSchema>`, `RepositoryInput` must equal `z.input<typeof repositoryInputSchema>`), including the repository transform boundary where normalization makes the output type stricter than the input.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/type-contracts.test.ts#L41-L90",
+          "version": "repo-lines-v1:sha256:0681119fd3aeca126f6ab43d3563cbb3f7ae5b3771326c38a913be456b77c687:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjOWNlYTA1Y2RjNjY0ZWQxMWVmNjM4MTZmOTI0MzM4ZGJhN2I5YTU2ZmQ1ZTQ3OGIyNWQ3MDM5N2I2MjlkMGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiOTZkMTYzNTM0MjdjNDk2MTczNWRlOGRhMjI2YjI3MmFjOGFmMzc0YTUwNTY3ZGE1OGUzYzljNDcwMjNhZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJmNTY0NmM5MGQ2NWExZTdlMzYyYjYwMmZhZDI0YjZmNDlkMjEyNGYwY2NmM2VkMzM4NmQxYjNjOGEyMmI5ZDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2ae428a2e36c4223aad0ace5d58123f2",
+      "statement": "The web package's `client-auth-boundary-eslint.test.ts` and `server-auth-boundary-eslint.test.ts` run the real repository ESLint flat config against synthetic files to pin the auth boundaries: client code cannot import `next-auth`, raw `fetch` is banned everywhere except the two app-owned transports (`browser-api-fetch.ts`, `control-plane-transport.ts`), and server routes must use `getServerAuthSession` from `@/lib/server-auth-session` instead of importing `@/lib/auth` or the framework directly — proving the `eslint.config.js` rules stay armed.",
+      "evidence": [
+        {
+          "resource": "repo://eslint.config.js#L245-L290",
+          "version": "repo-lines-v1:sha256:70a3cb3b8300062ac6f7363378244bf91242cddb7a45a01f93d12b3ac0520f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4M2NkNTkwNzU1Y2RlY2Q2OTdiNTlkOGMzNzM2OWZkMDBmOWViMDYzMGZkMTA4ZTExMzlkMzZjYWU3Y2JmYjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0ZjgxYTFjMWE1N2EzNjdmZDcwMzBkZGE3ZGIzNzMxYTMwMGE1ZjkwMDJlNmZkZTQ5MjJjNDg1NzllMTY4ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiNTEzMjRlOWU0ZTFlZGFjOTg5NzZmZTdhNDY4ZjJiMmY0YmFkMWIwMTc4NWIwYmUyMjlkOGVkNmExODdkMGYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/client-auth-boundary-eslint.test.ts",
+          "version": "repo-file-v1:sha256:52d4f0c39d136b6d5b88aa47d5383e04ecccbdca01163b12a0ee01a4e36ce35d"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/server-auth-boundary-eslint.test.ts",
+          "version": "repo-file-v1:sha256:3620e5967dd24383ecae37b435255a1f2dc5349b974a8e54096a4096e1b0e739"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c75ef38448d4165a9b4b187e8e53d84",
+      "statement": "`packages/control-plane/src/router.policy.test.ts` pins the route policy table: every route must declare `authentication` metadata and `supportedScmProviders`; representative routes are pinned per auth kind (`public`, `handler-authenticated`, `web-service`, `user`, `user-or-service`, `sandbox` with session-id extraction, `user-or-service-with-sandbox-fallback`); diff authentication is method-specific; management/broker routes are non-cacheable; and `scm-credentials` is the only GitLab-specific SCM exception. The kinds come from the `RouteAuthentication` union in `src/routes/shared.ts`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L9-L159",
+          "version": "repo-lines-v1:sha256:7e3f31a61d1fdc6dd6d8766993e6af43f17b9ef251ce39534d844da7975b8d8a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5MmVhNGMxYjEzZTI5ODFiOWVlMWM3YWMyZTE4YmNmYmZkYjg4NGQ1YmRlOGZlZGJkODNlMmMxYTAyY2I3N2Q3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYTNlNDZmOTQyNzZiNmY2ZjRlZDFmMDJhZjc4YmVmNmEyZWUxYzQzOWRkNTU4NGI5NzM5NDgzMTMyMTRkMmI3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiNWM3MmZlZGY4ZmRkM2Q0Y2MzMDBkM2Y4ZWIwZjI2YTUzMDE2ZjExZDBjZjk3ZmU4YzVhMGUyMDc4NzM5MzBjIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxMjFkYzM5OWUyYzUzYWYxYWY1MzAwMTAwMjI2NzhmZjJkMmE0N2Y4MjA0ZmU0MDMyY2UxY2Y2MzY3OGVkMDJjIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L69-L98",
+          "version": "repo-lines-v1:sha256:e51b6b7fff9d3c5a4cb6877fafb3395eb9057ee4a6efcc1c46a7338eedae7247:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViZmZhMzkxZTFiNzQyMGRjZTZlMmEyZjFiZTM3ODM3NmY2NDA3MmFkYTFhZGUzNmNiY2EzZGQzN2FmMjEyMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzMzZlNmM3ZGY1MmFlNjU0MTU3N2M4ZjA3YThkYWUwOTIzMmNlYTJlMTFjNzczNjk0ZThmYjk4YzE1NzNlMDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyMjUzMTM4YWViMWEwNzA4Y2ExZDJjNWFhODg2MWJkNmFjODNlMjQ3NTMyZTcxN2I1MzBiNTg0MTZkZjg2NWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f3fb3663419475c8db9ef3e03cb6164",
+      "statement": "The control-plane package carries architecture-enforcing ESLint bans (enforced by CI lint rather than a Vitest file): `.DB` member access is forbidden outside the composition roots, each of which (`src/index.ts`, `src/session/durable-object.ts`, `src/router.ts`, the queue consumer) carries a single justified inline `eslint-disable`; the session composition root (`session/components.ts`) may only be imported by the platform adapter (`session/durable-object.ts`), which only the worker entrypoint may import; and repo-wide `no-restricted-imports` forces auth-owned and service-auth-owned names to be imported from `@open-inspect/shared/auth` and `@open-inspect/shared/service-auth`.",
+      "evidence": [
+        {
+          "resource": "repo://eslint.config.js#L131-L217",
+          "version": "repo-lines-v1:sha256:be6ba92db5e47ab327939a48126b24cca53d7a46e1ce6fa7dedae78c8b6aed28:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0MWM2NTVmNDBjNGIyYmFiYjFmOGMyODA2OGQwNjhhMWQyYjdjNDcxN2M1MjJhNWJlNjA3NmQ5OWY0YzFkZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0ZjgxYTFjMWE1N2EzNjdmZDcwMzBkZGE3ZGIzNzMxYTMwMGE1ZjkwMDJlNmZkZTQ5MjJjNDg1NzllMTY4ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5MTZhYmU1ODMyZGQwOTA5ZmM2NjM4NjcxMGU2ZDY5NTlhNzViMWFjOWVlODYyZGQ3ZTc1YjdjNmM3MGY0ZjYifQ"
+        },
+        {
+          "resource": "repo://eslint.config.js#L74-L125",
+          "version": "repo-lines-v1:sha256:18d536bfb00360fc4c3b1b536e0b0384bb4843347765fdb4bf798ff775c20023:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2MmFiMThjMWVmNWRhNjYxMTFlNmFmM2EyZDY3OGM0N2E3NDBiNTgyODBkMTNhYTYzMDY4MWU2NDNjZmVjYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5NDE5MTE5Nzk5YTUwNDVmOWY5OTkxY2YxZjkxMGE0OGZjYmNlNDU4MmRlMDE3NmM4MzJhNjRhYmM3ZmYzNmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliOTVlZDM5YTllZTM4NTc3NGY4NDUzOWE1YzViMzQwNTA0NmU0MDk5OTcyNjM4NTU1Nzk5OWFiYzRkNmI5NDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2YTU0MWVkMGVhOWQ4NmFjZTRmMGE2MWQ0ZmUwZTYxNjBkZDAxYmNmOWE2YmFhNDRjNDYzMmEzMGY4M2IyYjUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L40-L40",
+          "version": "repo-lines-v1:sha256:3bd458fe625ee04c5418874dc35926687efd50db01a7d69baac81cbf80509198:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2JkNDU4ZmU2MjVlZTA0YzU0MTg4NzRkYzM1OTI2Njg3ZWZkNTBkYjAxYTdkNjliYWFjODFjYmY4MDUwOTE5OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2JkNDU4ZmU2MjVlZTA0YzU0MTg4NzRkYzM1OTI2Njg3ZWZkNTBkYjAxYTdkNjliYWFjODFjYmY4MDUwOTE5OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDg4NDhjNjU5YzExZDUwMjc5NTEzNmNmNWI1ZTI3MTM1MTg1MjQzODNhODgxMjhkMzE5ODNkYThjOTMzNThjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWRhMTMzYjk5MzM3MjZlOWQ5MmFkYmFjY2ZlNTM3MjAxNmZhNmNjOTE1MzUzN2Q0MmIxMDZlNGY2MDg5ODliMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/durable-object.ts#L29-L29",
+          "version": "repo-lines-v1:sha256:1cb074039948842e52b0f61424345ed702eea1ef4ecea2e3a070bf081cbc4e0e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNiMDc0MDM5OTQ4ODQyZTUyYjBmNjE0MjQzNDVlZDcwMmVlYTFlZjRlY2VhMmUzYTA3MGJmMDgxY2JjNGUwZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWNiMDc0MDM5OTQ4ODQyZTUyYjBmNjE0MjQzNDVlZDcwMmVlYTFlZjRlY2VhMmUzYTA3MGJmMDgxY2JjNGUwZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODRjMTVkNjFkYjQ2NjM4YTUxNDhjMDBmOTI0NDFiZGRmYTc1Njg1NTlhZDRiYzRkNzM0MGViNDBiODE5MDJhYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTdjNGExMGRhNDkyNjA5NGMzM2VkNjFlOTcyN2E0NTg5MDdmODJhMTViYTU4NWYzMmRjYjRiYzFhMzhkZDc4MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a76e02045894862aeded6028ce16ff0",
+      "statement": "Cross-plane contract tests keep the TypeScript and Python sides numerically identical: `packages/modal-infra/tests/test_build_sandbox_lifecycle.py` regex-reads `packages/shared/src/types/integrations.ts` and `packages/control-plane/src/image-builds/timeouts.ts` to pin Modal's build-timeout constants and finalization-grace mirror, and both that file and `packages/control-plane/src/sandbox/sandbox-env.test.ts` pin the image-build callback env keys and reserved-key scrub lists to the shared manifest `packages/sandbox-runtime/src/sandbox_runtime/image_build_callback_env.json`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.test.ts#L465-L509",
+          "version": "repo-lines-v1:sha256:60566bbb8b8a64d8e4ec0d421a38afc11df2a0e673636718ef68c86046906270:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkMTlkOGFkODU1NTVkNTVhYjM3MzJkNzA2NTA0YWE5OTE3OTBlZDY2NmM4MDc0ODc5NTk1NDlhYzEwMmUzZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/modal-infra/tests/test_build_sandbox_lifecycle.py#L133-L156",
+          "version": "repo-lines-v1:sha256:c255d4b858b747acc95766c54774c50e56026aabcb0be205e6fbc911a2817238:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2MWI0Yzg5YTllMjNlZDQ0YWI5NDY0YjM2OTIyNjI0ZWJiMWQ0MmYyYzAyZmQ2MTBjODU4MmE5ZmEwNTk1YWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwYTVjNDRkNTE4ZTVlODNiYWNhYzM3NDlhY2I2ZjZiOGQ2NGZiZTZiMTJlOGZlMmJjMTYwNzFkZWY1ZTFkNjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyMmRmNWI4NDY3MzBlNTEyYWQzMjZmYWVjMzMxMWJkZmZkNzhlN2MxZTZmNzgzMDlmODRmNjUwOTEwYmUzZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhYjdiMjcyYWI0ZTI1MTc1YjVmZDI0YzEzY2ZlNTYzNDI1MTRjMDI3OTQ2ZjAzYjUzMDVkZjIwMzM3ODc5ZjkifQ"
+        },
+        {
+          "resource": "repo://packages/modal-infra/tests/test_build_sandbox_lifecycle.py#L43-L79",
+          "version": "repo-lines-v1:sha256:650386c8aaa1cc8007a91d7f720ee680832149abf35777dc80dac6c80dad99cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmMzQ1ODNhNTk4NzY3YmY1NmFlZmViNjVlMjAzM2ExNjUxY2M0YzhkN2U2ZjBhZjNlNWNmZDMyOTNmOTMzYjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxN2FhOThmNjk0MWMzYWYwMmExNTZhNTE4ZGJkMGViODJkYzgyNzEwODkyYWRlNGFiZDIyZDg2OGNhNGUyMGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4MTYyMDA3OGZkZWQwMDA2YmM1N2U3NzI0ZTIxZjllMzhmMjRhMTc1NTQ4NjcxMWE4ZjJjMmYzMjRhOWU0YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU5ODZhYjcwYzQxMTJhMDMxZTUzYmNiMzUzZGEyNzMxOTlmMDUyZDZkYmE5YzE1ZmVkMDBjYzJmOWQ2ZDk5NmMifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/image_build_callback_env.json",
+          "version": "repo-file-v1:sha256:4417469f23d5d958ab300ed367195a460182a9ffe23b8a85578629c89021ca7f"
+        }
+      ]
+    },
+    {
+      "id": "claim_a133e6355cca4bd1ae3d40a92c0617e5",
+      "statement": "Because the Python contract tests read TypeScript sources by path, the Python CI workflow's trigger paths explicitly include `packages/control-plane/src/image-builds/timeouts.ts` and `packages/shared/src/types/integrations.ts`, so changing those TypeScript constants re-runs the Python suites.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci-python.yml#L3-L31",
+          "version": "repo-lines-v1:sha256:0e86538a44614359f15af44b7465095fe671e29a7a0fe6d87b7b2cf59fe517da:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5NmRjNDgxNDlmNWE4M2QxZWQ2ZGJiMzliYmM3ZTJiOTAyYWEzZDM0ZDZiZDVhZTRiMjkxYjY4ZGYwY2E3OWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5M2QwYzE4NGZjMGQ5NTJhNjVmOGRkNWMxNjNjNmQwNmYyOTA1ZGY2ZTMzODZiNDdjMTEzN2IyZjQxNTgxMGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIwMTVkOGZlMDliYzNkYzNmOGEwNDNiOTlmODVjNzYxMzA2MDc3OTkzOGJiN2QzYzgyYThkNzAwYTE3NjMwYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMjc0MjI0ZTk4Mjg4MWQ5ODFiOGFkZGZkZGM5ODgwYjJmMWQwNzgwMzE1ZDcwZDVkNTE5MWM3NWY5NWE1YjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_775137808b8f41ea9492bdb22eb4bb09",
+      "statement": "`packages/sandbox-runtime/tests/test_bridge_push.py` pins the bridge's git-push semantics that security and correctness depend on: stderr redaction of embedded tokens in push errors, the terminate-then-kill timeout ladder with its exact `wait_for` timeout values, and manifest-targeted multi-repo pushing (case-insensitive identity matching against the repo manifest, canonical checkout path selection, and no filesystem access for identities not in the manifest).",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_bridge_push.py#L146-L184",
+          "version": "repo-lines-v1:sha256:f4545e3b614f490a95bc0904de066ae0dca6e6490838dccc4f099257c069e04d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkOTk0MmRlYjdkYmFiYzExNGIxYzQ4ZDAyZGE0NjM4NmU5YWNhNTE1YTUyZmI3YjNjNDEyZGM2Mjc5MjFiMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwMjQ4N2FjNGVhZjUwNTgwNWEzZDhhNDQzNDkzNGZhMTg4YzA3ZGI0NmM3NDBjNjhiYmE2NzYwN2ZiYTVmYmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxNWU3MTFjZTZkODE1ZmQzZmJiZTcxMGQ1ZWZjZmE2ZWY0NzliODljYjdlMjc5YzJjNGZjNTYxYjg5ZmY3NTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiM2FlN2NhOTcwMzY2NGNjYzVkOTRkMjlmMWMwZjQyZjgyNWM1OTk4ODYxOTg5ZTI5MjVjNzgxMzI0OTY4MjcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_bridge_push.py#L194-L250",
+          "version": "repo-lines-v1:sha256:ed4a65dda33d0eb4752d232488434d18404df47ba014be3ce30a3b8ac7f714b2:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkOTk0MmRlYjdkYmFiYzExNGIxYzQ4ZDAyZGE0NjM4NmU5YWNhNTE1YTUyZmI3YjNjNDEyZGM2Mjc5MjFiMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzMDc4ZmExYWQwMGNlMzY2OTAzZWZjY2Q1M2NjZTg0YjU4ODY5MDExNjM4YjE2ZmVhZmI2NGFkMTM1ZTUyZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0MzIzMDFmNjdhYWVlZjQyMTcyZjg0MzUwMGI2NGYyZmJkOTNmYTJiYjQwOTI3MGM0ODNlMTAwZmI0ZDZiODQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyZWZlMDk1NTQ5MzVmZDExYTE4ZWExZjY2NDI2YzI5ODAyZGQzYzFmNjVhNDEzZDI3OTk5MTI0MjU2NDVhMWMifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_bridge_push.py#L71-L122",
+          "version": "repo-lines-v1:sha256:e948406c2f3b4f5bb58cdb6249bb38600001622afeebb1a0864065b624851c5a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkOTk0MmRlYjdkYmFiYzExNGIxYzQ4ZDAyZGE0NjM4NmU5YWNhNTE1YTUyZmI3YjNjNDEyZGM2Mjc5MjFiMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmMGFhZWNkNDE3MjIyMDQ2NWUxNDM4NzRkZmU3MDVmMDEwOTY5NjcxNDZlOTJjMTExMWY2YzQ4YmY1MzRkZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4Y2Q4ZDAzZTBhMmRiMjM4YTM1NjYzMjllMGU4OGMyOWQ3ZDRkMzg3YjcwODFkYzRhZWNiZDI2OGIzNmRkN2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhYjdiMjcyYWI0ZTI1MTc1YjVmZDI0YzEzY2ZlNTYzNDI1MTRjMDI3OTQ2ZjAzYjUzMDVkZjIwMzM3ODc5ZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb5df947c8d54c01854efd8accf8db65",
+      "statement": "`packages/shared/src/service-auth.test.ts` verifies the sig1 service-signing scheme against committed golden vectors in `packages/shared/test-fixtures/service-auth-vectors.json` (canonical request string, body hash, signature hex, header shape, malformed-header rejections), making the shared auth primitive resistant to casual re-derivation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.test.ts#L23-L55",
+          "version": "repo-lines-v1:sha256:604440257bb74bcdcb0f2acce1290800afbb776ce980ea7b8e47b4bc90a6267b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwN2M4ZTUyYTU3ZTA2OWQyNWViZmRhODg3ZTkzYmY0NTVmNmEyOWUyYWM1NzBmNGJiZDc4ZGYzZTUzN2M5ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjMWJhNjQzZGNhZjVjNTcxNWM4MmNlMTgxYjM0ZTQ5NzQwZTUzNGRkNzFjN2M1YTZhZTJkYTBlODc0NTNjYjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyNzhjMTgwYjJlYjExNDcyYzg1OWYwNzQ4OWMyODQ3YzE2OGM2MGYxNTliMGQ2ODE5YWM4YjhlZDU3YTllOTgifQ"
+        },
+        {
+          "resource": "repo://packages/shared/test-fixtures/service-auth-vectors.json",
+          "version": "repo-file-v1:sha256:ce5bd11681aabd381774a5ef6c8b02796dfb80a0a212121b9ef51b4d614960b9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0dfbdfda40194f70a44abcb5e332d24c",
+      "statement": "`packages/control-plane/src/worker-build.test.ts` builds the actual control-plane bundle and asserts it uses workerd's `node:async_hooks` implementation (no `AsyncLocalStorage` polyfill) and the ESM build of OpenTelemetry semantic conventions — a build-output pin, not a unit test of source.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/worker-build.test.ts",
+          "version": "repo-file-v1:sha256:240484894c8e3b9eaefe13b19ba2e50a45f755cf3f05490873563f9abff67364"
+        }
+      ]
+    },
+    {
+      "id": "claim_4b959427ffd741a283b37f15ba949c31",
+      "statement": "The integration suite's `session-do-collaborator-wiring.test.ts` pins SessionDO collaborator edges that have success-shaped fallbacks (warm-on-typing spawn, snapshot trigger, branch-push wiring) and are otherwise invisible to the rest of the suite, reaching past DO encapsulation through a single confined seam (`componentsOf` in `session-do-access.ts`).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/test/integration/session-do-access.ts#L37-L40",
+          "version": "repo-lines-v1:sha256:293c64da5031b4c679ac9a6015a81c439c4130b3d5a22f3091183b930bd45335:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTU1NDdkMGMyYTVhNTRhMzlhOTlmM2I0M2M0NTM0OGE4Yzk2YWU1YWYyODU0ODI1ZjRkMjcyYWZmMmFjNDk5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNkNzEzYWE3YjM3NmU5NWI0Yzg1NGU3NjczZjUxZjI2YWExNTNiMTY0YWI3Y2UwZTUwMDg0YzY4ZDkyZjc0NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWY0MWNiNmY2ODIxOTVmNDYzZmY5ZWQwMDNhM2ZiZmNlOGZhNjA3ZTJiOTBmZDlkMDU0M2QwODI1MzIyZDkwMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/session-do-collaborator-wiring.test.ts#L12-L43",
+          "version": "repo-lines-v1:sha256:6db6455c8f2629dd3ebb81c4d1d23a976bed1f77a14cf566e4b847cb7d3bbee6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg0YjM4NDFlZWE1NTA3MjYxOWM1Y2I1OTdjYWQ2ZjgzY2FkYzRkYzQ2ZWQxOGZkN2Q3N2Y4YmY5NDczODVlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5MmU0ODc4MjM0NTY3MzY4M2I4NWE3YTc0NDZmNGJiODczYWRkNTY3MDRlMzE1NmY4ZDBkYjk5MzczODdmZjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a43d4bed148a40bd88914691c14a454d",
+      "statement": "Unit-level router tests (`src/router.*.test.ts`) complement the integration suite with a Node-environment harness: `router.test-support.ts` provides `signedServiceRequest()`, which signs each request individually with `buildServiceAuthHeaders` (sig1 binds method, URL, and body, so no reusable header exists) against `TEST_SERVICE_SECRETS`, plus a shared `TEST_BACKGROUND_TASK_CONTEXT` double for the `BackgroundTasks` seam.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L1-L8",
+          "version": "repo-lines-v1:sha256:480a98a70846d118072ce651c90202fd8791b21a4adf5fecd1841fac34faa99b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWU4YmU2NDQ2MDY1ZDU3MmFiMDdjMDA2MTA0YjM2M2Q4NTFiMTM2MmQzMWY1ODM1YTg2NzYxZGEwZDMzZDlkZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2U5YzU5YmZjZGFiNzc2NDJjZWMyNThhMWE2ODI5YzdjNjFlODc3OTk0MWRhZWFkOGY1NGYwNGVmYWIxY2ZkNiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.test-support.ts",
+          "version": "repo-file-v1:sha256:8f20ec200a3fc6dde136725a73dbbd867c0838a2bfd6715c9fa02212f89c7892"
+        }
+      ]
+    },
+    {
+      "id": "claim_18b71562fd5149a19b457ecf80f7962a",
+      "statement": "`packages/sandbox-runtime/tests/conftest.py` installs an autouse fixture redirecting the runtime's fixed file paths (repo manifest, boot warnings, tunnel env) to per-test `tmp_path` locations, because this suite routinely executes inside a live Open-Inspect sandbox where the real `/tmp/oi-repo-manifest.json` belongs to the running session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/conftest.py#L14-L36",
+          "version": "repo-lines-v1:sha256:dabd86a3267bcea156ed2d9136d5f0b08c9bcc34d060ed4df0c396085e60b753:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmMDg2NmY0MDExZTU4NWZmYzA5MDkyZWRmMDgzMmUxN2I1MmY0YzkwYzRjYTBiNDJkY2ZhMDUwZmEzNzViNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyYjUwYjVmZTZlZmM0Y2NmNzViMDVlODc5MTM0Y2JhN2ZlY2E2ZDNkMWUyODU3YjY3ZTkzM2NiZmU0OGU4ZTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1NDU1OTU2ZTMwNTRiM2UzNTgwYzJjYmY0NGVlZTNlNjI0Zjg5N2ZjMzZjYTg5OGZhYzRkMTU5ZGViODcwNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4ZjhmMGEyOGViNWJmNTVjNzg0YWZlZGMxYzkyMGIyZWJiNGUxMWM5YWIwODMxNDFiMDcyZWU2MDdhMDFmNWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b110078704884247832c8c251c0fa93a",
+      "statement": "The sandbox-runtime suite additionally contains plain `node --test` files (`tests/*.test.mjs`) for the sandbox's injected JavaScript tools, run in CI via `node --test tests/*.test.mjs` with Node 22 installed in the Python job — these tools are not pytest-covered.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci-python.yml#L157-L191",
+          "version": "repo-lines-v1:sha256:c92fc1c83f05ff1aea121deca07d8fa98cf7bd3178ced463b1f6c94c4ee448f6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhYWI5NmNmOTg0ZWJmOWEzMmQyZjAwNzVhODFkM2EzMDJjNWJmOTViODAyZWYyODc2ZmFkMmQzYjU2NGM0MTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5ZWU5YzlmOTU5NTc5MDg4OTZmNzQyMzE5MzIwZmQxMDcyZGNmOTk1MzE1NDQ1NGM1MjIwNWI3ZGRhZDVmM2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5OTNjYTdkN2E1NGU4OGY4OTIxOTMzYmEyYzljNWVmYWQxNDEzN2M4ZDFkYzA4MjMxOTE2ZDllZTU5ZDcxYWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4NTRhZGQ5YmI3MmMxYjEzMTJjYWNjMzQxODRhYjU4MjIxMTE0MmNhOTljYWIyNDlhNmM5YmFmNmU4OTQ1NzIifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/get-child-status-format.test.mjs",
+          "version": "repo-file-v1:sha256:663ba06c4f73e457135a93cf13ce521b82b99e96a859fc701715c068edd20657"
+        }
+      ]
+    },
+    {
+      "id": "claim_2addd8b3da5841fca056cc26e27b9b9b",
+      "statement": "The modal-infra suite pins the data-plane HTTP API's validation and failure contract by driving the FastAPI route functions directly: string booleans and invalid typed fields are rejected with HTTP 400, missing/empty `control_plane_url`/`sandbox_auth_token` return 400 with the field named, unknown fields are forwarded to the session-config helper, and generic manager failures surface as HTTP 500 with the request logged but details not leaked.",
+      "evidence": [
+        {
+          "resource": "repo://packages/modal-infra/tests/test_web_api_create_sandbox.py#L116-L197",
+          "version": "repo-lines-v1:sha256:7870ea3bcbc63174f8890033c62de6167d50f8759c8e548ac34c8b64addb7c79:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkOTk0MmRlYjdkYmFiYzExNGIxYzQ4ZDAyZGE0NjM4NmU5YWNhNTE1YTUyZmI3YjNjNDEyZGM2Mjc5MjFiMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiYjE3ODRhZTEwZTkyNzVlZDBjYzNhODJmOGI3NjhiZWE2N2ZiZTQ0ZTU4YjAxMDA3M2RmNDg5OWI0ZTBjYTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZjkzMDgzYzE5NzEyMWI5ODI3MDBiYThhZmFiZDE3MjJjZjFkM2U3NDA0NTA5ZTgwZWZhMjcyNDdmNjJmMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhYjdiMjcyYWI0ZTI1MTc1YjVmZDI0YzEzY2ZlNTYzNDI1MTRjMDI3OTQ2ZjAzYjUzMDVkZjIwMzM3ODc5ZjkifQ"
+        },
+        {
+          "resource": "repo://packages/modal-infra/tests/test_web_api_create_sandbox.py#L200-L250",
+          "version": "repo-lines-v1:sha256:e0e7b64f7c75827413bf9de4bf99035cea937392feb6b644525972d4b8a729a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkOTk0MmRlYjdkYmFiYzExNGIxYzQ4ZDAyZGE0NjM4NmU5YWNhNTE1YTUyZmI3YjNjNDEyZGM2Mjc5MjFiMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkOTY0Y2EwMDg1ZjBhYjI1M2NlOGY5OTI3YzJlOTAwODVkYTQ1MDdkYjZkZmJkZDYwYTBiMjEyYjJiMzE1OWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmNTI1MDVhNjFkYWQ3YjJkMGFkMWIyYzJkZmQ5ZmRjMjRlYzJhMzg1Nzc1MzMzYTAxYjcxOTczZWMzYTkxODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjNmIxZDMyMGZhOTE5YTNmMTNiMDI0N2IxZjU5ODFlNjE0MTlhMDdhNjA5YWEzNDdhNjg4MWE3ZjQ4NjdiM2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d8b37cf456d64a998c4ae7ff1c3a8411",
+      "statement": "CI (`.github/workflows/ci.yml`) runs on push/PR to `main` with path filters and comprises: lint & format (ESLint, complexity-reporter test, Prettier check, Knip), typecheck, a web production build, control-plane unit tests (shared then control-plane), the sharded workerd integration job, web tests, and all three bot test suites — every job that compiles or tests dependent packages builds `@open-inspect/shared` first because worker packages import its built `dist/` output.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L56-L235",
+          "version": "repo-lines-v1:sha256:41d14b0910b3f7bee21aa544cdfa3c4126ada282fd4d29457508a4d4162a7ed3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlOWQ4MDE1NGVkNDJmYzVjNzc5YjEzMzE1NzhiNThiODljODAxZWFjZTc0ZjI0Y2Q0OGViNGEyMzU3OTQwYTk1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0NmYyNTg4MjIzODEzZDFkYTkwZGNjOTIwYzI4MzMxMzcyN2RhYjRmMzlmNzk0NjQ0MDRhOTNlYjUwN2Y5YTc3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIyMTY3ZDQxYmNiMjk0NTJhNGRlMDgyOTU2YTY2MmRkNWQzMmVlYzc2MDg0ZmQwMGYxNzIxNDA4OWQ5NWE1MzQ0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://AGENTS.md#L150-L160",
+          "version": "repo-lines-v1:sha256:f5309277eac570b0e96dfe89e2073eebe163e3249addf69b47fe3418655003a1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiNDY0NDA1N2NlZjAwZWNmYTE4NWMwOGJkNTNjNTk1ZjMyYjgyMWUzMTQ5NzYxODY1NWIwYjlmYWQ3N2U5MjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1ZTMzNzk0MWMxOTA3OGI4MDg3N2RhYTE4OTgzODRmNzk5NmY2NjY5OGExODM4NWMwZjg0MzFhY2ExY2U0ZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2NTdkYTYyNDZlODUwMTE1NDIxOWRlMWMxZGM5MGJmYmRhN2MwZmU1NWI0ODczZDA3NTQ1MDgyYWFjNDJiYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhMDZiYTU5NGVlNjE0MGMwMjM5ZmJjODk2OTc4MDk1ZjBiOWFmNTAwZDAwYmY4ZWMxNTYwYmEzM2U1ODU1YjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_67188dc6da3a470eb028285a9b46f000",
+      "statement": "`npm run lint:complexity` (`scripts/lint-complexity.mjs`) runs ESLint with `complexity: [\"warn\", { max: 0, variant: \"classic\" }]` over `packages/**/*.{ts,tsx}` to collect every function's cyclomatic complexity and print a distribution plus a hotspot table (production functions over 20, top 25). It is deliberately report-only — findings never affect the exit code, and test files are excluded from the production hotspot table; its diagnostic-message parser has its own `node --test` suite (`npm run test:lint-complexity`, which is what CI runs) so an ESLint diagnostic-shape change fails loudly.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L77-L78",
+          "version": "repo-lines-v1:sha256:e9aff649cb47f2ebdf435425e6e88230381119cba2468884f715072a6500d813:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDg5ZTJkZDI5NzM0ZWQ5ZTAyNDYxOWRhOTI2MzI0MTllNjJiMjVhYjk0ODBhZDg3NjczZjk4MzEyYWJmYTc2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjJmNjQwZTM1NWFjYTliOGY4YzZmNGVhYzE0MzhjNDIzYzZhMzk3MTBjYjYzOTU0YWU1NmE1MGEwZjU2MmU2ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWU0NDRjM2M1N2IxYjhlNzkwNTg1NGEyZjkyOTZjMTk4NzQwMjFmOWZiNDA0ZWMzOGY4OWFmMTUxM2MxODkzZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjkzMGVmMzVjNWI2OTI3NWJmMWM2MWNhMzcxOTYxZGQ2MzE4YTc0ZGMzMzNjMmM4OWQyMjEzOWQ3MGUwNTYwOCJ9"
+        },
+        {
+          "resource": "repo://package.json#L16-L17",
+          "version": "repo-lines-v1:sha256:19eafcb366f80125b2601c60419130ecc5aa288065fbc820081090f89dd8ee29:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQ1YTBkNjVjODYyMWZjNDVjNmI5YjFjOTE5ODQ0NWJiYTA0ZGRmMzY3YTc2OGZiOWE2ODljMDUyM2QxZjU3ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFjNjdmMzM2YjBlMGZkOWEyYjU5NmI3NGU1YWE5NDM1ZWFhZjkxYWE3NjhjZmRjMjIyZmFiZTBmODYxZDAwZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWU4NjAyZDhjMDViMGI4OWZhYWJhNTZlODIyZDUzM2M5ZWRjNTcyMTY2YTFiZWI5MmMzNmRhMWJhODc5Nzc2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDM3Njc5NGU5YzFkYmYxM2E3M2RlYWY5NGJjNTQ2NDA4YzQzYTgxNzlkNGE5ZDBhMDA4NWVmNDQ1NTI0NGFlOCJ9"
+        },
+        {
+          "resource": "repo://scripts/lint-complexity-message.test.mjs",
+          "version": "repo-file-v1:sha256:80a1bca3e8e960d36af2df500d9a70407d65d2ebafa57c4363ba1db7c0a6cde4"
+        },
+        {
+          "resource": "repo://scripts/lint-complexity.mjs#L139-L150",
+          "version": "repo-lines-v1:sha256:bce0507b288b76121ebf5e9447e0ea7818981fcf8cb47106e971c272a688f9a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjYjcxYzJhMTFkN2NmNTc0NmMwNWU2YTk1YWIxYzViMzYxYTU1NzUxOTZhYmQ1OGMxYjQ2YjA2YWRhMjVhYjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkNTkyMDQyMzMzYzA5ZDE2N2NlNjEwZDk1OWY1ODEyM2M5OTllMjE1NDRiMGYxM2JkZWIxMzFiM2Y2Mjk1ZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NzRhMWE3MzI1MTkyZWI1ZWFmYTZlYjU5OTUwZjY4MGVjNzdkMWMwNjg5Y2RiNDA0NTY3OTM5NzhhMDZkZDkifQ"
+        },
+        {
+          "resource": "repo://scripts/lint-complexity.mjs#L7-L10",
+          "version": "repo-lines-v1:sha256:2069829c9d01173c9e67cccc7a400af7014ab45656812b308b46c9f8f7cfa733:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWI5OGVmNDc3NjdlMjNlOTc3NzE2OTgzMmM0ZTU3NzA4YjYzMGJiNTZjZGYyZDc3M2QxNTQ2MzEyMjRiNGQ4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjJjNzI1ZjAwNmQzZDQ2ZmNhNTY4ZjFkMmY1Y2YwY2EyNjk1NzFmZTY5MDFhMTE3M2FlNmQyZGNhYWMxODRiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQyYzQ5Y2RmMzg2ZjJhYTcxODA3ZTAwOThlZTkyNDg2MWM4N2M2ZTA3NmU0ODYwNTRmNWNiMmJjZDJkNTEwNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_745838b6ba044ebb930e829181aac5e1",
+      "statement": "Knip detects unused exports, files, and dependencies using per-workspace entries in `knip.json` (which declares integration tests and the sandbox runtime's injected `.js` tools as entry points so they are not flagged); CI runs it with `--no-exit-code`, so findings are advisory review items rather than failures to suppress.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L83-L84",
+          "version": "repo-lines-v1:sha256:93956fd942d77d619fb958cef3a369cfd860453c584edd7574191e313111d27a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTI1NzZjN2M3NjZhMjEzZjYxNjFkZDhhMjYwNWQzOGU5ZTE3MWRmODQ5YmZmZTA5OGMzMWMwNjJlNDZmY2YzYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2ViNDkyYTljNjk0ODhkODU4MzI5ODc2YTg3OGFmMWQ4ZTMxOGU3ZGYyNWZmNzk0YzE4YjFjZWFhNWM0ZDUwMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjBlYmIwMjc2ZmMwNTA1ZmVlNTExOGY5NzZjMjdlZmY4OWY3MzdlYzhlNzk3MjBjN2Q3YmU2NTI3OGQyMmMzMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTJkNzU0MDYyZDc3NzE5Y2Y2ZDk5MzEyNDRiZTYyODgxNzZmZWIwY2UyNjE5MDg5MjVlMjUzZWVmZTEwYWJlYiJ9"
+        },
+        {
+          "resource": "repo://knip.json",
+          "version": "repo-file-v1:sha256:4b2d17ed166f91dc9465c56cd1f51fbbef4f02c0524335608c6b114756ebc826"
+        }
+      ]
+    },
+    {
+      "id": "claim_e73dc7c290c849fc90333dfac45a7d2e",
+      "statement": "The husky pre-commit hook runs lint-staged, which applies `eslint --fix` + `prettier --write` to `*.{ts,tsx}`, `prettier --write` to `*.{js,jsx,json,md,yaml,yml,css}`, and `ruff check --fix` + `ruff format` to Python under the provider-infra packages; the hook activates the modal-infra venv first when present so `ruff` is on PATH.",
+      "evidence": [
+        {
+          "resource": "repo://.husky/pre-commit",
+          "version": "repo-file-v1:sha256:70273939fa2141be029ebff3fef0ccdd3bc583e5d8a5edfbe9c6e1955c89e246"
+        },
+        {
+          "resource": "repo://package.json#L48-L60",
+          "version": "repo-lines-v1:sha256:bdce6f0a7c16051d75f3dbb605d2ee3c6fea345bb959e7a25b856704a1ac99a8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3YWRkZWE3MTZmZGM0MDRmZjdhYmUyYzE3ZTAyYjg2YmRlZDg4MjVhOGY3NjFiYmVkMTlmZGExZDk0ZThmMGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyZWJmOGM3Nzc1MWY0NDBmYTUzNTA0Yjk2Yjg2NzY0NTAwZjRjMjZiN2RjNzU3ZDAzNmY4NTEwNDgxYmMyYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cdfebab201a54088808d8a125e22ae14",
+      "statement": "Commit messages are expected to follow conventional commits (`feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:`) with subjects under 72 characters, details in the PR body.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L119-L122",
+          "version": "repo-lines-v1:sha256:843022ced894281af0163f97bcdf653ce5e410669c0592ac80b139dde392e4c6:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjA0ZGNkOTg5ODc2MDE0NmVjOWU5ZTI2MWNmNTNiOGNkODFkODA3NTM5Yjk5N2JlMGJkMmQ3ZWU0YjIzMWE0YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDA2ZWMzMmE4MGJhYzdlOGIxZGM1ZTdjNzgwZTZmY2MxNzIwNzdhOGQ3NmQwYjdlMDUyMzA1NmMwYWQ5NzhiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQ4ZjZhMTBkNjYwMmQyZmM4MTRmMTBiNWZlMWY3NDQxZWYwY2MwOGZhZjZiYWJiY2EyMDRjMzRkNjk3MGMzOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzBhMjAwZGVkY2Y4MDEzMWE5YmQxZDIxMjAzYTljZTFhYjZiYWI1NGRkYjEwMDU4ZDIyZjA4MTg5NTA2N2Y5ZSJ9"
+        },
+        {
+          "resource": "repo://CONTRIBUTING.md#L65-L73",
+          "version": "repo-lines-v1:sha256:2ef3a48d6e0ce0b3041b529c05b7977e18aaf787545c41b4f6cedc473aeb8bb4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTEyNzg2MGEzNmRjYzIwNGFmOWFmN2Q0MjVhMjE4YjA5NTIwYTc2ZWU3NmRhNzg1YmJhZDVmNDZhMzFlYjE4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzliNmU4YWI3MDNhYmE4ODExNTM4YTIwZjliY2Q5YjI3ZTMzMGIxNTRmOGE2MmM2OGNmMGNlZTFmMDBlZDc4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTM2NzI3MTUzNDZmOThhMzI2MTMyNDQ2NWViNjdjMDdhNWY1YzY4ODg5ZmRhY2VmNmM4ZTk5NmM2MDVkN2M1NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_641e418c3fd1497d96f27e04f710f782",
+      "statement": "Every Vitest package exposes `test:coverage` using the v8 provider with `text` + `json` reporters over production sources (excluding test files, `.d.ts`, and the worker entrypoint), but coverage is not a CI gate.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L17-L17",
+          "version": "repo-lines-v1:sha256:01c67f336b0e0fd9a2b596b74e5aa9435eaaf91aa768cfdc222fabe0f861d00f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFjNjdmMzM2YjBlMGZkOWEyYjU5NmI3NGU1YWE5NDM1ZWFhZjkxYWE3NjhjZmRjMjIyZmFiZTBmODYxZDAwZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFjNjdmMzM2YjBlMGZkOWEyYjU5NmI3NGU1YWE5NDM1ZWFhZjkxYWE3NjhjZmRjMjIyZmFiZTBmODYxZDAwZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmE4YjU4NWZkMzBiMGIxZGUyNGJhMTFjYjZiMDViZmE3YzdiMDcxMjYxNjM4ZDIyMzI3NGU5ZDY3MjQwOTlmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDM3Njc5NGU5YzFkYmYxM2E3M2RlYWY5NGJjNTQ2NDA4YzQzYTgxNzlkNGE5ZDBhMDA4NWVmNDQ1NTI0NGFlOCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/vitest.config.ts",
+          "version": "repo-file-v1:sha256:b7a8326a3de6c463e6ddc2c9fac738c6d95de0626c6e3374501e774909306e58"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

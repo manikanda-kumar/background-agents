@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:06641c818edc12b1d8bd3b87963473ba56dc9d9f700396886289c2d44e45032d",
+  "claims": [
+    {
+      "id": "claim_b605573f66ea4985a2879c245a138638",
+      "statement": "The managed-skills D1 schema separates a mutable `skills` catalog row (current_revision_id, enabled, soft delete) from immutable content in `skill_revisions` (UNIQUE (skill_id, revision_number)) with per-path files in `skill_revision_files`, and database triggers abort any insert or pointer update whose current_revision_id does not belong to the same skill.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L113-L121",
+          "version": "repo-lines-v1:sha256:5a585891e69c69e549eb859fc1f6d114f2709967d400bb106937463582b6f451:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTE4NWU0M2Y0YTU3ZjIxOTllMGQ2ZGI4ZWU0YWM5NWZmNDQ2ZmZiYWYzODhiZDEzZjA3ODExZTMxMDNiNzcyMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDU0Mzk3NzI0NTc0YzQyNGYzMjM0N2ZhYTg4MWUwZTQ5MGNkNTIxZGEzMWZjZTg2ODQyNzQ1NTdiN2YxNjlkNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjQ0OWQ1Y2ZmZDg5ZTc3NTk1OTNmZjUzOTVkMmFmNGRmMTVlZWIxOTQ4MmNiNWQ1OGZkZWIwNWU2YmY1NWI2MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjI4ODc3NjM3NWM5MWYyNGY0NDI0ZGU4YjI1NjZjMjdlMTE0YzI1ZGM3ZjBjZWJlMmJmZDJlZjMyMDg0YzIyOCJ9"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0061_managed_skills.sql#L10-L98",
+          "version": "repo-lines-v1:sha256:a6b1c66c6d9f9b561ad09176536f6789a153058115b2f897d66dc97686b837a8:eyJzZWxlY3RlZExpbmVDb3VudCI6ODksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmYTQzMGE3YTA5MzQzNDNkMDkyNTE3YmE5OTBhNWY0NmZjOGM4ZGY4Nzk0NDcwNThhODcwMWEzMzg1YjViYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjNzgyZTQ4MGQ0NDNlMzM5ODk3NzljNjJjOTQ4Njg0OTliYTU2MmRhYTI5NzdiNWQ4ZWJkMmE0N2JmOGM0MDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlNmM3NGY2Mzk4M2FiZTk1Y2NkNjI0ODY3ZGQ5M2RjNTUwNDQyODU0NWVlMzBkNGVjM2FhYjYwMzQ2YmViNGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwOTFjYzMxY2E3YjhmOWM1ZDYxZDUzMjE0NTI0OWMzNDZmYjM0Njk5YjFjZDU0N2U4MjhlZDlhYjM5MGI3YTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5b8d628aa8da4f3b95b389e4e6b9a39d",
+      "statement": "A skill's SKILL.md is generated from the structured fields by renderSkillMarkdown — name, description, optional license/compatibility, and a metadata map whose keys are sorted by UTF-8 byte order — followed by the body; the input schema rejects a supporting file at path SKILL.md, and the sandbox validator requires every installed skill to contain a SKILL.md whose frontmatter name matches the managed name.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.ts#L29-L50",
+          "version": "repo-lines-v1:sha256:ea3851305ab7cab2c3d6cb8b88a4a75985e588a0f742c58b91d16e941ae4c169:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjMWY4Yjk4OTUzMGI3NDkxNzZlYjBmNmJkMDM4MWIwMDg4MmFlOTg5ZmFlZWU0NWFhY2E0YWIwOTg4ZGM1M2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3MmQyMDc0MDkzMmU1OGIzMWNiNGQ1NTliN2UzNTFlMTBlM2M1OTI3Y2RkMTQzNWUzOWUwNTAwZGVhYmE5ZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3ZDZiMzUzZTBmYzY0NDkzMGEzODM4ZGYyZGRhZWQ0Y2IzMTBkNTQ2MjgwZDNlMGY3YzIxOGZmZTUzM2M1OTUifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L340-L348",
+          "version": "repo-lines-v1:sha256:7b6a574fdb1451b5f764cbf597955dd1bb5434577b6cb54ebac7c481955041a1:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJiZmY5YmFhYmFhOWI1MGMzOWZmZjZkNDU4ZDkyYjQwYzU1MGZmYTU4OGY1MjhiZDI5NDIxMjBhNjI5YmZlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTUwMzJlOTY0ZDA5MzIzNTFlNWQxODUyNjkyODFiMTcxYTNhMDliMDhiMjg2ZTY2MWVhNDcwMzIzYzgyZWI0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDdjMmJiMGZjNzhlZWYwOTgyNzFjZThmMzE2MmRiMGFiNzNkOGQxNzkzNWQ4MjEwMzdkY2JiMzk4ZjE0YzA1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQwMWZkYzI2NzgwMzNkYmZkNzQ1MjAzYmY3OGRlYTcwNmRkZGVjMDY5MGQ2Yjk5MzU3YjY0ZThmODU1MTYxNCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L60-L82",
+          "version": "repo-lines-v1:sha256:87229e2233b4880a181eb94777ae61b32aa6a52361224ee4161caf5fbd78f4bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2YmYzOGJkY2M0ZTY2ZjZiZTkwM2Y0NmRkMWQ5NjQ2NzFiM2E5M2QzNjQ0OGFlMzMxZjY2NjJlMTJhNTdmYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxM2RkNGIwZmE3NDhiMWYzZTVlZjBjNmEwMzhhZjIyYmJhOTg3NDAxZTZjOTIyMTY0NzMzODY2NWY3Yzg3MGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_644689cd027b4c879ad077e9b4910807",
+      "statement": "buildSkillRevision computes the revision digest as a SHA-256 over the domain-separated encoding OPEN_INSPECT_SKILL_REVISION_V1 plus the UTF-8-path-sorted file list with per-file length-prefixed path, executable byte, u64 content length, and content bytes, making stored revision identity independent of input ordering; incompatible serialization changes require new domain strings and a new SKILL_RESOLVER_VERSION.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.test.ts#L41-L71",
+          "version": "repo-lines-v1:sha256:83e3d5fa30ed25bc84b8c9b8dca5372caac77dd54680ef090cb3c272d882ee48:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMjAyYWY1NDA3OTI3OTMzMDRmOWU4YTBlNzc5NzE2ZWY3YjNhNTkyN2E2ODQxNGRkM2M2MGI0YTMzNzZmMWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.ts#L10-L19",
+          "version": "repo-lines-v1:sha256:05496354f54bb91d0282d5aaa4bb4875a1fc25b1b9cace86122d6a4709d69be2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxNjc2M2I5Y2QzNTU5YzM4MWNkNTg4MjRlNzMwZjRjZmRlOWRmYmE1MjNhN2E1ZjQzNjQ0NGMyMzkwNWM1YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYTk4ZWQ2ZmI2MTdmODc0MTFkYzA5ZjYxNjU0NjM5OTgzNzE3MjA5ZWJiZTJiZGZmZWU2ZGNlYmQ0N2Y0OGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiYzkxNjgxOWFlZDdhMzYwNDUwNWRhMDMwNjE1OGRlN2Q3Yjg4MThmOTA4ZjkyZWMyYWYxY2Q3OWMxMTYzZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwMjgzNGIzMWRmOTBmMWE5OTE2OGUyN2FlMTA0M2RkOWM4YTFmOTlkNThjMGU2YWYyYWQwZWVkNGQ3NDhlNzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.ts#L102-L136",
+          "version": "repo-lines-v1:sha256:0f9ac11fdef98fee78f715588af79557fe4cf579d6eac1f896d4acc2d604ccc0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2NDc4ZWEyZWViNDAwZmM3ZTA5Y2EwN2YwMjI2YmZiOWI4OWIyNDI1ZTUxMWQ3NWRjOTlmYjYzMjM4ZWEzMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkNzllZjM5NmI1MTFlNmRmNzU1YmE2YjZkZmY4N2EyM2MxMTI0ODVhOGU2YTYwNjIzYmY2ZWI5NzE4MmM1MTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0ZTRkMDRjNjA0MWZlZDFmYTIwZDFmZThhZDk0MDAyM2U5ZjgyMDZmZmM3Yzc2ODk5ZDYxNmIzYmM5ZjJkMTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a49b8f665b5744209b2dc77798411a92",
+      "statement": "Skill content limits (100 files per revision including the generated SKILL.md, 256 KiB per file, 1 MiB per revision, ≤10 path segments and 240 UTF-8 bytes, no traversal/backslashes/control characters or file-directory conflicts, executables only under scripts/) are enforced at write time by skillContentInputSchema and buildValidatedSkillRevision and re-enforced inside the sandbox on fetched bytes, with a shared golden fixture pinning the cross-runtime values.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.ts#L212-L222",
+          "version": "repo-lines-v1:sha256:89dbbe4afc8b70717373eae32b0e34209e13431538e99b5880e90ce296e6637a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NzBlYzI1NWI5NWExMDk0Y2IyMDE5MTk4MmRlZDY2YTkzYjA0Y2M1NDQ0OWFkOGFlMWI4NmVmZmVhNTcyYTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjNGI1NmNiOGE1YmM4YWZiZWJmYmU1MmUwOGRjMDA1Y2RkYWEyNDg3OTdkODVjNTBmNjdmYjRkMjM1NmZlY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L25-L47",
+          "version": "repo-lines-v1:sha256:2279a6e3715c1494cf7f0b815b390243e4382330b209b96d86cce1ef18d60ede:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmOTQ0NTEyM2FlY2RlNGM3NjBiOWFjNzFhYTBhN2Q5NDIwZTEzNjg0NGRkMWQzYjVhODM0MTg3NGNmZGYxZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNDZiZWMzY2ZlMmE5ZWY0MzA0YzAxZTFmNjU4N2Q4NWQ2ZTkzNGMzNjlhMTIxYzg5NDIxN2ZkY2IzNmU2ZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmYmEzZWZkOTMxMTgxMDA2NzhhOTlhMDg5M2M5Y2M0Nzg3ZjlmNTE2MzYxMDBiNDA2ODEzODQxN2M5YTAwMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllNDI2NjkwYzAwZjlhNjk1ODAyZTVkZTgzOThiZTIxYmVmZTFhMGE4YzJhMjUyYzhkZDViOWM1YjRlY2U4MzkifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L44-L135",
+          "version": "repo-lines-v1:sha256:7dcf3d71464eefd526284db02516d0ccf7ff121867e43a955e16145a00325e4f:eyJzZWxlY3RlZExpbmVDb3VudCI6OTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhODMyOWNjOTY5MTlhNzlmZjY5ZGRmYzEwMjg5Yjk2ZDQ3YmExZTM0ZGVkNjdlNzBkOWVmYzQ0OGRmN2U4YjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2ZWVmOTM3ZDIxYjcxYjc5MTVhNTQzZjdmMTBkOWIxMTJmNTE0OTNjYmFmMDI1M2ViZDcwOGRhOWYyZDMzNzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiMjk2MGYzNjU2ZTI0ODM5NjE3YzAyZTlmZjZkZGY5YjA3ZWM5OGRiYWQ3MmNmNWNiNmRkNGRmNjM4ZjYwY2UifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L8-L16",
+          "version": "repo-lines-v1:sha256:29a33351481d9d844faf62e110d28efd37f5a4a70ba50378509e4c9a34540acb:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTI5NjQ3MjNjMDc0NTkwMjY4YTg1MzY1MmRjZTk4OGY4MzdmZDFlZDAzNDQ4ZTJhZWZiMGJjMDVjNmRhNTA4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRhYmI0NzVmNDY3MGYwYmZjOTk1YWFjZWJiY2EyNzE3YjQ0NWRmMWFhMzhlMWY1MDEyYWY2ZTE1NTJlYWZjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDkxNzc4NThhOGY0ZTMxNTljYWUxZDM1ODE5NTViMWJjNDczZWU5OTNiZGU5YTY4NmMzMmEzODEzNTIyN2MxMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRiMDhhODZlNzgyODQwYjE0Y2U5ZTM5MTlkMzQ5ZDZkM2Q3MWFkYzU3YjMxMGM0YmEzZGVhMTdiOThkZjk3MCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/test-fixtures/managed-skills-golden.json",
+          "version": "repo-file-v1:sha256:96101a65f808d15dcf1d7dfc90472d040e3237401e372fc5c16792d9f35d95e1"
+        }
+      ]
+    },
+    {
+      "id": "claim_efa2c270dbf444bfb0ce3027310f8c24",
+      "statement": "Canonical names are immutable, 1–64 characters matching ^[a-z0-9]+(?:-[a-z0-9]+)*$, unique case-insensitively across the catalog and still taken after soft delete, and the sandbox-runtime-reserved names agent-browser, record-video, upload-screenshot, visual-verification, and customize-opencode are rejected by create and nameAvailable.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L174-L186",
+          "version": "repo-lines-v1:sha256:5a7fa8918bbc2d32dd1e61b6d063469d9436b02fe764abf820702c779647c99a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5YzcyNTI0MmE1ZWFmYTQzNWEzN2VhMzI5MjI0ZDRlZThlYjg5ODJkOGFmNWU3Zjc1Y2RjZmY4MzQyMGMzMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0ZGZlNWI0NDk1MWI5YzE3NmM1ODk2NTBmMGI2NGJlOGM2NDczYmY4YzU4YTk1ODk5MTc5NGVkYzY1ODZiMTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzN2E4MzdlYzFmZWM5NzAwYmRhMDgxZWE2N2MxZDU0NWZkNjkzMTBlNmI2MTc3MWI1ZGY1ZGM0ZWFmOWRiZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzMjdlZjliMzIzMDBhMGNlYThlNjgzNmYwMDMyMDY0OTUwZTA1OTA4OTQxZjBkNmNjMjgyMzliYTNlNWRlMjEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L23-L29",
+          "version": "repo-lines-v1:sha256:719c1d70c481a27685b624ec65a2c257198751d3ec19354438fda702e5c01280:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODBiZjQ4NjA0ZDZmODg4NGRhNjUzYjliMDJiMzJkYmNjNzM2NDRiNWE5NzRlYjRlZTg4MjhiZTVmYzYxMTkzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTVlMjZjZDkyMzY2ZjYwZDhlZDkyZDAyMzlmMDdmZWY3NGNhYzE0YWE2OWFkZGY5YzJjYzBkMTFlYjAwYTQ2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzM5MzVkMDExNTA5NGQ5NjU4NDdlZTQyOGFiYzA1YWVjY2E4ODZiNzhhNmY2ZmI2NjNkOGViN2Q3Zjc5ZDFmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzcyY2JiYTBjMmFlZjkwNWVlNzU3YTIzMzIyNmRiNmE4OTQ0MjdmYTU5YzlmZWQ4OTI1MjllOTM3ZmJkYzBjNCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L417-L424",
+          "version": "repo-lines-v1:sha256:08a4aa55fc1c20a2597ca69b40fc53b9c0bace3b6e92e2b66eeaff1a209bb683:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWIzM2Q1N2U4MjRkYzRlZWE1NjgzNWMwYWUzOWNmNzFlNjQxYzg1OTlmZGZjNjc0ODJlNzE2YTNjMWViZTVjMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDMzZmU0ZTM0M2Q2YmE1YjkwNDM3YTY2NDlkODM5MGY1NDU3MjRiMTRjMDhkZjkzNWU3YmRhMmM3OWI5ZmQyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzU3NDkxM2IzOGJjNDA4ZTczODlhYjdmZTIxZDQwMzM1MGExMDZjMzA0ZGRiZGIwZjUxMGU1ZTlhNTlkNGNiOSJ9"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0061_managed_skills.sql#L21-L21",
+          "version": "repo-lines-v1:sha256:5b36b4342274e12540e850a5b2e1dff91e566987365d4b2d35580cbb9db9bdd9:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWIzNmI0MzQyMjc0ZTEyNTQwZTg1MGE1YjJlMWRmZjkxZTU2Njk4NzM2NWQ0YjJkMzU1ODBjYmI5ZGI5YmRkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWIzNmI0MzQyMjc0ZTEyNTQwZTg1MGE1YjJlMWRmZjkxZTU2Njk4NzM2NWQ0YjJkMzU1ODBjYmI5ZGI5YmRkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzVhNTFhN2QwZjhlNzIzMDhjNjNkN2I4NzVkYTQ2MDRjMjA3YTI2Mzc2MDdkYzk0ZDI1OWEwNWUwYWMyMmEyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTUyMTcyOGI2ZGVjMGI4NDdiZGY3MWM3NDdkNDk4MmM5YzYzZjZkMDA4ZTY1MWE2ZWViMmMxYjZiZjI0ZDIyMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c21bc8ca304d4e99a3cd4340f8744774",
+      "statement": "skill_assignments grants applicability via exactly one CHECK-enforced scope of global, repository, or environment (each with a partial unique index), a skill applies when any assignment matches the session target, and listApplicable returns enabled non-deleted skills with only the assignments matching the target's repository set and environment — assignments never override enabled/disabled state.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L438-L503",
+          "version": "repo-lines-v1:sha256:5c81d862726b81249d3f483ab10aeaa72e0290db297d5fcaa8efc8f697c38cfc:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwNjE0ZTQ5Y2M4MmViMDE0ZDRhY2VmZjkyNWY5YmQzZDVmY2M1MjFiZDNmYzdmZGQyZmQ2OWJkNDBiOTcyZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmYWY5NjQ2YjQ3ZDJjMWQ1ZWQ3MjNmZjU0Mzc0ODMwZjdkNmNmNmNkYzc1ZGVhYTAwNjFhNTI4MTI5Y2U0OGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5ODE4ZjdlMmRiZjQwZjE1M2U2NjcyYTAyZGM2NWYyYmM1ZGM3YmYxNGM0Y2FhZGJmYjRhOWJmMDNiZGM3MDYifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0061_managed_skills.sql#L53-L75",
+          "version": "repo-lines-v1:sha256:dcb38354b34621fc0bc3d0b249931c5a67da183ff09b1ffeeda31f4e91c3a31a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmNTc5MzUwOWEzZjgwZTk1ZWQ0MDM0ZjY0Njk0ZDAwY2ExYWZjOTlhMzZlMWU3M2NhZDljNThmNGM1ODFhYWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiODRhOWM5Y2Q4YjFhOTgzMmRjNzUyNGVkZDE1ZjQ5OTBhOWIxZjJiMDQzNTdmYWVkOThjZTU3Nzk3ZGNlODgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyNTQzOGNhZmEwZmIzZjZjMDk0NmY2MjA0NmJhZGEyMWZhY2QwNWE4NzVmMjVhYmUyYjI2MGI1MTdhNGE5ODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJlZDNiODZkZWIyMmZjOTMzYTY3ZDZhOGQ3MjllMmJjZTBkZmNjYTE3YmViN2E2YjY1NDVjNGYyZTQ4NDcyOWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f9c802f94ada490ea4cac85b61ad7faf",
+      "statement": "Every catalog mutation — skill content, assignments, enable/disable, delete, and even personal profile writes — advances the skills_catalog_state singleton generation (also via triggers on assignment rows and environment renames), and resolveManagedSkills re-reads the generation after constructing a snapshot, retrying up to MAX_CATALOG_READ_ATTEMPTS = 3 and then failing with a 409 SkillResolutionError so a manifest never mixes rows from different catalog states.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skill-profiles.ts#L199-L204",
+          "version": "repo-lines-v1:sha256:0c77088986f73c2498fb1cd971994db01e060949232b3e5bba92b4eaa83e92e7:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWEzZjBmMmI1YTk3ZTA3ODIyNTlkN2M2ODg0NWE2MTQ5ZTRiZTEzNWIzMzVjMTQwZDFiNDNhMTEyMDNlMWJhNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWRiM2U3Y2QwYzNhNjIzMDQ3NjY4MTYxZDEwNGU5OWQ4NjIwOWNhM2U3NzU0YTI1YjExOWE0OTA3ODc4MDQyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmVjNGRjYmE0ZmE3M2RmNGY0MjQ0NmRlMmNhMTk3ODA1ZmRhNjAwNGM0MTY3ODcwOTIzZGJhY2IxNzVlZjRlZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L429-L436",
+          "version": "repo-lines-v1:sha256:3c00d5980bcf9c205875f638553e07b348ad44013f6532141693751cc48c367b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWU3MTEyN2Y3ZjVmMTcxN2I5NmU3ZTk3NjkwYTdkMTgxYTUwNzIzN2ZjYWQxODg0MGJiYjA5MzQwMjJhOTIwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGFhNDA0YWU5NWRjMDU1MTEzODAzNTcyNDc3ZDMyODM4NDUzZjkzNDZmYWMyZTZiMjg0ZmFhNDhhNWEwOTQzNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzQ1MTI3OThjZjYzMGUwM2FiMzY0MGRiYjU5YzZjN2M0OWE1MDYwZjNhNWNhN2E2ZDg5YWMwNzU4ZWI4NjhiZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/skill-resolution.ts#L12-L95",
+          "version": "repo-lines-v1:sha256:9af90fc4b3c70657424c951f8fc94c9d658c16d767ae3b39dee92ad771aca49a:eyJzZWxlY3RlZExpbmVDb3VudCI6ODQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyYzhlOTRmNjNlZWFhNDA1ZjMzZTcxOTdlMWY4NmZhZWJhNWM3OTAxNjE1ZDkwOTg5YmRkZjU1ZTExMzlkMTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhMmUzZDNlNmM4OGZkZmZhMzVhNjdlMDAzMTY3NDFlMThkZmFiYTI5MTY1M2ViZmZkOGJmOTk0N2ExOTk0ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiODkxOGJiNGJkZGY2YzBmNGQwMjQ0NGQxZDBmNGMwZjk4Zjg3NTdmMmUyOGZmMmFlZThlOTI1NmUyZGRjZGUifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0061_managed_skills.sql#L100-L127",
+          "version": "repo-lines-v1:sha256:7564b71374cb26d568513928340e2d27bcc1c829c9327667445fe71480e2afd3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlMmY0OTg4MzMxYWEwMjMyMGVkNTFhYzgyNDRmOTg4NWFhNmQ1MzcyMmIxMmNhMWU1YjI0MWJjODdmYTAzNTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjNzgyZTQ4MGQ0NDNlMzM5ODk3NzljNjJjOTQ4Njg0OTliYTU2MmRhYTI5NzdiNWQ4ZWJkMmE0N2JmOGM0MDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2MmUzNTU3OGFjZTc3OGFjZDk3NTdkMWNmZDBkNTExZGY1NGE0ZDU1Yzk4YjRmMTkxYTg4ZTc2NTc2ZjMwZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRkNTdlNjMxM2I5NTQzZWYxMWNiYjMwZjEzYjkwMmZjM2I0ODg0ZWI3MjEyMTFhMDdjOGM3NGQ5NDEyZWY5MWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4408ac8f32748eaaece81ad09c12d29",
+      "statement": "Session skill selection has three modes — all (default, every enabled skill whose assignment matches the target), none, or a personal profile — and profile mode filters the already-applicable set (never bypassing disabled state or assignment scope), requires a canonical user, and reports unmet entries as sorted ignoredProfileSkillIds.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/skill-resolution.ts#L43-L92",
+          "version": "repo-lines-v1:sha256:3f5854a58410b89ee1feeb5d732b7de1bdded5c18e113a4c54a62a6abbc9a49e:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5MzY1ZjczZDZjOTQ2NDRmMGJjNGJiYjM3YzdiMDRjNmNmMThlNDc4OGNmOTkwOGE1ZTk1NzI5NzVhMjg2OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkOWUxMjU0NjQyNTU3NmQzZGVhZThjOWI5ZGJmMTI4ZDVkNmRkYWY1ZDdmZTg1NzkzNDkyN2RlZmZhM2I5ZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRhMWVkZDBkNTljZTNhZjM1YzFlZTIxOWYxZWZiYTA1M2M1NGY4OTI0NGJhZTE2YmQ0MzdmZjNiYzdkZGUyOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmNDcxMTRhNDk4NDFkYmE5MDNlN2EwNjA0ZWM5NGIzNDE1MTU4ZTgxYzJhY2Y4MTllZjRiOTMyNzhiZjcwOWMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L409-L413",
+          "version": "repo-lines-v1:sha256:7f06602e09f7443f649db6b25d5a7763337e877cd78824286554d29d6d22a7fc:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWJiZTcwMjVmNmMyMDU4MDBkMmRiNGM1MDQ2YzA3YjgxMzI0NDQ3NDZhNGZkNmZiYTQ5MzcwZGVjOTgxZWRiMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTVlMjZjZDkyMzY2ZjYwZDhlZDkyZDAyMzlmMDdmZWY3NGNhYzE0YWE2OWFkZGY5YzJjYzBkMTFlYjAwYTQ2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjEyMjk4NWY0NTJlOGYyZWQyYTdkODQwYTRmNGEyNmM0ZmUwYWUwYTMyMzVjM2VhMmRhOWQyMGQ1NjM2OTQ0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzljN2Y0NjdjZGVjMDhmZjBjNzY3Y2MyMjU3ZWIwMmVhZTRmNDJlMjJkNmE3ZWU4YWE1ZTkyMjMzMDRlNTYzYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ebbf91ab95d44d4aa8313dff6f111f9d",
+      "statement": "SkillProfileStore persists user-owned named filters over the catalog that never grant applicability: resolution intersects their ids with the enabled skills assigned to the session target; every lookup and mutation is owner-scoped, writes validate that referenced skills exist and are not soft-deleted, and profile writes bump the shared catalog generation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skill-profiles.ts#L162-L184",
+          "version": "repo-lines-v1:sha256:8e163b01ddf821118aa5eb44b54116305d12f676dfbe29bf03c4283781086c91:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzODQ4YWIzMzU4MTgxZTM0YTJmMjEzMmM4ZDNjMDJkZDQ2NTIzODk3YTIzNzlkODI3OTYxOGY2N2Y1MTYwN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwODBhYjIwZWE2MmRiODhkNmU1ZmJjMTg5NmE2NDBkZGY0ZTBlZjRjZjdiMjkwN2Q0ZDk5MzhlYjI0MTgxOWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiZWJjMzNkYTgwMGQ4ZTRkODg4OTJmYjI1YWJmMDE2NGI0MjdjMjlhOGEzMjY3MjkyOWZiYmQyNWRiMWVjZTAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/skill-profiles.ts#L18-L26",
+          "version": "repo-lines-v1:sha256:0befb25eb05fbb69c3c12c6751e11b4e81796f797c9bccd6a589221b871b92b5:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODFmNGNmY2ExYzQ4NTc5YjZjMGJiZTdmMWMyNjcxYmY3YTdlZmYyY2JmYzhlYTFlZjNmYWRhNWNhZTk5OGRkMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDcwMTllYmQ4MjkyMDg3NzcxYmI5MGNhODVlYzgwZWIwN2FhY2VhMWFiOTJiOTM0NjNjYTcwMmMxNzU4NDQ4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzUwNWJhZGUyMDVjYmQ4ZDdhMTBlYjdkY2MzMjYyNzU3YWNkNzIxOTEzOGY2YWVjZjA0MjZmYmMxMmMyNzY5MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_92be4e5fe3b14c9db564ff188f57623a",
+      "statement": "The resolved manifest is hashed by hashSessionSkillManifest over the domain string OPEN_INSPECT_SKILL_MANIFEST_V1, the resolver version, a selection byte, profile identity for profile mode, and skills sorted by name/skill id with pinned revision ids, digests, and sorted assignment provenance; the size bound at resolution is aggregate content bytes (MAX_MANAGED_SKILL_MANIFEST_BYTES, 5 MiB), deliberately not a skill count.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/skill-resolution.ts#L97-L108",
+          "version": "repo-lines-v1:sha256:b45486d6575d654713972fd9b26ae032715114eb889bfab6804e7c0082f604e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNiMDc5YjI2NjcwNTkwYjliN2IxZjIxMTIxYjcxZThjZDg5ZTc1NTZjMWE4OWQ3NjEzYjA3MDk2MDAyOWU2N2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwZmQ2MWNlMzlhMmRhN2U1YmI0Y2QzOGIxNWM5N2NkOWMzZTdhNGY2YzQ3MWUzZWI2ODAwY2Y1NDcyNmYyMDMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.ts#L172-L208",
+          "version": "repo-lines-v1:sha256:4322f4bb68d619085c02d6d37300b28e010090fbb735cff7e695c3c5559ae590:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmYjY1OTlmYTU0M2Q2MDYwY2Q4NDA0NzAyZjUwOGU4MzQ3MjU3ODBhODg5ODY0MGFmZTZjMjdhNTFlMTA3YjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzMmRlYWJhYjc2OThiMmI0OWY3YTE2NTY0NDY2ODY5ZWZjOWQzMTcxZWVjOWNmMTljZDI3MjFjYTNiZjc0ZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjNGI1NmNiOGE1YmM4YWZiZWJmYmU1MmUwOGRjMDA1Y2RkYWEyNDg3OTdkODVjNTBmNjdmYjRkMjM1NmZlY2UifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L16-L16",
+          "version": "repo-lines-v1:sha256:c4abb475f4670f0bfc995aacebbca2717b445df1aa38e1f5012af6e1552eafc5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRhYmI0NzVmNDY3MGYwYmZjOTk1YWFjZWJiY2EyNzE3YjQ0NWRmMWFhMzhlMWY1MDEyYWY2ZTE1NTJlYWZjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRhYmI0NzVmNDY3MGYwYmZjOTk1YWFjZWJiY2EyNzE3YjQ0NWRmMWFhMzhlMWY1MDEyYWY2ZTE1NTJlYWZjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzAwYmE2ZjgzODFiMTE2OTExZGEyNjlkZmRjYTRkNzgyZjBjMDk2YTc2MTNkOTc2OTQ1MDBiYjliNTI1NTBhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRiMDhhODZlNzgyODQwYjE0Y2U5ZTM5MTlkMzQ5ZDZkM2Q3MWFkYzU3YjMxMGM0YmEzZGVhMTdiOThkZjk3MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6ebbfe31e67f4f6c9952bf4e0ec720e1",
+      "statement": "SessionIndexStore.create writes session_skill_manifests and position-ordered session_skill_revisions inside the same atomic db.batch as the session row, so a session can never exist without a consistent pinned manifest; edits, assignment changes, disabling, and deletion affect future sessions only.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L317-L403",
+          "version": "repo-lines-v1:sha256:33d388aa28998c54befce80247e26cc52599bc4ef437d1e78ac4076325a67a2c:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmM2Y4OTkzYjBlZjcyNzc4OTEzOTZiNWY3MDFkYTdkZWQxOGQ0NWNiMGMyOTI1NDIxNTU2NGE3MzIzZTgzNGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdhYjE1NDYwNWY1NjhmMjkwMzc2ZWRkZjI5YThlNTRiMGUwZmU2ZWNhZWQxMzZiZmVjODQxYzYzOTY1MjBmYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MjkwOTIyOGM1Mjg1OGE4ZTMxY2RmZGU2NTU5NTRhNGY3MDc4YWEzODliYzljM2IyMGRlN2NkZmY5NDMxZmUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/session-skills.ts#L10-L19",
+          "version": "repo-lines-v1:sha256:fbc3ad3dd49227e10b958f02ed1eb0ef7cc2fa2ff74b58a2f27014ffaf9e4f9a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5MjczMTg0NTk5NmFjMjBlNjUyMTRiNmUwMWEyMWQ4MDUyMDVhZjkxZTZmYzg2ZWI2MDQ3NDkyOTM0ODliZjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzMTBiMDRlNDVkMWJiMzNmMTdjZjE3NDAxM2U1ODRmZDIwMjdhMjExZjhkNzlkMTI0MmQwZGUwZmY2OWVhYTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxMWE4MTgzMTk5OTM3OGE5YjBlMDlmY2NmZjYzMDYzMjg1MmE0OWIzMDlhYjZjYjY3YjA1ZjgwMzM5NzhmY2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5f538d3993d24e55aef09833a2b75527",
+      "statement": "Agent-spawned child sessions inherit the parent's exact pinned skill manifest: the spawn route passes managedSkillsSourceSessionId and SessionIndexStore copies the parent's session_skill_manifests and session_skill_revisions rows verbatim (bindManifestCopy) instead of re-resolving the catalog.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L405-L429",
+          "version": "repo-lines-v1:sha256:58b8908ff05c8214613124d37f4284bc7f10dcbdc0123db66f1570e48cd8cf9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0OTJjNDViODdiMmFmNWU3OWQyMWYxNDAyYWFlZmM0YWYzMWE3M2MxYTg3ZDU0ZDNhMzAxYjVmYTRkZjlmMWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMyNjE3MDZmOWE1NzgwYzQ5NDQzNmE3MzBlNzY0NjdkMTk3YjYwM2EwM2Y2YWMxZTM5MGJhZjhmM2M1ODllY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiZDQwOThjYjk5NzgzODJjYWE1Y2FmMDc4NDI4ZmM0MTRjMmI2ODYwYTUzZmZhMTdlNGU2YTkyMTZkNzhjYWQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L246-L256",
+          "version": "repo-lines-v1:sha256:cccef2d4240fc9e3bdb268c287a791366c6b6fa95aaafd551fddd95e72437b41:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjZTlmZTE4MzgwYjIxYWU4NDJkZDU0NDQ2YmQ1Njc4ODA1YTk0YTYyZTgxNTk3ZDZiMDU3NTg2ZTYxYzM2ZTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwZDdkYmFlNGNhOTBkMWYwOTU2MjQ1YmM0Y2JmNGZiMDUyM2Q2MzM3NjRkZjIyZjU1MTA4NzY5NGM2NTljOGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI2NmE4NjRkM2UyOTBiMDdiNjZmYjA3ZTdhZDhiZDVkM2ZmMTA0ZjY3ZTcxMWQ1ZmNjMWQ5NTc4NzFhOTRhNWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L158-L159",
+          "version": "repo-lines-v1:sha256:d2e4750d2f4b9a8432fd834c5bbba135d806c4e6b2db2f24ccbefee543e65966:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDFiZDliZjRmNmE4MzU3M2Y4OWE2MmNmMDVmOWNiNGFkYjBkMDFkZDAzMzNkY2YxZGM1ZTM2N2E4YWUzMDBlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWEyMGVjNzYwMTIwOTU3MTk3Y2Q3MmMyYzBlYjYwYmU2MWZhOWNmMTc3MTU4MWIyN2FhMjYxOGI3M2RkNmM4ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWU3OTQ0OTcyM2VkNmRjNDA3MDhmZWM0MGJkNjM0Mzg4NTMyZmQwM2ZjZjE2ZGNlYjA3YjQxNWY0YzM0NmFmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzMyOWEwNDRhNDAxNWFlNWI0MGM4NTFlOTE1MjRjNzllYmNkNjJiNDQ2M2JhNDk5NDVhZDdkMDYzZTY4MjNhNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1fbe0667fcab4fa7b8bb1ff9ed8a7357",
+      "statement": "Automation runs resolve managed skills with selection mode 'all' — personal profiles are interactive-user choices and are not automation policy — while the interactive session-create route resolves from body.skillSelection with { mode: 'all' } as the default.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L201-L215",
+          "version": "repo-lines-v1:sha256:3a2e39960ff566beebce28eab14ec5d5acdd40bd0540bee91ee29c4e502ad199:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiNDZhYWE3ZDM2NTk4NTc3OWZlODBjNGMxZDhmOWEyOGUyMmM4ODU0N2Y3NGQ5YWQ2ODY2OTY4ODE1MWI2ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjNDg5NGY0ODQyMjhiNmVlMzczZDkwNmQwMTI2ODY2NmVlMGI3OWI0NDAwMDJhODIwYmI3OTM4NzI0YzgxMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhNGQ3NzJiMjY4Yjg4ZTA2NmNmYzA2ZWU2MDRhMDVmZjgyMjYxMmMyM2VlNzZhY2M3YmJlNGJlNTViZTQ5MDQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L1348-L1358",
+          "version": "repo-lines-v1:sha256:28a4500f655c5c381b3623fa0afe0a4867c75448494fdbafd77a2702e35b9c71:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4ZDJkYTdkNzFmYzBhNzc3ODM4YmQ5NDA3OTVjYTU4ZmJlNDFmZjE5M2VhYzM0ZTE2MDM1MDY4MmU1OGM4MWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0ZTQyMDhjZDZmZmI4YzRhMzU0N2IyZjU0YWRhMTk5NzhjM2YzNjVlNzhmOTUwMmVmNTE0NWNkZDJhYTg1NDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjYmY5YTQwOTI5MzM1MDIyOTEwNDVhYzM2ZGM3ZTRiODYzM2VhOTY0ZGQyNmNlNTI3ZjQzMDRhMjlmYzFjMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyNjFjMTc2ZGI3NmE2Y2NhNjA0MTc3OGIxNDFlMDIxYmNlOWRhYmM1MWU1MWM2MGMyMTU5Y2I2MTA3MTU0ZGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5dd6efa9bc6845808e6496425ebad67b",
+      "statement": "GET /sessions/:id/sandbox-skills serves the narrow installation DTO (schemaVersion, manifestSha256, skills with files only; provenance stays on the user-facing /sessions/:id/skills view), requires the bound sandbox token, supports position-based paging with limit ≤ MAX_SANDBOX_SKILL_PAGE_SIZE (200) and cursor, returns the whole installation when limit is omitted for pre-paging runtimes, attaches the ETag only to whole-installation responses, and serves an empty legacy manifest for sessions created before managed skills so snapshot restores stay bootable.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-skills.ts#L49-L88",
+          "version": "repo-lines-v1:sha256:49e3ca71d312fab0356ce55666d55732cb738fbf265a1ad82c7e46630bb16c58:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1MWFhZjY3MDQzOTkyMTFhYjVjY2ZiZTllNjUyOTQ3NDk1OWRkOGEyY2UzODViMmM1ODEzYzU5MTA1Y2IzNzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L66-L84",
+          "version": "repo-lines-v1:sha256:c5a367d8709703b96ddfcdb3009b8e9d50ddd6f6008a369b4a1352d57601d066:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNmZlYThmNGMzYWNmMWM3MDlmNDVkNTBhY2Y5YjhkYWI1MmY2OTBlNGVkMTNkNDk0Y2I3NTVhZjNiYmFmMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyMGZjOWU2N2RiMDdlZDIzOWJiM2FkMjMxMmVhYWI5YTcwZTFmNmZiYTAxMjg4YjBiYTZlNjFkN2Y4ZWU3ODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3ZTlkZjQ2NzA3NGRiYWZmNDQ5NzJlODZjYTIyNjQzODQxNDRjZTc3YjczNDQwNjk4NTBlZTdhZDA5NGM4ZmEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-skills.ts#L40-L106",
+          "version": "repo-lines-v1:sha256:e2d32267b4882f770a3322eb27988e05ac3cf75c4c821c0b0e7813ba9bcb4229:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMmQyYzBkNmRjNWU3NGQ5MmZhMTRiOTFkYmVhMjY0MDkwYmViMzVmZGI5MTg4ZDliMzQxMTgxZGNlOWY0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNjVmYWViZTNkN2JkYjA1NzFhNjcyOGIyOGFlZWI3ZDRkMDQzNmZjOWVkYmNlOWI4MDVhODljY2I0N2NkMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L480-L501",
+          "version": "repo-lines-v1:sha256:19cbd07a4af03da2e0ca06afc906d2d67f076ec7093cda9e6768fa4aa9f51440:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YWNjMGM5YzY2NjMwYmJiMWY2YmE1MDMyMGZiMWMxOWVkOWM3ODI0ODMzMTY2ZWFmMGRkZjcxOTc4ZDZjY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjODdhN2VkOGZlNmY5YWUyZDU5YjY5MDdjYTI2YTEyNmE0ZjFmNmZiNTdmOThiNGU1MDUxZTgxODQ4MTNkNTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwMTcxZDNhMTEzZTdjYTEwNDFiNTc3ZTdlODc5ZTMxYmZjMmQyMTljNzZhNjgzYjY4ZTkyZmQ4MjJlZGZjYzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk1ZWU2OGYxMmExZWI0OGY0YWNiZDhhYTk1Y2U1YjM5OWFlYWUxNGI5OTI5NzkwNWFkMzdjMzE4NjlmNzc1ZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_70f4c2a6d41c4d5d82bf30d668546f4e",
+      "statement": "The sandbox supervisor materializes managed skills after repository boot and before OpenCode, code-server, and the web terminal start, installing into the OpenCode global config dir's skills/ directory; the installed tree is sandbox-boot work that OpenCode process restarts reuse without depending on control-plane availability, and a materialization failure is a fatal boot error reported to the control plane so the session fails to start.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/entrypoint.py#L52-L64",
+          "version": "repo-lines-v1:sha256:72a982dbc4433487e9e65c83454ec3d6924e4d63e7aa228e912e0c2c3b9aa5a7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjYTFlMzAwOTQ4ODU3ZmMzNmY2OGEyNTQ0MDAxOGNjNTYwNjA0MDEzMjM1YWNlZDJjY2Q1NWVkZTdmM2I2OGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlY2E0NDAyNTk1ODZmOTIwZDMwMzBjYjdlOGEzYTA1N2YwY2Y0MTMwYTIxZGNmOTg0MWNkYTgzZTQ4ZGM3ZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZDBjZWZlZDRiZTczMWNlZDVhYzYyZWJmZjg5MTdlNzkwZmQ3NDYxOThhMzIwNDM1Yjg1ZTJjZGI2YzJjNjcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/opencode_server.py#L35-L42",
+          "version": "repo-lines-v1:sha256:5d9ba278bb3e385a5d58e2aa87581647fa1726e4e3d03d6db851f091e33ea49d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFjMmRkODkzYWY5MDllZjQ5MmM1OGZiMzUyZGE2YjY0MzE5ZDc0YjAwY2E0NWFlNTcyOWQ4M2FjNzE0NmUxMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTBhMzM2MGM3NGM0OTg3MDFlMGFkNTllY2Y1MWQ4ZGY0MzVmY2RlYTI1MDk0YTJjMTk5OWM2MDI1Y2NiNmVjMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDk4NWFmNThlYmEwNDcwZDdlNTQ3NWUwY2Y4ZjcxNWFhNmE5ODdiMzk0MWEyMThjMzJlOGVhZjUxZWVmNzlmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmE2YTgyNDY0NjJiZTcxN2E4ZjcyZWYyNTg0NTFiNmU5YTk1NWQyOWIzZjUyMmVmNjRiYThjYTU5ODk3MjNlNCJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L414-L434",
+          "version": "repo-lines-v1:sha256:9b5927c40cf007acf835f5f7674a52b0be063cc31034177272e21330293f8254:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2NzU0ZWMwMGE4YWU5ZGY0ZTNlMTY2MDc3MzIzMGYzMmExNTIyNzZiODJmOGYzZTRlZTJhOTdhNDZmZmFlMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5ZjQzN2U0OWRjOWM4NTA5NDFkN2JiYzE5MzU5ZGU2YmE4ZWQwYjhlNzM2NGZjMmM1ODA4OTIyNmIyYWMxZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2N2U4MjdlYzljYzg1MmQzNmQyY2JkOWZhZmU1ZDQwNjBlZjczOTlmMWY2YmM0YTM2MDBjYjhlMmI2Njk2NTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1ZGRkNzY0YmE3ZTBhM2JiZGQyNzEzMDVkMGMyMTFiODZhZTg4MjY3MTQxNWI2ZWM1NDc4ZTRkZDk0OGE0ZjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_127e603a172743fdab3a26b3d3205427",
+      "statement": "ManagedSkillsClient GETs /sessions/{session_id}/sandbox-skills with the sandbox bearer token at MANAGED_SKILLS_PAGE_SIZE = 50 skills per page, streams each response under MAX_MANAGED_SKILL_RESPONSE_BYTES (32 MiB) with a 15-second timeout, and retries retryable failures (HTTP 408/429/5xx and transport/OSError errors) up to 3 attempts with 0.25 s exponential backoff; per-file JSON framing is excluded from the manifest's content aggregate, which is why paging exists.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L109-L162",
+          "version": "repo-lines-v1:sha256:8e0560e6b231ceb9cd1789d510c034bc2ae8f10857d18ebffd6ce087f0021b3a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwZTQ5ZmE5MzM4ZDU5OWUwNjI0OGQ4YTY5ZGU2MmJkMzMwODFkYzk1MWRhMTFjM2EzMjdlYTcyYzZmZGE3MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0MWU5MjFhZjU2YTY2NjNmMjI2MWU3YzExNmNlYWY0ZDc4NjJkMmI1YWY0NmQ4YWFhNzllNTRmODA2NmYxMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY0NzE0YjJmZmRkYzU4OGI1OTNkNDNlZjBhYjBmYjU2NmNhMjU1NDllOWY2M2ZlNDYwZTEzMjZjNWRkMjgyNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI2NmZlMjYzODg2YTM1MzNjMjM0NDAyM2MzNTk2OTQyNzg2Y2I3YjAzYWEyMmFlMzRmYTE2ODljOTYzZDc5YzIifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L25-L40",
+          "version": "repo-lines-v1:sha256:eccecb1a9eff549323919e1866c6e7a7ad8807fc4ecdb0e8a2c23c9a9b096121:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmOTQ0NTEyM2FlY2RlNGM3NjBiOWFjNzFhYTBhN2Q5NDIwZTEzNjg0NGRkMWQzYjVhODM0MTg3NGNmZGYxZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwYmJmYWJhYzYwNmRlMWE3YmQzOTkxMzE4ZTgwZjc1YWYyZWI0NTA0ZjUyMjdmM2ExMzAyZGM3NDc2OWNmZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmYmEzZWZkOTMxMTgxMDA2NzhhOTlhMDg5M2M5Y2M0Nzg3ZjlmNTE2MzYxMDBiNDA2ODEzODQxN2M5YTAwMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjczNTI1OThmNDA2MzljMmVkMDM4NjVlNGJmMGFjMWJiOTMwYTEwN2ExNTU2NDY0ZDM1ODBkMGYzMmIwNjU4ZjIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L480-L498",
+          "version": "repo-lines-v1:sha256:ed67ad1c50bd06260d880de7b5436924446ef31eae4086a2ae448bab00cd696a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YWNjMGM5YzY2NjMwYmJiMWY2YmE1MDMyMGZiMWMxOWVkOWM3ODI0ODMzMTY2ZWFmMGRkZjcxOTc4ZDZjY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwMTcxZDNhMTEzZTdjYTEwNDFiNTc3ZTdlODc5ZTMxYmZjMmQyMTljNzZhNjgzYjY4ZTkyZmQ4MjJlZGZjYzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkOWJhYmRiYWMyZGIyMTFiOWNjYjAxNWQyOTY3NjBkN2Y4NzAyODc2YzcyMGY3YzBhNjhkZTk0YjEyZGU4ODMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9df6f02664e4fd38fe87ec0daf3c3da",
+      "statement": "validate_installation_page treats each response as untrusted bytes and re-enforces the limits locally before any content reaches an OpenCode discovery path (schema version 1, per-page manifest digest pinning, unique canonical names, per-file hash verification, executable-only-under-scripts, required matching SKILL.md frontmatter name, aggregate 5 MiB cap), and a non-final page must deliver at least one skill so cursor traversal always terminates without a page-count cap.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L229-L373",
+          "version": "repo-lines-v1:sha256:ff3dd8c28840cfaff1429f985a37e2adf206589dba0cb08ec5196e225ff554bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQ1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzYjY1YzFjYjkwMmIxNjQyOGNiMTcyZWRiOTExM2YxMzEyNGMwZmZlNmFjZmEwNmU2MWRjN2FkMjk4YTUzZGI4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJiNjk1NmE0YmQxYTBmY2YwYmRmZWE0YjFkZDlmNWI0OGIzMTRlZWY0NzA0M2RhODVjMDkzMWVmN2JmZDA3MTdhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI0ZDNjMWY1Zjc5YjJmMzE0MjhmMzdlYzY2ODIyNzliZTY5YWEwZmIyMWNiZTQ5YzE1MjBkMTgwYjU1NGJhM2VmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmNWNjMzZjMWQ1MTg4YmFhOGZhZTgzMjM4Mjg2NGU3OGU2OWNkMGJmY2Y2ZmQwZDBiMTg3M2YzOTFmNjg3ZGFhIn0"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L587-L618",
+          "version": "repo-lines-v1:sha256:d1c31a99d2438baad85eb098ce919480ab9f08cf6ae862f95591864058c1932d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZmQzYjExNmE3ODA3OWViNDhhY2FiMGNmZDRlOWZjNTRjMDA1MTRjODg4NWFhZjVlYjAzYjI4MmU4MDVhMjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyODY3NTU3ZDZjNjFlZWEyMDBlMjc4NDUzM2U2MmZmOWVkNTQwMjFkY2M1NDY2YTJhZGEyZjk4NDJjOGJlNTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2YjVkYmQzNmQwYTIyNWM1N2EwNjE3N2VkNjNhNmVlYmQ4NDg4ZDFhZjA2NTdlMDhmMjQ3MGEwYmQ3ZTJiOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5ZDA1ZjA2ZjhiMzRiZThlN2RkYjQ2OGViYTgxM2EzY2E4YWExNmY1NDA2ZTM3ZTQ2NTAwYWVmYmQzZTM0ZWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a3b86efd9dd944e7a30c3eb17aa9b70e",
+      "statement": "ManagedSkillsMaterializer installs through a recoverable swap: stage page-by-page into .managed-skills-staging (files written O_EXCL|O_NOFOLLOW, mode 0500/0400, fsynced, hash re-verified from disk), write the .managed-skills-swap journal before moving the live tree, rename the destination to .managed-skills-backup then staging into place, and _repair_interrupted_swap restores the last complete tree after a mid-swap crash; a failure mid-fetch aborts staging and leaves the previous installation untouched.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L404-L423",
+          "version": "repo-lines-v1:sha256:fb741aa38de1e22c80e7e7911b469099e141e70e16ec3c0cfdcabe1db2d99461:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYWJjZDBjYzY5MTNkNGY1MWViMjFlNGY1YWZjMmU5MGY4NmQzNmE0NTBiYjQyY2IwNWM2ZjNlMGQ3MDZmOGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5ZWI1NTMxYjk5ZmE3ZjFhNWM5Nzg1ZDc3MmI0ZDkwZDkzNjU0OWI3OWE3MzVhMDVjMDI2N2IwNDA1OTdiNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5MTg0ZDliODgzNTM5MTAyZDU2MzliOWJjMDg1ZTQ4OTlmMzlkYzFjNmZlMDBkNWNmNGZjODNhZGMxNjhjNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgzYWQ4NjBlMjViMWRhYWRjYTY2YjdmMGUzNWYzYjA1Njk1NmM1ZDFjYzUyN2UzZjgzNTBhN2QyYmIyMzUwNDYifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L503-L585",
+          "version": "repo-lines-v1:sha256:16ab5c17b2d1a8c4e6a319330e2efb9d108dfe4fe0c5ef66c57962de08857940:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYWJjZDBjYzY5MTNkNGY1MWViMjFlNGY1YWZjMmU5MGY4NmQzNmE0NTBiYjQyY2IwNWM2ZjNlMGQ3MDZmOGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyOWM1MjQ0MzRjMDA5YWFmMGQ3ZmU5ZTJmZmU3MjJiMTcwY2Y4ZWIxYzhjMTU3NWU0ZTNiZDUxZTkyNmM3MWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2NGM5Y2NkM2Y1ODg3NzkyYzBkNWJlMTljNDIzOGY0YjY3ZTQxMjc1NmQ4ODA3N2Q5MTcxOGY0NmIxNzc4ZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0YTM4ZTFiY2M1YmIwZWQ4MDliZmE5ZTc0NTNhYWUyNWE3MTFjNDJmMDVkZTAyNmQ4YWI4NzIxZGRmN2FlYjcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_managed_skills.py#L265-L289",
+          "version": "repo-lines-v1:sha256:f8586004be9c4ff8e63d1096413d327e2c36243b707766b81b89929250beae3a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhM2YyZTJmYWM4NGU5ZDVmYzBlNmZkZTFkZmMzYTJlODg3YjY1ZjM0YjFiNWQxMTUxYjUyYTQ4MjlkYjY2NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhODJlYmU5ZWQ0MDdjM2E2YmE0YjAwMzQyOTJiYWE1MmMxMWNlNWFlMjg2MTA3NDAyZGU0NzkyZWVlY2FjZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyYWRjN2RlMDIzNmRiOGI1NWExMGQ4YzNiNmEzNjE0NzFlOWExNmY3Mjk3MDc4ZDUzZmVkNjZlMjgyOWYzYzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f701c9d6d34549559958439df45f4bfc",
+      "statement": "Managed skill names that collide with an already-discovered skill are dropped from the staged tree with a managed_skills.collisions_dropped warning while the session still starts: collision roots are the bundled skills at /app/sandbox_runtime/skills plus .opencode/skills, .claude/skills, and .agents/skills under the workspace, each member repository, and the home directory, so discovered skills keep precedence.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L426-L476",
+          "version": "repo-lines-v1:sha256:b914d874dff9d49d96bcde80757124893ff6b4d147cbf6a2209ba492084bf786:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwMjlkYWNhZjlhN2E2OTQ4MjA4OTI4ZWRiMDM2MGM1OTczMjNlNWJkOGE3OTBkZDRkOTc3NmJmYzE3NmMyMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhMDBiMTMzZTQ1MWZiZDc4OGQ1NDVlMDIxOTMyOTNiOTMxNTY2MjczZWIxNGU2MDllMjU3ZGZkN2M3N2NjNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2NjQ3NTE4NzU3NzI4YTlmNjU4NjM4NTIxNjVmZjlhMjc0Njc5NzAwZTg0ZGEwNTA2MjBiYWEyNjUyZWU2YTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiNTdjNzRkMmRkZDZlZGZkMmFmODQ2NDcxMjBhNGY0Nzg5MGJiOGRmOGU2NzNlMDcyMTY0Y2I2Zjc1YzdhZTgifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/managed_skills.py#L620-L656",
+          "version": "repo-lines-v1:sha256:3037f06811738e3d6bd9264f46e2667b0c3ad8de32f46064785e3b42c252040c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MzhlNGUzMTg1NjMzMzRlOTZmODIzOGQzYTg0ZmRiMzIzNWY5YzVmODNjZTc2NTA2NjFiMzg3ZWQzMDA3NzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkOTFjNjRjNjZmYWU0NTlkYWRmNDNhODc0YmZkOTIzZGM2Y2E3YzA4ZTBhYzFlNWM0YzJhMDA5MmZjZWI3ZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_managed_skills.py#L162-L199",
+          "version": "repo-lines-v1:sha256:11077cefb02202116a3442e49806bd974ac972e1deefc3c33a53386d8b06dbcf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxOTRiZmUwYzNjYjZjM2VjZDc0YmMyMjBjYThjMmFhODM1NmM1YjY0MzdmYjVjNTUwNzdlODViZmNkMDk1MjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0ZWQ5NTdmZmJlZTYyNGVkYmViNGUyNzc2ODllMmE4YjQ0NGIzZWFlZmVjYzBkNzlmMzE4NTU1MjRkOGY4NTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4OGY4ZDQxNzY5NDljOGZiYzhlNWNhZTAzZjI4YzZlMmFiYjE4YWMxNTc2OTM2ODdhNDc3M2FhYWM2N2E5MWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4f0cab5fd02d403193de34f3cb37bfaf",
+      "statement": "fetchSkillImport is read-only and all-or-nothing: it resolves the requested ref (or the default branch) to a commit before reading, maps frontmatter keys name/description/license/compatibility/metadata onto managed fields while reporting every other key as an unmapped-frontmatter warning, regenerates SKILL.md from the mapped fields (so stored bytes differ from upstream), derives the canonical name from the explicit override, SKILL.md frontmatter name, or source path, and reports named SkillImportErrors for unreachable repositories, missing SKILL.md (listing candidate subdirectories), unreadable frontmatter, binary/oversized files, executables outside scripts/, symlinks/submodules, or taken names.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/skills/git-import.ts#L1-L56",
+          "version": "repo-lines-v1:sha256:1c9ed314534045993ee6e7b4763636e3d07015a160a32b17e9320916522a6337:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkZTNjNzg4Y2EzZDczYTE3ZTQwM2U2M2ZjMDM1MTAyZGI2YWFmYmMwZmEyZDQwZDFjNGEwNDk3NzgyMzg2MWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/skills/git-import.ts#L274-L426",
+          "version": "repo-lines-v1:sha256:289b5d2505a84d533b0c1ff7c6126cf88f6bcf543a7b16625971948e73d7692e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3ZjExOGU2OGFkYmU3NGIzNGM4ZWE3OGIyODNhZjcwZmExNjhjNmM4OTFjZWM0MzI4N2ZmMDYwMmM4YzQ3MDAwIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxZDc3M2QxMTFlYTMwOGY4YWI3MjhmMzVkZjE1M2VkMmU5N2UyN2MxMmIzMDk0NTMyZmRmMTBlMTllYTkwMDlmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmYTU3MzBkYWEzYzY5MjU3NDY1YWI0NWFlMDVhY2YxMzM1OTE2NWZiMGRkODM1NGEyZTMyMjk4MTU1M2E5NmZhIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/skills/git-import.ts#L329-L366",
+          "version": "repo-lines-v1:sha256:a6e303ffd077e9c2233eb14d39ec37e835af19663c0614e2e00552fb5ab99a80:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NmUzN2M0ZDk3YTI3M2IzYTk2MDJhZWE1MmZmNGRhMjEzMzc1ZTliNjBkMWQ1YWI2YTU0MjNmZjFhZmViMDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjZDViMmJmMGI1NmM5MWMyYWY3MGYwNWMyMWNjMDA4ZjkzZmM0ZWM1NzVkZGY1M2I0ZGQxOGYzNDQxNTkwY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI2MzNmNGNmNWNlNzI3YzU2YjhiYzRhYmU5OWY2MzkyZjc3NmIyN2Q2MDc2YjM5NWZmMTg4OTIyMDliODkzNmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_94b415b5c42245bdbd73f6881c04d368",
+      "statement": "Import confirmation re-reads the source and refuses to store anything the importer has not seen: the request must echo expectedCommitSha, expectedSourceSha256, and expectedRevisionSha256 or the route answers 409; re-import resolves its source from recorded provenance with only the ref movable, and byte-identical content is a no-op returning revisionCreated: false with no new revision or provenance row.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L329-L356",
+          "version": "repo-lines-v1:sha256:abd5b2625ea959be812c19e4dab67b7f4fc4a4ad0e8de1add3e7dc4fb88651dd:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwN2E2YjlhOWY0YjY5OTRkOTJmZGNmYmNmMGU2ZjAwNTMzYTQzYjhkYTY1ZjE3YWE2N2QyZmM0ZDE2ODY5NjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJkOWVhOGE0NzU3ZDIzNjJhZGU1NmM2MzBlYjYxZDE3ODE0ZjljMzEwZGEyM2Q4MDY1YjYzYmQyMWY4ZDE3ZmEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/skills.ts#L213-L239",
+          "version": "repo-lines-v1:sha256:0d74008d42ec9ff6c1eff2bd871130b6eda5386b06387145dd431b625111a002:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5NTE5YmRhMTIzOGQ4NDVjMDU5YzcyYzgxMzIxMjczYjk1N2IxMzhmMTJjNTZiMDVmYWIxY2RmZWRhZmYzOGEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/skills.ts#L301-L327",
+          "version": "repo-lines-v1:sha256:c5be75b2493fa3c5c2895600b421a4819c16a521f3dce7b9e936dd94184d2663:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyYTY5MGIyZGJhZmRhMTk0OTVkZTg4MTM4NTY2ZjYzYjQ2NzU0MzVjMGQxNGEyZWE3NTgwNzU0OGQxYzZiNWYifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/skills.ts#L358-L387",
+          "version": "repo-lines-v1:sha256:94e0b3fac941ae5964d957e65c085ef6825c33d2056741167ec7cb1f3059ad7a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5NDBjY2ZmZjhiMjFiMDVkNjc2NTg2YTRlZmEwNDIyNmQ3ZjA1ODY3YWNmZmI1ZWQ0YjZiOTQwMTY4OGRhZDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ODU4YWNmMzAwMWM0Zjk3MzZiNTRjZDU1OTI3Yzk3NDA4N2YzOWVjNzJlNmViMjQ0ZTlmODJkNzc5OGVhNDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6f97a35a15f490cb44b49f26ee1d5c0",
+      "statement": "skill_import_sources records one row per import-produced revision (provider, repository, requested vs resolved ref, pinned commit SHA, subdirectory, source_sha256 of upstream bytes — deliberately distinct from the regenerated revision's revision_sha256), and the reported source is the newest import rather than the current revision so a hand edit after an import does not erase where the skill came from; nothing syncs automatically, and upstream changes reach the catalog only via re-import.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L604-L660",
+          "version": "repo-lines-v1:sha256:138017b49d84022dcad139fba252a871ed2b29ef2f644c91b8e2bbe42b3cb624:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5YTU1MzlhNjg2NDA3ODU3NzcyYjg1MzQ5MzA1Mzk2ZWQ2NzFkZjVjMDE5YzhlNjg5ZDFjYmQyNDA4ZDU1MTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/skills/content-addressing.ts#L138-L160",
+          "version": "repo-lines-v1:sha256:0f6db88ea007e88323b0114ce3fe31858adbd803d6b9ba80b7cf7b97a5d50b06:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxYjhlYzgzMDExYjFmZWM3YTE2MzVjMjJiMTNkYWU1M2U1MzA0ODFkZGYyY2E2ZTNmNGExYTA5NTI3NWNmYWEifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0069_skill_import_sources.sql#L1-L28",
+          "version": "repo-lines-v1:sha256:5aa2819cfbd4066e4615f94fa8aa354da71eba7da82d3b20e8407b1f826f9dff:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1Zjg1ZjAxOWIzZDcwMmVkZTNiNzBhMTg5YTc1OWFjYmMwZjkzZjc0NmMwZTgzZjAwZjBlNzA1ZWVjN2M0MzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyNTE5ZDMwZWZkYjc4NjRjYWIyMGU1NTk3MjA0ZWQ3YzIwMzY2NDQ2ZGRlNjc3M2U3MDUzOTEyYzNkNWM2ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c0dd7a4f11904e1ba76f5e2924d8e5c7",
+      "statement": "Skill edits use optimistic concurrency: PUT /skills/:id requires an If-Match header with the current revision id, and replaceContentAndAssignments builds one batch in which every statement (revision insert, pointer update, assignment replacement, generation bump) re-checks current_revision_id so a stale editor cannot partially mutate scope; identical content updates only metadata and creates no revision; DELETE is a soft delete that also disables the skill.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L243-L327",
+          "version": "repo-lines-v1:sha256:0ac9309547f9b9049d1a31770fac55fe030093c4610df83c5d4a4fba082a054b:eyJzZWxlY3RlZExpbmVDb3VudCI6ODUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwN2E2YjlhOWY0YjY5OTRkOTJmZGNmYmNmMGU2ZjAwNTMzYTQzYjhkYTY1ZjE3YWE2N2QyZmM0ZDE2ODY5NjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2MjJmZGZkMjhiM2QyMzZkYmU0NjA3ZjYxZGU5M2U1NzkxYzkyY2Y2OTFlZWU1YWUwOWRmODdhOWQ5MDNjYmEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/skills.ts#L399-L411",
+          "version": "repo-lines-v1:sha256:31fa61e82766bf01b38a9b07bc080c25e391c563f1229b3f2f822b313252649d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmMDk1Nzg5OTQ0YWUwOTNlMWQxOGQyZTJkZTZiM2U1MzIwZTZmZTM4MDg4ZWYxZDJhOThhNjhiMDJjODM2Y2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiZTgxOTA3NGI2YjIwYTY4NTVlMGZiM2M3NWNiZWE2ZTNmOGE0YWJkMmY0YWIxMDc0NzAxYzdlYmZiZmE2NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhYWJiZGUxYzJiYmMwOTZmZmJiZDI2ODFlMTFlZjk2YTlhY2Y1OGFjYTA2YWQyYWExMmM1ZmViN2ZlMmQxOGQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/skills.ts#L438-L471",
+          "version": "repo-lines-v1:sha256:28e68a8cc173a14d880c6a394ed33ab0746e7dcb27a7db83df6e55094a7026d6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhMmQyNTVkOWI2ZjhiOWVhNzY4Zjc5NGQyNzdlOTA1OTU1MmI2MjFjMzNkMmU4YTFjMjFjNzM5YmU4NjFhNTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ1MTI0ZDllMzVjNTI5NWNiZDY3OWQ1MmNkY2RhYzhjNzBjNjZiMTk0ZDY3NGQ3OTRiYmU2NGVlYWJmMTNlMTgifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-managed-skills.ts#L175-L187",
+          "version": "repo-lines-v1:sha256:1da88bccb70b9d30792a0a90a31edce3f22297a1e2dfa182247be21c1fdacbe9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmM2FjMzM1Mjg4ZGZkZjYwZDEzZWI5NDhlZmI4NzliNWY4MWUwMTNlMGM4MTRiY2FkYmRlZGJjMzU2YTI5M2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjNTUxZjU2YWU3ZWQ4NDI1NGQ0NTQ3N2JkNWNiZjllZDAwMWI0Y2M3NjYyYmExMWZkMTMwOWMxZjExYWI4NTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3OGE3YTg0YjBkY2U2NjNkOWYwMTdmZDliNDQ0MWRiYjEzYThmZWFkMGRkMjhkMDkzZDkzYzMyZDA0ZDhjMGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d385c68922134fd5aef1aeaff4798cf9",
+      "statement": "Skill catalog reads (GET /skills, GET /skills/:id, preview, resolve-preview) accept user or service principals, administration routes (create, edit, enable, delete, import/reimport, profile management) require a human user principal, and all skill mutations emit managed_skills.audit log events.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L86-L107",
+          "version": "repo-lines-v1:sha256:80180805acdb718cfd2f377bdb1ca6c4ab3da95101739f06513ba2520bcaa1fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiNmZlYThmNGMzYWNmMWM3MDlmNDVkNTBhY2Y5YjhkYWI1MmY2OTBlNGVkMTNkNDk0Y2I3NTVhZjNiYmFmMDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyMGZjOWU2N2RiMDdlZDIzOWJiM2FkMjMxMmVhYWI5YTcwZTFmNmZiYTAxMjg4YjBiYTZlNjFkN2Y4ZWU3ODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzNDA1NGQ5MTE4NjNmN2VjMDg3ZjU2NjI2MGIxM2JiODc4M2Y2ZWU4NmZhMzdkNzJiZWY5OGIxZDAzYzJkNTYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/skills.ts#L47-L79",
+          "version": "repo-lines-v1:sha256:0d3918a474e19176cffd9184b511352e8662adcc787678ae08b4239cf77a3e5b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0ZDhiMzIyMmE5MmVhNDQ5MTc3ZTA5ODYyMDAyY2U0MjQzMDgyOGQ1NDAzMjEyMDgxOWU2NDVjZTcyMDhhYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlNzM3ODNkMTMzMGUxNmRjOWI2MzJmMWRkYTk1NDM3ZWQzYjJkOWViYTZmODI5NzFiYmY2MTA0NDMwYTg5MTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmYzQ2MDk2OTliYzYyOWUxNmI0MDY1MGQ3ZjMxNTc0ZmY4ZDU1ZjI4YjlmYzRlMWQ3ZDVkNGZhMDU2MWMxOWUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/skills.ts#L627-L689",
+          "version": "repo-lines-v1:sha256:ff75778dce8486eae80d4915ea3a227a27f9b76b169feceeedcc399e36e5ff63:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlZGU0NTRmY2EyNDUxYzc3NzVjN2ExZGJhMDA1MThkYzhmZDgzYzNmMzc1ZTg5NjA1NDY3NzAxMDZhMWJhYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2MDY2YzE0NTNkNWFjZjE3ODlhMzdkYTk4MmY1ZTRiZmMzYjZiMzFkMmQyZmRiMzE3Yjg0NjNmN2FkODA3YjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmNjRmZWIwNTgzNDhjMjMyNmIxNjIzZDFmZTQ3YjFjNDM0MTk5MGIxNTQ3YzkyMTgzMWVkMzc4NTVmMWUyNWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_756600b6fc8542e4a7adf95247e3dfd1",
+      "statement": "MCP servers are resolved at sandbox spawn time rather than pinned in the session manifest: McpServerStore.getDecryptedForSession returns enabled servers where unscoped servers always apply and scoped servers apply when any member repository matches a repoScopes entry (an empty list yields unscoped servers only), and load failures degrade to no MCP servers with a warning instead of failing the spawn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/mcp-servers.ts#L333-L356",
+          "version": "repo-lines-v1:sha256:c018c4171a3de0f7ac6b85c99a9c21a28b4c629d622979ec780e15750bc46e35:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlZWM4NWNmYzgwN2RmNjc1MGU5NDBkN2I5NmMwMzMxYmM0YTJlOGIxZjY3MzQ4YjQ1MDhjYzRjMjRiMGU3NzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L566-L593",
+          "version": "repo-lines-v1:sha256:1244bef018036cbac840af4c8e864cfb0dd575968efdc1a40660edcfe5d22881:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3ODIxZDNmN2I5OWUwOGZkZjE1MWZhNjM1ZTEyMGMxMWYzYTYxMTQxNWUwYTc1MmQ3M2UxOWEwODU5ZTc0ZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlMzNkYzczMWU3ZDA3YjFmMGMwNWNmZWJkN2UxOTIyMDIzZTYwNzdiYzBhZTdiYTMwMTQ4ZjUwODMzYTI1YTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3NGU0MTdiOTc4OGE4OTRlY2Q0NThjYzZlY2Q4Zjc0YmEzZTllM2FkZDI0NTVkYmUxNDk3Y2I1OGQ4MzgwNTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxYzZiMTg4ZDcxZGY3NjhhZDViNTJlOTNmNTA2YTM4MTQzNGFmYTlkNjM1MmQ4MzZhMWMyOGZlNjIwZDVlMTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L784-L809",
+          "version": "repo-lines-v1:sha256:6630f9026d37afd6bf16e498ae1db09656bfaa997cbd88300870920416315a18:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NzBjZjViODRjYWIyNzk0ZDQ2MWJlZDI2N2U2M2Q4NzE4Yjc2ZmJhZWQ5ZjFjMjlkN2FiNjI5MzYxMDE4N2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c58409c3fef44692b23c18d7475453b1",
+      "statement": "MCP server credential maps (env for local, headers for remote) are encrypted at rest with the repo-secrets encryption key; an empty map is stored as plaintext \"{}\" so metadata can report no credentials, decryption falls back to plaintext for pre-encryption rows, updates carry a revision counter for optimistic concurrency (conflict → 409), names are unique, and /mcp-servers exposes CRUD.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/mcp-servers.ts#L125-L161",
+          "version": "repo-lines-v1:sha256:e268f5aa4ca3db8a1d4070d3d38fe9fb3edfcb282c8a6bfaaa6230a12d44051a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzN2E5OTVjMDU2MWNmNWEzOTI5Zjg5YjQ4N2EwNzkzYjk2YjM2YzQzMTNmYjQ1Y2NlMjljNmJhY2JjYmM3ZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwNGU4OTc4ZjM2OTY3OWQ2YjM1ZTdiMmViZDk2MTAzNTc4ZTNiMTI2NWQ3OGU1ZTVmMmM2ZjQ0OGZiZGVjZGQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/mcp-servers.ts#L239-L331",
+          "version": "repo-lines-v1:sha256:b0cc366e578d7928ec5a8ce8307951c5e923df383cfdef195d300631385fc51b:eyJzZWxlY3RlZExpbmVDb3VudCI6OTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0NmU3ZjUyYzE5ZmY2ZjVkODg5MjBiODk3YjdkOTEwZDFhMmRiMDllZmIwNmE1M2JjODkwNDhkOGU3YTY2MzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlYzI1MjIyN2NkZmYzYzAwMjVhMjlhNWFlZWVmMzQ0MGMyZmIxYmFjM2Y0MTVmNjRmMjk5YTQ4MjFmYmZiOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5MTI3MWM3YjRlMmJjZTM1MzEyYzQ1YzEzNTIxMDU5MWM4MjhmYzc4MDM4ZjBjNGFmZGYwNTZjN2RhODE3YjYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/mcp-servers.ts#L166-L192",
+          "version": "repo-lines-v1:sha256:ba4989cd60ddb0957ad93ffe704709b954408566644ebc5eaf18b14eec8df0c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0ZjdhOTg3YzQxZGEwOTE3ZDk4OWZiMDg4M2Y4OTA4NTI1ZmViYjhkNDVjYzM3M2VkODFjYWE2ZjgxOGM1ZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4MWNiYTg0NGMzZWNkNWUwMzMwOWU2NTI0ZmY0MTAwN2RkY2Q4NGNjZWNkYWYwMjQ2ZDhiMmJiMDk1YzA0YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fce88e6467134697989531bf2db39b93",
+      "statement": "MCP server configs travel to the sandbox in SESSION_CONFIG.mcp_servers; OpenCodeServer pre-installs npm packages referenced by npx-based local servers (npm install -g, deduplicated, best-effort with a 180-second timeout) and writes the servers into OpenCode's mcp config as {type: local, command, environment} for local and {type: remote, url, headers} for remote servers.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.ts#L20-L79",
+          "version": "repo-lines-v1:sha256:83edfa580e266b8b447d8895b381f93f4b3b17c2112d5afa7b00de27ebfd7011:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmMzFhYWE4YzI5YzQwZGE3YTI1ZThlNGRiZTdhMDg2NTBiYTA4ZjNmZTE2NDU2NWUzNTk2YWNlMWE1Yzc2NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNWQ4OWY3MDU3MDFlNDk0YzZjZmU3MzAxZjYyZjI1NTNiMTAxNGQ1MzgzMDU5YjhiMzdhZDE3YjUwNmNmMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZjMDA3NjI0OTkxZGI2MDE0ZmYwMDZjYTk1NWI1NTU5YmE4M2Q0OTc0MDEwYjZmNDVjODg0MmZkYmZhYWZkOWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzMGZlMTkwOTFjZTIwY2JhOTk2OWQwM2QzYzY2NjdjN2Q0MjFhNzhkNmU2ZGE0Mjg5N2M5OGY3ZGY1ZWM1YTcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/opencode_server.py#L389-L498",
+          "version": "repo-lines-v1:sha256:aedb4006fe0709e8d34c6883372650ddad0151f0c418ab71fee8e4a426986477:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiOGQxNGIyNmVjY2QzMjg5Mjg2MGMzNzRjODIwZmJkMmFmNTY3ODRlYzBlMDhiZmM5MWI4YTgzZTM1NWNhOGJlIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlMDhmZTJiYWZjNWEzMjBhZDAwZmZkMTJkMGIzOWI3ZWNjMmE4ZjA3MWQ4ZTg0ZDA4Y2Y1MGZhNjQyZGYyNTlmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5ZjlmZDY0ZGE0ODg4ZWExOTgzNzRlNGM5YzhhMDJiN2IyOGI0YWY1OTJlMjQwNTc1YTg5OTkzZTNlN2JjODBlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIzMGM2NWFjM2MxNjU5MzZlOTA0YjYxY2QwNzViM2ZlYTQ2OTUyMjNjMThkN2Y2ODNiZTcwNDVmMzk2OGJiOTk4In0"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/runtime_config.py#L165-L178",
+          "version": "repo-lines-v1:sha256:a25f093f9eed413f6668f089173e3165540f24c8a93a46c3e02388b8eb72837a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiOWRjMDI4NzJlNTkyZTBlODAzYzU5M2ZhODE2YmI4OThjNGY3MWY3YWE5NzUzYWU1ZTZlOTUxZjZhNmUxMGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlYjNkNmIxZjhjOTRkYTkwNTlhOTg3ZDE0ZjUzZTNkMDMxOGNmMzhjYWJkYmY0MmE3ZWVkNTg5NDgxMTkwYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzMzUyZjg0N2Y4OWQ5YjA0OGRmZWNjMDkwZjdkN2NlOWJhNzVmYzY1MDc1MWYyYWQ2NDNiNDQzZjdlMzE2MDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c26defddbf7e40429cde8079d90c5722",
+      "statement": "Managed skills are trusted content, not a permission boundary: a skill can direct the agent to use tools, credentials, and network access already available in the session, which is why imports are preview-gated and confirmed against a pinned commit and content digest before anything is stored, and scripts deserve review before enabling.",
+      "evidence": [
+        {
+          "resource": "repo://docs/MANAGED_SKILLS.md#L11-L13",
+          "version": "repo-lines-v1:sha256:3b4613002396e7be9d806ed8019b80912d808ba2887839eaa85de077d9d304a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjRhZWNmYTA3YTI5YzdjZjY1YmMwNzczZDgyZmFhN2ZmOWVhZDU3MmJjNjc3ZThmMWIyYTI4NzZmOTJkYzgwMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM5MjJjNzAyMzMwMGM5ZDA4MTBlM2EyYjAwNzM3Yjk4OWQ5OWU5MTkzNWI2M2M0Y2QwZTJjOTA2ZGU4MzQ2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmYxZWIyY2VmMGNhM2M1ZDAwZmNlOTlkYzRjMTZlYmM5MmZhYmI3ODkyODM3YjMzYWIxN2QzZGU5YzdjMzIyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAxZjJlYzE3NTkzYzEwNTRlYjQ2MzY3ZDg0NTNlZjI0YTE3M2NlOTZiNzExN2Q5MWY5YTY4ZDQ0ZmVmOGIwMSJ9"
+        },
+        {
+          "resource": "repo://docs/MANAGED_SKILLS.md#L176-L178",
+          "version": "repo-lines-v1:sha256:8dd596b44d27a9a39304f528c6c2554f7b438a8bf22e01b1a1b35747adb6296d:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk1YzBlYzRhYzM0ODc3NmE2YzQ0NzA3MWMwNDhjMWNiZTAwNjMwMjhiNGNkMjM5MzZmZTNlNzIyNWU4MTVjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGFiNjBmOTcyM2ZhNjVlYTZiMTQ2MTgzYWU0YzQ3ZjdiYmFhOTk4MTlmZDM1ZTIwN2UzYmE3ZTJkOWUxZGJiMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNkNTZiOTcyOTg2ZjRhN2Q0NzVlYzNiMWNmYTc4YzZmZmQwOGJhM2JhZmNiMDkzZjcwZmNlZTgyMjgxZGQ5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAxZjJlYzE3NTkzYzEwNTRlYjQ2MzY3ZDg0NTNlZjI0YTE3M2NlOTZiNzExN2Q5MWY5YTY4ZDQ0ZmVmOGIwMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/skills.ts#L213-L239",
+          "version": "repo-lines-v1:sha256:0d74008d42ec9ff6c1eff2bd871130b6eda5386b06387145dd431b625111a002:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5NTE5YmRhMTIzOGQ4NDVjMDU5YzcyYzgxMzIxMjczYjk1N2IxMzhmMTJjNTZiMDVmYWIxY2RmZWRhZmYzOGEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

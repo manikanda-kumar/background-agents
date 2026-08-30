@@ -1,32 +1,32 @@
-# OpenWiki model comparison — host Qwen vs DeepSeek vs Grok vs native flash
+# OpenWiki model comparison — host Qwen vs GLM vs DeepSeek vs Grok vs native flash
 
 Oracle reviews of OpenWiki on **background-agents** (Open-Inspect) at git SHA
 `32470cc2`. Flash models used stock `openwiki@0.4.3` via OpenCode Go. Grok 4.6
-used the fork's **host-agent** path (`host-agent/grok`). Host Qwen used OpenCode
-CLI + OpenWiki MCP (`host-agent/opencode`, `opencode-go/qwen3.8-flash`). Runtime
-is not comparable; **wiki quality** is.
+used the fork's **host-agent** path (`host-agent/grok`). Host Qwen and the GLM
+finish used OpenCode CLI + OpenWiki MCP (`host-agent/opencode`). Runtime is not
+comparable; **wiki quality** is.
 
 This is about **reasoning and code-understanding quality**, not page counts.
-Native Qwen (9/38, dead) and GLM (still generating) remain incomplete; their
-written samples still count for style and grounding.
+Native Qwen (9/38, dead) remains a forensic sample only.
 
 ## Verdict
 
-**Pick host Qwen 3.8 Flash (OpenCode + MCP) as the wiki author for this repo.**
-Narrowly ahead of DeepSeek: it keeps native Qwen's source-level concurrency,
-persistence, and security reasoning, but cuts the unusable 38-page forensic
-sprawl into a finished 19-page wiki. Pages are 70–120 lines, dense with
-`file.ts:Lxx` citations.
+**Pick host Qwen 3.8 Flash (OpenCode + MCP) as the default wiki author.** It
+still wins overall: 19 finished pages, 70–120 lines, dense `file.ts:Lxx`
+citations, usable in a coding change without drowning.
 
-**DeepSeek remains the better planner** (broader taxonomy, more user concepts
-and workflows). **Grok is the best stylist** and the orientation fallback.
-Native Qwen is the deepest forensic sample, not a viable whole-wiki author.
-Incomplete GLM is last.
+**Promote finished GLM to 2nd overall.** Native GLM wrote 23/28 pages; OpenCode
+host GLM finished the last five on the same runId (`554c65a3`) without wiping
+the wiki. Grounding and SessionDO / security / Git-PR walkthroughs now beat
+DeepSeek and Grok. Cost: ~464 lines/page average, heavy duplication, and it
+still misses the WS-bypass consequence and GitHub's PR-head/prompt contradiction.
 
-Host Qwen compression is not free: it misses the Worker WebSocket-bypass
-consequences, the complete session-status model, and GitHub's PR-head/prompt
-contradiction, and it has at least two source-contradicted claims (GitHub
-"500 after 200"; DO migrations called "transactionally applied").
+**DeepSeek remains the better planner.** **Grok is the best stylist.** Native
+Qwen is the deepest forensic sample, not a viable whole-wiki author.
+
+Host Qwen compression is not free: GitHub "500 after 200", DO migrations called
+"transactionally applied", missing WS-bypass consequences and session-status
+model. GLM's tax is the opposite — too much of a good ledger.
 
 Do **not** let native Qwen design the map. Do **not** ensemble-merge pages.
 
@@ -35,30 +35,33 @@ Do **not** let native Qwen design the map. Do **not** ensemble-merge pages.
 | Dimension | 1st | 2nd | 3rd | 4th | 5th |
 | --- | --- | --- | --- | --- | --- |
 | Taxonomy / information architecture | **DeepSeek** | Grok | Host Qwen | GLM | Native Qwen |
-| Code-grounding | **Native Qwen** | Host Qwen | Grok | DeepSeek | GLM |
-| Reasoning depth per unit of prose | **Host Qwen** | Native Qwen | DeepSeek | Grok | GLM |
-| Usefulness for a real coding change | **Host Qwen** | DeepSeek | Grok | Native Qwen | GLM |
+| Code-grounding | **Native Qwen** | GLM | Host Qwen | Grok | DeepSeek |
+| Reasoning depth per unit of prose | **Host Qwen** | Native Qwen | DeepSeek | GLM | Grok |
+| Usefulness for a real coding change | **Host Qwen** | GLM | DeepSeek | Grok | Native Qwen |
 | Page style / clarity | **Grok** | Host Qwen | GLM | DeepSeek | Native Qwen |
-| Overall wiki author | **Host Qwen** | DeepSeek | Grok | Native Qwen | GLM |
+| Overall wiki author | **Host Qwen** | GLM | DeepSeek | Grok | Native Qwen |
 
 ## Runtime
 
 | Model | Started | Finished | Phase | Plan | Complete | Wiki size |
 | --- | --- | --- | --- | --- | --- | --- |
 | qwen3.8-flash-opencode | 16:39Z | 19:26Z | complete | 19 | 19 | 25 md, [quickstart](qwen3.8-flash-opencode/quickstart.md) |
+| glm-5.3-flash | 06:58Z (3rd native) + host resume 13:10Z | 13:48Z | complete | 28 | 28 | 36 md, [quickstart](glm-5.3-flash/quickstart.md) |
 | qwen3.8-flash | 05:37Z | died 15:08Z | generating | 38 | 9 | ~284K (9 md) |
-| glm-5.3-flash | 06:58Z (3rd attempt) | — | generating | 28 | ~11 | still crawling |
 | deepseek-v4-flash | 05:37Z | 09:38Z | complete | 26 | 26 | 33 md, [quickstart](deepseek-v4-flash/quickstart.md) |
 | grok-4.6 | ~14:40Z | 15:39Z | complete | 24 | 24 | 32 md, [quickstart](grok-4.6/quickstart.md) |
 
 GLM attempt 1 died on undici `headersTimeout` after ~63 min of planning;
 attempt 2 with HTTP streaming died in 17s (`wrapModelCall` / GLM
 `reasoning_content`). Attempt 3: no streaming, patched 1h headersTimeout, then
-a restore-missing-file death; manual restart is the current generating run.
-Grok's first host-agent pass hit `Max turns reached` at 12/24; resume with
-`--max-turns 200` finished. Host Qwen hung mid-`write` at 17/19 (~18:23Z);
-resume with `--session` accidentally called `openwiki_begin mode=init` and
-regenerated the same 19-page plan as run `582e44cd` (finished 19:26Z).
+a restore-missing-file death; manual `--init` restart wrote 23/28 and stalled
+~5h on `git-auth-and-pull-requests.md`. User killed native `update`; OpenCode
+host GLM resumed the same runId and finished in ~37 min (Claims retries on
+evidence format). Grok's first host-agent pass hit `Max turns reached` at
+12/24; resume with `--max-turns 200` finished. Host Qwen hung mid-`write` at
+17/19 (~18:23Z); resume with `--session` accidentally called
+`openwiki_begin mode=init` and regenerated the same 19-page plan as run
+`582e44cd` (finished 19:26Z).
 
 Flash models scheduled `quickstart.md` last — a shared planning-order mistake.
 Grok's and host Qwen's quickstarts are last in generation order too, but they
@@ -237,42 +240,54 @@ Samples: [control-plane-worker.md](qwen3.8-flash/architecture/control-plane-work
 [data-model-and-persistence.md](qwen3.8-flash/architecture/data-model-and-persistence.md),
 [sandbox-data-plane.md](qwen3.8-flash/architecture/sandbox-data-plane.md).
 
-## GLM 5.3 Flash — best workflow planner, thin written evidence
+## GLM 5.3 Flash — 2nd overall finished wiki (hybrid native + host)
 
-**Taxonomy:** ~28 pages, workflow-heavy. Unique: `media-and-attachments.md`,
-automations as workflow not concept, model-provider-accounts as integration.
+**Taxonomy:** 28 planned pages, 36 markdown files after finish indexes.
+Workflow-heavy (`session-creation`, `prompt-flow`, `image-builds`,
+`git-auth-and-pull-requests`, `automations`). **No dedicated
+`media-and-attachments` page** — media is scattered across overview, prompt
+flow, data model, and Slack. Provider accounts live under concepts, not
+integrations. Average ~464 lines per content page.
+
+Hybrid authorship: native `openwiki@0.4.3` wrote 23/28; OpenCode host
+`opencode-go/glm-5.3-flash` wrote the last five on run `554c65a3` and called
+`openwiki_finish`. Do not treat this as a pure native-flash result.
 
 **Strengths**
 
-1. Best workflow decomposition: `session-creation`, `prompt-lifecycle`,
-   `sandbox-lifecycle`, `image-builds`, `git-and-pull-requests`,
-   `media-and-attachments`.
-2. Generated control-plane page is excellent: numbered `handleRequest` pipeline,
-   exact crons, queue-prefix dispatch (`open-inspect-github-autofix-` so a
-   similarly named image-build queue is not stolen).
-3. Plans trace convergence (web/Slack/GitHub/Linear/automations/child spawn →
-   one init path).
-4. Only dedicated media/attachments workflow.
-5. Operational constants (`MAX_SPAWN_DEPTH=2`, scheduler budgets) instead of
-   "describe limits".
+1. Best SessionDO page in the bench: nine-tier composition, fail-at-construction,
+   DO SQLite vs D1, unique partial indexes, alarm rehydrate, queue settlement.
+2. Strongest security model: single-tenant, six token types, encryption not
+   optional, sig1 / OAuth / App / sandbox / WS / commit-signing end to end.
+3. Best Git/PR implementation guide: helper host-scoping, no-stale cache,
+   user-vs-App authority, push specs, per-head reuse, webhook mirror, autofix,
+   nested owners.
+4. Usable quickstart (bootstrap + monorepo + verification + routing) plus dense
+   prompt-flow / session-creation / image-build workflows.
+5. Machine claim ledger is huge (host finish required `repo://path#Lstart-Lend`).
 
 **Failure modes**
 
-1. Written quality still rests on a handful of pages. Cannot claim repo-wide
-   consistency yet.
-2. Category boundaries less coherent (provider accounts as integration;
-   automations as workflow).
-3. Protocol boundaries underexposed vs Qwen.
-4. Same WebSocket-bypass miss as DeepSeek.
-5. Throughput and restore-missing-file deaths make a finished GLM wiki uncertain.
+1. Duplication: ~10k body lines repeat queue, sandbox, auth, signing, callbacks
+   across architecture / concepts / workflows. Finding the canonical page is
+   slower than Host Qwen.
+2. Observability claims every HTTP response carries request/trace IDs and every
+   incoming request logs `http.request`; WS upgrades bypass `handleRequest`.
+3. GitHub page reports the prompt's "already on PR head" claim and does not
+   notice session create omits that head — Grok's finding, not GLM's.
+4. Prose cites files more than inline line ranges; Host Qwen is faster to jump
+   from sentence to source.
+5. Native path is unusable at this scale (~60 min/page, 5h stall). Host MCP is
+   the only GLM path that finished.
 
-**Style:** Best writer among the flash models. Numbered pipeline, tables, then
-depth. Headings every ~15 lines. Diagrams earn their keep. Dense but scannable.
-Grok now occupies that slot with a finished wiki; GLM remains the fallback if
-host-agent Grok is unavailable.
+**Style:** Numbered pipelines, tables, mermaid, headings every ~15 lines. Dense
+and scannable per page; exhausting as a set. Between Grok (operator contract)
+and Host Qwen (compressed staff notes).
 
-Sample: [control-plane-worker.md](glm-5.3-flash/architecture/control-plane-worker.md),
-[architecture/overview.md](glm-5.3-flash/architecture/overview.md).
+Samples: [quickstart.md](glm-5.3-flash/quickstart.md),
+[session-durable-object.md](glm-5.3-flash/architecture/session-durable-object.md),
+[security-and-tokens.md](glm-5.3-flash/concepts/security-and-tokens.md),
+[git-auth-and-pull-requests.md](glm-5.3-flash/workflows/git-auth-and-pull-requests.md).
 
 ## Style on the same topic (control plane)
 
@@ -295,7 +310,7 @@ Sample: [control-plane-worker.md](glm-5.3-flash/architecture/control-plane-worke
 | Sandbox | Providers, lifecycle, images | **Qwen:** `/app/sandbox_runtime` packaging contract |
 | Workflows | Prompt, sandbox, images, PRs | **GLM:** clearest workflow IA |
 | GitHub | Bot vs Autofix | **Grok:** create-session does not pass PR head vs prompt claiming it does |
-| Media | Indirect elsewhere | **GLM:** only dedicated page |
+| Media | Indirect elsewhere | **GLM:** still no dedicated page; scattered |
 | Diff protocol | Runtime mention | **DeepSeek:** standalone `session-diffs.md` |
 | Extension tasks | Embedded | **Qwen:** `adding-a-sandbox-provider.md` |
 
@@ -319,12 +334,13 @@ compression tax on state machines.
 Qwen is not padding — the detail is usually real — but 38 pages at ~50 min/page
 is the wrong first-wiki granularity.
 
-GLM has the best flash-model workflow IA and page style; the snapshot still does
-not prove it across persistence, runtime, integrations, and frontend.
+Finished GLM proves the workflow IA across persistence, runtime, integrations,
+and frontend — at the cost of duplication. Native GLM throughput is still a
+failure mode; host MCP is what finished it.
 
 Host Qwen is faster *and* denser than native Qwen because one OpenCode session
 keeps context. The hung `write` at 17/19 and the accidental re-init are the
-host-path tax.
+host-path tax. Host GLM's tax was Claims evidence-format retries, not a wipe.
 
 ## How to leverage the five
 
@@ -335,9 +351,9 @@ Stock OpenWiki cannot split models. The fork can
 | --- | --- | --- |
 | Planner | DeepSeek | `OPENWIKI_PLANNER_MODEL_ID` |
 | Default page writer | **Host Qwen** (OpenCode MCP) | OpenCode `-m opencode-go/qwen3.8-flash` |
+| Workflow specialist | **Host GLM** (OpenCode MCP) | OpenCode `-m opencode-go/glm-5.3-flash` |
 | Style / orientation fallback | Grok | Grok MCP |
-| Specialist | Host Qwen (not unstable native Qwen) | same host session |
-| Workflow fallback | GLM | only if host Qwen/Grok unavailable |
+| Forensic sample only | Native Qwen | do not relaunch |
 
 One page, one writer. No ensemble merge.
 
@@ -352,6 +368,6 @@ Full plan dumps: [plans/](plans/).
 
 - Host Qwen 19 pages (finished manifest) — [plans/qwen3.8-flash-opencode.summary.json](plans/qwen3.8-flash-opencode.summary.json)
 - DeepSeek 26 pages — [plans/deepseek-v4-flash.summary.json](plans/deepseek-v4-flash.summary.json)
-- GLM ~28 pages — [plans/glm-5.3-flash.summary.json](plans/glm-5.3-flash.summary.json)
+- GLM 28 plan / 36 md (finished hybrid) — [plans/glm-5.3-flash.summary.json](plans/glm-5.3-flash.summary.json)
 - Native Qwen 38 pages — [plans/qwen3.8-flash.summary.json](plans/qwen3.8-flash.summary.json)
 - Grok 24 pages (finished manifest) — [plans/grok-4.6.summary.json](plans/grok-4.6.summary.json)

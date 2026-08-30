@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e1799e44182a80a4b35df3b043b3c8a177ea26c237d4d9b0d6ecd7a79825fb10",
+  "claims": [
+    {
+      "id": "claim_ec1c856297f341f79a8683d79c79da2d",
+      "statement": "The web package (@open-inspect/web) is a framework-free BFF: it signs every server-to-control-plane request with its own SERVICE_AUTH_SECRET on the service:web sig1 channel, forwards only Better Auth's opaque session cookie, and holds no OAuth provider credentials or admission policy — the enabled sign-in provider set is resolved from the control plane at request time for /login.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/README.md#L89-L92",
+          "version": "repo-lines-v1:sha256:12d9e0b1c902677c4c1ebd22ed5b2217fbd01b7155cabf7ceeab8d6209e828d4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTUxODMxZWFmYWY2NjI0Zjk1ZjNhMTRkZmFjNmJjYTk4MjdmYmY0ZGY5MzRhNGI3M2U1MmU1OTEzNWYzMDE1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODA4MmE4YjRkZDdhYWViNTIyZGQ1MjQ5MjdjZjg0YzA3NTZjNDU3Yzg1MWY0MjliOWVhYmMwN2Y5NzcyYWUwMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDkzYmE5MGI5NWNlYmQwODBlMzFkY2NhMDNlNGJkNDc3OGY3ZGIxYjlhN2UxNmUzMGY4YTdmZTZiOTNkMmMzNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDQzZTMxZmUwMzhjMjU5NDAzZWM2ZWI4YTViODMzMmM4ZjQzZThhNDFiMDY3OGFlNjVmZjgwMmQzN2ZkYWRmYSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-service.ts#L61-L68",
+          "version": "repo-lines-v1:sha256:ed7efe5b66bcd54aa6da4a1f3a6e09a06eb37454d29404008932a9f2c8b021c3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTFmMTIxNWJiMDRkNmM3Yzg4ZjMzMGI4NDcyYTNiOTU3MjBmNjczMGYyYjExYzk1YWZjYmFiZTA1OWVlYWE0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjdmOWNmYThlMzI2Y2FhOTU2MDRhOTcxMWVkMWE4OWNjZTVjZDEwMzY1MGI0MjU2MDhhMjFiNWUzMjI3MmQyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjg4YzY1YzFkNDQ2MzliMzU0NjYxMDhjZTdjZjdkMDg4YjBmMzY5MjkzNmY1YTlhNzEyZGQ5NzE2OGRlZWVlYyJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/sign-in-providers.ts#L14-L31",
+          "version": "repo-lines-v1:sha256:4d3996c0aabe44b6f55c299f782ea74881231d67fc08408a9ab24809bd9c33f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2NzNkOWE4N2YxNjM4MGQ5MzVhNDc0NjU4NGI1M2MxNGUwNWQ3ZDg5NzYxZmMwNGM4ZmUzYzI2NjdhYTYyZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwZjU2ZGRiMGYxYTRjZDExMzhkZGVhNjM2MGE3YjE0OGIyZTk4NTUzMjdhZjc4NGQzMmEyZWRiNmJmMDg1ZTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyM2NhYjQzMDZiOWJmNmFiM2U2M2ZjNTAzODlmNTdlYTVlYWQwYTlkOTc4MjZiZjI2Y2M5NmE3MjQ2NWU3OTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4OWU1NDU5NGYxZjcxYWFiYzBkNjBjZWFhZTA1NGMyY2JkZTZiZmZkNTVhN2I3ZTA2NGI2NjBhYzY0MzQ3N2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_79345c1c19ad4b72b867f013081ad338",
+      "statement": "src/app/api/auth/[...auth]/route.ts aliases both GET and POST to proxyBrowserAuthRequest, which forwards only the six allowlisted method+path pairs declared in the shared BROWSER_AUTH_PROXY_ROUTES (sign-in/social, GitHub and Google callbacks, get-session, sign-out, error) and returns 404 for anything else before dispatching.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/browser-auth-routes.ts#L8-L21",
+          "version": "repo-lines-v1:sha256:8ebb5366009067a59486fd8c532dfa47fa29125c878d5a7fa94aeb9b3b71a75a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjOTI4MWMwODZkZjY5MWVmM2IwOGQ3MWE4Yjk5YmJkMjJiZDc3M2FkMGI1MDI2ZjZmOTgyNTFjMzQxYjc1YWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEzNzIyNzZlNzc1YWQyMzE0N2M5YzQ2Mjk2M2RjYjVmMmM5ZDYyZjJiYWVhYjUzY2VlMjgyYWFmNzg4YmQyZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/auth/%5B...auth%5D/route.ts#L1-L4",
+          "version": "repo-lines-v1:sha256:62bef3f90bd7860dec8ee6ea278c36a90a3d78ee8cf456cc5b2b110010547d83:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOThhMjU1OWRkODU4MGRkZjEyMWJhMDk4MjA2NjIyMjFlMTNhNjI5MmExMTUxMDcwYWNkNTkyMjgwZmI3ZDUxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjQwZGYyYmI1OWUwODcwZGU4OGYzYWViNTIzMzUzOTI3ZDRiODA5NDE4NGE5ZjdlNGQ4ZWFiYTI3ZmY3NjY4NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.ts#L116-L143",
+          "version": "repo-lines-v1:sha256:88cae8a5dfffe43a4dc271169220a9782dbc3e58f76f35613614f161341e4881:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0ZDU0ZDY3MDIwODQxZDU0Y2M1ODhkMThjNDRiZGMxNzFkNTA2OWJiODAzMmMxMDA1Yjg2MTdiYjRjMjVhYzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4425b359ed0a4cf3988dddecf8f9c103",
+      "statement": "The browser-auth proxy sanitizes the forward: it copies only Accept, Accept-Language, Content-Type, Cookie, Origin, and User-Agent; takes the client IP solely from the platform-trusted header (X-Vercel-Forwarded-For on Vercel, CF-Connecting-IP on Cloudflare) and forwards it as X-OpenInspect-Client-IP; strips hop-by-hop and content-encoding/content-length response headers while preserving every Set-Cookie; forces Cache-Control: no-store; and dispatches with redirect: manual and cache: no-store.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.test.ts#L161-L192",
+          "version": "repo-lines-v1:sha256:44589abc254afd4cfb1d468dd45bdd5cf5140cee2d37ccf1065de86fb51a9f9f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3ZGJhZTMwOTYyNTViODBkNjZhNzg0MjdhZWJhYjBkMGE5YzcwMzJlMDcwNGY4YmJjMjhlY2NmZGU0NzQxNTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmOTFhYTY2OWQ5N2Q0YjM0MzU2YmQyYTlmNzA3NTA5M2U3MTRmMWZkZjY4Y2M0ZTE1NDI1YWMxODk2MGFmMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxOTBhZDYzMGViOWQ5YWU3MDFmZTZhODAzZjMzMGRlYmZjNDQyZTM5YTY0ZDI4YjEyZTJiODg1ZWZjNDlmZGIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.ts#L54-L59",
+          "version": "repo-lines-v1:sha256:576ab98bddfc6a513213edeaf2a29badbfd8b4b8f3329a31227958020b174d06:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDk1ZWY1YjExMmM5ODE3MTFmMDEwOWRmMWNlOWYzY2FlMDAyNWQxZjJlYmY3YzBkZGRjMGM2MjU0M2I0OWViNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWY5MTkzMjU0MTIzMGJjMjhjYTlmNGJmNDhkNGM3MjEwMDNkYWE3MGZiOGRlYTEzYmQwNWZiYzQxZTdkYWU1ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTcwYzljNGFiMDUwYTM4MTI0ZGU3MzM5NmVhODkyYTY3MmFlODdmMzIxM2ZlOTdjOTUyZTkyZTlhZjg1NDkzYyJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.ts#L7-L14",
+          "version": "repo-lines-v1:sha256:9da3d1d3572411547ec2992e2d6e7c3e8e1dafaabe6d0c7262016471c518fed9:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY1MjJiZmUwOTYyNGQ0YWUzYTI1Y2Q4YmQ0Mzg4NmY3NmEzMmZmMWI0OGMxODE1YTNiNGRiMGQ2ZjU1YmM2MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmNkYzc2ZDEyZTUzMDRkMzA3OWVkYjVmODkwMDA3ZWEwNWYyMjZlNGQ5M2I2OTU2ODQ2MGNhZmFmODAwNzQ0YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTBlZjQ1MTk3NjlkN2YxOTM1N2ZjZDAyYWZjYjZkZmIzMjUxMjU2ZmUxNDBiYTVlYzQ4OTQwYWNlZjhiM2QzMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODJmMGFlMDY2YzI4OTVjYTA4MjQ2OTA2MGJjMmVjZTc0Y2QwOWQ0NTM5OWRmNmExYWUwMjUwMDJmN2RmZmIyYyJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.ts#L71-L89",
+          "version": "repo-lines-v1:sha256:09fbebad9e3db9265141e9e045919897e0d020c0efc85dff8fe46eeb7d3ff294:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5YTRjYmM3Njc4ZDZmYjdhODQyY2Y5M2JjNmM0ZTMwYmJiYmQ0ODNlZjgxZmVmY2IwODI0YWE1MWFhYTAyMGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzY2U0ZGViNDgwNjZhZTljZjdmOGMyMTgzOWUxNDg4NWU2ZGIyZDVhY2M2ODdkOTZiZWY3NjI3YjU0NDFhMDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkMjI3NTIyY2Y2MGZlNTM2MGUwNzk4YjM0ZDhmZTRmZWRmNmJhY2Q5YmFlMTcyNDg2NzdiOGRlNDI3ZjEzNjMifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.ts#L97-L107",
+          "version": "repo-lines-v1:sha256:cb2c5188f8f12ab5ad222161002de782b617984838ba268ba86d5e552e536371:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1MmY3ZDA5N2IxZGY4NjIxMGZjNWJkOTY5MjQxZGM1YmU2OGEyZjQ2YmI1NWE1ZTY4N2Q5ZjQ4ODNiMjJiMjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFhZWM1MmJjZjgwZGRkMTIzOTQ0YzU4NGUwY2U0N2ViMTI5NzI3MzY3NzE2OTk4MjIyYzk2NzcyY2ExZGZhNmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhMmJmMDljYmI2N2ZhNTNmMzNjYmNhYTVkYjRjMTdkNTBmNGQ1NDM5NzkxODFlMWNjYjQ5ZmMwMDgwNGRmZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1cbcbdd35f29491681a64b05bb5a4d63",
+      "statement": "getServerAuthSession is the server-side authentication seam for BFF routes: it serializes only the opaque Better Auth session cookie (serializeBrowserSessionCookies matches (__Secure-)openinspect.session_token(.N) names, rejects duplicate or malformed values, and returns null when absent), dispatches GET /api/auth/get-session through the checked auth proxy, maps 401 to null, validates the payload with browserAuthSessionResponseSchema (canonical user id and session.userId === user.id), and wraps transport failures in AuthenticationUnavailableError.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-session-contract.ts#L11-L22",
+          "version": "repo-lines-v1:sha256:b80af317a0751bc2b856b5664426d1e2661977deb60b49b0255517cbed6a690a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2OWM5MGZiNjlkNjcwNDE4OTVkZTc1YTRmNmVlMzhkYWVlNDUyNTI4MDNmMzkzOWRlOTU1NTZjYTM3N2NlY2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwOTY2ZTdkMzU1MjEyNDNkNzBjNDRhZjQyMDNjOWE2MDhkMzQ2MmZiNmZhYjJiYWE1MTA3YzhlNTJkZWViMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQzMjA2ODRiY2I1Nzg3YjMzMzZkNjM2YTM5YmU0ZDllNTgwZjA5N2RlODM4ZGNlMmM0ZmE3NDMxZTg4ZmU3MTYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-session-cookie.ts#L19-L41",
+          "version": "repo-lines-v1:sha256:86d7e69c15417a5b767e2995d5941b066c18ad0a43ccf90be2cb9b957bcee0a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2MmM0ZmZlZGM1NzYzNTZmYzllZGE5N2E2NTY3MzU1YTFiOTZkNzQ3NTk0MTEyMWM0ZTcxMDY5ODYyZDQ4NjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/server-auth-session.ts#L29-L53",
+          "version": "repo-lines-v1:sha256:5da43e9046bd458f305ecd37f2ffbf81775d445253cb9005222da35f6717a399:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliMzY3NjJiYTNjOWRmOGIwYzU2YTFkNDI0YTcyOWViYWRhOGI4MTMzNjU4OWZjODkyNTlhZGU4ZjVhODdkMmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE3ODM1NWQ3ODY1OWYyZWQ2MDgxNDhiYWMyYTRhNDBmY2ZkMGQwNTQ1MTNjOGYxZTUwZWI1ODAwZmE0YzM2NWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_87ca01ddc6314b3e9c383645fad8eca7",
+      "statement": "useAuthSession is the client-side auth seam — an SWR subscription to /api/auth/get-session via browserApiFetch exposing loading/authenticated/unauthenticated/unavailable — and AppAuthBoundary wraps the whole (app) route group, rendering a spinner, an unavailable page, a sign-in pitch, or the children accordingly; signIn refuses to navigate to non-HTTPS redirect URLs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/(app)/layout.tsx#L1-L5",
+          "version": "repo-lines-v1:sha256:363c2c413a49c40f08161a4d642cec08473a96ac78ed3432924f35051d5f373d:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjczNDFiYTFkNjIxZTViZWYyM2RlMWRkZGRkNzg4MjI0OTYwYWFkMzhlOTE3ZjU0ODc0MzU4NThiMzJlZGQzYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/components/app-auth-boundary.tsx#L9-L55",
+          "version": "repo-lines-v1:sha256:654eed26790f30af6ee2d0d5724d12ee1185f97d619f4da1c54013ad053bb817:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxMjlkNzY3ZWUxMTdlOGQ2NTNiYmE4NmI0YTVjNjIzMWM2OWY3MThmYWJiZDRkNDNjMGYxZTJjODVjNDNmNzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhZDMwOTllM2YyYjFiYmI2YWE1NDliMDgxODRkNmMwYmM0YTA5MDYzZmM4MjBkNWVkMDg3NTcyN2MwZGU0NTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/auth-session.tsx#L30-L90",
+          "version": "repo-lines-v1:sha256:2cd1289e0f66eef71c0b6380ef656f4f83409d57fea48588ac43235f470767ff:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyZGFlY2NiMGNhY2NmZjMyNTZlOThjOWNiYjFlNjkyMzU3Y2JlYWM0NDAxYTEyYzc4YmFjYzliYWNhNTliNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJlNzdmYTA4NGMwMjQzNmVkYWZjNzY5MzhkOGU2ZjRlOGQ4ZGY3MThkYjRmMzM1M2YwMThjYjU4MGU1ZThjZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cec8982d42394b1480f2d76456cfeda4",
+      "statement": "The auth boundary is pinned by ESLint config and tests: packages/web/src bans next-auth imports and any lib/auth path, and bans the global fetch everywhere except the two app-owned seams lib/browser-api-fetch.ts (browser-to-BFF, /api/* path type, same-origin mode/credentials) and lib/control-plane-transport.ts (BFF-to-control-plane dispatch); client-auth-boundary-eslint.test.ts and server-auth-boundary-eslint.test.ts execute the real ESLint flat config against representative sources to keep the pins honest.",
+      "evidence": [
+        {
+          "resource": "repo://eslint.config.js#L245-L290",
+          "version": "repo-lines-v1:sha256:70a3cb3b8300062ac6f7363378244bf91242cddb7a45a01f93d12b3ac0520f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4M2NkNTkwNzU1Y2RlY2Q2OTdiNTlkOGMzNzM2OWZkMDBmOWViMDYzMGZkMTA4ZTExMzlkMzZjYWU3Y2JmYjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0ZjgxYTFjMWE1N2EzNjdmZDcwMzBkZGE3ZGIzNzMxYTMwMGE1ZjkwMDJlNmZkZTQ5MjJjNDg1NzllMTY4ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiNTEzMjRlOWU0ZTFlZGFjOTg5NzZmZTdhNDY4ZjJiMmY0YmFkMWIwMTc4NWIwYmUyMjlkOGVkNmExODdkMGYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-api-fetch.ts#L1-L15",
+          "version": "repo-lines-v1:sha256:dbcfb04b8687eec2f96cb3b7f079e5267fa20f0344619a81a340f03aa350edb8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/client-auth-boundary-eslint.test.ts#L24-L70",
+          "version": "repo-lines-v1:sha256:172f7fa82a80da58e4060be5ccfb913b37b77ddf440602ec64b6a9ac8e0a11c1:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3ZGMzN2VhMjZjNDlmNTJkNWMxM2IxZmEwNzY1NTQ1NzNjMzFjMjkxNmFhZmI2YjYwMjg2ZDQzNWQ0OThiZjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/server-auth-boundary-eslint.test.ts#L17-L45",
+          "version": "repo-lines-v1:sha256:8d1b12a800555cf349fd813616f977eb073284ebb8a74a71548bac2b3c773c40:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczZDMzODVkY2ExMzEwZDk5ZGJkNjhkOGE5MzViMjdmYWQwNDQ4ODhiMDk2ODRkZTE4MjMyZmU1Y2U2NWY3MjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwN2I5MTI5Nzg1NTY4NzY5YTNkOWJiODE0ZDdjNDIyOWNlYTUxMTI3NDQ3MTM2NTc0YWJjN2NmYTE5ODFjN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_47562b64550f4c21b5b28dc0509fe5d4",
+      "statement": "controlPlaneUserFetch is the user-authenticated control-plane entrypoint: it serializes the session cookie from next/headers (responding 401 without dispatching when absent), defaults Content-Type to application/json, attaches middleware-derived trace/request correlation, and delegates transport and signing to the layers below it.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/control-plane.ts#L36-L82",
+          "version": "repo-lines-v1:sha256:9e2b2e560a68eeb76b069ea086e245456350f1fd10e95d617e5408802ab3aa33:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzNGM1YzkxNWY4MTRmODZiOWEzOWQzYjE3M2ViNjgwMGE0YzU5NTVmYTRjZTI5ZGNhMTEzOWY0MjFlMGM4YmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjZTRlMDQwMmM4OWJkNDQxNWFlNzI5Y2FhMTAxOTVlNDQ4YWVlYmY2OGNmMGFjOGZiMjFiYTFiYWUwYzIxNDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/request-context.ts#L10-L16",
+          "version": "repo-lines-v1:sha256:8f96aafe1f86b8e33e9f164a103f06877959319b4268bf731b7d2ef6e6a88fc1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTEzZjQwMGMxN2VkNTBkMDY5M2UyZTU1NDUyM2M5ZmJhZTNkNDUwYmVhNmYxYjNmOWY3Yzc2ZTAyYTRhYjdlNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjZjMDNjYmFjNTQzM2M0MGNhZGI5NzcxNDI5ODgzNjUxNGUwMjhkMTFhMDk1YzUwZThiMWIzMDgxMDE2Njk2OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_41fcf7ea73014bcb91474776a62de693",
+      "statement": "dispatchWebServiceRequest is the signing boundary: it deletes caller-supplied Authorization, actor, service, and signature headers so only credentials minted at this boundary identify a web-service request, requires SERVICE_AUTH_SECRET, and applies sig1 headers binding method, exact URL, and body hash — callers build the URL once, so the signed URL is always the dispatched URL.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-service.ts#L34-L83",
+          "version": "repo-lines-v1:sha256:66fc9c8d48b5fceaf456bc6b91aebda83325de3c808aadef2d1268b901e41ae8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhYTJlOTQ2MWNlN2YwZmI5YmRjZjBlZjdjNzQ1M2VkZTVkMjBiYTNmOGU0NTFiZTg5ZTgyYjIxYzNmNzJkZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImViMDE0NzNjMmRmZTdlN2JjMGRjNmM4ZDhlNmNjNjdiZTBkYmYyMDEzYTkyNjM4N2UxZjdkOTEyY2Y5NTNlNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9169deff18f4e28bf7b24bf89f6ebfb",
+      "statement": "dispatchControlPlaneFetch routes through the Cloudflare CONTROL_PLANE_WORKER service binding to avoid same-account worker-to-worker fetch restrictions (error 1042), falls back to URL-based fetch on Vercel and unconditionally in development (the OpenNext dev binding is a failing stub), and bounds every request with a 15-second AbortSignal.timeout merged with any caller signal.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-transport.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:6cab2fd2b53cad4af1dafdfd062d11e1e0d8cda60d2c2df76915a479ce7ef172:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0NGFlOTgxZjJiOTFkMTNhM2E3ZGE0NGZhM2JiYjYwMzljZWQ3MmVkM2JlY2RlYmVjNjQyNTdlYTUzNDEyNjIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-transport.ts#L51-L78",
+          "version": "repo-lines-v1:sha256:e35ae76729c8f14c833be4cd1a7943d8e35d98ef8fa770a253e545379e5038c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0ZGMyYjk4ZTE1MzVhM2Y5YmVjZWMyOTEyNTA3Njg5ZWQ5Nzk0ZTNlNTRlYzFlMjM2ZjM4ODBiMDQwMmVlNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk0ZTY3OGI1OTQ2ZjFkODUwMDk0MTk0ZDQ3NmQ1MThlOTk5MjI0ZmFlMDg5M2RmYzQ3MzAwZjFjOGNkZmJmZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmMTdiNzYzYmRmZTZmZjFkNGUyNzIyYTQ5M2M0OTY1NzE2N2E4ODkxMTM5NDY4MzA4NjkzNzhiOGFiYTlhNTAifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-transport.ts#L85-L107",
+          "version": "repo-lines-v1:sha256:fc39fd37e40ad04636fa05d76037b736ea6bcdd466c3b36907cf286c71eaa404:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjOGIxNzRlMjU5YzA4N2FiNWQ1YWM3ZGY1Yzg1ZjI5YzFmMWFkNjYzNWQwNjUxMjI0ZmQxOWFmODQ3ZmFlZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1M2EwOTFlNjkyMzYwNTU2ODMxOWU3ZGU0YjMzMzVlNzQ4YzgxMjlmMGFkYmE1OWFhMWNkN2I2MDBiOGFmMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3b98787f2a1491ca034d3afd9db5aa1",
+      "statement": "settingsProxy generates authenticated GET/POST/PATCH/PUT/DELETE BFF handlers that check the serialized session cookie before reading a mutation body, cap mutation bodies at 4 MiB (413 beyond), forward the client's If-Match header unchanged as an opaque CAS revision token, and relay responses as JSON with Cache-Control: private, no-store plus etag, retry-after, and x-request-id.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-json-proxy.ts#L5-L17",
+          "version": "repo-lines-v1:sha256:c30908a42af931efa76bb0ddd96c1dd018ed093d638d45be7c838fe560375769:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1NjgxNzM1M2Y5MWVlMTljNTQ0MDEzZjlmYzA4YmQxYmJkODUwMjVlZGYwZjA4MzViNTdjYzc3MGM1ZmExNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0Y2ExN2U1OTMyYTdmMGU4ZjQ1N2I0OTYzN2Y3MDFmMjE2MGEzM2YxMGJjZGRjMTAzZWQzMDlkMDk4ZTVkNzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmN2FhZTEyNzI1MGE2OWJkZjY3ZmJmNTRlZGIyYTU0MDBlMDk4ODBhNGUyOWE4N2ZiY2NjMTI5YWUwYzM3OGUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/settings-proxy.test.ts#L87-L109",
+          "version": "repo-lines-v1:sha256:a0fa69cf66ec4d995edb8c39f7875511d57c2120fc3d8c3361b2bf7b3c71a06b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhMzE1ZTk3MzY1ODI0ZWY0NWViNmI0MmViYTVkMzMwNWYzMjEzZTkzZGFmNDc0YTQ4NmQ1NjA2ZjllMDcyNmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxZjc4ZTA5MzlkMjJjYzE3Zjk3Y2VkYmZiYzFmYzNlOWM0NjVlZDc5YzEzYjBmNmM1ODFhMzFjMGFiZGZlZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhYTdmMmFiYmNjOTIyZDVhYTQ3Nzk0MzNiNjVhNzkyZjhkZTkwZTIzNmYwZGRiYzNkNmM2ZjU1YWMyZjA1M2UifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/settings-proxy.ts#L25-L99",
+          "version": "repo-lines-v1:sha256:5f03e289045e5fbdaabef5b67760e31d68adf492db46708449c8ef115e43832e:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmZGYyYjJlZmU1NGU3NGNjNDkxZDU3NjQ3YjQzZTgwYmRiYjY4OWVkNGM3NjY3N2NkYjQ4NWFmYTJjZWQxZTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyYmM0NTNkYmRkNmJlNTY5OWNjOTEyYmQ1NDUwM2E5MDYyZGNmMWM5YjhmYjE1YmQ3ZjkzOGRkNzAzNTlhZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_90648f4b2e6c4ac1a877a892bbf6f208",
+      "statement": "Query and path-parameter forwarding are allowlisted: buildControlPlanePath forwards only declared parameter names to the control plane, and providerAccountSettingsProxy wraps settingsProxy with pattern validation of provider-account ids and subscription provider names before a request is built.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-query.ts#L1-L20",
+          "version": "repo-lines-v1:sha256:4201d5f19bad0e0a972b6fa664193ab068a0368deab897f396bfe1a59a5147b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4NGEzMGNmY2VkMGQ5M2MzZjBiMjViNTM1ZDY3MGNkOGUzY2E1M2ExYjQ2NjYxZTY4NzVlOGRmZWRkMWZiOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/provider-account-proxy.ts#L12-L49",
+          "version": "repo-lines-v1:sha256:e45111505ab16849d8d1e3cbb4b569a3860099421ee528c9923c5e844dbeafb4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4OTU2MjhkODE3ZDQ3YTc5ZTQwMTk4ODdhZDliOTU1ZjA2ODIyMTMwMGU4ZjQwZTI1NGFhOWJjNDM3MzM2MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiZDI4NmU1ZTgzODAyNjBmMzUyMDI2MGIwMmNjMzI2ZDBmMGUzODRhYzA2MGMxNTE2OGI5OGI4OTM5OWFlMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b7483f9c46c94c7dbf530ba9a5602335",
+      "statement": "The API routes under src/app/api proxy the control-plane surface the UI needs — sessions (list/create, inbox, prompt, ws-token, title, read-state, children, archive, attachments, diffs, media, participant profiles, sandbox access, skills), repos plus global/repo/environment secrets, environments and their image triggers, the unified image-builds feed, automations with pause/resume/trigger/runs, model-provider accounts with enable/disable/reconnect/verify and device authorizations, skills and skill-profiles, mcp-servers, scm-settings, commit-signing, keyboard-shortcuts, integration settings, Slack channel listing, model preferences, and four analytics GETs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/api/analytics/summary/route.ts#L5-L9",
+          "version": "repo-lines-v1:sha256:1d94671ae58b746df96d85718a51c9c2d41b19c3298405c9cc9c5fab700687e6:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDY3YmQzYTQ4ZjgxOGJmZWZiNmRmOTk2NDZlMzZlMzJhYjhiYTBmNWFjNDEyMWFiMzc2ZWI4MTMyMmMzY2FjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDk0NmM0OTgyZWUzZDgzYzdjYjdhMmIyNjNhZjVhZTJmZGZmOWJlMDgwODllNDg2NWYwNDVmNjQ1ZWIxNzUzOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/automations/route.ts#L15-L35",
+          "version": "repo-lines-v1:sha256:01a56ed876bce4f3c4558ce668c907374e2430aaa12ee94da84fae8af587efe1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmNTdlM2M2ZWViMjdmZjkwMzYwNTliNmNhZmQwODE3YWEwMWFkYWE3OWRmN2VmMTM2NmJmMWRkODllMDZhMjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyNDkwYWRhNzM0YzYwZGIwYWY4MDE3OWZmNTYwMmFiODQyMDBjOWEwMGUxNTI1OTMzZjA4YWM5MTA2NGM0MjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3Y2JmYjBmNmFiZmJkZWM2OTJjNGVkMjg3YTBjYWM0ZGQwYTA1ODE3ZjY5Mjc0NjNjZDI1MjUwZjY1OGE1MzQifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/environments/route.ts#L6-L20",
+          "version": "repo-lines-v1:sha256:266c01483951dbdc46a886645f5ee8cec47ea4bc06230da2aaa80b493dd0d58c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4NGFhYTE3YjkyYjY2ODE2Nzg3Nzk0MjBjZWMyZDVkYTdmMTE4YzZhY2I5NjE0MjAzOTZmZGVhYjBmNDE1YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViZGU4YmNiMmQ1NTBhNDA5N2JiOTcyZjY5NmQ2ZGFkZjQ2ZmUxMGM0MWI2NDRiMzJiZjJhZDY4ODg1YTZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3Y2JmYjBmNmFiZmJkZWM2OTJjNGVkMjg3YTBjYWM0ZGQwYTA1ODE3ZjY5Mjc0NjNjZDI1MjUwZjY1OGE1MzQifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/image-builds/route.ts#L17-L25",
+          "version": "repo-lines-v1:sha256:46c975d3b2647411727d38918fda9b2e74922292426a51d0047e9c557a123662:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjg0YWFhMTdiOTJiNjY4MTY3ODc3OTQyMGNlYzJkNWRhN2YxMThjNmFjYjk2MTQyMDM5NmZkZWFiMGY0MTVhMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTY2Mzk0OWU1MzM4MmYzMmYwNDk0OWY3YjhkZTI4OTY2NmIxZDkxNDM3NTA2OWRkMTVhMWM4MzdlZDU2ZjhkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWVhYjY3N2FiZDg2NzExMTgyM2ViYTkwNzE0NzNiOGQ5MjUxNjlmMzk3N2YwNjJjYTE3ZDcwNzFmODBkOWQzZiJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/model-provider-accounts/route.ts#L6-L10",
+          "version": "repo-lines-v1:sha256:e337ddb5d1b7816b8a41369295ee3af1d052d708e3c3ff6d5dbef6c085c403fd:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjI2YmYxYWMzM2M2ZjUwMzQ5ZDFkOGE3Yzg5NzBjNmY1Zjk4OGUxNmJhNTMzY2RkMjQzZDU4NmNmM2ZkMmFjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODMzMWRmNjA3ODVhMzg0MjgwY2ZkMDUxOTY5N2M2ZDFkZDJhZmVjZWUzMTdhYTY0ODRlMzNjMzczODkxOGEzNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/secrets/route.ts#L6-L20",
+          "version": "repo-lines-v1:sha256:f2c8b0db778360427e3f123bf41a0a7e08ec356b5f5b019f906e8b5df301ea95:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4NGFhYTE3YjkyYjY2ODE2Nzg3Nzk0MjBjZWMyZDVkYTdmMTE4YzZhY2I5NjE0MjAzOTZmZGVhYjBmNDE1YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViZGU4YmNiMmQ1NTBhNDA5N2JiOTcyZjY5NmQ2ZGFkZjQ2ZmUxMGM0MWI2NDRiMzJiZjJhZDY4ODg1YTZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhZjk0ODg1MjlkZDhhZTQ4OGE4ZGM2MTg1NmRkOWUzZWMxNWIyN2RlNjMxMmEzNTE3ZDJjZGQ3YTA0NWJhNTMifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/route.ts#L8-L32",
+          "version": "repo-lines-v1:sha256:48c3f2d2c16d593a7f91e702b779ea955ed0719953040cc4b90bb91518b5e90f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmNTdlM2M2ZWViMjdmZjkwMzYwNTliNmNhZmQwODE3YWEwMWFkYWE3OWRmN2VmMTM2NmJmMWRkODllMDZhMjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhOTkzODIzZDgwYWY1ODY4YTEzYjVmZmRiMDg5NWRmNzRlODU4NTJhZTA4NjY5MzhhODY3NDFkNTFkYjMxYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3Y2JmYjBmNmFiZmJkZWM2OTJjNGVkMjg3YTBjYWM0ZGQwYTA1ODE3ZjY5Mjc0NjNjZDI1MjUwZjY1OGE1MzQifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/skills/route.ts#L4-L8",
+          "version": "repo-lines-v1:sha256:0f1b56a27cacd167c415a9482150a45572c7583eff16be0f79df322c53cccebf:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjI2YmYxYWMzM2M2ZjUwMzQ5ZDFkOGE3Yzg5NzBjNmY1Zjk4OGUxNmJhNTMzY2RkMjQzZDU4NmNmM2ZkMmFjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWM0ZDk1NzQ2M2Q1ODU2MWRkY2ViMGY5ODliZDk3MGQ0OTljMTcxMWUzMzQ0ZGM0NmViYWIxODczMGY4Mjk1ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5b3e166c16524562b2a345e655e02005",
+      "statement": "Authorization placement varies deliberately across BFF routes: list routes such as GET /api/sessions and the inbox forward without a local session check (the control plane authenticates the forwarded cookie), while mutation routes pre-check getServerAuthSession or the session cookie so an unauthenticated request body is never read; POST bodies for sessions and automations are field-allowlisted, with co-located tests using a hostile-identity fixture to assert forged identity and token fields never reach the control plane.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/api/automations/route.ts#L44-L62",
+          "version": "repo-lines-v1:sha256:97f37c8e3f508bce09569a4368f982cfc7396f420076288b64964f6180a5ca0a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhYmM5MzVlOThhZjExMTc2ODU0ODc5ZjliZWI3Njc4ZWYyNTEyMzdlY2RkMGE3NDcxOGM2NzZkN2NlMWRjNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkOWUxMjU0NjQyNTU3NmQzZGVhZThjOWI5ZGJmMTI4ZDVkNmRkYWY1ZDdmZTg1NzkzNDkyN2RlZmZhM2I5ZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzMDY3M2ZhMDYzYjhhM2M1ZTM1YjU3MmRmYmVmOThhYzc1NDkzMzU5YjMxYjdiMThmOWIxZGYyZjM4MWIzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkNTgxYTU5OGJmYjMzZjE3MWM3NjRjMzNhNWEyNWRiOWFmNmM0NGZkZWM1NGQ3MjRkNzUzOTQxNWYwMzMwOGIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/inbox/route.ts#L8-L24",
+          "version": "repo-lines-v1:sha256:900932fba92c2390c297e93b09ba457c0c0b412814f67a5c271e364e6891e545:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmNTdlM2M2ZWViMjdmZjkwMzYwNTliNmNhZmQwODE3YWEwMWFkYWE3OWRmN2VmMTM2NmJmMWRkODllMDZhMjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5YWI1NzRhY2RjNDU1MWZmNWJjMDM0ZDk5Y2U2OWY4YjgzYzliMDM5NGFkMDU3NzI4ODg3ZmE5YzJhYmI1OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/route.test.ts#L262-L280",
+          "version": "repo-lines-v1:sha256:6204bc5f1e3f2aa2ac342fb2b8fb6cd16c4066a9a82bf6d55a23ebf346a144cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2ODIyYjcyYzRjZDVlY2I0YmVkYTYzYjM3Y2NmYjJkNTQxOTU2MzE2ZDAwYTk4YTRmMzI4MmE1MWM3OTQ4NjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/route.ts#L8-L64",
+          "version": "repo-lines-v1:sha256:5bc0e87d4a38507cd99eaac3ca7f1fc7a30f1b5ff0f30eebae8ce347bbed0e6d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmNTdlM2M2ZWViMjdmZjkwMzYwNTliNmNhZmQwODE3YWEwMWFkYWE3OWRmN2VmMTM2NmJmMWRkODllMDZhMjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhOTkzODIzZDgwYWY1ODY4YTEzYjVmZmRiMDg5NWRmNzRlODU4NTJhZTA4NjY5MzhhODY3NDFkNTFkYjMxYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4YzljMDY3YmE4ZjQ3MDQyY2EyOTU2YThhZGU5NDEyM2UzMjk4YmVmNzk2MTIyN2ZhOTQzODc2YTRlYTM3YTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8bbe19f51ae448d99cd46fee283ddfb1",
+      "statement": "POST /api/sessions/[id]/prompt re-validates the request against the shared zod prompt schema (blank prompts rejected, attachment shape checked) and stamps source: web before proxying; POST /api/sessions/[id]/ws-token verifies the Better Auth session and then proxies to the control plane to mint the WebSocket token the browser uses to subscribe.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/%5Bid%5D/prompt/route.ts#L13-L51",
+          "version": "repo-lines-v1:sha256:7681de73c95b96acd4784c30677823afa8fbbef715916760af93d76697f16bbf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNjY1MGY1YWY2NWQzNzk5NGMwOGI4ZjllN2Q5ZGQyZjhkODQ4YjIwMTcwNDg4OWUyODhmMTBiNDdiZjBhNzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmZWUyYTExMjUwYzllODU2YzRjN2Y0M2E5OWM5Mjg5NjQ4NWYwYWI0ZWI4Mjg2YjQ1NTczMjk5N2Q4NGFmZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzZTU0ZjVkMjQyOWQwMzZmYTEyZWMyNjJiMzIyMTExODAzNTE1N2JmMGY1OWM3MDI4ZTE3MGMxYzEzYzYzYzYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/%5Bid%5D/ws-token/route.ts#L6-L33",
+          "version": "repo-lines-v1:sha256:702824d2ec832df4551f38769f91d7a2fa0c80619ab3b0e34dec88b3af10e7ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxNjE2ZDhhNGExY2RmNTQ3NGU0Nzg3YzZkYzcwNGIwOGM1MjUyY2ZmOTFmMTE0ZDBkN2IwMTc4YmZjMjFmYjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViZGU4YmNiMmQ1NTBhNDA5N2JiOTcyZjY5NmQ2ZGFkZjQ2ZmUxMGM0MWI2NDRiMzJiZjJhZDY4ODg1YTZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEyMDNhNWFmNWVkYzU0ODhkMjUzNTU4ZDM2MGNjYzZmNmEzZmQ4NzlhNDk2YjNkZjNkZjNhZmViNGRhY2QyMjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_24625db038a94667b9499aea29613555",
+      "statement": "GET /api/sessions/[id]/media/[artifactId] validates both path ids against strict alphanumeric patterns, forwards the client's Range header, and streams the control-plane media response with Cache-Control: private, no-store and Vary: Cookie; image-build routes answer 501 with a shared provider-derived message when the deployment's sandbox provider lacks image support.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/api/image-builds/route.ts#L17-L25",
+          "version": "repo-lines-v1:sha256:46c975d3b2647411727d38918fda9b2e74922292426a51d0047e9c557a123662:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjg0YWFhMTdiOTJiNjY4MTY3ODc3OTQyMGNlYzJkNWRhN2YxMThjNmFjYjk2MTQyMDM5NmZkZWFiMGY0MTVhMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTY2Mzk0OWU1MzM4MmYzMmYwNDk0OWY3YjhkZTI4OTY2NmIxZDkxNDM3NTA2OWRkMTVhMWM4MzdlZDU2ZjhkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWVhYjY3N2FiZDg2NzExMTgyM2ViYTkwNzE0NzNiOGQ5MjUxNjlmMzk3N2YwNjJjYTE3ZDcwNzFmODBkOWQzZiJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/sessions/%5Bid%5D/media/%5BartifactId%5D/route.ts#L5-L52",
+          "version": "repo-lines-v1:sha256:1ee6c89d24ada7862f580d9fd95ae81df080f151dbf26c495bee3927817cd353:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0MGU4OTg0MjVlNjJkNjNlYTkwMzcyNGM2MzU3MWY2M2VlOTRmZTMzNjFmNjZjMzM3ZmEwOTYwZGFkMGQ4NjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViZGU4YmNiMmQ1NTBhNDA5N2JiOTcyZjY5NmQ2ZGFkZjQ2ZmUxMGM0MWI2NDRiMzJiZjJhZDY4ODg1YTZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiMmQ4ZGMzOThjYjc1ZjEzN2IzNjhhMjdmYmZhNDg3ZmI0N2I4YTlhOGQzZjU1NWZiNjk1YzNiMjUwMWM0Y2IifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/sandbox-provider.ts#L22-L40",
+          "version": "repo-lines-v1:sha256:c0cad7fee3f4f56fc8fd10c80393d0689fb59d66064f386f6ead3320bab40eb5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3NzgzYzdkNDhiNjUyMWU4MmRmM2ViMGE1OWMyNzViYTAyODJjNGUwZGQ2YThlNTkyMGMzODk1OTdiZjY1MzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwNGE0NmJhNzVhNGU0MjgxNzZmN2U0YmRmNTQ0Yzc2MThjNmYzY2Q2ZGUxYWI2ZDA2YTIyZjg1MjQ1NmUwY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3ZmExYzAzOGM3NzJlM2YxOGU5M2I4MWU2YTk1OTlkZDA4MDI0NWQ2MjA1NzY0ZjNiOGQwM2ZlNjJiZDVlZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1ecc400d1ba4cca83f07df485dfcfc3",
+      "statement": "A Next.js middleware matching /api/:path* stamps correlation headers — passing through a valid x-trace-id (otherwise generating a fresh UUID) and always generating a fresh 8-character x-request-id — onto both the downstream request and the response.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/middleware.test.ts#L5-L34",
+          "version": "repo-lines-v1:sha256:cf1c70e3349621abf15cd5ab7ad2e9391fc0fd8001467bee87a483f5825d9e54:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5ZDU2OGZkZWQxNTQwZDkzYmU5NzYzYTYzZTM3NGIyN2QyMGMwZTQ3ZTY2OTQ4NWFmMDIxMTAyOTQyNmZkMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzODdiYTczMGI3ODI2NDQzNjA2ODdlN2IyMjMyMDNjMzJiMjgzYTRiZjY2NDZiZGE5ZjZjNWM4ZTRmNTdjOTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/middleware.ts#L10-L31",
+          "version": "repo-lines-v1:sha256:aa16b04d3d2f4f3723487b51399c9e2f73b4c87515536e5da5177456834d4691:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxOGRiOWIxMGViOWE1YTA4ODRkNzQyY2VhYjc2ZDk5NzRjZjNiYzkyMzYzN2NkNzM4NGY3YzEyYjQyYTE0NDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0ZWQwOTkzY2E4MDY2Yjk3YjM5NzZkMmRmODI0MGNlY2UyOTZkYzM4YjY5ZTFhYWQwNzQ5NDdmZWNiNjZkODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4a04cc7bc6a1434c9063998405a2b5dc",
+      "statement": "useSessionTransport owns the socket mechanics only: it fetches a token from /api/sessions/{id}/ws-token (a 401 surfaces as a sign-in authError), opens NEXT_PUBLIC_WS_URL/sessions/{id}/ws, sends a subscribe message with token and clientId on open, pings every 30 seconds, and hands schema-validated messages to onMessage without interpreting protocol semantics.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L118-L145",
+          "version": "repo-lines-v1:sha256:348b58d1e92d3bebc8a61d4ef57a997f8e264403fd56782c7911962b6e97dac0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhZTE1ZmIzYjI2ODFhOWY2ZmU4MzczNjEwODVlMzYxZjkzZmU1YzY0MDNiNjQwMzhmYTIwYzgyOTYzMzQ2YWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4ODUyNjRiMzM2YTQ2OTE4YzQxODVkMzNhYjU3NmM1MjRmZmEwMWRlYzliY2YyZWY5NTYxOTdiZGIxZTc0MzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ3YTIxM2JhMDc0NTM5Mjk0MjZjOTA0NmNmZDFlNTFkYTAxYmJmZjVhNjcxNTk4M2ZiMjIwYzk2YzUyZTdlZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViY2M0NThiMThiOWFmZjYyODkyNjgwYjBlMDg4ZGY1NTAzOGJkNWRkNmU4MDRmZTk3ZTA3NTc0MzI0YzBmN2UifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L169-L186",
+          "version": "repo-lines-v1:sha256:e0634b550c746edd77b9253bf4346c64043d2f905f1af82d829a245fa77473f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlYjQxYTY5NWRhZjY4OWFiNGMxN2RkMWEzNjk2N2M2ZDNiN2Q1MmY1NmVmM2VmZjQ2MjA1ZTA0MDI1MTgzMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYzUyZjA4YjM5YjA4YjAxYzhkMzA4YmY4ODBiMGJlZjAyZmQxZGZjYzlkOWFhOTNhNGQxYjVmNGQ1OGI2Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4NmQ2MGJmZDU1ZjUzZjFmNzEyMGRkYWE4MjdjYzM5MThkNTVkNzUzNGM4OWZlMjlmODQ0NTAwZGZhN2E0MzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwM2FmYmJhMjAxN2IxZWYwMjk3ZDJhNzhhMzIzZDVmN2RjYmM0MDIyNmE2ZDNkY2VkNGY0ZDY5Mjg1ZWVmMWMifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L372-L381",
+          "version": "repo-lines-v1:sha256:a6a1c2f736b83a1695cfc85160225411bfeb3bf3139096363e7dcde3079ad279:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkOWNlM2RmOWY3ZGM2MDgwYzQ3NTUwNzE0NjQ5YjE1NjUzYzcxNzc5OTcyZDFkNjdkZjVjZWFjZmY3OTRhNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYzUyZjA4YjM5YjA4YjAxYzhkMzA4YmY4ODBiMGJlZjAyZmQxZGZjYzlkOWFhOTNhNGQxYjVmNGQ1OGI2Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmNTliZWMzMGEyM2I5ZGNhYTQ3M2RkMzQ0YzZmMTM4MTk1OGZkOTNkYjQ4MGFiOTk4MWM3OTMwYzQ4YmJlY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1MWUyYjVhMzY1N2RiMmQ1YTM3NDE4MGM1Yzc4ZGJhYzRjNDBjNmU3ZDVmYzQ4NjdmNjMyODA1OTBiOTMxNDAifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L80-L86",
+          "version": "repo-lines-v1:sha256:36a37852eecd7ab3de75cf641573b4e6a4ff826ca52828afa1b89cbdcc9137c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjgzYWQ5Y2Q4YjMwNDlkOTU0OTcwNzIyZGY4ZmIyY2I2OGU1Y2MxNTQwM2U4ZDUzMGM3MDgwMjg1NDA0ZTc3NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjVmOWI0ODY3ZDFkYzk0ZDgyYWMxYmJjODc5MzcyNzMyMjBhZTY4YmIzMjczNjFhM2RmMWY4OWJjNTBhNmQ4ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTJlZjkyNmUxYzA0YWMyNjkzNTBiYTRkM2FlOThkYTRkMDliODc3YWVkN2MzZWRkNTA0ODY3ZjUzNTk4YzA5OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ee4d540d69004085aa87f9b31e39e334",
+      "statement": "The transport's close policy, decided by the pure closeDirective function, is: 4001 auth-required sets authError and clears the token without retry; 4002 session-expired sets a connectionError and clears the token; an unclean close or 4004 invalid-message retries with exponential backoff (1s base, 30s cap) up to 5 attempts then gives up with a surfaced connectionError; a clean close does not retry; and markHealthy — called by useSessionSocket once the reducer reports ready — resets the backoff counter.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L237-L240",
+          "version": "repo-lines-v1:sha256:5f5387c41cf4ce283f32c6bf58b07acc640bcee0f645f793941cfa4c2849f4cf:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTk2NmZiZmE4ODk5OGRhNzQ2NTZjNTAxOTQ5NTZjMjVmMDg0OTQ1NzY2MGMwMDlmZTYzZDFlOWZhOWRjOTMxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTA5ODNhMmM1Yjk4YzUzMjBhN2I3NTMxZTE1M2I4NGRlMTk2YjY0YzhiOTI1ZjUyNDRkMThhMDQwN2QzOGIzOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDA1ZDQ3NDRlZTU5ZDJjNTUwNjA4ZmUwMjM1MjAzNGNjYTk1YTk1ZWMyYmFkNzg3NGI5NWFlMjIyODA2ZWRmZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzdhOWY3ODA4NGIyYjQxZWU1NWZkOWM0ZDkzM2ZhZDEwMTg3ZGY1ZWI5NTVkNjdjZjUxOGQ4NzczOTYwYjcwZSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L206-L259",
+          "version": "repo-lines-v1:sha256:406aec4f9ce34d8eb074bd8ebbddf3d2cdc253b25907701b01b28b314b136f45:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NDJiNDdlMjYwYmExYTU1MTViNTlhZmUzMjliY2QwYzkyZDk3ODY1MDYyMWU4Yzc0YjZmOTVjNGFiYTE5YjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYzUyZjA4YjM5YjA4YjAxYzhkMzA4YmY4ODBiMGJlZjAyZmQxZGZjYzlkOWFhOTNhNGQxYjVmNGQ1OGI2Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczZjBkZWQ0MWU3MWU2ZTI0ZGM5MDBkNTlkZWY5ZTI2Y2M4YjBlOTc4OWJiNTIxMjE3OTRmYjUyNzJjYzcxOTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiYjI1ODgwMjQzNjcxZmY0OWExMGIxMTYzNWI5ZGMzODhmYzliM2RmNjM0Njk5NmU0YjU1NTIxZmNlNjg3OWIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L23-L56",
+          "version": "repo-lines-v1:sha256:479fd13f26f74f41c10d6f022e30e8720a72663d20fa2ba196d7be11ce74ff66:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmOGJiODIwYWQyMzUxMGU1ZmJiN2Q5MzlhYTkzNGZlYzhiOTBiMzQ3MDdjZDI5ZjQ0YzE4YmIyM2QzZGRkNzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwMmJlZmM2ZDIyY2MyNmQ3NjY1OTY0NzViMzVjNjRlOGRhNjIxYzBiNzY4NGNjZmVlMWI3M2M5ZGMyODNlYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlhYmRhZGQwYjY4ZmEyMTYzMWU5NjdkYmEwMWU0NzEzMWJlNTgxMWI0ZWEwMzJkZTNkMmU5N2YwNGE5NzlkYjgifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L349-L351",
+          "version": "repo-lines-v1:sha256:cec6c86de7029a632e6ba29e62aeb6496baf88180dd6f8bd6883c276e15a666b:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDkxOWU1ODJhNzdlZWEyZjdmNjMwZTAzMDY2NGExYzAzY2UwZDJhNjEwNjAyYTcxMGE1ODA4MWU4YzViMjBjMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmRjNTJmMDhiMzliMDhiMDFjOGQzMDhiZjg4MGIwYmVmMDJmZDFkZmNjOWQ5YWE5M2E0ZDFiNWY0ZDU4YjZjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWQ2M2QzZjI4ZjU3YmU5YmRlNDU1OWE1NWQ3Yjc5MjFiYmRlYjE4ODEwNGJjOWZmZTUzM2MzYzQ3MTc4MGVhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmFlYjhjZjQ1OGJkOTI2MjIxMzdkNWVjNWI5NTJmYWI3YTZjMTEwZDBiNzA1MjExNDRmZWY4YTBmZjg1MTk2MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9b4fd63e52aa45a2ba702cefefcf22a1",
+      "statement": "The transport is race-safe via a monotonic connect epoch: reconnect() and unmount invalidate any connect() still awaiting its token so an abandoned attempt can never open a socket alongside its replacement, and reconnect() drops the token, socket, and pending retry timer before starting fresh.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L261-L307",
+          "version": "repo-lines-v1:sha256:b8246adab66af8a237d19e479a9a9030168ec39e237c015a800a79c61caf5515:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjZDcwODFjODM2YWIxMTZkNjBkMDU1NTQ0ZjQzZjcwNWY1NDA0ZjdlNDY3ZGQzZjE5OTVjNTMzMGJjMDA5ZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4ZTFiMzc3OTQ0MGVlNTRjOWE2OTNhZGM2YWIxYTkzNGUzY2YxOGE1MzhjMTU5ZmQ5NDg2ZTQ4NzE4MmYxYzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2NjE3YzU5NWQxYzc0NjA2MDlmMGMyZGMxMDVlNDg1MmU0OWIwMWY4OWI2NTQzNDhhYWU1YWVmYjE0ODVmYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0YTdhYTM2YWI5MzQ4ZDdlZWZiM2RiM2JkZDQ0ZGViYzk2MDIwNGQ0ZDZhMmMyNjQyZDg3MzliN2U4MjJmYTEifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L309-L347",
+          "version": "repo-lines-v1:sha256:8ac7ec44b3f04bc80c5c0532bdea776bd71c3a4fbd9dcce0971d07be027aea5a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZmI4OGE1ZWQ0ZmE1MDEzZDc1YWFhY2E1Yzg0OTMzNjZjMjdjNTNmYzc2YWUxN2I1NmE5YjNiM2VkYmUzODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhMzE4MmEyYTQ2ZDVkNGY3ZTgwNzcxOTc1NWI4M2UxZjBkNGRiZDFkZmE1ZmVjOGE4NjFjYjE1YWM5ZTM3YWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3OGY3OTY5ZTA2MTI3MTAxZDcxYWRhY2Y3ODU0ZmJjNDEzYzRmOWZkNmU1M2M5YTZmYzA0MzdjMTk1ZDgyZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNDIxMGQ5N2MwMzg4ZDRhZGEzMjNmYWFiNjEzOWNiNDFjZmZhNjc1ZmZhYzliODBjMWIyM2FiN2ZkMTRjMzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e6a77384e92f4a69a5639dbf43734e0f",
+      "statement": "sessionSocketReducer is a pure projection from normalized actions (server_message, events_appended, history_requested, socket_closed) to SessionSocketState; the WebSocket client, token buffering, and SWR cache effects all live outside it, and useSessionSocket seeds it from the server-fetched snapshot via createSessionSocketState.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L91-L108",
+          "version": "repo-lines-v1:sha256:5c816c843af6c17de38e75b006f3e9e11a34aee1ae04896bdc67fba078a5ee6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJhZGE3OTUwOTA4NjA1YjZlYzViZTkwMDFkZmU0ZmQyMDkxYjExOGVlZWNiODdlMzhmOWQxMzUxM2NiM2ZmZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkYWE0ZGQ4ZWRiZTQ2Y2IzYjM3YzEwMGYzOTVjMTA3ZGI5ZTU3MWE4N2M5ZGE3MWJkZmE0NzRlZjM1NDY2NGIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L19-L69",
+          "version": "repo-lines-v1:sha256:f21b493d2d7c26ae878919b2678add7e63c873a86ab6170b3fd41b0692529fbe:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZTZkMDBiZmRmOTU2OWMwMmJiZDkzMGQzMjFhMGYwNjkzNzIxNjFmNGQxZDA3Y2RlZGE5YzNmZDk1ZjQ3MWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE1NDNmOGRlNGU3NzMzMDVmMzJhZGU4NTQyMjM5YzViN2M5YjU2Zjk1Y2ZkMDYxNGQ1OWJiOWYyZTQ1ZDgyMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjYmI1ZDE2NjUzNGIwM2YyYzVkOWY3NjJmN2RhYmJmNTU4NDVlYjQyODRmZWRlYjk1MzI2MTAxNWQ1ZjBkMGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8f31877721db4d6e9c2f3914bac1919c",
+      "statement": "A subscribed message is an authoritative resync: the reducer replaces local artifacts and events with the snapshot rather than merging (reconnects must clear stale client data) and resets loadingHistory so a fetch_history dropped by a disconnect cannot block loadOlderEvents; socket_closed clears ready, presenceSynced, and the participant list.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L177-L202",
+          "version": "repo-lines-v1:sha256:32dd047f099962ce5e22e8cd89cd1e888a8cfe8a216a7c0c4a9629347a595461:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4NzBhODVlNzE3ODFjMDMxNGZkYTk4NmQ0NGMwMmQ4NTZjY2FhYWY4NzFmNmRiOGVmYTJkY2ZiYTIxYjAyOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0ZDdhNjM3MjlmNDY4YjMwZWRiMTU0N2IwNDU4OTI4ZDkzNGQ5YWRmODkxYWViYzM0MDdiM2Q5YzZlMDBhYjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllNjAxOGNkZDE4MWRiZDhmZDcwYzI4MTM5MzA0MjNmN2I5OTJkODQ3OTQzYWY3Nzc4YmQ3NmFjNGRmMzVhNTMifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L349-L355",
+          "version": "repo-lines-v1:sha256:b58331be35995934169b80dccee46b3b3a2c6a7a3270f8dc3f9a3d6cc63ad7da:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzYxNjJjY2VhYTY4YjZmNTBkMTQ4MWRmYzE2Y2YwODdmMTFhNGRhNTJhMjY1OTI1Mzk3ZWEzYTkyOTdiZTY1MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUzM2RjNzMxZTdkMDdiMWYwYzA1Y2ZlYmQ3ZTE5MjIwMjNlNjA3N2JjMGFlN2JhMzAxNDhmNTA4MzNhMjVhOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTJlODhhYmM3YmMyZWJjM2Y0MDEyZGJhMDRmMTc0MjQyMGYxMTQzMjFhMGJjNGQzNThhNTY5ZTRlNmVmNzZkOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGY3MzlhMDZjMWNiYjEyNDRlMzM2M2QzOGJjZjlmYTUwY2U4NGZlZDM5OWMyMTkzYTNjN2YwOGQ1OTkxOGIyYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_66828986cd994cc18b3b91342c57e040",
+      "statement": "Sandbox failure state is provider-reported, not a status label: sandbox_error stores the control plane's own message in sandboxError and clears runtime access URLs; warming, spawning, and ready clear sandboxError because a new attempt supersedes the last failure; sandbox_status spawning/stale/stopped/failed clear the code-server/VNC/ttyd/tunnel access state, and a replacement spawn also clears the sandbox dashboard URL.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L226-L269",
+          "version": "repo-lines-v1:sha256:7e48d8b570e59c471f31d2499104bc109def0e6191a7eaa037f5d2e0c9f97c4c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlYjQxMTc2MDEyMDJhZWZiOWMyY2NkMzc5NmNjYmU1NTkwMzBmYmRiNzgzOGJmYWM4YzJmNzU5YzBmMDgzYWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmZTM0NTA0MTgyODMxNTE1ZmQ0OTdkNTQxZTEzY2I0MGJmNTE2YzU4MzRlMjI5NjdkZTQ2YTBkM2QxMWQ4MTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5MDA4NjYxMWY5NzUxMzU2Zjg1YmE4OTk2MmY0YmNiOTlhMmFhY2UzZjM0MjhlNDk1MjZkOGNiZjJmYjNhZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE2MjAyYTBhNjAxNGFmNTM3YWRjOTJkYWZlYjUzZTMwZDRjYmQxZjBiNDc5YWNmNGZjMWRkMzMyMTg1YWFlMjkifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L36-L44",
+          "version": "repo-lines-v1:sha256:59313098c28f094311819cd8ac08c34aea7af1ad870b2a51a280dd85438abfb6:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGYyYTJmOTk2ZjA4ZTY4MGJkMjkyMTM1YTZmYTQ5NzhiZGEyNmU2MDJkODRmMzNjYjFkNTk0Nzc1ZDQzMDRiNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmVhZGExNjQ5MzQ5ZmEyYTVmYmNhNTMyYzQ0YTM4MmM0MTg2NWQ5MmYwZTI2NzA5ZTE3ZGIyZjk3YTNlYTliMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDYzMTljNzM0MGU4OTEwNGZkMDA0YWJhYmYxZDFiYjUzMjgyODllNjNmZjJjMDgyY2Y5OWMyOTIwYmExYWM1ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa8fd4af648f41cfaa6679b3b09dddbc",
+      "statement": "Artifacts upsert by id (creates prepend, updates replace in place so ordering stays stable); session_branch updates follow an explicit multi-repo attribution rule — no hydrated member list updates the scalar branch only, exactly one member updates that member and mirrors the scalar, and with multiple members an unscoped or unknown-member update is ignored rather than attributed to the primary while the scalar mirrors only when the named member is primary; positive finite step_finish costs accrue to totalCost.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L123-L162",
+          "version": "repo-lines-v1:sha256:00ada47fcd2476dc7d4f4abe7acecd8f9398e1f673ce7a0f6d0cba93f6d5885b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5ZjYzODc2NjRiMGZhZTdmNzQ5NmFmNmZlYjQ0YTllN2UzMTIwMjQ1YzYzN2IyMzkxNzNhOWRmZTk0NmQ5NWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyMzdmYTZjOTY1NTE2Y2QxNzE2Y2Q3YWU4ODljMGFlNzA3MDY2ZWE5ZDY4YWMxZDQzOTNmZTVkNzM1N2M1NDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0NmE0ZjZiZDZlMTY4MTNjMjcwNjJiMTllNDU0NTNmY2NjNmQwMjE4MTJlYzE5NDM1OGNkZjFkMDg0NmZjOWYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L277-L290",
+          "version": "repo-lines-v1:sha256:e0599b805642055ea4175a080dc75853fc298a380e096a564581427511a44fc6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhMTE3NDNjZWI3MmVlMTdkZWMzM2ZiMzhjMjI4NmI5YWE1NzJhMTBjZmJlNTMyZDJkNGQ2MzIxMTQ3YWFmMjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlZjY5MDA3YTdlNzVjY2RiMmMxOWVmYTlkOTVjNDNiZjc4N2YzM2EyYjljODI2NWM0YTVjZTY0MmZlNmRiZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2ZDJkYzg2Y2M3NjA3MWJhZTVkNDUxZjk2OTU1YzdlNThlYjUyZGYyMDJkOWUzMGNhMTIxNjBhMDljOTQyYjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3ZjEzNTJhMzJjOGEwNmNiN2ZlMzZkY2YzZmM1ZTEwZTM3MWRiZTQ1MzJhNDkwNjg3MzQ1ODc1MzIxYTViMDQifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L327-L344",
+          "version": "repo-lines-v1:sha256:7af3aa7cbf5d39149974d48af0faa5e38dac780a88c5bff5e7d463f8e417e7e0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzOTY4NWU4MDA0YTk0OTA5Y2Q0ZDk0ZGFmNzM4NDViMjQ4ODI0MTYwNGY1ZmUyMmI3Y2IyNzMwNzFmYmUwNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4N2E4ZjVkYmYxZTY4Nzg3NWYxYzY0ZTg0ZjZiOGUwNTNlMDYzNDdjMzdjZWJiMWY5ZDdlMDY0YmE4NmM2ZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg5MmQ4MjRkZDUzYmY5NTM1NzcxMGQ5MTkyZGI2Yjg3NDY0NTRhYTI0ZTUwODM5OWIwOTgwY2JmNGI1MjE1N2MifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L78-L85",
+          "version": "repo-lines-v1:sha256:e10f0627d0de0d77f19a3566df637a31c7e5d29cd806c6d0835b1c06a7e445c7:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTI0ZWQyMGMxZDYzNzMzMGZlMmIwMmFlYzdmNzQ5YWJhY2JkM2RiYjczZTY3ZTY3N2FiMjdiYzQ4MWYyNjI2YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWQ0ZjhjNDk3YzkwMTk4MzUxNzkyNzdhMjM4MjZjM2Y4ODhkYWYxOTMxODRkYjFiZjM5NDEwNDZlNjVmZTczYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjEyM2JmZGRiZGVhMzljZDQyNGM1ODY3NTE1OGE4NGM5Yjk5ZWM4NzZkYThjMTE0ZjJmYmYzOTFlZjgyMWIyZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9c0fc5947c874d479631e80578400816",
+      "statement": "history_page prepends its page and carries the new cursor and hasMore, while a rejected fetch_history (an error message) resets loadingHistory; loadOlderEvents only fires when hasMoreHistory is true, loading is not already in progress, and a cursor exists, requesting pages of 200 events.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L384-L394",
+          "version": "repo-lines-v1:sha256:194e5b21a9707ff94387b36606a948562c530c9227035ba46af2a2fad5899d5f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4YzVlNTgyMTU0NTE0MThmZWE4ZjZjMWYzMDMyZGRiN2ZmMTI1YWQxMjY0YTRkODJjOGEzM2UxY2FhNjc1ODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUyN2I0NDRmYzk5NTkzNTQ2YTBmNGYzODFiNWQyZTI0MmM5NzM2ODlmNDdiYjM1NWYyYjgwNWFkZWQ3ZGYxNjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjExOTk2YWNmZmYwYjYxOTAyNjgwNjE3MzY3YjAzMDM3NzA1ZTMxODE4MDAxYzhkZDYzNTI3NDkwNWZmM2FlZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3N2M5ZjI4NDc3NDA5ZjQ5YmQwYmZmNjNhZDJmNmIxMjA3YWRiMmNiZjgwODc4ZDU0YWMwZTA0YmQ3YmJiNjIifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L204-L212",
+          "version": "repo-lines-v1:sha256:c0ecb001f8f02478221dc8d2424ed5e2ad3dab451571ecce200f44d465fa73e0:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjEyYjA2NjhiMjU2NDA1ZDA4ZThlMGQzMmM0N2NiZWRjOGZiNjY1ZGUxZGVlNzM5NTVmOGQzMTA1MzliZTg5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGYzYTUwNjMzMGIwZTU0MGJmMzVkNjBkYzZmNmU1M2ZkMGQ2YTRmOWU0Yzc0YjI5MjQ0ZDRjMzJmY2MxOTFmNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWUzM2JiNGJiMTZhMzhhN2ZkOWM4ZTdmZGM2ZjBiNzBhMmVjOWM3MzBjNTRhMTkwNzZlMmMzNDdlMmQzYTMyNCJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/reducer.ts#L308-L310",
+          "version": "repo-lines-v1:sha256:5f3b050c055b706021c9c90e2b5bfaa36d741f78b63ba950b99dfd70b10482fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjBhMTI1OTJhZWNiZjNiYWZmMmEyZjZiYmRhNzNmZjk2ZjA4YjFlMTMwOTRhYWZmYmNkYTczYTQyZTdlYWNhNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGViYWRkNGRlNjUwYmJjOGMxNDZmMjYzNDFiYjhhMWVkOTMyNzhiOWQ3NjdmNTQ0NzU4NGQ2OWUxZTI1MjExMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjVlMjhiMWNiZGEwM2FiY2UxZjYxN2I4OGRiYjUxMDk3Y2Y3ZDJkZTg4Nzk5NTc2YzQyYmJlNjgwOTNkYWZjYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmRkMzJmYWY0NWU2YzlkOTFmNzEyOTc1NmVjYzFhMDZjYjZlYzIxN2Y1YTM5ZTNmYThlYzhmYTQxNDFjOTQ0ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6c2f242efc194bfdb68b2350283649a5",
+      "statement": "Token events carry the full accumulated text for an assistant segment rather than deltas, so ingestLiveSandboxEvent buffers the pending text outside React state (a ref — high-frequency tokens must not re-render) and emits it exactly once, with the token's original timestamp, on the matching execution_complete or context_compacted; stopExecution flushes pending partial text before sending stop; collapseReplayTokenEvents compacts replayed history to one token per compaction-delimited segment regardless of storage ordering between token and completion events.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L110-L112",
+          "version": "repo-lines-v1:sha256:8d824a1952ba97fd526d6fcefde079f1ec647a2aecd9fbb61050cd007ebdb947:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNhOTdiNDY4OTE4NmFhMjc0YWE2YjE0ZTljZmE2YWZjOTY0NmY1YzQ4MDVhY2Y2NWI2OWU3NzFkNDJjMWM4NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2YwZDYwZmNmZTk5YWZmMzc5MmVjMjliNmU0ZjQ2ZmVjMjQ1NTk1YjcwMTllYWEwZjNiZmExYTY5NDYwMTFjMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2FhMDlmNzkyMGQ5YmY4MmNiMmUzNzIyNzFjZjgxNzRhMTFhMDg0N2VhZGI0MGNkMjQyNjYzNDhiZDYwNWI1MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjYwYzcxNjQzYTgzZjFiYTBhNDg5OTc0MmQ3Mzk3NzdkOGM4YzZjNmQ5YjA0MDk4NjQ5OTM5ODQ1ZTljZmE5NCJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L342-L353",
+          "version": "repo-lines-v1:sha256:2ff311a167a155e81ee2d33fa36abc78cac4e3a0848f09a15ee82c31823b884c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NjkyMTViNzkwZDBlNTA1ZGY3NjAyNTZlNDYzYjVmZTRjNmY2MWVhMDFiMGIxOWRiOWI5ZjI1MWNkMDNlMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmOTdkMmZhZWQ2MzYxMjg1YTYwNmRmNDAxMTc4MmZlNTg5ZGZiNTkyYzRmOGU0YTg4YzU4NjUyZjlkM2I5MGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiM2VmNWUzMGU0NGI3N2FkMDlmODRmN2QyMzFkOGEzNmRmZTc0ZDdkZGI5YWMzY2QwZDYwYzFkMDFmMGQyY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUyZWUzZDk2YzVhYWQ0M2E1YzY5NWM4OGIyYzlmODUxOGU1ZGUwMDc5NDY2ZmU2OWFlZDZiZGFhYzJkNzZmOTYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/event-log.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:5f671569ddec3bf95b72f62eb3cf2a5acda0f7d563bd9e47abc4500d178e15fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM0NjYyYjA5MzgyNWE4MDU4NTA3MjM1YTEzMzE0Y2MxZjI3OGRjNmQ5MmY0YzBhYjM5MmVkYThmNjM4MGE4ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjOTAwNjkwODUxNWNhYjM0ZDE0ZmE5ODAxYWQ1NWJjN2EwZjVmMzdmNDcwYTgzOTQ5M2Q2ZmI1MDIyZGZjMWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlYzgwYWY4Zjk0YzRmZTY5NTU1ZTgzMGY2ZmE3ODIzYTY1YTcxM2I5ZTNlZjk5MWY0M2Q1M2Q5ZmRiZDY0OTcifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/event-log.ts#L39-L96",
+          "version": "repo-lines-v1:sha256:a8628a634e8b52957793c9e1abe5d15ec83bf82e5a824bdf34d153897f7e8f8f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0MjA0MGJkNjkwMTZkZDQ0NGIwOWI2OTZkMWIxNzAwYjI0ZmMwMzFlN2RmNTQyN2FiYjdjMTY5NWM0ZjA4MWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4MmI3ZGU0NmMwYWU2ZjIwN2M1NTA4YTE2MWQzNjg2ZWE1ZjZkZGExOTE5MTVjNmU1NTkxNmI0YWFjNTg5YjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY4OTE2NDEzZGJjZmVhMjFlNWM0ODBjMTNiZWFjNTU3ZjYwZjY4NjgwMGU4MzkzYTM3ZWJiM2E4ZDcyZGFmNmUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/event-log.ts#L98-L142",
+          "version": "repo-lines-v1:sha256:1aad500ae7e42a9075e25f009a16001298af8c6ff2db8a496d46502bd8e223bb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0MDFmNGY5MThlZjdkYzZlN2YzOWVkYTU1MWNkMjkwYjg2MGRjYmE3OTU5YWU0ODA1OTA1NWM5NjMzMGJjMmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRhNDYxNjgxNzhiYzEwNzAxMzY4NjEwOTBlOTc1ZjBkMzU5ZDdmYzdiMTMxNzQ4NGNlNzVhYzM1ZGU1MTAyMjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzNzA5MTc4OWI2OTQ0YmViN2EzYWYwMmExYTA2ODE2ZTY4MGQ4MGE3MmRmZjk4MjI0NzNlNDE4OTJmZjFjNzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3cbe8a8cc6004d69bb912508d7bbd0a3",
+      "statement": "toUiArtifact maps the wire SessionArtifact to the UI Artifact by narrowing each loosely-typed metadata field to its expected type and deriving the PR display status — preferring the tracked lifecycleState/isDraft pair via the shared toDisplayStatus and falling back to the legacy state key for artifacts that predate PR lifecycle tracking.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/artifact-metadata.ts#L23-L40",
+          "version": "repo-lines-v1:sha256:1e68e5fe9a4c2ab00e9e19a2529e1d45f03191d3bb1ba37a771b0a3f0d45058c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0YzNlNDA4ZjM2MTgyNTM3NmJiMjQ0MmE1YTdiMjQzMGY5YzMyNzRjNjhjMjk2OTMwNGNlZTBjYjNkMTE3NjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZjNDY3ZWRkYzMwNzk2Y2RjYjFlM2U1MDcwOTUyNWYyMTdhODdmOTIzNTlkYmNkZmVjNDRmOWZjNjIzOWI5YWYifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/artifact-metadata.ts#L64-L113",
+          "version": "repo-lines-v1:sha256:621d5bff1b2775753d63481cb83c8a783bf085af187fa1b5920eff429d78bf3f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2MjcyZWQ5NzEwYmNmNDM5MGE1NTM4ZjRiN2YzYTkzNjk0OTAxODFlMzcwZmVmZDNkZTFkMjUwZWQxY2I3MTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiOThiYTA4YWQyZjc1NGJjMDY4MmY1NWI4NDAwNGQ1ZWJmZDUzODQwYTlhYzFlMDVhNzMzN2Q3NTU0M2UxMjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a404a9f0928e43a48c2125b7ae7204b9",
+      "statement": "swrKeysToRevalidate decides per message which SWR caches a socket message invalidates: PR artifacts, session titles, and status changes revalidate the unarchived session list and inbox; child_session_update additionally revalidates the children list; a terminal execution_complete revalidates the inbox; diff_state_changed revalidates the diff; subscribed refreshes diff, children, participant profiles, and inbox — and only PR artifacts revalidate the session list because high-frequency media artifacts cannot change it; useSessionSocket maps these keys through mutate and is the only place the hook touches the SWR cache.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L216-L219",
+          "version": "repo-lines-v1:sha256:f223393e28b48439f8cd913f515f6d0544441dbb88e6be2bfbce94f7864fdc69:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTJkNjExMmI3NzVjZDVlZTliNTc2MmVmMzNmYzZjOWEzODUwYWYyMjI5NmJmNjhhNjQ1OThhZGE4MTIzZTRmNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWI2MmY2MGQ4NTkwYTU3OWNmNDZmOGQ2NzM3OGM0YzU3MmI5NjJjZWNjZGI5MGM3YTVmN2I0MmI5NjA3ODJhNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGJjODQ3NjdhMjYyOWZhNDM3NGFiODk1YzkxYTk5Y2JmODU3ODg0NGQ5YjViN2Y2ZmExMGY3YjAzYzJjYzlmNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWEyOTZkZWY5Mjc4OTNlNjEwOTUyMzg4Y2E1YTJkMmEyMGRlOWI2ZjEzNWI0MDQ3NmMwNzdlMGMxNDQyNTk5YiJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-socket/swr-revalidation.ts#L5-L56",
+          "version": "repo-lines-v1:sha256:405dc8bc7cb575201ec80c8831429a7280082247af6674cad55adf5910cb047c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3YzdhN2E4MzdlMWRjNGMxMDNkODI2ZDFiNGYwNTkyYjQwMzkwMzc5MDlhM2EwOWFiOGMyY2I3OGYwYzFiNzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3MzU5MGU4OTEyZmEzM2VkZDhlN2QwODg0ZjVjYWU1MmVjMmI4OWNlNTRmYzQ1OTQ1MTA2ZTc5Njk0NWQ2MDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_82c951d4343849a6abab4e5e7c743362",
+      "statement": "Prompt sending is a correlated request: at most one prompt may await acknowledgement at a time, each request carries a clientRequestId and settles on the matching prompt_queued or prompt_cancelled, on a matching error, on disconnect (all pending requests fail), or on a 15-second ack timeout after at most a 5-second subscription wait; no optimistic user message is inserted because the server persists the user_message event and broadcasts it to every client including the sender.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L129-L168",
+          "version": "repo-lines-v1:sha256:b835fb1891169c092a3ba018cc755b06026e1b5a2dce1be966f89a5c7d49685b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0ODUwNjI0NWNkOTE0M2NhZTM2ODhjMzRlYjNjNjQ0MDFiODNhYTA4OGI1MTliMDU3MTI5Y2RiN2MxMjU1MjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwYzE2M2VhMTViZDU1NDI4YTc4NjYwMzgzZTRhYTI1ZmYxMzRmZWZkMGQxYWYyNTAyZTIzYzYzZTc0ZDhkNzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjNjQyOWUyNDk2OTg2NWQ1NWVjMTBiNTQxN2FmNjJkZTMyNTRjMjY4MGQ5ZjFkMjM1NmFiZTYyYjA2NmRiZTcifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L25-L27",
+          "version": "repo-lines-v1:sha256:074a75498500456f92c597f8cf6caeb9ccf37cf76e32803c5bf73c39f9768f0a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg0NmMyYWIzMmMzOTA0NzcyNjlhOWEyYmE3MzQzOWJmNDAxYTQxN2I4YzA3NzcyODI0YzY0NWEyMWU3NDczMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGVmNmUyOTUxMmY4YzQ2NTc0MzE1NTdiMzExMGY5Y2U5N2E0MmJlYTg0ZDdjZDRkZmM5OGZhMDVkODZkN2RmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDVhOTU0YTgyYzAxMzQ0OGZiMjI2ZGRhNmMzOTBkNTY5OGU3OTYwMmRhNWM4NWUxY2RkMmZmMzUxYWQ5MDYxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGQwYjYxZTI4YzIzNjIyM2VhZDFiYmZlZTU5MDI3MDBmMmVhZWI4MjQ5OGZmYTdiMGFmODUxNjE1YTllOGViNCJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L268-L340",
+          "version": "repo-lines-v1:sha256:9642a109a381f86b007e7e74b38e0ae01ec2311a72a48526f4d0925990f5011e:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZmFkZjIwNDdlY2E5ZjgzODdhNTY4ZTcwNGE2MzJkOGRkNzIxNmQ5NTMxZjMxYmM1ZTM4YmE5OTBiOWU4YzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjNjgzNDhlMDE1NjIwMzBjZmU2YmJkNmMxMTMxMmE4MDM0YzdhNGJjYzM4MGVkMDdhMmFiMTQxYmQ4Y2ZmZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3NjA2ZWNlNjY2NjY0ZTYyNTMwZjM3NTM0ZDNhZGIzMTJiOGQ0ZmY3YjMxZTRkZTA4MmViMThlYTM1NjM2MTQifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L303-L306",
+          "version": "repo-lines-v1:sha256:a7fcd5e4150eb90dda3e6c319c9831b1f549e192e38fcd7e2f2f4267e35d5dbb:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM1ZDRjYzRhOWZlYTE0ZTQwZjEyZjRhY2FiNTFjZDY1ODc5MGI0ZmVhOTk2NjFiNzAwYjI5OTEzZTNjY2E3NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmFkYTVlOGEyY2VkZmIzZjg0M2EyYjYwOGI4YWQwYjg1YTkyZTVlMTFmZWIzN2JkMGVhYjM5MTMzOTFmZmUyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmMyMGQxNDBjM2VhMWUzMGQxM2Q0YzY1ZjAxMDg0NzE5YzE2NTIxY2Y2Zjg0N2IyYmEzNTJiYTZkYTZlYjA1YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e1f8b4c6cd1b46bca0eb5ffa3b956f7e",
+      "statement": "Sandbox access credentials (code-server/VNC/ttyd) are fetched by a dedicated SWR hook keyed only while sandboxStatus is ready, cleared by useSessionSocket on spawning/error/status transitions and refreshed on subscribe or sandbox_access_changed, and merged into the returned sessionState.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/hooks/use-sandbox-access.ts#L25-L46",
+          "version": "repo-lines-v1:sha256:e78d1a80dccf5da1d9ad753518d314d65e7303142de97ee000d19eb828961dc6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkYjZlYWNjMDA2YmRiMTYzZWE4ODEyYzUzMjRiODQ0YjMxNDAyYmY4NTExYmQwMWNlMjZlMGFmYjc1MzZhYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4YmNjMzc3OWI0NmRkMDFhN2I3OWYwMDc1YjFlNzJkMmZlZTY1MjA2MzAwNmVmMTk0NGExNDBhZjgxZTlmYTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L116-L120",
+          "version": "repo-lines-v1:sha256:d2b8786d9bc0468dad888306e4356a26f1d60a4b8d8c0ee0a7de3a419a84ea6b:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjA0OWZjY2ZkMGI0NzgyMDI0OGUxYWUwMjFmZjg1NzIyNmY5N2U0ZGMwNzA0NDBhOGY3NmExMmEwOTVjYmE3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2E5NGM5ZjJhOTdkNjlkNjlmMWUxNDlmMTFkMGFhYzEwMjgwMTUzOGJiM2I0MzE1YmE2NjM2N2NkYWNkZDY4MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjYwYzcxNjQzYTgzZjFiYTBhNDg5OTc0MmQ3Mzk3NzdkOGM4YzZjNmQ5YjA0MDk4NjQ5OTM5ODQ1ZTljZmE5NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2I4ZmJjMThlNTkxMDhmYWYwMDI1ZDA0OTM4YzAyYzI1MmM3ZDViMGNmMGEyMDhjOWQ3MmM2ZTEyZGZjNmJkNiJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L188-L214",
+          "version": "repo-lines-v1:sha256:9488e3270e793ad3a90f4a6d71ef35b59a3c74e10c90397acf4361d9fa1017e5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5YjQ3ZTQzNmJmNzZhYzYzZTVjZDZjN2E5YWYwMTg5YjdhMzRkNDI0YWYyNjMxZjFjOTA3MzA4MDljMGVlZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlZjA2NzI2MWVhYTFmNTIxY2RjNzMzN2RkYWEzN2I4OWU4ZGZjODI5ZDc0Yzc1ZWQ2ZmEwNzYyNjBlZTg0ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0NWJjNWMxNTJiNGZlOGQyYTFhNzQ5MGE0YmE1YWJmOGRiMDRmZDA0ZGY4YmU3ZDQ0ZWZlOTE0MzA4ZDUzMTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwMzVjNmRmYWYxMjlhMGNkZDkxNTgzMTIyYmJiNjczMDczOGQxZmM3YjhhMWUwNThkYmVhYWNlODRiYTlhYmEifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L396-L402",
+          "version": "repo-lines-v1:sha256:5f7c7616b4a5d103dac88ebf2536be117273bce5bfc17353f621433a1c8561d8:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWJkNzUzYTJkZjI0YTRlMGI4ZDFmMWFjMTljMmYwNzM0MTkzOGFkNzRlYTdmNDliZTUwZmQyOTUwYjAxMDdlMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTdmZDhlZDg5MGE4ZGZmMWRkOTNhNWI5MzM0OWNmNzY3MzExNmViMjJhZjBmYzU5YjQwZmRlZjY2ZDgzMmUxNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWYwZTc4ZWFmNTI1OWM4YmNjYTQzZWQxYmQ4MDU0NDRhZTVhYjc1MDkzNzAwYWYxZWU1YzQ5NWJhNGVhYTY4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmFkMDBhZTdlZDVmNGUxZDRiMjU1MzMwMDNiM2U4M2I1MWYxYWQ5ZjczNzgzOTBmMDgzNWUyY2NmYjYzMmI1OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1fb95eb29d149c3ae1502e85a8865e4",
+      "statement": "The session route's layout is a server component that fetches the session snapshot with controlPlaneUserFetch (cache: no-store), redirects to /login on 401 and calls notFound() on 404, and publishes the validated snapshot via SessionSnapshotProvider so the client page can seed useSessionSocket with server data before the socket opens.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/(app)/(sidebar)/session/%5Bid%5D/layout.tsx#L21-L43",
+          "version": "repo-lines-v1:sha256:e163af3243d70e927b26054bd1c4e26b065c548a22783c5c59d664aebef58012:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkOTBhMmVjOTNjYmEyYjc1ZDZiN2JjOWYzOTlkYThiYmQ0YjI3OTE5ZTNjNzQ1MjY3NjQwOWY0MzI4OWZlMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/(app)/(sidebar)/session/%5Bid%5D/page.tsx#L72-L98",
+          "version": "repo-lines-v1:sha256:b8f2249d32799cb9db0fafdf9ca687e6310f98a61f06b46310ff4829dbddd996:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5NTdlMGZmZDc2ZGE1MDQzZWJhNzUyZjc2MWEwMGE5Y2E1OGNkZTYzNjhiZWI1YzgyMTE4M2UzMTllOWY3MjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyOGZjNjZjYmM3YjEyN2U5N2NlNDI2NTQzM2MxMzVhYzIxNmUzOTlmYjI4OTIwNGYyYWE5YjIyOWYxMGFiMjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczZjQ3MGI0YWI4NDA2Yzk0OGQ1YjM3MDgxMTM2YTkyMzM5YjAyZmZjMzlkOTQ1M2U2NTFjMzY1Njg3NzVjOWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5NjM4MzgyMjJjYTY2MDA4MmNmYWNkOGYzNDU3NzMxZDBlMjE0OTRjYzc3MGRjMjgwODA1ODBjZWI4MzljMDMifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/session-snapshot.ts#L16-L22",
+          "version": "repo-lines-v1:sha256:4590576011ea106bec8027fea18e2ce874e9889345a95dea22512e173908f3ac:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODQwZWI4MDJkMmQ4MDY0NjBmZDE3MGIzMjMwNWYwZTliN2E4MDllMTNiY2MyZmYyMGVmY2JjNzZiOWJiMmU4NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c622e73b522446a6b9f9a87cc91051c6",
+      "statement": "The dashboard is a new-session composer that warms a draft session as soon as the user starts typing or attaches a file (archiving superseded warm sessions in the background), and on submit reuses the warm session id, uploads attachments, sends the first prompt over HTTP POST /api/sessions/{id}/prompt rather than a WebSocket, mutates the session-list and inbox caches, and routes to /session/{id}.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/(app)/(sidebar)/page.tsx#L245-L265",
+          "version": "repo-lines-v1:sha256:7dc874ed6e4e3aa499e82324acfffa2372b39e438be0bd9d2ee17d1d90ce967e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhN2MzOTk4NGM5MmRhYmJiMDc1NWM0OGRkMWFlN2JjYjc4YzIwYzM0YzA1MjkwZjRiMzNhMmE2OTY0ZGE2MWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxOGEwMmQwMjQ4OTg4M2JjZGRkMWVlNjY5MmJjNTEyY2Q2Y2FkNDA3NWZkYjZmYzFhNjAwMTExYTkxODQ2M2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3OTgwYjVmYmVmMDRkYzQ2ZGM5YjJlYmMxOTMyNDFkZTViYjQ4YjZhNmQ5ZTc0MTJmNDU1Njg3ZGJjNDQyZTMifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/(app)/(sidebar)/page.tsx#L293-L334",
+          "version": "repo-lines-v1:sha256:45a3709f6be089a7a412dcaeac82bc9bf31839fb1131730c6fe8d29993e624a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExZGY4N2E0NzMxNmM3MDhjNTUwMjA5OGU5YWY2YzQ0NTM0ZWI4MGJlYWRjZjYwNjMwMjhlZmNhODU5MzdhYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2ZmJmMzYxYWM1MGUyNTFmNGVlODZmYTMwMjZjNzVmN2E3ZTVkY2VjMDMxMTUxOTFlNTRiYzhiYjFjMmEzZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2ZGJkYzIxNzIxMmYxNGRkZWU4MzQ0ZjBmMjRlZjA3ZDMyNjE5OTU2ZWI0ZjJiZGNjMjIzZjJkYzM2ZTk3MDEifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-warm-draft-session.ts#L52-L67",
+          "version": "repo-lines-v1:sha256:62fe5e3c26667378a916678fd97b09293c2fdbae260aa9f033828fa0aedb6f4b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0NjU0MjAzODVkYTAzZGZhYWEzNzUwZTliZjUzMDhhOTkyYjNlNWM0NDQ4ZjM1ZGZhZTg1NWExMTkwN2M3NjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3YzY1NmNlOWYzZjNmNzI1MDA2Yjk2ZjEwODEzMWNiNzY0YWFiMjcyOTkwZWI0YjZiYTkyM2ZmZGQ3ZWRhN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkNWQ2NWI0MTdlMjNjYjJkOWE3ZGE5ZWRjYzU5YTdmMmIyNzI0NzdhZDQwNTE0ZWI1ZTc4NWZkNTE1M2ZhYWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3YTlmNzgwODRiMmI0MWVlNTVmZDljNGQ5MzNmYWQxMDE4N2RmNWViOTU1ZDY3Y2Y1MThkODc3Mzk2MGI3MGUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/warm-session.ts#L3-L15",
+          "version": "repo-lines-v1:sha256:b42c66aa61163fe764b09a9dd4109fe7f0e79567e998c4e75bb0a22684afe281:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxNDM1MTRkYWQwYjBmYWZjMTE4MjcyMDBlOGNkNGRlYTIxNjAxNjIyNjNhZTY1YTJiZWRkM2E1YjMxMDkzNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNjMjkxYTc2OGNkMDY3NmU1NDU2NWFlZGQ4MTM2NDg2ZTFjYzU0ZTY2OTVkYjg2OGY4ZDVkZWRkNTZlMzRhY2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a97c1ccf3d33402192f45b35faf8b9e8",
+      "statement": "The /settings page renders a category panel registry driven by the ?tab= query parameter (with a mobile list/detail pattern via history state) whose default category is secrets; the Images category only exists when supportsRepoImages() is true, which derives the deployment's sandbox provider from NEXT_PUBLIC_SANDBOX_PROVIDER (default modal, throwing on unknown values) and mirrors the control plane's image-capable provider list.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/(app)/settings/page.tsx#L29-L69",
+          "version": "repo-lines-v1:sha256:0ffe8a164589065781e2481cba5716c6f0a9e6d5d2d2252fa2fc9f42a70e84e9:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1NDA3MTI1MjUyNTlkZmNhOWQ5OGIzMGM3MDJlYjk5ZTcxNjFhNGNkNzc4MDA4YmU1NThiZjE1NWVjMDg2ZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyM2I4N2NiYTIzMzg0NjBlN2I0NDg0ZDIxZWNjZmM0YjZhNmIzN2MzN2E5ZmExODUwMGQ1M2NhMWJlZDdhY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmNGVjODhiYTc4ZmNkNWI2MjMwMjRiNTg4YzgxNGQ3MWY0MmMxN2FkYTJhN2E0MDJmYTIyMzIyNjI2ODJmMTkifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/components/settings/settings-registry.ts#L133-L139",
+          "version": "repo-lines-v1:sha256:c512efa5eda013a2baad6e7a196998b2829b0cc1ecfeaa8a620613cecf4bc02d:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjc3YzM5ZmM3MjI4NzNlNmMzZjA4NjRkZTE2Mzc3OWYwZGIyNDRjNjQ4NTZiMmVkNWY0Njg5MGQ4NjRmNzI0YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmExOTdlZWVhYTBkYTMxNDFkN2JhZTg5YjQ3YzY0ODZmNmIxZjhhMWM2ZTIxMTY5MzRhZDA5MjQ4ZTBmYThkNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTI2OWNhMDMwYzNjMmVmNDA2NjEzYTU2MjVkYTFkYjVkYTdjZDZlNWVkZTMzYjM1MjQ1M2JjMjI1YjQxMWUwNyJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/components/settings/settings-registry.ts#L98-L105",
+          "version": "repo-lines-v1:sha256:ff364327a1d68cd21d584486ea211a31dc9fb30890cddcf890026867c8b324d7:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk1YjhjNWJmODYzNzQzNjcxZGVmM2Y2MzBlYjIzMmQ1OWE3YTYzNGEwNzBmYzQzNmVlYzM3YTg2NzRlNmMzMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjk3OGUyNTAzYjhjZjM3YTA2ZjdkNmYwYTNhNmI2ZmUzNTY5MWZiY2FiNTBiODc3NWNhYjZmYWJjNzFjNTkyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjM0NGUxNzIzMzk4NGY0OGQ0ZmVjN2I4YzIwMzcwYzU5MDdjZTFjMjdiMzExYjQ3ODcyMDBlYzE4ZDNhOTFhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGI0NDBmMjczNDI4NjE2MmU4ZGIyYWY5NTJhZDViYjMwMmZhNDE5ODQxNzYxYzEwYjJhYjVkZjdiYzhjNGQ3OSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/sandbox-provider.ts#L5-L40",
+          "version": "repo-lines-v1:sha256:8fb6a81eb7607cefffce317a517f94a73f500a3bca3eeb9ba24bd47389c70ce6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkzZDE4YmNlYzAxNWZiYjlhNzBlMmVmMzE1OTFmNzdmNGE4ZmFiNTg2ZjAwZGZkN2VlZTU2NWU0OTgzM2I5OGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjMTdiOTkwNWU0MzVkMzBhM2Q2OWI1ZGY2OGQyODg3MTk0ZDI4MzQ3MmIzODA1ZWVlNDhkNDNhMTM4NTFkZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3ZmExYzAzOGM3NzJlM2YxOGU5M2I4MWU2YTk1OTlkZDA4MDI0NWQ2MjA1NzY0ZjNiOGQwM2ZlNjJiZDVlZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_07eec72105eb41b180035f10b454a6b4",
+      "statement": "The timeline layer shapes reducer events for display: timeline-items filters to renderable events (hiding user messages still pending in the prompt queue), dedupes (tool calls by identity key, executions per message, superseded tokens), groups consecutive same-tool tool calls, nests subtask activity under its Task call, and collapses each completed user turn into a work_group while leaving in-flight and partial-history turns flat; timeline-virtual-rows builds virtual rows with per-kind size estimates that session-timeline renders through @tanstack/react-virtual with load-older and read-state wiring.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/components/session-timeline.tsx#L79-L122",
+          "version": "repo-lines-v1:sha256:45712bca9b167423769f56200e231450721cb507dc78a3a6f2759e1c02bf6ab9:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmZDdiNjRkODc2YjkzZDNkOTdhYTQzNDQ3MTQzZjRkMmQzMjE2YmMzMDhjMGM1OWNjZjRjNTRmYThkYzY1NzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0MDhmYjBmZDM5ZTIwZWRmYTc2YTJlYzEzZTQzMzM0YzFjMWRiODc2MjM0MGZkMGI4N2MwNWQzNDRjZGMzYWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxMTNkMTc4ZGNhNDYzMTNhZGFjZDljNmI0OTY5OTAxYjA2ZGViNDMzMjkwYzg1ZGMyYjlkZGY1YTcxZWI2N2MifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/timeline-items.ts#L110-L143",
+          "version": "repo-lines-v1:sha256:6afe491056c93857ec93ed9c7103dc47c15ce7000a2299add79d619313eabc32:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2ODE0OTJkZTVlYTg3MWE5ZDZjZDc0NTZmN2Q1MTEyYjZjYWE0YWI0MzE2Mjk4NzA5NTdlM2UwM2EyNWJjYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwZmU5YjdkY2QxNDkwMjY0NDIwOGFiNzdhMmE3ODIzOWRkNmFmMTQ0YTRkNGM1ZDc5Nzc1NzVhYWVlMmI1MDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZThhZTI0MTYxN2JiMjk4Nzg4ZTlmM2IxNTZkNjY5NjJkODY4MzZhN2M3Y2NmOTBlNDZkMjhjNjhmMjlmM2EifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/timeline-items.ts#L201-L270",
+          "version": "repo-lines-v1:sha256:541dc459b2a5f48eda10954dbb91fe9bf8558652bdb9169f16777b30f3053e2c:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2MjNiODE5ODNiNDllNDA2NDgyMTJhNGFmY2UzODZlM2ExOTkzYTcyN2E2MDU2MWVjOTUwMmNiOWJiYWY2ZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxNjA0NDJjOGU4MDIxMzY2MTM0NDc5MmFhM2NkYWUwNzk1NzE1YWNiZDQ1NDVmOTkzZDZiYWM3MmZjYjkwZTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2ODdiYjI5MGViODUyY2FjYjVmYjU0MzZkN2Q0YWE0MTU5YTQzNTJmZjZkMzFmMjNiOWRkMmMxODBkNTJiYWUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/timeline-items.ts#L24-L60",
+          "version": "repo-lines-v1:sha256:59d4a5a5a72f9705f08b036321a49e153aa9efb82a3a2e4e2ba48805a5e366da:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5ZDhhZjE1ODM1ZjZmNWY4ZTI4Y2Y2ODcwMmI2ODg4Njg4YmY2YjkzYTBjZDIwMDJlNTVmMzEzNDI0YTA4NDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyZWVlOGYzNzljNjgwMDY3NzNlNTdkN2QyM2M5ODkyODg0MjlkZjM0OWEwOTdkODcwYjVjMmMzNDExZWU0NzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwOGM0MGJkMWE1YjRlMzRiZWJhMGMzNmU3ODhjYWU5YzhmN2YyOGYxNGIzNjg0ZTFjNGFlMTZjN2FkMmFlMmUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/timeline-virtual-rows.ts#L3-L28",
+          "version": "repo-lines-v1:sha256:0cc0feb61fdc265857ca89793dd155e6efa5b332755e6039628a29979535f4ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlNDVkNGI1OTY2MDcxNTlkZjQ4M2Q5ZGUzYzk1NTkyNmMwODdhOWZkYmUzMDc0YmEyOWEwYjcxNzFjOWY4OWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3NGVlOGE4ZDFhYTg0NTM5MWJjNjc5ZWI3MGNlN2Y0NmEzY2Q2ZmIyZDE2ZmNjYTY3ZmExNzhmNGY4YzFlMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxOWI3OTc3YjM1ZmE3NzY1Yjc5ZjIyYTFlZGYxZDAyOWNiOTdmZjU5YzU3Yjc5MTc2MDE0M2IxYjY3M2I5NTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YTYzY2Y0YWFhMGM1NzVkNDU3ZDNlMzE0MjMyM2Q5MTk3MTI0YmFhM2U5MTJkMzA1ZGU1ZTMwNzViMDk0YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9292757b8f2f4fed9a50dc16ce20ab0c",
+      "statement": "The web app deploys either to Vercel (the default web_platform) with CONTROL_PLANE_URL, the NEXT_PUBLIC_* set, and the sensitive SERVICE_AUTH_SECRET as project environment variables, or to Cloudflare Workers via OpenNext, where Terraform runs build:cloudflare with the NEXT_PUBLIC_* variables set at build time, generates a wrangler.production.toml declaring the CONTROL_PLANE_WORKER service binding and nodejs_compat/global_fetch_strictly_public, uploads SERVICE_AUTH_SECRET as a Worker secret after deploy, and optionally attaches a Cloudflare-managed custom domain.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L594-L603",
+          "version": "repo-lines-v1:sha256:1da162891dd39e17366afc9ba651b8b23a8b38ed9357f1c4c7b8114bf0ed527f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkYmIyOWY0YTQ3ZTBkY2I4MTU4YTA3Njc2N2E1OWM5OGNiZmQ5NDg4MzJiNjliYWI1OGVhY2RlMzA1YWQ0OTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNkMzAzOGY2YmU0NDNhOWIzMDIwYzNiMjhmYmVjM2Y5YjE1NTkyZDkwODEzOTlhNjBjOTM2OGI0MjMyMTUwODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRlNTE3YTFmODU2ZmMxYmE4MmUxMjQwMWE1OTY1NTFlYmQ3YTUyYzcxOGNlODU2ZmU3ZGViMzNiMGUxZTgyMTgifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L27-L51",
+          "version": "repo-lines-v1:sha256:8fdd83ef474956677ce000a9d76f65bbdf86a5f5c720e04bd217535105939694:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiNmJhNjRjZjk0YTEzY2IzZGU5ZTBlYzhmYWNhNTdmN2M4NzQxNTk4YWU4MmMxYmIwNGZkODJhYmM0MmI5YmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwYzFhNzVhNzMwZDUyMWYwMmFiYmU1NTMxMTM1MzFkZTA2ZGJiNmU0MWI5MTIzYWRmNzAzZDI3OThiN2Q0MzkifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L53-L107",
+          "version": "repo-lines-v1:sha256:45fa1bf3a857e2fb0fa3815b4d50a15e4a08b466fe5bdee8a5d2efceda7ba1f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzNTU5NzliNmVkYzM1M2JjNWE5OTg1MTczNWJiM2E0N2U3M2UyNjM5NzNjNzFiMjFlYzBjMWUwZWViZGY5ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4YjJmYWE4M2Y1ZDcwNzQ4ZTgzZmYxZjIxNTc2NjRjYjE3Y2Y0MTBiNDAwMGJkNzMyYzBlODgxZmE2ZTM3N2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhNTg2NTFjOTg4Yzk5MTEyYTAwYzViYjZkMjhkN2QyZjBjYTFiMWUwNWI0OTY4ZjE3ZTVkMGY1ZWNhNDQ4YTcifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L6-L24",
+          "version": "repo-lines-v1:sha256:12f479741b6682379f26d94e39ea2e19003de32035dc5f998e56aacdebaf5f40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0OWRlODFjOTY0MzQ0ZTZmMzVhMzE4YTBjOTViM2Y5ZDcxMmY0OWMyYWQyZTJjMTBkYWViZjdkM2E5Y2E5ZWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmNDFjMGExNDk0ZDJiNTY5NzQ1MWFmNTk4YjZjMmUzYmMwZjQzYmEzYjZkZWE4Mjc2NzIzYTRmYjRhMTFkYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyMTg5OGEzZjk2N2I2ODJmNTgwODc5NzdhYzIxZmUzZjFhYjgyOWQ3NGViOTgzYmE4MTQyYjQ3OTIyMDcwYzAifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-vercel.tf#L18-L59",
+          "version": "repo-lines-v1:sha256:da6461120672454d917baef8fc74666ecdeed740867b3aa917929d94d835964f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiNjNlY2YzYjdjMDdlYWU0MTEzY2FhNjM2YTJmMTUzZDU5ODk1NTZiMjRkZmQ0NGM2MjA1NThiZTUyNjYzYjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjQ4Zjc3ZmQ1YTljNjNiM2NkZDBhZjQ5ZGFhMTI5OTIyMGI3NTQxZTg4Y2ExN2VmZTFhNmExMTRiOWZmMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiNjgyMDk5ZmQ0ZmZjMTBlODEzYzliODcxN2I2MjdlOWFjNWQ0YzE3Nzk5ZTRmYzllYTM5OGJmODA1YmZhYmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d6526c4da73e4cba9cb5d4291c641f34",
+      "statement": "NEXT_PUBLIC_* variables (including NEXT_PUBLIC_WS_URL, the address useSessionTransport dials) are inlined into the client bundle at build time, so changing them requires a rebuild/redeploy; server-only values such as SERVICE_AUTH_SECRET and CONTROL_PLANE_URL are read at runtime and are not subject to this constraint.",
+      "evidence": [
+        {
+          "resource": "repo://CLAUDE.md#L137-L140",
+          "version": "repo-lines-v1:sha256:0200fde42cd33532e4256754a10ea4728f37dcc2c4d382551ba5d88e291c63ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmE0Y2JlMmZmYmE4MDVlODUzYjY4MzU1ZWE5ZTExZGU0NTU2NTc4OWU2YTI3NjhmOTczOGU2YzAzNGM2NGRkZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVjN2JjNWI0MGYzYzc4ZjIzNjI2MWMwMGZkMTA0NjVmZDFiYzI4YzkyMWU2ZTFiMDlkYzI2NjVkNjFkMjBhNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjk0N2U1YTJjNTdjZjg5NjlmNjM0NjM2ZTY0MGEyNDY5NDg5N2Q2MGE0YWY0MWMzODRlMTc0YTY4Y2YyNWUyNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWY5MWRiMTc1YTJjNzgzMjNhYmJiZTdmMTcyMjI2ZWM0ZmZlODIxNzYwYzc3YWRlMmE4ZWI4NTg0MzcyY2MwNiJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-transport.ts#L15-L16",
+          "version": "repo-lines-v1:sha256:1da32ab9fd28223b36ca5f334e6712e336f017c733b6930e2d1aebf7405d8d92:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjMxYzliM2VjNmZhZjM2M2UzMzQ2ZmRkYWNhZTI1OGI4YzZhOGJiYzAyZWNmMDViZjg1ZGU1NWZhOTE5ZmIzYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzdjM2Y2YzY2Nzg4Y2YyZGE3Njc5NGFiNTU5NWU4ZWUyYTcyYTIwMTg1ODYzYjdlY2M0MmM4OTliZmI0YWUyMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODE1OTRkOTMyMzhhNzM4MjAyOWNlNjJlYmVmYmUyNzMyNjEzMDViYzE4NTY0M2Y2YzcwOGM4OTUxZTA4MDdmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzFlOWY2NjI0MmY2NTYyMzgxYWU5MmQwZTJhNzg0MWFlM2NiOTU3YzZmMDBlY2U3NjE1OTBmZmUzZmVjZWQ5MyJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-transport.ts#L22-L29",
+          "version": "repo-lines-v1:sha256:3b81d07c135f53a3b85a51741ac31e6b0dcb46c9e5aef48381ce899643ccc307:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RmYjQ5NWYwNmFhZTQ5ZTBmNzU4MjkwZTY0NDA3MzdmYTJkYjRjMTdjMjgxYzNjODg5ZDg4ZTMyZGVhOWMzYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjc4NWFiOGQ0NTdlODhlNzljNzJkODUxYTczOWMxMzQwYTNjNzI3NDNlYmIwY2MyMjY3YzZmYTMwMjI4ZTgxYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWE2ZDhhMDdlYzE4OGZjNDAxNzY1YTcwZWRlMTAxYzkyODUzYTQ3YThkZGVkNjQwYjAzZDQyYjlhOTkzMjg5NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b31872ff24324a5692a16817b313e890",
+      "statement": "providers.tsx installs the global SWR configuration used across the app: a fetcher built on browserApiFetch, revalidateOnFocus, and a 2-second deduping interval, alongside the theme provider and toaster.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/src/app/providers.tsx#L9-L25",
+          "version": "repo-lines-v1:sha256:642ee67e5318d9310ff1a0203df537edd05f38d3e48516145c5ee70193555d40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2Mzk0ZTM4ZDczZDgyMThlNjIyY2M1YTg2MmQ1Y2I4MjNhZGVkNGM0ODllZjU4ZmFhMjMxODMzYzMwZDdjNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiZWYzYzdkYzAwNTllYmY1NzJkNzBkMmZjODgyODY0ZGUyZjI3MTZiYTk3Yjg0OGZkNTUxMWUxOThhY2ZhNjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

@@ -1,0 +1,572 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bb7afd67dfb75ebcf6ad936dfc0aaad4aa338e1fceaf46a3e819da378648e688",
+  "claims": [
+    {
+      "id": "claim_4a69d3f621364ac8a48a3d3bcb3bff27",
+      "statement": "packages/shared (@open-inspect/shared) is the dependency root of every TypeScript package (control-plane, web, slack-bot, github-bot, linear-bot), and per ADR 0002 it is the protocol source of truth: ClientMessage, ServerMessage, SandboxEvent, and SessionState are defined there and re-exported by consumers, never duplicated.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L28-L36",
+          "version": "repo-lines-v1:sha256:c79f82e03879fa2ee0dd167803956eb4d05db300e0c0f87e6f67d7cb3dd2ef0f:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQ1ZjI0Zjg4NmYxZTlhMjRhNWU0ZjY4ZGMxMzNiMGZiNDRmNmIwOGM5ZGQ1ZGY1MjFkNjIxMTE5MTlhNjQzNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzRkZjA2YzgwZmVlMzQ3ODBjMTk5OTY1ZmQ2OGYzM2Q0YWU1ZTVkNDUyN2FmYjQ5YTE3MDZiNmY0YTdjOTkyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDdmZDc4MzU3MTZmMGJlN2NlY2E0ZWM1ZGE3YTZiN2RjNGRmNjNkZjZmNGNmNGE0NzExOThiOTJiZGFiMGNmOCJ9"
+        },
+        {
+          "resource": "repo://docs/adr/0002-shared-session-contracts-and-correlation-boundary.md#L16-L23",
+          "version": "repo-lines-v1:sha256:258b1fa28d5f88b2ac3985856e2889b29659f24afb29cd6e3d8e34ee5dc2e155:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2QzZGJjNGU3ZTdjYmU1ZGRjODkxYjA4MDcxMmY2MzUxYzk0YjcyOGVjOGJkODU1NmY0NjEyYjA3MGQyN2I0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDkzMWI3MWYwNDY0MmI2Nzc2MDU4Y2ViMzViNWIzZGYxNzc0ZTI2OGNlZjkxZjMwNzc2MmI2NjI0NjA2MWZkZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODU1YjI0N2VhOTg4YTY2MmRlZDU3NDU0NTdiMGRjNGRlNzdmMzc3YjhkNzgzMmNkZDA4MTIxNjk3M2I2M2IxYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWQ2ZmFkZmQ0OWViNzM4NDUxNjZlYWQwYzY4MGNlOTcwNDMwZGQyNzQyMjcxOWJiNTc4ZGNmZjhkYzAwOTY2NyJ9"
+        },
+        {
+          "resource": "repo://packages/shared/package.json#L1-L8",
+          "version": "repo-lines-v1:sha256:12794f69effc6d6b15f718cb86c6b91d811c39b710e158ced6acab63dccddbff:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZmYjA4ZmRhMWFjYjk1N2I2MTE2YmQzNzgxMWExZmU0MWEwMTYxMWMwNjMxZWRiZjc4NmQ2ODg5YTI3YTU1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2MwNWJiOWY0YThiOTg0NTEwZjgxNWE1ZmM0MDc4ZDc3YzVhMjBlOTNmMzM3M2RjNWRkZTRhMzQxZDFiNDBjOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWY5MzJkMTAyMjllOTg5ODYzMmM3Y2U2NGVkOTYzMGM3YjU3NWUwNmU0Y2JlOWYzNzgxMjRhOGFlNzllOTVlNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_961ca86530f64cbe96ce861bb0a17ebc",
+      "statement": "The build-order rule is that @open-inspect/shared must build before its dependents: the root build and typecheck scripts build shared first, dependents import its compiled dist output via file:../shared workspace deps, so changing shared types requires rebuilding control-plane, web, and the bots.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L124-L128",
+          "version": "repo-lines-v1:sha256:ed106d3586d6c810d5beaafaea1c3e7ec8af67ba30b60e1654467158ff0d61a5:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTk0OTNiOTgyNzZiZDAxMTc1NTBkODRhMzU0Nzk5MTdjMzlmYmNkYjkxODNkYmJjMmE3YzlmMDYyMzhlMDg1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTQ5MjYyY2UzNjk4NTQzM2U3OTI3MjU2OGE4N2ZhYmY1YTc1NDM5OGE1MTgwMTlhMTljYjAwMjhmODE0OGQ5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWIxZjc1M2ZkYTdkMjM5MzU5MmFlNGQwYWM4NzMyY2I4OWY1M2NlM2M1NzVjODg0NWJkNzFhODMyMzQxOWQ4ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWYzZDgwZjI1NjAwOGYyYWNhZWZmOThjNDY1YjIyMzA3MTdjYjU0ZWFmYzcwODQ5NGE0Zjc3YjRiY2RlY2Q2ZCJ9"
+        },
+        {
+          "resource": "repo://package.json#L19-L21",
+          "version": "repo-lines-v1:sha256:24b6e45e2706495cf30ed2c0f85c3d42bdc4d2a2c2695310a64b599de50221a1:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTRhNWM3MWRlMTdkZGE1NjBiN2M1MzA2YjQ5ZjY1NGE3ZTRlNTg0ZmRjZTAxNzE3YmY4NzdkMTBiZDMzMTVmOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmIxOTQyODI2Zjc3NDA2ZGQ0ZmUzNThkYTZhNTZkMTU1NDA3ZTBhYTk0NGQ0NTI5NjgwMTM3OTYwYWExMDc2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODBlMjJlYzU2N2Q5ZmFlZjMwN2FlM2Q3NTcxNWRlMjYyNDNkNDk1NmM0YTMwZmY0MWQ5ZDVhZjI5ZTliMjQxMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGZkMjU0MWNjMzIyZTIwNjVlYmM0NTY5MzRmNzdmNmM2Y2UxYTg2NWRhOWM4MTNiZDk5M2YwNDRmNjIyYzVkZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/package.json#L16-L21",
+          "version": "repo-lines-v1:sha256:abd5f0f93e80f0cd13070d8d13ed0b525c5cc61ea1d480646611ab36135fc145:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmEzYjQ2OWQ5ZTA5NzU3MjI0NjY2NzM0YzllZjdiMjU0ZDg4NTM0ZjVkNWJiNzA5ODk2MDgwNWM1NTNkYzMwNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzI0YzAzZDUxY2Q2ZGZiN2IxODAyNGEyYTMzZmQ1YmE1OTY0NTE4ZjE5ZWYxM2VkMTIxZTA3ZDBjYjYxMGQ4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzYzNGJkZjFlZGMwOThkNGFmM2ZlYzdkMWM1NDk3OGM2NTk5OWUwYzE2OWQyOTMwNjBkNmY1OWNiZWI1YzE4YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjc0OWJiNWE3OGJhMzg5NmRiYThkZjlhY2ZkNTMzODBiYTdmYzg3NmJmY2E2MDJjODI1MmYxYzNlOWNkYmUwNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_29e9dda9844846eb9ed80003981168f9",
+      "statement": "The shared package exports a package root plus ~44 subpath entries (./service-auth, ./triggers, ./cron, ./models, ./logger, and one ./types/* subpath per boundary-schema module), with main/types pointing at dist so consumers compile against emitted declarations.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/package.json#L6-L193",
+          "version": "repo-lines-v1:sha256:a31304a1fa77a23c95264250e2401dfcef4783a03e49cf570374b0b3cba2c8d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTg4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3NGQ5YTVjMDAzY2FiMjExYWIwZmRjMDNkNjA2OTY2NDNjYzUwMjY0YzYxM2RkYzMxOGE5YTM0MDA0Y2RmMTc2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0ZDVjZDJmYjRmM2RmODg0NTE1MjU1YjM5NTIzZjJmOGI1NDcyYmVlYTlmNTY2ZmZjYTIwNGRiODAyNTYxMDQxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlYjRmNmE0NjJkMTJlMTEzNzUwYjY1NDNjNDNjNDMwNDg2MjI5MTE1YjI1YTVlN2EzYTVjMWQ1NzJhNTVmOTEzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3ZGQ1ZGY2Nzc2ZGIzY2QzMTEzZWZiNzAyNjRmZWFhZjUzNTVjYTNhODU4MDU0YjZhM2U3OTQ3YmJmNjk3NGFhIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_aedbcddef26542f3a9e1fa82ca775a3f",
+      "statement": "Shared has exactly two barrels: src/index.ts re-exports all implementation modules as a flat namespace, while src/types/index.ts is a consumer-facing compatibility barrel whose header rule is that implementation modules import one another directly and internal schemas stay off the export surface.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/index.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:b5447f7ce21417562ee6ccc4e72b116fb1ad4bb7eaba9d34eaf029deb7145644:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVhZmYyOTRmN2I3ODY2YWI2NTlkYmI5M2RkOGM5ZGY3MjkwNDFhYzQ4NjMxYjU1Mjk2ZjQxMTJjYTk5NzFjZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/index.ts#L1-L7",
+          "version": "repo-lines-v1:sha256:e6278027a2f988330b3bd94dc9df09352ad28f0fa88b9db8783c1339a8355f6e:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ1NzhkYjZhNDE1ODJiNmRjMDg3MWY2MWQ4MDBhMmQ5MTZiY2Y2ZTFiYmI1OGQ2ZTcxOWFkMWQyZDM1YWQ2OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_43b49ed8878d451fa4c0c6e47bde4b23",
+      "statement": "src/module-boundaries.test.ts parses every production module with the TypeScript compiler API and enforces three invariants: no implementation module may import the two barrels or the package by name, no runtime dependency cycles, and no compile-time dependency cycles (import type/export type and import() type nodes are classified as compile-time-only edges).",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/module-boundaries.test.ts#L144-L211",
+          "version": "repo-lines-v1:sha256:edbd8fd2a9bcb55a48d943f313904d7fbb5635d86606c948516b15963a9b6cbe:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNTYzYjAzZmNhNzJjYzNhZWE5NWUxZTYyNDBjMDk1MTY5MjlhYTU2ZmFkNDhmOTM0ODQwZjBhNTAwMjJhOGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2Yjg1ZGI4ZTI4YjI4ODZlMzExMmRjZDJhZjgzNzA5NjYzNjEwOWFkNjdkNzQyZDhlZDY5ZDg1MDVmM2JhYmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQzYzhjMDJjMzMwMTRhMzdmYjcyODFjOTk0YjRmZWZhZmRlYjA5ODkzODQ4ZGE0YzBlNmFiZjM0M2NjYmU4OWQifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/module-boundaries.test.ts#L45-L105",
+          "version": "repo-lines-v1:sha256:bd2f0f25fb62b377991955a0dadefb039bfbf4d90b980a5ad406150e8fae4c83:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNWVhZGU5OTA4NmI0MjNmM2YyMDMzYzAzYWVlNzM3YTI2N2U4ZWUyYTc1NGY4NzNjYWFiNjgyZDU0YjYwMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY5ZjM2MDUwMzUzZDFkM2M5ZTUzN2Y1MzM2NDg1Yzg5ZjZiNzZlN2I4YTYzNTNkZGJhOWFhZWUzY2Q4OTEwMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNGU4ZjI3YmZjYzU4ZDkxYzY3ZDQ3Mzk2NTQzNDc2NzIwZGUwMWY5ZWFlMTYxNjQwNDBjZjdiM2QwMTIxNjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3173148b9e454ee39be2a49c57e708a8",
+      "statement": "The root barrel stays a compatibility surface: src/public-api.test.ts pins cross-module aliases at the package root (automationRepositoryInputSchema is repositoryInputSchema, MAX_AUTOMATION_REPOSITORIES and MAX_SESSION_REPOSITORIES are MAX_TARGET_REPOSITORIES, provider-account and GitHub-autofix contracts export from the root).",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/public-api.test.ts#L4-L39",
+          "version": "repo-lines-v1:sha256:049bacc6e87e8a8d9a4a5d94504f3f7d33d83adc3c696fda88635b54f42240a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYTNkYWI1MDk3MzdjZTYyN2VkNDk3MDAwZTQxMzM3ZjYxZjY1NWI5ODc4N2Y4M2Y0YjAwZDllNjc5OTEzMGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiMWQyNmYxZDliMDIwOWYxYzE2NjkxZGZlMWVlZWQyNDgwNTRhMTg1NGFhOWYyYzQwNzJhMmYzYTg5NTFmMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/repositories.ts#L3-L7",
+          "version": "repo-lines-v1:sha256:e3c6f6cc81ccce367f08d2a1715df34b8f493f1f6e1c84748f81288f156c6635:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmQ3ODVhNTcwZGFmY2ViYTk0NmY3YzQ4ZTcxYjhkNWQ1MWJiMGIyZDEwZDZkMjljMGJjMjVkZDJjNjRlMDgyZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGU2ZDMxNzdlNWE1MTNmNjNjODU1MTVlOTAyYzVlY2QxMmNkMGQ3ODdlZDM3OTU5MzM0NjBmODM2MzRhMGFhMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTI4YjBjYzA0NWQ3NTI2ZDFjZGIyMjU4ZGEwYTE2YTQ1YTBkNWFhOWI2NGU4ZDIyYWExZTRhNDlkNzg1ZWRmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWU3OWEwNzM3MjRhMDFjZjA3YjI4ODQ2YmU1ZjhhMzFhMDczZTc1MGIxY2NiZjk4Y2RmODExZjU1OTdmNDUzNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff822c8f9ebb4992b619592e1f4e99c9",
+      "statement": "The sig1 service-auth format authenticates service-to-service traffic with per-service secrets, binding the full request (method, path, canonicalized query, body SHA-256, asserted actor, timestamp, nonce) so a captured credential cannot be replayed against a different request; it replaces a shared claimless bearer.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L1-L19",
+          "version": "repo-lines-v1:sha256:9d74f8cb14105fd16b14da433f53ef3a28ef475b2f8b0c26351ed6a1f041b7c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4OGRjMGIwOWI1NDFhY2UzMjZlODZlNDllMmYzY2RkYTRkYmY5NzNmM2FhNGFlNWYwNDg3ZGQ5ZjE4ZGRmZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjMmZkYTJmZmVmZWFiZjY4ZmZmM2UwMmZiMDg3M2VmNmQzYjcxZGUwNDdmZWIzMWMwMzM3MzVhNzdjNmI0OTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac9a770df634452ea11a7b33746f3b8c",
+      "statement": "The sig1 canonical request string is newline-delimited (sig1, service, timestampMs, nonce, uppercased method, pathname, canonical query, body hash, actor — actor empty when absent), and canonicalizeQuery sorts decoded key=value entries bytewise by key\\0value before re-encoding, so reordered queries sign identically while a no-query request cannot collide with a real query.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.test.ts#L119-L130",
+          "version": "repo-lines-v1:sha256:5dc3b4c0b9951e01989a889cc2f785f51e5a3bec20c42f283e0ce809d4d65b0b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyZjE5OTMwODBmOTlkNmQ0YzdmZjA3OWYxYjhhMDZlYTNiYjM3NWIwZTczZWU4YmM4MTYzMTZjNWJmZTMwZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyMGZjOWU2N2RiMDdlZDIzOWJiM2FkMjMxMmVhYWI5YTcwZTFmNmZiYTAxMjg4YjBiYTZlNjFkN2Y4ZWU3ODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmYWViODA3ZmRmNDUzMmY2YzZmMDlhM2VjZTQyMzY1OTg5YTIxZmExMzQ0ZGVkY2RmY2NlMjIwMzhkN2MwZWEifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L72-L107",
+          "version": "repo-lines-v1:sha256:ad55be2a6c838874a758ade57cf9c028d3023c8ed612a3d64cdac6561833dfbd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmZDA0YWFmOWE3OGVlNDg3ZDg3NzExN2VhMDI3NDY0MDhiMDE2OWU0NzZjZDA3YTA0ZGZkOGZmZjRlYzc2NWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhOTE3NTM2OThlMjhiMGQ4NzJmN2E2ZDgxMWQ2MTg3OWE2ZGIyOTE4NWM1ZjI4YzQ4ZmJiZDkwNzIyNzk1MDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e11a476131a48fdbead1e515f0813e2",
+      "statement": "The sig1 signature header grammar is strict ASCII: the header is sig1.<timestampMs>.<nonce>.<64 lowercase hex>, the timestamp must be 1–16 ASCII decimal digits (rejecting exponent, hex, padded, Unicode-digit, zero, and 17-digit forms), the nonce 1–64 lowercase hex chars, and freshness is |now − timestamp| ≤ the 5-minute TOKEN_VALIDITY_MS shared with auth.ts, so skew in either direction expires.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/auth.ts#L8-L13",
+          "version": "repo-lines-v1:sha256:db06949b132006584ef73cde848d7127d806927ed3f8a3eb067a8b7612737e65:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmZkZTU5MzA4MzU5YmM3YmNlYjVkOWViMGVjMTUyNDExM2JlMDhhZjZlYmIzNmMzYzg4NTJiMTIwNjc5YjYwZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODc4ODE5ZWRhMmM3M2NiOTJlZTYxMGEzNGMzZjdjYTY3NzdmZTllZDA5NDk3MGI4ZmJiYTZkNTA0NzkzMzdlYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODAyMDA2Mzg1ODg4ZDA4NzYwZDQ4ZTViM2YzOWMwNDBlMjljZDFjODA2MjlhZmYwZjY2NTBjMWEyMzA4NWUyYSJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L16-L22",
+          "version": "repo-lines-v1:sha256:88663747045fad4389b5bbe246b107a943ba91cbf294fac598d2d286fb998241:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTc5NGY4MmQwZTQ3YjA4ZmUzOTBkNWRiY2M4ODllYTRkYWY4Y2QzYTRmOTBlYjU4MTJlZDNjY2E1MmM3OTRkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTIyMzY1YjZjOWU5MDUyNTVlZjZmZTlmMGVkMDViYmMzMzAxZmMzNDlmYWMwZDA1ZDE4MTAxMDM5OTM3NDIxYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWQ4OWNiMjAxMzNkNjA5NDhhOWMxYzhjNzVjNTAxMmIxOWNhMDQ5ZTk1YmUwZDBlZjA4MWUxYzhmYjBhMjJhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGFlMGE1NTVkMjMzMzBiZTFmZTNhYTQ2NDYwOTVkNDcwNjQ5NjM5Yzc4OTU1ODBkNThkODE0NGIwM2VjMGI2MyJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L194-L214",
+          "version": "repo-lines-v1:sha256:426c8100b3a106d5793384c2b5a8eb62c2c67dbc4f53817de8824264e3405fdc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyNTM5ZjUyNGVlYjdjMWNiMTZmNzllYjNjNDgzZThkNzk4ZDMxNjE2NmU2MjdkNDFhYzYxNjYzYWUwMGVmNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxMjE2M2E2MDRiNTNlM2Y3N2Y4MWIxMGJiMGUxMWRkOWYxMDAwNjJhMTBiN2NlNTk4YjU2MGNhOWQxNGI5NmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhOWU5ZGY5OTFkNzg2OTE3ODFmMzY2NThhOTJkYzgwMGIzNjAxZmE0ODVhMzk3ZjdlZDI1MjdmNjZjZTU2NjkifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L39-L42",
+          "version": "repo-lines-v1:sha256:e6e5f1b30fa4597c539a7de1360b1d85134a43948017bd917c78d37a2df7ddb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzZmZWQ4OTZjNTc5ZWZjZTZhNjZmMzdlNTJkZWFlNDY2YWFmY2M5YmRhNjUzOGIzZWM2ODBiNGIxYzM3NTVlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2YxZWEwNTY0YzcyZGE4YTlkOTNmZjk0NzQ0YjhjNWZhNjc0NzY5MWJlNzJkNzRiMGViOTU2MjE5ZWU1NTVlOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTlmYmE2OTEwNmEwYzQyNTE5NWUyMWI4MDRmMTZhZTczNDI3ZmE4MjEwYWNlN2RjMTk5ODQwODg3ZmRlNTNiYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzc4NzIzMTcxMjI2NDA3ODdiZTk0NzQ1NTNkMGRhMDg3YmM1NGE5YzYzM2M1MmQ2MDFjMTc1NTAwYzU3NjExZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_58ed2be547d44441b7f3a8af2e83ece4",
+      "statement": "Verification failures are ordered cheapest-to-most-specific (format, expired, mismatch): parseServiceSignatureHeader checks grammar and freshness before the caller buffers the body, so a malformed or stale header never costs a body read, and the final HMAC comparison uses timingSafeEqual.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L107-L134",
+          "version": "repo-lines-v1:sha256:3939b0da4eb2981ef1d51572e5708c33e21a075b6c72c3b9f8d6525b3b054842:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxMjE2MzJlM2E5NThjYzFiZGZlOGFkZDM5MTFjZWM2OTEyNWQzMjIwYTU3ZGU2ZDI5M2M1NzYzZGYyNjc3YTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwOWUwMGI3ZWExY2IyYzBhYTk3NDMyNDg0ZGY5ODk1MGVlOTM4ZTlkY2UwMGRiNWExNjJlYjFiZjI5YWQ5NTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmYmE0YTQxZTYwMzllYmJhODY0ZjE3MTNlNGQ4MWI4NjIwNmFiODlkOTY1M2Q5MTI2ZDQ2MDBkM2VmMjhhYzIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L188-L249",
+          "version": "repo-lines-v1:sha256:75e04e66a5837827dd0d41ba2185ae80df4983766c66feda99a587e60a19698d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3YzRhNDAxOTlmODNmZTE1YWE3OGYzODc5YzFjOTE5N2E0OWRjZDUzNjY5YjI0Yzc1MmZlZDY0NjJjNGRhMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0ODBhYWQ4OTlkZDY4YTc4YTc2NGFiYTA5ZTJlOGNmNWMxMzMxOTRjMjcxZDZmZWUzYjNmZDBlMTU2NmNlMzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b0179e038814c9ab27a5b91ac91194a",
+      "statement": "test-fixtures/service-auth-vectors.json is an immutable golden fixture — originally generated by an independent, now-retired Python implementation — that pins each vector's canonical string, HMAC hex, and signature header plus malformed headers with pinned rejection reasons; any change to the canonicalization layout requires a new format tag (sig2), not an edit to the vectors or the module.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.test.ts#L61-L131",
+          "version": "repo-lines-v1:sha256:915ea1704543dff6d7683eaadd1611221a2b8e606e509f466059528a8b286e06:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjMjQ4YmY1ZDNhNGYxYjUwMTczMWI5ODRmZjBhYTNjYTc3ZDMyYjcxNzUxZjQxMTZjNWNjNGRkNDUyZTU5ZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjYjEwYTllNzdkYWE0ZTY5MDQ2ZWZhMzA4ZjE5MGM0ZGVmYWJiNGU1NmZmZGI1NWY3MWNiMmQ0Y2Q0ODRlOWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNGUzN2ViYmZiZjJmODZmN2Q0YWMzZDNlNjY5ZjgyNDlhZmRmYjliODRjM2IwMWU1MTlkMjA0ZmQ5NzExMDMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L8-L12",
+          "version": "repo-lines-v1:sha256:b4a9a127146fec45594ef00a84a016b02673826bf904f379fc17bf130fd8f254:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIzY2I0YzEzZDY3NzU5ZDU0Zjc2NzFkNDQwMzQ5NzJkMDkwM2EzOWQwOGFmYWU3M2JiOTgxZWI5YWIwZGNmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzFlOGQwNTE3NjQyZWFlYjIyYmMzOGZhZmM4M2U3YzQxZWM2NGM2OWY2MzU3NTQzZjY2YjI1NmJjYWEzYWMxNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWQ4OWNiMjAxMzNkNjA5NDhhOWMxYzhjNzVjNTAxMmIxOWNhMDQ5ZTk1YmUwZDBlZjA4MWUxYzhmYjBhMjJhNCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/test-fixtures/service-auth-vectors.json#L1-L3",
+          "version": "repo-lines-v1:sha256:9068c7fab957fbff22ce5d1e8ae51ba604242f585419cba6cc245b8607be97ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZmYjA4ZmRhMWFjYjk1N2I2MTE2YmQzNzgxMWExZmU0MWEwMTYxMWMwNjMxZWRiZjc4NmQ2ODg5YTI3YTU1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I1NzM4Njc2NWQ1MzVhYmQ5Y2YxNzAwMjdiZmIzYzVlZWMxMmM2ZGZiZDJlOGRjMzMyNzc0Y2E4NWU2N2Y2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmQyYWYwM2UwNTA2Yzg5NjQxMjY4MmMzNWI1MmMzNzI1ZTk0M2I4OTZlZDg3N2U1N2MzOWRjZDYxYTYyY2ZjZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff3a0a67614b4aafb46ea3cc8aabc16f",
+      "statement": "Outbound sig1 helpers: resolveOutboundCredential throws when SERVICE_AUTH_SECRET is unbound; buildOutboundAuthHeaders builds request-bound headers per call with Content-Type only when a body exists (application/json for strings, the body's own type for pre-serialized OutboundBinaryBody bytes, which must be serialized before signing); signedControlPlaneFetch signs and sends through the env's CONTROL_PLANE binding with the same method/URL/body, so the bytes sent are exactly the bytes signed.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.test.ts#L265-L310",
+          "version": "repo-lines-v1:sha256:6262b789a90496b914ac89252fa08fda1ad4c9d1b83a26629ccb4b8765f68108:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2ZDZmNjBmMDdkNDlkYzhkOWRlMjIwOTU2YzY2ZWUwYjdmZjJhMWM5MmE4YTkxZTA0ZTZmZTE2Yjc2NmNiOWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhYmQwOTFlNjc2MDQ5NTk4Njg2NDFlNGQ3YWQxNWIzMTk3ZmQwMzU3NjQ2ODMyZjAzNWQ3YThkMzMzZjYxNmMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L251-L329",
+          "version": "repo-lines-v1:sha256:dab2f6b93fec27221bb04311d032336949c9ec7c8548c4ab6cc93dae524da1ee:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzYWIyZWVmZDhhMjUzMzM4MGE5YTI2NDFmZjQwMTcxYmNjMDJmMWExNzZkZGU4NTBjODhkOTZkY2Y0MTEzZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmNmM2ODVkNWY3M2YxYTQyMzQwOTJjNTBkZWNkNDdlZjA1MjMxYTU4MTc4OTlhNzFiMjY1MjdlNjVhOTQwMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkNzMzNzk0YmQyZDliY2VlNzc3ZDFlYjllY2FiMzE5ZTRkODM1NWFjZjQ1ZTdhZTJmNDg3YjQ2NmMyNjkyOTcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L350-L370",
+          "version": "repo-lines-v1:sha256:4e129dedfa7f84f3b56cb7cdf507f5d85e8e154aa1d2f6e44666702a27a83152:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0OTlhOWMxMDNjMTQxMzJhMTdjYWJhYTQzZDhlNzEzZjU5M2VlMTc3ODU1NmE2NjZmNmU0OGM1ZGQ0ZmVlMmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9d0fbd9fd19d4caf8a75419ea3edecf9",
+      "statement": "Bot adoption of sig1 is thin: each bot's src/internal-auth.ts wraps the shared signedControlPlaneFetch binding only its service name, while the web BFF's dispatchWebServiceRequest strips Authorization and the identity headers from forwarded headers (only credentials minted at that boundary may identify a request) and signs the bytes it actually dispatches.",
+      "evidence": [
+        {
+          "resource": "repo://packages/slack-bot/src/internal-auth.ts#L1-L23",
+          "version": "repo-lines-v1:sha256:13c80f05d6db258f435f6f151c84effc2fe76871100fe9e0e8e6de0a139aa368:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-service.ts#L34-L72",
+          "version": "repo-lines-v1:sha256:66d39321b3e57b21158728624352cc01b2a7c5b4fa666c56f82aa7396f72c18d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhYTJlOTQ2MWNlN2YwZmI5YmRjZjBlZjdjNzQ1M2VkZTVkMjBiYTNmOGU0NTFiZTg5ZTgyYjIxYzNmNzJkZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImViMDE0NzNjMmRmZTdlN2JjMGRjNmM4ZDhlNmNjNjdiZTBkYmYyMDEzYTkyNjM4N2UxZjdkOTEyY2Y5NTNlNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYyMTM4ODEzYmVhN2JiZDg2Mjk5NjBjNDI0YzRhMzU1ZDRlNTFjZmViMGE3MDQyOGVkOGFlYjJhNDBmMTY3MjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ccefbf05d99d4cf8837b9067e939a2d5",
+      "statement": "The control plane's authenticateServiceRequest verifies sig1 using a per-service key (SERVICE_AUTH_SECRET_WEB/SLACK_BOT/GITHUB_BOT/LINEAR_BOT; an absent key is a 500 misconfiguration, not a 401), parses/freshness-checks before buffering, caps the body at 16 MiB via readBodyCapped (413 over cap), verifies, then enforces ASSERTION_RIGHTS — each bot may assert actors only in its own namespace and web asserts none — resolves the actor to a canonical user, and rebuilds the consumed body before the handler sees it.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/principal.ts#L44-L53",
+          "version": "repo-lines-v1:sha256:c6a9fc7070ff41cc7ea3e47b674afa423dd82a2169f5581d63b5e7f3313e7734:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyNzdmMjczYzVhYWE3N2YwMGZhYWNlY2ExNWViNzU2Nzk2MGNjMDliMDlkNjQ0ODNmN2ExMTAxNDk5ZGM2ZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/config.ts#L1-L23",
+          "version": "repo-lines-v1:sha256:0a41567a79d48d02a6358f1a12797168d6698678d11740793973b1ae990892b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5NzQ0MzIzNjVmODY0ZmJhMzM5MGI5YzBkNGRlOTNkNjA3N2I5YjY0MDIwZmJhMDg5YzVjZWI3ZTQ0MWIxYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L73-L198",
+          "version": "repo-lines-v1:sha256:b8184d959c7321abe1a0d120d58b14ba21a7502ff5c05a0dff9f55233a441968:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmMWE3MDJjZWE1N2E5YTZiZjE2ZjE2NDY3MDkwZjQ5Mzg5YjQzMDBkOTczOWM0MmQ5ZGNiNzI1MTk1NTBkNWY1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3ZTNhMDE4ZTNjOTAxMzczOTFkOGNhOGZjY2ZhODdmYWRjYmJlNmI4ODYyYmZjN2Q2NjlmZmVkMzMyZjg0MTVhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://packages/shared/src/http-body.ts#L1-L34",
+          "version": "repo-lines-v1:sha256:983e25fb2d9bb6e85bb3e56fe88fabdb9b1440d8ac854cbb0251986578f7f478:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_22db5dea0ef64f488e002c71a08d70ec",
+      "statement": "Nonce-reuse detection in control-plane service auth is best-effort and log-only: an in-isolate Map capped at 5,000 entries whose entries expire with the signature validity window, because Worker isolates share no memory.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L39-L71",
+          "version": "repo-lines-v1:sha256:627ae59ff1dc3b98bb4687d3d0afc2e01a3fe77f8a1ffc44f4f5d3b9f4c0a7c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0YjhhMTE3YmFlYmMxOWViNzg0MDgxZWU0YzBkNDMzYjM0YjkxNDE0ZTUwZDkyZTA3ZjMxMGQ0YWI0MDQ4ODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhZGE3ZmU0NzZmYjAwMDE5ZjIxZmQxNTM3ZWJhNzdkNWQzNTFjZWZmODk0YmVmNTJhMDA4MTM0YzFiNGE4OGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5ab42a3165dc4991bfa305c4931890dd",
+      "statement": "Browser authentication rides the sig1 channel: authenticate verifies the service:web signature first and only then, on routes requiring webService: \"user\", validates the Better Auth session cookie, producing a user principal from a sig1-verified service request plus a session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/authenticate.ts#L34-L94",
+          "version": "repo-lines-v1:sha256:4705b3c9c83abb7a87cc2a1abad52de1a0f82f4f6b936374b53759d2e6082bec:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczZmM2NTEzOGRiZjk4YTE2NGE3YjljZjU3ZGFkYzE0NDcxMzhjMDY0NTQwZDc4YzQ5YTJlZDcxYzhjYmVlYWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2YWNkNjU3ODE5MGI5OGM1MjliMjdiN2I5NGFhZmY5YzI4ZDcyMzZiOTc3NGY1Yjc4ZTdlNDhkMDU2OWVkMGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_38d65ffecc974da8bfce7d85e6500bce",
+      "statement": "The four per-service sig1 secrets are Terraform random_password resources generated in state (no operator variables); the control plane binds all four as SERVICE_AUTH_SECRET_<SERVICE> and each sender binds exactly its own as SERVICE_AUTH_SECRET.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/service-auth.tf#L1-L27",
+          "version": "repo-lines-v1:sha256:551dd184b167acf8f1138f59824bb183cc6616867b735792e543ca6eea35ccfe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiZjU4MjVmNTU4ZmMwYTJhZjJhMzRlODNmYWIwZTE1NDM5MDNmMzcxM2U5ZGM3ZjU2MTBhYzYzZDFhZWJmNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YmI5Y2VmOTMxNzkyZjU3OWU4YTlkODlmNDI5Yjk3MjdiOWM1MDQ3ZTYwOTU5MmViYmNmODIxMzM4MzE1NDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b13fa8dc1b6f4fc0b2f314415d804db7",
+      "statement": "src/auth.ts is the shared crypto toolbox: computeHmacHex and timingSafeEqual are reused by sig1, Sentry webhook signature verification, and webhook-key comparison; TOKEN_VALIDITY_MS is defined there; generateInternalToken mints the separate CP→Modal bearer timestamp.signature token (distinct from sig1); and CP→bot completion/tool-call callbacks are HMAC-signed over the JSON payload with the destination bot's own secret, verified by bots via verifyCallbackFromControlPlane which fails closed when SERVICE_AUTH_SECRET is unbound.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/auth.ts#L103-L114",
+          "version": "repo-lines-v1:sha256:1ec3a8646aa398df47d23136a287221af769bce52b64a1e7523dc9c966f4cd0b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/auth.ts#L41-L92",
+          "version": "repo-lines-v1:sha256:d0ba9c124a5bb2a2c79235441a4c63caab60883b4d95023744367583041ece1c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyNDBmNWE1ZmZmNjExNzhlZjViY2Q2NDAzZTkzNjE3MWQ3ZTc4MTI2YThjYjRlY2ZmY2IzM2NmZGExMjMyYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5NDI1ZTZkZWYwNzRjM2U5MTJiMDRjYzgxODhlNTg4NjdhMzRkNzM5NGJkZjE2ZTBiMTQ2NDhkZWE2MmYyZmMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/auth.ts#L8-L27",
+          "version": "repo-lines-v1:sha256:204fdd11916aab00a7280df15fa53658fa2797b47e1d8d9d472322507b2000f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg3ODgxOWVkYTJjNzNjYjkyZWU2MTBhMzRjM2Y3Y2E2Nzc3ZmU5ZWQwOTQ5NzBiOGZiYmE2ZDUwNDc5MzM3ZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkZWVkNTk0M2ViMzZmYTQzZDI1ZDc0MzllZDA0MGFhMDg0Zjk2N2EwNzU5ZWQ5NmY2MDZhY2Q0NTcxYzExNDgifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/sentry/signature.ts#L7-L16",
+          "version": "repo-lines-v1:sha256:a0c08f12271882b76f20103fb148b18123c1d0c95dccdc54e5127dea3c7fb194:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjMzFmZDkwMzI2ZjIwZDcwYWQwYWQ2MDg4MjA1NzU1YzJkOThhYTZlMWMxYjI5ZGIxNTk3YjNhMjJkMzVhNGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4N2NjNzE5N2IwOTU3YmQ0NWFmMGI5ZDhkODE0YWQ2OTc2MTQyYWZlNWZmOTY1YzAzYjRhMDZjNzgxMGNlMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/callbacks.ts#L100-L126",
+          "version": "repo-lines-v1:sha256:76f290b37e8beebed5d4a01ee1f64e81b49b5a2b4696cdcff7abc3845fce6b5c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxZTNlOGMyMjViYzdkYmIzZjBmMTQzMTYyYWJiYWM0ZmM5ODcwMjVmMDY5ZTkyMzYwMjEyNWE0ZGNhYTc5MDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlOGZlNmU4NGE2OTVhZDNmMWUyNzBjZGU2ZTU3ZjRlMDEzOTUwZGRlM2IwNjA4MjliMzY3ZTcxZDA0NDY2ZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkOTFlNWQwODkzNTAxZjVmZGY2NmNjOTc3NGZiNDZjNmFiMjQ0Njg2ZWExNTE5ZWM4ZDYwZGE2OTE3NmE0YjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5aa0dda7faf04fb0990d693fd9ed5d71",
+      "statement": "src/types/* defines zod schemas at transport boundaries with z.infer-derived types exported through the types barrel; types/type-contracts.test.ts pins the z.input/z.output relationships (ServerMessage equals z.output of serverMessageSchema; RepositoryInput differs from its transformed output whose baseBranch is always present) and boundary-schemas.test.ts exercises the cross-module request schemas.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/boundary-schemas.test.ts#L36-L100",
+          "version": "repo-lines-v1:sha256:5852aeb1e87e43c5d9e879afc36437b005b1e471724289c1e25f34c8ab398aed:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5Mjc4MjE0ZDczMWMzZTJiZTBjMWMxNjMyODQ1OTA5ZWRlMThmY2U0ZWVjMGViMjI0NTk4YjcxYzI1MTFkM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyZjg3NTNiMzQ4YzllMTA5NjhlMDUwZTUzOTY5YTQ2MjBmNzAxMGFkYmFhZTdjNmFjZjU1NWEyZDZiOTFiZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRhYjhmYzAyYzZiNmIyNTZiMTc3OTJiZjA5N2FkZGIxMjYzOGExODI3NDJkMGFkNDcyZTAzNDJmM2RiMWRkMGIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/index.ts#L1-L7",
+          "version": "repo-lines-v1:sha256:e6278027a2f988330b3bd94dc9df09352ad28f0fa88b9db8783c1339a8355f6e:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ1NzhkYjZhNDE1ODJiNmRjMDg3MWY2MWQ4MDBhMmQ5MTZiY2Y2ZTFiYmI1OGQ2ZTcxOWFkMWQyZDM1YWQ2OCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/type-contracts.test.ts#L41-L90",
+          "version": "repo-lines-v1:sha256:0681119fd3aeca126f6ab43d3563cbb3f7ae5b3771326c38a913be456b77c687:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjOWNlYTA1Y2RjNjY0ZWQxMWVmNjM4MTZmOTI0MzM4ZGJhN2I5YTU2ZmQ1ZTQ3OGIyNWQ3MDM5N2I2MjlkMGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiOTZkMTYzNTM0MjdjNDk2MTczNWRlOGRhMjI2YjI3MmFjOGFmMzc0YTUwNTY3ZGE1OGUzYzljNDcwMjNhZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJmNTY0NmM5MGQ2NWExZTdlMzYyYjYwMmZhZDI0YjZmNDlkMjEyNGYwY2NmM2VkMzM4NmQxYjNjOGEyMmI5ZDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d4d0b1e162243ecb84101506dd2238f",
+      "statement": "serverMessageSchema is the discriminated union the session DO broadcasts; sessionSnapshotStateSchema omits the credential fields (codeServerPassword, vncPassword, ttydToken) so secrets are structurally absent from snapshots, and newer fields are optional with documented consumer defaults (e.g. SessionState.repositories) so pre-feature producers stay valid across rolling deploys.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/server-messages.ts#L121-L202",
+          "version": "repo-lines-v1:sha256:63c0c7bf242d62a8905d2389b78bca5584f488ac64b120765dc426cd89634c5e:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjYWMzYmMwMmU3MDE5MGJjNDNmM2JhZTVhMGNiMTYwNzkwMWE2YWQxYzEzNmM4NWMzNmMyMGZjZjBiMzI5MzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0OWU3MmMyMGU5N2EyYjUxOTNkY2E4ZTYzNzU2MThkOTJmZWE5YTM3ZWRiZWEzOTY2ZDU5NTVjNWUyMjBkMjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0Yjc5OWVhODhlNGE0MDdlYjQ0Yzk2YTc5NDcyOGI1OTliMDk3Yjk0ZWRkYmYwOWYxOTEyY2NkYTY1OTk5YTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3ZWM0MDUyNjY3NTllNjE0NjAyZDQ3MzhiYzk0MjgxZGZlYThhZDNhZjkwYTQxNzY0Y2Q1MTkxZDJhY2I3MWEifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/server-messages.ts#L41-L59",
+          "version": "repo-lines-v1:sha256:cd0e843018590b609d9d716abc6e2542e6361060d06ab0fe30178e53a690f0cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxZTk2ZjcyMzlkMzc2ZTI4YjJiNzAzMWQ3ZWFmNmVhYWE3Mzc5YjZmYzQxM2UwNTI0YzNjYTU0NGRhYzg3NDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NGY4NmY0OWQ4ZDcyMzBjNjNlNDZmNzllMDE2MGE0ZmNlNWIxMTY2MmQ2YzA2YTMwMTZjNzk5YmYyNmY0YTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjZmM3OGFiNGJiOTBlOTYzNGExOTAyMjRkMTRhODU5NzFlNTE2YTNlYmRiOGU1ZjQzZWEwNDFiYTZhOTVlNDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e5496acbbe844539ae9a6efc2a0b4f8e",
+      "statement": "History parsing is two-tier: the timeline envelope (eventId, timelineSequence) always parses while unknown inner sandbox events are dropped by tolerantSessionTimelineEventsSchema in history_page payloads, whereas a malformed event inside a live sandbox_event message is rejected outright.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/boundary-schemas.test.ts#L951-L985",
+          "version": "repo-lines-v1:sha256:0ba783a2a3261cf1d93fdd2bc3f817f304b1031b3187069ef93285bd94cdb90f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhYTAxYTQ0Yzc1ZWNhOGIyYWNhZDRjZDFhODhmZTAyMTIzYzBiOGNkMjQ1NDIwZmQ0ZTcxOGJjZTdjNzgwYTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjOGRiNmQ5NDA1OTQwM2I0OWEzNmYxMmY3MTYzODljNDgxYjRhNDU0YzU2NDRlZTgwMzhlMDE1OGY3YjJkYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZGJjYWM5Y2Y0OWI4NDcwZGYyM2MxNDNjOWE5NGE0MmE1ZTcxNTliOTJkNTEwNmU4MjJlYTcxMDY4ZGNhZmIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/server-messages.ts#L177-L182",
+          "version": "repo-lines-v1:sha256:566b12c52b2d31838a35330c5d6d743fcd1f9a2ae02028b10b56d833e8693a56:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmM2Nzc2NzAyMmZhM2Q1N2EzODkzMDQyNGZmNmJkZGUzNDZmMDM3NGYxMWZjYjVlODYyNmEyOGNhYThkM2RiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDJlNmZjZGQ0ZDcyNzQ4N2U4YjhkN2E0Mzc3ZjA2MmNkMWJjZTU5NDQ0ZDZkNzNhYTg4Y2E1ODQ4Zjk0YjRlMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTgwNjA4MmJhODlhZjIyZThmNTQyMGIyZDI4OGJmZjMxMDc4NmZlN2QwOTljZTcxZTIzYzFjMjQyYzZmMzk1NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODU0MDg3MTlhMmY0M2Y3ZGIyODdlZmY4NjU3NDI3MTFkZDhmOGQzODNjMzAxMDVjZDc0MzcwOTc0YTRkNDI2ZCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/server-messages.ts#L92-L110",
+          "version": "repo-lines-v1:sha256:73f2554130cb84b1af68e48f398425693c92007462b5e7c46a7d36952778c89c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyZjY5ZWM2MGQzMGFiODI5ZmU4YTk1NjI2YzIyOGJmOTg3Y2Y0ZWQ1ZTJhMjZjN2ZiZWJiOGE3NGUwZmUwNWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkMzRjZWYxOTg0NDJhMzViZjM5NDU2ZTdlNTA3NTFiOGE5YjlhZDU2ZjQ0ZTRhY2VmMjcxYzdlYzIwNjdjOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkNmI2MmE3MTg1MTUyODk1MDA4ZGExZDlhYzUxYmU1MzBlNjAwMWIyNDA0NTVjNWI5NGY5ZTQwOGZjN2JiZjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_763933a1afa843d5b67c04bdf83a8a69",
+      "statement": "sandboxEventSchema is the discriminated union of Modal-emitted and control-plane-synthesized events; eventTypeSchema is derived from the union's discriminators so the query enum cannot drift; toolCallIdentityKey gives tool calls a stable messageId+scope+callId identity; and listEventsResponseSchema enforces that hasMore: true requires a cursor, because consumers stop paginating when the cursor is absent.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/sandbox-events.ts#L201-L251",
+          "version": "repo-lines-v1:sha256:a0a3bf1c3180f1b7c55f1181422d4cf98b93803ccdecd6ac50ab19b3b8dd9a23:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4NmUxMDkxNmNlMWJlMWIzZjA1NTQ0MmE4N2NlNDM4OWFhNTZlYzc1MmQyYTUxYjk1ZTIyNGM5YjY5ZGQ1OTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmYmY4Y2MzMjg0OTlhYzdhYjBhZDFmYzUxNWQxZTBjNDk5NGE3MThiZmNkMjc4MDBhMWIzY2RlMGZkZWU3NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyNjQwZTczODAyYzJjMGY4YmQyMjUyYWJhMzFmMDdlZDdiOGY3NWRiZjQ0ZTQ2Njg4ODUwNzlmMjIzMmFkYTEifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/sandbox-events.ts#L49-L188",
+          "version": "repo-lines-v1:sha256:ba43bf9c5b98103621ab9539a7027eb34aed518afba23ae48c3351212875899a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiYzU5ODdmNGIzNzEwM2JjZDhhOTY4YjQ0ODgyMTIwMWFlYzAyMDNmOGM2OGMxODczNWM0ZDc3ZDdlMmY4OGM1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI1NWUyNmNkOTIzNjZmNjBkOGVkOTJkMDIzOWYwN2ZlZjc0Y2FjMTRhYTY5YWRkZjljMmNjMGQxMWViMDBhNDYzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3NzQxOTQ5ZjY5YzgyZWQ3YTgxZjQzNzAzN2Y5ZmI1NjU5YTM1Yzk3ZGVlYWZiZGQyMjE2ZTA4YTVmZjBhZWExIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI1MGMwOWIxMDgzNmRhZTdkZDY4M2VlNDIwMzVjNmMyNjI1NTMxNTYxNjBlYmI3ODNmMTViYzg3ZTNhZjU5NTkyIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_852d8a4fe9be4ae1b9cfe59bf2686647",
+      "statement": "The trigger type system: automationTriggerTypeSchema enumerates schedule/github_event/linear_event/sentry/webhook/slack_event (the trigger_type value stored in D1), TRIGGER_TYPE_TO_SOURCE maps event-backed types to sources, and AutomationEvent is a union discriminated by source whose shared base carries eventType, triggerKey (dedup), concurrencyKey, contextBlock, and meta, with triggerConfigSchema persisting a conditions array as JSON in D1.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/triggers/types.ts#L126-L146",
+          "version": "repo-lines-v1:sha256:616f0aa085f236cc1e313799f8bb76fb8266875ad8ae5dead9e9ba195be0cf43:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiZGRlNDliY2IzOTUyOTE0YTdkZTZhMDhjNmYwZTUwN2Y1Nzk4YWRmZDIzM2UyNjY5ZGZjODZmMDdiMDkzZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzYzRjMGU2OTIzNjM4ZGIyNGM1YzUxYzkxNWYyZjFmNjZkYjI2Yjc0NjBiMmJkMTAzMTQwMGMzODBkOGRlYzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyMmE2ZWU2ZTVmM2VjYTM1MjI4NDhiODcxMGU2YmRmN2UwMTk1ZjMwNDc4Njg0MWM4YTgwZTJhODJlMWQ3YTgifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/types.ts#L226-L254",
+          "version": "repo-lines-v1:sha256:357562d85429dbc8f2cf2fdfd961d1bcc02826d8423ca615fbfff5b2f051e117:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZTczZTM3NWYzMThiODgyMzBlODg1MzQ0YzliMTVjYTg5MzI4OGZiMDlkYTFmZWY2MzJhODI3MDY5MTRlZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMmIyMGZjNDUyMjk4ZDQ0OTdhMDYwNDg2NzMzYTU2ZjI4ODQxY2UwYmNhZGQxNzc0NzdlNzcxNDJiYjA1OTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzYjQ5ZjA2YWNlYTdlMTc2ZDIyNDk0ZDY5NjM0MzJhNDIyMzYyNTQ0MzhmMDViYjllZGYxYWY5ODRmMjc3ODMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/types.ts#L9-L18",
+          "version": "repo-lines-v1:sha256:0a7f89989624846983bec0895fa4a2dfc5a8ce64ad914030f851c3aa53d6a23a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyYmNlNzc0YTE2NmVhNmQ1NmQ4OWFhY2Q0OGE3ZjE4MjM5MTRhOTU1MjVjZDk3YjUzY2U5ZmM5MmRkNDVmMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4MjQyMjU5OGFlNWMwNTY4YTkwNmU3MzQzZjQxOTg5MzdmZDFiZTE2YmY3NjY5YzQyZTgwMmE5YzI0ZmU1MzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYTE2ODI2OTQ3ZTE0OTMzMzdkYzFkNGIxNDI2NzY4YmJjODdjZWVhMTAwYzIzNDdkMGFiMWZiZGI3OWRlNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUwNTA0ZTJjOWFjN2UxYmI0NDkwODQzMzFhN2NmMTZmMzUwODgxZjkyYzQzNDJmMjA3ZjllYzY2ODY3M2RhZjEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b5b3d67ce33a4f37a11aa87ca5a018ff",
+      "statement": "The condition system gives every TriggerCondition type (a 15-member union) a typed handler with validate (creation time), evaluate (event time), and appliesTo; registry.ts assembles conditionRegistry so every ConditionType key has a handler; matchesConditions requires every condition to pass; validateConditions additionally checks source applicability and GitHub per-event-type support; and check_conclusion/conclusion share a semantic key so the deployment-compatibility spellings dedupe.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/triggers/conditions.ts#L18-L49",
+          "version": "repo-lines-v1:sha256:411f248008da15cd705d38218755a4501250d2d2a8a311de5afb87b3a5c57150:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjODNmYTRlNWNjZTcyYTI3MzM5Y2FiY2ZjNzc4N2JiNTA4YmMwMWE0MTg4OWU3NTdiZGQ5MjNkZmMzZmRiZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4MTI5ZDg2MzVmMjM5NjIwMTE0MWFlYTkwNzJmYmUxNzY0NjY4MGY0ZGY2ODRlNTA5NjgyNjcyODZmODAyYzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYzZmM2NjA2ZjhiMGFlNTVlMzQ5OWI3NTkxYTI4MjI0MDJmNTZlNTBiZjI5MTU3MDRmOWU5ZjZmODNhOTc0OWMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/conditions.ts#L62-L102",
+          "version": "repo-lines-v1:sha256:a9c8b8c88665600d75fe6cd7045885755055bf8e6ac52ba27790e4fd0ac4bf45:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiOGNjOGExMmNhMzQzZTc3NTg4MDYxZDQ5ZjAxYzgzMGQ3NWU4NmM0MmVkMWMwMDFkMWNjZmViMGM3NDQ3MDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY1MTI1MDhjMmRhMzA3MmViNmUzZTg0YTA4YWJjMTliYmZhODMxMzRlMTI5MjE3N2UwNDNmODVlNDY4OWM3OTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/registry.ts#L15-L65",
+          "version": "repo-lines-v1:sha256:dbe5a87d51054fc0375a821950992b61fbf18e4f3f71c6a196c9ef96f2a02446:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmODAxYTZmNmM2OTRjOWQ3MTczMmYzZDI0ODZhMzU4ODY3ZTU4MzRmZjFiY2U5OTM4YWQ0MzY3Yjc0OWY0ZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhZmVkYzdhZjg1MDI0MmNhNTViYTRlOTY5NzVjMmI5OTVhZDJjMDNiNmYzZDFhODFmY2IyMmZjYzBhYWYyMWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkYzI2YmQyODRlZDZkYzBiYjQyZmNiZjMyZTIxNTJjZTE0MzY1NjA5OGUxZDBiZWU1NjEwZjVjNzJmNmUxNWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_875cfa35fc7a4695a2be57b226cbf975",
+      "statement": "The control plane consumes the trigger registry at runtime and validation time: the scheduler gates event firings with matchesConditions against each automation's persisted TriggerConfig, and the automations route uses triggerSources to require/validate eventType for sources that support event types plus validateConditions at creation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/automations.ts#L160-L166",
+          "version": "repo-lines-v1:sha256:282b73bacfa492a64534d29c81b57c327d2c8fedcb56ac4edff2e2b1fb7b7418:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQ3NmZmNTdjYjBmYzYzYTYyMjcwNGFlZWZiN2JiZGU3ZGEzNzE3NjBjOTMzZjBiZGFhYzMwMzYxMzY3NzQ3MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDliOWYyYjg2MDNhMDUyNDEyOTViM2ZhNDk1NjliMjBhZjc1YTY3MTM4ZjU4YmFkYThhZTlkMDk2ODdlMWY3OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODVhNjg4MDRiYjQxZThjMDcwMzRlMmY4ZmMxNDA3NDgzYmE1MmZmZWQwYmExMThhNDc2OGNkZTBmZDlhYWQ3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2IyYWMzMzYxODU2NzA5YjNiZDFjZjM5NGIwMDQ0Mzg1YmQzYWI3NDEzZjg4ZmZjYTc0YTI5MjE2YjU3ODc4MSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/automations.ts#L188-L205",
+          "version": "repo-lines-v1:sha256:d8dc6e79fedc6ebb79b9a2a58fc019f90c1806485f2890f16e286a1ff6ee0303:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViMWQxY2Q5OGJmYzc3Y2NlYWQ5Y2VjZDdmZmYzYTg1MGYxZjNmZTY0Nzc4OTI1ZDg5OGQ4MGExOGRkZjAyYTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmMGQxMzk5Mjg4YmY2ODVhZTgzOWJkNzhmYjhhNGMyYWVmZWRiM2U5MmVjMjRkNDQ1MjE3MGUyODFjODg1OWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyMzU3NWUxMDg4MGEwMDY5ZWJlODczOTFhM2IzZjE0ZDhjYzQyNWRlYjllZmQyMTM0ODYzMTAzY2Q3MjM3OWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L941-L947",
+          "version": "repo-lines-v1:sha256:c784e22661a0c8e195dc610aa968d02411f71390c13538ec7c42f79f08d20cd5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk4YWE3OGRjM2UxZTFhZGEyMjY1ZmI1ZjU5ZDViOWVkYTBiNjhkNWMwMGFmZDU1YWNiOGI0MzhjYmVmYTMyMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWI2MmY2MGQ4NTkwYTU3OWNmNDZmOGQ2NzM3OGM0YzU3MmI5NjJjZWNjZGI5MGM3YTVmN2I0MmI5NjA3ODJhNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDY1ODVlMmM0NWQxOTA0NWE2NzU1NzFmMDhjMjhlYzM1MzcwODhmODc3OWM3ODZkNjAyMTFjOTM3OTI2MmUwYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDIyYjc4MjEwZmI5MDY3ZDczMjY5MmYyNzc1ZTExNjI4NDUyNzE1Zjk4YjNhYTUyZTFjOTZiNDhkZDg1YjRhYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_975ecdddff64455ebf7d9db0bcfd8114",
+      "statement": "triggerSources registers four TriggerSourceDefinitions (sentry, webhook, github, slack — Linear has an event schema and trigger type but no source module); the web automation form reads it for the trigger-type selector and event-type dropdown, while each definition carries eventTypes and supportedConditions metadata.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/triggers/github/index.ts#L19-L36",
+          "version": "repo-lines-v1:sha256:fddb11fae499f93d218ab6029742d614eebda0aeade87e96ffd5e564fb59336a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3NDgyN2M3NjA5NDI1NGE4YjFmZGI5NjU2OWM2ZTRjMDdmNWQ0YmYyNmE2NGYyNmMxNzliNzAyMDY1Y2U1ZjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhNzhiOWY3NDAyNTc0Njk3NDMwMzU5MzhjZGNlZWZhNjJjZTc4Njc0YTNiMjBmMzM0OGM4NTYwZGNlZmI0ZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/registry.ts#L67-L75",
+          "version": "repo-lines-v1:sha256:197fa21e8dc6d5ecee17f4012cc953429a618c9f3eee96fcc82c8120bc1e44fc:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjAyZDJjMGQ2ZGM1ZTc0ZDkyZmExNGI5MWRiZWEyNjQwOTBiZWIzNWZkYjkxODhkOWIzNDExODFkY2U5ZjRjZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTkzZDk4Y2NiZWQzNjRiMTM5MTgwY2E5MzY0NjhkZTIwZWQ4Y2NlY2ExZTA0MDViMGE3N2FkOTUyMDYzNDM2NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/components/automations/automation-form.tsx#L233-L241",
+          "version": "repo-lines-v1:sha256:94497a1b8e74af2fa98df848a64ee316e11379cf5470d694da5e8242d4c5177d:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTNiM2Q1YTc2ZWEzNGVkOGNkODE2YTM0MjEwM2FjMmMxY2UxZDQ5ZWIwZDc4ZTRhMzU1NTM1N2IzZWIxNGZhMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWQ0NjU2M2Q0ODkxMWY0NmNhNzNkNjA2MjliMDA2YjQ0NjU0ZWM4NGNlNDI1NmRhZTU1MTc3MTAyNmMxYzMxNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmVlY2QzNjM2ZDk2YmJiODM4ZWZmMWYxM2U3NTE4NDY3ZGQ1ZjMwY2JmNzVkY2QzZmNhZThlNzJjN2EyMTJlNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzY2NGQ2ZmQ1NzMyZDU5M2FiNmE4OWJmOGEzMTFmMGRkOTE1ZmFmNDQ3NjlhMjMzNzE2M2M5MDBlNmU1NDMwYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_08f39728973b46fea4c9ecabb62a2476",
+      "statement": "GitHub trigger specifics: GITHUB_WEBHOOK_EVENT_CATALOG pins supported event/action pairs with per-event supported conditions, conclusion options are event-specific (check suites add skipped/startup_failure), and the path_glob handler is schema-reserved with an empty appliesTo so persisted configs still parse even though no source can answer it.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/triggers/github/conditions.ts#L50-L65",
+          "version": "repo-lines-v1:sha256:78b737f0acc80dd6761a30d2f9cc45100c3356f66a33653664ef2a624f6f1376:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzNzJlN2JjOGVjMTA0NDllMDRkZTk5NzU2YjYwNWIzYWM4Y2RmZDJiMGUzNjFjMDFmM2ZmZTEyZTlkYjhiM2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3NmVkMmE5MGE4NDM2ZTBmODg1OGVhYjg0YmFiYTg0NzlhY2IxMzkwMWEzYzI3YmJkNmVlOWY4OThhYTI4ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmN2QzZjBjMTIzNjNiM2IwMzUzODYyOTBhNjBlNWViY2NkYjllNTU2Njg5M2I4YTNiMzM1YjZmMjFjOGI2MjcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/github/webhook-types.ts#L45-L118",
+          "version": "repo-lines-v1:sha256:8aebe8bdc5dd753b5693787ec6204c00bb301f2bee71f55995cd7bae888413ec:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4Yzg5Y2Q5NDRiYzE2MWZhMjhhY2M5NjM1NmY5MzNmZDAyNjUyZTdmY2NlZWIyM2M2N2UzMzhlZGFhZWQyYWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNDJmZjVjMDY4MzExNzBhNzQ2MWY4OWRhOTZlNGIxY2Y4YWJkM2U1YWFmYmQ5NzZiMDFmN2I4YWRkMTk3MWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3NzJmYmQ1YjU2YTI2ZTc3MWQ4YTQ1ZGMwZTRiN2U2YmNmNGQxZDQ5MTZhM2U0MmIzMjEwNjAyNTJiZTc3MjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ODhjNmVhMjI3ZjUyNjg4ZTgxOTk1ODQ0ZTVlNTRiYjFiZmEyYjUxNzg2NGE5NWNlZWQ3ZmM1Y2ZhNmRmMDQifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/github/webhook-types.ts#L8-L34",
+          "version": "repo-lines-v1:sha256:003bcb3bba81a9cdb197245c8322b305088c663fece7d429ccbf3a8ef05e13d7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjODRhNDFkMDM3NjFkYjkwMmE0ZTEwNWMyMTA2NjRlMzBhMmVhMDNhZjczN2JjYWY0NjQ3NmJhMzJlZGZkMDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwMzc2MjI2MGJjNDMxOGYyOGM1N2YwYWNiMjVhZTJiZjc3ZTQ1YzMwNzdmMGQzMTM0OGU3OGE4NWMxODI1MTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhZTY1MmFmZjY1YjE1NzViMDU0ZWRmODhmNTdhMTM5MjFkYWFmMmVmOWU5MGRlZTI2M2I0NjY3Y2MyZWM2OGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0c57a437e75845e28f8e9012d21c6940",
+      "statement": "The Slack trigger's text_match handler bounds user-supplied regexes (200-character pattern cap, flags allowlisted to i and m, compile check at validation) and validates the runtime shape of untrusted condition JSON before persistence; branch and path matching use the minimal matchGlob utility (* within a segment, ** across segments).",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/triggers/glob.ts#L1-L14",
+          "version": "repo-lines-v1:sha256:8bf3f13095df994b86ca10935652b5faf43c9d6eeba42b54a1cbb0f0af0bd6c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiYmJiNzdmZWVjYTQ2NjEwN2RjYWZiZWU5YzA4M2FmZWJiYTkwMzA3NDg1MDQ4YjAyNTY4YzAwOGE5OWZkYjMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/slack/conditions.ts#L14-L27",
+          "version": "repo-lines-v1:sha256:d60d56ca33b12f33e40a14e834de81dd8215dd718c433ee6b5b32258a9634e0a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlMGU1YjhjNzgxMDIyYzFmZWU5ZGE1ODU2YTJjZWFhNWZiY2UwOWYxNDU2MDhlZjQ4YzRmZDJjYTA3ZjhkNzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4OWRlZGI1NDMxNGQ5ZWRhYjY3NWU3YjFhZTc5ODc3NGI3MDRkMmZhMjcwZmU1ZTQ4OTA4MzMyNjMyMGE3ZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjZDk1OTYyYzE3ZTJjN2ZmMDhjN2VlYzdjOTg5NGExZmZkMjQ0MmE0MWMwOThiZWI1NjMyYTdlMDJjMjczMzIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/slack/conditions.ts#L49-L101",
+          "version": "repo-lines-v1:sha256:1cda0a8de187ca95506dcbe24e5b891c87aadcd69138124db4a9a47df22f9ea7:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiZjUzYzg0OTQ1ODRlODlhMGQ1NDlmYTE3ZmJjNjgzODViNDczNTA4OTM4MjhkOWY1YzIxN2U3YTIwMzNlMTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNlZWVlZGEzMjhiYmJiMzFhYjg0N2YzNDc3ZmI4ZDlhYTI4Y2YxMTU2YmM2ZWQ2Y2U2MGIwZTI0YzlhMjM3YWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzMjBiMGJlNDZiZDJjNDAyYmVjYTc3MzYyOTBmYWQ4OTVkZTFhYWZiM2FkOTY1ZGQ2YTYwNDBhMzE2ZWQwZGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9e3e0133e07c49f5bf4de0d47e3acf83",
+      "statement": "src/cron.ts wraps cron-parser enforcing 5-field expressions only (isValidCron rejects 6-field forms), provides timezone-aware nextCronOccurrence used by the scheduler to advance next_run_at, and samples six consecutive occurrences from a fixed reference date to return the minimum observed interval in cronIntervalMinutes — which the automations route uses to enforce a 15-minute minimum schedule interval; describeCron renders preset expressions for the UI with fallback to the raw expression.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/automations.ts#L571-L583",
+          "version": "repo-lines-v1:sha256:b8197958719de0b11e9d1a5a1293a9c3130332c9a1fd3b1ee3daba5ee5765b01:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5NmYzMTNkNDlhMWIxNTJjNjA5NmNiYzllNjI4MWZjMjI0ZWFmMmU0ZjRhNzY5ZDgwMjI2MjM3YWE5MDJkMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3NWM5MmRiNDA0NWE3MmEzNWZkOTMwOGFjMWY0ZDQ1YWEyOWE0NDUwOTFjMDA1OGE1ZWJlMTgwMzRiZGVkNjUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/cron.test.ts#L87-L122",
+          "version": "repo-lines-v1:sha256:1d749d84e47da981f0df61eb79afcc593735cbaef144d86268d334c5b6589f38:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4YjhlNjg1OTM3MzJiNzUyMWRjZjc5NWExZDdkNDVkZWU5Y2I2NzVlODc1YTBhNjYwNWNmMGRlNGQ3ZTliZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/cron.ts#L13-L74",
+          "version": "repo-lines-v1:sha256:65a11e1b7bde109122a3eff2c681ce61e391e8c810e11b36221294d3f4792b51:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlYmY2NmE0MTRmMTJjYjQzZmQ1MTUxODJlYmI0ZjMzZjhjMzIxYjIyZDY4MzM2ZTkyMzExMzI3NTg5YzkyNTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5Njk3MWJjNTQ0YTVhMDljZjFmMmM3MmQ2ZTUxMWM0MmMxN2Y0OTA1ZDFhYmRkZGUxNmFlYjAyNTc3YWRiNmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJlY2YzODE0NzI3ZWY2MTcxMGNjNWU3NTMwMTNmMTQwMmE4ZWNjYTNmZjEzZjY2Y2U0ZWY1MmUxOWU1YjBlZTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_551b8d9cbff441358e2e35f47eb03118",
+      "statement": "src/models.ts is the authoritative model catalog grouped by provider in UI display order: every derived view (VALID_MODELS, MODEL_OPTIONS, MODEL_REASONING_CONFIG, DEFAULT_ENABLED_MODELS, DEFAULT_MODEL) is computed from it, and a module-load invariant throws unless exactly one entry has default: true.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/models.test.ts#L61-L100",
+          "version": "repo-lines-v1:sha256:eaf8bbe680fc877afccea0f19bcc140c84602e63eab66911c2b618f1a00c9198:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4MWIxOGQ0MzZiYWRmOWRlYWQ4YmQ0YzFkNWFiNGIzMTM1ZWUxMjdjNDYzNWQyODdkNjIzZDMxNzA1NjhiOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI4MmQzNDU2OGE4ZWE2MmZmYjZjNTk3ZjFmODkzY2YzYTJiYjNjOTg0ZDg3ODQyMjY3NzQ0ODkwZmExM2Y5NjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiZTNiM2I2MGI2MTRjZTc0ODQ3ZThmODg3M2M3ZjZjMDM4NzMzZGVhN2YxOWNiODIxZGZmMDUzZDlkZWU0MWIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/models.ts#L247-L308",
+          "version": "repo-lines-v1:sha256:24e1d25c1a35c0ec3464405f79fc160f952e78550cad53755c73bb7ebfd2e2ce:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0ZWRmM2UwZGE2NmQ5MTk5NzRkZGUyYThhY2U1YzE1M2YyMTkxYWZkM2Q3ZTRjY2Q4NTA3NDU2N2RlNTFiNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNGVmOWRiYjc1ODZkNDUxMmUyODNiY2M3OGRkMTM1ODJjMzc3Y2ZmOWFlMDA5ZmMzMzBhZmE5MWQ1YjRhMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4MTczMjU3NDNjZGY2ZjFjMzIyNTY1MTQxYjM0ZWJkNGZmMzUzMDEwYWMyOWRhNjliNjA0ODRhNWIwY2FkYmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3ZmE4ODYzMWNkYmM4NjBhZGE3MDhiZGZkNzE1NTY5OGUxZGFkMzRjYTk4YzhlYzBhNzc1MzQ2YjI2NmJlNzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_93ab593f2e934584b879c3464f20216b",
+      "statement": "Model-id handling is edge-normalized: normalizeModelId prefixes bare legacy claude-*/gpt-* ids for backward compatibility with D1, SQLite, and Slack KV data, isValidModel accepts both forms, resolveEnabledModel falls back desired → fallback → first enabled, and getSubscriptionProviderForModel requires an already-canonical catalog id (throwing otherwise) and returns the provider only for subscription providers (openai, xai).",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/models.ts#L310-L363",
+          "version": "repo-lines-v1:sha256:2ad7a0753714afa346352aef5bda1bb1c17b7f52826bd7aa0d7e95ef705ecd2d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjY2NjZmM1ODVhNTA5ZjJjZTNiOGYyMTE5YTAwNmY2OTBhNDkxNTg0NWMyMzk5MWQ4N2U5ZDY1ZGRhYTlkYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzOTFmNWQ5ODRmZTFhNjczYjdiYjUyYmRmNGQzNDY0NDUzODUxMDg1YTUzMmE5YTEwZjFjMzU1ZGE0NDczZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjMGRkMjc2OTMxN2JiOGE5Mzk5YzcwZDc5ZGVjOGQwNjk4NDA4N2RmNTU5NzAzMTQ1YTQyZWE4NWQ0YjIyN2QifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/models.ts#L417-L431",
+          "version": "repo-lines-v1:sha256:d7308ec82c973ce92619641050c9f55568ef645cff8ee037075a43513e08cfa8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyMzQxNDk5ZGFiOTM0N2U0NTc0NjcyN2YwN2NlMGZjMDNhMWFhMjZiZGZhN2Q4MWNiYjYyNzc4Nzk1NTllM2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3MzNhNDQyYjBkZWU1ZTgwMjc3OGNmYzYwMzYyZTE1ZTA2MDIwMTBkNzMxNzgwNTM4ZmM5ODQ0MThjZmI0YjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_51765c77b6d44000807753619379381e",
+      "statement": "src/logger.ts is a zero-dependency structured JSON logger whose logger-owned keys (level, component, msg, ts, service) cannot be overwritten by context or data; severity maps onto console.warn/console.error for tooling; JSON.stringify failures emit a guaranteed-serializable LOG_SERIALIZE_FAILURE line instead of crashing the request; Error values flatten into error_message/error_stack/error_type/error_code; child() merges context; and parseLogLevel uses an explicit allowlist defaulting to info.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/logger.ts#L1-L59",
+          "version": "repo-lines-v1:sha256:9e32513c50ec89db89d9fcffb1b299853e387aa3ecdbfb4c8c8e044783bff8b6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkN2E5NzA5ZDc2ZTVmOGRhM2UwNTE1ZWRmNjJlMDNhZWYwMzUyOGE3ZmZiMWY4YjU3YjYxMDIyMjQ0NDU0ZTAifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/logger.ts#L77-L143",
+          "version": "repo-lines-v1:sha256:0fc7494d9dbaf6e1bd295c73f2cb0e5aee9743857a515e5c0ea2844c07a5f30d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzOWRkMDEzN2Q4MTdiOTljODZjYjJjNWNjZGIxZDlkZDU3ZTg0NTEzOTM4OGZkMGY4YjVlYzdhZTlhMGQzNWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlMjRlMmZiM2U5MjI2MjU3OTFjY2I4NDYyNDBkMmY4ZjUyYzg2YTE4ZGQ2M2NlZTNiMmYwNTRhMDVkMGE4MGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bbd8eccf3f5c491daa8fecac29fb8e9b",
+      "statement": "readBodyCapped in http-body.ts is the shared body-buffering contract — concatenated bytes, empty for a missing body, or null with the stream cancelled once a hard byte cap is exceeded — used by sig1 verification (16 MiB) and the web's body proxies.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/http-body.ts#L1-L34",
+          "version": "repo-lines-v1:sha256:983e25fb2d9bb6e85bb3e56fe88fabdb9b1440d8ac854cbb0251986578f7f478:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/settings-proxy.ts#L1-L30",
+          "version": "repo-lines-v1:sha256:4723c098206d3c9d9d38344a7241914c61dd9e8d381bbc66faff714e462d1f2a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2M2M0NDg1NzA0NDkxYjlmYzRkYmYyZDg1ODVkZTI2ODdiNTU1MDliOGUyZjlhM2JmNGE4OWMwZTIwNmI3ZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1N2E3MWQxYTliZGZmNjJmY2ZlOTdlYzdiNmFhZDY1ODk5MWM5OWM4ZjM3OGEzNmI5ZDJlYzg0YmFkMGQwMjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIxN2M1OTIxYmZiNDUzN2I3Yjk4ZWY3MTM0OGMyOTdiYzhiOGU1NDVkNmEzZGY3YWIzYWZiMDFmY2VkNTdkYmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_331ab25f8fd645e9b28aac467906b8cd",
+      "statement": "browser-auth-routes.ts pins the exact browser-reachable Better Auth surface (six method+path entries plus the client-IP header) shared by the web BFF and control plane so neither side can silently widen or narrow the signed proxy contract, and session-list-query.ts owns parse/serialize of session-list query params (limit clamped 1–100, canonical createdBy validation with the 'me' alias) shared by the web BFF and the control-plane session index.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/browser-auth-routes.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:40106a7ff090afd248f03d7847de6d794ef4873ba0fa437c042deded86b0d8c1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/session-list-query.ts#L4-L98",
+          "version": "repo-lines-v1:sha256:82bc904676eaa43296efbf3edaa7f0f56dc71554a2adc25d0496173b8bd22f6e:eyJzZWxlY3RlZExpbmVDb3VudCI6OTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5ZThjOTc2YTliYmM0ZTJiMzBmYmQ2NjgyMGNhZDkyZGE5ODU4OGY0MTM5MTE0ZmRhY2VkYTkxZDhhMzA0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE2NDBjZjgwYzUxNzY4M2RhODZjMjJmOWE4ZjVmNTcxNWJiMzZlODY1NzBiNjY2MzMwYjJjZDhjMzIyMDlmZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwZmMwMmUwMGQ2Mzg1OTllNmFiODUwZWQxZjU4NDc0NjllMWY0MTBmZGU0OWU2OWYxZjhiYjhiNzg3NWFhNjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c7eea4dd61bd43aeafd690463172bff7",
+      "statement": "Smaller shared seams: cache-store.ts adapts Workers KV to a minimal CacheStore port so source-control code does not bind to the KV type; user-id.ts pins the canonical 32-hex users.id shape; git.ts owns session branch naming (open-inspect/{sessionId}) and extractSessionIdFromBranch for the PR-lifecycle tracker; classification.ts shares classifier provider selection where the model id alone selects the provider and an unrecognized id throws rather than silently billing the wrong provider; completion/extractor.ts turns control-plane session events into a structured AgentResponse for the bots, signing each GET per URL with the shared outbound-credential helpers.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/cache-store.ts#L1-L26",
+          "version": "repo-lines-v1:sha256:44b05d645bca1a95baefbc4c2c7a2f2d2484e82277967fd97862dc7fd0895314:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3YWM4OGYzOGQ5NmYxODU0ZThmNTRiZTZjYzI1MTM2YzdjYzg0ZGY5MTczMzdjMDVkOTQwYmY5NGRkOGE1MmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/classification.ts#L36-L65",
+          "version": "repo-lines-v1:sha256:e140d7976e310f7c2e804ae96287ed86ff94ea9ab625cf84287b7d6b0ec8e583:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzNjhjYjIwZjdkMTUwNjFiZDUyOWY0NDNjOTkwYmQ1ZjdkOWYzMTFkYjY4OTljZTY2MGY4ZDE0MzQxYmRhM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmZDQ2ZDMyOWVmYTQyOTJjNjgyNzBkNTJmNmE4ZDAwOTQ2YzI4MmMyOTNmNjBlNGVlMzk3NzQ2MDlkN2YzMjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE4YTQxYjRkYzY0YzZkZjUxMjVlNWNiNTYyZWI4N2RhY2UzMzY2NjhjZTk2ZTQzNDAzOGViODJhZWExODFjODQifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/completion/extractor.ts#L31-L60",
+          "version": "repo-lines-v1:sha256:ea5b9d5c2e536774a88c8aafacbdac52a870cbaa251278abee6918599f7b7a9c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxMDI2NzMxYWMwOTJjYjkwNDQxZmZmNTZlNDhhMzZhZDNhODM3MDhkODFjMTlhZWM3MDhlMTg2ZTk4N2U0NDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEwYWExNWRlY2E0N2M5MzA4ZmQ1ZTAyMDVjMWNkNTVlOWQwNWQ0NzkxYzNkNzI3ZDM2YWI2M2QwNTM3NGJkOTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYzOWU4ODU3MmM0ZWIyMmYzMGE4MDhkZmViN2UxNzVmNjUyZTllM2ZkYWVhMjg4ZTgxOGQxOTJmMTc1YmRlNDEifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/git.ts#L8-L49",
+          "version": "repo-lines-v1:sha256:8649feaa0272c94909fab23ea8277121422e5a592a85b785a5903d21847ded99:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4NDQyZDQ3YjJjNzE5MjY0MzllODQyYzQyODc2MjcxNWFlNGQ2MmUyYTc2Mjc4NmMzMTM4ZjRjN2ViYTQ2NGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRmYTlmZWNhZThmYmFmMzhjMWY0MGIwYTMxNzUwMzUzNmI3MDI5OWNiNzhlNmRjMjNlODg3Y2Y2OWU5YjNkZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/user-id.ts#L1-L5",
+          "version": "repo-lines-v1:sha256:f311d5a7687c16bdb8ad5af3693b548abd7c8e6c41ffe66029a7125cc54179ec:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTNiZmYwNTI4NzQ4YjM5YjZlNzYwZDg5Y2ZmNDZiZWNlMmZlYzhhMWM1MDAzMDg5YjVhZjczNDEwNjA1ZjE2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4bb92259afb8155991863759ef07fffc2a9d00b3d532855a46329c6a783668f6",
+  "claims": [
+    {
+      "id": "claim_dcadaa9aa47c4ad4abaf4c85b10f427c",
+      "statement": "The HTTP enqueue path POST /sessions/:id/prompt applies identity enforcement (author from the verified principal — user → canonical id, bot → asserted actor, actorless bot prompts anonymous), validates the body and attachment references (max 6 per message), strips callbackContext from unauthorized principals, resolves canonical user id and GitHub enrichment for non-anonymous authors via resolveGitHubEnrichmentForRequest under resolveGitHubCredentialAuthority, then forwards an EnqueuePromptRequest to the DO's internal /internal/prompt path and touches the session index updated_at in the background.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-prompt.ts#L50-L178",
+          "version": "repo-lines-v1:sha256:1b52f3d80d67cab204daadd5229a8eee9eabc8d58fdd71def645dd963a06dbb6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlNWQ1MDRmY2ZmNDRhOTFiMTRkODJlMzY4ZGJlNDUxZGI2NTdhMGMyNmMxYTJkZjI0ZjM4Yzc2MjZiYTQ3YTM3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJhZjcwZjZhODk3MGZiYWVlOTczNjM2ODI1ODIwZGUzYjhlNGU0NDNmOTcxYWY3YjJkMmI1MmVmZmE3MmViMjUzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyMDU0MjNiZTJlYTcwM2U5ZTliMzBlZjlmMTZlZjlmMDQwNGQ5MmI1NzQ3Yzg2MDI2NTYwMTRkNThjOWQ2OWE0In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/contracts.ts#L18-L22",
+          "version": "repo-lines-v1:sha256:3ef5c573daf8e61ab3d175c4e830da3d670c6b61b118aa522c51f547fc63d46f:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWZiYmY2OTllZDBiM2JlZjllMzQ3OTc1OWI2ZmIxZjJlNGIwZTUxZmE3NGI1OGQ5NDUyYjc2OGUzYzc4NjQ0YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Q2NjFiMmQxN2ZmNjdjZThkYjM2NDJjNjc5OTdhNjI5YjMzMTJmZmExYTAyMzU3ODc5MjVmNWM3YTdkZDAwMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWQ3MGE5ZTc1ZDVjNGY5MmYyN2M3NGNhYjQxOTEyNTA3YTA5ODAyMmNhODE3N2RhZWY1ODY0YzFlZGVmMDM5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDgzMTZjY2EzZmFhYzRkY2I1Y2NmN2Y4Y2NmOGM2YzY4MTc5YzEyMTY0YjUwYjNlZmIxMmQ4MjIzMDE4N2RmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_13b9077048024e608af06e3d30cff1f5",
+      "statement": "The WebSocket enqueue path routes client messages prompt/cancel_prompt/stop through message-router validation into clientCommands.submitPrompt/cancelPrompt/stopExecution, converging on the same DO enqueue as HTTP.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/client-command-facade.ts#L36-L45",
+          "version": "repo-lines-v1:sha256:cf8aa7f788b9321d8d05832f2ffc72a0eb0e66662789e72cb9daaf4eb9c333ad:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwNTU5MmNkMzIyN2NkNDU0YTY0NzE2NGMzMjE0YTdlODg4NjkzNTg5OGYyMGZlODY2YjlhNGI5MjZkOWRmNjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5ZjNmZWJlMzhkZmM0YWQ0NWVkYTI1MmZlNTcwZTk2ODQwMzNjNzYxMjAxZTEyNzY0YzY5YTJhZmFkYWQ0NGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjNGYxODJmNWFkMjA0YzQxYTA0OWEwMTQ0MWExZTYzOWFlZTQ5MmU5NjBhNTFjODc5YzI3OGI3YzljMGU0NjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwNTg4MjVjMmI3NTc5OTZiZDNkY2RlNzZmMDVlZTZhMzBkOWI5NThkMzJkYmFmYjUzYzRkZDM1YzE0YTg3MjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-router.ts#L100-L128",
+          "version": "repo-lines-v1:sha256:d1cc7ddd8868b10a98e01bcf0022d917a150c2ae0001143510f7e3a0f3ac238c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4ZGI3NDYwODE4MmNiN2NhNGQ5ZmJhNDlhMzk0OTlhN2YzOTA3YjRlYTAzM2IxNDkyYWQ1Y2YwYmVlZWVjZWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2ZThkYWQwN2VmZTE1MzQwMjc3OTg1MjAyMTg4NGNlZTlkN2E1MDlmNmI2MWRlNjY2YmZkM2Q5YzIxZGUzM2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRhMTJiZjU4ODM1NDY0OGEwOTU0OTk3NzMyMDI3NjMyN2QxMzE0NDdhZjMzNjE0NzAxNzAwMWFhY2EzOWI2ZTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6be6c5fc93574053885dabcf12daa39f",
+      "statement": "Both enqueue paths share the EnqueuePromptRequest contract (content, authorId, canonicalUserId, source, model, reasoningEffort, attachments, callbackContext, scmEnrichment) and MAX_SESSION_ATTACHMENTS_PER_MESSAGE = 6.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/enqueue-prompt-contract.ts#L1-L38",
+          "version": "repo-lines-v1:sha256:b486606a9bfc3136d18f81f66150fbceed5a90b8afa9ce2c3a5f840ec115d91b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkMjBhYWQyYWM2YzAzYzk2YmU3NTI0YTQzMDY3ZGVlZGNlYTk4ZmNhNGQyNGY4ODQ3YjBkOTViYzdhZWI1Y2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5MTc2NzQ2NTgyOTI1M2U0YTYwMjhmNjQ4Y2IwOGFhNzBmN2NmNTJmMDQ1NDFjYWQzMTViMjc2YThhODlhMDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/session-attachments.ts#L3-L45",
+          "version": "repo-lines-v1:sha256:03bf604f51563c026bf96c4451e3b9a94b2e251d8c0453a3f200ff93d9a83cba:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlNGE5ZmZmNGE0NTdmMzc2MzI3ZGNkYWZjODZmODlhMmU5ZDZiODg4MDJkN2QwNWU0NDFiNDkzM2ViMDU4NWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3YWRlMTI0ODE1Njc5N2FmYTFlMDU0YWI5MWVkZmQ2MDJmOTI0NjBlZTU1NTcwOWZmYTkyZjgwNDYzNTk2NWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyOGIwY2MwNDVkNzUyNmQxY2RiMjI1OGRhMGExNmE0NWEwZDVhYTliNjRlOGQyMmFhMWU0YTQ5ZDc4NWVkZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhjNjRkMWI2YjIwNTA1ZDYyODY3MTczODQ4MTIxM2UxNTA4OWRjZTM3YjMwYzJmYTg1NTczNWRiZTk5MDI4NmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4511238d59a44303ad17d00b360acf69",
+      "statement": "Prompt attachments are uploaded separately: POST /sessions/:id/attachments stores bytes in R2 with SessionAttachmentStorage coordinating R2 and the DO record, screenshot/video media uploads go through /sessions/:id/media with per-session upload limits, and invalid attachments are skipped with a media warning at prompt time rather than failing the turn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-attachments.ts#L245-L257",
+          "version": "repo-lines-v1:sha256:59c935fc50023177a7fb4f1f74eb94de35fbac3eb4b04bfd30bd5202f249fdb8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzNzkyMDA3NGUyNTE4YzFhMzg2NzhmYzcwODg4NDVmZTQ1YzI3NzNmOTNmMGFmODc0ZGY3ZjJlZjFiZjgwN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMmQyYzBkNmRjNWU3NGQ5MmZhMTRiOTFkYmVhMjY0MDkwYmViMzVmZGI5MTg4ZDliMzQxMTgxZGNlOWY0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliZDk1NDM1NmU4Mjg4OGY3NDQzODBhODE4MWYxZTdhNzkzNGNmMmI1YzkyOTA3OWI3NmFkN2I1NDU2Yjk4MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-media-upload.ts#L76-L208",
+          "version": "repo-lines-v1:sha256:abe97edb4add9c261a225b82f6d0f0c52d1543ee49d30e65c0f12ea7850456ff:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI2N2Y1MTc2Yjg4ZDNjNzY1NTBlMzhmNDA4OTMxNDQ5YTMzZTY2NTZmYjVkNzk2OWUxNGI1MmY2MjRiZGNmODg4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIxZjg3MGEzNTY5MzYwYWJiNzk5YzE3ZjlhYWQ0NGNhMjBkMjQzYjUxODFjMGNmMWUwNjlkZmNmMDYxYjM2OWVkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4MzhhYmIzNTlkNmJiOWMzOTIxZjkwMjFlYjEyMjgwNTgyZWYxZWU0ODI4YzJmNjMzN2Q0YTZkMjBlMGFmZjNkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI2MWMyMzg2YWQwMmQ4OTVkZThjNWU1NmNhZWRjMmFlNjM3MThlYzMwMmIyZmZiMDA3ZTVhZDgzZWI1M2YyOWZlIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/services/session-attachment-storage.ts#L38-L52",
+          "version": "repo-lines-v1:sha256:d95b78c4eb497d52be21e95e0bd83e076f00b33d9bab801fa3d21b2127c0229d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmZGQ0YzRmZGNhZDVhZGQ5MzNmMDY5OGM2ZDk1ODMxZjVlYzY4MjU5ZjhlMGM4MjliMzEyYTc4ZDRkOGMyNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1NGI2MWFhNjEzZTFmM2Q4NjBiMjNlMWYwNzNhYjRlOWJiMDVhZmFlOTlhYjk5NTRlY2M0OWJmNDY2NGIxMzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmNmE5NzkwMzhhNDE5ZDFmMWJmNzlkZWFkMWIyYTAwZjY5MzEwOGFhOTEwY2Q4NjlmMjcxZTk3ODdhNTBkMTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_529854da29d3433d8adebad3087cf40c",
+      "statement": "The DO message queue dispatch is re-entrancy guarded by the processing-message claim: it takes the next pending message (FIFO, so prompts submitted while a turn runs queue), resolves the model and provider authentication, and when no sandbox WebSocket is connected broadcasts sandbox_spawning and spawns the sandbox in the background with the message staying persisted-pending until the sandbox socket connects.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L370-L427",
+          "version": "repo-lines-v1:sha256:45873643c37d102f8a2c4a15efcae5400ccf8d2eea612bba1ad5668b56479bf1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0YTlmMDQ5Y2U1YTYwYmFkN2NiMzc0YjU1NjMyNDliYjY3NDk0YWUzN2IxYTIzMmZkZWU3ODczYTRlMDAyOGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5ZjVhZTZlNzNkNDlhZTQ1YWQ3YTliYjAwZTA4MmM3NzU4NzAzNjYxMmU5M2FmMWNlOWRkNDlhMjA2Y2FhNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4YjczZmIzOGIwNWIxYjIyMmI3Y2ZjYmYyMDM2OTYxNDdkOTAyNTlhNmRlZGRlYWQ4NzkwYzEyZDhjMWIyYzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7aa2a1b0d8e14f94993965c20d9bc02a",
+      "statement": "Dispatch builds the prompt SandboxCommand (messageId, content, resolved model and validated reasoning effort, author git identity, stored attachments), claims the message processing (also inserting the user message event), sends it over the sandbox WebSocket, then broadcasts the user message event and processing_status:true, refreshes the prompt-queue broadcast, updates last activity, arms the execution timeout alarm sharing the DO's single alarm slot, and fires callback.notify_started; a failed send reverts the message to pending and terminates the unresponsive sandbox.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L429-L511",
+          "version": "repo-lines-v1:sha256:e0941e88a9cfc390547db972cf719930bfc0f532cd4a64079865ff5943106f1e:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1YzUyYjU1NDE2OGFmYmE2YTQ5MWRhMTU1OTdkNTM4NDBhMWZkY2MzMTA3OWYxMmVkZTM2YzkyODFlMDFmZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhNDFkNzNjNDUyMmJlYTM5ZmY4MTVlMjRiY2YxMzExODUzMWQ2NzFlYjNjZjUzMTIxODg1ZTExYTFjNDcyNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ed071b2b77804167a33b5a3dd4f6cd99",
+      "statement": "The prompt command carries the author's PromptGitIdentity resolved by resolveParticipantGitIdentity → resolveGitAuthorIdentity (GitHub: valid numeric SCM user id + login yields attributed-user with the ID-based noreply email; otherwise agent-only), making commits author-attributed to the prompting user with the bot as committer.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L36-L52",
+          "version": "repo-lines-v1:sha256:9c5c4ab68aafabbb89e15a36906cb0863ac7fe716f4c93c22d46a7bedc2d2c13:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyZTYzYWQ5YWExMmI0NWY2N2UxMTUwZGZiNzEwNjY1YjUxNWEwZWVkMzBiNWM0MWI3NTgzZTQ1NDA2ZDEwNmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmZGY5MmU3ZGMwMjNjODNkN2FlNDMxN2E1ZmY2NmEwZTA3MmM2ZWJkYWE3NjdlMzE1MzBmYjkyOWExOTA1NWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwODMwOTJjYTA0YWRmMjBlYzQ2YjYwNTE1Mzg1ZDhhN2E1ZTI4ZGE0Njk3OTQxNWJjZGU5YTI1OGM5ODE5MGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L128-L150",
+          "version": "repo-lines-v1:sha256:d65204bc6d2190ead27c9e8fe3f596d5481a5c461bb41550340c76eb1c996a14:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjYzk4YWY3YzM0M2IxN2M3MDFkNGVlNWNlNzZjNTU5ZDBhZmYwNTQ0ZTgxMWQ4YjY5YmE4MWFjNjA4NzZhMTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzMGYwZjNhOGIwNWU5MTg1YWU0MWUzYmFjNTVlMGZjNzZmZjc3NjQ3ZDcwYWQyNTc1ZmE0MGU2N2E2Nzg5ZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE1YjE2MWExYmRhMzE3OTZjZmQzYzQzZDU2ZjEwYmM3ODFhMWY0Y2ZiNDE5MDI5OGY0ODZlMzg5MmQ0ZWE1NTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjYzhmNTRlM2M4ZmJjMDk2ZWNmMmRjM2UyNGNhYzAwNzI4ZTM1MjllYzhhZTliMGY0MDUzZjUxY2E1NzllNmYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L443-L459",
+          "version": "repo-lines-v1:sha256:837b9489f7bf686eebeb04078d1a090ef116e277fdc23ac2377520ae60532598:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyYTRhMDAxNWVmY2YzOThhN2MyNjM2NjNjZjE1MDA0YzNjYTQ1YmRlODY4NjM4NWUyMDRkMDljNGI2Zjg5NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3ZTBiNjhkMmJkNmIwYTZjOTY4YmY3NWEzODIyNzhiOGM3OTE3ODMwODg4ZGY0ZWE0ZDhiMzBlYTcwNjA5M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlYjMxMThjZWNjNDFmYjgxNTJmYzdmM2U0MzI0Nzc5YzRkN2JjNWU0ODJiZjJlOGEyNjhlZjhhMzVlODA5ODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2YzgzMjU3OWU5N2NiMzNiYzhmY2MyMWI1YmFhNWYyYzMwYWE4NDgwMzg3MzdmMjRkYTEzNWUxNDAwZjJlMzcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/types.ts#L21-L26",
+          "version": "repo-lines-v1:sha256:5129de8bc303c21a6ba58db4fce378e5ba4712224e08c767355da61c3ff9670e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQ3ODkwMTE5NDU3ZWM3YTA4YjZiMGM3YTM4M2NkMDM1M2E5NWQzNjgyNzI3NDQzNGFlYmNkNWE2MjdkY2U0MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWUzM2MxNGM2MWU2YmU4MjRiZTRkYzhlNDlmMTU0MzUxZTBjNzdlOTQ0NzZmMDU0NDUzODhjNmM2ZDVmZjg0MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDE4ZmI3NTc0NTEzZGMxNWY5NWMwMDQ1MTNlZjI3YTgxOTc1YzY4NjAwMWVmMDM0M2E4NjZjMzhhODRiMjYwYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_610739f676d7438bae63b9fbef3ffb37",
+      "statement": "The bridge runs the prompt command as a background task so the WebSocket listener stays responsive to other commands (stop, push, ack) and prompt tasks survive WS disconnects; its done-callback emits a failed execution_complete for cancelled or excepted tasks and requests a diff refresh on success.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L598-L650",
+          "version": "repo-lines-v1:sha256:8614e6d6528db6a7547fcd56375110323383cfb15ef830a7f629ccc78a675700:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyNTI5ZWJkZjIzYzYwNDc2M2Q1MTkzNTIzMmJmM2M5NmRiOTdmMmY2NjAzNjY4ZDM4Njg5MzVlODBkYmY0ZDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyMDc4MzkyZmZlOTM1MTNhNGNlYzA2MjQ2ODZhOTcyM2Y4MzgxYjM4YTNjNjBmYWQ0NmYzYjEwYTc2NjVlN2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlY2JjNWJhYzFkZjRkOTE3NzY5NzU5OWNiOTY5MTU0ZWY2ZjQwNmRkMGUwNDE1MDRhNWU5NjMwNTM5MGVjYWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YWY3YjUzMzU5MDgxNjM5MThhMDYxNThhYmVlNmQ2YmJkYzFkOGNiOTM1OTM1NTU2YmE0ZTAwNGZhYWU0NDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_715b96a5db7b46bb90951a31c0dbf8ac",
+      "statement": "bridge _handle_prompt parses the explicit git identity and configures signing, creates the OpenCode session on first use, processes attachments (invalid ones emit a media warning), streams OpenCode SSE via OpenCodePromptStream, treats 'no output emitted' as an error, and emits the terminal execution_complete {messageId, success} event including on errors.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L675-L769",
+          "version": "repo-lines-v1:sha256:9276a55fd96a24fb676a882c06171035bdfadafa489e90a91093154095aecaaa:eyJzZWxlY3RlZExpbmVDb3VudCI6OTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4MjU5NmM5NDA1YjkwNDFjODBkNTVhODk2ZWYyOTUzNDMxYzc0NmE4ZTYwMzA5MjY5ODc2ZWEzZDY0OTY3ZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MDMyZTk2NGQwOTMyMzUxZTVkMTg1MjY5MjgxYjE3MWEzYTA5YjA4YjI4NmU2NjFlYTQ3MDMyM2M4MmViNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwOWQ2MGI2MzUzYmQ2NTJlZTQxNWQ1MDM2NDExYjM0ZTE2YjAzN2U3Y2VkZGRiMWZkNzAwOWIxNzNiYzE2ZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjNjBjYTQ2ZWQ1ZDkyNDljMjY3MmY0OTA5OTJjY2YzZGFmOTJjMDllZTM4YjZkYzNiOTNiNzkyYjE4ZjFiOWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0b1155d0be614954ab1d84d1b9fe1552",
+      "statement": "OpenCodePromptStream translates OpenCode SSE into bridge events (token, tool_call, step_finish, errors) with message attribution, buffering of out-of-order parts up to MAX_PENDING_PART_EVENTS=2000, Anthropic thinking budgets per reasoning effort, and SSE inactivity plus prompt-max-duration timeouts.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/prompt_stream.py#L1-L60",
+          "version": "repo-lines-v1:sha256:5dd325b6862a181a133201f46ce1099cc0d3bdd23eb8033f08bfecf39af680f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5OWRmZjViOTAzMDllODAxOWNkNTg0MzJlYmNhZTMwZWZkNjY5YmZlZGU3NWFjZGU0YmRkNTZlZDNmNzRkMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1OTg0YmZkYTBiMzk5NGE2YWNhODdlZmRkZjU0YzhjN2U4MzUwNThkMzc2YzhlY2NjZDA0ZTYwZTk0M2FkOGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5NWQ4MzUwNjVjNWNhYzdmNWY4OGI1YzkxN2VkNTIwMDM5NTRjYTRjMjBmZGZlOWM3YmZkZjRjZjA1YWNmYTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d535e8e2022548359b7ab58b845ab0fc",
+      "statement": "BufferedEventForwarder owns reconnect-safe delivery: a bounded 1000-event buffer that evicts non-critical events first, critical events (execution_complete, error, snapshot_ready, push_complete, push_error) carrying an ackId and staying pending until the DO acknowledges, and bind() recovering the backlog exactly once under a recovery lock.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/event_forwarder.py#L16-L81",
+          "version": "repo-lines-v1:sha256:5ad031ba62bdc7d65c5206b5432572b03e3a0addd47606d36577fdb08942c09e:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzZjRjZjdmYjI3NDFkZjg1NGQ2NzJkZmVmZTQ3OGUxOGQ0MjY3YzA0NWE4MjE1ZDMxYWUyN2E5ZTY0YTUyNjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyYTAzNDJlYzRlMjUxMzBhYTQyM2IwOTRjODljM2Q5NzBiNWY3MjE1YTIwMTVhOGM3MDcyM2ZhMGEzZmNjYTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ4NWZiYzU1OWI3N2IzNmY2YTdlNTQ3Y2I0MTFkNjViNDVhZjI5YWM4MjQ4YTU0ZjFjMzg3ZWIxODhiMGEwMTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyZDFjZWI1YzI0YzU2NTNhOTZjMzhjYjdhNGU5ZjMwMDIyNjczMWFjMWM4YjJmZDViZDk2ZWE0ZDQ0ZDRmNmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b369a7bd167c44cb9fe46fab15c041c2",
+      "statement": "SessionSandboxEventProcessor routes validated sandbox events to family handlers (streaming, artifacts, execution, runtime, push), owns cross-family concerns (one clock reading, one message-attribution resolution), and sends the ack for a critical event only after its handler finishes so unacknowledged criticals are safely re-delivered; the execution handler settles execution_complete by projecting message status, releasing the queue, broadcasting, firing notifyComplete, and triggering a snapshot.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-events/execution.handler.ts#L11-L95",
+          "version": "repo-lines-v1:sha256:599670d78d24add9bb6bd125fe1a9d1e52535bd68607f73c144d001a54cdbc4c:eyJzZWxlY3RlZExpbmVDb3VudCI6ODUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1YjgxNWQyOWViNjhhNWU3MjRlNWMxYzg1MTg4NGEzMzk5ZmUyZWRlODIwYTE2YTg4NjMzZTVkMDVkOGQzNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZmZiNzZhN2JlMDU2NTdiZWE5ODM4MTg1MDU4NDE0NDEwYzBhNGRiYTYxYWM1OTcwZDU1MGU5Yjc1YmZmY2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1NTZhNTAyZGZlNzU1NDZlZDVlMTA2NWE1NDVlYzgzYzkxNDQxNDZjYmIyMmQxZGFlM2JmYjdiZTE3Y2IzMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyOTM2MmI3NzU0Njk5MjYzMmNiODJlZjJkOWIyMWY4Zjg0MWJkNWM3ZTM0ZWE2ODMyNjg0NzQ1YzkzZWI1NzIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-events/processor.ts#L1-L60",
+          "version": "repo-lines-v1:sha256:ddd1014af528f4a9f23d3c9739931cb19aa24301422841e0b84dc2e43c46907b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxZDY5M2ZkYjNiODZiOTkxZDQyYWZlYTVmNDVhMDk0MTE1Njc0N2IwYjNmOTRkZGI1Y2JiMGY5ODhlNDRhZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1YjViMTc4MDcwZjYyN2I1Y2RiN2I5NTQwY2M1NmNkZWRjY2MwYjdiYjRiYmRkMjdjZWZmNTg5MGRmNzA4NmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE1ZjdkMGM1MDVjZmY1YmZlMTliNTM3M2YxYTc3MmU3N2Y5ZWY0MzU5NDZmYjE2ZDk3MWYwNTM5NmZhNDE1ZWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e69a3ff73aa04874a9e48d93122325ef",
+      "statement": "Every event is persisted in the DO's SQLite events table with a monotonic timeline_sequence; SessionEventStream.getHistoryPage serves fetch_history pagination over (timestamp, id, sequence) cursors with rate limiting (FETCH_HISTORY_MIN_INTERVAL_MS = 200), giving reconnecting clients replay-since-cursor backfill instead of lost history.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/event-repository.ts#L54-L169",
+          "version": "repo-lines-v1:sha256:45540b84bbfbfa20ce4d9d37df8eda671c2da914c29ca3305dcdb15bf7919543:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxODA3NDI0OWNjMDJlOTkxMDlkNTAxZjg3ODdhOWJiYzgxZmZjNzFkNTE1MjI3ZTU0MThkMDIyODU2NDcyMDJkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlOWE0MzhiYmNkMTE0MmQ1M2E0ZWU3ODk3YTMxMTY0YmIzMWI5Nzc4ZGFmMWEyY2RiNzhkMzYwMGUxYjYwNmQ4IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiZjcyN2U4YjBiMDJhY2UxYmUyZTQ2NGM3OTc2MWMzZDQ0MjU1ZTBiNGJiODcyYmMxMDFmMGVkYWU3YzBkYzg3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIwNWNiYzFiMDU5NTc1ZDdhOGZlODM5MjE0ODU2ZjQ2OTFmYmIyZWNlMTE3NWZiYWMwMGQ1Yzg5YzVmOWVlN2Q3In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/event-stream.ts#L41-L63",
+          "version": "repo-lines-v1:sha256:e96c64fa16e6424ee705edcde0bc6f8c2759b3fa53367f2b847acf5978efb8a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlN2ZlOGI3NGMxYTJiZTFkNzllMjQ0YTdmYTRlZGY5YjRiNTAyNWVkOGZiNzQ5MTU1OThjM2Y3NDE3YjYwNzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3Y2JkNDI2MTA3MjQwMzM1YjExODU5MDg3NDQ0OWZkN2M0MjhiZDczN2Y3YmIzZTRlOTQwZTE4ZTM2OTUwMjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxNjRiNjkxYWJiNDkxMThmNzFmZTBiNGI2ZWJiNzc3ZTJkMjU0NmIzMWE3YTRlZThjOTYzMDU1ZDk3ZDVhM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZiYzdkZGU0MjkyNDJiYTU4NDdiMWJmNGFhYTllMWYyZDU5MGVjMmU0ZGRhZmNlODIzMmI4YTQ3MDFkNTBkODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c01ed79730da41b8ae887f67890a40b1",
+      "statement": "stopExecution fails the processing message, marks it awaiting stop confirmation with a STOP_CONFIRMATION_TIMEOUT_MS = 15-second deadline and schedules the alarm, broadcasts processing_status:false plus a synthetic execution_complete so clients flush buffered tokens, and forwards {type:\"stop\"} to the sandbox; if the sandbox never confirms before the deadline, recoverStopConfirmationTimeout terminates the unresponsive sandbox and resumes the queue, and a stop send failure terminates the sandbox immediately.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L514-L565",
+          "version": "repo-lines-v1:sha256:e0adfa2c6ca4ebff1517b4060ff831e2e9463c123d4c170eb3f16033704b54ab:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlMTJiNjExODk0M2UzMGMwMDY4MzNlNzgxNjMwYTUzYjMyZjQxN2VmNWY5Nzk1YzNmMTJmMzMwODAyNGM1ZDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjMWM3NTg0NmZiMDJiMThiMTRlZDNmOGI2NDcwNmI5YjcyMjc2MjFmYTgwMzI0MmM2OWQxZWNkYWY1YjJjZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-repository.ts#L12-L12",
+          "version": "repo-lines-v1:sha256:c30d31761bce3c8c79ed99d9bfe22fd0e086f809657804b7295694f497ca9c9c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMwZDMxNzYxYmNlM2M4Yzc5ZWQ5OWQ5YmZlMjJmZDBlMDg2ZjgwOTY1NzgwNGI3Mjk1Njk0ZjQ5N2NhOWM5YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMwZDMxNzYxYmNlM2M4Yzc5ZWQ5OWQ5YmZlMjJmZDBlMDg2ZjgwOTY1NzgwNGI3Mjk1Njk0ZjQ5N2NhOWM5YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzU4MTczMzRiOGE4N2I1OTgxZThiOGY3YTkzNTk2ZDQxNjVlMjcxYmE4MDcyYWQyYmMwZjgxOTlhNmQ4YmE5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTlhZDY2ZmU0M2YxOGI0YzQ3NWIxZmE5Mzk0YzMyOGUwZjZiYWFhMWI1ZGQyYjMwYzI3ODdiZWI5NDMxMmViMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0ab0962e66046c98bc221fa0b6ab953",
+      "statement": "Fatal sandbox failures take the same recovery path: handleFatalSandboxFailure terminates the failed sandbox, fails the stuck processing message, and resumes the queue; cancelExecution fails every unfinished message synchronously and sends stop.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L575-L617",
+          "version": "repo-lines-v1:sha256:8a63782ca9b5a93803dd6b06611117652ef0de5a6e3d69d8363af0fe0d162bc8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiZDk3NTQ5MTY2MTM0MGQzMzg0ZmJkZGNkMDYyMjZlNTRiYWMxZjE5YWU4NzM2ODg4NWVhZGQyNGIwOWNmOGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyNGM3MDkxOGEzNjUwNGI4ZjM4NzE1MGFiYjBiZTlkMzA0YWM1NzhkYmFlMWIyM2VlMjNkMWE2ZTIwYTIwMzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmMjc4OTU4MTcyN2VmMmFiNDkwNWI5ZGJhNmE2MDM5NGU1ZGNkZmQzZjhkYjYyOGY5NmY4OGExZTBlMTcwY2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_332cf247a1604e18b3d506a7acfb0a48",
+      "statement": "On execution_complete, CallbackNotificationService.notifyComplete routes automation callbacks to the scheduler's run-completion function, Linear-source callbacks to the LINEAR_BOT binding (HMAC-signed with the destination bot's secret and schema-validated), and other sources to the SLACK_BOT binding for backward compatibility or skips without a callback context; Linear also receives notifyStarted at dispatch time and delivery uses deliverWithRetry with backoff.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-delivery.ts#L1-L40",
+          "version": "repo-lines-v1:sha256:eead875a54e4dc690a9f2cf7f3c5ce423e4a2699181f70c6158e6acd662eb7b2:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwNGVmZTgzMzNmYzhlZTZjYzRhNmY4OWQ5NDRiZTViMThjOWVlOTZhNDU2NmYzMGJmZjkzYWM0NTgyZjVjZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmZTE3Yzc3YjdkMzYxNDMzNjQ2MTFjMjBmZGZlYWYyNzEzZWM2MDU2MDdkMWIyZDUwMGFlOGE5ZTQyNGZmZmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwZGU4NDg0YmE2OTA1OTZjODVlM2IyODI2YTkxMDQ1MzFhYmM0YmZhNzE4YWM5OGViYWE5NTEwMTdkY2ZlYWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L113-L146",
+          "version": "repo-lines-v1:sha256:3a38d6d7d847e92af18bc9a6fc3ac7eed45de348c667c9e8d3a8699e22951540:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkNzk5MDM0N2M4NWY0MGY1YTIwNjU5YmFhYjE1M2JjNmZiYzNjNzQwNjlmYmU1NjQ3Y2RmYmQwMzI4OWQ1ZTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmNzcyYjJiZWU3MGE4ZmE5YTE5OWYwOTZmOWIyZjJlYmZjZTI3ZTVkYjU1MWRkZjI2OWI1ZGYxN2FhODMzYzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1NzViN2I1ZGVmNjRlM2VlZTk0YWFhN2EyNTUxNjlkNGMzYTc2NTZiNzIwYTRlZTQyYjkxMjZlNzU0OWViNTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L176-L240",
+          "version": "repo-lines-v1:sha256:f1751af8880cebb9afd2fffbb4f75517fc4a1ecc67c7d9cf150dafbcf542e067:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhYzVlYTA1MWJmNjA4Y2NjMWI2ZjVjZWMyYTc2MTkxZGNiNGI3ZGYxMmExMzhkYTk3Zjk3NGVmY2Q1ZmY5MDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxYzdiNjJlOTA0YWY2M2I2YjBlNDIzNGRkNmYwZTI4M2I5ZTI4NmU4NTg1MGZjNTk2OGRmODI3YjNlMTk1OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlhNjFlNDJiMGE3MTgwOGU4M2Q3NTM2YTVhMzk5MzJmMjc1YzVmYWY0NWFiNDRiZWVkZGMxNWFmMzZjYWRhNTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L299-L334",
+          "version": "repo-lines-v1:sha256:f734c26b5323ba7699f8fd4f931c1c26e9babef72515ffb948a15a3626b4a949:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxOGIyYzNlNDM5ODQ1Yjk3YjAxMDBjMDc2ZGRkZmYyNzAxMGZmNjcxNWI2YmY0NjFhOTA3Njk1NWRiYzgzY2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwOGViMGZlN2VlOGNiYjU1MDIwZWJmMjIwYTExZWZiYjgxYWQ2NzMwZGYzZmU5OTcwNGQ5YjdhZjBjZDE1ZDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk4NmYzZDJiMzljYWE3Y2Y3Y2Q3NDEwZGRlNzVjMzVlZmZmNmI0ZmY3ZWQ3YzZmNGU3ODE1NGE2NmJmYThlYzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_50633e9e2a8b40eaa0e7fa1390ea8656",
+      "statement": "On bridge disconnect, the DO's disconnect handler ignores closes for replaced sandbox sockets, skips termination when the sandbox status blocks reconnect, and otherwise awaits reconnect and schedules a lifecycle check (snapshot-restore respawn), while the bridge's forwarder recovers its buffered and unacknowledged-critical backlog on the next bind — the session's persisted pending/processing messages live in the DO so restored sandboxes re-attach and queued prompts dispatch.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/disconnect-handler.ts#L38-L65",
+          "version": "repo-lines-v1:sha256:c989ea9787a37129548e6e47eaeb4d73d6a429695dba7dd9bc91a2a5e51633a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlN2UzMGU3ZjAwNmE3YjlkYTM2M2Y1NzYwNDU0YTM5MmFmZWRmNjRiNmYyYTJkNWM1MzYzNWIzODI2YzU3MGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3YjFjODg0ZDlkZGU0ZTM1NDgwZDBjYjQxZDJmYWIwOTQxZTJmNjk2M2Q0OTgyMjA5N2YyNGU1MDdhZmMyZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmMDdhYzRkYTI5OTI5MWRmNDlkOWRlYzM4YjdiYzhmYTVjOWQ2M2RjN2VjYjM2OWFmNjE4NmZkMmRkMTIyY2EifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/event_forwarder.py#L83-L84",
+          "version": "repo-lines-v1:sha256:4df1c95816cf6cfa1d2780bb85d32dae2fb29ae33f0b7c659038e8595fb558d4:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGMxMjIxMjk2YmNlZTBjOTczNzkyN2ZjYzJjNTNjODFmY2NjMjJkYjM4NzMzYmYwMzFlZDA5M2Y5Zjc1NzJhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWE4MDRlOWVlM2Q4MWYyZGNlNmJjZDRiOWZlZjBjMjdjNzM2OTNlMWMyZTY3ZTUzMzFlYzBiNmJlNDIyYWVjOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2VmOWQ3ZTEyODYxOGY0YzA3Mjc1NzU3MGMzODQyMDE4MzY1YWExMzhhMzZmNjRiNjIyZTA4Y2MxOTRiNjhhMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWE3ZjljMDIyNTVjZTczNDMyMTAzMjczZjE1M2NlZjBjMTdlYzJmOTEyMWEzOTdhYzM5ODVkYzY5ZmMwZGY4YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ec18cd235f9342c4b4c4a4a3048d77d8",
+      "statement": "Prompt dispatch with no sandbox connected is a background spawn (snapshot restore can take tens of seconds and the HTTP response must not be held open past bot callers' timeouts) with the message already persisted pending, which is what makes queued prompts, crash recovery, and reconnect dispatch possible.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/event-repository.ts#L54-L112",
+          "version": "repo-lines-v1:sha256:51597a472fb53028ad85b51dfc90daf8c6002edf00c41fadaac6adf76d41aaf8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4MDc0MjQ5Y2MwMmU5OTEwOWQ1MDFmODc4N2E5YmJjODFmZmM3MWQ1MTUyMjdlNTQxOGQwMjI4NTY0NzIwMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2YzE4N2FkMWFkNDg1N2JiYjllY2M5ODEwOWJiMjRlOTAzYmY1ZjdlZGJmMzU1NTU0NjFkNWVjYmRhMjZjMDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmNzI3ZThiMGIwMmFjZTFiZTJlNDY0Yzc5NzYxYzNkNDQyNTVlMGI0YmI4NzJiYzEwMWYwZWRhZTdjMGRjODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1NzdlM2NhMTNmZDFkYTJkNzUzYWUxNWIwN2YzZDcyMDM3Y2JlYjYzNWQ0OWIxNThkNWMzMmI3ODFhN2FmNmQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L396-L426",
+          "version": "repo-lines-v1:sha256:720f80c122d7bec4f03b56be754997723a688a0b9e5e477bc0810f5ebbb7cb28:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhYWE2ZmMyYWNjNzIxMzgyMjkwZGM4YzhhZWJmM2I0MGRhMmUzZjEzNDk5ZjZmZDViNTA1YTFmMzI3Y2ExODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3OTJmODQ3YmIyMWNiMjkyZGQwOWY3ZmE2ZTdjYWM0YThjMTRkOTdkMzg5NjMzYjNkMTUyMGVhMTRiNWIxZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhNDFkNzNjNDUyMmJlYTM5ZmY4MTVlMjRiY2YxMzExODUzMWQ2NzFlYjNjZjUzMTIxODg1ZTExYTFjNDcyNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkNDA2YTNhYmU4MjI0MDEwZDFlNDI5YWNjMGE1MzRmMjc2ZTU4YjlhYThiYjllZDVhMmU1MTRmZmEyMDg0MGUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

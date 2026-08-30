@@ -1,7 +1,8 @@
 {
-  "updatedAt": "2026-08-29T06:58:43.194Z",
+  "updatedAt": "2026-08-30T13:47:44.985Z",
   "command": "init",
-  "model": "glm-5.3-flash",
-  "status": "interrupted",
+  "gitHead": "32470cc2e6985ee55cabdd786e20a17f2998f520",
+  "model": "host-agent/opencode",
+  "status": "complete",
   "language": "en"
 }

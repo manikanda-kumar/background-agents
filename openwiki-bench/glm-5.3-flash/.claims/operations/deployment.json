@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:665f46192130a54586f88eee5de277702a959c76fe1a3d945008eb9e4e996c71",
+  "claims": [
+    {
+      "id": "claim_13e426970e29464c908bea2c69fcc038",
+      "statement": "Open-Inspect is deployed entirely by Terraform from a single production root module: one `terraform apply` creates the Cloudflare control-plane and bot Workers (with KV namespaces, D1 database, R2 media bucket, queues, and Durable Object migrations), the web app (Vercel project or Cloudflare Worker via OpenNext), and the selected sandbox backend (Modal, Daytona, Vercel Sandboxes, OpenComputer, or E2B).",
+      "evidence": [
+        {
+          "resource": "repo://docs/GETTING_STARTED.md#L14-L29",
+          "version": "repo-lines-v1:sha256:c669eac02d8f4586c3ab8ce50da5608d7b89163f2cd9d0b45d745d823ef06bc1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxMzNiYjY0ZDViYjk4NzRlYmY5N2NiZDZiYWM2Mjc0OTU2ZGUyNzNmZDE4Y2Y2OTdmZjBlMDcwMjhkOTI2OTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5NmJjOWNhNGFhYjE0OGRkNzIzZDIwZjI5ZmE0ZTRkOWI3YzEwNzcwZTY0YWExZjIwNzkwYmRjNGJmNWE4YjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEifQ"
+        },
+        {
+          "resource": "repo://terraform/README.md#L1-L47",
+          "version": "repo-lines-v1:sha256:56ef315ce6399e0fa9280ca362066f4e608e1627633522a8c16f9ade68825eda:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzYjA1ZGIyNjRlM2Y4M2Y5OGJkYThhMjc2OWZmYTRkYTY5ZDc2ZTkzOGRjY2YyYzNkYjk5NmQ0Yzg4NWI2MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3YTlhZmFmMWE1MDU3ODQ5NzhmYzI4NGFmZmQyNjkxMjg0ZDRlNWRkYzM3ZDdmMTE1Nzk4MTljNzcyNzlhOWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzNDBhMWFlODY2NmU5NDI4YWEzODMxMTE5YjQzMDhlOGM2ZWI3ODFmNTYxOWFlMTBiYjk3ODA3ZTdmOWJhZWYifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/main.tf#L1-L17",
+          "version": "repo-lines-v1:sha256:11f582cc4be47d2c2acebb0df92d614fcd5045f9657eb316dd28a1af08c578cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjNjYjQyY2I1YzFhZDQ1MjkzMzljYTU3NjI1MzRlMjAzODk1ZDE1MzdiMTkyM2MxMzM5MjQwMDEwNmE5MDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa9916d27ad240b0b9515062983ee0f0",
+      "statement": "Terraform state is stored in Cloudflare R2 through the S3-compatible backend (bucket `open-inspect-terraform-state`, key `production/terraform.tfstate`), initialized with `-backend-config` supplying R2 access keys and the account-specific S3 endpoint; tfvars and state files are never committed.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/README.md#L439-L443",
+          "version": "repo-lines-v1:sha256:6f13c9a57d27f9746f76facef349475b46f50847c587ffb8ce7e41037a29ae0f:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDI5ODNmZDExMTNkM2NhOGI0OGUzOWNkYzJhMTM2Njg4OWRjMDRlMmUwMzBmMmMxZTFhMDBiMjU2MzVjYzBkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzNkNTY0YTViNmU0ZTQ1MTY1M2M1YjgxZjUyZmUzZjA2Y2VhMDFmYzQwYjBiZmEwZDUwMjFiOTljZGJmZjgyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTM5NTkwYTNkYWMxZTFjMjkwNjU5YjFmNjI3YTRiYzcwYmNkYmY4ZjMzY2RmYTU4YmFkNjI3Y2QwODEzYmU2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGFjOWFkOTc1NjNiMzQ4NDllNGE0Yzk0YTIyMjY2MTI1ZTk2OTI1ODViZmQ3NGI4MzVkOTM4ZTFkNjZlMmM5MSJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/backend.tf#L20-L37",
+          "version": "repo-lines-v1:sha256:125e2e38c575c81cb8165b8086e934cebdc91a42684c241e91d5981cdc321566:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwYTNhODNlZmRiODhhMTJkNjQ0Y2JlNjdjNjAxNTZmMjkzZGUwMzNhMjNmZjRhZGQwMjQ0MDM1Y2MyNjEzZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f713792ae2a94a0fb6bcc148eb971865",
+      "statement": "The production root module is split by concern (locals, kv/r2, d1, workers-*, web-*, sandbox provider files, service-auth, checks, moved, variables, outputs, backend, versions) while keeping Terraform addresses stable; `moved.tf` records state moves such as `module.slack_kv` → `module.slack_kv[0]` and `module.web_app` → `module.web_app[0]` so earlier refactors do not force resource recreation.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/main.tf#L1-L17",
+          "version": "repo-lines-v1:sha256:11f582cc4be47d2c2acebb0df92d614fcd5045f9657eb316dd28a1af08c578cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjNjYjQyY2I1YzFhZDQ1MjkzMzljYTU3NjI1MzRlMjAzODk1ZDE1MzdiMTkyM2MxMzM5MjQwMDEwNmE5MDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/moved.tf#L1-L23",
+          "version": "repo-lines-v1:sha256:9411ae90bf87312716128896aeeeda621dcaf4aac8937b6e2b2a136e8ab47a6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e8860cb4ad3541f3a51c8a2d008b0877",
+      "statement": "`locals.tf` centralizes shared derivation: `name_suffix` (the operator-unique `deployment_name` appended to every resource name), one `use_*_backend` flag per `sandbox_provider` value so exactly one provider module activates, the control-plane host/URL and `wss://` WebSocket URL, the web Worker name, custom-domain normalization, and the classifier credential rule (an OpenAI `classification_model` binds `OPENAI_API_KEY` to the bots, otherwise `ANTHROPIC_API_KEY`).",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/locals.tf#L1-L82",
+          "version": "repo-lines-v1:sha256:c774664d6178922b011d1412f3bce46fb0b3c05474a84323400511065726375e:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwYjM4M2IxNTQzYjkxYWRlNzI1MmMwOTZjZjBlNDQ5MDEwODQ5NzczMGVhNmNkMTAyM2FjZjAyZjI3ZmY0ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3a939b08eef74489b9f4603804df560e",
+      "statement": "Plan-time gates in `checks.tf` refuse invalid deployments: a hard error when no admission allowlist is configured (and `unsafe_allow_all_users` is false), a hard error when no complete OAuth sign-in pair is set or the pair's admission rules are incompatible (Google sign-in cannot be admitted by GitHub-specific rules), a hard error when a custom domain is set without `web_platform = \"cloudflare\"` plus a zone ID, and a check block that fails when Vercel assigns a production URL different from the hardcoded `open-inspect-{deployment_name}.vercel.app` pattern (which would silently break browser-auth redirects and bot links).",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/checks.tf#L1-L65",
+          "version": "repo-lines-v1:sha256:05abcf1b95d04b1c08fcaa5a6710ae67498938bee7643f6b382427a6a3d0e6c8:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwNDk1NzVhOGU5MGFjNjhjODI3NTMzMmViNTFkY2JmZWE4YjFkYWFjMzg5M2RiZmUyY2MwMGExZTc3NmU2NGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_279879b81c9042b0aaeed2ab42cc6a40",
+      "statement": "The `cloudflare-worker` module deploys each Worker with Cloudflare's native three-resource pattern — `cloudflare_worker` (observability enabled), `cloudflare_worker_version` (modules, bindings, DO migrations), and `cloudflare_workers_deployment` (100% traffic to the new version) — concatenating KV, service, D1, R2, queue, plain-text, secret-text, and Durable Object bindings into one `bindings` list; custom domains, routes, and cron triggers are separate resources created after the deployment.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/modules/cloudflare-worker/main.tf#L1-L56",
+          "version": "repo-lines-v1:sha256:f4d54deea9107e651e3447370c8b7c42e96a2f41208fa8468583427f0bb0cac9:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzYzBkNGI5ZTYyYjNkM2I5MTA3MDJiMzcxMTA4ZmM0M2JjYzllMTNlNDBkYjFhYjg0ZGJmYWYyZGUyZWM3MjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3M2NkNGYyZWVkZWM5NTJkMTZiNjBmMzAyODhiOTBmMzJjOGExYzkyMjMyZDdhNDViMTA1ODQ0Y2JmZGU5YzcifQ"
+        },
+        {
+          "resource": "repo://terraform/modules/cloudflare-worker/main.tf#L147-L179",
+          "version": "repo-lines-v1:sha256:1df4525a232bae66161a2f912eb5dda35efdc7e7649d62a41d9486b1b4f85458:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzYTYyMTRhMjJmOTUzNzVmOTgzOGMwZTlkYWYzOWVlYWFjNzU5MDMzYzI4ODI2MTY2MmIwYmY5YjExMDUwMjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzOGQzMjk0MWM5YmE0NWMzZWJjZmYwYzkyNmQxZmQwMWFiYjliZDQ4MGNhYjc3Y2ZmY2ZhNGQ1MGU2MjQzMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://terraform/modules/cloudflare-worker/main.tf#L58-L145",
+          "version": "repo-lines-v1:sha256:1ce4dbfca5a093bfa5749af69ffa4173d306176b3b88421362051d19137bf11d:eyJzZWxlY3RlZExpbmVDb3VudCI6ODgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0MGM1ZDNkYzNhNzczMDc5M2M4OTI3OTQ4YjU1OTY2NDIwN2Y3OWJhODc3NzNjMjE1MDA0NDMxOTYyZmQ0ODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNjOWMyMGIyM2NjNTYwNzcyNzMzOGU1NDA3MjIzYTE2ZDcxODljOTg0MWE5NDQ1ZjRmNDk4YjJkZTlmNmQ0ZmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_179c4a6105334bdc8d99245059ece523",
+      "statement": "In the `cloudflare-worker` module, the DO `migrations` block is emitted only when bindings are disabled (initial class creation via `new_sqlite_classes`) or when `deleted_classes` is non-empty; a lifecycle precondition fails the plan if class deletion is attempted while `enable_durable_object_bindings = false`, because that combination would retire the deleted class and simultaneously drop every surviving DO binding (including the control plane's `SESSION`).",
+      "evidence": [
+        {
+          "resource": "repo://terraform/modules/cloudflare-worker/main.tf#L100-L127",
+          "version": "repo-lines-v1:sha256:e4fa5d0b5737db939c2f7753a58f5a71725a3997c1c69b2a3de33ca4964a61c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjQ4Zjc3ZmQ1YTljNjNiM2NkZDBhZjQ5ZGFhMTI5OTIyMGI3NTQxZTg4Y2ExN2VmZTFhNmExMTRiOWZmMmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjZjdkY2Q3MmUxMzgxODE5NmU4ZmZiZjNjOTg0ZWE0MmZmOTEzMDhkYmYyOGUxZjhlM2MyOTI2NzI5NzliNjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2MGRjY2M2YmY4ZTdiYmZjNGY3OGU3YzZiYWE2ZTc4YmNlOWE2NjRjMjVhMmQyYWZjM2JhM2U5OGIyODljZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3ae28ad89fb448f285166989dae9afa5",
+      "statement": "New Durable Object and service bindings require a two-phase initial deployment: with a deployment that carries the class migration not yet existing, bindings cannot be attached, so `enable_durable_object_bindings = false` and `enable_service_bindings = false` are applied first (workers created with migrations, no bindings), then both flags are set back to `true` and applied again to attach the bindings.",
+      "evidence": [
+        {
+          "resource": "repo://docs/GETTING_STARTED.md#L677-L725",
+          "version": "repo-lines-v1:sha256:e6536ea8bf615c0d3e488ae913b5f496e78d538079d91b8ac1089c074f627948:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljNGZhYTViYTgwZDYzOTFhMWZiNDY2YjZkNjFlZmU3YjVhMzhmZDViZTRhMGNiNDI3NWQ4ZmZjNjAxZmQ5YjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiZGJiMzYyNmExZDA0MTQ5OTkxZjkzNDMwYzdlNjUxNzAxODNkYWQxOTg3NDNiY2M0ODYxMjY5OGMzYzlhYTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEifQ"
+        },
+        {
+          "resource": "repo://terraform/README.md#L415-L433",
+          "version": "repo-lines-v1:sha256:19b530251a8ec36607206509e639d4be48861a7d2291375d6c05da989211074a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViNjIxOWMyMWJmYTA3OTI3OTEzYzFlZTk4ZGZmYTQzMzIwMDFmODZmOWZmZWQ4YmY0YTYzMWQwZDcxOGEwNjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViMmQ3N2FjNTE5Nzc1MDI4ZGNjMWExMzk0NjBiZmI3MGFiMDdiZDg0NGFjMmQxMzYzZTE3MGUwNmI5M2ZjNTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlNzc1YWUwMWMyMWVkZDA5ZWJiODgxOGI5YzQ4MzQ1OWYxOTE2MzMyNjI3ODY5MDdiMTQ4ZTlhYzkwODQ2NGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkNzI0NTg0NWM5MGJiMjZiNDc4N2EwY2NjZTE4Yjk1YmRkZjcxZjM2NzczNWE0ZDI3ODNlNTUwMDg5YzE4MWYifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L622-L656",
+          "version": "repo-lines-v1:sha256:566f10c2aecc95c0ca162d26c4f837b25b409202f6a241dc57f46024099974ac:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhNjc4NDYwNmM2NDEzOGRkNzllZmIyMmZkMDdlZGIwZjUzOGEwZGMwMDllOWI4M2Y0MTRiZGVjMGY0NGZkY2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4NTkxZGZhZTgyZjk0YTY3OTc4NTdiYzhhNWJiNDY2N2QzM2IxZTk5YmQyN2E1N2Y2NGVhMmUwYTFmM2ZhNjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiOGFlMmM3NDQ3N2VjYTk4ZWMyZmFlMjYyNDJmYjRiNTk4MzE2ZTVhMTJkMDU5N2U0NTNiMTBlMjUyYTI5YzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e6ba8852a2e4e44bbd6094b78aebf85",
+      "statement": "Retiring a Durable Object class keeps surviving bindings: remove the retired binding, set a new `control_plane_migration_tag` plus `control_plane_migration_old_tag`, list the class in `control_plane_deleted_classes`, and apply with DO bindings enabled — the migration and surviving bindings are emitted together in one version.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/README.md#L429-L437",
+          "version": "repo-lines-v1:sha256:ac353d89835f86f58314bf8acec9134359f03bfde150507fb693d1f032ffc530:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTYwN2M5M2YzMWZjNDYxOGFmMTMxNjdjOWU1MjcxNmY3ZGI5ZGYzMzUyZWUxYWZiYzhhMGRjOTQ4NDRjNTBhOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTgwNjk4YmY3MGQ5YjQ2NmMzNGU1ZjBlZTkwOTA3MGVmY2NhMzcyMDI5MTAxYjJjOWI1MDgzZDI0N2NlMjAwNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmZkOWVhMTJkNGM5ZmRhOWQ0ZjgwM2IyNzc2YjcwZWQwMWFjYTdiODZkODFiMmNhZDY0YzJhYjJjODZlNTBkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjc1MmYwZGZjYTdiNmJhZTU5MDI0YmZlZWE1NTliNjY3YTQ4OWVlMTM1NDM5NDhiZGQ3YWExN2Q0NDNkZTcyOSJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L628-L650",
+          "version": "repo-lines-v1:sha256:dff1a4df083ad1218317dadd10cca6e862d0ef52de359a5b6506524001c98096:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4YWVkMmY5OWRkM2U4NDNjYmYyOTI4MTlkNDc1NzMwOTJmZGY3MzA2MzA3OGQwOWI1NmI5YzE2N2VkZjExZTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlNjhlMmIzOTU1MzU3MzkyNDUxOWVhYzVkYTM0YzExMTdhMzZmNTQ0YmE3YmIxODc4NjhlZWU0NGRlZGE5ZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5NjcyMjM1NzUxMjkxNDE0NjYwMTYxYzE5NmNhNzQ1N2EyOWJlZjljODc2ZjFkODA0ZTBiMTM2MWYwZTFhY2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d239f48061494f4fb55c29ab794ab13d",
+      "statement": "The control-plane Worker binds the `SESSION` Durable Object namespace (class `SessionDO`), the `DB` D1 database, `REPOS_CACHE` KV, the R2 `MEDIA_BUCKET`, the unconditional image-build finalization queue and its dead-letter queue, conditional autofix queue bindings (only when the GitHub bot is enabled), optional service bindings to the Slack and Linear bots, and the full plain-text/secret binding surface assembled from variables; it `depends_on` the D1 migration resource, the bot Workers, and the Modal/Daytona/Vercel/OpenComputer infra modules so provider infrastructure exists before first boot.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L29-L245",
+          "version": "repo-lines-v1:sha256:12cc047beb528217598fca88498757fd333fa70c98ccb014cd956ca1c375d016:eyJzZWxlY3RlZExpbmVDb3VudCI6MjE3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxNThmNDI5NWMyMDlkZTgzN2M5YjY4NGY5M2M1MTU0ZWVhZjYzNWZhYzYxNTZmMzIzODcyMDNmZDMwZmFmOGUyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmYjU4MGU5NjRmODNhNDczZjQzZDQ0Mzg0NjI5NDlkNjhiNTYwMGZkYTc4N2YxNjM3NDVkMDBkZTg5Y2JmMzZhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI1ZmIwOWIwNjA4MTAxODMzYmYzNDhjODU1NjllOGZlZjllMTBmZjhkMWE3YTk5MjQzNWM2YTY1YzQ0NjBkM2M1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_ef1576b3064a4b229fa9ab767c1d0edd",
+      "statement": "The control-plane Worker's cron schedules are a cross-file contract: Terraform declares `* * * * *`, `7,37 * * * *`, and `23 * * * *`, and the Worker's `scheduled()` handler dispatches on the exact cron string matching `IMAGE_BUILD_SCHEDULER_CRON` in `image-builds/scheduler.ts` and `ABANDONED_DRAFT_SWEEP_CRON` in `session/abandoned-draft-sweep.ts` (the per-minute tick runs the scheduler recovery sweep and overdue automations, plus autofix queue health).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scheduler.ts#L22-L22",
+          "version": "repo-lines-v1:sha256:bf444b13a2d1db4170faa2c97149df1a89ff7d02c95f3550a48a91ef084d1cf1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmY0NDRiMTNhMmQxZGI0MTcwZmFhMmM5NzE0OWRmMWE4OWZmN2QwMmM5NWYzNTUwYTQ4YTkxZWYwODRkMWNmMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmY0NDRiMTNhMmQxZGI0MTcwZmFhMmM5NzE0OWRmMWE4OWZmN2QwMmM5NWYzNTUwYTQ4YTkxZWYwODRkMWNmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzRlYmUyOThkNjAzMDA0MThhNDAwNTY1MDg3OTE1ZmI4NzY4NDNkNDNjNmRlNTY5ZjNmNTBiZjhkZjViOWZjZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTM4NTFiMWI3NDRmZTUxNDk3MzhmZWRmYmY2ODhhMDI4OTI3MWU4MDM5MjM5ZDE3NjQyNTUwYWIzNWU2MWNjYiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L49-L80",
+          "version": "repo-lines-v1:sha256:01838d70052a9c2135c521c34c4913425286969693198a4c48b43d63f59edf01:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmNTU4MTJmNmI2ZmE5YmIwMDA3YWU1MWFiN2M3Nzg5NjI2MTZiODUxYTEwMzFjYTA2MjgyYTczZGY4N2I1MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyYTYwMzA1OGJhYTQ5NDczMTI4YzRkMDU5ZDY1Y2RkNjkzYmRmNWQ3MWExOTY2NTJhOTZjZTI4MzUxYWM3MjEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/abandoned-draft-sweep.ts#L76-L78",
+          "version": "repo-lines-v1:sha256:6a0a069e2198b06287389f7f61e66f167495cfd7b3a9aabeacc97f6b447bd7be:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGMwMjgwYWUwZjE5MDdmYmUzNGMxYmQ1MDk1NWY5NmE4OWFkNjQzNmRiZDRiOWQ2MmZkMWYzZjU2NWUxOWZjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQ5NzlhMTU0MTQ5Yzk5MGVmMDllZDExM2I4MWExNjZhMTlhZDI5MzU4ZDJmZDZhNTY0Mjg2OGMwN2E1YmU4NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzIxYzNlYzk5OWQwODI2M2QwNzU4MWQwYzdkY2E3OWNhZmE1MTVjMWJiM2YzZmY1MzYyMDAwNzk5YmVhNWQ4NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjJiNzkzYjRlNjBjMWU5OGU0NzIzZDVjNTA4MzhjZGY0YTcxODcyYjAyNDNjMWFkMjU0NGVlMzYwMDJiNTY5OSJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L228-L230",
+          "version": "repo-lines-v1:sha256:07700233e249e40f3a5229f88c79bcf2fd4a28a2296a5557d85b18d2521f0690:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWE3NmE0YjJhMTM5NjEyYjk4YzM4MmMxNGJmYTE2OGY2ZTc0MDE1ZmRiMDhkYmFiMWY3ZWExMGU5M2Y4OGQxYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmM4NzhkNDc4NTMwNWZjMGNkYjU5NDU4MWMzMWVlMmU5OTY2NWIwNDZkMzM5N2VhZTdlMTQyNTBmNmYxOTE3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjIzMjk2YzFiOGUyY2IzZDcyYjdiYjI5ODA1MDg3NTk0NTdlMmI2MTJkZTVlYjZiNjc0MWFjNjUyMDY0YzExZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGQ1ZmYzZjhlOTU4MzdkYTYyOWY1NTQxYmFiNWZjOTdkYTdlYTEzNDJmZjcwMmU3ZDVkZDcwYTQzNzY1NzMyZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_773d38e5bd64420285b81ed751fd35fe",
+      "statement": "Bot Workers follow the same deployment pattern with per-service wiring: each has its own KV namespace, a `CONTROL_PLANE` service binding, and its own `SERVICE_AUTH_SECRET`; the Slack bot additionally owns a completion-delivery queue consumed by the Slack Worker with a DLQ, while the GitHub bot owns the autofix queue whose consumer is the control-plane Worker (batch size 1, max 4 retries, DLQ) — the bot produces envelopes and the control plane's `queue()` handler processes them.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L82-L89",
+          "version": "repo-lines-v1:sha256:2e320735662cd43928bf1ad72b8eb527d08e75a1a810ea6dee86b3fa556ba5bc:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwODdiMmUwMGY3NTlkNDRkZjQyMzM0MzhmYzRjMWE0YWJkMDUxYTA4MDEzYTI4Zjk0YThlYTlhYjhlOTJmYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjAzNWUwYjU1NTA3ZTA0ZTdmN2E4MDNmZDY1MjY0YWEwYmQ3YzIxOWMwYmQ2NDUwYzEwZWFkMjg0YTA0YWU0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWVlY2E5YWZjZTVmMjAzNWQ5N2NiODA0YTA2MjgyYTRhMTIyMzllYzVhMjRhYmI2YWVmZWU3MDNlNDhiOGM4MiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-github.tf#L33-L103",
+          "version": "repo-lines-v1:sha256:7593763ec0006d1748eae2f63add91101e868a29685c2ff3b1ccf393d34cdd07:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzOWE2MjkyZDA3MDFhNjI2YWI2MjFiM2FiNTZkMWE5NTkwYmU1YTIyMGEwOGJiZjgxMDIwYWI4ODE2NmJmMDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-slack.tf#L35-L108",
+          "version": "repo-lines-v1:sha256:b593939ee8c56d82d23b9b31d3e84e41f3a650d0588d594755b2498b1515cc8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0OTExNDM1NDY1OWU5YjZhYmU2NzM5YjY1MGE2Y2RhNjczNDYyNjU1OTMzYTM5OTQ1Y2M5MWEzNTNlOGNlZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b913e43925e2463486b7b3d22f17ca12",
+      "statement": "`terraform/environments/production/d1.tf` creates the D1 database and a `null_resource.d1_migrations` whose trigger is the SHA-256 over the sorted per-file hashes of `terraform/d1/migrations/*.sql`; the provisioner runs `bash scripts/d1-migrate.sh <database-name> terraform/d1/migrations` with `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` in the environment, and the control-plane Worker `depends_on` this resource so migrations always land before a Worker that expects the new schema.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/d1.tf#L5-L34",
+          "version": "repo-lines-v1:sha256:69c9e13c2fef579f27e1f74682140576469b0006ff626ea45ea08bf1fa2a43d5:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmYTFjMzY1YjgwYjI1ZjlkNTNjNjhmM2ZmODE2ZGU4OTA3ZWUzZTQ0MmVkNDE3YzdhOWVmYmFlNWMzMTk2NmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxN2UwMjkxZmY5MTkxMGQxMjE4ZWU1M2Q0MjMwMjE0ODUzNzBlOGY2YTJkNmM3ODgxZmJiMzU4N2MzZmQzMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L235-L244",
+          "version": "repo-lines-v1:sha256:01ca620d6ddfc1007bd8f676f87e8a70c7aab76b28e509d147bb35884e3d82c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMmY0OTU5MzI1MzVmMTkwZTNkOGRhMjMyN2FhYjRkNTg5ZWZlZDVlY2E1MzBhNzUyNmVjN2JiOWEwMzAzNmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjQ4Zjc3ZmQ1YTljNjNiM2NkZDBhZjQ5ZGFhMTI5OTIyMGI3NTQxZTg4Y2ExN2VmZTFhNmExMTRiOWZmMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0ZDUyMTFjNTE2YmM4MDgzMjM0Y2M3ZDQ0Mjc5MjJmMjY5MWY1Yzc1MjFhODRhOTZjZGM1OTg4M2VkZjcyZjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0OTU5OGZjNWRjMmRlNGY5MDdjMDNmZTJiMWM4MWJjNWYyMDdjYjAyZmYzMDhkYjI5YWM1MzRmZDE1YzlkZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc0c5cc46d7a46cbbf7dea2d5d5e4ec7",
+      "statement": "`scripts/d1-migrate.sh` is the operational migration helper with four invariants: every migration file must have a leading numeric prefix (unprefixed files abort), duplicate prefixes abort (the ledger is keyed by the numeric prefix, so colliding PRs would otherwise silently skip a migration forever), a version already recorded under a different filename is an error demanding renumbering (a prefix is only unique within this repository), and each pending migration plus its ledger `INSERT` is submitted as one atomic `wrangler d1 execute --file` call so a failed migration rolls back and a committed migration always has its ledger row.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/d1-migrate.sh#L1-L105",
+          "version": "repo-lines-v1:sha256:b321de22809d272d4fd992e644d9613129b0fd8f6a5b95a5ff3145c145bdc9c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxZDk1ZmMwNGE4MGM5NTJmNDljZTQxODg2MjdjNTNiMGZiZThjNDQwNDFiOTUyZDU5MmFjZDFkZTk5ODYxNDY2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MSwiZm9sbG93aW5nQ29udGV4dEhhc2giOiIzYWIxZDJmNGMwMmQ4NDgxMWY1OTAzNDJlNWYyMjYyYTU3NzU1YTI3YjI2NDA2MGRiNDAwOGVjZTllZTkwYjZjIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_de6fb0230aae4f4b9901b1541b2c54f0",
+      "statement": "Control-plane integration tests apply the same `terraform/d1/migrations/` directory automatically via `test/integration/apply-migrations.ts`, making the migration directory the shared source of truth for production schema and tests.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L90-L99",
+          "version": "repo-lines-v1:sha256:9a630857bf20635674cd6769ec5dbd722f873973298fcfc1da7d284937c5be0d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjZWRiNDQyNmYyMWVmODJlZGM4ZWIxODY4NTBlYzg0MDY3MzU5ZjgwYzQzODQyMTk4Njk2MTU2OWM2YjIwMTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiOGU5NTA3YTZmODQ3YjhlMTQ3M2E3YTEzZDA5MTE1M2YyM2Y4OTJlZjVmMGViZGU0MDc4MTBlNWY4Mjk3MjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5MGI5MGEwMTFlNDg3NDg2MTdiMzUxZTJlZGU2NTM0NmJiNTZmNTI0YTI4MGM1MTllZTQ5NTdlOTdiYTAxMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMxZmM4NTIxYzMyY2RiZTkzNTAxNjZlZWRhYjUzOGQ2MDEzZTMwZTM4NjNkMzBiNTI5ODk4ODQ3ZDFjY2Q2NjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_032c5f4971074cabb11de3c2fa0076c6",
+      "statement": "`service-auth.tf` generates deployment secrets in Terraform state rather than requiring operator variables: one 64-character `random_password` per first-party service (web, slack_bot, github_bot, linear_bot), a dedicated `IMAGE_CALLBACK_TOKEN_PEPPER`, and a 32-byte `provider_accounts_encryption_key` that operators may override with an existing key during upgrades but which is otherwise generated and persisted — the remote Terraform state is its recovery source and must be backed up.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/README.md#L167-L175",
+          "version": "repo-lines-v1:sha256:4316a0c733a71e67391129b5d09a82daa02559c175a25c80cb01d8ebe76ccce5:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYThhOGM3YzQwOGI2NDFiZWM3NzRkMmYxNzQ2YmE3YWFkNTJhNzg3ODQ3MDk3YTk4NDc1MWZmNTNmMDBhNTJhOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJlODM0NjY1Y2Q2MmM4ZjdlNzdjYzIyNTBjNzkxNzkzNTk4MGFhN2ExYjM1YTg2YmQxYTQ2NDU4MGNiNzIwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2FiNTNiYWE2YWFiYWJkZGZhODdmYTY0MTg1Y2IzOGVkZjZiZTJjZWYxM2RkZTY3ZjI0MWVjOWIwNDBlNzVmNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGMwN2Q2YTNjMjFiYzY1YTU4ODM3YTk5YmI2ZGVlNDZjNWRkYzQwMjNkZmRhZDU4ZTVmMjM5YzgxNDEwN2Y5OSJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/service-auth.tf#L1-L44",
+          "version": "repo-lines-v1:sha256:f84b5941a561f3d0c51eb05e255713d16a3ae4bdefb73b42a2f602e336e84edb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiZjU4MjVmNTU4ZmMwYTJhZjJhMzRlODNmYWIwZTE1NDM5MDNmMzcxM2U5ZGM3ZjU2MTBhYzYzZDFhZWJmNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0451238c2631450a8dcc4fc914250397",
+      "statement": "The per-service sig1 signing model is asymmetric: the control plane binds all four keys as `SERVICE_AUTH_SECRET_<SERVICE>` (it must verify every caller), while each sender binds only its own key as `SERVICE_AUTH_SECRET`, since a sender signs as itself.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/service-auth.tf#L1-L8",
+          "version": "repo-lines-v1:sha256:01055f9bd9dacba601323e9db555827bb7dcfc0b71ed58caf90d958b8a95ebef:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmJmNTgyNWY1NThmYzBhMmFmMmEzNGU4M2ZhYjBlMTU0MzkwM2YzNzEzZTlkYzdmNTYxMGFjNjNkMWFlYmY1MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDdkNWEzYjllZmNhOWZmMDU0MjI4OTBhNGEzYmFlOTdhZjA5OTE2MTIyYzJhN2M3NjNiY2RhODc1MmM0MjdmZiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L164-L184",
+          "version": "repo-lines-v1:sha256:f405d69aed3cf5a36f8f51061773dfc3c27acd120a4df8b27bc2c548c83c55b6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5MzAzZDQ1ZDZkYTIxYmVjMWM3M2M5ZTMzMTZjNzljNTgwYmFmMjk3ZjE1ZTUxZThhYjg2ZGNhMDc1YzEzNWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2M2Q1MzVjZTM4MDYzZDZiNGM1MWQ4YzM4NmE3ZjliM2U1ODBhMTRhMTBjMDdiMTk4ZGZhZjE5YzkzYTNiZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiNDBiYzIyOGRjZjIzNjY4NjBiYTJiOGY4OTJkMjU5Y2NhNjgxOTU3MjZhZDdlMmI3NDVlNjRiMmUyMWYzNWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiMGI2OTZiMDgwYWNiZjMwYzBhOWEwYTg2MjEyNThmMjMxMTI4YmIyZjllMzZlODM3ZjIzYWMzNmQ4OTFjMTgifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-slack.tf#L76-L83",
+          "version": "repo-lines-v1:sha256:fa4c3895facc87c8c05fbd3386b5596af9ab7ef497c5eee071f72352eea59dad:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDkzMDNkNDVkNmRhMjFiZWMxYzczYzllMzMxNmM3OWM1ODBiYWYyOTdmMTVlNTFlOGFiODZkY2EwNzVjMTM1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTYyNjc5MzVmYzYzMzQ2NWQ4NDhiNDBhNGVkNjk2N2U3YjdhMzIzZjgxY2Q1M2MxMTBhZTIxMDI5Njg3YWExMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjdkMzhmZWEzZTFiNTAxODJjMTdmZDU4NzE1OWQ2YjQwMTA3YTk4ZGM1MTY2M2QwZjE4NWEyMzA1NzQzZTk4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDJmOTY5ZjAyOGIwYWE4YWNiZGUwNzEyN2VlZGViNjEzNTUyY2I0YjM0YzRkMTIzZGE2ODI2MGQ5MGYyM2M2NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_62d57fc66aa247ce8c2c807e1d0fffa8",
+      "statement": "`scripts/wrangler-secrets.sh` is the operational helper that uploads the web app's `SERVICE_AUTH_SECRET` via `npx wrangler secret put` and deletes the retired web-auth secrets (`GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_SECRET`, `NEXTAUTH_SECRET`) if still present; `web-cloudflare.tf` runs it from a `null_resource` triggered by a hash of the secret value and `depends_on` the deploy resource, because `wrangler secret put` requires the Worker to exist.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/wrangler-secrets.sh#L1-L19",
+          "version": "repo-lines-v1:sha256:6eebd8010dac2559ce09469b1b1ad99d911e3f3ac2d00efe7d3aacf4603e3fd5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkOTVmYzA0YTgwYzk1MmY0OWNlNDE4ODYyN2M1M2IwZmJlOGM0NDA0MWI5NTJkNTkyYWNkMWRlOTk4NjE0NjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmNGE5ZWEwYjllZmY1MzhhZTA1MmNjOTkwNzlhNzNmZjVhMzQ1N2YzODJkOWJhMmI4YmVhZWViMGQ2NDM5YmMifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L27-L51",
+          "version": "repo-lines-v1:sha256:8fdd83ef474956677ce000a9d76f65bbdf86a5f5c720e04bd217535105939694:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiNmJhNjRjZjk0YTEzY2IzZGU5ZTBlYzhmYWNhNTdmN2M4NzQxNTk4YWU4MmMxYmIwNGZkODJhYmM0MmI5YmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwYzFhNzVhNzMwZDUyMWYwMmFiYmU1NTMxMTM1MzFkZTA2ZGJiNmU0MWI5MTIzYWRmNzAzZDI3OThiN2Q0MzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_889fc17d785e4ff5bd3ebc39e735f0c6",
+      "statement": "`web_platform` (validated to `vercel` or `cloudflare`) selects between mutually exclusive web resource sets: with `vercel` (default) Terraform creates the Vercel project and its environment variables but deploys no code (no `git_repository`; monorepo install/build commands configured), while with `cloudflare` Terraform builds the Next.js app with OpenNext, generates `wrangler.production.toml`, deploys with `wrangler`, and uploads secrets — all inside `terraform apply`.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L137-L140",
+          "version": "repo-lines-v1:sha256:0200fde42cd33532e4256754a10ea4728f37dcc2c4d382551ba5d88e291c63ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmE0Y2JlMmZmYmE4MDVlODUzYjY4MzU1ZWE5ZTExZGU0NTU2NTc4OWU2YTI3NjhmOTczOGU2YzAzNGM2NGRkZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVjN2JjNWI0MGYzYzc4ZjIzNjI2MWMwMGZkMTA0NjVmZDFiYzI4YzkyMWU2ZTFiMDlkYzI2NjVkNjFkMjBhNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjk0N2U1YTJjNTdjZjg5NjlmNjM0NjM2ZTY0MGEyNDY5NDg5N2Q2MGE0YWY0MWMzODRlMTc0YTY4Y2YyNWUyNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWY5MWRiMTc1YTJjNzgzMjNhYmJiZTdmMTcyMjI2ZWM0ZmZlODIxNzYwYzc3YWRlMmE4ZWI4NTg0MzcyY2MwNiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L594-L603",
+          "version": "repo-lines-v1:sha256:1da162891dd39e17366afc9ba651b8b23a8b38ed9357f1c4c7b8114bf0ed527f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkYmIyOWY0YTQ3ZTBkY2I4MTU4YTA3Njc2N2E1OWM5OGNiZmQ5NDg4MzJiNjliYWI1OGVhY2RlMzA1YWQ0OTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNkMzAzOGY2YmU0NDNhOWIzMDIwYzNiMjhmYmVjM2Y5YjE1NTkyZDkwODEzOTlhNjBjOTM2OGI0MjMyMTUwODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRlNTE3YTFmODU2ZmMxYmE4MmUxMjQwMWE1OTY1NTFlYmQ3YTUyYzcxOGNlODU2ZmU3ZGViMzNiMGUxZTgyMTgifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L1-L107",
+          "version": "repo-lines-v1:sha256:5d27352e4fd9c13495c23c9d4a4c2661147f53ca619b72d288d0e0371d053a21:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI2NjkzYmY3NzBjNDAxYTVjM2JlNzM0ZTFlMTk4ODI4ODJiMzI0YTY5YTRkMTM3ZjE5Y2E5YzI5YjU2Yjg0ZDdhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIwYTU4NjUxYzk4OGM5OTExMmEwMGM1YmI2ZDI4ZDdkMmYwY2ExYjFlMDViNDk2OGYxN2U1ZDBmNWVjYTQ0OGE3In0"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-vercel.tf#L1-L59",
+          "version": "repo-lines-v1:sha256:5fa425f51892be4915c9b12054dcce283a3ba2d6f0729a499eb18b499aed23bb:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjQ4Zjc3ZmQ1YTljNjNiM2NkZDBhZjQ5ZGFhMTI5OTIyMGI3NTQxZTg4Y2ExN2VmZTFhNmExMTRiOWZmMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f6b36c9521e941a2918cc127b5e54995",
+      "statement": "The Cloudflare web path sets `NEXT_PUBLIC_WS_URL`, `NEXT_PUBLIC_SANDBOX_PROVIDER`, `NEXT_PUBLIC_APP_NAME`, and `NEXT_PUBLIC_APP_ICON_URL` in the build provisioner environment because Next.js inlines `NEXT_PUBLIC_*` variables into the client bundle at build time; the generated `wrangler.production.toml` carries the worker name `open-inspect-web-<deployment_name>`, the `.open-next/worker.js` entrypoint, an `ASSETS` binding, vars, and the `CONTROL_PLANE_WORKER` service binding, and sets `workers_dev = false` when a custom domain is configured so the app has a single canonical browser origin.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L137-L140",
+          "version": "repo-lines-v1:sha256:0200fde42cd33532e4256754a10ea4728f37dcc2c4d382551ba5d88e291c63ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmE0Y2JlMmZmYmE4MDVlODUzYjY4MzU1ZWE5ZTExZGU0NTU2NTc4OWU2YTI3NjhmOTczOGU2YzAzNGM2NGRkZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVjN2JjNWI0MGYzYzc4ZjIzNjI2MWMwMGZkMTA0NjVmZDFiYzI4YzkyMWU2ZTFiMDlkYzI2NjVkNjFkMjBhNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjk0N2U1YTJjNTdjZjg5NjlmNjM0NjM2ZTY0MGEyNDY5NDg5N2Q2MGE0YWY0MWMzODRlMTc0YTY4Y2YyNWUyNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWY5MWRiMTc1YTJjNzgzMjNhYmJiZTdmMTcyMjI2ZWM0ZmZlODIxNzYwYzc3YWRlMmE4ZWI4NTg0MzcyY2MwNiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L5-L25",
+          "version": "repo-lines-v1:sha256:b4e68869fcc03ff5e3423e57b481428ebcf9a74681ef8429e8b636f967ecbe73:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNTk5Y2RmNjIyMjY4YWY4Yjc3OTgzOTgxYWE3MGU0Zjg4M2E4MzVkZThjOGM2YjRkOWIyMjhhMTJmNTJiODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlNTFkNzgyMjAzMjQwNzhkMWU5YjllYjc4NDBhM2M2ZmRkYTE3Yzk4ZDRjMTJjODg2ZTM0NGQ0YmRlYTc0MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjOGFhMzFmZTRlYjdlZmVjZjc1NTQxZGMxMTg4OWJiODAzOThlZjA0NjIyZTY5NjJhODM3MWE1NmI0ZjRiMDMifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L53-L120",
+          "version": "repo-lines-v1:sha256:fe760c34f699aa08e03928292b8a69e1a34b5b404dc4c8a9cdce988cb68f06a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzNTU5NzliNmVkYzM1M2JjNWE5OTg1MTczNWJiM2E0N2U3M2UyNjM5NzNjNzFiMjFlYzBjMWUwZWViZGY5ZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4YjJmYWE4M2Y1ZDcwNzQ4ZTgzZmYxZjIxNTc2NjRjYjE3Y2Y0MTBiNDAwMGJkNzMyYzBlODgxZmE2ZTM3N2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6b11d949646549bfb89cb3b4c4c495cb",
+      "statement": "Vercel credentials are not required for Cloudflare-platform deployments: the Vercel Terraform provider validates the API token on init even when no Vercel resources are created, so `vercel_api_token`/`vercel_team_id` carry dummy defaults (`000000000000000000000000`/`unused`) and must never be set to empty strings.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L42-L53",
+          "version": "repo-lines-v1:sha256:29e51f54622219497a0b3e3dad05823f1cca0ee39df05d2c0f8fa0b5af587b19:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4MGNmZmNiOTA2MjI1Nzg3MzBlNDI5Y2M0ZWQ1Mzc3YTg3YWFlNThjNzQxOWQ4NWMxZTQ4ZjU5NjUwY2ZlN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0NDUxOTBmMzdkOTcxZmZkY2E1ZTdlYTU4YWU2MDRmYzZmMjhhZjg0MmZiOTgwM2UyYTA2NjE5OWU5NTNmOGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmYWQ0YmYzYWIxOTA2YzgzMGY4YjAyNWMxMDI1NWM0NzdjZjQ1YTdjOTliMmU0MmY0NzNmZjZjMjgwZDZkOGMifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/versions.tf#L41-L48",
+          "version": "repo-lines-v1:sha256:051d56f0ea1b0142c265f13d3ca0c1b76d4c262838f7528a78dac75e1e5679da:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzljZGY5NDI5YmM5MjkwNjI2Yzk0NjgwMzM4ODg2YWJiZmYzZDEwMjllYTY3NTk5MGNlMWQ0ZjczMTgzNzkwZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjE5MmZjNmYyYzIwNDlkNzhhNGVjMDIwMTk5M2EyN2UxOTY4MDY0MzQzOTE5MzU5MDVhNTEyZTc0OGY2Mzg0YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e29d8ff4dfcb4ded8a11bf3b5b1bb490",
+      "statement": "Vercel environment variables in `web-vercel.tf` must be appended at the end of the list to keep count indices stable and avoid Vercel `ENV_CONFLICT` replacement races.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/web-vercel.tf#L57-L59",
+          "version": "repo-lines-v1:sha256:60d5afa2c28100bbd6168b605b83c30173124aae9d41bcfd8fc292617c1aad44:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzgxYTc1YmJiYTY0M2E3YTBlYmM4OWNhNTMyNmJjYWY1N2M1Y2IxZWVkN2Y5N2M5YmU4NzljNWYyNDc2MzVkYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzA2NDhmNzdmZDVhOWM2M2IzY2RkMGFmNDlkYWExMjk5MjIwYjc1NDFlODhjYTE3ZWZlMWE2YTExNGI5ZmYyYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODkzZTUzODg5YjEyMzQ3NzE3Yjg0MGEwZmQ0OWNiNzYzMWZiNzEyZDYxMmQ2M2U3NWE4NTJlOGRmZmYzYjU4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_70cc07a1b0de4b63be48712d32f528ad",
+      "statement": "Because Modal has no Terraform provider, the `modal-app` module uses `null_resource` with `local-exec`: an `external` source hash over `packages/modal-infra/src`, `packages/sandbox-runtime/src`, `deploy.py`, `pyproject.toml`, `uv.lock`, and the deploy script drives change detection; the module first creates Modal secrets (`llm-api-keys`, `github-app`, `internal-api` including `MODAL_API_SECRET` and `ALLOWED_CONTROL_PLANE_HOSTS`) via `create-secrets.sh` with `--force`, then deploys via `deploy.sh`, and the control-plane Worker `depends_on` the module.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/README.md#L445-L451",
+          "version": "repo-lines-v1:sha256:6df9b4338016f3e2116136b66647509b26f5b30cb2b1afa6948bb0dc4089aa48:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmRjYWYwY2RmNTU2YWM4ZDQxMzBkNDdjOGM3NzA3MmExYWM0MjFmYjRmMDk2ZTQwNzFhOWZkOGViNmIxM2JiZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmY1OGZkMDBkNzk4NGZmNzc4ZWE3ODk4YTk0OTYyYTRhNGE4N2RlZDRmY2RhZmRiMWIyZWFhMGQ0NjJhZmRlZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWU5OGQ5NWY1NzI0OGE3NmNmNzNhYWZhYTFmZTYzYzUyZTE5Mjg3YWY0MjdjNjI2NTIxM2NiMDQ0NzZmODFjYiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/modal.tf#L5-L62",
+          "version": "repo-lines-v1:sha256:4aae45c8ee03166bb05e83a73c1de4145270d04d53e4363e5b3ac99f2773d295:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZWRlZWQ5NzgwNDMwOTE2ZWUxNjFhMjY3ZDI2Njk4ZmZlYWZmY2MyMDI3YjI2ZDU1YzI1NmU5ZTk1YjNhMzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM0OTc0YjQzNGI3Yjg3ODE0ZWE2ZTc1MWI5MDdhNGU5NWY3MjJiMzYxNDM0ZjA0ZmY3NzQxNzQ0MGE3NDZhZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/modules/modal-app/main.tf#L12-L65",
+          "version": "repo-lines-v1:sha256:2bef130adbdf4fffee867258665a9885865444f37bf00043be28d32111570cae:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMjFmZDMzMzkxZTFiZjcxODE2Njg3NGI2OTlhMzA4ZDA1YmYwMjVlYjk4YjYzY2Q1NGIzYTg5MGUzMDZkMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4MjhkNjc4N2RlZjAxOWI3YmVlYzlmYjJjNmRmYzIzZGVlZjM1ZDBjYjAyOGIwMTViNmUwYjcwZDQ3NTA3NGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzNTZkM2RjN2JkNWEwNTA5OWFhMzAzNDRjZDMyZThjMTkzNzI5Yjg1MGQwN2I3Y2I0MWI4YWM4MWNjNzI3YTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_81f5df8e13524d25a81296b5c74eea8b",
+      "statement": "The Modal deploy script runs `uv sync --frozen`, then — for the `deploy` or `src` module forms — eagerly runs `uv run python deploy.py --build-sandbox-image` so the image used by dynamic sandboxes exists before endpoints that create them are published, and finally `uv run modal deploy deploy.py` (or `uv run modal deploy -m src`); deploying `src/app.py` directly is prohibited because it does not import the function modules.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L132-L135",
+          "version": "repo-lines-v1:sha256:6e763c3b126eb96668fbf343a1b988f771cc6c4ed1557a9af4105f81288d39a9:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzlhNTg1NTcyZWYyMjVjZjg3ZGQxNzQ0M2I2ODU0YTI2ZTI4NzA5N2Q5Njk2MGMxOTAxYWRhMzVlZmQ0ZDQ1NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2IxYzdiNjg4ZDI1NGNlN2ZmMDcxOGNmZTc3NjY1MDE3YzgzZWM2ZDkyNGIzZmNiNTkzOTc2YzhmODk3M2ZiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWYzZDgwZjI1NjAwOGYyYWNhZWZmOThjNDY1YjIyMzA3MTdjYjU0ZWFmYzcwODQ5NGE0Zjc3YjRiY2RlY2Q2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmIyMGFjNjFlMDQ0N2Y2ZDk3NzFkMTNjMDNmYmJlMGIwYjc2MGFkMWM3MjQyMDYzMTFmNDg2ZmIzYWU2ODA3MiJ9"
+        },
+        {
+          "resource": "repo://packages/modal-infra/deploy.py#L1-L46",
+          "version": "repo-lines-v1:sha256:f7e079720120b8d2a479515d62d57c7b6d2d1862f7f3c5f0600f2e8da3f50e72:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2ODJjYmRiNGM4YjA3NTE4YmY0ODZjNTg5OTBmYzM5MTc4M2FhMjBhOTE2YmZiMjdhZDIxMWViMWQ1YzM2NDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlOTkyNzM5ZWU4MTQ4NjE5MDBiMmI1NWU4NDRmOGNhM2QwNjY2MjkyMjdlNTIyMDRhOGE1MTc3OTYzNjgxZGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/modules/modal-app/scripts/deploy.sh#L49-L96",
+          "version": "repo-lines-v1:sha256:53a413e3c78a7edf82884e741b382cde0be2120657c301da0fd8da531f8b8410:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNzE0NjdiNWIxMmNlYmI0NzVmNTM3OGI0ZGJiYTk4ZThhNjQ0NzI0YTFiNDZjMzE1NDE3ZmZkMjE2YmUxNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxZTIyOWMxOWNlYTc1ZTI0NmRkYjQ4OTk3MzI4M2NmNGNhNmIzYWFlY2Y3ZmRiNzE5NWU2MDgyY2ZjMzg2ZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1YzQyZmU3MjIwZDJkNThhZTUxNmE0YzU2ZDk1ZTIzNTcwZWQ0NWQyYTEzM2M5ZTA3ZmJhNzNkOGE5Y2U0NTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e0f07c2b39c743fda9d1000dd2f5224c",
+      "statement": "Modal caches image layers, so `CACHE_BUSTER` in `packages/modal-infra/src/images/base.py` is embedded in a no-op echo layer and bumping it (keeping it equal to `RUNTIME_VERSION`, a relation pinned by a test) forces Modal to invalidate that layer and rebuild; the numeric generation is one sequence shared by every image-build provider and `MIN_REBUILD_RUNTIME_VERSION` gates which prebuilt images get rebuilt onto it, so all provider labels must be bumped together.",
+      "evidence": [
+        {
+          "resource": "repo://packages/modal-infra/src/images/base.py#L135-L139",
+          "version": "repo-lines-v1:sha256:85c5dfc32e14297f3bec14b6be61380e75dc6037f0e592751804ebfa43f7ca1a:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NTI4MTkxYjBhNWNlOGYwNGJhYzBiN2UwNWY4MmIwYzcwYzZmNTEzMjZkYzEwMjU0MmVjMjRhNWE2YjQxMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGE4OTgxNTc4ZjRmODc4YmUxMzRjN2YwODgzOTE4NDRlNWFmMzZjN2ZiN2U2MGIyNWZhYmYzZDMxZmU2ODk0OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWRjYzM2OWM5MDk2YzQ2NjRiNTQ0OTVkMzY5NTVhN2IwNWM3N2RlOWFjOThhODU0ODI3Zjk3OGUwOGZmYWRlMSJ9"
+        },
+        {
+          "resource": "repo://packages/modal-infra/src/images/base.py#L47-L54",
+          "version": "repo-lines-v1:sha256:f793871b92b50d4ba9bbcdace0c9764556b76eb584deef023e176aba4d7a144a:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGE4ZTBkMzU3OTJhYjU0MDM2NmVlNmE2YzkyZmMwY2ZjZTg5NTE4NWRlMmViN2I1NTBhNDI2NzJhODZmYjY2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2E0NjNkZmYwNDMyNjFkZDY0ZmEzNjA1NDJiZTJkMjYwYTcxOTliMzIzNDY2ZTEwMjQ5ZDVmODYyMmYxMjAyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODg5ODE5NDg1OWEwZDJlNDk0MTJkNGRiMWMxYWNmNmQzODBiMmI1YTU0MWI0NWZmN2M1NTMyY2U2YmQ2NmNiYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjFjZDA0N2FhNjNhMWUwMzUwZTY5MzdmYzRjNjY4OWI2MThjNDQyNTVkYTliMDkyZGQ0MGIzY2ZkYTg1YjZlMCJ9"
+        },
+        {
+          "resource": "repo://packages/modal-infra/tests/test_runtime_manifest.py#L1-L7",
+          "version": "repo-lines-v1:sha256:2bb9e72b770a0e53e721b128a5f943fc716f3bb2603b57c9c52be7590f2fb507:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmI3NThmZDk4MDBkMzI1ODg1MjRhMmI5NDg4MTNiMWRiNGYwZTVlMTZiZmI2ZmJiNzIxMDU4MTc0ZGMxMDE4YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ZjZTY0MjI2NmJiY2ExZWI2ZDNjZGE3MTQzNTYwMGYyN2NhZjllMDU3MWE3MWQzYjNiOTYwZGI1MjkyMWYxOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjg5ZDhjZWM0Yzg2ZTc2ZTQ2MjI5YjdkMGEzMzZmODM1MmE2NzliYWViMmU2NjgzZDdlNTY0NmY1YjFlZGRhNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8cf8bb2ed2904b2abd5c412cc5e8c0b8",
+      "statement": "The Daytona, Vercel Sandboxes, and OpenComputer sandbox modules are each hash-triggered `null_resource` builds: Daytona rebuilds its named base snapshot via the REST API from `daytona-infra` + `sandbox-runtime` sources; Vercel builds a managed immutable base snapshot named `openinspect-base-<hash-prefix>` (a manual `vercel_base_snapshot_id` skips the managed build); OpenComputer builds the managed runtime template (hashing the runtime, `build-template.ts`, and dependency manifests per its include/exclude policy) unless `opencomputer_template` pins an existing template.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/daytona.tf#L5-L36",
+          "version": "repo-lines-v1:sha256:b2d54b0c4290e687a4d9f6783737c2fad66cae24b3fa341cf051606358ea0c08:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NGQ5MjQ5YTJmMjkwMzE3OWNiZGY0MjQ0MzMwYzQ1NDA4ZWM2ZDVjMWJmZWQyMmIyZjA5YjY1ODdhZjgyNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJhMzQ3ODA1ZTVlMGExMGQ3NTgzYWM4NjYwNzUzN2FhMTg2YTQwZjg0YWRiZGJmYTNjZTVlOWMxMWYxZjYzNjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/opencomputer.tf#L5-L49",
+          "version": "repo-lines-v1:sha256:2736ab5db902e230adb5389ac93cfc8c44fd1246baa9f20bd80f0840aec34681:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNDNjYTEzZGJkZGE4YzkxYjJhY2VmNTZhMGEwNTU4NDAzZWY2ZWIwZTUyN2NkZDQyZWQxZGFhNTQxMTQ0ZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI1YTljYTMzZTc5MDc5ZTJmZTgxYjZiYmRkMmUzODVkYzYwNTkzM2MzYTI4OWJiMTE3OWMzYTljYTZjNDM0OGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/vercel.tf#L5-L46",
+          "version": "repo-lines-v1:sha256:d0499b73d2d67570339f4213e5500ae4a02bdea78d8df4010172b12d6c704724:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhZGYwNjAyZjBjZjdiODY5NzNlYjBmOThmNTczMDE0NTUyMWJkZGMwZWJlODhhOWRhZTllZmZkMWI4MTcwNTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxZDI2YzQxOTY3MGU2MGE3NDQ5OGQyNjQzZmZiOTkzNzQ2NzhhYjk0YWZiOWVmODFiNWRiMDRhOGRkYTUwZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/modules/vercel-sandbox-infra/main.tf#L5-L37",
+          "version": "repo-lines-v1:sha256:e99e93d3789c8accd5d341e80db21fe7ded8ca8ebe2a22490dcee21b40773453:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwYjM4M2IxNTQzYjkxYWRlNzI1MmMwOTZjZjBlNDQ5MDEwODQ5NzczMGVhNmNkMTAyM2FjZjAyZjI3ZmY0ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5OWZhN2RlYmI5OWZlMWNkN2FhMmJhMWZmOGNmYTdkNzI0NzEwZGM3NjY0NzlhYzBiMDRmYzQzNTA2YmYzZGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cba5e59f73e4bcdb699e137806e5329",
+      "statement": "The E2B template module's ordering is deliberately reversed relative to the other sandbox modules: `e2b_infra` `depends_on` the control-plane Worker, because worker-first is the compatible order (a new control plane boots an old launcher-bearing template fine while an old control plane cannot boot a launcher-less template, and a failed template rebuild then leaves a fully working system); the accepted trade is a brief window of 404s on first enablement or `e2b_template_id` rotation until the template build lands.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/e2b.tf#L35-L63",
+          "version": "repo-lines-v1:sha256:cd112bcf0a6f769e934cfdf507a984e042b47b431d2cf84cf259a752c6b7034a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmNGJhZTAxYWNhODA1ODcyZTlhMjNiY2NhYjY2MWE4M2E5MjViNGFjZWI3MWQ0N2M2Y2RlMGY2OGRlNWUxMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyOTA5YzQ4MGQxYmIwM2Q5MjlkMzcyZjMxMmQyZmFjOWUwOTRkNzQ0MmNiOWI0NDhjMzcyNWEzMjZkZDY0NDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzOGQzMjk0MWM5YmE0NWMzZWJjZmYwYzkyNmQxZmQwMWFiYjliZDQ4MGNhYjc3Y2ZmY2ZhNGQ1MGU2MjQzMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_668ac7069a5541439e269f7eb3f9addc",
+      "statement": "Pushing to `main` auto-deploys changed services: `terraform.yml` applies Terraform (control plane + D1 migrations + bot Workers, plus the web app when `web_platform = \"cloudflare\"`) triggered by `terraform/`, `scripts/`, and `packages/*/` paths including `packages/modal-infra`; `deploy-web.yml` deploys the web app to Vercel when `web_platform = \"vercel\"` (triggered by `packages/web/` and `packages/shared/`); Modal deploys via the Terraform apply itself.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/deploy-web.yml#L1-L10",
+          "version": "repo-lines-v1:sha256:aaecd70cbf13b973e410acb01cfc35e1e6cb88d7772c08ae5e5dcb5dfc8a3611:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzZjU5ZTJkODVkNTBmODQxNzExMmQyNjI0YTQ1ODMzZjg0YjBkM2VhYzQ5YTJhNmFlMGZjNmViNjM5MDI5NTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5MmU4MzU3OTQ5ZGFkOWIzZjA1ZGM4NDRiMDcyYTIyMGY0NDhiODYxZmVlMmFlMDM3ODAzNzVkMzNlMzJkNDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMjc0MjI0ZTk4Mjg4MWQ5ODFiOGFkZGZkZGM5ODgwYjJmMWQwNzgwMzE1ZDcwZDVkNTE5MWM3NWY5NWE1YjIifQ"
+        },
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L1-L38",
+          "version": "repo-lines-v1:sha256:6490d49c1222db22b943c8b34fd42e7203d5329ae2f29763ba750ec20b0532ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyMTdiYWE0MjgxM2Y5ZjMzMmE1NGQ3Y2Q0MTNjZWM4YTU4MTdjNWMzZGM4YTQ1ODFkODVmOWUwNDdmOTVlNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5MmU4MzU3OTQ5ZGFkOWIzZjA1ZGM4NDRiMDcyYTIyMGY0NDhiODYxZmVlMmFlMDM3ODAzNzVkMzNlMzJkNDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMjc0MjI0ZTk4Mjg4MWQ5ODFiOGFkZGZkZGM5ODgwYjJmMWQwNzgwMzE1ZDcwZDVkNTE5MWM3NWY5NWE1YjIifQ"
+        },
+        {
+          "resource": "repo://AGENTS.md#L150-L160",
+          "version": "repo-lines-v1:sha256:f5309277eac570b0e96dfe89e2073eebe163e3249addf69b47fe3418655003a1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiNDY0NDA1N2NlZjAwZWNmYTE4NWMwOGJkNTNjNTk1ZjMyYjgyMWUzMTQ5NzYxODY1NWIwYjlmYWQ3N2U5MjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1ZTMzNzk0MWMxOTA3OGI4MDg3N2RhYTE4OTgzODRmNzk5NmY2NjY5OGExODM4NWMwZjg0MzFhY2ExY2U0ZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2NTdkYTYyNDZlODUwMTE1NDIxOWRlMWMxZGM5MGJmYmRhN2MwZmU1NWI0ODczZDA3NTQ1MDgyYWFjNDJiYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhMDZiYTU5NGVlNjE0MGMwMjM5ZmJjODk2OTc4MDk1ZjBiOWFmNTAwZDAwYmY4ZWMxNTYwYmEzM2U1ODU1YjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eed965f9fe0f48be98722a1fa6a321f2",
+      "statement": "`terraform.yml` is structured as four jobs: `check-secrets` skips plan/apply with a notice when `CLOUDFLARE_API_TOKEN` or `R2_ACCESS_KEY_ID` are unconfigured (so external contributors get a no-op run); `validate` runs `terraform fmt -check -recursive`, `init -backend=false`, `validate`, and `terraform test` filtered to `tests/auth_provider_configuration.tftest.hcl` and `tests/classifier_provider.tftest.hcl`, posting results as a PR comment; `plan` runs on PRs with the full `TF_VAR_*` secret mapping and comments the plan; `apply` runs on push to `main` or manual dispatch in the `production` environment with `-auto-approve`.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L146-L315",
+          "version": "repo-lines-v1:sha256:9205f3cbea09a2b8f8c3eb0d24dcc9292fa39fb03995572e8829a4524509af6c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiNDE2YzUwNWUzZGIyMDI4YjAwMmU5MzRjZjU1YmNlODc3MWEyNTJkZjgzOWY2OTcyYzI3OGU3NzZhNTkzZGNlIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzNjcxOGYwNjdiNWU1YzFmMDk5MWE2ZTc0NzI2ZmUyYTIzZDI2NDM0NWUwOGU0ZWFkMDRmYWY3M2MyN2VkNDQzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI2ZTM1N2QzMjgwYzY0Y2ZlM2UzYmIxMGM3ZGYxNzcyZGUyMDQwNDJkMjY4MjU4MGQ1MzIwOWI3MDc4NjUyNGRhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI0OGYxNDMyOWNhMWRmYmM3ZWZmZDM4ODNlMTUyZmVhN2I1NGY3ZTIyZThjOTE2ZDUzMDk1OGE1MDcxZDU5ZTIzIn0"
+        },
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L317-L381",
+          "version": "repo-lines-v1:sha256:1e5ee0a36a995f6a60f451db9cebf86950f0b2ef6dec489a0a539a1ff7c69a2a:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1YWFjMTk2MDA2ZjVjNmY2ZDVkZjY4YTM0YTVlYjI0NTBjMGFhNDM2MmZmOTBiODk0MjAwM2NiM2FkYTU0OTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkN2M3MzBlNjA1OTdmMTliZTA1ZGE2ZDdiYzY0ZTZjZjQ4OTA5YTg3Nzk2NTViYWE5OGNhMGNhOGFmMzA0YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4ODlkYmZkYzIyMjU2MDljMTMzMDc3NTUwMDIwMWE3N2YwZjVjMGQ1MWUwMWQ3OWYzYzg0NjE5ZDNiMDY0NDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyOWY5MjJmN2M5OGZkM2I1NThkNGQyY2VmNWFhYTcwNDBhZTZiYjI3NzViZjk2MTFkZTNhYTc5ZDIwMjc2YWEifQ"
+        },
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L45-L145",
+          "version": "repo-lines-v1:sha256:79c9ee1ec89d15197ca4b2f6c776d2b13a48db3461ddf70e2f642f247d69f946:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4NGFmZTI0ZGFmMzRkMWI1Y2Y4M2ZjYWEzZjU2YWE0YzEwN2MwNTgwMzljODU3YmNiNmQ1MTZkNjIxOTQ3ZjA1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3MDA3OTJiYzdhYzFlMzg0NjliMjk3Y2FlZThiMzllZjNlZGE0YTg5OWEyMzQ3M2QzY2UwZTBiYmVkOTRhN2U4IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlZDBkYzJlNTljNGFjOGYwY2RmZTFkNzA5YzgyYzA2ZTljYzM3NDQ1MTA4ODVlODk0YTRlOWZmYjUzMTFlMmZhIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_e6ee016e27264841ad426a453954f21f",
+      "statement": "The Terraform `apply` job establishes the correct build environment before applying: `npm ci`, builds worker packages in dependency order (shared → control-plane → slack-bot → github-bot → linear-bot, since packages import shared's build output), and `uv sync --frozen` in `packages/modal-infra` so the Modal CLI provisioners can run; concurrency is grouped per ref with `cancel-in-progress: false` so Terraform operations are never cancelled mid-run.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L317-L363",
+          "version": "repo-lines-v1:sha256:1db36d9c0c479ca055ce095391964b7da673167d294aba9a0051927dee37641f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1YWFjMTk2MDA2ZjVjNmY2ZDVkZjY4YTM0YTVlYjI0NTBjMGFhNDM2MmZmOTBiODk0MjAwM2NiM2FkYTU0OTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkN2M3MzBlNjA1OTdmMTliZTA1ZGE2ZDdiYzY0ZTZjZjQ4OTA5YTg3Nzk2NTViYWE5OGNhMGNhOGFmMzA0YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4ODlkYmZkYzIyMjU2MDljMTMzMDc3NTUwMDIwMWE3N2YwZjVjMGQ1MWUwMWQ3OWYzYzg0NjE5ZDNiMDY0NDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4ZjVlMWRjNjA4NDk5YWQzNDcwMGE2ZjYzMzQwYzQ5OTk3NDM2YWEyZjgxNzU0NzJjNGE1NTA4ZTkwZmZjMDAifQ"
+        },
+        {
+          "resource": "repo://AGENTS.md#L28-L35",
+          "version": "repo-lines-v1:sha256:b7912e6b26dfe966ace0d677679fa818e003898317afedee8e6aadf4c58be13b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQ1ZjI0Zjg4NmYxZTlhMjRhNWU0ZjY4ZGMxMzNiMGZiNDRmNmIwOGM5ZGQ1ZGY1MjFkNjIxMTE5MTlhNjQzNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzg4NDk2NzczYzFkZjYwNTY4ZTE1Y2VhZTQxMDc2Y2MzYWFlNzk3YTFhNTY5ZjY0NGU5MDNkMjdkYjkwODcxOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzRkZjA2YzgwZmVlMzQ3ODBjMTk5OTY1ZmQ2OGYzM2Q0YWU1ZTVkNDUyN2FmYjQ5YTE3MDZiNmY0YTdjOTkyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTI4YTA0NjI4ZmJhMTNmYjE5MTQxNGVmYzI5NDAzN2ZkNGRkODFiMTYzZjE5ZjE0ZmJhNTU4OTJhYjA0OTBhMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_418c1e5624eb4666a8e7e0e565bbb85d",
+      "statement": "Both the Terraform `plan` and `apply` jobs stage the SchedulerDO deletion migration by reading `terraform state pull`, extracting the control-plane version's current `migration_tag`, and writing `scheduler-do-retirement.auto.tfvars.json` (`migration_tag: v3`, `old_tag: v2`, `deleted_classes: [\"SchedulerDO\"]`) only when state still reports `v2`; the state read is parsed in separate steps because piping into `jq` would turn a failed read into an empty tag and silently skip the deletion migration, and generating the tfvars at deploy time keeps the release-specific migration out of fresh deployments.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L186-L198",
+          "version": "repo-lines-v1:sha256:e40fb735a711706a071e7dd6b5e187d1a77766216931c608c0060321df91d634:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxOGIxYjQ2YWExN2I2YzYzM2U1NDQ4ODVhODg0NTc3NDY5OTI4N2JhY2Y0MDMzNTk1YmMxMzNmNGFhNmMyYmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkN2M3MzBlNjA1OTdmMTliZTA1ZGE2ZDdiYzY0ZTZjZjQ4OTA5YTg3Nzk2NTViYWE5OGNhMGNhOGFmMzA0YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlMDU1ODA3MDFmNTE0NWFhMTI3MmQ4ZmRhNjk5Y2UyYTVkNWM5ZDE1OGQ4NmFhNzYyMGQ2ZjNmOGE0YmFmNTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzOGI1ZDkwMjMxYWNmZmFhYWY2ZDQyZGI4MWIzOWIyZDJkODZjMDFmY2JkNjk0MDYyMDRmMjYyYzkzMDlmMmUifQ"
+        },
+        {
+          "resource": "repo://.github/workflows/terraform.yml#L365-L377",
+          "version": "repo-lines-v1:sha256:e40fb735a711706a071e7dd6b5e187d1a77766216931c608c0060321df91d634:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxOGIxYjQ2YWExN2I2YzYzM2U1NDQ4ODVhODg0NTc3NDY5OTI4N2JhY2Y0MDMzNTk1YmMxMzNmNGFhNmMyYmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkN2M3MzBlNjA1OTdmMTliZTA1ZGE2ZDdiYzY0ZTZjZjQ4OTA5YTg3Nzk2NTViYWE5OGNhMGNhOGFmMzA0YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlMDU1ODA3MDFmNTE0NWFhMTI3MmQ4ZmRhNjk5Y2UyYTVkNWM5ZDE1OGQ4NmFhNzYyMGQ2ZjNmOGE0YmFmNTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkOTAwOTIxY2M0Mjk2YTgwZjEyOGQzYTYyNTAxMmIwOTRjYjliMGM2ODQwNjBlMmIyZjMyMWJmMjRkODYxZDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5db77b9ad89645d4bcfa71b7347a32a9",
+      "statement": "`deploy-web.yml` deploys the web app to Vercel on pushes touching `packages/web/**` or `packages/shared/**`, but skips when the `WEB_PLATFORM` secret is set to anything other than `vercel` or when Vercel secrets are missing; it builds `@open-inspect/shared` first and uses the pinned Vercel CLI (`vercel@58.4.0`) to `vercel pull`, `vercel build --prod`, and `vercel deploy --prebuilt --prod`.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/deploy-web.yml#L24-L73",
+          "version": "repo-lines-v1:sha256:f25a880375e03d0b6db836d823404fd05d5548c9ac9146bd90811a6ec011ab09:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4OTk5MTEwM2Y2YmE4ODhlM2RlNzY1MWM1YTMwNWM3N2U1NTQ3Njc3M2FiYTgzOTU5MWVjYzViZDBmMmFiMWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3ZjZkNjI2ZDVjODBkMGFmMTAzNzAwZTBlZWYzM2IxOTlmZTY4N2I1MDc3MDZhMTBiYmI4MmZiYWI4OTM2NGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyMzczNWY0N2JiOGMyOWRkMzIyNTkyOWE3MGY5NGVmODc2M2FkM2Q4MzZjYjFhNjNhM2U3Yzk3MWI4MTdjOTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1700c1449a4e49e69b85e3fd581caf6c",
+      "statement": "CI runs lint, typecheck, and tests for all packages on every push and PR: `ci.yml` covers TypeScript (ESLint + Prettier + Knip, `tsc` across packages, a web build, control-plane unit tests, sharded control-plane integration tests under workerd/Miniflare with real D1, web tests, and all three bot test suites) and `ci-python.yml` covers Python (Ruff lint/format plus pytest); every TypeScript job builds `@open-inspect/shared` first.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L56-L235",
+          "version": "repo-lines-v1:sha256:41d14b0910b3f7bee21aa544cdfa3c4126ada282fd4d29457508a4d4162a7ed3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlOWQ4MDE1NGVkNDJmYzVjNzc5YjEzMzE1NzhiNThiODljODAxZWFjZTc0ZjI0Y2Q0OGViNGEyMzU3OTQwYTk1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0NmYyNTg4MjIzODEzZDFkYTkwZGNjOTIwYzI4MzMxMzcyN2RhYjRmMzlmNzk0NjQ0MDRhOTNlYjUwN2Y5YTc3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIyMTY3ZDQxYmNiMjk0NTJhNGRlMDgyOTU2YTY2MmRkNWQzMmVlYzc2MDg0ZmQwMGYxNzIxNDA4OWQ5NWE1MzQ0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://AGENTS.md#L160-L160",
+          "version": "repo-lines-v1:sha256:75e337941c19078b80877daa1898384f7996f66698a18385c0f8431aca1ce4d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzVlMzM3OTQxYzE5MDc4YjgwODc3ZGFhMTg5ODM4NGY3OTk2ZjY2Njk4YTE4Mzg1YzBmODQzMWFjYTFjZTRkOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzVlMzM3OTQxYzE5MDc4YjgwODc3ZGFhMTg5ODM4NGY3OTk2ZjY2Njk4YTE4Mzg1YzBmODQzMWFjYTFjZTRkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjJkMjgyNDY3ZDg2OTZjNmY2ODg4MTc2OGVkMzVlNTkyNDk1MzVlYWU3MjNjNDYyMTBkNTk4ZjUxOGIzZjgxYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGEwNmJhNTk0ZWU2MTQwYzAyMzlmYmM4OTY5NzgwOTVmMGI5YWY1MDBkMDBiZjhlYzE1NjBiYTMzZTU4NTViOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_04d175560f6e40c497974bc596928fdc",
+      "statement": "Cloudflare Workers require GitHub App private keys in PKCS#8 format, converted with `openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt` before being placed in `terraform.tfvars` or the `GH_APP_PRIVATE_KEY` secret.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L127-L128",
+          "version": "repo-lines-v1:sha256:b23e8634f2bd1e7643c545439bd458ff2b4a0e2595536669f757b0474e86cd02:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjJlNzE0NzJjZjhkYTNkYzg1N2UyOTBiOTNmMzBkNDcyY2MwZjliNDIxMjQ1NWNmNTBhNWRiMmNjZjc5MzZiZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTQ5MjYyY2UzNjk4NTQzM2U3OTI3MjU2OGE4N2ZhYmY1YTc1NDM5OGE1MTgwMTlhMTljYjAwMjhmODE0OGQ5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDJlMGZiNTY1NzRiZjJhMjhlNTJkMDQwYzA3NGM5ODE4MzZjY2ZmNDFjNGQzNDI4MDU0NmIzMTU5YjU3ODQzMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWYzZDgwZjI1NjAwOGYyYWNhZWZmOThjNDY1YjIyMzA3MTdjYjU0ZWFmYzcwODQ5NGE0Zjc3YjRiY2RlY2Q2ZCJ9"
+        },
+        {
+          "resource": "repo://docs/GETTING_STARTED.md#L332-L337",
+          "version": "repo-lines-v1:sha256:b9ec877bc00d740cd500c70fe90b4f6268511c5bb8c3114140309a17770d8fc5:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVkNGY0MDA4YTEyMDk1YmNhNDIxZTljZmY0MWZkNDNhYjQxOGJmMTNjZjQxZjIyZDExM2UyNWI2YmI1MWJmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY2NjU4M2E4YTU3NDRmOGRhZGU0NWMzZWUxYzcyZGU0OWE4YjNhNTAyZGJhMGI5ZmQ0OWU5NTQzNGE2NDZmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGE0NDg0MzIxOWVhNDczOTIzNTc4NWM4OGE0NzlkYmExMzhmOWRlM2JkNzhhMzU3ZDE1NDFhNGU5M2U3MTIyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjZjNDIxZjFkYjZiNDQxMmUwMGJiYTIzZjYxOWRkODBiNTM5YjcyNzYyMWM2YTUxOGI5NjAxMTMxM2Y4NmI4YSJ9"
+        },
+        {
+          "resource": "repo://terraform/README.md#L100-L106",
+          "version": "repo-lines-v1:sha256:2945a6219965cdc5d8a4a0f4b9275027ba4de7f04bda37e0d41576955dd46ed5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2RkYTNlNTNlOWQ1NzA2MjU3YmZiZjkyYjMwN2IyMGUyNmEwNGRmNWE3NjU0NDJmZTM1ZmRjOGRkZDE1ZTVjMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWMxZmM1NjI4YzgyMTY2YzJkMDhiZTVlYzgyODZkOWE5YzdhZWVkOTgzNjcyYjk2NTEwMmQwY2ZmYWVkNWFmZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDY5YjI0YWFkOTQ0NGRkMjBjYjA3OWY0MTk2MTQ5Yjg3MmZiNzI3YTU4ZjJlNDZlNTUyZmZjZGJkMTk0ZDIwNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_71d6109d12d646bb9562aaa20645a15a",
+      "statement": "Production has no checked-in `wrangler.toml` for the control plane: Terraform generates the full binding/secret/cron/migration configuration, and the checked-in `wrangler.jsonc` is test-only, mirroring the minimum bindings for local tests; the Cloudflare web Worker likewise deploys from a Terraform-generated `wrangler.production.toml` while the checked-in `wrangler.toml` stays local-dev only.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L131-L131",
+          "version": "repo-lines-v1:sha256:8ed4da3d3d129d5e880e281254c931e3b40aec67a473c379af2c8b86d9a67db6:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVkNGRhM2QzZDEyOWQ1ZTg4MGUyODEyNTRjOTMxZTNiNDBhZWM2N2E0NzNjMzc5YWYyYzhiODZkOWE2N2RiNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVkNGRhM2QzZDEyOWQ1ZTg4MGUyODEyNTRjOTMxZTNiNDBhZWM2N2E0NzNjMzc5YWYyYzhiODZkOWE2N2RiNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2YwMzYyMjM2Nzk1MjEzOGQ3ZjRhNjZlNDExNmE0OGY5MTg1NGZmNzhhM2EyZmYzNTg3YmY4OTJkMDg3OGQzMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWU1NDU4YWNkYzU3MmU2MWYyN2Y4NGRlNTgxNzliOTRhMjA2NDEwMjFmZGVkNjkwZWNkYzM3OWY1ODI2YzZkMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/wrangler.jsonc#L1-L2",
+          "version": "repo-lines-v1:sha256:212e1f8ca286fc0fd693eb1859c53292cb4cbccce0d598b459ae47f9e09e4be8:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDM4OTNmMWY3MDNjOTE2NGE4MjY2YWUzODk3MjA1YWI1ZDA5ZjhjMzMzMWU3MjVlMDI0YWI5OTg4NDQyYzUwZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZmYjA4ZmRhMWFjYjk1N2I2MTE2YmQzNzgxMWExZmU0MWEwMTYxMWMwNjMxZWRiZjc4NmQ2ODg5YTI3YTU1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzA4Njk4N2U2YWFmYzkzYTM5N2EyYjA5NDA3YTdlMDk1NGEwZjBhZWQ3OTI3YmEwYjMyZDllZTgyMjgwN2FiNSJ9"
+        },
+        {
+          "resource": "repo://packages/web/wrangler.toml#L1-L6",
+          "version": "repo-lines-v1:sha256:14cbff0043d01c504ade2cbcb86bf27f3507642536f8bcc6a27cf19afcbe9425:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFmMWU4NTQ1ODlhMjkzZGNhYTllODViZjY5YjE3NjY1YTNlMzZiOWU5ZmZjMWQwMGUzM2U4OTNhNWRjMzFiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWIyNjA1OGQyZGUxNTMzZTFiN2ZlNGI5OGVkN2U3ODU2ODkxODVmZWRkNzQ3NWVmMmE5NWFiYTQ0ZTk0NTcwMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQzNzRlZGU3YWI4ZTEwYTljM2M5MmZkZThjOTIwZmVjY2YyZDJkYTU1ZmRlMWYzNDA2YzVlZjRhZTY4YWY4ZiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L53-L55",
+          "version": "repo-lines-v1:sha256:85f980ec728d30422e04a2158a619afed6bb8b493a2954ec3627e86d02f40285:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjM1NTk3OWI2ZWRjMzUzYmM1YTk5ODUxNzM1YmIzYTQ3ZTczZTI2Mzk3M2M3MWIyMWVjMGMxZTBlZWJkZjlkYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQ5NjRhZjg1YTdhZDQ5MjczODYzY2MzN2FjMmNhOTI3YjNlNDQ4MWFlZmJiMWQ0MmFiNzZhYzNjNTk3NWFmNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOThiMmZhYTgzZjVkNzA3NDhlODNmZjFmMjE1NzY2NGNiMTdjZjQxMGI0MDAwYmQ3MzJjMGU4ODFmYTZlMzc3YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzZkOTYzYTljYjUyYTUxMjYzYWVjNjk4OWFmOTBkYjZhM2JlYzRkNTc3MDQyMjA0NTg3ZWRkNDgzMzJmOWIzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_50d5b3f23f984d74bf30ce1791324d95",
+      "statement": "The Cloudflare API token needs Edit permissions on Workers Scripts, Workers KV Storage, Workers R2 Storage, D1, and Queues (plus Workers Routes: Edit only when Terraform manages routes/custom domains); Queues: Edit is required even with the Slack bot disabled because the image-build finalization queue and its dead-letter queue are created unconditionally.",
+      "evidence": [
+        {
+          "resource": "repo://docs/GETTING_STARTED.md#L403-L419",
+          "version": "repo-lines-v1:sha256:c7c21ed6484d61726499d0995db88bfa2663f15dd0849171ce27091b473fbf80:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkYWRkM2Q5NDI0MjMxYWUyZGE1MWRjOWViNWZhZDExMWMzNmJkNjk5NzMxMDJkNzhjYWRiOWFiODAxZjBhZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkNWMwMjRkN2UyMzg2NGNhNTJkZmY0OGIwYjRiNzhhZWQ5MjAyNGRiNGFkYmQzYzlkNDQ0MTM3YzRhMTk2ZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4MTMxZGUxM2Y3NzY3MDczMTViYzE5NDYzODI5YmZlMjgwMGM1ZTQ3YjFkOTQ4NDBhZDQ4YWQ0NDZlYTA3M2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1MDI2NzU3ZjY1OTM4NDkwM2FmNjJkZGUzZWRkMzMwZmI1ZDhlYzgwNjhkNTk3NDgyY2VhOTZkMDM1NGY5N2QifQ"
+        },
+        {
+          "resource": "repo://terraform/README.md#L65-L76",
+          "version": "repo-lines-v1:sha256:980aca210cfeb2cc409df792253a3e5f4b166beec090fab1697e649ec693d32c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzZDA4N2EwYmI5N2EzMGYyYWNkNzllNDAzMjY5ZmFhNDk2NWQ1ZTEzMjZiOTFlNDVlMzZhZDdmMGYzMzlhMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiNDM0YjhmODdmZDI2OTBmMTYyMDU3Y2FkZTVmMjc2MGEyYWNkYmZkNmZkZGI0MzAzYjMwYTQ1MmNjOTlkOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwYTdhYjg5MjAzZTA5MTU1OWZhNjEyNWFkMjNjNGYyYWE1MGVmNWFlNmMyYWNmNTYwMDQ2ZjhjMjRmOWU2YzMifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L5-L13",
+          "version": "repo-lines-v1:sha256:e215612216e9c28af74ac6080709639fb6b3fa898c97e6716f4e2857efd27f2e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDhiMGViY2EzMjRiZmZiNGZkNmI3YzUxZjAyOGU0NzdiYmIzN2JlYWVlMWU2MjY5YmFiZmJkMmFiMjljNDdkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjg4YmU4N2I3ZmQ0ODU0NmMzYmJlN2Y0N2RjMGUwNjg5OGY1M2MzY2I2YTQzNDJmMWM3NzRkZTUyY2Y3YWUwMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWJhM2UwYjAwZGUxZjA3NzgyMDU4MGJjNTY4NDkxZDIzZjEyMGY1NWExNTVmNjQ3ZDgzN2ZmZjcyOWI2NWExZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5b08a1946a1a4236993417de65747b1d",
+      "statement": "Provider versions are pinned deliberately: Terraform ≥ 1.14, the Cloudflare provider at `>= 5.16, < 5.20.0` because 5.20.0 regressed `cloudflare_worker` observability (failing with a trace-propagation 403 on accounts without that feature), Vercel `~> 2.0`, and `null`/`random`/`external`/`local` at `~> 3.0`/`~> 2.0`.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/versions.tf#L1-L35",
+          "version": "repo-lines-v1:sha256:407d695ba592703dbc3f130e4d489856ab2dc0e432286baf7846ea057a06798a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmOTI3ZWU2NmFmNWJlYzcxMDMxZjM2M2ZhYzE3YjU1NzRkMzVjNGVhOWE5ODZkMDQ4MmFjMjI5YTdiMTE2NDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_494c25eeb1644bdd84dcfbaf348b8d52",
+      "statement": "Post-deployment verification comes from `terraform output verification_commands` (control-plane `/health`, Modal health URL at `https://<workspace>[-<web_suffix>]--open-inspect-api-health.modal.run`, web app URL via `web_app_url`, and an authenticated `/sessions` request expected to return 401); Daytona, Vercel, OpenComputer, and E2B sandboxes call their provider APIs directly and have no Open-Inspect shim health URL, and `outputs.tf` also exposes the worker, Slack events/interactions, and Linear webhook/OAuth URLs used by the provider setup steps.",
+      "evidence": [
+        {
+          "resource": "repo://docs/GETTING_STARTED.md#L921-L945",
+          "version": "repo-lines-v1:sha256:87346089d518280a3e524bf96973a4db1bca6b81caa77486890905d0fdd8b4cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlNGRlZTFlNGRlZGIxYzBjYTYxNjIzNGExMTRkNjY4MGQ3N2Y0NmM5YWVjYjQwYWNiZjM2ODUzZjAxZTYzZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4MDE4NzFjMDI3MTRlM2NjMzdmNGVjY2ExODY5ZDZiZTcxODMxMzU3MDJhMWRhZTAwYWM4N2ViMjg4MWY4NGYifQ"
+        },
+        {
+          "resource": "repo://terraform/README.md#L452-L477",
+          "version": "repo-lines-v1:sha256:603387c474328f89f2a91e07d69d5f9250cda21fb43c1c8f620a8b27c94a468d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2N2EwODQ3MjUyZTNkMWNiYTkxYzU4MzIwNGQxYzk5MWQwZDYyYzM3OGIxMDYyOGQzNTRkYWEzMmY5OWYxMzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiOWVlNzBkYzhhZTUyOWM2YWNmODRkODZjY2YyOTUyOWYyMGI4OWU4OWY2MWE4MTViNzgxMTRjMDk2ODk1Y2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM0OTQ2YjQxNmZlMTRmYjNjZmMwMmRhNTY4Y2Q4OGFhYjIwYjQ5OGNmY2M0MWZjNTA4MThhNGNiYzM3OTc2OWUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/outputs.tf#L108-L140",
+          "version": "repo-lines-v1:sha256:51e53b2a9690f8d2e006c263f1a0355264b4c1f5908aa2aedc8294a0e1cf596d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1M2NkZGY0NzI0MWRhOTZkZWU5ZmIxNTJjYTBhYmFhM2Q3NTg2NGM2MTkwNDcyMzY4NzE0M2IzYWJjNTY0YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmYzJmOTI5NjdjODRiYmRjZDBmMDYzMjMxMWI3MjZiNjlmNTEwNWU5NDk1MjU1MmVmZjY2NjMyNmZlZGE4YmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

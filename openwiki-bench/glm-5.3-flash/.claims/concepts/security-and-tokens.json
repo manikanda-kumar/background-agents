@@ -1,0 +1,830 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:53dc16c51b3e675f2adc6b86e903cb86b87318761c06dcf415fcbd5f7c53ead9",
+  "claims": [
+    {
+      "id": "claim_44230399526a4270b69b3632c5b7b40e",
+      "statement": "Open-Inspect is designed for single-tenant deployment only: a shared GitHub App installation defines the access boundary, the system performs no per-user repository access validation at session creation, and user OAuth tokens exist for PR creation/attribution with fallback to the shared App bot for users without SCM tokens.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L21-L50",
+          "version": "repo-lines-v1:sha256:85f1ca4c0fdbc91e46d05c3bc671230de7727d04819bc8cf0b33b256f239d0e6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiZDg0OWJlODMwYmE1YjA1YWJiZWFhZDA2MGZiYmI5NDk5YjJhYmU2NGZjODg0ZTQxYmRlN2Q4YjNjMjE0Y2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5YzFlZjdkMjZlM2M1ZTViYjMyNmVhYWFkOTQ3NDMxMTRjYjNkMjFhZDMwNGJjYzRiZjliMmM0NTFhMzI5NzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJkMDVmYWNjYTRmZDRjNDdjMjQ0MzJhMzJmMjYxNGYwNjg0MTY4NTVkNjIzYWM1Mjk4OWM2NTVmNmI5OGE4M2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMxNzE1MWQ0MmZlZTM0YjgyZDFkYTgzZTUzNTBjM2EzMjE1M2I3OWFmYzZiNjIwN2IwYjMzNjQxYzBjZmU2MTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_328e1db21bff4e9bbd85306e08ecebf6",
+      "statement": "The documented deployment recommendations for the single-tenant model are operational controls: deploy behind the organization's SSO/VPN, install the GitHub App only on intended repositories (its installation scope is the system's access scope), and restrict sign-in via ALLOWED_USERS, ALLOWED_EMAILS, ALLOWED_EMAIL_DOMAINS, and ALLOWED_GITHUB_ORGS admission variables.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L62-L71",
+          "version": "repo-lines-v1:sha256:e0a4fae393e9739f69239d2ee48d09d755f89daa2dfeb254e219d64d79d9b66e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyZTEzNTgzN2E3OGY3MmU3ZDI3MWI3YWFjNmZhYmYxMGY3ZTY4Y2RkYzFkMmZiMjExMzFhZmUyYWM2MjhiODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjYTQ2N2U4ZmUzZjE1ZTM0YWViNzg4MGE1N2JmOTJmZGQwOTcxMzI3MDFhMmYyZmQ1ODBmNWVkYmQ1OGNjYWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NTI1MDc2MGUwMGE4YWU5NzFlYzUxNDA5ZjkxYWNlOGE2Y2QzNjBjZDJhNWZiOTM0ZDExNWQ4ZDQ4ZDcwMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3YTc1Nzk5NzNmYjA2ZGRhM2Y3MGMyMjM4YzQyMWExZTAwZGYxNjIxMGRlMzI2N2RiYWE4MmQ0YWU2ZjYyZGEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/user/runtime.ts#L116-L128",
+          "version": "repo-lines-v1:sha256:7c2bd8e0f739a7744c769adbe78d71ea3a76b02ad96ddf7c2719d2cb289ac91c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NWZhMGYxMTE3YjVlYTQwNDM0MTQwZGRlMWEzNDBjNzIwZGRiZjMyNjIxMmUxOTE4MzhkNGIxNTZkMzE2YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViZjA2MDI3N2FjYTQzODhkODNlMzJjZTNjZDBiN2U5MDE0NjJlMTA0YWZmNGI5OGNhZTIzYWQ3Yzk4NTNkMzIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/types.ts#L74-L78",
+          "version": "repo-lines-v1:sha256:1a2974e5e7592a309a0ed591dfb8a58ee37e8c95fa02ffc2dbad53df980588f5:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjI3YzFkZTNhODFlOWE3NDY5MmQ1YjUyZmZjNWExOWMzZWUzMDE3NjdjNWFhZGE2ZjNjZGQzZGY3ZDk1YTRjZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWE3NDk4ZjkzN2JkMTg5MWQyM2MwYTgwNWMwZDEzOTZiMzZhODI0ZWYyZWZhNzhiZTA3MmY2NzdkOWRlNGM1MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTE1NzE0NDU0NDEwMDFkMGY0YjJjYjUyOTMwYTI3NWQyYzYyOWZiYThkOTYzNjdkODFjYzE5YTVhYThlM2YyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjFmYTFkMGM0MGZiZGI5OTU4N2I2NzY3OGRiMDM0ODg1NTY2OGQyNWNiMmQwNTMyNjcwMWFmNDhhODI4NGY2NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_61d2b9daf1e84061a32f48a63434f2e1",
+      "statement": "The system circulates six credential kinds — GitHub App installation tokens (brokered git auth), user OAuth tokens (PR creation and attribution), sandbox auth tokens (single-session sandbox→control-plane calls), WebSocket tokens (single-session client connections), managed LLM subscription tokens (OpenAI/xAI), and per-service sig1 signatures — and the README's token table records the four core rows.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L41-L48",
+          "version": "repo-lines-v1:sha256:2241e352768198d94e94999713d57a6f256e7e8059f3d35b45a989cfd30ceaf1:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzMzOGU4NWQ4MTk5YzE2ODM0NzYyZDAyOTU5ODE3ZmE3YTFjZGI2ODUzYjhjNWY3ZWZmOGIyOTZlMzYzZTJlMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU2NzhhMmExMjE3NTQwZTVmOWUxYmFiYmQyYjZhMTU5NzllNTNhZjcxY2U5OGRhZmZkZjY2OGFmNzQ4MDAyMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmE4ZjY3OWU5NjZhNDllM2RjNzRlMDI2NzUzMTUwMGViZTg5NjIyNzEyZWNjMDZjMTJkNjM1YzMyN2JiNGZiOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDc0MDUxYjUzZDFkOWUzZTZkNWU0NmQ5OGRmNmQwNjE2YTk4MmY4MDIxMmE0ODQ1ZWI3MjE1ZWQyYjA4ZjcxYyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/principal.ts#L39-L42",
+          "version": "repo-lines-v1:sha256:aedce66ba027187fce54188abb42b56a1efa134caf09222a685b39ce1251dc17:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjM2Yzk0NTk4NzgxYTViZDgxY2ExN2ZmMmFkOTM3NzVlYTdlMTk2MGU4ZTZkYTkzMmU3MGU2MDk1ZDk4YjcyZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZlMmYyZGU2OTcxZmQxMzk1M2FmNDg5ZDgwNTdkOWU4OWQ4MDQ2NmQ1NzlkYTA3MzlhYzFjODAyNzllMmZmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTIwNDBlMDk1YTk0ZTJhZGE3NGU0MjFmMzcxODc1MWE5MWE4MTBiZmQ2NmY0OGY0ZTkzOWM3Yjc0ODBlYjY3MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjhkNjdiNGE5OTRkMzQ2NzE3NzlkNDk5NmM3ZmZiZWM5YjcwZGY2ODI3OTU1ZmU3MGVhZDQyNDg3YmZiMDExMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_012c4147054d413e84ea79ba28571d97",
+      "statement": "Service-to-service authentication uses the sig1 signature format: each of the four services (web, slack-bot, github-bot, linear-bot) signs a canonical newline-delimited string (sig1, service, timestampMs, nonce, method, pathname, canonicalized query, body SHA-256 hex, actor) with its own secret, and the signature header is `sig1.<timestampMs>.<nonce>.<64-hex>` carrying X-OpenInspect-Service and optional X-OpenInspect-Actor headers.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L147-L182",
+          "version": "repo-lines-v1:sha256:770883f666b1d76b2a25ce85389bb409d6bd90cac8b6dcaa86c1848f9cb7b8c7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5MzM1NjMzMzdkYzYzN2FkZjdkZmVjZGFkOTM5MWMwZWYwYmRjNDcyN2M2ZTQ3ZmE0NzEwZDI2NzFiZmRhZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE2ZWM5OTY3NmYzOTNkN2NjY2EwYzk4ODkzY2M3NGRhZGNlZDViMzljNWVmYWVlOWQwZmI3YjQyM2U0YzQzNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkNjA2OWI5ZDMyMjcxOTk4OTZhMzNjNWU3YzQ5Y2NhYjM0OWJkYTVmY2U1YjRhMTgwNmU2MDg2NzhhZTM1YjgifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L16-L22",
+          "version": "repo-lines-v1:sha256:88663747045fad4389b5bbe246b107a943ba91cbf294fac598d2d286fb998241:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTc5NGY4MmQwZTQ3YjA4ZmUzOTBkNWRiY2M4ODllYTRkYWY4Y2QzYTRmOTBlYjU4MTJlZDNjY2E1MmM3OTRkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTIyMzY1YjZjOWU5MDUyNTVlZjZmZTlmMGVkMDViYmMzMzAxZmMzNDlmYWMwZDA1ZDE4MTAxMDM5OTM3NDIxYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWQ4OWNiMjAxMzNkNjA5NDhhOWMxYzhjNzVjNTAxMmIxOWNhMDQ5ZTk1YmUwZDBlZjA4MWUxYzhmYjBhMjJhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGFlMGE1NTVkMjMzMzBiZTFmZTNhYTQ2NDYwOTVkNDcwNjQ5NjM5Yzc4OTU1ODBkNThkODE0NGIwM2VjMGI2MyJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L92-L107",
+          "version": "repo-lines-v1:sha256:b2c2bbb70e9052aadffc01284cb18df25150b749f60bde227da2bfcd6db24902:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MjNhMDM2M2U4YjI3Y2JmNmZlOWVmMjI4OTMzZjBkZDkzMTk4OTE2NzBiYmI5ZDM5MjBiMTEwZWQ0N2Y1ODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmZWM4NDY1MGUyYmY5N2QxZjJlMzViNzdkOTQ3ZTBkM2EzOWRiOGY5OTM1Y2U2MTljYWM1NTFiOWI0ODQwMWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhOTE3NTM2OThlMjhiMGQ4NzJmN2E2ZDgxMWQ2MTg3OWE2ZGIyOTE4NWM1ZjI4YzQ4ZmJiZDkwNzIyNzk1MDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_90b3ad87ce6446929007908fad6837ca",
+      "statement": "The sig1 canonical request string layout and grammar are frozen by immutable golden vectors (test-fixtures/service-auth-vectors.json); any change to canonicalization requires a new format tag (sig2), not an edit to the vectors or buildCanonicalRequestString.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L8-L12",
+          "version": "repo-lines-v1:sha256:b4a9a127146fec45594ef00a84a016b02673826bf904f379fc17bf130fd8f254:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIzY2I0YzEzZDY3NzU5ZDU0Zjc2NzFkNDQwMzQ5NzJkMDkwM2EzOWQwOGFmYWU3M2JiOTgxZWI5YWIwZGNmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzFlOGQwNTE3NjQyZWFlYjIyYmMzOGZhZmM4M2U3YzQxZWM2NGM2OWY2MzU3NTQzZjY2YjI1NmJjYWEzYWMxNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWQ4OWNiMjAxMzNkNjA5NDhhOWMxYzhjNzVjNTAxMmIxOWNhMDQ5ZTk1YmUwZDBlZjA4MWUxYzhmYjBhMjJhNCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/test-fixtures/service-auth-vectors.json#L1-L3",
+          "version": "repo-lines-v1:sha256:9068c7fab957fbff22ce5d1e8ae51ba604242f585419cba6cc245b8607be97ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZmYjA4ZmRhMWFjYjk1N2I2MTE2YmQzNzgxMWExZmU0MWEwMTYxMWMwNjMxZWRiZjc4NmQ2ODg5YTI3YTU1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I1NzM4Njc2NWQ1MzVhYmQ5Y2YxNzAwMjdiZmIzYzVlZWMxMmM2ZGZiZDJlOGRjMzMyNzc0Y2E4NWU2N2Y2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmQyYWYwM2UwNTA2Yzg5NjQxMjY4MmMzNWI1MmMzNzI1ZTk0M2I4OTZlZDg3N2U1N2MzOWRjZDYxYTYyY2ZjZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_af2563a532734b9b9ea9d421642b6a4a",
+      "statement": "The sig1 query canonicalization decodes key=value entries, sorts them bytewise by key\\0value, and re-encodes them, so ?a=1&b=2 and ?b=2&a=1 sign identically while a query and no query never collide.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L79-L86",
+          "version": "repo-lines-v1:sha256:fa14d523d48c3b8662d8f8be050c1b82db3aae9dc4d54a5e1cf745014581a31f:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhjZDgwZmVhZDExMjU4OWQ1NmIxOWNkZWYzOWQ1MzQ5MDcxNWQyMmM5ZDRlOTU3MzYzYzJmNTIzMTAzNzU4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDhjZmYxM2M1ZmY1MzNkMzBhYmM5ZjMwNTdmYzU2YjI1ZWM5YzcxZTkyNjAxY2UzZTM3OTc2YTNjYzA0YTFjZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWUzODJjYjVkOWU3YWNmMTQ4Nzg1ZjBjYWQ0ZGUwNGVlMmViOGRhZmY0NjVlNjBkZDU1NTdiZWVjOTA4NWQ3ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_718c92de425c48d38c935e2ce9a24aa1",
+      "statement": "Verification of a sig1 signature parses the header grammar and checks timestamp freshness (within TOKEN_VALIDITY_MS, 5 minutes) before the request body is buffered, so a malformed or stale header never costs a body read; only the HMAC comparison needs the body hash.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L107-L133",
+          "version": "repo-lines-v1:sha256:be36652f9055c9f151b259a747f762b53d46a959f1c8ee962dac98ad24f198b8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxMjE2MzJlM2E5NThjYzFiZGZlOGFkZDM5MTFjZWM2OTEyNWQzMjIwYTU3ZGU2ZDI5M2M1NzYzZGYyNjc3YTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzNGNlMGEwOTljNjkwNmJiOGVkZjBmZTNhNzYxYzU2YzY2MTFkYTNhMDBlNjliMWViN2ZkZWRmZDE4OWI5ZDUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/auth.ts#L13-L13",
+          "version": "repo-lines-v1:sha256:6fde59308359bc7bceb5d9eb0ec1524113be08af6ebb36c3c8852b120679b60e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmZkZTU5MzA4MzU5YmM3YmNlYjVkOWViMGVjMTUyNDExM2JlMDhhZjZlYmIzNmMzYzg4NTJiMTIwNjc5YjYwZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmZkZTU5MzA4MzU5YmM3YmNlYjVkOWViMGVjMTUyNDExM2JlMDhhZjZlYmIzNmMzYzg4NTJiMTIwNjc5YjYwZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjdhODhjYTAxYTM5MWFlNWU2MjQyMWFjYzFjMjA1YTJiMDE4NzkzNzAwOTUwOTI2NzNkYWVhODA1MDdkNWNhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODAyMDA2Mzg1ODg4ZDA4NzYwZDQ4ZTViM2YzOWMwNDBlMjljZDFjODA2MjlhZmYwZjY2NTBjMWEyMzA4NWUyYSJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L188-L214",
+          "version": "repo-lines-v1:sha256:d1b753f6b06d0e82e4045fb37fdd525e08b46ec231e7b8cad319e1fbc3011843:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3YzRhNDAxOTlmODNmZTE1YWE3OGYzODc5YzFjOTE5N2E0OWRjZDUzNjY5YjI0Yzc1MmZlZDY0NjJjNGRhMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhOWU5ZGY5OTFkNzg2OTE3ODFmMzY2NThhOTJkYzgwMGIzNjAxZmE0ODVhMzk3ZjdlZDI1MjdmNjZjZTU2NjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_182fb9553b304649a1d88f608b18608a",
+      "statement": "authenticate() resolves every non-public, non-sandbox request to a typed Principal at the edge: a verified sig1 channel yields a service principal, and a service:web request on a webService:\"user\" route additionally requires a Better Auth session that upgrades the principal to a user principal; requests with no recognized credential return failedScheme \"none\", which is the only scheme eligible for sandbox-token fallback routes.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/authenticate.ts#L34-L94",
+          "version": "repo-lines-v1:sha256:4705b3c9c83abb7a87cc2a1abad52de1a0f82f4f6b936374b53759d2e6082bec:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczZmM2NTEzOGRiZjk4YTE2NGE3YjljZjU3ZGFkYzE0NDcxMzhjMDY0NTQwZDc4YzQ5YTJlZDcxYzhjYmVlYWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2YWNkNjU3ODE5MGI5OGM1MjliMjdiN2I5NGFhZmY5YzI4ZDcyMzZiOTc3NGY1Yjc4ZTdlNDhkMDU2OWVkMGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L458-L482",
+          "version": "repo-lines-v1:sha256:84cda5b8486728c92c2ed3a525eaf63fd221b0a3aa6fa9b5674a3c51da664e66:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2YjQwOWMxYTE2YWY3ZDU0NWQzMzdmYzJkMmQ3ZmFmZThlZWY0MWIzMzIwNWVlNTVkOGVlODY5NGI4ZjY5ODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1YWE1OGY1ZTBkZmRhYzBmZTY1ZGJjZjdkNjRkZmYyNjliNGQ5MTI0OTgwMzc3M2M1MTRhZDU4YjgwNjJlYzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmNWRhNmQyZjRlZmViYTcwYmFhMTEzMDA2NzBlZjYyMjYyZWZkYjIyOWZiYzIwZmIxMGFhMjU4NmVhZjAyZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e4fe6e5923b497799dd517e78e8490b",
+      "statement": "Sandbox tokens are deliberately NOT verified by authenticate(): the router verifies them itself because it needs the session id from the path and a Durable Object round-trip, making the router the single place a sandbox principal is assembled.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/authenticate.ts#L8-L11",
+          "version": "repo-lines-v1:sha256:7e75af0681b94ec34da78e5937479d763d917729429b81096e895013481b358b:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjIzY2I0YzEzZDY3NzU5ZDU0Zjc2NzFkNDQwMzQ5NzJkMDkwM2EzOWQwOGFmYWU3M2JiOTgxZWI5YWIwZGNmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGYwN2EyZTQyMjlkNTRjYzA5OTVkOWE4OTYyOTI4ZDAyNmI4NDk4ZjEwZTliYTRkNGRkMWJjMmE2OWJhZTNjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzQ4NGI5YjJlMWIwZjFiZmY2NWU3MzExYmQwZDI1ZGM1YTBiMmZmNWEwZWVhNThlMWFhMWRkNjhkZDNkZDA4OSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L160-L212",
+          "version": "repo-lines-v1:sha256:5ff9e2387fa0d666fdbfee93eb6c76fb2e4cd03c6204b27d2fd7f4d06483965c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwYjE2NjI2ZjcwYjI3YzYxOWRmNWYyZjBlYjQ4NzlkZWJhYmRjNzIzN2EzODBmMzA5ZTNlODA5MTc1MjEwNzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d0f7c93a4194ef7a8f25288d321583f",
+      "statement": "The control plane holds one sig1 verification secret per service (SERVICE_AUTH_SECRET_WEB, SERVICE_AUTH_SECRET_SLACK_BOT, SERVICE_AUTH_SECRET_GITHUB_BOT, SERVICE_AUTH_SECRET_LINEAR_BOT); an absent secret is a 500 misconfiguration that blocks that service entirely rather than a 401 rejection, and a missing outbound secret is a hard error at call construction.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/config.ts#L3-L23",
+          "version": "repo-lines-v1:sha256:d961aef91dab0272ccbc23e7d2267c1501c19ae24a8144e51bb5f544a1c15e92:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5ZDlhMTBjYmJkNGQ4YjkyNjdhYTU3NDFmOGQxN2JmZjFjMTUyMGRmYjRjYTAzZGYyZGM5OGQzNmU0MDlmYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiZjIwNDE1YWNiYWY4MzFmZjFjNGQ1MmE2NmMyYWQwNGIzZjc0OGRhMWY5OTFkNzE4NDQ4NDJiYmMxYWI4YjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L92-L105",
+          "version": "repo-lines-v1:sha256:41835f69f08e3e90dab1d91964a0e3edb9d6722d64b5a6249fab08915bc7d033:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4MjRmM2EyODUxNzA4ODliNGY4MzU2NGMyY2I3NTNkN2IzMjc2MzIwNjE3MzhkYWZhNDJjMThiYjRkNDYyODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxMGVmMzYzODhkNjc5NjM2ZWMxYjJmM2ZlMTQzYzJkYTQ2MTNjOTFmZWJmYzllYjMwYjBiYjUwNGNlZDcxNTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YTMwZWRkNTNmNDAwNjgyOWQ5NWFiNmU5MzQ2YmNmOGEzY2RkNzk5MTJkMGM3NmJiYjczZDE4MWE3NWMwNzcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L262-L270",
+          "version": "repo-lines-v1:sha256:ba4683b8d002573e2f92fc1f2e4f329aa8c4d7db26dbe50e92e0979fc1e2b5cc:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg0MTM3ODc5NzViZjRmNzNkMzk2YWM1MWYzOTYzNzRmNTUxNDJlNGRkMzMzOGUzZTZjOTdlM2ViYWEwZDFmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjNiNjJjYTY3NjNlMGM1NGFhODA2YmQ5YWFmZGJkNDZkYzkzYmY4N2VkNTAwMTU4Mjg1Y2Y4NWE3MTVjMjM0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjk3N2FhZjI1ZmUyZGM5MmJlNDgzZmI2ZjE1NGJlN2UxMzYxOThmNDkzYWQxNzM4ZjJmMTg3NTgzMmE5MDM3OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_66e8245ef40042229de2109360254abb",
+      "statement": "Sig1 request bodies are buffered under a hard cap (SERVICE_REQUEST_MAX_BODY_BYTES = 16 MiB, 413 over) because the signature covers the body hash; after verification the consumed body is rebuilt into a new Request so handlers still read it.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L120-L134",
+          "version": "repo-lines-v1:sha256:474c4f44f848b38101601995429af23dafea611e2c2f4cc6ffa27063dd9b960a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1MDFjYjA0ZGEwY2M4MWJjMWQyYzI2NjczZjA5MDI4MmYzNGZlMzdkZDY3N2NhYmU5MWE3ZGE0ZDg4ZDI4ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwOWUwMGI3ZWExY2IyYzBhYTk3NDMyNDg0ZGY5ODk1MGVlOTM4ZTlkY2UwMGRiNWExNjJlYjFiZjI5YWQ5NTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwNTlmYzRjYmRiOWIyZjAwZTY0NjNhYmY5OTI1NDQzZDIzZThmZDViMDg0NzZiOTEwM2UyOWY1Zjc2MmE2ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmYmE0YTQxZTYwMzllYmJhODY0ZjE3MTNlNGQ4MWI4NjIwNmFiODlkOTY1M2Q5MTI2ZDQ2MDBkM2VmMjhhYzIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L184-L192",
+          "version": "repo-lines-v1:sha256:b8892725813369536e2a5c691ff98e0416bbe53aa1c3daf98e61037034813c90:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWQwYTFlZWJhY2MzOWFmNTE0NDlmZDJiMDNmOTQxMDJhN2Y2YWU3ODBiODhjZDAyZDIwNjU3YzRlYmI4YmU1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTljMTM1OTA2NjU2MzIzZDFjNWVhNDE2NTRlZTY2YWZiNTg1YWNkY2ZhZWFjYTEyMWQ1ZTMwYmYxOTNlZWRkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmVlZWZkZDUxMTNkOTkwNTZmMWUxOWRlMWI3ZDViZWRlNmUwYTMwMWY5ZThmN2JlNGVhZDNmOGY4ZGE4NjZjOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDNhMGZmY2Q5MGVmNThkZWU3ZjViNGNiZGM5MjFlOTIyMmE1ZDdhZGNlZjRhNDI5MDhkYjkyYzVjZGFmMzMyNyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L22-L27",
+          "version": "repo-lines-v1:sha256:d33ae4f24551e6ab0a7d67fb4bf43d3b4536c878399891a818d7f4007f0d3b55:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzRiMjg5ODFiZTQ0YjVkYTQ1NTcyMGNhNzAxM2Q5YWEzMjFhMzVmNzIzMDRkYWIwZDQ1NTA4ZTE5ODcwNTI1MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDc4NmFmMGNjYjYxNDU0OTM2N2QxYzhhYTVlNGY5N2QwMzMzYzg3ZjJjNTFiZjY3MzQ2Yjc2NDlhOTIxMmY0ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTM5ZTk3MjFiMjVlNTU3NDFhZDFjNjA1YzdhOWRkMDNjYmU1YWZjNzlhYWY1YzY5M2RmNjIwYmMwNGVmM2FiZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_63577fc301ab4c82aed9206d556a577d",
+      "statement": "Sig1 nonce-reuse detection is best-effort and log-only: an in-isolate Map bounded to 5,000 entries whose entries expire with the signature validity window (TOKEN_VALIDITY_MS), with oldest-expiry eviction; it does not reject requests.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L39-L71",
+          "version": "repo-lines-v1:sha256:627ae59ff1dc3b98bb4687d3d0afc2e01a3fe77f8a1ffc44f4f5d3b9f4c0a7c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0YjhhMTE3YmFlYmMxOWViNzg0MDgxZWU0YzBkNDMzYjM0YjkxNDE0ZTUwZDkyZTA3ZjMxMGQ0YWI0MDQ4ODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhZGE3ZmU0NzZmYjAwMDE5ZjIxZmQxNTM3ZWJhNzdkNWQzNTFjZWZmODk0YmVmNTJhMDA4MTM0YzFiNGE4OGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4aeb14ea9b65480fada08f768511699f",
+      "statement": "Actor assertions are namespace-restricted: ASSERTION_RIGHTS maps each bot to its own namespace (slack-bot→slack, github-bot→github, linear-bot→linear) and web to null (its identity arrives via token exchange, never assertion); a mismatched namespace is denied with 401, and a valid assertion is resolved against the D1 user_identities table to a canonical user id (null when never seen).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/principal.ts#L44-L53",
+          "version": "repo-lines-v1:sha256:c6a9fc7070ff41cc7ea3e47b674afa423dd82a2169f5581d63b5e7f3313e7734:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyNzdmMjczYzVhYWE3N2YwMGZhYWNlY2ExNWViNzU2Nzk2MGNjMDliMDlkNjQ0ODNmN2ExMTAxNDk5ZGM2ZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/service/request-authenticator.ts#L159-L182",
+          "version": "repo-lines-v1:sha256:459d2172a5c57c94fdf1560cab55f0e29509b80bae73d60b61426051427f33f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4OWI1ZmMwM2ZlY2M5NzQyY2E0M2UwMzNhNGFjYmNhNmNjNDVjNmU0M2Y0Njk3NjMwYWE5NTUxZjRjZjE4M2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkMjM5YzFjOTgyMDZmZDRkMzFlMTUyNTcyZmFiNjYzNDg4ODA3MmY4YmI5MDg5NmJlNzM2NThkZTZkMmExZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5YThjYTQ4MjM3NzMwNTk2NjNkZjcxYjcyZDEwZGQzMTk3MzE0ODFmYWM0MWE0M2M1MzcyNzkyYzQ3YzYyOWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_914faf59be364a26b21ed47df64c9e61",
+      "statement": "Better Auth runs inside the control plane as the user-authentication authority with the canonical SQL adapter: its user model IS the users table and its account model IS user_identities, so bot-created identities are natively signable accounts; sessions (auth_sessions, 7-day expiry, 24-hour updateAge) and OAuth state (auth_verifications with hashed identifiers) stay in Better Auth-owned tables, encryptOAuthTokens is enabled, and implicit account linking is deliberately enabled with users.email_verified as the linking gate.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/user/better-auth.ts#L10-L11",
+          "version": "repo-lines-v1:sha256:be67652382622a84990e216dc5b821fe68decc50734311ac7012ea52ad19025a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTgyZTM0Nzc5ZDgwNDBjMDczMjBkNTczOWZlYjRkZTNmMWQzYmVkMTFhMDc5MzM1Zjk0OGM3ZTNlNzgxZGY0MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjFlNzk4NWY2NmM3YmQ4MDRmYzNiZGUxMDlhN2IzOTM1ZDUxMzVjODhjYjQxZTAwNzU2ZmJhMDJhODgyMjBjNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGNhOGI5MjNhODAyMDM2ZDJiOTEyOTU2ODYxYTkyZWYwMjhkMThjODMyYjkxYzlhYWZlMTI1YWZhNWY4OWVmMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTg3Y2I0OGY5ZTgzMzYxNzJhZDUyOGYwNWE5NDc1NGQ5Y2UyY2ZmYTVhZDBiZTg0ZTIzNjBlZTMyZjkyMTE0NiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/user/better-auth.ts#L27-L134",
+          "version": "repo-lines-v1:sha256:8b12b1a26f49a5520bece24116755563f46b98f665e24f6f392a9f29559a1106:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYTNlNDZmOTQyNzZiNmY2ZjRlZDFmMDJhZjc4YmVmNmEyZWUxYzQzOWRkNTU4NGI5NzM5NDgzMTMyMTRkMmI3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlZjYyNTEyNGM3Y2QyMzkwMTRiMTQ0ZGE5Y2ZiNGJiMzkwZTk1YTcxMGM2MjU0MWE5ZTExNjA1NmIzOTczNDhmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MSwiZm9sbG93aW5nQ29udGV4dEhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/better-auth-adapter.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:cb1a679fb7e03d733aadd2ff040eeda8fd48f2b59814a04b6422e3e6201af350:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmNzY0YWY2NzliOTIyYjFiYzIyYWFkZjQ2MzM3Y2VmN2Y0ZGVlNDNmOGU3ZGFmYjhlYTFmODEwYzNiNzVmNDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1NTk0NWMyNWUxNmEzMjY2ZjIzYWIxNTAzODgzZjU2ZmE2ZDVmNjdkN2MxMWM4N2MzOWJhNzE1MjFlMTc5N2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhMWJiODU3NWFmMTc3M2FiMWZkMDkwY2JjY2Q0MGIwM2MxNDY5Y2MwYzU1ZDYyMWI1Zjk0OThhYzQ3YjQ2ODEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_35966c320c2943c4a71ed87e0c767087",
+      "statement": "Email verification is only written for attesting providers (Slack and Linear, EMAIL_ATTESTING_PROVIDERS) — the same weight as completed OAuth proof and what admits users through Better Auth's implicit-linking gate; every other provider's attribution stays unproven until sign-in proof mints it.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/user/better-auth.ts#L120-L127",
+          "version": "repo-lines-v1:sha256:f5b9cebb42b0a50960bdeb9a8a1eacaf58af0372b87e06778f890131b0455f64:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5MDE5NGJjZDBlNGE0MTBjMmFiNmUzNjliNWE5YjEyYmY2ODRjYTUyMjdhMDM0ZDhhZTE1YjY2MTNhNmNjNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjE0ZmU0NTYyNGMyMjAwODgzN2YyMWQyMmJkZGM1MmY0MWViZmUwNWJhODE4NDZhYzkyMTI5YjNkYmJiNWM1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGE2MWY2NzcyYzk1MDQyNjUxYTIyODllOWE2MGViMDFkNzE2ZDNiMWRkOWM2ZmNmZjIxZWFkYTI5ODQyYWJlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzk2N2QxYTY1N2I0YzY1MzgzMGYxNmEyM2IxMGY0YTVlMGE4ZWQ1YmZmYTBiNzJiMDBkMWJhZjQxN2QwNTJjZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/user-store.ts#L20-L32",
+          "version": "repo-lines-v1:sha256:80e4a831f9491ed08f5823c12f871e1371e96c64b13a3c1fba8b5fccc9c7156c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczMWQ3MTY0ODhmMGU1NWVkNmJjMGQ4ODAwM2Y4ZTYxM2ZkMzM3ODg4YjAxMWU4NmM1ZmVkM2FjMDMwNTRmZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk0NWU2MTkzNGYyMDQ4OTcwMjhhZDRlYzVhY2U1MDhkNGZmMDliMzExMzI1OWE4N2Y3Nzc5ODE4MGE1NTQ2YzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlNTc1OGQ2MWVlOTA4MDFjYWIzZTI3N2U5NjYzODRkYWRhMTM4NmY1ZTY2NDk4NzcwNzczM2QzMjc1ZDVlNjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fd5970ece7445c4b34fe182892f2557",
+      "statement": "The Next.js web app is a framework-free BFF that holds no OAuth provider credentials or admission policy: it proxies an exact allowlist of Better Auth routes (BROWSER_AUTH_PROXY_ROUTES: sign-in/social, callback/github, callback/google, get-session, sign-out, error) through a sig1-signed forward carrying only the opaque session cookie and a trusted client IP header, so redirects and host-only cookies stay scoped to the web origin while Better Auth lives in the control plane.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/browser-auth-routes.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:40106a7ff090afd248f03d7847de6d794ef4873ba0fa437c042deded86b0d8c1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/README.md#L87-L92",
+          "version": "repo-lines-v1:sha256:840b44dd57d9a82bad0dbcfb995c713a37fdf8e5c3798fa90b6410a402ff1aa3:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDdjMDZjNTYxZDVjMzI3MzQzNjg1MjY4YTQ2YjMzOTFmMzk5OGVlZTg5MGQyYmU1MWYwZDIxY2M0YTUzYWU2ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODA4MmE4YjRkZDdhYWViNTIyZGQ1MjQ5MjdjZjg0YzA3NTZjNDU3Yzg1MWY0MjliOWVhYmMwN2Y5NzcyYWUwMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDIzY2M2MzdkZmM2OWNmNzhlYzA3MGY3MmY2N2FjZmY0NDZmMTEzN2U0ZTgyYjkwNzVlOTkzZWRiZWJjYWUzZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDQzZTMxZmUwMzhjMjU5NDAzZWM2ZWI4YTViODMzMmM4ZjQzZThhNDFiMDY3OGFlNjVmZjgwMmQzN2ZkYWRmYSJ9"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/browser-auth-proxy.ts#L91-L124",
+          "version": "repo-lines-v1:sha256:8819675eb219ecfd01ffdcff9585e01026c8080f0a9fe8a07e642e59032455a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMjgwNmM4Y2IyNTQ4NmI4MGRlNDA4ODA0ZGRmYmU4ZWU5MTkyMWJjZGVjMTJkNDEzOTNhMzQzYTQ2MWQ4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmOTE5MzI1NDEyMzBiYzI4Y2E5ZjRiZjQ4ZDRjNzIxMDAzZGFhNzBmYjhkZWExM2JkMDVmYmM0MWU3ZGFlNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNjYzQ5ZWFlNzRiZjllNmRiMDRkNTdlNWJiNGE3ZmI4OTEzOWNmNzNjNzBkNDNhMzBkYWI3ODg2N2EzNGQ4Y2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a2813ee45624614918953a3faa74320",
+      "statement": "Session validation for protected resources performs a non-refreshing Better Auth session read (disableRefresh: true) so resource requests never extend expiry or write D1; a malformed session or session.userId/user.id mismatch raises SessionIntegrityError which maps to 500, not a fallback or anonymous downgrade.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/authenticate.ts#L77-L90",
+          "version": "repo-lines-v1:sha256:1690cfd900582f2c6046abb970b01f7bbfbde134fd85d9c31d3cfa1f818c0755:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlZGE5NGI5ODViYTY4Yzc2OGYyZWI5YzcyZjU1YTUwNWM5Mzc1ZTNlYWQ5MzFiNGRjYjAzN2Y5NjY1MjZhMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY0MTFiZjY5YjM5YzFjNjRlNTdkZmZkYThmZmFhYTY5Mjc1MDUxZTdiYTI1M2JlNzI4YWJhNTdiYTQ5MDlmNTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3MDczZGJhYWZhMjA4N2I3Nzk2NzRkYjkwYjM2MWNhMzUzYzliODVhNDBhMWI4N2RjOTI2M2NlYWIzZDE4YmQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/user/session-authenticator.ts#L49-L80",
+          "version": "repo-lines-v1:sha256:53ab8a2ae84186e7c6eefd74903fee58cfa6c501fb10893db7f1a8e4165ef22c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkZDdjMzM0NTFiYjc1MzZkZTQwYjQ5ZWM4NjdmNjJiNWVhYmRmMGFkYmNiNTY1MjAwZjUxNTIyYWIxMzEzNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4dde65e8b31c4c0fa680e6e5427b5465",
+      "statement": "Identity enforcement is a single entry point (applyIdentityEnforcement) that owns reject → derive → requires-user in order: caller-supplied identity fields (userId, spawnSource, authProvider, authUserId, actorUserId, scmToken, scmRefreshToken, scmUserId for spawning routes; authorId for prompts; per-route subsets for ws-token and lifecycle) are rejected with 400 against the raw pre-Zod body because every schema is strip-mode; identity is derived only from the verified principal; and requires-user routes (session-create, ws-token, automation-create) fail closed with 403 when no participant can be derived.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/identity-enforcement.ts#L148-L182",
+          "version": "repo-lines-v1:sha256:5f5ba4b02648038bf86cb428801c0f08a90b4c7c706a0a21af42bc1902b65b13:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViOWFkODA5ZWFhY2Q3Mjg2YWJiMTEzOTg5ZTMxZjFhYWNiNGUyNDRhNTNmZjgyYTVmNTAzMTg1MzdlZmU0MjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyYWFkYzBlZTFjMTA0ZThjM2NhMzc2ZmE5OGUxMmE2ZWFjN2U0ZjA5ZDRlNmZmMjI5OWFkMzY0Mzk2MmNmMmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjMGE2ZGI0Nzc5MjRlZGI0ZDBiYjBiYTJkMjliNGU4ZWVjMWZiYjhkMzgzYzVhZDgwMjllN2M4ZTRlMDNmYmQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/identity-enforcement.ts#L23-L66",
+          "version": "repo-lines-v1:sha256:b12b2ee1a573ddbccc39a58ffb1c0b41269ceca6bef802446fd97147bd838ead:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlOTVhZDMxM2M5MWRiZGMxNTA1MjVmNjZhMTRmZDMwNTFkMTE4MDZiMmIzNGNhOTViMGM4MGRkMjk5ZDQ2N2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3NGVlOGE4ZDFhYTg0NTM5MWJjNjc5ZWI3MGNlN2Y0NmEzY2Q2ZmIyZDE2ZmNjYTY3ZmExNzhmNGY4YzFlMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg4ZDI1NmRlYmM5YmJiNGEwMTA2M2Y3MDFhODgzOGUxNGZhZWQzMDZlM2QzMjkxZWQ5NDkwOGRjZDA5OTgwMDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhMGQyMzBiOWJmMDVjMDhlYWU4MzZiYzA0ODg0MjNkYzEzYTJlOTUwMTNhNzBjNTBkMjcyOTEzZGY1OGU0YjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb3c986319b94420a5113d2e9ccdad49",
+      "statement": "deriveIdentity maps principals to identity: a user principal is its own canonical user with spawnSource \"user\"; the userless web service credential derives no participant; bot services derive their verified actor's participant id (ns:id format) and canonical id (possibly null) with the service name as spawnSource; sandbox principals derive null and are kept off identity routes by the router's allowlist (failing closed with 403 if that ever changes).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/identity-enforcement.ts#L102-L132",
+          "version": "repo-lines-v1:sha256:dbd8287761319e8e91c90026a5afad6cedfe56c4b3560626f32d3a2a7b6d961d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiOGVmY2MzMjhhNDgxZTdhOWZkNGYyZWQ4MDkzMTg5YjBmNzM4NThhNDkzMTgwNDg3YWM5Yjg0MDc0NzRmMzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJmZTE2MWVhMmZmYmE4NmVlYTRjZjZlMWFkY2U5ODNjMGE4ZmEzNDBiNTYwODhjMzA5YTUxOTkzNWUyNjU4MTIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/identity-enforcement.ts#L153-L160",
+          "version": "repo-lines-v1:sha256:fa4cf0f03f826ac93ab89c56f33c099672154a307812cf114a6781050e07e804:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTAwMDhhNzkxYzk0MWFhNGYyOTNjNzkxMGJlNGZiNTNjYmJhNTc4ODUwNzU2ZGUzMmMyNjYxMGEyYjBhMDIwMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzBlMDM2N2I0NzQ0YmFlNjM1YWY4M2FhY2NiMTU5ZWMzYTMxYmM2NGNkNzRkNDIzMjJmNjQyM2Y4Y2FmODk1NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmViM2ZmMzI5YzJjZGRhNWM4Yzg3NjAyMjg3ODFlNjBjZmZkODNlZTU0NDJjZWJkZmQwZmU0NTVmODEyZTJkNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c77e7bf117d04e5d903168e41e5fe037",
+      "statement": "resolveCanonicalUserId creates the canonical user from the VERIFIED actor on first sight (body display fields only decorate), failing closed with 500 rather than writing anonymous attribution; it is shared by session-create and automation-create so the two routes cannot drift.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/identity-enforcement.ts#L185-L232",
+          "version": "repo-lines-v1:sha256:44c7b9872f04f25a6fd0cb41d034dbd40a049c2d655e068b66833bb7f8a32695:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzNzJiNjZhNjYxYjJhYjQ2NjVkNjYxZDk1MDg5OWE2ODdmYWJjODZjMmNlYTUyOTYyN2RkYzQwNTEzMWEzYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY4ZTUyZmM5NWI2Zjg5MzhhZTVhZTA5OGI5MTJlOTA3ZWE2NmU3NjQ4NTQ4YzAwMmFhNDkzZTY5YzNmZDIxNjcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L120-L129",
+          "version": "repo-lines-v1:sha256:6390d44256d91b588b5b1e250f776bcb464e6eef14b2574f36b524960faa1b99:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MDhhYmU4NTQwZGE0NWQwNmRlZmJhOTZlNTU1MGJiODU3NGEyOWU3ODVkNWE3ZTg2MTcxNjU1MzBkNDE5YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1N2Q3NjcxZTA2YTU2NGQwZWUyN2RhNTVjOWMzZDJlNmNlMjNlMWJkOTNmMGFkNTA5OWEyZDYzY2MxNzUyOTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiNGQ2ZjcwNjcyNjg0YzY4NDViNzFhNzNjOGRiMTU1Njc4ZmJkMzE4MzY2MDZjMDgxY2VlMDM3OTFjMmIyMzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhZWI3MTIzODczN2FhOTJmMTRhZTUyMGI0MmIwMmY5NGRlMmVmNDkzOWM1ZmY3ZjZjM2UzNTAxNzk5MTY3ZTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f7f95e1c5037447cba4b8f125ee2f249",
+      "statement": "UserStore.resolveOrCreateUser is the canonical-resolution primitive: look up by (provider, providerUserId), refresh identity metadata and user display fields, backfill a missing email, re-link an identity to another user when that user owns the email (preventing permanent splits), link across providers by verified email, or create user+identity as a batch with one retry on the UNIQUE-constraint race.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/user-store.ts#L158-L173",
+          "version": "repo-lines-v1:sha256:0b500444f88e770591b700362bf92556507c65e2734295c8527d1766861d25fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlMmJjOGE5N2ZiMTY0MWMzMmNkMzk3NWRlOWQ4Y2MwYWNiOWJhZGMxZjlmNWFmOTY4MjYyNDE4MzFlYmU2NzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5MGI3NWNlNjNhODU3Nzg1M2ZhYjY1NzQ1MzNhZTNlMjdiMjc4MWNjYTAzYTllNTAzOTI5ZTlmODZhMmJhNmYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/user-store.ts#L314-L400",
+          "version": "repo-lines-v1:sha256:ce49a043da1f2d2448650f3c8418f0f7b54988a63aaed8050cc16a791e9447a7:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlYTRjZGExN2FkMDE0ZDlkM2M5YThiODVkM2M1NGQ4YmY5ZWE2NjVlYmUxYjRmZjVkODBmNmFlMTI3Yzc5ZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlNGZkZjc0NTYwMjQzMTI2YzlmOTgyOWYzNWI1MDNlZDA5N2JlOWEwZTEyZWI1YTE0MzJiMTMzY2ZiM2IxNjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0ZGVjMGRmNjkwZTVhZWY0NDdhYmFlY2ViNTQ4NjhhZTY5OTBhODdlMTA5ODdjMTA4NTFiYzE4NDYyOWE3NjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZWNhMjJkZGM3NjlkYjhmNTcxYTdjYWJhZWQ5ZDEzNGE3ZTIwMGExNGI0Nzk3MTNhNmUyYWNmMThhZTZjNDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5c78fe1eadd54dd4a14a5aeefc63259e",
+      "statement": "When two canonical users are the same person, mergeUsers converges the loser's entire graph onto the survivor; it is deliberately a library plus operator CLI, never an HTTP endpoint (a merge primitive on an authenticated surface adds abuse surface for no safety gain), is dry-run by default, executes as one atomic batch ordered to satisfy every foreign key with explicit dedup rules, re-points auth_sessions rather than deleting them, backfills the survivor's email only when it has none, and is idempotent except one documented non-re-derivable window covered by a printed recovery record.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/user-merge.ts#L3-L34",
+          "version": "repo-lines-v1:sha256:f308e60511217483aba10d3d86da968ad2b3384f9078fd77d55525f0ff842b58:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5MTYxNzY0ZTQxMzQwOWNhMzIyMGIyYTdlNDcwOThkZDAwZDEwZDQ4Nzc2MjdlYTFjOWUwZjZjZTk0MGU0NWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiZTc2ODAzZjliZjkyODY1MmFiNTJjYTlhY2FlMWU3MWI2ZjNiZDA4OGI4YzE4YzgyNTYxYWIyMGE5OTYzNjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c4ebb595d5704ba18fd187ef23d11abf",
+      "statement": "GitHub App brokering: the control plane (sole holder of GITHUB_APP_ID, GITHUB_APP_PRIVATE_KEY, GITHUB_APP_INSTALLATION_ID) generates a 10-minute RS256 JWT (iat back-dated 60s for clock skew) from the PKCS#8 private key, exchanges it at POST https://api.github.com/app/installations/:id/access_tokens for a ~1-hour installation token, and caches the token in per-isolate memory plus KV (github:installation-token:v1 keys) usable only while younger than 50 minutes AND holding ≥5 minutes remaining lifetime, with single-flight refreshes and non-fatal KV failures.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L208-L240",
+          "version": "repo-lines-v1:sha256:0cc4c099347f26351e8a386a0d66cb660633f2a853ff78800d5db68b7020a6bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxZTYzODEwNjI2YWM2OTkwZjc0YjAxODU4ZGE4ZTBjM2RmMTY2MTNjYWNkYjI0ZjhlNmVhYWVhNGUwYjBjN2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjOTU2MTZlZjk1YzAxYTQyNjYzNjgyMzAyMzk1MWNkNjZjMTRkZWY5NjFiNjBmMGM1MWFhYjc3NjkxNThiYjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzMzQ0NWVjYmRmZjU0MzExNzc3M2Y1NDQwMWRlOTJmMDkyMzQ5YmMxYWU2OTJiYjliMTU0MmI4MTM3MzYyNjYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L23-L29",
+          "version": "repo-lines-v1:sha256:fcbd3ac5dd871ad373987c5aa4ea7e8b3d96c7c8cb69bf45151fe08b7b9a5a0a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjIxNjdkZWRkNTIyOGNiZmE4YzVmMDQ1ZGRkNWI5MmY5ZDJiNWE0OTkyNjI1NGY3MmQwYjc5YjE5NzI2ZDY0YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjAzNTNmMGJiMmJkYjlkMTRiZDUxZGFmYTE0NjQ1YjViZjA4OTkyZWY3YTFkZDAyNTI4MzdkYzMxZTg3ZjZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzZlZjRmZDA5YTk3MjU0ZDFhNGU1ODVkMWZkNjZiNzFlMmRkZjkwMTYwNzVlMmU3MzgxYWY5MDdmODVkYWQ2ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzI5OTFjODc0NjA4NWY4YTMyYWU3Mjk2MTU5MGFkYzZkZjE5Mjg1NjNhZTkwMDBmZDBmODczZDY4ZmYzM2ExZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L290-L296",
+          "version": "repo-lines-v1:sha256:16f5d2b142625ec837a59ea6fbf83e59205ce2346d4fd5366824997eb3fa36f7:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAzN2U2NWUzYzZiNjZkMGJlMGU4MGUwMTFiMDA0N2JjODdiMWVmYTViNDYwN2UyMjE5MWMxYzA4Y2FlMjA2MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzU4ZDRiYWY4YzUyMDI0ZjZiMjViNDA2ZDM1YmRiYTI2YTY0MDZmMDRlNTBkNDBiNmVkZWI1YTFjNmUxODcyMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmU2MTEwOWI1NjMzZTc5NDFhYzA4NTZkYzFkZTY3ODc2YmVkYjYxY2ZlNTU2NGFlNTYwZjMwM2M5YTRhYzMwNSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L383-L415",
+          "version": "repo-lines-v1:sha256:6315b1621c775d258117edc29edbb24ec5e2ac95c400a892eff0aad5f1f81377:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkMzVmNWI3NzQ2N2Y5ZWE1M2Y5ZDJlNTdjOWUxZTNjN2MzOWFlNjNlNDgzZWUyYTVjN2FhZTRkMDRiOGQ3NzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZlYzkzMDczZWNjMzVmZGRiNTg5NmJhNzc1ODc5NDg1MzQ4NmUxMGUwZWQ3YTRjNjAwNGE2ZjI1ZDc0MzcyZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxNWU3YWYzNzA5MDY5NjUyMGQ3ODM3ZjgwN2FhZGU3YzQ1ZTg3YjI1MmYxZTYxOWU2OTdlZDRkZDkyMTNmZGEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L4-L10",
+          "version": "repo-lines-v1:sha256:45f3f3dc991b643bb86c89726e833d87d047d698fa26702494ad48e767c57585:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzZkNDUzNTBlYTU1OWM3OWRkYWQzNzRkZTQ3MTAxYmFmNWQyOTcwNzljYWE5MjdjZWIyZmM5OGQ2Njc0NjY5ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTM1NjA1ZmNjOWVjN2M3ZWJiNWFjOTVmMTU1ZTBiYjIwMGFhNGNiMzQzZDlhZDY4OTNjYzc4OTBmMDE1Y2M4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjBkZDYxYzhiNmYwNmRkYTNiOGY3ZTU1NDk5NzI4ZTllM2RiN2QxNmU2ZWQ4OWVhODkzZTc2MDU0Njk5ZThkZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9e1155d255e4a1ebc681b5d9c6d58e3",
+      "statement": "The GitHub App RSA private key must be PKCS#8 PEM (BEGIN PRIVATE KEY): importPrivateKey fails otherwise with an error instructing conversion via `openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in key.pem -out key-pkcs8.pem` — the operational gotcha for operators.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L155-L182",
+          "version": "repo-lines-v1:sha256:c1bc1caab0d5451d228b643cead4d070ee42e9d51bf17d4a3bfe40876e145b39:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1Nzg5MTU1NGVjNDMxOGZjMjFjZGY3M2M4YzRjNzZlZmIwYzZjYzA2ZjJiNmI4OTMwOWI2NGNmOWMxODNiNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4ZGIxZWMyZWViMTc3OTQzYjY0MjJmOTJjYTRiYzZjNTI4YTZmOGNjMzE4YzgzMjZhYzdhMDZiNWJmYWQ0NGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f69fa8c93a84b92b5643e7b79d9eaf3",
+      "statement": "Git auth for sandboxes is served on demand: generateCredentialHelperAuth returns username \"x-access-token\", the cached installation token, and its expiry (from getCachedInstallationTokenWithExpiry, so the sandbox credential helper can cache its copy until shortly before expiry); ScmCredentialsService wraps this, mapping permanent provider errors to 500 and transient ones to 502 and never logging the returned password.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L429-L442",
+          "version": "repo-lines-v1:sha256:24b62e164c38fe54b8a80faf09d6b697352ee8f2ce85e03a4f186bed0c61cc3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmMTM2OTIxMjM2ZThiNWZkYWI0NTU2MDE2NDhkNjFmMTQ1YTA5NWVlNGY3ZTM3YTI0YWFlZDFlMzNmOGE1NjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhN2RiNDY4ZGUxNzNkZjE1YzA0YzRlOTE0NDcyNjg2ZjQ4MGU4ZjQwOTdhMTJiYWFhN2E2MmQzODQzM2M4N2QifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/scm-credentials-service.ts#L14-L77",
+          "version": "repo-lines-v1:sha256:cb46939a1c4abe0c6a985f091d255b5c617ae33427fe284fb36f5badd38d902f:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MDQzOGZhYTIwN2Q1MDY4Y2ZjNzcwOGIwNTFkM2FjMzUzMmI4NjU3ZmUyMDYyNGEwODlkZjA2YzA4N2JiZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L970-L998",
+          "version": "repo-lines-v1:sha256:ed87db8f14e26d7c9e670f98a82c795f9581c94cd0bb5116a144eedba5193c6c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0YzNmODA0NmVjYTc1ZDc0MzlhYmQwNDJlN2Y5ZjIzZDRjODYxMjJmOWU1YzUxM2U5MGQ1MzQzYTJhZTE0ZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmZjE4YWVhNDljMWNiMjBlMTU5MmE4ODNlOGExZjg0YTUyYWVkN2Y4OTFiNDhhNDBhMzUyYzM1Y2Y0MWUwMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1f7aeaf5e274e5bba1aaa74566c089a",
+      "statement": "User SCM OAuth tokens live in the user_scm_tokens D1 table keyed by provider_user_id with access token, refresh token, and expiry encrypted at rest using TOKEN_ENCRYPTION_KEY; upsertTokens is monotonic (overwrites only when excluded.token_expires_at is newer, user_id COALESCEd) so a stale client token cannot clobber a server-side refresh, and casUpdateTokens rotates only if the stored refresh-token ciphertext still equals the expected value (cas_conflict otherwise); GitHub's missing expires_in falls back to an 8-hour default and freshness uses a 60-second buffer.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/user-scm-tokens.ts#L115-L153",
+          "version": "repo-lines-v1:sha256:872faa0e3e42df3d79da34131a4f6e6e5ea4a199dc149b1aeffbee8ce28579aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjODk1MTlmNDUxYzAxZTIyNDNkYjA3MDVjYjI5Zjc5NGMyMmJjZjYyMWM0NjY2YmVhMDA4ZjQwNzIyY2EwNTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjNzMwYzY3YmExMjMwOTJlYTEyNDM2ZjBiZTY0YmNjOTI2MTVkNDMyZGRhZjZhOTRjZTkxY2FhM2U3OWExMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/user-scm-tokens.ts#L4-L5",
+          "version": "repo-lines-v1:sha256:583511b59fc100acf29fe29734cf70509aa4ec164bfdd5f92f6f449d6042bbb7:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODM3MWE1ZGExZmNiN2YwZTcwYzBiOGI3MjIyMjQ1MzJmYTY1MzMyNzllOTRmNjJmYWQ1NWM1MjIxY2RmYTg0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGU1ZGQ2MzhmZGYyYmZhNDVhYzZhYjgwMTY3NWExMWU4YzViOGYxMDIzZWNkYzQ3YzNmYmEyMzdkM2JjMzQ3YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIwMDg0NzIzMjM5YWNmNmUzZmFmNTJiNDJkMTUzMTJjNDkzNDU1NjE3MWU5ZGY0YmZkZWEwY2RmODRjODk0ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjcwYmIzN2FlMzc4OThlNzNlNzExMGFiZmU1MTg4NjQwNTM5OGIyNjQ2ZWY2OTNhYjBjZTEwODNmMDMyZDYyNyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/user-scm-tokens.ts#L77-L113",
+          "version": "repo-lines-v1:sha256:f523b5f43a28d58edea55ad9d228d2e5f28285a95e63fe343d6eba7d1f2ae33d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4YmNiNGU1ZmUzY2RmYTEwMjczMWUzMGYxOGE5ZGI4ODEzY2NmNTFjM2UxMjM5N2E1NWM5NDVjZmFmMjRkOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzNTc4OWQwY2U4ZmEyZWRiZTA2ZDRhZTIwMDE2MjkwZmVjNjczZGNiNjg0Njc5YjFhODM2MzdmMDNjMDAyNmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9e29e48642c44d1eb80b7802f678939a",
+      "statement": "SCM credentials flow only through server-side enrichment, never caller bodies: on session-create the route resolves a credential authority and fills scmUserId/scmLogin/encrypted tokens server-side — browser sessions use the browser_session authority (accounts enumerated via the Better Auth API; the access token is fetched from Better Auth and re-encrypted with the control-plane key; Better Auth owns refresh-token storage so the long-lived refresh credential is never copied into a second store), while bot/service callers retain the legacy D1 UserScmTokenStore authority; a user principal missing browser-session provenance is a hard error, never a silent legacy fallback, and users without a linked GitHub account enrich nothing (App-bot PR fallback).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L131-L169",
+          "version": "repo-lines-v1:sha256:e3178bccd238bca3b5cf4b18931c96327ca7c892553f196cd18c74ed7a0c0f9e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxM2FmZTI5ODAzNGU2ODJlZWFiMzBkOTg5YWFjNjkzMzU3YWY3NjY1YzY3MTYxZmIzZjhiOWFhZWU0NTE1MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwODdlYWZlM2ExMzk2NzY0MjUzMTNlYjlmMDY4OWFhN2EwYjk3NTdjYWNkYmY1MTcwOTFkNjFlMTQ3OGRlMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiMmUxN2YyYmU4YTE1NGM0NDQ1MmE4YjgyZTM1MGY5MzI3MzFjZWI3ZTFhYzYzNmM0YmExNzJkYjcyZjcyOTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L202-L224",
+          "version": "repo-lines-v1:sha256:d1c11c68f9fc25b7325d4359338bb344c9d0ef1d2a099737f6d1952531b8515e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmMTcwNmU1NjQ1NjhjN2MwYTZjOGQ0OTE4YzdlMTY1MzlmYzUxMjNhN2M0M2MwYWE3MzM0NDRkY2FlZjNmYjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2ZTE5OWZkNzk2ODIxOGQzZmZiZjVmMDg2NmI5OTYwZDFhMGUzM2I5ZjIzMjMwZmJiZTc4NmUxMzlmZDlkOTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L99-L141",
+          "version": "repo-lines-v1:sha256:fbfdb2d24488122e93679e6a3cbd080136112a33196cfa917904ca5451f9a79f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjNTYwZjU3NjQxOTMyZDNmY2U2YjgyNDUxODkzODA4NGEzNmE1ZGQwZWUyNGZhZGRmOGNiOWY3MWYwMGYwN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyOGI1ZWE4MmI4MmNmYTIxMjk1ZjIzNTQ1M2I3MjExZDY3ZGMzNzgwYTMzYzYwYWRjNjI4YzAwMGUyN2RiNmUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/github-credential-authority.ts#L42-L91",
+          "version": "repo-lines-v1:sha256:429d6db7334acd8ef521b373a148e56972e04aa3b9744b40fff346e393addb12:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkMTEwZGQ2ZGMxZTgwZDhiODZhYWMzMjk5MDU4YjNkM2YwNDA2MTJiNGY1NDc4ZDc1NWFiYTQ4NGYyNjkyNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI3N2Y1YjM3NTVkMjM0NjNmZTAyZjc1M2ViZDBiNWFhNjAxZGE0NTRlNDIwMmQzM2NhMTE3ZjNkN2JjMjc4ZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_799cea3bf22245f59056fd06e334077c",
+      "statement": "At PR creation time SessionPullRequestService re-resolves the repository target defensively (the sandbox caller is untrusted), pushes with a fresh App push-auth token, and creates the pull request with prAuth = input.promptingAuth ?? appAuth — the prompting user's OAuth token when available (attribution plus GitHub-enforced write access) and the shared App token otherwise (e.g. Linear-triggered sessions).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L189-L202",
+          "version": "repo-lines-v1:sha256:f3f1cb774a3e314c2f1d48a7245f802264ecb9d6379497dd8b60e738c60d4dfc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwOTZlYWExZTlkM2I3ZmI1MWY3M2JmZmU5YTc1OWI1ZjBmNjA4NGZkYjM3Y2Y3ZjQ4MTM3YzM2MjJjOGJhYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4ODkyMTBiNzhlNjQ5ZmFhM2E1MGJhZTNhZmQ4MmUyOTRmMGIzY2QwZmE4MzgwYzgxYTlmZmIzNTMyNWY1MjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzZWVmZjE0NGZkMTJkYWE1ZGZlYjU4YWE2ZjRkMzc1ODNhYTIyOWQyNGE1OGVjOWRiMGViOGNkZGVlOTVlZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY1N2JiNDNiNjUyZGU0YjE0NmMyZjBhOGM2ODJkMTQ1M2VjNDBjZjY0NTdiOGQ5NzU0MWMxMTgzYTJjZWUwZGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L363-L378",
+          "version": "repo-lines-v1:sha256:24c961f4455e21fd34824ee04f35f256d2e65be630007b8eb68fd61699c6e40b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NmM2MmJhZGQ2ODY2NTMzMGFjNWE4ZWYxZWRiZDM5NzUwZGEwYTc0Yjk2YjNiODRjOGE5MmI0MDA5YzNmYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkOWM1MTIyYTgxZmU2ZTE5M2VlNTAzODUzMmU0OTliMmVkZDgxMmIxYTEzZDE1MDM1ZTA1YzJiMTE5ZTBhMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmZDc2NzRiNDEwMWJiZWEzOWIyOWJkYWI2YWZhNjMwMjNjZTUxNzJlZTlmNDM5YjI0ZmNiOGM2NGRkMmEwNjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_847a586320374cb190a49840d0215ab5",
+      "statement": "The sandbox auth token is a single-session bearer: reserveSpawnIdentity performs a two-phase write (phase 1 persists the new sandbox id with credentials invalidated; phase 2 publishes the SHA-256 token hash scoped to the reserved identity), the plaintext token (generateId() — 16 random bytes hex) exists only in memory and the provider launch payload, and rotating hash plus sandbox id on every respawn locks a stale bridge out exactly like a fresh spawn — including a fresh identity for the prebuilt-image restore retry since a failed provider create may have left a live orphan.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/crypto.ts#L86-L91",
+          "version": "repo-lines-v1:sha256:345c8e15a6c950a85b391a1ae6b6a06496ea1eba23ab4574d36768c4ed763ea5:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjczNTMzYWZlZjg4NGNlN2NhMDY0NDg2ODVkZWMzMTRiNjc0ZThlZDQ0NmFmZDAxY2IyODE0ZTljM2QzMTQyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjJkODZhYjcxODk5ZGY0ZmMxZWExNjUyNjczY2Y1OWI1MDY0YmIxODJiYzQyYzUzZGJlODY2ZGVjMDFlODAyMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGIyMzYxODhhYjdkYTljYzZkMjQyY2Y2M2UxNmRlYjQ5NTE1YmVhN2E1NDJmNTI3MDVmNGQ0MWY0NzVhYjRmNCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/client.ts#L383-L397",
+          "version": "repo-lines-v1:sha256:37324cf5c458ea4e7acaa0871fe055a4c78b4f20a2c0452c31e52cf24bdf9980:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4MTYzMjZkZjZmYzczZTdiNzI0YTQwZTdmNDgxNzNjODQ5OWE2MTA1YjM0NGQ5MTZkNjY0ZmUwNjFmZmFkNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4MTMyNjFhYTY3NjI2MDFjOTI5YWQzOTY4ZjA4MjZkNGQ4YzlkNTA3YWRjM2FjNzY3ODY5MTAwYzBlOTQzMTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwMmY4NjY0YWYyODUxZWJlMmIzZmY0ZDQzMGQ3MGI0NWI0Y2ViMmYzMGQ4MWJkZjQ3NGZlOTBiMTgzNjhlZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkNDlmOWRiOWY3NzQxZGYxODc0MWRkMTM3ZmMwZTY3OTFhNzlkMzIyMGFjMWFjZTdiY2E5ZmMzZDA1MTZhYzAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L478-L507",
+          "version": "repo-lines-v1:sha256:9def79c5f2c7a9e9e40b3b5fc1a3797497ea6eded8b73275a00a7a977a6cf33b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiY2Y2YWRiZGMwYjM3NmIzMWE3YjU4Njg2OGIyNWE4NTIzNTE1MjNiNjE5NDkzYWE2NWM3ZmM2ZTlhYmJmOWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L611-L628",
+          "version": "repo-lines-v1:sha256:47b4aa039b79b037bdacf288346e1a3aeee4f30f680662b5311fce3e3628a814:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjY2MwMjI5NWY2YWZjNmVhNTRjNDA1YzU4MTUwNzc3ZTA1OGE5NWJlZjUxMzg0ZDFkOWJmOWFjMTA3OWM2MjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5YzEzNTkwNjY1NjMyM2QxYzVlYTQxNjU0ZWU2NmFmYjU4NWFjZGNmYWVhY2ExMjFkNWUzMGJmMTkzZWVkZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyMDBmZmI4MmYxZmNmYTY0MmUzMmYwNGY3NDY4N2NiZjc0ODUwZjA3NTEzYThjMmYzZjFlYjI3NWVkZmJkNTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1OGQ4ZjZkZDRjNDU0ZjhlOTY2YzFmMDY1OGYyZTU0YjhmMWJmYzA2OGEyYTk3NmFkODE3MjViMTE3N2FlNGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1a161aae90a4e3f8ed531b0eec6daf9",
+      "statement": "Sandbox token verification never happens locally: the router POSTs the presented Bearer token to the owning session DO (SessionInternalPaths.verifySandboxToken) and only on success sets the sandbox principal; a failed verification is 401 and an unreachable DO is 503 (could not be authenticated, not merely rejected). On user-or-service-with-sandbox-fallback routes the sandbox token is tried only when the sig1 attempt failed with failedScheme \"none\", so a recognized-but-invalid service credential is terminal.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L160-L232",
+          "version": "repo-lines-v1:sha256:2e1aba045506a445359a06e6e1a40343aadc97b7adee55592105e11c6de4df04:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlODYxOTk2NmYyNzczMWFiMDk3M2E4Yzc4MzM0NjQwNWFjMzg4NmFmYTVjMTc5MjljYWU5ODQyNmI1NWY4ZTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L458-L475",
+          "version": "repo-lines-v1:sha256:76825635094152e00700a4b0b4ef686a7e12014eb735ad27993e7daba6b66770:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2YjQwOWMxYTE2YWY3ZDU0NWQzMzdmYzJkMmQ3ZmFmZThlZWY0MWIzMzIwNWVlNTVkOGVlODY5NGI4ZjY5ODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1YWE1OGY1ZTBkZmRhYzBmZTY1ZGJjZjdkNjRkZmYyNjliNGQ5MTI0OTgwMzc3M2M1MTRhZDU4YjgwNjJlYzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1YTk1ZjE0ZmJjMzg1MjQ0MWM0NTQ2YmVjNDU1NzNiY2NmZTVlNWFjZjYzYmEzOWY0ODY2YjExYjFmNTc5OTgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/contracts.ts#L40-L40",
+          "version": "repo-lines-v1:sha256:e3d3aa8fef393c69387457651095d399e57bcc454384a06f26ac4e0273c27522:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNkM2FhOGZlZjM5M2M2OTM4NzQ1NzY1MTA5NWQzOTllNTdiY2M0NTQzODRhMDZmMjZhYzRlMDI3M2MyNzUyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNkM2FhOGZlZjM5M2M2OTM4NzQ1NzY1MTA5NWQzOTllNTdiY2M0NTQzODRhMDZmMjZhYzRlMDI3M2MyNzUyMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTM5ODJlODBlYzZkZDgzMmZiMjliM2I4ZjY3Y2E5ODQ1NTg3MTRhY2I4ZjZkNDI5NmQ5M2E3MmIzOGNkZTRmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjI1MDRjMDUwMzMzZTZiYjU2MmU2ODIwMWRkYjY0OWQzZDZiZTBhMzQwNjY2YTQ3ZjNmNGFmNDA4MWMwYTg0ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2f43e313c0c54ac484b1179798c98d87",
+      "statement": "The DO-side token verifier (isValidSandboxToken) prefers the stored auth_token_hash with a timing-safe compare, falling back to the plaintext auth_token column only for legacy rows; the DO rejects dead sandbox statuses with 410 but allows boot-time states because the git credential broker is already called during the initial clone before the WebSocket flips the row to ready, and handlers re-check sandbox id and credential hash after the non-storage token-hash await so a mid-flight respawn cannot authenticate against replaced credentials.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/connection-authenticator.ts#L110-L151",
+          "version": "repo-lines-v1:sha256:d9735776b69951ae855e38c1d559aaf5e7c2e4b210c8c11a2bd93b46407ebd17:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZDI5YWI5NzEzMmIxZDUyMzZmOGIxMTE4MjdhZTEzZGMwMDUyMGI3Njk3ZDFhZjdkYmE3ZjhiZjU4ZjMxYjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmMzk3ZWQ2ZGIxMmUwMGExOGM3OGM2ODA2OTExZmYzY2RiN2Y3MzI0ZmEyZmI2ODA1ZmQyODZmMGU5NTk3MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzZDE5NjVlMjYxYjBiZTMxMzU1NjZhNGE0MjYwMTlkMzhhZTkyZDU1ZTVlNjJjNmYyNGI4ZTNjZWU2ODc2ZjIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/sandbox.handler.ts#L123-L130",
+          "version": "repo-lines-v1:sha256:0a68a754e6a47af2fa30bdfde94e5b2f4529ee1f4f7ce2a1bb4c0df7817e9bc9:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA5NmZmOWFmNmM0Y2QwZDhkM2NiNzVjYjY1ZjY3MWRkMDZkZGM4ZTdkYjI0MTM2MzYzMTUyMGNhYzhlYjQyYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDc3YmU1YmZlODFlNjRhNGM5Y2E4YTZkYTNjZjJjNmQ4Mzg3M2U4M2ZjYzQ0NGFhYTA5MWEwOTQwMWZmNDVkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2UxODIwMjgwZmI0ZWMxMWM4ZGU4NmFiZjNkY2Y3ZWEwYzdmY2I2M2MyNmM3MGFhOTY2YmFmNWQxN2YwYzUxNSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/sandbox.handler.ts#L258-L282",
+          "version": "repo-lines-v1:sha256:ae74dc234a075d2683e73e0a85ecb30d1dfdabc777976c95960cfd9b71681b49:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyZDY0ZTBiOGNjYWRlNWFmZTQ4Yjg3NWEyOTQ0N2JlMzQ2MmMzMzU1NzQ1NDllZWNlZmYwZTYwNWM5OTk5NDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBlZGQxM2I3NmQzZmUxYWQ0MzJmN2MxZTU4MzBjZjUwNGMyM2YyMTY5YjRmYWY0YWU3ZjIzYTQ5OGQ0OTdlN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE2NDJjZWRhNmE1YWJhYzc0OGUwMjZhYmEyY2MwZDJjMmVjNGY1ODk3OGI4M2FkMDEzMWY2Mzk2MDQxYmJjOGQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-access.ts#L17-L41",
+          "version": "repo-lines-v1:sha256:2078b47b8c377b1c0a0e54f012e1ab45dcfe5e6420f110f69f20e4fc6cb6e4b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhYTViYjYyNjY0OTVmOGEwMDMyMjRlMWMwYzBiMGRkM2VmMTU0ODljMzQ2ZTEyMGE3NmVlZjc5ZThmZGU1MTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5NzIwM2M3ODQ3NDQ5ZmIzZmNjZGMzYTY3MDhjZjMyNDkyYmNlZWQ2MzYxOTU2NTQzYjM2OWI4YTAxYmNmZDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1c1b50414d843079f2b9d9ca36c8280",
+      "statement": "WebSocket clients authenticate by exchanging a short-lived WS token: POST /sessions/:id/ws-token (a requires-user identity-enforced route) forwards only the verified participant and display-only SCM fields; WsTokenHandler upserts the participant (accepting client-sent encrypted SCM tokens only when newer than the stored expiry, coalescing against server-side refreshes), generates a 32-byte hex token via generateId(32), stores only its SHA-256 hash plus ws_token_created_at, and returns the plaintext once; on subscribe the DO hashes the presented token, looks up by hash, and enforces a 24-hour TTL (WS_TOKEN_TTL_MS) with close codes 4001 (missing/invalid/expired) and 4003 (already subscribed).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-ws-token.ts#L14-L60",
+          "version": "repo-lines-v1:sha256:0f33be3eabfe2dfadcfe28396e1b19aba455b10cd2c78c76ccb24500a82b4dba:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhYzE5NzJhMmZkMTk4NjRkMzNkZDlmNWMyZWE5NmJjZWQ0MTQxZDgxYmRjYzk1ODVmNDU3MTkyNTNmNDRiMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YjIxM2IzZWQ2MGUyOWY2MDQxYTI1ZDZhOTYyNTliNzkwODNkMWU4ZDZjNThlZmM1Nzc1MzY3NmI2MjI0NjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/connection-authenticator.ts#L216-L273",
+          "version": "repo-lines-v1:sha256:427de4a844eba9c7086bf8a161f837dc3447d50e71a0fc6e9dc0d546a3ab5262:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyNGFkNTMwNjIxM2I3MWIzOWU0MDBiMGRhYWI2MjY1NTkwN2YyYWZkZmY5NTNmNzUzODFmMjlmZTkxODFmZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhNDRlNmYzYmU5ZmE3ODRlODkwYmUwMmMyZWM3YTAxNmI2YmU3OTliMTcyOWViYTU0Yjc0YTJiYWZiYTk1ZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVkMGM4NDNmNzNhNjU2MWJlZDNkNzJiNDI4MGY1NzcxOTY3OWZjOGJmOTY1OTFhMzJlN2FmOGFmMTY5MjA2NjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/connection-authenticator.ts#L22-L26",
+          "version": "repo-lines-v1:sha256:0f6ccdfacb29df8ef9b67b3fab1419936bd3d0e25a81ed922107633bc58fae0f:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWIyOWY3MDg3NmUzN2Y4OWYzMWJlNDY5ZmIzY2I2MTU0Y2JlNzAyZTRhZTI3NTQ2ZThlZDRhMWUwMjdlZmFkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk2MzZiYWU2YzA3NmNkZGNlZWNlN2EwNjkwMzdlM2ZmZTlmZGQ0YTg0NGQ5ZTVmZTFhMWNjNTRmNDMyNDY2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjY4MDA1NTAyMjRjYjk1ODNlMWViNDAyMWFlMWIyMmIxMGVkM2FiOGYzZThmZGViYWE2ZWU2MjNlY2Y5NjQ1YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWZkODVlODQ5YzY1ZTg0MWU0NDgyY2M3NTdiNTExY2M0YThiYjA5MGU5NzQzOGVhNjhhMjI0NGVjOTY0MmQzYSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/ws-token.handler.ts#L32-L114",
+          "version": "repo-lines-v1:sha256:0f917024333d0798ae9dce543970836775863dffda6702e31d9f54a7b20347f1:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNTFkZWYxZDU3MjRiZGZmM2QzZWIwNDNiN2QyY2E3Mjc4NGRmMWU5OGI4MDYzMjdjYWU4MjRmNzIwZWUxZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1ODg2OTJiODM1MTRjZTRjN2Q2NzVlMjY4MWY3ZTlhOGIwYWEyZWY3YWY2Njc0ZTUyYzY0MWY5ZGNlY2NjOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f60ba9d06a1141ba93e370bcff2cec96",
+      "statement": "Secrets live in three scopes (global, repository, environment) sharing one store plumbing layer (scoped-secrets.ts), one encryption key (REPO_SECRETS_ENCRYPTION_KEY), and one cap set; the session fold (buildSessionTargetSecretSources) orders sources lowest-precedence-first — global plus member repos in reverse position order (primary wins collisions) for repo/ad-hoc sessions, and global plus that environment's secrets ONLY for environment-launched sessions (member repos never contribute).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/environment-secrets.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:45eb7412ed6e34c38afabbb19c32a7acedfee97014cbba62a4ab098bdebc3903:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4YTEwYzdlODk5N2ZjMDIyMWU3NTdmNzE1YWZmYzNhOGEyZGFjMDNmMzA1YzI4ZDkxNGI2MzIyNmY3ZDM4NzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzNGJhZWM0MDFhYjY1N2MyYjNlZjVmMGQzMWNkMDlhZTY4ZjVmNjY5ZjNkMjk3ZmI3MWM0ODJhOTVmZjc2MGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/scoped-secrets.ts#L1-L8",
+          "version": "repo-lines-v1:sha256:681e3cc6200a28ee798c834e4eeb6754247298f8ba61daa20e9803d1191256ce:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmI1YzIzNmEzZWUyMGYxYjNhYTY5NWYyYzA3ODg4OTk4OWIyYzk5OTJkZWEzZWIwOWRlNTkxZDIxMTViNjY0NCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/session-target-secrets.ts#L33-L86",
+          "version": "repo-lines-v1:sha256:4173393ee8049cd28f2aa1a2ffffe8a1dabf6fd47e59b86a101698d3bb6084b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliZGNkOGU0OWY3YzVkMDBjZmJiNTFkY2Y5MGM3YmYwZjY3Mjk5MzE1OTA1MjQ2ZDI3ZjNmNDUwNjJlNmI5NTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjFiZmNiZGUyMzdhMTIxNDEyMDUyNDRhOWNhNDAzM2I4OGVkYzAwNTlmNmQ1YzAzM2U0MTcxMmRhYTEyMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c03aebc713f242e99042902a3d08abf7",
+      "statement": "mergeSecretSources folds ordered sources case-insensitively (keys normalized to uppercase), reports per-source byte attribution and cross-source collisions, and computes total bytes against the combined cap; per scope the caps are 50 keys, 16 KB per value, 64 KB total values, and 128 KiB combined per session; duplicate keys after normalization (foo vs FOO) are rejected rather than last-wins.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/scoped-secrets.ts#L34-L53",
+          "version": "repo-lines-v1:sha256:1896cc19edd0a36a8450d40ed45cb902001a5cb001a18b1755476c1e7a90fd3a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzYTNjZWI3ZWJhZDMxOGE5MGVkMWZjOTVjYmI5NzFmOTQxNzgxMmQ2Y2U0NzE2ODhhMmQzYzAwYzA1ZWQ5M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwMWM3YWJkNGM5ZDY1ZjA4Mzk3N2JjMGU4ZmYyZTQ1MjhmZTZhOTk3MjU1MGY5MTY2ZDdkNDUzYTM2ZTE1MTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExYjVjNDE5Mjk3ZTEzZDQ3ZDM2N2NjZWY0ODQzZGNmNzVlMzY1ZjU2NWE4YWMwMWUyZWEzY2EzNmYwYzkwYjYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L1-L56",
+          "version": "repo-lines-v1:sha256:4b4ff0e5cf85cd97080fc76c947ef0ea6a7b5f85cc4f30776285d0a7bd306810:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkN2Y5ZmRmODNlZDM5ODk0NTNkZTc2NWE4MzFkNzU5OWNmZDQxYWQyYjFiYzU5NGQ0Y2RmNmM0NjJlMDRkMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4YzJiNzBjY2Y1Yjg5NTA3OTRiMzdhOWEwOTkwMzUyZjQ5YTc1YzQ3NjRlNjJhMjE2ZjQ5OWZmOTJjNTllOWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkMThjM2MyZmM0OWY0NGE2OGIwYTBjOTI5ZTNhNDUxMDRlOGJiZGM0NThkZTYyNTYyYTRiYzk0MDBjNjhiNWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L103-L154",
+          "version": "repo-lines-v1:sha256:c4e6eb3dfee53139c670543b348d768ef000a1292bdf237522e65b8a805d5706:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyZThhODFiYmJmOGZjZDAzZWJmMzUzNDFjNzk2OGMxYmI1NjBjMjc5NDk2MTQzNDJiYWYzODFmOGU1ZmIzM2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2ZjhjNGY4ZDM0ODgzZGZjZmRmNTIwYzcyMDZiYzk2OWIxY2Q0NTc3OWEwZWY4NDc2MjBmMjM1YTg1ODkwNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkMGM5OTY1ZDQxMmQ3MTE2YWRmY2RlMDlmMjMzNmQxZWRhZmVmYWMzMGJlYmNiN2U0YzNiMDQyY2IzODNmYWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cef830db1c9f492885f3a63fcda9c4ed",
+      "statement": "A reserved-key list blocks user secrets from shadowing system environment variables — including SANDBOX_AUTH_TOKEN, CONTROL_PLANE_URL, GITHUB_APP_TOKEN, SESSION_CONFIG, SANDBOX_ID, PATH, and HOME — and keys must match [A-Za-z_][A-Za-z0-9_]* up to 256 chars.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L1-L46",
+          "version": "repo-lines-v1:sha256:4129eec954eac6598d877deefc1271eaaf8e0a1928e65894010c209066642cb2:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkN2Y5ZmRmODNlZDM5ODk0NTNkZTc2NWE4MzFkNzU5OWNmZDQxYWQyYjFiYzU5NGQ0Y2RmNmM0NjJlMDRkMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNzQyNDUxODFhZDkwMTU3NmVlNDA3NjU3MDkxYWE2YTdiMWNkNzA5MmY1NDVlMmUyZDE1NzVkMzE0ZDgzMTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_732653dd4db94070846fd79bd16d1876",
+      "statement": "All secrets at rest are AES-256-GCM encrypted (encryptToken/decryptToken over Web Crypto: 96-bit random IV, base64(IV‖ciphertext)); this covers scoped secrets, user_scm_tokens, the commit-signing private key, and sandbox access values, and decryption failures raise SecretDecryptionError carrying the failing key but never plaintext or ciphertext.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/crypto.ts#L13-L68",
+          "version": "repo-lines-v1:sha256:ffb60152c32e702795241c3a02e6a742111af56df978d7d8f8b57cd53cc5bc62:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhZDAzNTA2ZmUyYWYwOWE2YjRlZjA2YjAzZjU5NDQ1MTZhM2NlYzBkODNkMGE3MTk1MWIzYjM3ZWE3MTQ1OWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhZTcwMWEyMDJhYTZkMWUyYWMyNGYzZTJkNmMxOWMyNzdmMWZhNTg3Yzg5M2MzMDU5OGQwYjdmMjYyNjQzODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5NDU0MDAwNzFmOGQzODkxNzg2MDhkZGMxOTZmNmNjOWRhNjVhNjVjYWJjMDkxZmVlZGNkNTUzYWNiZDQ2YTAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/scoped-secrets.ts#L109-L146",
+          "version": "repo-lines-v1:sha256:06e662123f7b2c0eddfc6c98815c8c4c5fb1dac08214402c179aa00648c8f9d2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2ODQ3OTdkMTQ3MGE4YmZmN2JkNWE2YTAyMTRlOTViOWYzMzMwNzg4MWU2NmMzNWZmNzAwNTgxYzcyMDhiZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-access-reader.ts#L13-L36",
+          "version": "repo-lines-v1:sha256:f9cc20434fcbf57541ebfa2c367e950aa413d5d497af5ae742b85716e21c94c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwOTNlMTI5MDZhNjFmZDVjMDg5ZmVlOGZjYWZkOTUyZTU3YTU5MDlhMjQ5ZGQxMjUwOTQ5OGQyNzFhNzFjOTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5N2IxMjQ0NzNmMDYzOTIxOWJiOWVjZmY3OTY5Mzc2YjY2YzEyYjBlYmI5YTc5ZmE0NjA3YzI0Y2IzMTMxZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzMTVkOWY3NjFhYWM3MWY1YzJiNWMyOTIyMzM4MmI0MmY5ZmU0NmExZWY1ODlmMWUyZDY3OGVjNjk1Nzc5NjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_64490085734a40fcbe2199274f628604",
+      "statement": "Encryption-key management fails loud: env-validation.ts eagerly validates REPO_SECRETS_ENCRYPTION_KEY and TOKEN_ENCRYPTION_KEY are present, strict base64, and decode to exactly 32 bytes (AES-256) — a malformed key would otherwise survive graph construction and throw mid-spawn, a short one would silently downgrade to AES-128/192 — and an unconfigured key means refusing to operate, never plaintext fallback; the commit-signing store likewise returns 503 without REPO_SECRETS_ENCRYPTION_KEY.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/env-validation.ts#L1-L58",
+          "version": "repo-lines-v1:sha256:9167acf729d8855f35962f9ffd09a3ad9b1b22711716147e9323d1dc0ca8bb3d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L36-L41",
+          "version": "repo-lines-v1:sha256:eab930431d7e24b8922f4a8c36b1e2aa025b0d521f6aa876c260f2d79971d8ec:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGViNDYwMTZmMGM4YWFjMGI0ZmIwZGM2NzA3MTViYjgzMjdkMjU5YWU4MjgzODM3ZWE1MzllMWUzZTMyM2FlOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmQwZjJkM2EzYWFkYTI3NTg2NDU3OGQwYTQzOTE1NjM4ZDU0M2ZlY2EyYzk0ODU4ZGI5NDEyMTFlODZjZWYyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNlYzJmNjIyMThkYzk5YjYyNGRkOTMyMzA1ZTQyNjE1NGE3MTUzZjczMGQwYTZkYjQ0N2YxNWFhM2I1NjMwMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_aa80b99623214e4bbf6165b39a0000ff",
+      "statement": "Secrets are injected as environment variables at spawn: the DO's UserEnvResolver decrypts contributing scopes, folds and audits the merge, and derives the managed-provider env (CONTROL_PLANE_OAUTH_KEYS like OPENAI_OAUTH_*/XAI_OAUTH_* are stripped from the exposed payload; in managed provider_account mode the provider's API-key variable is deleted and a *_OAUTH_MANAGED marker set so the in-sandbox CLI uses the control-plane broker); the payload rides CreateSandboxConfig.userEnvVars and refreshed only by a new spawn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/client.ts#L388-L392",
+          "version": "repo-lines-v1:sha256:5363fe1115cc356b13aea2a7b406a846f2f73f1ff3ad6a52d9268b42eae60cb1:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2VjMzNiYTI5MTQwNTVmYmE4Njc2ZWEyNGM4MzgxMDMyYWUyMDQyOWJhNDgzZTg4ZmY3ZWQyOTAwOGRlMGU2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTQ1YWE5ZmE5NGE0Mzc2ZTYyNjZkNjA0NzRlZjFjMGQ2ZDU0ZjcxMmNmZmVlN2M1NzQwM2FmZDJmOTM0OTNhYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjlhZWEzMzExZDJiMjY3NTU3NjAzMjVlM2VmZDI0ZjlkODJlMzBlNGVhOWEyMjRlNWY0ZDY2MmM5ZTUzYTUyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjlmZmRkOWEyZGFhMTcwOTc1MWVlN2Q3N2NmYmFhNWYyZjk4MjllYzNlODQzN2JjYWUyYjk3NDcwZDA0ZDE4NSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L536-L594",
+          "version": "repo-lines-v1:sha256:436da3b9d0bd450bd3248850cd96b5bf15bcf56b2d95a9cccb569b268a32473d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2Y2NhY2MzZmNjOTVkNzhjOGU2NGFkMGFiYmE1N2ZkMDE4YjZiNjIxN2JhODRmNjAwNjlkMDNkNDQ4ZWRjYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyNDhkNjM1ZjUwYzgzNjdmNTg5NWVlMjgxZjNkMmJiNWMxMGFmZGQ0YTM4OGIxZTQ4NDU5NGYxZmE1MTJkZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5YTBmYjE3ZDQ2ODAwOWZmZjA5ZmZmOGNiNWZiY2RlYjUzYmQ4NDczNzQ1NzBjNTg1ZGEzZTVlYmMyY2VhYzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/managed-provider-env.ts#L7-L89",
+          "version": "repo-lines-v1:sha256:c4f3e32a5f6b378ab21163343d9a2a3fb4c609ad665b10f853cd6289f52d3020:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmNTA5Yjk5YmRjODFmYzk2ODA3ZDdjMmY2NzhkNWMzOTdmYWNiZTAxMThmYzA4Y2I4NTdjNGJlMzE0YzhmN2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg3NjI3ZjY2MzRlYjY5ODFhZmU1ZWViNDEwODhjNTQxYzMwYjU1YjVmMTAyYWY2MmYzNDMzZDRjMDgyODNlZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExYjM3MGE1YTBjZWZjYjVmNjczMWU2YzE3MTllZGM3ZGQzOGYyMTk3MzkwNmE2ODc4ZDZmNzM4ZWZmMzlkNTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/user-env-resolver.ts#L110-L176",
+          "version": "repo-lines-v1:sha256:1c1cc646edec54fc2a45a968ad0d283f7f777fc48987895c802054963525d743:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxZTUxMzcxYzk5ZTY5MmMzNWM4Njc5NzhjMTlmZjdkMmM4M2NkOTRiNDk5YjMyYzVlZGE1NzUyN2MzMWE5OTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjYmE0MjEyMTIxZmVlYzAwZDFkYThiZGI4MmE0MGQxMGRlNjhhNjhjZWMyZDgxMTk2YzAwMzRkNzBlODA3ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiNDE0NjliNmVkYmE4MDQyNWJjNTFiM2MwNWMyNzEyMzUyNGJhOGVhMjcyN2I2OTdmYzZhMWE4NjZhNjk0NzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6bdc7d4acd24f8c988796cfd4ae105a",
+      "statement": "Provider launch env precedence protects the trust chain: system variables (SANDBOX_AUTH_TOKEN, CONTROL_PLANE_URL, SANDBOX_ID, timeout, repo fields) are applied after user values and therefore override them — a user-controlled secret cannot spoof the control-plane URL or token — and a reserved set of launch env vars (SESSION_CONFIG, VNC password, ports, snapshot markers) is stripped from user input entirely, as pinned by test_sandbox_env_vars.py.",
+      "evidence": [
+        {
+          "resource": "repo://packages/modal-infra/src/sandbox/manager.py#L367-L398",
+          "version": "repo-lines-v1:sha256:9189380db57ab3232f86fbebfe7d54285c73a590e83a72355850b90421f7d5c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjZjQ2NjZiMDVkNGNhYTZlOGZlYTNhM2FlOGFlYWZjZjQ2YmQwZjI0ZDhmNTYyNjEzZjdhNzhmMzdlMjJlY2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4NzVmY2ZkNWU4N2I5NDhjZjgwY2FiY2E1NjUzZDg1YWQ1NTc2MWQzYTE3MWNkNDU2MzE2MDU4OWU3YTQyZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhODM2NWU1ZTlkODBlODY0YmQ2NWZiMzMwMDU1YmUzODczOGM4Njg2MGFhNTBjYTkyNzk1ZWQyZTgyNzMwMjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkNmFkZGIxMDlmYmNjNTkwYTY4M2JiZGZmMWFmMzZlNjc4NWNhOGExZDEwMTJhNjg4MWE2ZWU2MDFiODQwNzEifQ"
+        },
+        {
+          "resource": "repo://packages/modal-infra/src/sandbox/manager.py#L48-L58",
+          "version": "repo-lines-v1:sha256:5219ae8810f5ba965327964be5c5630c47ac6b325da002799486e517a0cad1cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZTE3Y2I3ZTkxZjI5ZjcxMTBhNzU1ZDkwM2Y3YjQwNWVhNGJmMTM1NmVkZTNiZmNhZjliYTY0NDZmZTczMWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5MTk4NjYzYTM0ZDgyNDFlZGE2ZDI4Y2ZlYTk3ZTgwNmI0MjIxODY4YjYyZWUxNGI1YjA0YWQwZTU3MGYxNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjZDIwOTlhNmQyMzAwNjhkODM3NTQ0MWVmOTkyNmQzNmEzNzQ0NWE2ZWJkNDMyYjEzYWYzYjg1YmE3ZTJiZTIifQ"
+        },
+        {
+          "resource": "repo://packages/modal-infra/tests/test_sandbox_env_vars.py#L150-L168",
+          "version": "repo-lines-v1:sha256:903cf3d60716e5f25eabb39e37d5b6276a0268abda1ea4bb5054b790e3fc9874:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYxOWVhY2Q2ZjA5NjdjMzEyOTRiNmFiM2ZiNDUwZGRjNTA3MzNlZjkzZDRkNGE4MmI1MGFhYWJiYTA0NTYxNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2ZTgyODE3ZTVjMjliMmRhYjZhMDIyZGZjN2MwMGVhOThkNjEzNjYwNzI2MTgyNmYwMDAwZTg0YzI2YTJiMWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmMjU5MTUwMmVkZGU1MWRlODllYjhmYjZjNTMxYzZmNjZiYWEwZTdmMmQxNjYyZGYxZmUyMzAyNWNlMWY4MjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_038a1429083346fbbd96a7f9e68a2585",
+      "statement": "Managed LLM subscription tokens (OpenAI ChatGPT, xAI SuperGrok) are stored in the scoped OAuth secret stores (global/repo/environment scopes) and refreshed by control-plane brokers, not sandboxes: the OpenAI token broker returns cached tokens until within a 5-minute refresh buffer and refreshes single-flight per isolate with D1 re-reads covering cross-isolate rotation; sandboxes call POST /sessions/:id/openai-token-refresh (or xai) with the sandbox token, and the route 409s unless the session's auth mode for that provider is legacy_scoped_oauth.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/openai-token-broker.ts#L32-L76",
+          "version": "repo-lines-v1:sha256:cd0e8585ae81ac7be905fbd8e75808048d459c5dabb329564d15b29213eefa68:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmZjIyNWY0NDIxYTUxMTRhNGQ5YjRkOWZlZDVhYjkyYzVjMjY1YTY1MzcwZTE1MGMyMDAzOGQ2Nzk3MDk3NTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5MmM4NDMyMTFhYjNlZjhjMWJlYzI1OTI4NDEzZGQxMGEwMjM1ZGZjODRlMDAxOTEwODdkYjU5YmZmOTExMDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMzRiZjljYTZhNWNiN2VhZDJmODE4MGY3NGZjNTJjNTdjMmQxMmRjNTMyZDkyZTFmY2UzMTdiNTIzOTA2ZjQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/openai-token-broker.ts#L7-L11",
+          "version": "repo-lines-v1:sha256:e1bbdb73146e6d4a7ab9fd2ca1acbe3817582be27b007abb42808c7e61213d85:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmMzYWEzM2E3Zjk1OTgzOWUzYjUzZWQ1Yjg0ZTk4MTFhNDg1ZmVmYzEyNjUyYTZlNjU5NTJkMTRhMjg2MzlkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmNlOTQxNWQxMWJhYTFlMGZkMzAyYzZiZmM3YmIyNTk3ODg1ZDkwOTg4ZGVkMDQ4ZjA5YTE0ZDczZjY0YzI3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2Y1OWU3MTYxY2E2NTJjODhhMTNlMGNjMGFhNzY2YjFjZTk3ZmMwY2EzOWJjZGFlNzEwOWYxOTEwZjk1NzMyZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjk2ZDAzMGYyZGVlMTM0N2EwOWY4YjM1NTEwNzA3YjQxMjc1ZDg2MmY0ZGI5MzdhMzUxNTAyYzdmOTU1ODZjYyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/scoped-oauth-secrets.ts#L6-L51",
+          "version": "repo-lines-v1:sha256:bc9dab141332d6e8c7b862e3498eed14a2c6eef85e7923ac62aa914999237772:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwY2JmZmM2MjRiMTNjNmM2OTQ5ODkxYjYxNjY1MDM5YjM2YTgxY2IxYmRmYzEwNDM2ODFkZDZmZWYwY2UzOWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhZDJiYmE4OGE4OTI4MzRhMTZhMWVkNmMxZjJiOWZiMjQ1NmRhNjVlMmZhYjRlODRlMGIyYjQ1YTY0YmYxYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-runtime-proxy.ts#L88-L112",
+          "version": "repo-lines-v1:sha256:213c2f7201dd33b7bb7f32865fa7b990f821cd251a292b54a11e48c08f6f6239:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1YjllODg3OWQ4MjIzM2M1YjFkMjY0YzY2NzM2MTQwYzQ1NjJjZWFmNzkzM2JjNzRiYmFiMmRjYWUyYWVkYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3Y2YwNGQ2MTk4NDVhYmQ2Y2MwY2U5MDQ0MTkyMzhjMjkxMDcxMGJmZjhmZTAyYmM4YTIzZDZlYTcyMWMyN2EifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/openai-token-refresh-service.ts#L20-L48",
+          "version": "repo-lines-v1:sha256:41dffac95a900d383d4404180657f009857cc9bbc31b983e5f4a2e5248c7e387:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmZWFkNTg5YjEzNjlmNTNlZjhjYWY2MjM0YjY4MjNjNTgyNWQyMGQxMGJjYTEyZjg1MGU2NmYwNWZlMzBmZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE2OWM3ZGIyZTBkMTFkMzA3OWZjMTY5ODNmZjhiZGEyMzMxOTI1NWZjYzkxY2E0NGM3Y2U2MTM0NWNjZTBhMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_54b73678a7c545c389676eda07b3089c",
+      "statement": "Provider-account credentials (connected ChatGPT/SuperGrok accounts) are encrypted with PROVIDER_ACCOUNTS_ENCRYPTION_KEY using AES-256-GCM with additional authenticated data binding each ciphertext to its version, provider account id, provider, and credential schema version, so ciphertexts cannot be transplanted between rows.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/provider-account-crypto.ts#L27-L73",
+          "version": "repo-lines-v1:sha256:22a022166bec738ff64d7f0221a1919506d0a6ae0628b9014e645c5d229cea97:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlZTE4YTg0NjFjMDVmNGQ4ZTBiYmIxNDE1ZjgzZTI1ZGE5NDM5ZDM5YmI3ZWQxYTg4MTc3NTljOWI5NmU2NjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY0YzAxNjYxNmRjYWY3MmFiNmViNWZjNzQzYWVmZDQzYmU2Nzk0M2MzZmQ0Mjc0OWQyNWZhZWQzZWIzNWFhZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkYzIyZTQzN2I2ZGQwOTMwYjk1YTM5YTllZjZjMzlkMzkwOTA0Njc3MmNjYjI0ZjM0Y2Q4OGFiZTdjMjA4MzgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/types.ts#L39-L39",
+          "version": "repo-lines-v1:sha256:52febb500b8946c52c7e357e03433c67ad8cd0a17f91331f8e3ac451f6cf5829:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJmZWJiNTAwYjg5NDZjNTJjN2UzNTdlMDM0MzNjNjdhZDhjZDBhMTdmOTEzMzFmOGUzYWM0NTFmNmNmNTgyOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJmZWJiNTAwYjg5NDZjNTJjN2UzNTdlMDM0MzNjNjdhZDhjZDBhMTdmOTEzMzFmOGUzYWM0NTFmNmNmNTgyOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjY2MWEyYWFkOTQyYmNkNmIwNGI2MDZkOWMwMThjYTkwMDY4ODM0YTc3NTA2ZGQ1MWM5MjIxOTU2ZTc1MzRhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWU3MDUzMjJlYWU5NjE5MjNlYThiNGJhMWNmZjJiYWM3MzRkNGIyY2I0YTU0MDlmMmFmMGU5YTVlMDljMjZhMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3bddd2684ce04919ba6f76456ea838cc",
+      "statement": "Commit signing is brokered and GitHub-only: the control plane holds a singleton OpenSSH Ed25519 private key (commit_signing_configuration row, private key AES-256-GCM encrypted alongside committer name/email, public key, and SHA256: fingerprint); PUT /commit-signing validates the key fully (unencrypted OpenSSH container only — none/none cipher/kdf, Ed25519 only, inner/outer public key consistency, padding verified, plus a sign/verify probe) and non-GitHub SCM deployments return an explicit enabled:false so sandboxes commit unsigned rather than failing the session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/openssh-ed25519.ts#L191-L239",
+          "version": "repo-lines-v1:sha256:9d13efa96bd77c0d9b0b91d1939ba3a4ac3667218561ce0f32dbdcd24f1b1058:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxZmExZGY3MDlhYjE1YWZjMTIwMWRjNzEzMzUxMTU3MTZmZTY3Y2IxMjMwNTljMTYwMWI1NDViYTI2MDZkNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVlYmIxMDk0YjYwOWRhMGI5NTk4ZjE1NjJmYjg3NjA0NjZmNzlmZmVkNTFlMzQyMjEyNmFlZmZkOTY0ODAwOWQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/commit-signing.ts#L52-L142",
+          "version": "repo-lines-v1:sha256:7f2b60d0d090f74dc99996a571ac6efe419565325d8cc94eb1eb3f2945da35d2:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYWRmZDE3OTMyYjBiOTQyZTdjMmUzMmUyODJhMDQ4ODEwNjY4NDZiOGVkYWFlYjNkODEzNzM3ZTEyN2JiZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjZDZhYzliNDJlMmE4ZWQ5OGM5NDk2MjEwOTRjZmZkODI1Y2MyM2I0MzdmN2IzYjFlZDEwYmUwMmY3ZDAyOTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyMDgzZmQwNDUwNjkyYmZjODU0MmRiMmM2YjAyN2JiYmZhMTczNWEwNjhhNGViNDY0OTJlYTI1MTgxN2ZkNjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L136-L161",
+          "version": "repo-lines-v1:sha256:9ac3347186cc99547ebcfe03852ccc5b12d5ca696705e954a2134b2875cdbd1f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxZjk1M2JiNzFlOGNjOGQwOWU3MmUwYTFiY2FlYWM4MWI0N2IxMTQyZDIzZWY1MDJkMWRmOGZkY2RhOTYxNTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxMTlhOWJmZmM0NzEyNzE1ZDE3OTFmYzc3NTMzZmU2ZGNjZTQ4YzI0MzZhM2QzMWZkMDBjZjkyM2RjMDBhZjUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L86-L117",
+          "version": "repo-lines-v1:sha256:c4766e04781fea8ee140a3ae5285c1bff6f789f2654d5b2ec8f4f51e10e11846:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4Mjg0OGQ0ZDBhNjQ0YjMwNmFiMDhiYWUxZjBiMThjYTIxNjcwYjBmNmU4YmJjYWExZTY2YzEwYjg4NTExNDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmNTFmZGM5ODI3YzcxMWI0YWNlNTQwOWY0NGEwOTliYzI4ZjQ1MDI3OWVlZjdjMjQ3OTNkOWFlZTE3NjI1MjAifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/commit-signing.ts#L1-L15",
+          "version": "repo-lines-v1:sha256:6cd5feb1a498572ac359fa05ae86ad15f4dae1e8f29d5ac2262b38336531cced:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxNDUyODY0YjBkOTZlZmU4NjkxNmZmNzQ1YTBmNzdhYzcwYjMyNjU4NWMwZWFmNWMzNGY5ZTRhNGY2ZmJmNjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyNDI1NDE3ODBkZTNjNTczY2Y0NTYwMjk3ZTgwYjk5NmU5ZGU5Y2ZmMzJjNzg4ZDYzNWJhNDY4ZjFjNDM0ZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2MDg2NjBlMjZlODU3YjU1YmI1NDdiN2M5MzdmOGQ2YjY4ODRlY2VhNDhkYWJmMThiZWYxZDZiOGY5MTViY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e147c01aa5841e6bf4cc6613b25b4cb",
+      "statement": "The sandbox-side GitSigningRuntime applies signing per-repository with git config --local (gpg.format=ssh, gpg.ssh.program=<oi-git-sign path>, user.signingkey=key::<publicKey>, commit.gpgsign=true, author/committer identity), validating the fetched configuration as a strict pydantic discriminated union (extra=forbid; publicKey must match ssh-ed25519 <base64>); a disabled configuration runs --unset-all over the signing keys (tolerating exit codes 1/5) and sets a plain identity (prompt author or OpenInspect <open-inspect@noreply.github.com>), and a repository missing .git is a hard error.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L163-L240",
+          "version": "repo-lines-v1:sha256:c697dd19c6a150c78873cdb7e55ac648fe397a14ab8130b8f8fa412af9b7ca89:eyJzZWxlY3RlZExpbmVDb3VudCI6NzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwNjQzYjNjMDJmMGZhYzY5MzIyNTk3NDhmMTViNTI1ODRlM2YxZDllYzRlNDgwZWU4NDIyOGY1NjJiYmI2ZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2ZjAyMDY0NTI5ZDc0MmRjYTkyYzc3NDQxMTNiMDU2NTQ4NTAxNjAxM2IyM2JmZTRhZTNkZWU2MWYyNmFjNmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdkNzIxM2JmYjYwNTYxZjY2NzljYzE5ZDMxN2Q3ZDUyNmU2MDM2ZDE1NTFhY2U1NjI2ZjZkMWU2Y2EzODkyYmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L21-L31",
+          "version": "repo-lines-v1:sha256:de13a73147ff1dbb1d7148c1e3a7ff25a519535168a89a3efc16e79249262ada:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlZmI5ODlmZGFkYjczYWZiNmUxZWE1ZTIzZmRiNDY1YWY1ZDA1NTY2MWM5ZmU1NDYxMWMwMDI3NTAxNjhkMjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ODIxYjc1YzRmZDVhMWI0NWQyMjVjOTIzNjgxNTEyNWI5Yzc2MTRmNjgzODNmMjQ5MzJmOWI2OWFlMzkxNzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1MWQ4ZWVlMDAyMjU5NDJhNjQ2Y2M0NGM4MmJjNTRjMDRkZDE5NWE0YzVjNTBmYzJkODAzNDAyN2Y2OWNiMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzOGFiZWYwZjNiNDQ1MDg4Y2UyYTc4ZDA3NzcxZDJmODA2ZDdmYmIyZWZhZDZjMWY0YmJjOTE2ZWVmODc1Y2QifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L49-L102",
+          "version": "repo-lines-v1:sha256:60f9fb5fc4e9f2aa3ccb0fa5ef913e132c83ca0695499bba62baa6d23e6bb6e4:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxNWRiZDYyZTNlZWJlMmI5MGY3NDBjOWNlNGEwNGE2ODdjODAyZGU5YzczNjcwZDgyYjYwY2ZjNzczMDYxODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5OWJhMmMzMWNkOGFiMzk3OGM4MTBiOGE0Mzg4NzlhZDcwMjU1ZTgxNGY4ODY2YmI4ODQwYWE5NTQ0OTc3NjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM0YTVhMzNhYmEyZWQyNmFiZmU3YzM2MzExMzVmYTMyNmRjODcwMTFmZGUxY2MxN2IxYTQ4ODZiYmYyMzUzMjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkYzNjNGEyNmVlOTQ1MmNkOTUyMmU1OWY3YTVjMzAyZmI2MTRkNWFkNmU4NmU1MTVjN2RmMWE1OWUzZmJjZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a25b2d5adf734c62b759e46202db7be3",
+      "statement": "There is a deliberate scope split between the two git config flows: the credential helper is installed once with git config --global (shim at /usr/local/bin/oi-git-credentials plus credential.useHttpPath=true), while signing config is per-repo --local so it can be reset per prompt without touching credential routing; the bridge initializes signing once before the first WebSocket connect (a non-retryable GitSigningError is fatal to the run loop) and refreshes before every prompt via _configure_git_identity with the prompt author.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L1053-L1055",
+          "version": "repo-lines-v1:sha256:a06385724330be16e01c0a675b8abfdf414c4585a35af2dc18eec91c9a2d6fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmY1ZWQ1YTc2OGI1ZjQzN2NmMWYyZmJiNTNiMjA3NmM1MWRmZjM2MTU5M2YzM2E2MDQ5Y2FhZjVlY2E3MzJiOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWNjNDg3MDMzMGVjNzkzNmY2ZjIyYzkzN2E5NTU4NDIwMmYyZGNkNDk3ZDcyNWJlNWQ0ZWJmZjYwY2M1Nzg2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWRmMTYyODBjYTUzYjJkYzYyNGMzZTk5MTNiOGE1ZmFkYmM4OTY1NWRjOTcxMDA1ZDM0YmQ1OTljOWNhNjM4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTZhNjIyYWEyYWQ0OWE5ODlkYzg3ZTE2YjkxYWYyOGUxZGZjNTM4ODRjMjFhOTRiMjE3Y2MxZTMzZDRjYTg0ZCJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L243-L248",
+          "version": "repo-lines-v1:sha256:7f1b3b571647126dc1fb4a630734d19b41ee573f7c13bb6c028cf50f8b58efe2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDdjNTRiZTAwN2JhY2QwOTcwMWRjOWIzMTMwYjRmOWEzN2RiYjRjMDVhZTg2NTJiOWI4ZWIzY2MxZDBmMTg0OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkwOWE1M2E2MThkMDI4ZTFkMzAwMGMwYTdhYmNlZWNiZTVmYjM3ZjRlNTExZWZlNDY2NDNmYWQ2ZTY2ODcyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTc4NzE5NjcwMWYxODllMjA4MWUxNmViZDhmZTkwZmEyYTlhNTg1NGFhZDQ4Mzk0ODY0MDgxM2I1NDNhNjBkOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODlhNGIxMzk1NDFhYzQxNDI2OGY2ZGY2Yzk5ZjkwNmI3M2E0YmQyODEzMWMxZGM0ZjNjMmQwZWI5MmE0NzhmNSJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L331-L358",
+          "version": "repo-lines-v1:sha256:1c85675ffd2777b36c9dab2f768ff2d9ecac9b953a9df712215f4fa605ca80c8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiYjQ2ZjE1Y2QwZTFlOTljNDU4YmU0Y2U1MjA3ZWY2YmQwNmJkOTAxMzFkMGUzZDEwZmYxYTNjMWIyOGY1YmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNjllNWM0Yzk4YmFkYjI5ZTYxOGM5OWVjNmFhZGQ2Njg3NDhkNTJkY2Y4NTFlYTJmMTY1N2Q2NjFhNTU3Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmODI3ZTBmMWQ4YzU0ZTA3ZmU5NDQ4ZWRkMjQyNzZjNzhmOTgxZGE0MzIyYTk1NGM0OTRkZDQzOTMwOGI4ZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUyODZkYWViZjhjNDcwMTllMjkxMWViMTAxYmE3ZWY4ZjI1M2ZiYTNlNjgxMWQzNDMzMWMyZWUzYzdhMTU2NjYifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L205-L221",
+          "version": "repo-lines-v1:sha256:621244cbd2e88f5848ca1b00e0a33b1420dcc612ee38ba97b28f9c1c17615102:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzN2I2Yjg4NjY2ODE4YzU2YjUyMTk4NzE4ZjU4MTE4NGE2YzhiMjE0YmM3Nzc1YmZiOTM0MjJhMWMyODFjMWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYTM0YTFjMmExN2I1YzFhODQzMjNjZDY1NGM5ZTg0YTVkZDM1YTk4MTE5ZmM4NjFhYzVjZTg2MTQ4NjJiM2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmNTFjNzQwNTc5ZTAxNzJiNGM5ZjI5MjE4NDRiYmZhZmU0ZGNmMTIzYTMwNzY3NjQxZDZlNzg2NmRhMmY5NTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ1NGEwZjBmZmE3MzYzMjkwZDZlOGU4ODM4MDNmNWE4Yjc0Nzk3MmMzOGUwYjExMDY2NDE4M2YyZTg0N2YwMDIifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_sync.py#L144-L182",
+          "version": "repo-lines-v1:sha256:a3300293002a26fd95587a2b5723b3742f83639e3dd955c138f88b55bbe7b78b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4MTE5MDJlZTczN2I1OWNhNjljNWYwYTAyYmQ3MmU4NTUxMjFlN2NhYWIwY2QyYmMyYmQwMDE2NDZjZTg0MzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ZGYxZGI5NDU3NzcyMDA1MjEzMjBmM2MwYTQyMDUxZDhiZmZjYTgzMjE5NDM3YTIwYzVlMjYwNzY3ZTg5NGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwNWI4NWI2NjhmMTQ1ZTY1ODNiMWExODE4YmI1ZDE0YTBlMWNjZWM5NGViZWFlYjgxZDY4NDYxMTc0YzU5MzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNDQ3MzM0NDIwZmI5ZWZkZDYwOTVhOWEwNDMzOWFmYzM5ODYzODFlNGE0YWI1NTJjYWE4ODQ4ZTgxNmUyMDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_899228c7084e44db9e87027f1dc2c60e",
+      "statement": "oi-git-sign is a stateless ssh-keygen shim: non-sign invocations exec the stock ssh-keygen, while -Y sign reads the bounded payload (≤1 MiB) and the key:: literal public key (key material is never written to disk — pinned by test_initialize_fetches_public_configuration_without_creating_key_files), computes the SHA256 fingerprint, POSTs to /sessions/:id/commit-signing with the X-Open-Inspect-Signing-Fingerprint header and the sandbox token, validates the response armor strictly (≤16 KiB, SSHSIG magic), and writes it atomically; its error type carries no request, response, or credential bytes.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signer.py#L148-L200",
+          "version": "repo-lines-v1:sha256:9f4a43d5992353fb0f9044ce89c540052eb59f64caac745ffa83a7ab0e469a00:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1NDU2YTQ3YTNmOWFiMjM1NjRhZTRlNjU4ZGU1MDA4MTYyZDAwMDc1Y2E4MmIxYjZkOTE4OWJlZDQ2NjI4YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjOTdiODMyNTJkMzkwMzc2Y2UxNGE0MWVhNTdhYWY0ZjY5ZWE2MDlkOTMzNDhjNzg1ODM1ZDMxMTU1ZTQ0MTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjNmI5NjZhNzg4MGQ2ZDIzODczNmEzZmZiYWU1MWRhZThjZTdkZTdlZWUwNGYxNDBlNzM3OWIwOTc3YTBkMmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllOTIxZTFjNDIxMWExNDc1Njk5ZDI5ZTBhMGFhYjY5YzFlZDIzZWNjYWNhYzc5ZTFjY2ZhNjU1YTEyNzFkODkifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signer.py#L22-L69",
+          "version": "repo-lines-v1:sha256:c85bc2615be1306360e8e4b990c730538f254f409506621b08b9de8ea2cad33e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlOGUxMzE3OWQxZTAxMjY0NmIyZWMxMmEyYmNiNDA3MTg1YTMwNWI5MTU5OTYwM2Y4OTUwZjdiMzNiNTFhZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzYmMyYzgwM2ZkYzBlY2M2MmY2MjlhYmU1YTZlOTQwODk4MmY4YjlmZDI3NWVlYjgzNDZmNWFlZjQ3NWQ0ODQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYWUzYmQ1ZjE1NzRlMGE0ZWQwYzBhYjgyM2M4YTUzNTRkZGVlYzM2ODMzNWZiN2VmYzVmNmViZDcxZTU2OTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViNWI2OTMyZTk1OTg5NTZjNWJlNDFkOWFhZjA5YjhjYTcxZWU3NDBmNDNlYjIwZTYyZGE2MTRjNmQ4ZGZmM2YifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signer.py#L83-L123",
+          "version": "repo-lines-v1:sha256:f6db380e6bd6325dc85979b43400673fed45f33e60cfe37602a0da191f6d66b9:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0MDY1YWNiMDdhZDgyNDVmN2NmYzJiYWQyZDUxNDJjY2Q1YWNjN2E1ZmU1MzBkODY1NjBhZjM1YThjYjU0NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkMzUwZDI1NGU2OGNjMmIwY2EyOWVhNTY0ZTAxNTk3OGZiNGJkNzRiOTMzMTRlMzlhZGNjZDUwY2M1M2E2MGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1YWNmOGI5ZDc4MzQzY2NhNDNlYzhlMDk3ZThlOGI3MWUyYmNiMTE5NTY0MzY1NzhjZjAwY2JkNDc0YmNiZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljY2M4YzgyODExNTM0OWFiNDExMDk1NzcwZWMzY2M1MTgzY2MwNDg4YTE2Yjg0NGFjYmIwMjc3ZGQzYTE1ZTAifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_git_signing.py#L504-L522",
+          "version": "repo-lines-v1:sha256:6c69750f50d4e78b6c4482121cc2269e802302f4351d4419d1f5b02b22c96ea6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyMTAyZWI3NmUwNTJhNmRjMDBjNTQyYzVmN2QzMmUzNzI1NTlmMDgwNDUxMGI4YmYwNTZmNTEzZjQyOTAwYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZGI0NGQxNDhmMWFlNTliNzcyZjhkOGY5NDRjZmNhYzMwMjgzZDljNmEyMmQ5MGYzMTBlYTM3ODBkMjdkYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhYjdiMjcyYWI0ZTI1MTc1YjVmZDI0YzEzY2ZlNTYzNDI1MTRjMDI3OTQ2ZjAzYjUzMDVkZjIwMzM3ODc5ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhYjdiMjcyYWI0ZTI1MTc1YjVmZDI0YzEzY2ZlNTYzNDI1MTRjMDI3OTQ2ZjAzYjUzMDVkZjIwMzM3ODc5ZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_66de5523004a45be8f1caf475b978123",
+      "statement": "The control-plane signing endpoint enforces key continuity: it decrypts the stored key, rejects a fingerprint mismatch with 409 (\"Commit signing key changed\") so a stale-configured repository cannot obtain signatures from a rotated key, caps the payload at 1 MiB with 413, requires both the fingerprint header and non-empty payload, signs with SSHSIG v1 (git namespace, SHA-512 digest, Ed25519) and returns the armored signature no-store; interoperability with stock ssh-keygen -Y verify is pinned by a test asserting `Good \"git\" signature`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/sshsig-interoperability.test.ts#L26-L55",
+          "version": "repo-lines-v1:sha256:0c8fede75bf58abf3611844be9af8ac8da68a07939cdd1b5feaa89f0f89a8ba9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4OTllMGMxMWM1ZjdkNTMwZDFjYmQwMjU0YjMzZWVjM2EzMDc1MzE0ODI4NjBkYzdiMGI2N2ViMTQyOTNhZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImViMWVhMTVhMGY3YjFkNzc0MWMwOTJkZTgwMmQzOWZkYTQ0MzRlY2YwNWY5NDM1OGM2ZjM2OWNhOTExNmUyMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/sshsig.ts#L1-L40",
+          "version": "repo-lines-v1:sha256:214a476463ddc54b8566b003f57a52ea837dde5e76ea745da8d8fd8132fae15f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1YzBhNThiN2M2YTFhNTE0ZTdlYTUwNTFmY2ZhOWZmNjE3ZmYzNmFhMDc3NmYzNTZlMGI3NWUyZTYwNTAyNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViMDAyZTIzZjVkMDFlNDEyYzZkNDczMzU2NjQyM2Y0MTc4ZDc5ZjQyNTYyODJhMTUyMjBiNDY5YmY1YTVhNDUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L163-L212",
+          "version": "repo-lines-v1:sha256:494a3a08bf9304fbea53a70d7a51c3a07c20478d8f24e4ff23dc1c3e0c7bac07:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4YzJiM2E4ZTFmNzBjMGZmYTUyMThkN2EyODg2ODU2OThkZTliN2EwZDJhMDk4ODVlM2E3ODg3MzljNmFiZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2NTVlZWVlNmI5ODFmNzVmYmI2MzJiMjJjY2U2MWFlOGY3MDVjNDI5YTJkMzRlMmEwMzMzY2NkOGM1YWE2MTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fe84b3fc4c254025b2a3959c5507ec2e",
+      "statement": "The commit-signing Ed25519 key has its own import constraint: WebCrypto cannot import an OpenSSH private-key container, so the parser extracts the 32-byte seed and wraps it in a hand-built minimal PKCS#8 structure (ED25519_PKCS8_PREFIX + seed) before crypto.subtle.importKey(\"pkcs8\", ...) — distinct from the GitHub App RSA key's PKCS#8 requirement, and encrypted OpenSSH keys are rejected outright; the fingerprint is SHA256 over the public key blob matching ssh-keygen -lf output.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/openssh-ed25519.ts#L165-L189",
+          "version": "repo-lines-v1:sha256:98a2116f13e901ac1ea2c88081535554952a9daa32ea8b3ea03d0311df51d5c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3M2VlNmQ4ODMwMjIxOGNiNTkxNDU4NWZiODNhZDA3ZGFmZDFmOWVhYmNjZWYzNGMxMjIyYzU2MjFiY2MxMTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY0YzAxNjYxNmRjYWY3MmFiNmViNWZjNzQzYWVmZDQzYmU2Nzk0M2MzZmQ0Mjc0OWQyNWZhZWQzZWIzNWFhZjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY1ODEwODY4YzNmOGQ4YjQzZTY4MzkyODdiNWM3MTQ5NjBlYjVhNWVkOWEzN2NhNGEwOWNkN2Q1Y2JkNDgwNWQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/openssh-ed25519.ts#L203-L205",
+          "version": "repo-lines-v1:sha256:bdf89269e33ebbf97ae91b9da4cdcd17b986426cafb85296e2f2efcda209cac6:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA5MTFkMWRlMTVlYzU1YWQ5NjUzYjQ2OTkyZWI2MzlkY2NiOWM5ZTcyOWU4YmViNTRlODEzZTU3YzE0YmVjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTk0YTY5ODk4ZTFmOTYzZDU3MmJmN2YyMWU2ZTg2Yzc2OTI2ZWI3ZWI4ZjE3MWMxMjM1MGU2MmQ1YWM5ZGIzYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjJiNTdhNTdmOTU3NjEyZTlmMmMxYzljMGYyZmI0YzE4MWJjZmQ5YjMwOTFhNWQ0Y2Y4YjI2MzRkZDQyYTBmNiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/openssh-ed25519.ts#L224-L231",
+          "version": "repo-lines-v1:sha256:e3a67f76e30834364531b625d7a7191d4070ef87d4d243abc8e88feb1174c5d5:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTg0YTk4MTQ5ZWMwMzk5OWFkZDZmNjRjZjMzNzBjNDI4YjVhZWRiYmNhYTg1ZjQ2Mzg3YzYzYmRjY2FkZjBhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2NiNmYzYzY3NmU5MDI0ZGZhZTBmNDljYWY2NTQ0ZTMzMzQyYzgwMjliY2E3MGY0ZTRjOWI1MmM4ODQxZDFmYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBhODgzOTUwN2Q0MjRlNDgzNDc3MDA5YjBjOWY4NzA4ZWMwMzcyNGRkOGUzMDNkMjNmZWVmYmM1NzQ3OGRkNiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/openssh-ed25519.ts#L5-L13",
+          "version": "repo-lines-v1:sha256:1e0b853d9ab9f20d997f8f650915dab7a833c5d47abb3bef6a6a37ea460537c6:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNmNzc5ZDk1ZWFlMTRiODRhYTA2YzQ0OTUyNGIwMWZhNmE5YjdhMzFlNjVkNjU4YzBhOTRhZTgzOGIyZGQ4NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U4MjNmOTBlMzExYjUyZDYwODFlMzczOGE0ZWNiMDI0MjIwOWEwZGIzMDBmMTEyN2QxZDY2ZDk5MzQyNmI0NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzg2NWNiNDE4YTQxZjljNzQxN2M4MTQ2ZjI4YWMwYmI3YTE5Y2NjMWIxYWIyNGY0OTg4YWRjOTU0NDRjYWIxOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTM0OTU5NjE1NTYzN2IxOThhMzQ0MGRjMDg3ZjYyMjZmODc4ODQ2ODc0ZWEwNzY2MjVmMzY5MGEwNDE3ZGE4MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b95e7c76ccc34aa8ba2a0dc13e548fb8",
+      "statement": "The in-sandbox git credential helper implements git's credential protocol backed by the control plane: it mints fresh short-lived SCM credentials at POST {control_plane}/sessions/{session_id}/scm-credentials using the sandbox token, caches to /run/oi/scm-creds.json (mode 0600) with a 5-minute refresh buffer under an advisory lock, only authorizes requests whose protocol is https and whose host equals VCS_HOST (blocking exfiltration to attacker hosts via submodule URLs), and never falls back to the stale cache or serves store/erase actions.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L1-L50",
+          "version": "repo-lines-v1:sha256:cccbb43475dcda4dfe151c9f77c6bd6cb3fe9a63f61f6aa824709857d69a306b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2ODJjYmRiNGM4YjA3NTE4YmY0ODZjNTg5OTBmYzM5MTc4M2FhMjBhOTE2YmZiMjdhZDIxMWViMWQ1YzM2NDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1ZDFjYjRlZTkxYjFiYjdhNjI5MjVjMDk5ZWE2NjBiZDQxZGMyMDQ2OTEzZDUzZjMwYzk2NmVjNWFkMTM5YjYifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L123-L149",
+          "version": "repo-lines-v1:sha256:9088f6ba108e425eee6744ea0172f9b1e4229ab76649f14ac54165279ac6f96d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiYzNmZWEzNDI3ZDEwMTk5MzZmZTRjYjRmODAzMjk2YTgzMmE5ZWQ1ZGIyNmQ0NDM2NDZiMGEyMGI1NTNjYTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1NmEwYjMwMTI3YmJiZjE1NTE0ZGVhMjNhMTlkYTQ3ZWQ5OTRkMjdkODAwOTA3NWM3MDRiYTQ5NzAzMjkzMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmYmQwMDkzMTRiYzI3MDg0MTY3MzRhMDJhZTVmZjM5YTFlNDhhMDUwYmU5MWY0M2IyZmFhOTIwMDJjNjJiZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkMjI1YzEwNjg1YzQ4OGE3OTc4ZTc4NmVhYTA1ZDAzNDQxMWVkOGJhMDZjMGQ0YzE0NmNjMDhhM2RkMTRlMDQifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L191-L211",
+          "version": "repo-lines-v1:sha256:f4fc01a151f4e3ba81d19398954e3c716920888150c88748f5cb7f62d75863e2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwZWNkNjczMmQ1ODExMDIzMGM1OTE5MTBmMmNkM2U2ZmQxNDQwZDkwZjRjMzY5Yzk2NTIxY2MyYjk1MjFkYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjYxNjViYjAzM2JlNTRhMjE1OGY4YjBlNTcyZDg2ZjJjNTU5ODQzNTRkYjI3NDNmZWNhOWNhMjIzYjVkMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZmE0OGZkYTliODQ0YjNjZjY4Yjc4NjBjYzZiOTE2NGUwNTVjMjU1ZDBkNTE3ZmQ1N2I3MzVkNjM3MDA3MjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiZjk4ODAxNTVmZjdmM2UyMTZlZDhmNmUyNTQzNzIwNTk3YzUxNTJiNjA4ZTk5YzBhYzg3NmNkN2YyMjM3MjkifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

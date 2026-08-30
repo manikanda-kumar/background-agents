@@ -1,11 +1,209 @@
 ---
 type: architecture
 title: Data Model & Storage
-description: Where Open-Inspect state lives — the shared D1 schema and how its migrations are applied, the per-session Durable Object SQLite schema, the per-aggregate D1 stores, and the encryption keys that protect tokens and secrets at rest.
-tags: [architecture, data-model, d1, sqlite, durable-objects, migrations, encryption, secrets]
+description: Where Open-Inspect state lives — the shared D1 schema and its migrations, the per-session Durable Object SQLite schema, the per-aggregate D1 stores, R2 media storage and KV caches, and the encryption keys that protect tokens and secrets at rest.
+tags: [architecture, data-model, d1, sqlite, durable-objects, migrations, r2, kv, encryption, secrets]
 verified:
   - by: openwiki/0.4.3
     at: 2026-08-29T06:58:43.189Z
+sources:
+  - id: openwiki-source-43801d43be5d7e8f8c4f1696
+    resource: repo://docs/MULTI_REPO_AUTOMATIONS.md
+  - id: openwiki-source-333fb60a4bff5e1935e75098
+    resource: repo://packages/control-plane/README.md
+  - id: openwiki-source-a968e65fa8624856e8611f4c
+    resource: repo://packages/control-plane/src/auth/crypto.ts
+  - id: openwiki-source-e1eb7b9ad7610b4c3c628cec
+    resource: repo://packages/control-plane/src/auth/github-app.ts
+  - id: openwiki-source-bfc97e667e626c5696dc3b3f
+    resource: repo://packages/control-plane/src/auth/provider-account-crypto.ts
+  - id: openwiki-source-2b411ed73fdeabff9e415c70
+    resource: repo://packages/control-plane/src/auth/user/better-auth.ts
+  - id: openwiki-source-02d3d70cb0b58626d6823905
+    resource: repo://packages/control-plane/src/auth/webhook-key.ts
+  - id: openwiki-source-d6db273a7260c26ff3ad7e5c
+    resource: repo://packages/control-plane/src/autofix/handler.ts
+  - id: openwiki-source-3a7ac9f1def780bcacf7f603
+    resource: repo://packages/control-plane/src/db/automation-store.ts
+  - id: openwiki-source-e40a80e7f2b63a9be44780ed
+    resource: repo://packages/control-plane/src/db/bulk-insert.ts
+  - id: openwiki-source-027bcdba0353ca5952cfc15b
+    resource: repo://packages/control-plane/src/db/commit-signing.ts
+  - id: openwiki-source-cf01e95fca84ae5a94b53e65
+    resource: repo://packages/control-plane/src/db/environments.ts
+  - id: openwiki-source-4cfc3d1c11ffb7fab939e818
+    resource: repo://packages/control-plane/src/db/image-build-finalization.ts
+  - id: openwiki-source-ab907f4c9536964859be35aa
+    resource: repo://packages/control-plane/src/db/image-builds.test.ts
+  - id: openwiki-source-c1104e7eb4cef3024711d45d
+    resource: repo://packages/control-plane/src/db/image-builds.ts
+  - id: openwiki-source-6742148b866ee5c7b9533092
+    resource: repo://packages/control-plane/src/db/instrumented-d1.ts
+  - id: openwiki-source-9b63d8f807d8e8c6a5ffc97c
+    resource: repo://packages/control-plane/src/db/integration-settings.ts
+  - id: openwiki-source-5a5bbf2077a0d187d4ffd946
+    resource: repo://packages/control-plane/src/db/json-columns.test.ts
+  - id: openwiki-source-0fb53c4dbbcd6cf979d9dea6
+    resource: repo://packages/control-plane/src/db/json-columns.ts
+  - id: openwiki-source-2e1968ff56e36a54c1f81991
+    resource: repo://packages/control-plane/src/db/mcp-servers.ts
+  - id: openwiki-source-55c504b46a09a0cb57eb171a
+    resource: repo://packages/control-plane/src/db/model-provider-account-atomic-writer.ts
+  - id: openwiki-source-d45c1f6838a48d0e1538b92b
+    resource: repo://packages/control-plane/src/db/query-limits.ts
+  - id: openwiki-source-b3029b07c424d498935e315e
+    resource: repo://packages/control-plane/src/db/repo-metadata.ts
+  - id: openwiki-source-475734dc9ffe03d69d908b54
+    resource: repo://packages/control-plane/src/db/scoped-secrets.ts
+  - id: openwiki-source-4b3e25c315b66b7ef4a6d7d8
+    resource: repo://packages/control-plane/src/db/secrets-validation.ts
+  - id: openwiki-source-ad15a302aac7be1dd07e9481
+    resource: repo://packages/control-plane/src/db/session-index.ts
+  - id: openwiki-source-4ff058c6c626ae5805c358fa
+    resource: repo://packages/control-plane/src/db/session-pull-request-store.ts
+  - id: openwiki-source-36f3630666778fc90d24fba0
+    resource: repo://packages/control-plane/src/db/skill-profiles.ts
+  - id: openwiki-source-3f6e224b2e23c9dabfe00dba
+    resource: repo://packages/control-plane/src/db/skills.ts
+  - id: openwiki-source-d2de27bfae64ae9ec188830b
+    resource: repo://packages/control-plane/src/db/sql-database.ts
+  - id: openwiki-source-4818e9ba1908baa273ca5d8e
+    resource: repo://packages/control-plane/src/db/user-scm-tokens.ts
+  - id: openwiki-source-e220ecfccdae416450a1c008
+    resource: repo://packages/control-plane/src/db/user-store.ts
+  - id: openwiki-source-557254ea34d55b02eef467a0
+    resource: repo://packages/control-plane/src/env-validation.ts
+  - id: openwiki-source-6273f1041fe67acec10358e4
+    resource: repo://packages/control-plane/src/image-builds/provenance.ts
+  - id: openwiki-source-78da2b6e3769fd428b85fe5a
+    resource: repo://packages/control-plane/src/index.ts
+  - id: openwiki-source-a47cd3511e1859b65c7c2130
+    resource: repo://packages/control-plane/src/media.ts
+  - id: openwiki-source-9634c81ea81a2f17d2906353
+    resource: repo://packages/control-plane/src/routes/automations.ts
+  - id: openwiki-source-2f03a3c121b1d902de28dc9a
+    resource: repo://packages/control-plane/src/routes/commit-signing.ts
+  - id: openwiki-source-f906fd8a6ae2896d6518f3e5
+    resource: repo://packages/control-plane/src/routes/mcp-servers.ts
+  - id: openwiki-source-4541aa742c69d8bf1c2769c4
+    resource: repo://packages/control-plane/src/routes/repos.ts
+  - id: openwiki-source-b0c033755ca51371aea86c72
+    resource: repo://packages/control-plane/src/routes/session-attachments.ts
+  - id: openwiki-source-6adabc4fd5f7f5fb33685c4d
+    resource: repo://packages/control-plane/src/routes/session-media-artifacts.ts
+  - id: openwiki-source-26017490716b93e3bacd6b3f
+    resource: repo://packages/control-plane/src/routes/session-media-upload.ts
+  - id: openwiki-source-12eddf76bf761158a1fb4559
+    resource: repo://packages/control-plane/src/sandbox/lifecycle/image-selection.ts
+  - id: openwiki-source-f69048d2562235a60f688786
+    resource: repo://packages/control-plane/src/session/components.ts
+  - id: openwiki-source-0f7dc7a19c00389ea0e86e0f
+    resource: repo://packages/control-plane/src/session/durable-object.ts
+  - id: openwiki-source-c5086611b0178ca7071daa2c
+    resource: repo://packages/control-plane/src/session/http/handlers/attachments.handler.ts
+  - id: openwiki-source-5c3aae3f8b776193c21c4216
+    resource: repo://packages/control-plane/src/session/initialize.ts
+  - id: openwiki-source-893ac0a294bbda5cd7dd3bc7
+    resource: repo://packages/control-plane/src/session/message-repository.ts
+  - id: openwiki-source-3a37470381153c4f7562bd60
+    resource: repo://packages/control-plane/src/session/schema.test.ts
+  - id: openwiki-source-b5e52d398550648420138d80
+    resource: repo://packages/control-plane/src/session/schema.ts
+  - id: openwiki-source-111326c6986085d1945bd815
+    resource: repo://packages/control-plane/src/session/services/session-attachment-storage.ts
+  - id: openwiki-source-af82e75c562cc0c1118650cf
+    resource: repo://packages/control-plane/src/session/session-attachment-repository.ts
+  - id: openwiki-source-467c6369bf6d18179b01cf60
+    resource: repo://packages/control-plane/src/session/session-status-service.ts
+  - id: openwiki-source-b91d1e3d9acc6b2a85763842
+    resource: repo://packages/control-plane/src/session/sql-storage.ts
+  - id: openwiki-source-c59860430ed84589a717b55a
+    resource: repo://packages/control-plane/src/session/types.ts
+  - id: openwiki-source-c6bd7c608dc8472f57a64deb
+    resource: repo://packages/control-plane/src/source-control/provider-from-env.ts
+  - id: openwiki-source-62f0c3ec6051610d33bdebe9
+    resource: repo://packages/control-plane/src/storage/object-storage.ts
+  - id: openwiki-source-968c4bcc9fbda1c7281a4e02
+    resource: repo://packages/control-plane/src/types.ts
+  - id: openwiki-source-2dd23e2f739aa003e42b413e
+    resource: repo://packages/control-plane/test/integration/apply-migrations.ts
+  - id: openwiki-source-a1aafae6c2c67594dd82b5c1
+    resource: repo://packages/control-plane/vitest.integration.config.ts
+  - id: openwiki-source-f1227299a054c9ff35745daa
+    resource: repo://scripts/d1-migrate.sh
+  - id: openwiki-source-136fa7eac6cf0379e2943038
+    resource: repo://terraform/d1/migrations/0001_create_repo_secrets.sql
+  - id: openwiki-source-e9fa301d4d038e3a194c2f37
+    resource: repo://terraform/d1/migrations/0002_create_session_index.sql
+  - id: openwiki-source-47faa7109d4e4c4bca451bd7
+    resource: repo://terraform/d1/migrations/0004_create_global_secrets.sql
+  - id: openwiki-source-b05965c92465fec483269e3d
+    resource: repo://terraform/d1/migrations/0007_create_integration_settings.sql
+  - id: openwiki-source-f65a2931d79af20cf5e8da05
+    resource: repo://terraform/d1/migrations/0010_add_image_build_enabled.sql
+  - id: openwiki-source-a756ba0a52e5175ee91be8cc
+    resource: repo://terraform/d1/migrations/0013_create_automations.sql
+  - id: openwiki-source-f695adb35451f63c35ccfbca
+    resource: repo://terraform/d1/migrations/0019_create_users.sql
+  - id: openwiki-source-24773cf735d54eecf2a2737b
+    resource: repo://terraform/d1/migrations/0026_slack_triggers.sql
+  - id: openwiki-source-f8dd01467907e9b2c90dc26a
+    resource: repo://terraform/d1/migrations/0030_automation_repositories_and_invocations.sql
+  - id: openwiki-source-6c0baf7913663ef2048830a1
+    resource: repo://terraform/d1/migrations/0031_drop_deprecated_automation_columns.sql
+  - id: openwiki-source-33e9fece98e946e56013b61e
+    resource: repo://terraform/d1/migrations/0032_session_repositories.sql
+  - id: openwiki-source-795117f7067e2fd3a97e0a0d
+    resource: repo://terraform/d1/migrations/0033_environments.sql
+  - id: openwiki-source-a4e22338b4633eb516a8855a
+    resource: repo://terraform/d1/migrations/0036_repo_metadata_default_environment.sql
+  - id: openwiki-source-c7deb7b2e7ca16c57762769d
+    resource: repo://terraform/d1/migrations/0037_automation_environments.sql
+  - id: openwiki-source-5ae6709e20489f9d508fafca
+    resource: repo://terraform/d1/migrations/0038_integration_environment_settings.sql
+  - id: openwiki-source-25d1f6182e3c51a7058f7d8d
+    resource: repo://terraform/d1/migrations/0039_image_builds.sql
+  - id: openwiki-source-7e836e7ab8178718b90d8b91
+    resource: repo://terraform/d1/migrations/0040_drop_repo_images.sql
+  - id: openwiki-source-55652c1f57459c9cd4f316cb
+    resource: repo://terraform/d1/migrations/0041_session_pull_requests.sql
+  - id: openwiki-source-724817d6cb72d63f7779fc5e
+    resource: repo://terraform/d1/migrations/0044_api_tokens.sql
+  - id: openwiki-source-91b091ea76913ca3a33ac573
+    resource: repo://terraform/d1/migrations/0050_purge_retired_api_tokens.sql
+  - id: openwiki-source-8b0374b8b991000da0bcdbe7
+    resource: repo://terraform/d1/migrations/0051_drop_retired_custom_auth.sql
+  - id: openwiki-source-c2f7cde8bffc2a82a89da21d
+    resource: repo://terraform/d1/migrations/0052_image_build_finalization.sql
+  - id: openwiki-source-6691180e0788381769c82b6d
+    resource: repo://terraform/d1/migrations/0053_image_build_scheduler.sql
+  - id: openwiki-source-63ec24a22b566c511ff53522
+    resource: repo://terraform/d1/migrations/0055_session_read_states.sql
+  - id: openwiki-source-c58c7e5adcc95223237e1b55
+    resource: repo://terraform/d1/migrations/0057_reconcile_canonical_auth_identities.sql
+  - id: openwiki-source-237dd145dd401b91e10520ab
+    resource: repo://terraform/d1/migrations/0058_child_admission_leases.sql
+  - id: openwiki-source-eb6023d53414123c21b19978
+    resource: repo://terraform/d1/migrations/0059_require_automation_run_invocation.sql
+  - id: openwiki-source-cd1a3e41b410fe02bf76abab
+    resource: repo://terraform/d1/migrations/0061_managed_skills.sql
+  - id: openwiki-source-7ed57c3ea61d0362377d3e7d
+    resource: repo://terraform/d1/migrations/0063_session_root.sql
+  - id: openwiki-source-eed9efded4c4e19279a84fcd
+    resource: repo://terraform/d1/migrations/0064_provider_accounts.sql
+  - id: openwiki-source-a834ce98b103886b7f1d4bde
+    resource: repo://terraform/d1/migrations/0069_skill_import_sources.sql
+  - id: openwiki-source-fa87429012f5a8428ace3e8f
+    resource: repo://terraform/d1/migrations/0070_pr_autofix_feedback.sql
+  - id: openwiki-source-ca32cc2da6748302c6ab7063
+    resource: repo://terraform/environments/production/d1.tf
+  - id: openwiki-source-42225b11439fd58ca2e91457
+    resource: repo://terraform/environments/production/kv.tf
+  - id: openwiki-source-add79d7310433a0f313a6fbc
+    resource: repo://terraform/environments/production/r2.tf
+  - id: openwiki-source-4167b211967d9a75eed01b74
+    resource: repo://terraform/environments/production/workers-control-plane.tf
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T06:58:43.189Z" }
 ---
 
 # Data Model & Storage
@@ -15,7 +213,7 @@ Open-Inspect splits durable state across two SQLite databases with deliberately 
 1. **Shared D1** (`env.DB`) — the cross-session system of record: the sessions index, repository metadata, environments, image builds, automations, encrypted secrets, managed skills, users and identities, and model-provider accounts. Anything more than one session needs to query, list, or fan out over lives here.
 2. **Per-session Durable Object SQLite** (`ctx.storage.sql`) — the hot session state: participants, the prompt queue, the agent event log, artifacts, sandbox credentials, and per-repository git state. Each `SessionDO` owns exactly one embedded database, giving high performance without cross-session contention.
 
-The two are kept intentionally different in kind: D1 is accessed through the async `SqlDatabase` port (`src/db/sql-database.ts`), while the DO's `SqlStorage` is a synchronous, load-bearing engine that the port deliberately does not cover (`src/session/sql-storage.ts`). Readers wanting the runtime behavior built on top of these tables should see [Control Plane Worker](/openwiki/architecture/control-plane-worker.md) and [Session Durable Object](/openwiki/architecture/session-durable-object.md).
+The two are kept intentionally different in kind: D1 is accessed through the async `SqlDatabase` port (`src/db/sql-database.ts`), while the DO's `SqlStorage` is a synchronous, load-bearing engine that the port deliberately does not cover (`src/session/sql-storage.ts`). Two non-SQL bindings complete the picture: R2 (`MEDIA_BUCKET`) holds every session binary, and KV (`REPOS_CACHE`) caches repository listings and GitHub App installation tokens (see [Object storage and caches](#object-storage-and-caches)). Readers wanting the runtime behavior built on top of these tables should see [Control Plane Worker](/openwiki/architecture/control-plane-worker.md) and [Session Durable Object](/openwiki/architecture/session-durable-object.md).
 
 ## The two storage layers
 
@@ -95,11 +293,43 @@ All shared-state SQL flows through one engine-neutral port, `SqlDatabase` (`src/
 
 On top of the port sit per-aggregate stores in `src/db/` — `SessionIndexStore`, `EnvironmentStore`, `AutomationStore`, `ImageBuildStore`, `SkillStore`, `UserStore`, the secrets stores, and so on. Each takes a `SqlDatabase`, keeps snake_case rows in the database and camelCase types at the API boundary, and owns its table-specific SQL. The router injects `instrumentD1(env.DB, metrics)` (`src/db/instrumented-d1.ts`), a transparent wrapper that records per-query timing and rows read/written into the request's wide event; stores never know the difference.
 
+Request metrics are part of the data path's observability contract: the wrapper records one `D1QueryRecord` per terminal call (wall-clock `query_ms` plus the engine-reported `d1_server_ms`, `rows_read`, `rows_written`) and one aggregated record per `batch()`. `RequestMetrics.summarize()` folds these into the wide event as `d1_query_count`, `d1_total_ms`, `d1_server_total_ms`, `d1_rows_read`, and `d1_rows_written`, alongside named spans captured via `metrics.time()`. Instrumented statements keep the original statement under an `ORIGINAL_STMT` symbol so `batch()` can unwrap them before submission — the raw engine can only execute statements it prepared itself (the same-origin contract the port documents). The WebSocket upgrade path builds its own instrumented handle in `src/index.ts`, so upgrade-time index reads are timed too.
+
+### JSON-in-TEXT columns
+
+Several columns deliberately embed JSON documents in TEXT, and each owning store supplies a reader for its document. The one shared helper, `parseJsonStringArray` (`src/db/json-columns.ts`), covers the string-array columns — `repo_metadata.aliases` / `channel_associations` / `keywords` and `environments.channel_associations`: `NULL`, empty, malformed JSON, non-array payloads, and arrays with non-string elements all read as `undefined`, so a corrupt value degrades to "unset" instead of failing the row or leaking junk through the `string[]` contract (writers `JSON.stringify` the arrays). Documents with richer shapes have store-specific codecs with differing strictness: `image_builds.repository_shas` (`parseRepositoryShasJson` returns null for malformed or schema-invalid payloads) and integration settings (zod-validated on both write and read, throwing `IntegrationSettingsValidationError` on malformed JSON) fail closed; `automations.trigger_config` is read with plain `JSON.parse` (a corrupt value surfaces as an ordinary row-parse error); MCP server `command`/`repo_scope`/env parsers degrade leniently (a malformed command falls back to `[raw]`, malformed env to `{}`); in the DO schema, `messages.attachments` is a JSON array column and `session.sandbox_settings` holds the resolved sandbox settings document.
+
+### Which store owns which tables
+
+Ownership is one-to-one: every shared table has exactly one store module that writes it, and stores are composed (never merged) when an operation spans aggregates.
+
+| Store module (`src/db/`) | Tables it owns |
+| --- | --- |
+| `session-index.ts` — `SessionIndexStore` | `sessions`, `session_repositories`, `child_admission_leases`; also writes `session_model_provider_auth` and the pinned skill manifest inside its atomic create batch |
+| `session-pull-request-store.ts` | `session_pull_requests` |
+| `session-skills.ts` — `SessionSkillStore` | reads `session_skill_manifests` / `session_skill_revisions` (written only via the creation batch) |
+| `session-inbox-store.ts`, `analytics-store.ts`, `pull-request-analytics-store.ts`, `session-read-state.ts` | read-only projections and shared SQL fragments over `sessions` / `session_pull_requests` / `session_read_states` |
+| `environments.ts` — `EnvironmentStore`; `environment-secrets.ts` | `environments`, `environment_repositories`; `environment_secrets` |
+| `repo-metadata.ts` — `RepoMetadataStore` | `repo_metadata` |
+| `repo-secrets.ts` / `global-secrets.ts` / `environment-secrets.ts` (shared plumbing in `scoped-secrets.ts`) | `repo_secrets`, `global_secrets`, `environment_secrets` |
+| `image-builds.ts` — `ImageBuildStore` + `image-build-finalization.ts` — `ImageBuildFinalizationStore` | `image_builds` |
+| `automation-store.ts` — `AutomationStore` | `automations`, `automation_repositories`, `automation_environments`, `automation_invocations`, `automation_runs` |
+| `slack-channel-store.ts` — `SlackChannelStore` | `automation_slack_channels` |
+| `skills.ts` — `SkillStore`; `skill-profiles.ts` — `SkillProfileStore` | `skills`, `skill_revisions`, `skill_revision_files`, `skill_assignments`, `skill_import_sources`, `skills_catalog_state`; `skill_profiles`, `skill_profile_items` |
+| `user-store.ts` — `UserStore` (+ `user-merge.ts`, `identity-claim-store.ts`) | `users`, `user_identities` |
+| `user-scm-tokens.ts` — `UserScmTokenStore` | `user_scm_tokens` |
+| `model-provider-accounts.ts`, `provider-account-credentials.ts`, `provider-account-defaults.ts`, `provider-account-authorizations.ts` (composed by `model-provider-account-atomic-writer.ts`) | `model_provider_accounts`, `model_provider_account_credentials`, `model_provider_account_defaults`, `model_provider_account_authorizations` |
+| `integration-settings.ts` — `IntegrationSettingsStore` (`scm-settings.ts` reuses the same tables under the fixed `scm` key) | `integration_settings`, `integration_repo_settings`, `integration_environment_settings` |
+| `mcp-servers.ts` / `commit-signing.ts` | `mcp_servers` / `commit_signing_configuration` |
+| `model-preferences.ts`, `keyboard-shortcut-preferences.ts` | `model_preferences`, `keyboard_shortcut_preferences` |
+| `pr-autofix-feedback-store.ts` | `pr_autofix_feedback` |
+| `better-auth-adapter.ts` — `CanonicalSqlAdapter` | no tables of its own; maps Better Auth's models onto `users`, `user_identities`, `auth_sessions`, `auth_verifications` |
+
 ## Migrations
 
 ### D1 migrations (shared schema)
 
-Schema files live in `terraform/d1/migrations/`, named `NNNN_description.sql` with a numeric prefix that is the tracked version (currently 0001–0070). They are applied by `scripts/d1-migrate.sh <database-name>`:
+`terraform/d1/migrations/` is the schema source of truth: 69 numbered SQL files spanning `0001`–`0070` (the numbering skips 0046) define every table, index, trigger, and backfill that exists in production D1. They are named `NNNN_description.sql` with a numeric prefix that is the tracked version, and are applied by `scripts/d1-migrate.sh <database-name>`:
 
 1. The script validates filenames first — a file without a leading numeric prefix cannot be tracked, and two files sharing a prefix would mean one is silently skipped forever, so both fail fast before anything runs.
 2. It ensures a `_schema_migrations (version, name, applied_at)` ledger table, then reads the applied `(version, name)` pairs. A version already recorded under a *different* filename is an error (downstream installations may have used the same number), so renames are caught before apply.
@@ -109,7 +339,7 @@ Terraform drives the script: `terraform/environments/production/d1.tf` declares 
 
 Integration tests apply the same migrations automatically. `vitest.integration.config.ts` loads the directory with `readD1Migrations()` into a `TEST_MIGRATIONS` binding, and the setup file `test/integration/apply-migrations.ts` calls `applyD1Migrations(env.DB, env.TEST_MIGRATIONS)` before any test runs. Every integration test therefore exercises the real schema, which is why **a new table needs both a migration file and store updates** — adding only the store would pass typecheck and fail at runtime against the migrated D1. Migration-authored backfills are written guarded (`NOT EXISTS` / `IS NULL`) so they are the idempotent roll-forward repair path, while the schema-changing statements in the same file are applied exactly once (SQLite has no `ADD COLUMN IF NOT EXISTS`; see the header of migration 0030).
 
-A worked example of the migration discipline: migrations 0039/0040 replaced the per-kind `repo_images`/`environment_images` tables with the unified `image_builds` registry, copying environment rows verbatim (they already carried fingerprints) and dropping the old tables. Because the control-plane scheduler naturally rebuilds every enabled scope, no legacy backfill job was required.
+A worked example of the migration discipline: migrations 0039/0040 replaced the per-kind `repo_images`/`environment_images` tables with the unified `image_builds` registry, copying environment rows verbatim (they already carried fingerprints) and dropping the old tables. Because the control-plane scheduler naturally rebuilds every enabled scope, no legacy backfill job was required. Another: migration 0063 added `sessions.root_session_id` with a cycle-safe recursive backfill that tolerates corrupt parent chains (UNION-bounded reachability, lexicographically-smallest cycle root) and a trigger that keeps inserts from old worker versions correct during the migration window.
 
 ### Durable Object migrations (per-session schema)
 
@@ -200,9 +430,8 @@ Integration settings resolve through three layers, lowest precedence first: `int
 ### Users, identities, and auth tokens
 
 - `users` + `user_identities` (0019, `src/db/user-store.ts`) is the canonical user model: one canonical record per person, with free-form `provider` identity links unique per `(provider, provider_user_id)` — no CHECK, so new auth/SCM providers need no migration. `sessions`, `automations`, and `user_scm_tokens` all gained a nullable `user_id` for attribution.
-- `verified_email_claims` and `browser_auth_sessions` (0047) hold mailbox-ownership proofs and browser session tokens (hash-at-rest) with absolute-expiry and revocation CHECKs.
-- `auth_users` / `auth_sessions` / `auth_accounts` / `auth_verifications` (0048) are generated from the exact-pinned Better Auth configuration. Since the #1290 consolidation (0057) Better Auth's account model **is** `user_identities` — the OAuth credential columns (`access_token`, `refresh_token`, `id_token`) live there, written as ciphertext because the runtime enables `encryptOAuthTokens` (Better Auth encrypts with its own secret, `BROWSER_AUTH_SECRET`); `auth_sessions` keeps browser sessions.
-- `api_tokens` (0044) are control-plane-issued opaque credentials (web session + refresh kinds) — hash-at-rest, with a rotation `family_id`, `rotated_to` successor pointer, family expiry cap, and a plain `expires_at` index for the retention sweep.
+- `auth_sessions` and `auth_verifications` (0048, recreated on epoch-ms columns by 0057) hold Better Auth browser sessions and OAuth handshake state. Since the #1290 consolidation (0057) Better Auth's user model **is** `users` and its account model **is** `user_identities` — the OAuth credential columns (`access_token`, `refresh_token`, `id_token`) live there, written as ciphertext because the runtime enables `encryptOAuthTokens` (Better Auth encrypts with its own secret, `BROWSER_AUTH_SECRET`); the parallel `auth_users`/`auth_accounts` registry from 0048 was merged and dropped by 0057.
+- The pre-Better-Auth browser-auth design is retired: `api_tokens` (0044, CP-issued opaque credentials with rotation families) had its rows purged by 0050, and 0051 dropped `api_tokens` together with 0047's `verified_email_claims` and `browser_auth_sessions` tables. They remain in migration history only; the live browser-session authority is Better Auth's `auth_sessions`.
 
 ### Model provider accounts
 
@@ -222,7 +451,42 @@ Migration 0064/0065 define subscription-provider account storage:
 - `commit_signing_configuration` (0043) — singleton commit-signing config with the encrypted private key.
 - `model_preferences` (0006), `keyboard_shortcut_preferences` (0067) — deployment-wide and per-user preferences.
 - `pr_autofix_feedback` (0070) — durable receipt/decision ledger for PR feedback Autofix (execution admission stays authoritative in the owning DO).
-- `api_tokens`-adjacent sweeps, `repo_secrets`/`global_secrets` covered above.
+- `repo_secrets`/`global_secrets` covered above.
+
+## Object storage and caches
+
+### MEDIA_BUCKET: session binaries in R2
+
+The R2 bucket bound as `MEDIA_BUCKET` (`Env.MEDIA_BUCKET`, provisioned by `terraform/environments/production/r2.tf` with the default name `open-inspect-media-<deployment_suffix>`) holds every session binary; no binary data is stored in either SQLite database. All access flows through the small engine-neutral `ObjectStorage` port in `src/storage/object-storage.ts` — `createMediaObjectStorage(env)` wraps the R2 binding, and GET routes stream responses with Range support. Two key conventions:
+
+- **Agent media artifacts** — screenshots and videos uploaded by the sandbox via `POST /sessions/:id/media`, keyed `sessions/<sessionId>/media/<artifactId>.<extension>` (`buildMediaObjectKey` in `src/media.ts`), with per-session upload caps enforced before the put (100 screenshots / 10 MB each, 20 videos / 100 MB each). If the DO then refuses to persist the artifact record, `persistMediaArtifact` deletes the uploaded R2 object rather than leaking an orphan.
+- **Chat-composer attachments** — user-uploaded images via `POST /sessions/:id/attachments`, keyed `sessions/<sessionId>/attachments/<attachmentId>` (`buildSessionAttachmentObjectKey`), referenced by prompts as `{ attachmentId, name }` so the message row and `user_message` event stay small — DO SQLite rows cap at 2 MB, so base64 payloads must never ride through the message queue.
+
+Attachment upload and garbage collection are a three-party protocol between the route, the DO's `attachments` table, and R2:
+
+```mermaid
+flowchart TD
+    A["POST /sessions/:id/attachments"] --> B["Session DO: register attachment record"]
+    B -- "stale unreferenced rows claimed" --> C["Route deletes their R2 objects"]
+    C --> D["Route reports acks and failures to the DO"]
+    D --> B
+    B -- "ok" --> E["R2 put sessions/:id/attachments/:attachmentId"]
+    E --> F["Prompt references the attachment by id and name"]
+    F --> G["Message row and attachment claims commit atomically in the DO"]
+    G -- "never claimed within 24 h TTL" --> H["Next registration sweep claims the row"]
+    H --> C
+```
+
+Attachment upload and garbage-collection protocol between the router, the session Durable Object's `attachments` table, and R2.
+
+The route **registers the record in the DO before the R2 put**, so every failed or ambiguous storage outcome remains discoverable through the normal stale-attachment cleanup protocol (retries up to three times when the DO asks for a cleanup pass first). The DO enforces per-session quotas (100 files, 500 MB total) and each registration sweeps attachment records never referenced by a message within the 24-hour TTL (cleanup claims expire after 5 minutes), returning their object keys for the route to delete from R2. A prompt claims the attachment rows **atomically with message creation** — a partial claim (an attachment already claimed or missing) aborts the whole message with `AttachmentClaimConflictError`.
+
+### REPOS_CACHE: one KV namespace, two tenants
+
+The single KV namespace bound as `REPOS_CACHE` (Terraform binds it to the session-index namespace, `open-inspect-session-index-<suffix>`) is cache-only — the worst case is a cold cache — and serves two independent consumers:
+
+- **`/repos` listing cache** (`src/routes/repos.ts`): one key, `repos:list:v2`, holding the SCM-enriched repository list. Fresh entries (under 5 minutes old) are served directly; stale entries (5 minutes–1 hour, the KV TTL) are served immediately while a background refresh revalidates; a cold cache fetches synchronously and registers the refresh with `waitUntil` so an aborting caller cannot leave the cache permanently empty. Any repository-metadata write deletes the key.
+- **GitHub App installation-token cache, persistent tier** (`src/auth/github-app.ts`): keys `github:installation-token:v1:<appId>:<installationId>` hold cached installation tokens behind an in-isolate memory map and a single-flight refresh promise. Cached tokens are usable for at most 50 minutes and only with ≥5 minutes of remaining lifetime; the KV TTL is capped at 1 hour. The same provider (and hence the same cache tier) is constructed both in the route composition root (`provider-from-env.ts`) and by the Autofix queue consumer.
 
 ## Per-session Durable Object SQLite schema
 
@@ -265,4 +529,5 @@ Key validation is fail-closed: `src/env-validation.ts` requires each encryption 
 
 - **New D1 table/column:** add a `NNNN_description.sql` file to `terraform/d1/migrations/`, add or extend the store in `src/db/`, and rely on the integration tests to exercise the real migrated schema. Backfills must be guarded to stay idempotent; the deploy path re-runs automatically via Terraform's content-hash trigger.
 - **New DO column/table:** add it to `SCHEMA_SQL` (fresh DOs) *and* append a numbered entry to `MIGRATIONS` (existing DOs), sharing a SQL constant when the shape must match exactly.
+- **Object storage and caches:** R2 and KV carry no migrations. R2 object keys are code conventions (`buildMediaObjectKey`, `buildSessionAttachmentObjectKey`), and `REPOS_CACHE` is cache-only — a shape change at worst costs a cold cache.
 - **Manual apply / inspection:** `scripts/d1-migrate.sh <database-name>` applies pending migrations and prints per-file skip/apply status; the `_schema_migrations` ledger in each database is the source of truth for what has run.

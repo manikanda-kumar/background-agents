@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:722d6c56ca1784cacd3fa52da6b401fa92499af97372c26dfd49338b2ecd396b",
+  "claims": [
+    {
+      "id": "claim_fc42303a2e0146fcb902c263301f363b",
+      "statement": "Both create and spawn converge on initializeSession, whose invariant ordering is D1 index write first (status created, lineage, skill manifest, provider auth) and DO init second, so failures are caught and compensated before any sandbox warming starts.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L136-L161",
+          "version": "repo-lines-v1:sha256:0e120db2398a9abe73bde3a63814ea5008be7e1149d8ae9f3873d1b2a4a57730:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0Y2ExNWRmYWQzN2FkMWFmNTllM2RjNWUxYTExNzI2NzExOWE2MWExMGY5NWYyZWFiMzM3MTJiMWExM2U2MDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxYTc5ZmU2MjYzM2Q0N2VkNTc2ZTk1MzAyMzU3NzQzMjU5MTBhODlmMWIzMjcxYzRjYmVmNDVkOTk1YjMxY2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1MTcyYzgxNmMwMjI5N2MzYzE5ZTQ2NDdmNGEwZmY1Zjc1ZjZiY2ZjZDVkOTMyZTEwZGE3YWQwOWViOWU1MGMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L80-L87",
+          "version": "repo-lines-v1:sha256:956407efab47e7171b32ba83b30cb5fd2cfd39ba2f92b7faecf02fcee01bb651:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcyYTQyOTM4MmIyZTE0NzE4ZTBlMzdiMDU3MGE4YTE3MDI5OTFmY2Q4NDk4Y2Q4NDA2MGE4YmY0ZjA1MDE3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTUwODQ0NzFiOGJkZTI3NTcwMjFjNzVkZmY1MTIzMDI1NmNjMzFjMzQzMjFhMGUxY2FlOTE4Y2Q2MjZiZDQxMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGI1ZGFhMTMyZDFhMGY5ZjZkOGMxMjViN2FhMGFlZDIwZTRjZTIxYWZkZGE0NDE3MjE1Zjc5MmUyOGM0N2I2OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dbb531432e98486c868ce716bc9516d2",
+      "statement": "The create route first parses and schema-validates the input (strip-mode, keeping the raw body because forbidden-identity-field checks must inspect raw keys), applies identity enforcement where identity comes only from the verified principal and caller-asserted identity/SCM body fields are rejected with a user principal required, and validates branch names against a git-ref charset pattern as defense in depth.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L41-L76",
+          "version": "repo-lines-v1:sha256:e5c4f388e8eeb4e8187f0870a60408530d448afabc9cea06cad0b6c7e20f15d2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhN2M0ZTY4MDJlNGNiM2IwZWNjMWQ5MTQ2MWNmN2IxNzA4NzJmMmUzNDZjZmJhNGNmNWNkNDM4NDEwMDE3YzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2MjY1YzM1Mjc3OTM0ZmNiYzUwZTJlZmU4Nzg0MDlmOWI5ZmFlNTViZjUxOWRjYTY5ZjI1MmJjNGE4NWVjZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwZDdhMmY5MmRhOWJjNDY4YWVlOTgyMDUwYjYzMjVmZjA0NTAyYWY2ZTg5MTQ1MjQ3ZTc5NzU0MzljODQzNzkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/create-session-input.ts#L16-L38",
+          "version": "repo-lines-v1:sha256:53f67f013464b467238e24bac2c4f8aff2f59b5d1ae2ce9ee6cde2d60faa65dd:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxNGUyYmI1MjczYjg4MWZkYjY2MmM0NTMxYWVhZTFhOGI2MDVjMDI0MzU0NGQ4NDQxZjFhMTAxMGM5NjVkNjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d9ed010bc2649db97f9f02085214acf",
+      "statement": "Repository resolution has three mutually exclusive target modes (environment snapshot, ad-hoc repositories list, scalar pair — exclusive by schema): environmentId snapshots the environment's members and resolves them like any list while recording environment_id as provenance, list modes resolve each member with the primary entry (position 0) mirrored into the scalar columns, and the scalar pair is a single repo lookup returning repo id and default branch.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/repos/resolve.ts#L28-L66",
+          "version": "repo-lines-v1:sha256:abdeeb4163d0e3f6652a77f6bc4159359551777db3eb73d5e50f2c8635a68f5d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyMzVmN2NmN2QzNWU5OWI1NDM1ZTU4MDJlOTg3YjIyNmM1NmZiMjRlZmE1YjNhNjJjZWY4NDkzZWVkMGY4NzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjYzk1OTZhMDBhM2RmYWIzZTNjNTQ5NWJlNjIzYjA3MDZiNzBmYmUyYzMyZDQyYTkzODFiMzhjMDU2NTdkNjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljZjRjYmQ4NTMxZTAzOGY4NDEyMWY0NjhiZGQ2MDZkZmZlMWMyNzkwNDBkYWVjOTBlM2Y0ZjE0NDAxOTUzOTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyZWZhODFlM2U1MGE3ODZkYmUyYTgyYWE5MzcxNDNiNjM1NGNiMDkxNTBlYzBmOGE2ZGJjYzNmMWJmNTljMmIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L84-L115",
+          "version": "repo-lines-v1:sha256:5eb2362245af06188c9598c24d82f8b748f2427a7a5e1b59ecde9586be7f867f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3NjE1NGQxZjgyOWJjMWNlMzhmYjI0NjEzOTMzZGE3NjM3OTdiODIzYTZmYTVmOWZhNjQ4N2IzMjBjYmEzZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhkZGJlYmI1OTMxOTMzYTM0NjNlM2U3NzM5NWM2YWE0MDU2OTMzZmYzYjIxOTRiYTlkYzM5MjQwNjk3MTFjMWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYTNkYmEzNDkwMGNkYWIyMGY2MjYxMTgzMGI0NzdkZDFmZDk5OWM0Y2E3Y2VkNDg3ZTNlZjU0MjM3YWM4ZWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_797febd3456c429bbd3b1fb0b3c7c499",
+      "statement": "The route then resolves the canonical platform user id from the verified principal (failing closed; body display fields stay cosmetic), performs SCM enrichment only through server-side token-store lookups via resolveGitHubEnrichmentForRequest under resolveGitHubCredentialAuthority (a user without a linked GitHub account falls back to the GitHub App bot, linking deliberately deferred), and validates model and reasoning effort once for both DO init and the D1 index.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L117-L176",
+          "version": "repo-lines-v1:sha256:d44b726bac2753d20f2ae93394c0d07d8cc76d112b1e78966e039d70c4819075:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyNGI1NjcyYWViMDNhNTEzYTdhYjNjM2Y0MjFjOWZhOTkwNWUyYjhlOWU2MTQ5YjEzOTg1YWZjMjY5ZDI4NTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzZjUyYmRiOWIxMGU2YWJlYjIyZDc2Njc2ZTIzODY0NzhkOGJkYWMyOTE5NjIwNjkwNjgzZTM5MDQ4M2VkZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyMjI0OTNkZjMyYzlhZDJhMmE5NWYzZTA3Yzc4ODRjNmI5NWE5ZTE1NDE3NjY4ZDg1NzY2NTEyNjdmZjJmYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExYzA1NWJiOTM3ZDRkZGZmNDZmNTI1MjlhZDczZWUxZGJkNTI2NjYzMTU2YTk2Zjg3ZDc0OTU4ODlkYjM1OTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_689c87601dad4857b892384ea22a0c8b",
+      "statement": "Session-scoped integration settings resolve from the primary member with saved-environment overrides layered on top; provider auth resolves into a complete immutable routing snapshot from explicit selections (api key or validated provider account) or policy defaults with unattended policy for non-user spawn sources; managed skills resolve the manifest from the scope (repositories + environment) and the selection (all default, none, or profile) with SkillResolutionError on invalid profiles.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L178-L215",
+          "version": "repo-lines-v1:sha256:ea472a72899dcc156027690376c9b1f65216e0a9f37056b73117f42643938e65:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmYmM1ZTVlMDIwNmMxNzFkOTZhNjRiYjI0MzI1NDYzMTc3NmFmMGRmYjVlYjliZjQyNmY0YmJlN2Q2YzA4YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5NWQ2MmI3MDNjMmQ0MTFjNzE1ZDdjYTk2ZGM2NDI1OWQzNDJjZTVjNzA5NzEyMDM4ZTNkMmFkY2ExYjBkMTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhNGQ3NzJiMjY4Yjg4ZTA2NmNmYzA2ZWU2MDRhMDVmZjgyMjYxMmMyM2VlNzZhY2M3YmJlNGJlNTViZTQ5MDQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/provider-account-resolution.ts#L26-L71",
+          "version": "repo-lines-v1:sha256:b051e27b0b14600437c647d1005290a2167eaabc6d8609c4eca70a5d7d408d2c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmYTJmMzg5Yjk3NzM2MjFkY2M5MTY3ZWE5YWEyZGI2NGRjZDA4NmJmNzY4NDk3NGRlOWQ3ODBkNzU0Mjg0MTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzNzM0YzAxOTY2YzllOTU5OGM4NGViNTQ4NjEzNTI2MjRmYmI5MjlhOTIzOWUyMzlhOThmMDA5MmRiNDc2MTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1MzFmODZiYjc4YTZhMzBhZjBiOTlmNDgwYmJjYzgzNzkxMTQ4ZDFiZTQ2OWZjMDhkYTc2OTAzNWUxZDNjODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZlMGYxN2Q0ZTU1YTk3NTdiYWM0MTllMzFkZGQyYThmN2YwMDQ5YTEyMmJhNjcyZjRhOTY0MzE0MWFlMjUyNjIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/skill-resolution.ts#L34-L110",
+          "version": "repo-lines-v1:sha256:09faff886b95c54c5dba32f5a2b15a682888d83f3831841166afe4639dd64630:eyJzZWxlY3RlZExpbmVDb3VudCI6NzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzYWFkNDE0Njk3NzNlZjM2MWE2ZmY1ZDZjODliYWZhOWRiMjExYzU5YjVkYjc5OTU2N2YxZWQ4NjNiOTE0NDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZGQ2ODkzNTU0NzMyOGYzYTNjMGVhM2RlZjQxODU2NGE5ZmM4MmI3ZWE1MzNjN2FiNWFlMTUwMDk4MGIwOGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2MTVhM2E4YmZiZTQ4YjZhZDE0Yjg4MGI2Mjg0ZDA3ZTgyZmUwNWY0MTQ3YzU2Y2E2NDAxY2E5NzVlOGRiZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3OTZkN2RhYjQ1YTRiZDRhOWNlNzQzOTJmMmZiYjRjMzEyMTE1YzI0OGMwZTFiZjIyNTc1ZDcxMDNjNjk3ZDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_56d5025f92754a91937fa1f2415af8f2",
+      "statement": "initializeSession re-validates the repository-context invariants (owner/name/id together, branch context only with a repo, repositories[0] equal to the scalar mirror with one-entry synthesis for scalar callers and an empty list for repo-less sessions), computes base branch as branch || defaultBranch || DEFAULT_BASE_BRANCH, writes the D1 index, POSTs the init payload to the DO addressed by idFromName, and on transport error or non-OK init marks the D1 row failed (best-effort compensation so no phantom created session appears in listings) before rethrowing to the route's 500.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L246-L262",
+          "version": "repo-lines-v1:sha256:011df15eb29db625495fd8108a7ad33a4b12ff8819c4651bb38cae8303ec07db:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2NTk1ZjRlZTVmZjYzZDUwOTUwNDE5ZGMzNDQxNDUxMzg1MWRjOTczNmZkMTdhNGY3YmZhOTMwYjI2MWI2ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhZjczMmVhM2I2YzhjOTE3ZGZhNjQ5MzY2MDg3MTczNTYyNGNkZTlkY2Y3YTNiMDY1N2Q3YjNlMjU4MTc0NDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzNGNiOTI4NmJkYWE0YjQ1MTdhYjI3OGZkYTMxNmMwZTY1NTU5ZmU4NDI0NTRmZTVlMTYzNDkxZTY5ZDYyZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUwYjNhYjMxNjBhYTAzZWVjMDQ5MTViYTc5ODQwNGY4NDgzMTQ3NWExOWRiN2Y0M2U1NTA3ODI5YjZjMzdhOTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L209-L247",
+          "version": "repo-lines-v1:sha256:fb5061467f0e98a725f6522b646072858a08dfe2d68a86a83f7b4790fb0da906:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwOThiMTAyNzVhZThlNzk2MmFiODFlNTMxY2YyNjU4YWU0OWY0OTU2YjU1YjVlYjdhMWVjYzdhZWNhNDE5NjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyMmYwODNlODU3ZDI3ZjJlZDljNjdlZTY5ODcxMjE2NGJiYTgwMDhkMTFiMThlYmM4NGRiZWRjNjk0MTNmMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L93-L134",
+          "version": "repo-lines-v1:sha256:e1dc0484e1fa4916861214314a9e97c72433e8f3d0301ccbf05b8b057458e3d4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlNzY4MWU3NmY3YmE4ZDNlNWU5YjVhMDk5ZjRmM2MzNTZmZDNmMzNmMmU5YWZmOGIyNjI2NzZkMDg0NmRmZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVhMzdkZmNiMzM2YzUzOGVkM2I5MzAzZGEzOGQ3NDM0ZTUwNjkxMzhiOTAyYjgwMTA5YzAxNDdiYzZjMWNmOTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhYWY5NWUzN2NmMDQxZjIyZTRmOTY1OWY0NjI5MGVhYmI4NDcwY2Y5MWI4NzhkNDAwMGU2ZDAyOTBhNDE5NmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkNjQ2ZDYzOThmOTc1ZTk5NGQ2ZTk0NGIzNjE0ODExOGFhMzY5MzY1NDE1NzEyNmExZjkxNThjZmYwZDA1ODMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_04dde4d5486a4524b2f4eb354cb7eb8c",
+      "statement": "The DO init handler validates the payload, writes the DO's SQLite state (session row, participants, member rows — legacy scalar producers get a member row so spawn/read paths have one source of truth), and schedules the warm spawn; the lifecycle manager then chooses the boot path — prebuilt image when spawn-time selection matches the session's own repository snapshot, snapshot restore when one exists, otherwise fresh boot — reserving spawn identity up front and retrying from base with a rotated identity on a provider restore failure.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L540-L627",
+          "version": "repo-lines-v1:sha256:a8e453a4be8ce0f20affd0d06f7582bd3e80e14c7757624d1858382659d474c1:eyJzZWxlY3RlZExpbmVDb3VudCI6ODgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiY2QwMmJmMjdjM2FhODhmNjM0NDA2YzI1N2Y4ZjVkODAzN2M0OTE3NmQyYTQwYjg2OGI1ODNlMzE4NWM4YWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmNDczM2ZiZDcyNzMzZWRiMTY0N2EzNGQyNDgzZDA5MDUyZGNkNGRiMDY2YzhkZWQ4YWM5Yjk1OTlkZDNlNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3MzAxZTA0ODZlYWJmYTc0MmJmMzg0Njc4NWJiMTEwY2UyNzc4ZGVhNGZiZDMxZTBhNmFiNTk5ODRkZGIwYzYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/session-init.handler.ts#L193-L249",
+          "version": "repo-lines-v1:sha256:ce0381c174103251c36f0a86eb5faf83c6aa06ebf7b2043cab81b561129f99e7:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwZWJmZmI1MzI4ZWJkMDM1YmU5MDZlMjU4NTVmMDlkNzA1Nzc2ODk3NzFmY2I0ZmU4ZmVmMDczOGIwNDk4ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwZmY5MTFjNzI5NmFkOGVkOTBlZGY3Y2M1NDcwNTVjNTRhNTMwYTRmYzIyZGFiNDcyZTdkMjc4M2QwODhjZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4Njk4Yjc5NjQ5NDExYjE5OTRkNmQ4ZWNhY2E2NTA3OGNmNjE5YjI0ODMyNGU3ZTZkYTFiNDBmOGM2ZWZlYjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmZWQwYmY2MTA2NTk5OWJhNTEyNTk0NjlmOTcwOGFlZWY0ZjFhOWIzNTM5NGM1ZTZkZDU3NmJhYzA1OTBkYjAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/session-init.handler.ts#L83-L92",
+          "version": "repo-lines-v1:sha256:117c760f1602b250ef0d48c2b5a65ed110b4af1a5d829cb3d91433949a10b7a8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkOGE3MWQ2Nzk4MTZkZjY0ZmEwZjBjNjVkOWM0NDhiNmZlOGY0OWI3MTQ5ZDVmMGI0ZGM1NzhjYWNiNDY4YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMjE1OWIzYjUxNTE5NDAyMzhiZGFlNGViZjBjNTY1YmQ5MDg0ZTY0MzA0NTliOGMwNjcyNzE2ODBmNGRlMjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwZjBhZDAzNWY0NWYwNTk0OWJjZDMwNzhhZmIxYmZjZGJmODNjYmZhNjEzNjg1MWFjNmQzODAxYjQ0NDk1NjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkMzMyZDdhOWM1OWNiNjc2ZmNiNmFmNzg5ODFmYjFhMmNlZTRiYTM3NThlNTJiMjgzODA3N2MxMzY0OWEwNWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_16d281a2b60c4e1ba945e2053eef02ff",
+      "statement": "POST /sessions/:id/children is the tool-called child-spawn path admitted with sandbox auth; it resolves child sandbox settings from the parent's settings scope (primary repo plus environment overrides), enforces MAX_SPAWN_DEPTH = 2 (403), the total-children cap (429), and per-repo concurrent/total child caps from the parent's sandbox settings with DEFAULT_MAX_CONCURRENT_CHILD_SESSIONS / DEFAULT_MAX_TOTAL_CHILD_SESSIONS defaults.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L345-L351",
+          "version": "repo-lines-v1:sha256:e7d114c34d3a079b3d95f844fd456704552ace0525f03b21b5c1443656c6543b:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGM3ZmM0ZGM1ODI2NDBjMDE2YmM0Yjg5MWE1ZDkxMmEyM2Q4ZDVkZTI0YjcyNDBkNDI1NmJkZTA2YmYxNjI3YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTVlMjZjZDkyMzY2ZjYwZDhlZDkyZDAyMzlmMDdmZWY3NGNhYzE0YWE2OWFkZGY5YzJjYzBkMTFlYjAwYTQ2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTAyODU4NjJmY2RkMWE1MjNhMWU5NzQ1NjJmZGJiMTZkZDJlYmEzNzI2MWI2MTM5OTNkMGJhZTUyYTNlZGY2MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L41-L95",
+          "version": "repo-lines-v1:sha256:7a22aafd272ecee9feb727f0d39d90e05753030a98a86f3c48cdcdf4bc5a1fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2ZGFkMDM1YjQ3MDBlMmZlNzgyZTNiMWQ0ZGI1ZWVlZmVlNmI4MGQyZTU1YjI5NDMxZDUyNzRhODA2NjBjMGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3NzE5OGMxNGI5M2ZiZjljN2MzYzcxMTEyOWRiZTRhN2NiNDk1NWUxNjE3YzY0MGFiNDQ0NjdkZDcyZjY3MmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlY2JiZGJmYjFlZWU1OTE2OTJjMjAyMzA4MzQ5MGNkOTNjNmE4YjAzOWE0ODdhNDc4YzUyNjM0ZTkxNGZkZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb704572f9354b2db37a76ce20d8f936",
+      "statement": "The parent DO's /internal/spawn-context returns the deliberately scalar SpawnContext — the parent's primary repository (children are single-repo by design), model, reasoning effort, base branch, sandbox timeout, and the prompt author (the participant behind the currently processing message; child operations must be triggered by an active prompt, else 400/401) — validated after fetch; a requested repo must match the parent's scalar repository exactly (403) and no repository context can be added to a repo-less parent.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L97-L144",
+          "version": "repo-lines-v1:sha256:495978966868f0d604d9b1d77a709d8941d5e3d3faafd419daef9678922a6caf:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NzZhOTUxMjBlNmVkZmJhOTgwZmVlM2Q0MzJmNDcxMzZhMjhmZjU2M2E1OWQ4Yjc5MDU1NGMxNmNhYjNkZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxOTQyYWY2ZDNhYzNjMWVkNDBkMWZhODRkMTZhZGE0NGQzMWU2M2Y2NmEyNDAwYzQ0ZDZhMTY4MGY2NTM0NGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlZjk2YzA2ZmFmMWYxYzkxMDcxZDkwYzg4YWQxNjNlZDc5MjkxMmQ4YjFmZDZiYTU4OTVkM2I3NjQyYmE1ZGYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/child-sessions.handler.ts#L27-L110",
+          "version": "repo-lines-v1:sha256:f31dcdc8597d7c471813aa5ccc663fbc470db1fe76f8411a63ece2dbda9970f2:eyJzZWxlY3RlZExpbmVDb3VudCI6ODQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4MzI3ZTBhMmM1ZWUzODUxZGEyZTE2MzQ0YzQ0YjQ5MjcwMDdmM2E0ZmZiNWYzODliNDA2NTFlMDg4YWViYTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM3ODU5YmQ3YjAzY2M5YmI1NzE2MzI1YjI0ZGU2YjkzYjI5YjA5NGY0ZTBlMDNhNGE5ZjZiNzk2MjExMjcxZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlMjUwZDMyNGFjZTk5YzA3NGM5NWM0OTRjMDQxMjVmNzY3ZWRlYTJhMWM5ZjM2YzJkNmI3YzJhMDRkMDNiNDcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/spawn-context.ts#L6-L36",
+          "version": "repo-lines-v1:sha256:154a71008b584d567ec3bc52efab07123cee323d35c53711c78b37d185f8cf7b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkMzIyOThjMzVjNGQ3YTUwZGVmYTBkZWM2MzBhNWZlZWNkMDViNzFkNjMwNzdhMGU1OGY1MGRhNTllZjliNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzMmY3NTM0ODQzYWYxZDg5NGQyY2VlMTA4YTI0YzcwYTMzNjE4MDY5ZDAxYWI0NGIwOGNiZTZmNDM1YTY1YmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a4a0de6b0194c02aeddf5ddef5cf51d",
+      "statement": "Child spawns resolve enabled-model preferences (503 when unavailable) and validate model validity, enablement, and reasoning effort; provider auth is inherited from the parent's exact pinned snapshot via sessionStore.getCompleteProviderAuth (503 on failure) with each entry tagged inheritedFromSessionId, and skills inherit via managedSkillsSourceSessionId.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L146-L256",
+          "version": "repo-lines-v1:sha256:69fad6c92f788838fe8435ad15fc4ad08b65c65b59ea4d5363f615f0dcebedcb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTExLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3Njc0YWM4OGVkZDI5YjVkNWU2OTJjZGJiYzMxNTNmYzNiMDhiNTc3OTg1ZTU2NWFhZjVlYzMwMzliMWI4YWQ4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MmEyY2IyNWExMjJiNDQyMjFhNjIzNGVjNjYwYTdiNWZiN2Y5YmRlN2IzYjllMmIzYzU1OWEwZDk2ZmFjNzM5IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5N2Q4NjMyZTU0ZTkyOThhYmI5NTg3MjdlMmQ1MTQwOGFiYWYxMzY2MDM1Mzc5MTAxNDBhYmY2NWIzMGFiNjEzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJiNjZhODY0ZDNlMjkwYjA3YjY2ZmIwN2U3YWQ4YmQ1ZDNmZjEwNGY2N2U3MTFkNWZjYzFkOTU3ODcxYTk0YTViIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_e629ca0fb7104740801968d92c219f3a",
+      "statement": "acquireChildAdmissionLease atomically claims parent concurrency capacity in D1 — purging expired leases, then inserting a lease token only while live children plus live leases stay under maxConcurrentChildren, upserting over the caller's own expired lease; a lost lease answers 429, the lease is released by token (only the owner can release) after initializeSession returns either way, and finalizeChildAdmission deletes it once the child-owned active projection succeeds.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L912-L975",
+          "version": "repo-lines-v1:sha256:24a637cf839f405faa1ababae060515e6e32b53ce31c85073ad7bc013121dd5b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkNDYwOTUzY2ZmMWQ1Yzk4Y2IyODY1N2JmMzIyZjJlYTI0YmUyMDE1MzZhOGJiODdlMTk5ZDdkMTFjZjdiOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYjNmZmVjNzU2OGFjYWJiNTI4ZDFiZWMwODhmMzRhODE4NmQ5ZDIxYWMyMmRhZmI5MTkwYjNiODgwOGMyZjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4OTBjZWQ4ZjU5MThhYzI2NGY4OTlhMGU1ZjI4NmU0YzhhMGI3NTEzYWZjMThjNzQ4M2RiOWQ4OTg4YTE0OTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4YzM0NzRlNTAwMWMwZDEwMTg0M2JjOTI3M2ZlNmVjYzg4ZjZmNmI1Njg5YTg1ZDkzZTA1ODFmOWI5NDE2OTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L258-L279",
+          "version": "repo-lines-v1:sha256:7384be166d2ae3b967c4f8c1ae598ed6d67f8d7625e8cd8c132bc844ff03972f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxNTMxNWFhN2Y1NmI2MWMyODcwMzRiMTgyYzMxNDk4YjQ3MDlhZjlhYjM1NjkzODA3YWJhZWE4OTJjMGZmZWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhYWRmMzZjZGY2NjE1NDkxN2Y3NzRkYWYyNDQxMTFhNjNkMjdlNGUwZDNkODY1NmFjNjc3ZTJjMDNlMjkzMmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjMzYxZmUxM2VhM2ExMDg4Zjg1MTdhOTAyOWYxZDUyNTUwOGNmZmYzNDk4ZjNmZmRhN2ZlNmM2ODVjMjE0N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg1ODY4ZWI5Yjk4YTI0NWQ0NDE2Mjc1M2I1ZjlhYzcwZDVlZmM1ZDcyMGUxY2ZjNjVmNTdjZWFiNWZhZjU5MTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7501d0091294157abcc4ed5d93e92b3",
+      "statement": "After initializeSession, the initial prompt is enqueued to the child with source agent attributed to the parent's prompt author (enqueue failure marks the child failed), and the parent DO is notified in the background via child_session_update so clients render the child row; the route answers 201 with the child session id.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L267-L342",
+          "version": "repo-lines-v1:sha256:6f03a0085b9966fbf4833958fe6005fe0421a68ca3477c43ae31b9a9856a5fd2:eyJzZWxlY3RlZExpbmVDb3VudCI6NzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2NTk1ZjRlZTVmZjYzZDUwOTUwNDE5ZGMzNDQxNDUxMzg1MWRjOTczNmZkMTdhNGY3YmZhOTMwYjI2MWI2ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5OGZjZGM2ZGRmY2Q4MzQ3NWZhYzkxZWY2N2JmMGVjYTVkZGJiNzM3MDJhOTBjMjkxYmIwOTE2MTFmZGJlMTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkZGQwN2M2YzVlNGIwZDBmMWIxMzY2ODYwMmU3M2Q3ZTQ3MGVmMGUwNDc4YWU5MDlmZGFiMDU1ZmQ4NzVhYWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmODNlNzFkZGFlZGRiZGE2ZjQyNWMzYjFkMmQ3MzkxYzMzMjU2N2I4NjJmMGQ3Njg4ZWIxNjdkY2VkYmNmNGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_af50b11600a24cbab71fe4ac546ab57d",
+      "statement": "Parent-child verification spans both layers: the child DO verifies its own session.parent_session_id equals the claimed parentSessionId before accepting a parent-prompt callback (404 on mismatch, 409 when not promptable, 429 when the child queue is full), while D1 descendant walks are depth-bounded (MAX_DESCENDANT_DEPTH) as insurance against corrupt parent_session_id cycles.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L895-L910",
+          "version": "repo-lines-v1:sha256:ccc7300542689c658edb6955e39004849f59db813a1052507f65382cc8d029ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3YWQwNWIyZDU5MjAzZGJmZjMzZDUzYTQyNmRhNWQ4ZTY3NGEyN2YyNTRkOTY4MTcyZGUzNzAxYzUyNmUwNjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiOGFmZWNhODdlZWIyODEzNDFmOWM1ZWNiMDY2ZTQ4NmFhZGE3MjNlZGE5YjA4MTFlYmY3ODRhYjQ3ZjhjNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZkYmM1MWM2YTljMzcxZjA3MDhhNTdkMmQ3Nzg3ZTkzNDc5MTk0ZWM1YzdlMGZkOGJmM2NhM2NkN2UxYjYyZDUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/child-sessions.handler.ts#L123-L173",
+          "version": "repo-lines-v1:sha256:1145a2f20781f01d2a8f4bfd37d94fda3b7efb6eb7f6c493dc4cd1a3de89eed6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0MDNjZTM1MWM5ZGRiZjg0MjBkZmYxOTczN2JlYmZjOGFkOTNjOTk3N2FhODc0YzcyNDhhMGFmOGUxOGNlZTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxMjFiNjJjZTdjYWMwNzZmMDY0MWRmZWUyZTRkZDhkNjYyYWUxYThiYmM1NTQxYTEzMGE0ZjQxYjllMDdhYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzNDMzZDg1YmZjN2MxZDY1ODcwNjcwZjRjNDA0NGJhNTkyNjUwZGUwMjY1NTRiZWEzMDZkNzBlNjBmN2U4MmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_27592832cce94db3b2165671d9acfc37",
+      "statement": "D1 records lineage — parent_session_id (also seeding root_session_id), spawn_source (user | agent | automation | github-bot | linear-bot | slack-bot), and spawn_depth — and child spawns are attributed source agent for prompts and spawnSource agent for lineage with automation id/run id inherited from the parent so automation child work still closes the run.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L274-L289",
+          "version": "repo-lines-v1:sha256:c13d945865744d7496341b70e6779be9c136ed5a04d4ffc9a8a26c51bb92c184:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyOTkwM2QyZjhmZjAyNDkzNzI4YjdjZmRiODc5NGRiMGY2ZGQ2Mzc2ZTViZTQ4ZGUxN2JkNDhjNzU2ZmE1ODYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1NWE4MjI5NDE0OTY0MGJjZDc3NTE2ZDBkYWM5NjYwODlhYTM1Y2IyOWE4ZDA4NTRmNWFkMGM1OWI2Zjk3OGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkYmRmZjFkNDM5ZWUwZmQzN2M4MDNkZDkxZGRiYjc4N2U2MmE4OTU1ZTI5MWM1YWM1ZjUyYjA5ZGRiNWZhM2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiMmYwNDFlYzAzZjA2OWY5ODcyNjNiZGZkYTFiNTEyNTZlMzM2YjhjZWQxNTk3OTIwN2I0Yjc3ZDZjNzk3MzgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L246-L250",
+          "version": "repo-lines-v1:sha256:780a1156f49bbb36a5f7301086b666efbb41a4ef84192f2dd4459b242a469e32:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNlOWZlMTgzODBiMjFhZTg0MmRkNTQ0NDZiZDU2Nzg4MDVhOTRhNjJlODE1OTdkNmIwNTc1ODZlNjFjMzZlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTAwMTNlN2E3N2U1NzQ1NjA4MzdlOGU1NGU5MzhiMzVkZTRjZTA1ODA0NTY4MTc0MmI0ODQ5NTY1ZGU3MGRhMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDBkN2RiYWU0Y2E5MGQxZjA5NTYyNDViYzRjYmY0ZmIwNTIzZDYzMzc2NGRmMjJmNTUxMDg3Njk0YzY1OWM4YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjljM2RjODAxYzY3MDRjYzYxZTJkOGYwNDJiOWU0Mzg3ZmMwYmE1Y2U1MDc2YTlmMmUyOTUzMTMyYWY1MDAyYiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/session-init.handler.ts#L20-L26",
+          "version": "repo-lines-v1:sha256:0ecc9829fff07a8958d58de48515957e1c9db23211f786fdb41e146596118c9d:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQwZDQ4Mjc5MTJkNzNkMGYyNDQ2M2U0YzUzNTY3MzE1ZmY0ZjZmYmM4NDg3Mzc4NWE5ZjVkOTU2Nzg3Zjc4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTE2N2Y5NmNjMjkwYWI4NDZiMjgwN2VjZTM5ZTMyMWRjMDlkY2EwNTc4ZjFjMGRhYTE2NTUyZGNmMTc0ZjA2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTM2OTQxODkzMjY2YjIzYmUyMmQ2OTNjYzFkODc5ZDRiZTE1NDc2MzY4MzIwODVhMTk1YzU5MTEzMzhmMWFjOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmQzYmRkMzQ1NzhhZDFiYjM3OWZlZGZlNDBjNjA5MjgyZWM1ODE2N2IyZTdjYjY5YTdiNzZkYWM4YzNlNzdkYSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

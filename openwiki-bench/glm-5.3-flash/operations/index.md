@@ -1,0 +1,5 @@
+# Files
+
+- [Configuration](configuration.md) - The configuration surface across packages — control-plane Env bindings and fail-fast env validation, the SANDBOX_PROVIDER and SCM_PROVIDER switches, the integration-settings resolution chain (global defaults → primary-repo overrides → environment overrides), D1-persisted user settings (model preferences, SCM settings, commit signing, secrets), and per-package env files.
+- [Deployment and Infrastructure](deployment.md) - Terraform-driven deployment of Open-Inspect — the production root module layout, per-provider modules (Cloudflare Workers, Vercel, Modal, Daytona, OpenComputer, E2B), D1 migrations via scripts/d1-migrate.sh, Terraform-generated service-auth secrets, the Vercel-vs-Cloudflare web platform switch, GitHub Actions CI/CD triggers, and the operational gotchas.
+- [Observability and Debugging](observability.md) - The structured logging envelope, correlation IDs, the outcome convention, D1 query instrumentation, the session and pull-request analytics stores and routes, and the tooling for tracing one request across services.

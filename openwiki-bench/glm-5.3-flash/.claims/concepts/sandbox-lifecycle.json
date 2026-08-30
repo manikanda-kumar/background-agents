@@ -1,0 +1,698 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:7291b26b7c36b856afc7887bca620eae7e9dc1b168437e61ef25f21ff37367d9",
+  "claims": [
+    {
+      "id": "claim_1bbe4a938a0c4b9bbee9bd140508a120",
+      "statement": "The sandbox status enum is pending|spawning|connecting|warming|ready|stale|snapshotting|stopped|failed, describing only the current sandbox incarnation (not the session); `stopped`/`stale`/`failed` are the dead statuses that no live sandbox can legitimately act on, and `warming` is a client-side-only status never persisted.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L18-L41",
+          "version": "repo-lines-v1:sha256:94589bc7c265898b8ef4af2c8f1f998fd3af4481eb0ab1723f00f14faf3ae855:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1ZTcxMjlkZmQ3ODZjZDRmY2JmNjUyZTc0NDEzYjk0OTg3MGJlYmViYTNmMjMxODM4NmVlZjY0MWJjZWJjZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYTRmOWE5YWJhNDE2ZGUyZjcxNzE0NWM1NWUyNmMxOTkwODA3Mjc4MGZmNDI0NjY0YWY3ZjU1ODZjM2UzODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmNDM3NWI3NjI0MTc3ZmM2MDhjMWRjZGRhZmQyMzE3NmI1MTBlZDA0ZDEyYWU5ZDYwYzFmYzYxY2M2YmQ1NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/sessions.ts#L20-L46",
+          "version": "repo-lines-v1:sha256:d918df77681ddc53955a7959d09e722094675804b5aea4f20178d8a4ab1164c8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiMDA5Y2YwNTU5MTgyYmE4OTU3ZGYxNmY5MTFjNGUzMjRiMjY2OWZjNTQxZDI2NDk1MGQxZDUxY2FhNzM0YmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmYjhjZjJiODdiNTg4YmU4ZWM0NDNhMjE3OGZiNjZiYjQ0OTU4YzZlZmUxYTEyMTljZjZjNzQ1NTM2ODZiNmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhNTE5NWUwMjdkZThjYjUzYTY5OWZlYzY3Mzk0ODFkYjRjNTdkMDVlNzllMWZmNWZmOGMyYWZkNTEyMDUxZjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4508449924aa42ae8e68dbbac2bdb3bf",
+      "statement": "The runtime's BootMode enum is fresh, snapshot_restore, repo_image, and build, resolved by BootMode.from_env from env markers: IMAGE_BUILD_MODE=true → BUILD, RESTORED_FROM_SNAPSHOT=true → SNAPSHOT_RESTORE, FROM_REPO_IMAGE=true → REPO_IMAGE, otherwise FRESH.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.ts#L107-L118",
+          "version": "repo-lines-v1:sha256:830bc40f723662cde91755e879497a0bb87955aae8d2b5ff9355aa317e48350c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmMTYyZDA0ZjMxOGUwNzFhNjFiMzA0MWRkNWQzNjg2YmIxYzc4ODU0MzM5NjMyYTNkNzQ3NzUwNmM1Njg4ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmMjE0MjMyY2E4N2YzNDVmMTFhMDU4MjRhYWNmY2VlOWRmNzcwZjVlMmVhMWM2MmYwN2JjNTFhZDVmNmYxZTcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/runtime_config.py#L15-L29",
+          "version": "repo-lines-v1:sha256:b1bb09e9c29082fcde6c2fab0ad81cf24b3d60a7b44160c88a65bc7682c8cbcf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhOGVhODAwNjY3MjFmZTUwNzYyM2UwNWZiM2Y0ZDNiMjU2NDI0NTE2ZDYwN2Q5NDM1MGJmNjcyZTlmYTAyODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4MTMyNmZhOWEwNTlmMjBiNDM2YzczNDVhNjY0NTk1MzNjZTcyZDliNzE1MDEzMjY2ODU3ZDYxMGZiNTM4ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1OWU3NGE0YzJhMjk2ZDVkNzBjOTllY2FjZjY1NDFmNzQ2MDlkZjUwMDdmYTJhZDlmZDViNWEwN2E5NGQ2NjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0NjQzYTE2YmFiOWYzNzIzZTkxNDk0MzgzOWYyNjZjNzU0OGU0NWJlNDUxMjA5MzVjOTQwOGM4Nzk5ZGFkNTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f07c9682e3c456bb87364938e5216ca",
+      "statement": "Boot-mode markers are control-plane-owned: buildSandboxEnvVars strips BOOT_MODE_ENV_KEYS (IMAGE_BUILD_MODE, RESTORED_FROM_SNAPSHOT, FROM_REPO_IMAGE, REPO_IMAGE_SHA) from the user env layer before overlaying system vars, and providers set the real markers themselves (e.g. Vercel sets RESTORED_FROM_SNAPSHOT on restores and FROM_REPO_IMAGE/REPO_IMAGE_SHA for prebuilt images) — so a repo secret cannot fake a boot mode.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/vercel/provider.ts#L344-L348",
+          "version": "repo-lines-v1:sha256:d00c592335248010edc453149c3c9c3efa55571a0518490ae5a39d44c9685fb4:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDYwYzkwYTA4ZWNmMzI2ODJiZDBkYWY4ZGU2ZGI2M2JmMGY4MTZlM2RiOTM3MWIzZDAyZmU5Yjk3NTdkNGQ4YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDg0ZWE2Nzk4MWNlN2QwMWY1NmRmOTE5NmE0NDlhNGNiMjA4YjNkZDBiY2ZmMGE0NjYxYjlhNWIwNjU0ZGJiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODg5MDI2ODYzZDY0N2EzMTI4OGMxMGU2ZjVkNTU4MGRmZGZjNWIzZmVmOTk3Nzg0ZjEwNzNkNGNiZWFkZWExMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.ts#L107-L118",
+          "version": "repo-lines-v1:sha256:830bc40f723662cde91755e879497a0bb87955aae8d2b5ff9355aa317e48350c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZGM3NmQxMmU1MzA0ZDMwNzllZGI1Zjg5MDAwN2VhMDVmMjI2ZTRkOTNiNjk1Njg0NjBjYWZhZjgwMDc0NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmMTYyZDA0ZjMxOGUwNzFhNjFiMzA0MWRkNWQzNjg2YmIxYzc4ODU0MzM5NjMyYTNkNzQ3NzUwNmM1Njg4ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmMjE0MjMyY2E4N2YzNDVmMTFhMDU4MjRhYWNmY2VlOWRmNzcwZjVlMmVhMWM2MmYwN2JjNTFhZDVmNmYxZTcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.ts#L279-L293",
+          "version": "repo-lines-v1:sha256:56defb30c0d7fd4e528b35eebd063365985d9fc87abdc9ed21b01bc3aaabd8bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0ODNiNzQzYzVkYmM5ODUzNTQ5NWIxMDVlYjg3NTI0M2VmNzgyYzMxOWEzYWY4ZTUzNTA4M2FjYWY3Mzc0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4ODZlZTU1Y2E3MDZhNjMyZTI5ZjVjM2FhY2VkNDUxZjE0NDNkZDM4ODIxOWExMDliYWViZDNmN2NkOTY5MDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NTA5NjhmZDc0OGY2YTdlZDVkMzk0NzlhN2VmMzE1OGFkYjc3OGMwMGM2ZTZmZjI3NGJiZDRmMjA2ZTI4ZDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM5M2RkNGUxY2FiNTU5MzBmYmE3NmEzODU0MjIwMTlmYzk3MTY4ZWIyNTdjMzgyOTI3MzY1OGVmYzQ1MWUyNGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0df93e685f74ad5b07a93b250aeb007",
+      "statement": "Repository boot strictness is by boot mode: git sync failures are fatal in FRESH/BUILD and boot warnings in SNAPSHOT_RESTORE/REPO_IMAGE; setup.sh runs only for FRESH/BUILD; start.sh runs in every mode except BUILD; start.sh failure in the primary repository is fatal while later repositories only warn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_boot.py#L207-L238",
+          "version": "repo-lines-v1:sha256:c39828b80f1a2fab05f3b35d71cd9f787e1808e6c48ad39a4ce30257aaee11e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjg1MzgzYTQ0MmRmZDllZDA0NDgwNWQ0MjdkMDRiNWYxYzY2YzZkNDc4ZmI0NDIwNmY1ZTU4Y2JiNDI4NGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmNzc5YmUxMjI4MGMzNjE0ZGE5Nzk0MmFhN2JlNjg2ZjM0MDQ2MmQzZGJlNzY2ODZlMjYwYmJjZThiOWE2MDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwZmE4MzRkNGQ4ZWIyMTZmZTUxYjc5MjY4MWZkNjJkZjAxYzZkOWM0OTAwZDgzYWZhYjQ0NTdlMzkwYmQ1N2YifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L355-L472",
+          "version": "repo-lines-v1:sha256:f8c5f550c7a3012fe9a18569fc6d06ba0c4041b3eb719c438fe11422ca1bf8c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzMTRiOTI0MjVjN2M0MGMyYzYwZmJlMWQ0YTQwOWE5ZGI1MzQ2MmM5MmE5OWZkY2M1MGM0NGUzZWNiYzYzZDVkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJkMTA0MjRiZGUzYWQ5MWZmOGRhZWE4MWE0YWE1MDRiMmZlOWQzNzkyM2Y1OTM3OTE1MmQ1NDNkN2I0ZGVhZjcxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4Y2JmZTFkYzU2MzI3ODA1YmUxZmVhYjlkNTQwZjMwMjU2NjdlYTcxYzkxMWE1NDRlOTRmMDA1MDI0MTg4MzVhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyZTlmMTRkOTZkNDFjOTI4NzA1YjI0NzllNmJjZjdmNTRmYTU0ZjFkYWM3MWZhOGQ1YzY5YTY4ZGYwNGQ1MzU3In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_cba9a85b5fc944b990711b6802b6a48a",
+      "statement": "setup.sh is skipped on snapshot restores and prebuilt-image boots because the image already contains its effects (installed dependencies and built artifacts); a setup.sh failure is non-fatal for sessions (recorded as a boot warning and the session continues) but is fatal in build mode, where a failing setup would bake a broken image.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_boot.py#L207-L238",
+          "version": "repo-lines-v1:sha256:c39828b80f1a2fab05f3b35d71cd9f787e1808e6c48ad39a4ce30257aaee11e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjg1MzgzYTQ0MmRmZDllZDA0NDgwNWQ0MjdkMDRiNWYxYzY2YzZkNDc4ZmI0NDIwNmY1ZTU4Y2JiNDI4NGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmNzc5YmUxMjI4MGMzNjE0ZGE5Nzk0MmFhN2JlNjg2ZjM0MDQ2MmQzZGJlNzY2ODZlMjYwYmJjZThiOWE2MDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwZmE4MzRkNGQ4ZWIyMTZmZTUxYjc5MjY4MWZkNjJkZjAxYzZkOWM0OTAwZDgzYWZhYjQ0NTdlMzkwYmQ1N2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3012162b4ea140c9acfd6bcab117bc27",
+      "statement": "start.sh runs for every non-build start (fresh, snapshot restore, and prebuilt image) because per-session runtime startup cannot be baked into an image, and its failure is strict: a failed start hook in the primary repository raises RuntimeError ('start hook failed for <owner>/<name>') instead of continuing with a broken runtime.",
+      "evidence": [
+        {
+          "resource": "repo://docs/HOW_IT_WORKS.md#L291-L302",
+          "version": "repo-lines-v1:sha256:0c7ac8b6a396f2d37744cc9d801e4dd7424cfc5dd3a405a8a68cf112727fecd1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwZmFjMGQwZjJhYjY2YmEwZWMwY2ExZjVmMDU4ZWY2MTJjMTBiMWIwNjBhYjI4NTMzZjRjODNlNjYzMWJkMGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyNmEwOWJmYzlkMGM3MDUxOWNlOTA0ZTU1ZTIyNjUwNGY1MDIyNmVlZTQ3NGEwYWQ1NzY5YmE3YzgzZDE5MzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5MTMyNjFjMzg5Y2Q4ZWE5NGM4ZmEzYzdlOWYwMzIxNmI3NmU1NDdmNzg3YjJkM2FiZjEyZDQyMjBlYjVjYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2YmVjMmIzNmI2MzAwYjczZTI2MzZlMWUzOGRlMjMyZmM2NzBkODc2N2JlMjY2MWNiZjczOTc5NTc5NjQ1MjEifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_boot.py#L224-L238",
+          "version": "repo-lines-v1:sha256:3641db0dba52c6e16bcb1b1cb2a933772d009379c7722dd732d963ab423904a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0Y2ZmMDBmYzQxZjliMzE0ZmYwMDlhYmZkNGU0MTJmZDdkYjI4NTgxMDdjZTY0OWI5OGYyNjc3MDgzMzkxZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlkOTIyNTA5OWU1YmFiOTM5NGFlMTNjODBjZjZlNjM4NzU3Nzg1NTMxMGMwZmVlZGE0ODcwNmY3NzY4MDExY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwZmE4MzRkNGQ4ZWIyMTZmZTUxYjc5MjY4MWZkNjJkZjAxYzZkOWM0OTAwZDgzYWZhYjQ0NTdlMzkwYmQ1N2YifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_start_script.py#L221-L244",
+          "version": "repo-lines-v1:sha256:5655aca6d45c4bbe417e5fd822bc74f190f88dd173e6477f17d1a4c348fe18c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkODQ1ZGI1NWY5Y2ViYzNlNTcyYTg4YmQ3Mzc4NDVkNTdmMjZkMDdmY2I5MTU4MDVlZTM2YTVlODY0ZmNiNDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwZGMxNmY5NTk5NjMyMTVmYWZkZGM1NWE2ZDkzMDMxZTQzODQ1ZDRlZDIzNzJkMDI0Y2FjY2FkOTU0MzIxODgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlMGUxNWM1ODMyYTIyY2RmNzI0NGQ1MDI4N2I2N2E0YzYyNGY5ZTUwYjY3MTZiYmUzYjdlMWI0NDc3ZWJmNzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c62d8dc8db68401495163f0942f0a35a",
+      "statement": "On snapshot_restore the repository synchronizer fetches the branch but does not check out origin/<branch> (preserve_checkout), so HEAD, the current branch, staged changes, and untracked files from the previous sandbox incarnation survive the restore — pinned by test_restore_integrity.py.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_sync.py#L280-L312",
+          "version": "repo-lines-v1:sha256:d7df4d59a94baa06c707b53cad005064c810e28e5eb028de49fe5d2e47d245e2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiM2E3ODlkYWNiNzI4N2I4OGYzZWM1NTc5MmNiZGM2Zjg3NzRjZWQ1M2I3YTNmN2MzY2VhM2E1ODc0ZDBkYzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmMTFlYTExZWYwMWUyZTk2OWU1ZjRjNjI3MmYzZGI2NmRlNWY4ZTU0ZDFjYWFhNGFmZWYyZDIwYmJhMmVmMjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlmMWU3ZmM3OTJlMTM1Yzg3ODVkMDBhNTIyZDVlNTdiYjQyOGVkOTc5ODA0OWY1NGM2ZGQzNTNjODQ0NzAxMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjMGI1ZTQ0NmU5ZmZkMWE1NTRkZDY2ZDIwMjc0YmIxZjAyOTAxMzQ4Mjg0NWM3MTAwYTM2YWFjY2Y4ZGU4ODAifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_restore_integrity.py#L19-L74",
+          "version": "repo-lines-v1:sha256:ca30f55e3bcc897720143dad786f577b844d66ee72c368bf0de12452e7cfaec3:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkOTk0MmRlYjdkYmFiYzExNGIxYzQ4ZDAyZGE0NjM4NmU5YWNhNTE1YTUyZmI3YjNjNDEyZGM2Mjc5MjFiMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0NDcyN2NkNjVjNzBjM2I1Mjg5MmI2ODgwMzViYmJlN2FjZjM5NWI4ZGQwOGVmYTZhMTUyNDE4NjVlYmRjMjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRhZDA3ZjVkM2FhZGU1MzVhYTExNjQwZjVjZmQ5OTQwMWRhMWY3YzA1MjkwOTQ3MmQ1M2U3OGYyNTNjMTU4MDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3e58aa54897c4cde9ee4f5c544e9b726",
+      "statement": "Repository hooks live at .openinspect/setup.sh and .openinspect/start.sh per checkout, run via bash with cwd set to the checkout and OPENINSPECT_BOOT_MODE injected; timeouts come from SETUP_TIMEOUT_SECONDS (default 300) and START_TIMEOUT_SECONDS (default 120), with unparseable values falling back to the default and timed-out process groups terminated.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_hooks.py#L15-L19",
+          "version": "repo-lines-v1:sha256:c7f00f41cbc290d910008fb324a91d42067f2b4e360f24690a66904d27ff3a87:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdiMGRjOTE4ZjA0MjE5YjM0MzJjYzIzNmJhMjg1NDU3ZTJhZDdiMjlmOGY5ZGIwNmM1NTNlM2ZjNTVlNTgzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWFlYjY4MzFhODEwZjIxMDUwMGIxN2FlNjI4ZWFhOGEwYmE4Mzg0OGRmNGJkYTAwMmE2ZDY4YWJkNGMyOWM0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGRlZTUzOTZiNWY3YWE4ZmE4M2M0N2I3ZTUzYTczMzhhNjQ0NGJkNGZjZDgzM2IyZGM4MTJmZWZiMTk4NzdkNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmNiZTI3OGU0NTg2M2UzMmQ5NjFkMDUxMzQ4MzU2Nzc2Y2VkY2QxMjFmYjQ0ZTRhN2U1OGZkY2FkM2YwNTcxOSJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_hooks.py#L40-L116",
+          "version": "repo-lines-v1:sha256:02f68fb02ee8d4cd30a15e19bb53f24013a2bb519a70ac7f05715d5e6d188455:eyJzZWxlY3RlZExpbmVDb3VudCI6NzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjMGMwZDk5MDZhNjQ2OGU3MWZkNWQ0ZTdiODY1NDBmOWI1OTg1MDY4Y2I2OTM5MGViYjAzY2ZjNGM4MDRmZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmMTFlYTExZWYwMWUyZTk2OWU1ZjRjNjI3MmYzZGI2NmRlNWY4ZTU0ZDFjYWFhNGFmZWYyZDIwYmJhMmVmMjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxOTNkY2M0NzI3OGJmMGMzMjk4OWEyMGNhOTMyZTU1MGU2ZjUxYTYwOWNmYzE3OTkzMzUxMWY5OTZhNzlhY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVhYjVkYmFhYjQ3MDU1Nzc4NzA5ZGEwNDkzYjgwMTg4MmQwYTEwMjYwY2RlMzQ1YzY4NjYxNzk0YzBmMzI0NGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_adf317ddfaf54bf1bb1969149a48692d",
+      "statement": "Hook failure and timeout logs include the last 50 output lines (output_tail) in non-build modes but omit them in build mode, so repository hook output that may contain secrets never reaches build logs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_hooks.py#L82-L107",
+          "version": "repo-lines-v1:sha256:8d06eb20213e74740cd4846fc51720cbd700fadf6e788d66d9f562864c905643:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwN2Y5NjFmNzkyYTJiMzk4MGNjYjY3MzFiZDA4OGFjNWZiZTZiN2IzNGUzM2E4ZTIzOTEwNjc1ODZlNjNhZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmMTFlYTExZWYwMWUyZTk2OWU1ZjRjNjI3MmYzZGI2NmRlNWY4ZTU0ZDFjYWFhNGFmZWYyZDIwYmJhMmVmMjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNiYzhlN2Y5YjJjNDM2ZjlkZmIzZDE2OWQ0NzE1M2ViYjI1YWFlZDI0MzM3NTU4NWM1ZTdlZTVhNzQzODc5ZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlY2VmNjU1MTA0MzQ2MTRkNmI1MmQ5YzEwYjU0ZjU2NTk4ODIxYjA5ZjhhNWFmOTU3ZjllYTQ3NzlkZDgwZmEifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_setup_script.py#L146-L206",
+          "version": "repo-lines-v1:sha256:deedaf532dce8ccad5a65f36f2e8573884fed220fe092652c779b402e4bea16d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljOWZlNDk5ZmQ4OWExNWFiZGI2YzgwMWQ3Y2U3NzljZDNjNzYwNGE0ZmU4MThiODNiYTk4NGFhYjZmODM1ODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxNjkxN2Y3YTgyM2NhMjAzZWM2MWNjYTZlMzM1OGFmZTQ4ZjM2YzQ4NGFmNzhmYWQ5MWJjYjllNzM0ZWRlZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5YzcwN2Y1YWRmZjAyYjM5MzQ1NDAwZDFmYzFjMWZkZTUwNTE2ZGQ2YzBjOTRmMDM0MTgxMzQzZWZmYTQ2ODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzY2Q1ZDYyM2EyOTkyMjVjNTg2Zjg0OWUzNmE1NDdjZGQzZTkwZmU5N2VmNWFhMTIyY2RlYzM5MDkyMjYyMzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e54f0520a164d1e8fc12e931bb51b83",
+      "statement": "When a session uses the tunnelPorts sandbox setting, resolved tunnel URLs are written to /workspace/.tunnels.env as a plain dotenv file (TUNNEL_<port>=<url> per line) so processes started by .openinspect/start.sh can read them locally via --env-file style tools; the file is not written when tunnelPorts is empty or in build mode.",
+      "evidence": [
+        {
+          "resource": "repo://docs/HOW_IT_WORKS.md#L318-L347",
+          "version": "repo-lines-v1:sha256:21c5819d233a2bb4fc83c189131e604fcfa531fde88f5ccb7b7c9fec798e82d3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViMTRmYzA1YmUwNTJhNjU5ZGUzYjI1ZGQwZTllYjdkOTgwYTY1MmE3ODkzNWQ2ZmU4MDNhNGEyNTk3OTQ2ZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwMGQ3NDlhYWRlZjY5YTQ5NThlMzZmMmE5NjAwNTc2YTI5YzU3OGI2MzZlZTU0ZDc1MzJjMjBkY2ZmYjAwNmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2YjU1Y2ZkNGNmNDdlODcxNjg0YjYzNWEzNTRlNjQ2OTY4MDUwNWUxNDlkMmFiZWZmZjdiZTcxNzFmOTBkMmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/constants.py#L36-L50",
+          "version": "repo-lines-v1:sha256:32890d1efcea64be3dfe5f7612ee075d2e5132e9288e92f3c0fe5b5259c88ff7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiYTg3ODY1MWZkNDY1NTJkNmZmZDc2MTNhMDFlZjBiMzhkNGU5YmFhZGY2M2VlMzlhMjhlMzUwMzQ3ZTM2MGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmNGJkNzViZTE1NDgxZGIwNGExYjgxMTE3NTk0OWRiZmM1ZjdhOGFhNTA1ZjYzOGM1NTdlMzI0ZDI1MDZiNGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwNTEzMjgzYjlmNDYzYWVjYzk4YWI3ZDIxOWU2MmUxNjRlYTVjYjk3NjcwZmYyY2IxYjVkNWE1OGZjOTg5YzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwZmJmY2UxMzUzM2FkMzNmZjFmNmU0MGQ4OWMzOTRkNGQyOTExZTUyNDg4NDJhZmY3MTc5NTVjZGZmNzJmZjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_012523ec61f849689fe4861d33a14ff1",
+      "statement": "Modal (SandboxManager._write_tunnel_env_file) and Vercel (writeTunnelEnvFile via a sudo python command inside the sandbox) are the providers that write /workspace/.tunnels.env; the control plane separately persists tunnel URLs on the sandbox row and broadcasts them to clients via the tunnel_urls message, so URL delivery to clients does not depend on the local file.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1637-L1644",
+          "version": "repo-lines-v1:sha256:1d7a6ef72a20ef77686011cec3d4b89623dd313cbf5c109672548d093e322b51:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjczNTMzNTM4NjRmODE2NzExMWY4MGM3YjI4YmM2ZThlZjUyN2JjZjcxNzY4ODUzNmJjNzZlODI5OGIwMzQ0OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjEwOGMzODNhOTY1Y2I2Y2NiZmFiNjg2YjBiOWVjNDFlMDExNWVjNzE0YWEzZjlhZTgzY2EyM2Y3NTVlMzFmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQ0OGJkYWU1YzEwOTI3NWM4YmJlNDIzZGY2YzQzYmQwMmJkYTY0Y2VkMzZlOWNkYjExNjgyNjliMjdmNGNhNSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/vercel/provider.ts#L466-L497",
+          "version": "repo-lines-v1:sha256:a6cdfe3b1c1a295c9de52226896a68fbe13568c9487061076fb9cc50a4e939ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5YjM1YjYxY2UxNThiMzgyMWM5MGMyZTI5ODFiN2FjYzhmNWZhNzA2OWQ5N2UyZWQyYjM0Y2ViNTdjZDQwM2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3ODhiZDM1NzVhNTQ1YmViMTY3YTY3MWE2OWNhOTg1ZDc4N2M1ZTRiMDEyMDliOTliZGY3Y2U2MGQ4MTgwMWIifQ"
+        },
+        {
+          "resource": "repo://packages/modal-infra/src/sandbox/manager.py#L322-L354",
+          "version": "repo-lines-v1:sha256:b7fa8ef523a56d7e6a8e5a7569170192272e990b65804b29d47d6b993debc411:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYWJjZDBjYzY5MTNkNGY1MWViMjFlNGY1YWZjMmU5MGY4NmQzNmE0NTBiYjQyY2IwNWM2ZjNlMGQ3MDZmOGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MDMyZTk2NGQwOTMyMzUxZTVkMTg1MjY5MjgxYjE3MWEzYTA5YjA4YjI4NmU2NjFlYTQ3MDMyM2M4MmViNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyMGY3YzE4ZTViMGVmNzQzY2VlZTNmZTIwMTUxZDNhNTFiM2Y4NzIxYTJiNzAwMzI0YjFjZDk5MDNmNWQ4MzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRhZjI5ZTVkNjlkNWJhN2ZiODk0MTY1YTdmZjhkOGZlYzVmNmQxMzc1OWY0NDhlNjFjOTYyMGVlODNkNGIwNzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_25fe6cd783c34254b908cc3ce0c49adb",
+      "statement": "The supervisor clears a stale /workspace/.tunnels.env on snapshot restores or when tunnels are expected, keeping the file only if its TUNNEL_SANDBOX_ID line matches this sandbox's SANDBOX_ID — the manager's write can land before the supervisor starts, so a matching file is fresh while snapshot/image leftovers (or untagged files, or files when SANDBOX_ID is unknown) are removed.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/constants.py#L40-L46",
+          "version": "repo-lines-v1:sha256:3b2c54fe20f0064db3db1cecc2b7edb8b22348e163e0c6d32c90a9899e376807:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTQ1MDhhM2U1MTExNzQxMTJiYWE4OGRkMjMyOTM2Y2QzM2U2YjE3Y2MzYmQ1OThhYzY1Njc5YWY1MGY2YjJmOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjkyZDVjM2ZhNmM2ZGFmMGVkZTU1NzgyOTJlMmRkOTZjMjZjZmI3NTY4NmUwYzEzMjE3YzJkMGQzMTJmN2ZkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWVhMWYyNzRlNzNlYTE3MGY4MTM1YjM1YzkzYTljNTEyMWM4MzJjZDRhODgwNThlZmE4M2M1YjQ2ZmNkNjU2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjExN2U3MDQ2N2I1MjA5OTJmZTdiNmVmMDhhMDkxZGE1ZTQ0YWRmMGIyZjg0MDNkZGIwOTM1Mjg5MjVhOTk1YSJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/tunnel_environment.py#L39-L55",
+          "version": "repo-lines-v1:sha256:002d87759e2f1f616c497654ff3e0667aaf1f0cc8ac5c4e2248fbe0271a813a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjMzkyOWJjYzQ2NTI3NzJhNTc3NWQ2NGFlYWRmNTQyODlkMzQzNWE5MjZkZGI3M2VmYWVhOTkxZGJkYjQ5ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2YzAwZmRiZmE2YWY4ZjA0YjZhNmE0ZTQ1MGQ1MGUzZmMzOWJhMDY1ZDQwNDIyOTZmOTNkY2JiYTdmMDIwYmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjZmRiZjgyMmIxMDEyMGZkNzVmMTFhZDVmMGMzNGIxZTQ1YTQ0Zjc0NjEzZTFjNDlmOTUyNDA1MGVjNTZmNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwMDZlOGRmZDQwMmU1MjIzZmY3NzQ4ODg2MzM0N2M2MWYzOWY2MWJlNTJlMGE0NmZiMGJlOWE0NmYxN2VlYjQifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_entrypoint_tunnel_urls.py#L73-L121",
+          "version": "repo-lines-v1:sha256:f3eb5aa6711bc46660c80f82581285d7b80802f15d725f18cf0ae2efc89e4b6d:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4NjQ4OWQ5NGViOWY3ODc1Mzg3NzY0OTI4MDJlNDg2NGY0Y2Q5NzczOWExMmRmYmIxMjJmYjgzZGY0NmU3YjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlYmMxMDIyOGZhMTkwYWZiYzdlOTkyZDQ2ZGZiZTU5ODU4NDY2OGNiMzAzMmMxM2Q4MGU4OTVkZGQ3NWQwM2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0N2U4ODZhZmMwNDdkN2E4YmM3MmVmMTUwZjZmZDQ0ZTRhNzRjMzI4OWJiNzJiMzkxNWRlNzU5OTk5MDNmNGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhZGViMmVjOGZmNGI3NTQ0OTdlZjIwMTQ1N2IzMDQ3ZDllMjM2MThjODg5NzZiMWI1MGE5YjYzN2YyNGViMDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2727967a380e446dbfd318c9ffb17e8d",
+      "statement": "wait_until_ready polls every 0.2 seconds for up to TUNNEL_WAIT_TIMEOUT_SECONDS (default 30) until /workspace/.tunnels.env contains a TUNNEL_<port>= line for every expected port; on timeout it logs tunnel.env_file_wait_timeout and boot proceeds without fresh local URLs — a missing tunnel file is never fatal to the session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_boot.py#L224-L227",
+          "version": "repo-lines-v1:sha256:696ab48805f752fb82c270058618b1450ded76aba4d63af81a35a7ad636f5be7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjRjZmYwMGZjNDFmOWIzMTRmZjAwOWFiZmQ0ZTQxMmZkN2RiMjg1ODEwN2NlNjQ5Yjk4ZjI2NzcwODMzOTFmMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ZjNjM2ZWZkNmFlMWMyOGJhZmZmZjhiM2ZiN2FlYmU5ZGU3ZTRmODE1YzZiNTQ5ZjAzZDk2NTFmZDE3NTcyMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQ5MjI1MDk5ZTViYWI5Mzk0YWUxM2M4MGNmNmU2Mzg3NTc3ODU1MzEwYzBmZWVkYTQ4NzA2Zjc3NjgwMTFjZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2U2OTA4N2YwZTBjN2JiMTY3NmE1MDNjM2MwNGUyYzFjYjVhNmI3MzkzZTM1ZGMyODBhZDhjYTI2YjM1NjU2NSJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/tunnel_environment.py#L57-L97",
+          "version": "repo-lines-v1:sha256:59409b7ec07e24cd8f270f83f1b4c3f8f3b2035c739b7e7d21b240623708ff86:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4NjlkZjY2YmI3NmM1ZWI3NDgyYjFjNmZmMzk3MTE1NjVkMTMxY2Y4ZTlmMWI2OGVlNjgwZGIzZmVlYTkyMDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5N2M3MTI0N2FmM2NkMWVkZjU1NWE3ZDEwNzU5MzE1N2Y2ZGMyYTIyYWYwZGU4MmU3Nzc0YWJmMTBmOGFkZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5MTU2YzQ5MzVjMTM4ZDhmYTUwMDYzMDc1NjkzYjNkZWM2ODY5YTA0NTc2MjFmOTA4NGIyNTNiMmI2NDE5ZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ae0d7248fb444d7a0ed800723a29568",
+      "statement": "The comma-separated EXPECTED_TUNNEL_PORTS env var gates the runtime's tunnel handling: expected_ports() parses it (tolerating whitespace and skipping unparseable entries), and prepare_tunnel_environment only clears the stale tunnel file on snapshot restores or when expected ports are non-empty.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repository_boot.py#L143-L147",
+          "version": "repo-lines-v1:sha256:3bcf8e75d57d6a47805ceb543633cfd79ec86d04d0b6f473452cb37d9643d759:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjRmNTQyNzgyMzAzNDg4NjY4OGI5N2Q3YTA0MTk5ZTBmYzM3M2VlYzUwMDkzYzRhNjQ3OWVlMzVlMDQ5NmY2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTcxODE5ZjE0MzBmYjlmYTJiYTc4Yzk1ZmNmZmM0OGRiZTM3ZDE2OWY5MDcxNGViOTIxNDg1NWE1MmRhYjg2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTlmYzMxMTY3MTExOWI3YjVmNDgwYjFjOGMyMTk3NzBhNDM4NjQ2MDViNmI2ZDk1ZTNmYjA1NGZkMjQwM2I3MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjgxMjcxNzZlMjBmYjExOWI0OGVkNzJlMTg3MmVmOTJlYTFhYjM1YzhlMTcxNmQwNjFmYmExYmM0YTYwN2I3ZiJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/tunnel_environment.py#L24-L37",
+          "version": "repo-lines-v1:sha256:17829d1e5c8881b832f050c6df73189996b80ba02f5aa894b824827923ff3b33:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiZmE1MWMxZTc2NzY3ZWU1YWNhODAzMmQ4MzUxOTQ3NGQ5M2U0ZGVlZDZiYjlmMGU5ODMyYjQxNWZkN2EzMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwMWU2NGI5MTAwMzIyYmU5OThkNmY4ZjJhYzM0YTZkNTZmNWRkOTM3MjVmY2I5MWZhYTZjM2UzOTE5MzkzNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5NzRhMzdjMGU4NjJlOTdkZTNlMzlhMDAwNmNmNTcwZWVhZTgzMTI2MTc1NjdhNGQzOWFiM2Y0OTFkMjdkMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVhNzA4ODc4NGIxZGVkODkwMWQ3MjkyNjk1NmUzZjkwZDgwYzlhY2RiOGE3MzUzZjlmOTYxZWNlYjdkYTA0MjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_66d0f0d8e860402a826f1e0b3fa3aaf4",
+      "statement": "In build mode the supervisor short-circuits everything session-related: only repository boot runs (bounded by OI_IMAGE_BUILD_EXECUTION_TIMEOUT_SECONDS), the provider callback reports success (repository SHAs plus SANDBOX_VERSION) or failure, and browser desktop, managed skills, code-server, web terminal, OpenCode, and the agent bridge are all skipped.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L355-L472",
+          "version": "repo-lines-v1:sha256:f8c5f550c7a3012fe9a18569fc6d06ba0c4041b3eb719c438fe11422ca1bf8c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzMTRiOTI0MjVjN2M0MGMyYzYwZmJlMWQ0YTQwOWE5ZGI1MzQ2MmM5MmE5OWZkY2M1MGM0NGUzZWNiYzYzZDVkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJkMTA0MjRiZGUzYWQ5MWZmOGRhZWE4MWE0YWE1MDRiMmZlOWQzNzkyM2Y1OTM3OTE1MmQ1NDNkN2I0ZGVhZjcxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4Y2JmZTFkYzU2MzI3ODA1YmUxZmVhYjlkNTQwZjMwMjU2NjdlYTcxYzkxMWE1NDRlOTRmMDA1MDI0MTg4MzVhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyZTlmMTRkOTZkNDFjOTI4NzA1YjI0NzllNmJjZjdmNTRmYTU0ZjFkYWM3MWZhOGQ1YzY5YTY4ZGYwNGQ1MzU3In0"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_supervisor_lifecycle.py#L103-L123",
+          "version": "repo-lines-v1:sha256:8b4a126e6053a4aa5963c1c2a366bd95bd7171b5880d9253096de42b88a10375:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiZmE1NzZlYmMzMTgzNjI5YWVhNDdiMTJhY2Y2ZjUxYWY0ODBkYmQyM2ZiNWI5NjE1N2UxZjdjZDA4NWI1YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5YjJhZDMxMjBmZDc1ODQxMmM1NjNiZjk1NGJjZWJmYWExNzcyNDMxYzgzNGQ3NDFkYTM4ZDQ5YWU1MTk3NjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkNmE4YzIxNDYyNDE2ZTg5M2FiNDIzMDNjYjliYjA2ZGUyN2Y2ZjBiYmI0MTZiMWU3ZDBhMmEzMTMzNGFhOGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e36c1420c394263bd0db4e726de1905",
+      "statement": "Non-build boots start services in fixed order — browser desktop (best effort), repository boot, managed-skills materialization, code-server and web terminal (best effort), OpenCode server (fatal on failure), then the agent bridge — and monitor_processes polls exit codes until shutdown.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L408-L450",
+          "version": "repo-lines-v1:sha256:9b9afff18290f3e49840f1708f21e5ae0efa1e75884db671c18f80d3e02fb29c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1NzgwNWMzZmU3YWM2MzA3NGY2OWNkYjI1YjlhY2Q3YTg2NzkyZGZlNTQwODE4YWM0Zjg3NjRiNDllN2QxNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkYzAzZTc3YjE0MzY1MzM2MmI4YmFlZjUzZDM2NTc1YzIzZGNlOGNkZDY0ZDZmYTViODNjOGQ5NDMwZGE4ZTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkM2FjMmJlMmMwZmJiNDEyZTUxOTY4ZDIzYTVlZWYyYjgxNmZlZTg1ODY0NTUxNTZjNDJhMDU0MTc3OGZiODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0ZWMyNTA4YWIzYTA0NWIyNTYzOGZjODUzNGVkYTcxNWY3ZjNhOGE4MDM4M2Q5MzBmMGRlY2FhMmI3OTBmY2YifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/tests/test_supervisor_lifecycle.py#L63-L101",
+          "version": "repo-lines-v1:sha256:fc896a2c9212415394b23be3b2e6e0c565e2fdc0cb2ad1e8f23646c1036322eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyYWU2ZTAyMGRhNTUzNDg4MDI0YzA2MjUwOWZhMzlhMjNkZDBmYzIxODdmNzc0ODg4NzhlOGIyOGE3YTJlNmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxYTMzNTFkMjM3MzA0ZjNmODczYWE3ZTcxMjJmYWQyNDAxODI4OGIzYjIyNjY1NjhkOWIwZjhiMThjZmVjNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkMWRlOGJjMDIxMzM3YzJjZDYwNDFlNzdkNzg0MzFkNzA2YzcyNTM5NWExM2ZiNGVlMzczZDJjM2JiOTY5MjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0877010f7ace440aaa7626595d1eacd2",
+      "statement": "Each supervisor process owner has an explicit restart policy bounded by MAX_RESTARTS=5 with exponential backoff (base 2, capped at 60 s): OpenCode and bridge crashes restart from the recorded repository boot result and report a fatal error plus shutdown when exhausted; a bridge exit code 0 is a graceful exit that shuts everything down; code-server, web terminal, and desktop restarts are best effort and never kill the session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L138-L279",
+          "version": "repo-lines-v1:sha256:02a8492d5771b35f48180051cad5864a00ba88bd6bda0781308f67005d1857a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxYWMyM2Q2NTMxMDczOWI3MzQzZTQ3MzlmOWRmMTQzZTE0MDMxYTlhODJlNzE0YzYyNWIxMDAzYjY5M2FkNDU4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3MDczNjZkZDNiZDUzODQzMDUwZmQwYTE3MGNhYjZkODljZTdiYzQ2MjQ2MWIxN2I5YTk3MDZmYzQ1ODIxY2E0IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5ZjFlN2ZjNzkyZTEzNWM4Nzg1ZDAwYTUyMmQ1ZTU3YmI0MjhlZDk3OTgwNDlmNTRjNmRkMzUzYzg0NDcwMTM4IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlZGNkODdiMjIxNjE0MzIxNzM3NDM1ZjFhMDk0N2RlMDk5NWUwMjg0MTZlMjg1NzEzZGQ4ZTE2NDQ0MGJiYjNhIn0"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L281-L304",
+          "version": "repo-lines-v1:sha256:2efabe1aacafd03fefbd7d95838d333317bfba3dc24956ceb356fdbdabe6c90f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYTg5YTYxZThiMzQ4ZDliNWY5YWVkN2JmNGFhNGVmODFlMzQwNzkxNDE2OTdmNGQ1NTk3NTM5ZjY5Y2ZlNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxYmQ1OWJhZjEwOThhZTk2ZmQ3ODY0ZjM2ZTg4MjJjNTExMWFlMGZkNzBmNmFiODI2MzZmZWUyZTg1ZjRhYjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY5YTIxMGQwYzE3YjcyN2Y3NmM4ZGM0Y2FmOTY2MmQ2MGQ2ZWZiYTlmMmI4ODg4MDdkMzdiMTIxODU5NWIxMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjNTM3YWNkZjNhMjc4YjI2MTI3YzExN2U1MmE4MTk3ZDFlYjczYWViZjVmZjhkYmQ3YTcwOTUzOTY2NmE1ODcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L42-L47",
+          "version": "repo-lines-v1:sha256:35e55785180380db174e88ba06951d91d871d5bfbf458e3704909d169043393e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWNlZmQ2ZWZlMjEwNzZkNTdhYWVhODQ5YWZhZDA4ZGQzNjI0NzBmN2UwMjNlNjU3ZmJhNjJhM2Y5NDgyMTRlZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTNiZDdlMjc3OGYyMzVhODg3MzgzMTBhN2M0MmEyZDRiOTkyZjg3MjQzOGM5Y2JlNWNkZTdhN2UyNmI3Njc2ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzlkMzQ0NTBjZDVmNWQ2NDMxYTZhZmQ1ZTFkZmM1ZWZiYmFmMDAyOWZkMDRkYmI4ZDJhNWM2MjRmMGVhM2QwYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDMzMTA5NWQ1ZmQ5NDk3ZjQzZGQ2OTAxYTkzZjc0M2JiNjU1NTA2YTA1MGUxNWMyODE1YmYxYzlkNGYxMzI5OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d449c8fb5634c6caedbb1482178c7ca",
+      "statement": "Fatal runtime errors are POSTed to {control_plane}/sessions/{session_id}/sandbox-error with fatal:true, the last 1000 characters, a Bearer sandbox token, and an X-Sandbox-ID header, with 3 attempts and 2^n-second backoff — this is how sandbox failures reach the control plane even when the bridge never connected.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L32-L35",
+          "version": "repo-lines-v1:sha256:d4dc0b00b5939ddf77e18329cc7ab1e5404d6d83a65c1d6c2b78d21d2e24f42f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWFjYWQzZGQ2MjgxODk5YzQxN2MwZmZmZTFiYjgyNDA3ODA4MjlmMzYzYjE1OTBhY2RiMTVjM2U1MzhjYTc0ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTRjMmJjMjUwZDFiMmIxNjhlMzEyZDgyNzIxZjAyZjkwMjE3ZDc5MTM5N2EwNWMyNWQ3NGExYWRhMTJiM2I3ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2YyNDA3ZGU5M2Q0ZWY1ZjU1NDM2ZDJlNTY2N2U2NWYwNTMzYzIwY2VlNzM5M2MyYmUwZWY3MDFlNDg3NjQ3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDI5NmFlMDM3YjE3NDRiODU1OGZjMmVkNTRlYTM5YTU0YmVmNDkxNDljZjM0ZjRlZmMxMjg3NjExNjUzYTEzMCJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/supervisor.py#L76-L110",
+          "version": "repo-lines-v1:sha256:e57ab5268aabfd1b67177468e3aa17eee2a1cd65065e5ed12c046299bc5af111:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwNTQwZDExYzE5YWE4ZjU5YzBlNzJlOGQzYjVhMWRmZjhjYWJhNzc5NmFjZjczNjg4MDhiZTdkYjFiNWYyNWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2OTNhNDNhYTljZmQyZDEwYjY0NmU2OWQyYmU1MjViZDFhMDcwMGIzY2Y1NTg3ZWQ3N2JiOGQ2ZmI5OWM1M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEwMDI1MWFmMmFmZWE4YzI4YzcyZGZhZDMxMjA2OTAyYmZkYjg1OWFmNDYyMWQxNjQyNGU4MjNlMTgzMDU1NDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhZjBhOTA2OWI4OTExMzQzMGM0ZjM5ZTZiZmMwMjcwMmJhNDI1YjhjMzBmMjhkYTliMTBhZWU2YTU4ODQzM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_317d3a81bc414ada886a9841bfefd6d5",
+      "statement": "Image-build sandboxes carry the callback contract as env vars (OI_REPO_IMAGE_BUILD_ID, OI_REPO_IMAGE_CALLBACK_URL, OI_REPO_IMAGE_FAILURE_CALLBACK_URL, OI_REPO_IMAGE_CALLBACK_TOKEN, OI_REPO_IMAGE_PROVIDER_SESSION_ID) mirrored between TypeScript REPO_IMAGE_CALLBACK_ENV and the Python runtime, with reserved keys scrubbed from user env; a partially configured callback context aborts the build at boot rather than running with reporting silently disabled.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.ts#L129-L180",
+          "version": "repo-lines-v1:sha256:d781931f0357e3cd8c6c4f99c250e36090f1801d6a65a9ee691662af2224f8fc:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUyODUxODBmNzM5ZGY5MjlkMGU5MjE0ZjQ4YjRkYjlkNTVjNjdiMjQ3NDVkMjYxOWU1ZTUxY2ZmZDRlYTQzNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMmQyYzBkNmRjNWU3NGQ5MmZhMTRiOTFkYmVhMjY0MDkwYmViMzVmZGI5MTg4ZDliMzQxMTgxZGNlOWY0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiMTIxMjdmYjYwMWFhYWVhY2I0M2YzY2ViZGI2YzVmMTNhYzhjMGEzZTg2YmQ4NGU1NWI0ZmE3ZDkwNGI3ZmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwYTgzNTMxNmY4MTExNTdjNDRiY2Y0MDdkNWQ3MWVlZTY4NmY5ZmRiM2Y1ZWE1OTBlOTI4ZmZmZDY5MWIzMTgifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repo_image_callback.py#L50-L95",
+          "version": "repo-lines-v1:sha256:15040e323e5d0db6428c5231aca86cb55a5ed71b2b046012f7d0488cd72e2012:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyMGI0NTNmNWUwYzkyZDVmNmMyNTFhNWVhMTk2MGQ3MmYzYmQwNzk1NmFlODU3ZGEyMGUzMWE4OGM1NTk2OWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMDQ1NjE5NzAyMTk2MTFlMGIxMWRhNDhlNzM2NGM1YzhlMmNjN2E3ZmFiM2MzNGRiNzU0ZGU3YjRkOWI5MDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNjE3YWUyOGZiNDBhNDQ1ODRiNWJiNGFhNDhlNTc5OThjMzllNDI3NTlmODFhNzE5OTgxNjAxMjlhYWYwY2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b0f3385bf52643f0adf3659be953a3f6",
+      "statement": "SandboxLifecycleManager makes all lifecycle decisions by calling pure, side-effect-free functions in lifecycle/decisions.ts and then executing effects through injected ports (SandboxStorage, SessionContextReader, SandboxBroadcaster, WebSocketManager, AlarmScheduler, IdGenerator, optional ImageBuildLookup); it owns in-memory isSpawningSandbox/isTerminatingSandbox and providerStartupPending flags for within-request protection while persisted spawning/connecting statuses provide cross-request protection.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:709f0f36628a86d74ce3679a85d90482981b08b7dbc5a3627dd3f75d29aa8848:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkOTNlYzdiODk2M2ZiM2UyZWUwNjQ5MjYyZDNkZTFiM2RhMGRkODBmNGJjODIyOGRjMGQ3NWU2Y2VjZmM4Y2IifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:5184b2dabea317b25505c309ac4c0f2b89c2fd295daf0d16e17f17385aa10460:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0MjY4NmU1NjQ0NGRmOGQyMTg4MTkwMmJiZGI3ZTA3ODcwNzM0NTBiZjdmN2NmZmEwYjcwNzYxMGQwNzNjN2UifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L333-L341",
+          "version": "repo-lines-v1:sha256:a800673fe680eeac27732284524a33095fb03f81b3354e53514808f4b4984e93:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTMzZjA5MDc0ZjUwNzQ3NWY3ZDNjMWMwNTdjMTZhODIxMzY2NjBhZjQxNGQ0MTExYmE0YTYzM2JkNDJjMDgwMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVmMGU4ZTllZDI0YzRiYzZmY2I1MDEwMjlkNGZkYjU3MzMyMjY1NWI1YWE3ODViMmM5YTNjNDM0Y2U5OGQwYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWUzN2JkZjc4NzBlNDNiMjFhZWNmYzIwNjBmNDdlY2IzYmJmZGIyOWM0YTdjYTdiYWRmOTZlY2RjZmNhOTc4OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a5756b247b664defa09e4cd320cd7d1d",
+      "statement": "The Durable Object lifecycle decision defaults are: circuit breaker threshold 3 failures within a 5-minute window; spawn cooldownMs 30 s, readyWaitMs 60 s, spawningTimeoutMs 120 s; inactivity timeoutMs 10 minutes with extensionMs 5 minutes and minCheckIntervalMs 30 s; heartbeat timeoutMs 90 s (3× the 30-second heartbeat interval); and connectingTimeout timeoutMs 120 s.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L187-L191",
+          "version": "repo-lines-v1:sha256:06ca83ca043b8de6d3023a28d04729f555dcf82786d8c016364005f58170b499:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDU1MzIwNWQ4OTIzOTNhNjViOGE3NzRiY2YyYjAyYjA3YjMzMDMyZGI2NTkxYjY4YzA5MjJlNzJjOGZhZTYzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDZiNWNlNGY3ZDY5NzVmNGY4ODkzNDRjZDJiNzkwMmE0NTIyNTIwZTMyNTExMTc4ZTg3YzljOWVkNjdlYjQxZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDc4MjMzMjE0NjZjMTYxNDkwMjczNzZkOTc3M2JiYzlkNDg0ODRlOGU2OWE4ZWI3YjQ0YjYzNTI3N2IxNTM0YSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L382-L386",
+          "version": "repo-lines-v1:sha256:3c4f847b7c23b171e6bb1102d3b99f4339d5611a3625f6870f1628a35e2f1069:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RjNWJkMmI5MjY2ZDg0Y2IzMTIyZjgyZDgwYjgzNWIxNjU2OGRhNGI4ZDI2YzdhZGRkZWFiZTg4NDExZDAzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2U1ZTgzMDk5ZjAxYjg3N2MyMDVlZDBjMjk3ZmY2OTc5MDZjOTA1Y2NjODQyMjg0ZmYxYmMzZGMwNTM0MjBiOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmI1N2VlOTM1ODNjYzFhN2ZkMzM2MmMwNTFkYzVjZjBmYTg0ZWYwZGNjOTNmNjQ4OTZlY2Q4MGFkNTBlNDAzZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L478-L480",
+          "version": "repo-lines-v1:sha256:e05a935d4a7583f555021897d326f6d9111db130fd2c7602daf6cdad81947f28:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWE2NzcwNGZkZmJlOTg1ZGRiOGNjY2M1ZGNjMWFhZGUxNjNjZDEwMDUxODY5YjA0ZDJmYzNjODllZTJmYzBmNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ0YWVjZDk3OGY3N2Y4OWFkYTc1ZjIxYTcwMmJlMjhiNDljYTE2NWE1OWZhODNkYzFjMWRiZGY2MzdkODk0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2IzOTllMjFhZWIyNjAxNjkyYWVkMWVhMDE2ZTJiMjg0ZmI4NjVhNWJjNDNjZDI0MGNlNDk2ZTQ2NjE0YzcxNSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L554-L556",
+          "version": "repo-lines-v1:sha256:b9d3cb6841c3d593dd7fa9889fb5149da5a7b0abbc8e32b8c09e367670430deb:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzA0NmRhZGU5ZDBhMzIxMjFmZmU4MGVkODZjNWY3ZDhlM2VhOGFjNzhlNjU4MmU0YmY0ZTFjZWE2OTNjZTAzMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTAwOGQ1OGI3MmNkNzY2MmI2ZjE4MTUxMmIwMWQwOTg1NWZhZjViNjRhOWY0NDQ0N2YzM2NkNzY4NmY3YTkyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWM2MThkZTJhYzU1NGU0NDQ2MmQ1MDU4NWUxZjE3ODAwMmNlMGE4ODIwNzFiMzU4Y2I4ODJlOGQ5ZjY3MmQ2MiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L58-L71",
+          "version": "repo-lines-v1:sha256:f00c563516d7e0feefe5e1607545f301d904dcfb4fd022736e4b574a5663e21f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4MWY3ODJlNWJhMzRlZTRlNmI4NmJhYjk4ZGU5ZmQ4MTNjNTI5M2ZkM2U4ODgwOWNlYTllZjNmODVhYTkyYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjZTkxYjg1NmMxMjRkNzhhY2Y5NDI4ZWE4MzNhOTQ1YzU0MjBhZGE3MTljN2MwMzkxNzQ5MzMwYTRjZTg2MDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzNWNiZWYxMjU3NGMwODZjNTY1NjI2OWNiNjRlYzk5YWJmOGU5MTlkYzcyMzFlOWEzYTlhNDJjYWEyZDQ3MjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a05a8d948bd0429593a128df883ab4ff",
+      "statement": "evaluateSpawnDecision evaluates in a load-bearing order: in-memory spawn flag first; then persistent resume (supportsPersistentResume + stored providerObjectId + stopped/stale status) before snapshot restore; restore requires a dead status (stopped/stale/failed) and a runtime-compatible snapshot, with below-floor snapshots falling through to a fresh spawn; then spawning/connecting within the 120 s timeout skips; then ready-with-WebSocket skips or ready-without-WebSocket waits; then a 30 s cooldown wait bypassed for failed/stopped; finally a fresh spawn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L263-L351",
+          "version": "repo-lines-v1:sha256:0f7fc841316e9a239dd04c101e5da527809b27434df66ce971f054aacba373f2:eyJzZWxlY3RlZExpbmVDb3VudCI6ODksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiNDlmN2ZmMjFjNDM1YTRjYjA3MjliOGJiZDY5ODI5ODE2ZTNmOTVmYTBlYmNhMmZjYzUxNmNkOTI3ZDliMWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2ZTAzZDMzODY5MTE2OTJlZmM2MzU2NTMyMGM3OTJjM2U5ZTdiOTg2ODk4ZmE2MTBiNzcxZGJkNDljNzQ3MjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZjNDQ3NGMzYWU2MTg5NGUzZWU4ODBhODMzMGNhM2I5ZTcyZGQzZTk0NWY2YzM4NDJjN2MwMGNlYTIzMzA1MGEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L384-L476",
+          "version": "repo-lines-v1:sha256:9cfd6e449fcba2473052711e803dae586dd3bfdbd57a53d94fff4f80b63a68b7:eyJzZWxlY3RlZExpbmVDb3VudCI6OTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwYzZkZjBmMjI2ZGM4ZDZmOWQxZWY1NTE1Zjk5OWMyMTg4YWZmMDM2OWNiMDg3NWU4NDdlMzViOGIyZDU3YzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlOGM3YmM3MjlkNjIxOTc3ZjRmNzIxZWVjY2EyNzllZjNiN2FkNjM5ZDMxMWViYzA3Mjg3MmMyMzUxZDc3NDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2Y2JkZjZjNjNiOWZkOGM1MTJkMWE5ZTQ0NjAxZWIwZjZmM2U4MzI5NDVhZTA0MTcxZWRjZjI0MDlmNTA0NzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f547636154bf4671823dc21f165696d6",
+      "statement": "isSnapshotRuntimeCompatible fails closed: a snapshot whose runtime version was never recorded or does not parse is treated as below the MIN_COMPATIBLE_RUNTIME_VERSION floor, so it falls through to a fresh spawn — necessary because a snapshot carries the whole sandbox filesystem including the pinned agent binary, so restoring one silently resurrects the runtime that took it and a runtime fix would never reach a session that keeps restoring.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L193-L213",
+          "version": "repo-lines-v1:sha256:637feb95d3ff048a789f7cabdcce6d0206ea4e7ad6a75d8f19371b4de55716be:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJkYjdlZTdkNDNmNTFhMjNjODBlMzA1Zjk3NDI3ODk2NTg4MzFkOTA1OWY1YjcxNWUzZjE4YTM0ZDQxZWZjMWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkOGZkMzBlZTVkNGUzZWNkZDcyODU4NTI3MWYyZTAzMTQ2NjJmNWQxZDA0ZjMxZDIyMTBiODU5NzlmMWNhYTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L294-L307",
+          "version": "repo-lines-v1:sha256:00c52c05ff003856b3bf04a0891539c4c1021b8d26894da8ba953947e3130a02:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NzQ1YjljNjUwMTFkZGEwMDRiM2MwMDk2MzZiZTNkODFhZGMzNmI4ODU5YWI2MTZiMjQ2MzgzMTY0Nzc3YzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkZjE2NjFlZTYwZjM0ODY1ZTQ0ZDc0MjFlZGUxMDAzYjY1OTdhNWExZWY0N2I5NjEwYTVlZTcyMzcwNDRjMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5N2NkOGJjMmMzNTg5MDcwZTcwMDY2ZGNkYzU2YWI5NGU2YTJjMWNlODIwNWFlMGY3ZDA0MDE0MjI2NjJjZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7cdaa23e75514d5c83824b354e5452fb",
+      "statement": "doSpawn performs a two-phase spawn write: phase 1 (reserveSpawnIdentity) persists the replacement identity (new sandbox id, spawning status) and invalidates stored credentials before the first non-storage await, so a stale bridge cannot match the old row mid-spawn; phase 2 publishes the new token's hash scoped to the reserved identity, and a superseded attempt raises SpawnSupersededError and abandons without failure writes because the row now describes the newer attempt.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L326-L331",
+          "version": "repo-lines-v1:sha256:5a9687f631a508ec558b09cd5815d69f7f6b9fd9b2c6750057bd6169d0cbe5d8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDFjNDM4YzVhOTE2NTgwMTVmNWQ5ZmMwZWQwMzJkMmJhMmYzNDZlYzFmNWY3MTA3NjY3M2EzZTRjZDViMjAzMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzE5YmM5ZGY3ZWI5NDE4ZGY5NWNiYWM5ZWIzYWI2YWNmYTY1NTU5YmU5OGJiZDI3NzQ2NDRiYmMzZTI2YWNjNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDkwMWJmOTYwNThiZTVjNzk2NzI4MTY1MDliM2U1YmY0ZTdmYWJhNGVkOThmZGI2ODI1MzczNjA3ODhiNDUzOCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L486-L507",
+          "version": "repo-lines-v1:sha256:c74c10eb7398721b95551a243006bc43469c85605b39c700ec6b2d7b7e168237:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlNzExMjdmN2Y1ZjE3MTdiOTZlN2U5NzY5MGE3ZDE4MWE1MDcyMzdmY2FkMTg4NDBiYmIwOTM0MDIyYTkyMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwNDVkY2M0ZDJjZWI4YzdjYmNiNzc0ZjE2ZjU4MGQ0ZmMzNzU4YjY3YjM1N2E2ODkyOGQ2MTcxOTFiMTQ3YTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiY2Y2YWRiZGMwYjM3NmIzMWE3YjU4Njg2OGIyNWE4NTIzNTE1MjNiNjE5NDkzYWE2NWM3ZmM2ZTlhYmJmOWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L660-L675",
+          "version": "repo-lines-v1:sha256:57465f9914b4cc52710426f39fb3db42dad7b6f1056b9951b9a24c248f424498:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4ZGI3NDYwODE4MmNiN2NhNGQ5ZmJhNDlhMzk0OTlhN2YzOTA3YjRlYTAzM2IxNDkyYWQ1Y2YwYmVlZWVjZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI4NTU0ZjA0M2JmNjlmYjk2NTdiOGJiYTZiZTUxYTA4ZTIwNzc2ZmRiODU0YTE2YzQ1Zjc5YmNhNjIxMDFlZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwYzI3OGI0ZTJlNWMzNzZjNTBiZmQ1NzMzN2YzOWNkZGJjYmIyZjU5MzNjYWJmZWQ0MGQ5NTQ3MDUyZjMxMGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0139dd2856bd48e5b2850c0aef4b7d7f",
+      "statement": "Only permanent SandboxProviderErrors (HTTP 4xx, quota, config) increment the circuit breaker; transient errors (HTTP 502/503/504, ETIMEDOUT/ECONNRESET/ECONNREFUSED, fetch failed) are logged but do not trip it, and a successful spawn initiation resets the breaker — all spawn failures still mark the sandbox failed and report the reason.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L677-L698",
+          "version": "repo-lines-v1:sha256:0b0637634758da14570b1c8523d5e89edaa4f16d9130e37f7e9dbe11987879a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzMzMzOTg0MjYxZWEwNmVhMmYxNDk4ZGNkOGFhMmFkNmRjNWEwNTRjZDJlMWRmMmQ3OGNiNmMxZTExYzRhY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZlMWM4MDliZTEwZWQzM2ZiOTM2YWNiZjY2YTU4MmQ1Zjk1OTZlZmVjMTkyOTY2NTFlZTkzMGQ4OTA4MjdmMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider.ts#L347-L408",
+          "version": "repo-lines-v1:sha256:a4797d2212775ab9df9143c5143fdc1a1df1ca2a8d6f6f2f19e1a544bd04ca2a:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3YmU0ODU2Y2M0OWZkNzQ3M2M4NTdjZjkyNTczOTIwOTVkNDdhM2E3OGEzZWI3ZTYxNWYwNzU4YzAxMDRhN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjZWE3MjQ4Mjc3YTYwODExODUxYTFjMDYyNjhkYmMwN2QyNTI5ODYyOTVlM2NhNGJkMmY5MGM3NDgyMTVhNGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4540dc9122694f9a9748519343d2ce36",
+      "statement": "When a prompt arrives and no sandbox WebSocket exists, the message queue defers dispatch, broadcasts sandbox_spawning, and spawns the sandbox as a background task — a snapshot restore can take tens of seconds and must not hold the prompt HTTP response open past bot callers' request timeouts; the persisted pending message dispatches when the sandbox WebSocket connects.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L396-L427",
+          "version": "repo-lines-v1:sha256:74b81d2ca4adacb03cdc1a195c14893bbdd69fc7a2ff43a5d6151654d0749e01:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhYWE2ZmMyYWNjNzIxMzgyMjkwZGM4YzhhZWJmM2I0MGRhMmUzZjEzNDk5ZjZmZDViNTA1YTFmMzI3Y2ExODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhNDFkNzNjNDUyMmJlYTM5ZmY4MTVlMjRiY2YxMzExODUzMWQ2NzFlYjNjZjUzMTIxODg1ZTExYTFjNDcyNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4YjczZmIzOGIwNWIxYjIyMmI3Y2ZjYmYyMDM2OTYxNDdkOTAyNTlhNmRlZGRlYWQ4NzkwYzEyZDhjMWIyYzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_96151e6376314d5c8c0806b083ad3931",
+      "statement": "A sandbox stuck in connecting or spawning for 120 s (DEFAULT_CONNECTING_TIMEOUT_CONFIG) is failed by the alarm handler — both statuses are covered because a spawn interrupted before the provider call returns never transitions to connecting; the connecting alarm is scheduled at identity reservation and the bridge replaces it with the inactivity alarm when it connects, and the DO alarm handler first checks the execution timeout before delegating to lifecycle handling.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L539-L604",
+          "version": "repo-lines-v1:sha256:b2e515b3ec4e7b3d152354eafb692e952462ceec6a5012b6945b5908fc8dfdb4:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhNDgzMzM3MTIwMTZjODkzNDdiYzg4MTVkMzYzYmEwODdkYmI5MTA5NTEzZDVlYjU1ZDMyMjA3Yzg0YWUwMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4N2Q3OWYyOTFmMTZjOTk5ODcxYTc4ODE2MjBkMzJlNjMyNGExZDBiODY2NGNhODA4ODMzMWIxNGY4YWU3MzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzNTNmMDIwMDhkYTE4OWVlYmYzZmYwNThkODAyMzhjOTQ4MjBlOGZjZDI4ZjYxNjAyYWJiYjI0ZjM2NDAzZDUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1264-L1319",
+          "version": "repo-lines-v1:sha256:bd7c8e49ced2c58d14f7109c1f87b758e79f074897b8671faa018c7cbd0ef310:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NzRlNWU5ZjcyM2YyYjM2MjE2MGEzYjEyYTMwNzZhNWRmMTVmM2ZjMjA0ZDliMTM4YzJjM2VmZDk5OTc1OWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzOWYzZmRlOTVhZmNiMjkxMDgzOWY1MTM3OGYyMjY3ZWFlOTVmZTE1ZDE5MzRkMTZhZTNiZTYxZWI1M2U5NDAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/alarm/handler.ts#L35-L75",
+          "version": "repo-lines-v1:sha256:2fde7d5e8a70271f346d7f419a08e9367b80eacb88e51346ecf115f70b2c38f8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1NTJhM2Y0MDIwYzRjYTM0Yjg3OTIzNzA2MmJhZWE1ZjhkOWM3Y2JiY2Q3NTYzMjI0NjgwYThmNjQyNzdiZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwZDMxMWIzNTAwMmYyMGNiYjA2YWNhMDljOGM5ZGJlOTViZmE2NTY1M2JmM2EwOWJjZThiOTY4MTdhODc0YmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiNDQ2MmQwNzIyZmRmYzA2YmE3YmZlNWMyMTA5ZThhM2RlZDY0N2U3MGNjYTY4MTU1NzBhOWU4MzE1ZDBkM2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff63b115a57c4bc8b6788e91f1a0ec03",
+      "statement": "The bridge sends a heartbeat event every 30 seconds (HEARTBEAT_INTERVAL=30.0); if none arrives for 90 s (3× the interval) the alarm handler marks the sandbox stale — persisting the status, clearing access state, stopping the provider sandbox or sending a shutdown message, snapshotting first on snapshot-capable providers (fire-and-forget so the status broadcast is not delayed), and detaching the sandbox WebSocket; a sandbox that never beat is not stale since it may still be starting.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L470-L537",
+          "version": "repo-lines-v1:sha256:8c9d23fdf321ca4715b29c576c5faceed0eeb8fbe2a87ebe2f92fe1a82600f8c:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmOGUzMWRlZTlmZjQzNWNiYjk5NjQ4NzYzOWU3OGQ4OGEwZmFjNzliNGM3N2I1MjExOTI4YjdkMGJkMzlmOTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhNjNjNTc5ODQ5OTViNWIwYjAxMjAzZjE2NTZhOWYwYzk5N2FlZDZjN2IxOGQ1MmQ1MjhkMWNlMWYxN2M1NDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1NjU2YTk2MWFkYzFkNTUxYzUxMTc1MWFkZTBlNjViNDA1MjgwYTFlOTg1ODJlZmFkOGI1OGE3OGRlOWEwZTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1321-L1369",
+          "version": "repo-lines-v1:sha256:470a83c2757ce7f697ec82fcfe51e0456a5fd8858131f6a689a724072f790e86:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZWI2MjU5ZDE1ODNlMDZjZmExYTRlM2RiODJhZDliODRlNTk1NTdlM2U0NGU2OGYwZTRmYTIxMzUyNGY1MmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxM2E4ZDE2NWI5MGYyMjEyZDM4YWY0ZTc5MTQyMzE3ZmM0NDA0NjcwNDRmZGQxMjk4NzVlMTY0NWViNzVjYmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwYzA1NGMxMWZkYWExNGJmY2QwM2Y1MzM3MTIxMjQxMzI0MDk5ZjljZjBjYjYzZWU3MWU1NmE3ODhkOTFhMDEifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L167-L167",
+          "version": "repo-lines-v1:sha256:5c9830ea7d1c1fe68c9070abeb3532a1f830bc58a9ff4eedb1e5acc820089cdf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM5ODMwZWE3ZDFjMWZlNjhjOTA3MGFiZWIzNTMyYTFmODMwYmM1OGE5ZmY0ZWVkYjFlNWFjYzgyMDA4OWNkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM5ODMwZWE3ZDFjMWZlNjhjOTA3MGFiZWIzNTMyYTFmODMwYmM1OGE5ZmY0ZWVkYjFlNWFjYzgyMDA4OWNkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDY1MWQ4YTExMmE1ZGM2ZDlkMmU0NWEwMjVkNzBkY2YzYWM4Y2JmYzg3ZTQ5ZjVkMjQwOWNmM2FiYmI1YTY5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGJjYWYyMTAyYzEzOTVmZGE2Nzg2YTliNGUyOTgxZWZhNmM1MGE0NDQyODgzM2Q4MGJjY2E3MjgwNDJhMTU4NiJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L546-L559",
+          "version": "repo-lines-v1:sha256:433439c42a3b2b482c244d5bb034b1b6b1406b8f480fe154382a2f8fe149be9c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxZjZmYzBhMWFmZjg4OWNhMmM5NGE5MTY1YjIwYzZhMzI0MjNlOTVhY2JlNGM4NTJkNGVlNmZlZTA2YjM5OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMDM0ODFjNTdkMGYwZGMwZjc2Y2QyY2M4YjM2MDRjNGU4Mjk2ZGE0MTIyYWRkMTllODE3NDVkYzdlMzMxYTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwNjVlOGZmZDdjNjYzMmRlNzZhYzBlOTQ3ODA4NmUyMDY3NDI2M2NmZmQyMTZlMTI4MDUyYTgwY2QwZDJkZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBiNzBiZmJkYmZiOTU5ZTA3ZmU4NWQyZTU4ZjNjMzI2Y2U2OTVjZDgzMDkxMjNhMGEzNTBhMzBmMjEwYjYxZjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e78a24da01d4c5aaec13912a190f166",
+      "statement": "The inactivity decision gives a ready sandbox 10 idle minutes: with clients connected it extends by 5 minutes and broadcasts a warning ('Sandbox will stop in 5 minutes due to inactivity. Send a message to keep it alive.'), otherwise it stops the sandbox — persisting status stopped before closing the connection (which prevents reconnection), snapshotting unless the provider manages its own stop state, and detaching the WebSocket; dead statuses and missing activity just reschedule the check.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L358-L463",
+          "version": "repo-lines-v1:sha256:0c0d1558685c1951dc1283258fb31b9cd560db33cc142884b4f51365ce75d400:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIwYzZjN2VhMTJkZDRkZmZhNTc1NTEzOGJiZmJhZWExNDUwNTMwNTk2NDQ0NTE5ZTgyMTcwMjJjYzMwYjQ4OTQ4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJhYzJhMTRlZjhlYWIyMjcwZDE2OGFhMzQ2MzY0NzkzODc2NTM5YmU0NmU3NTFiZTUwNDk5ODQ3NTg1NTNkNGU5IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIzYjI2NDYxZjAyY2MyNGY2MjdhNmVkY2E2MzlmYmQ0OGY0NTg0NGFmMWQ3OWU0YzZiZWJlZDgzODYxNWQwOWVhIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1371-L1448",
+          "version": "repo-lines-v1:sha256:bd3cbbd2d29bd7766d81303303c0c33f9d998aee7f9404df72bebcf06c7e3d56:eyJzZWxlY3RlZExpbmVDb3VudCI6NzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3YjY1ZWZmMTIyYTI1MTEwYTY3ZGExZDY2MjE1Yjg0MTZiM2FlMTM4ODk2Y2ExZTYyODFiYjIzZDBmYzZmY2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmMmEwYjhkMjZjYjk4Nzg3YTlhODQxYjNjM2YyODQ3NzUyMDJhN2IzMWFiZWY0MDU3NzFhNjYzYTMxM2JhZWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE0NWU2NWM1N2U4NmJhMmQ2ZTk1NjEwNjhiMmQ5ODlhNzY2OWE1YWUzMTY5NzNhNjg0ODY4YThkNDUwM2IwN2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_48fa4b1e6846474096650cd9c5528dfd",
+      "statement": "Heartbeats update last_heartbeat unconditionally but renew last_activity only while a message is processing — so a long quiet tool call is not starved by the inactivity timeout, and idle heartbeats cannot keep an abandoned session's sandbox alive.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-events/runtime.handler.ts#L31-L39",
+          "version": "repo-lines-v1:sha256:a4301f5f4bd6d410bf795c426c6649e6ca6c7e4f8359dfa9a1364132a17174a7:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTRkMzYxYTViNGNjNmIzYjVhNGNjZjVmMDY0OGRmZmEwMmQwZTgxNTk2MTA3MGZjODU5YTIxMmI2ZjgyODRiNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDRkYzZhNDgyOGVlM2I2MDRiMjQzNTBlMWU1YzA0ZmZlMDMzMzg5MWFjODZhMzFjZWEyMzZhNTY1NmM0Y2MyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjNiM2M3YjI1OTYwODUyMGE1N2YyYTQzMzVlZjU2MjYwZDUzN2QxODRkNzk2ZTc1Y2VkZjFjOGJmM2M4NmZlMCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/sandbox-events.test.ts#L170-L233",
+          "version": "repo-lines-v1:sha256:fe0fd751c67681018fbb3ca0584c25324248c20704c23a999f97a19bcecfb503:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4M2FlNWVkZjc2OTA3YTU5ZjY1YjlkMTQyYzEzODYwMDQ4NDlmZmJkMGUwYzY0MTA4Y2MyMzBmZTk1NjgwZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkzOTY5ODk3ZWI0Nzg2NzBkOWZiZmVkYWM1NmVjNzE4YWU3YWNmZDcwZDkwMjU2MWM4ZDlkZWE2NzRiMzdlYWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlNzRmMjY1OTE1ZjMwOTUxNjM3MDUxZGFhN2NkMDg3ZTZjYWVlZGY1NjU1OWU4NWVhMzJiNGViYzgwZDM3YTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1cfda617b0c4f39bd2809462edcd47c",
+      "statement": "When a sandbox WebSocket disconnects and the sandbox status does not block reconnection, the disconnect handler schedules a disconnect check one heartbeat timeout (90 s) out, so a bridge that never returns is detected promptly; the shared scheduler preserves any earlier deadline in the Durable Object's single alarm slot and the alarm handler re-evaluates all work.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1560-L1568",
+          "version": "repo-lines-v1:sha256:43b28c31982dbe7d91abae4aa72cbc105b51c1f45b543b204d0df80a903120f4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTY4YWVlZjExNWQ3MzNmNjIyNjJlMDkyZDI5NWIwMjFmYmU3OTY2NGVmNzNiNDIyY2QxMzdiY2M5ZjBjNjFjMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGI4YTEwMTliODc3MDY5NzhiNmU4Yzk5YTY2ODFiZjlkYmE5NGUwMTMyNGUxYmYxYTEyMjE4YzBiNTA1MWUwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWQ3YmNhNjYzYjhjZWU3YmNhZjgyNmIwODJkZGUzM2E2NWExN2U3ZmVkMzc2ZDQ3ODczZGFmOTVjYjgyNDRjMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L766-L769",
+          "version": "repo-lines-v1:sha256:9277ec3b9760db0af81dba164e21e1dcfecd343adef516c3bcae9f1b70842fbe:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjJhN2M1OGI4NTFmMGE4ZTFmNTY1N2VmY2YxMDdmN2MxYTVmMmI1NDI0ZDJhODAyZjVhMzIzMzNiZDFkN2ZjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGYxNTkwMGMyODBiZjdlNjllNjI0OTM0MGE2MjcwZDUxNDZhYTI5ODk1MmNmNzI4MjgxZTQ1YjMyOGI5ZjgwZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDY2NDM3YTlmZGMzNDIxN2JhYWEwYzQ3ZTM4ZjY0MjAzMGM0ODA3ZmM1ZmRkZmIwNzRiYWYwZWMxNTM3NDAzYyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/disconnect-handler.ts#L30-L50",
+          "version": "repo-lines-v1:sha256:c2a64d020451a8b8b94f149f4d44fadea779b7400984ccd58aa6c0718a153ea8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxZjg3MDE1MjA3YzVjYTk2ODU5ODI3NDVhYzUwYWRkYmNiOTZmNjIyNGQwYjg5Zjk5MWRjMzhhNDNiMDY5NDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0MjNhNWZmNDQ3N2U4N2ZlODRkNTY1ZmNlOTI0YWI2ZDA2N2NiMTA4MDNjOTE2NmQ5MWJiOGMyM2RmZTUyNjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRlNTNkZDRlNzQ4MWI2YTcwODZmYzEwZTdmYmEyNWJmZjY0Zjc3NjNhZTRkYmQwMmJhNGE2NGI5NTRkZmE3NmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b32ee610a81462cbbd59235ff7bef01",
+      "statement": "Reconnection policy is deliberately narrower than the dead-status set: isSandboxReconnectBlockedStatus blocks bridge reconnects only for stopped and stale (the connection authenticator answers those with 410), while a failed sandbox may still connect — a slow boot can outlive the connecting watchdog and self-heal when its bridge arrives; getSandboxSocket also drops zombie WebSockets for terminal statuses since the close handshake may not complete before hibernation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L33-L41",
+          "version": "repo-lines-v1:sha256:4bef02e62406983c6d1a22d4ce372363b22dbe661c3e837bd60112941f767262:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTJkZDc2ZTY1MDliNjU4NGQzODA5NTNmMTllY2IzMGQ5ODI0ZDE3YzEwMGQ5MjU2ZjA2YTgzZDkxM2M1M2M4ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmY0Mzc1Yjc2MjQxNzdmYzYwOGMxZGNkZGFmZDIzMTc2YjUxMGVkMDRkMTJhZTlkNjBjMWZjNjFjYzZiZDU1NSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/connection-authenticator.ts#L131-L151",
+          "version": "repo-lines-v1:sha256:644c5cdc57f90121926b44edc8f8ffea21bdc90fb200a15076589a5e1c6b8e67:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImExYTBkZTBkOGZkYjQwNWQzMzBhNzk4ZWQyNjNmNjdkZmE3ZjQ5NTkwM2EyNmQyNDBiNGU3ZDI3Nzg2Nzk1MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwYzMwYzA3YmM3Y2I0OWQxMDI1MDIyNGNmOWM0OWMyMjcwOTE5ZDM2YjQzNDlkNDYyZDVmMWYxZGEzNDA3MmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzZDE5NjVlMjYxYjBiZTMxMzU1NjZhNGE0MjYwMTlkMzhhZTkyZDU1ZTVlNjJjNmYyNGI4ZTNjZWU2ODc2ZjIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/websocket-manager.ts#L157-L176",
+          "version": "repo-lines-v1:sha256:78c8401e9024b8d395a06137e2ddc3cde2badaf966b915fca662537fabda27ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwYTQwZGFjNGY0MWZmNDllM2NhM2YwMDBlODI5MzQ5ZGI1NmRlYTNiZGIxNmViOTMzMDA1ZjAyNzc4N2UzMGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIyZTJlMDk5MDE1MzYwNjBiMWFjM2U0NWNiNWM1ZDNhN2FjNGMxZmExMTkzNjk1NzgwM2ZmNjQ4YzE0YzEzNTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQzMmI0NGNjZDJkYTU2YmYyMDViOGQyYTdjM2QzY2Q4MjE3ZDBjMDE2NWNmOWRhZDExN2Q5ZThjNjYxZGQ3OTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_598ea95deddf4ba9b6aa8adcd43bd8ff",
+      "statement": "The provider split for session continuity: Modal, Vercel, and OpenComputer support snapshots and restore (supportsSnapshots/supportsRestore), while Daytona, E2B, and OpenComputer support persistent resume (supportsPersistentResume) and explicit stop — snapshot-capable providers restore saved filesystem state into a new instance, while persistent-resume providers stop/pause the same sandbox and resume it later.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider.ts#L53-L64",
+          "version": "repo-lines-v1:sha256:702f13d01c321f27a906e4f5678fa4528d3750a3abfb1bfc87acc57228c0bc54:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmYWIwNmFlNjg2M2IwNWY5MDVjNTI2ZTg1YzVlZDI1MmVlZDhjNzU1MjE1NGIzZTZkNGMyOTE3OGQ4YmE4NmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjZTJkOTNlNzhjNTE3ZWNmNThhODFmNDQ1NjVhZmJlYTRlZjUyNTY0YzM0MzJlYjE2YzU1NTRkYTQxYWE1ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIyYjU3MzAwMGM1Mzg0NTFiM2JjMTc3MjVjZjg2NjBmM2YxODk0NTM5YzAyYmJhY2ZiN2UzMTc2ZTZlNjAwZTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/daytona-provider.ts#L59-L65",
+          "version": "repo-lines-v1:sha256:228b0d56a7c61c9bf753ddd6adc95b830881ac44eabd014282156d14cbfe7ee9:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjE0YjE1MjljYTFjODdjY2NmNzIxNWVjM2U5YjU2NjhiNGJlOTEwMWE4NzM1Njg5ZjlkYzFhZjk0MWQ0MzI1ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjQ0YTM2YzUzN2RkMGQ3OGZmNzNmMTBiMGE2N2QxNWJlNzFjMTExMmZlMTVkNDZhNjY4ZDIwYmY5ZDkzY2FhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTVlM2FkMDliNjAwM2VjN2NmNGNkMDNhYjUzOWU0MWU4MmE0YjAyYjNiNzlhODAyMGFkNGY4M2IwNjEwYTYzNCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/e2b-provider.ts#L190-L197",
+          "version": "repo-lines-v1:sha256:4bcc3621893be7978e2ebf190faa78973554a64a7949f07b8618628dc9a9c36d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjE0YjE1MjljYTFjODdjY2NmNzIxNWVjM2U5YjU2NjhiNGJlOTEwMWE4NzM1Njg5ZjlkYzFhZjk0MWQ0MzI1ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFhNTRlMjg5ZjVjODAzOGIzNTIwYTA5MzI1YWE1NWJhYzVlOWQ5NmVlMWU1YjgwNWFkMWMxY2JjZGFjOTUxOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDRmMmIyOGU5NmNkMzg2ZGUxYjNlOGRlOWM4ODE1YTdmZmI3NDQ3ZThjZWRkYjBlYzA2YmNhOWRhZmQ3YWM2ZCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/modal-provider.ts#L88-L94",
+          "version": "repo-lines-v1:sha256:fbdc4be568eb55ab437dfa27c9ecc92ab35124794e58bee6fe4e4201f95f6045:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjE0YjE1MjljYTFjODdjY2NmNzIxNWVjM2U5YjU2NjhiNGJlOTEwMWE4NzM1Njg5ZjlkYzFhZjk0MWQ0MzI1ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjVmNmZmNjQzMGU0MDI4OWU0Y2IyMzkwYTViYmU1NDEwMTllZDhhNjU5NDQyZTViMzUxOGM0YzVkMjhlNzVjMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWMyMmFhZDA1N2E0MDFhMWJiYTQwZjM4NzYzZTNkZjVlYjhkMGIzMDFhNTNjOWI0ZWIzZTFmZTNhMGY4ZjIzNCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/opencomputer-provider.ts#L75-L81",
+          "version": "repo-lines-v1:sha256:2c798997845560d5238fa37632ec227762e95bf4770aed562fcc8ab423d50375:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjE0YjE1MjljYTFjODdjY2NmNzIxNWVjM2U5YjU2NjhiNGJlOTEwMWE4NzM1Njg5ZjlkYzFhZjk0MWQ0MzI1ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGQ3ZmI4NTRlNzFmM2I2MDc1YWMzNzAyOGJhNzk4M2FjNGYwNDRhNWVhYmJhNzEyOTdkZGQ4MjQxM2M0MjIxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODEyOWM3NTgyMjdlYjBjNGRlZGNjMjA3YzgwYzJjZDU2ZTQyYWRjNDcwZGNjM2M5MTYwZWE2OWZiNTcxMzUzMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/vercel/provider.ts#L84-L90",
+          "version": "repo-lines-v1:sha256:151f04ca2b56b0ca96188c28cd25b5b9e25bce6c40c92b8a7a6819fcb4018414:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjE0YjE1MjljYTFjODdjY2NmNzIxNWVjM2U5YjU2NjhiNGJlOTEwMWE4NzM1Njg5ZjlkYzFhZjk0MWQ0MzI1ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJhMmNiMjVhMTIyYjQ0MjIxYTYyMzRlYzY2MGE3YjVmYjdmOWJkZTdiM2I5ZTJiM2M1NTlhMGQ5NmZhYzczOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTUwZjEzZTg4NTU5NmQyOTJkMmI4YTFmYjIwOGNkZmY1MzlkYWIwMDI2ZDAzZTc5ZjVjZThjNzM4MWY4M2VlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjZiNjgwZmNhZTM0OTYzZjU0NjcxNDRhNDU3MzA0MmZiNjFmMmRkYjM4YTc2MDg4ZDBlMmI1MDNhMDFhMWFjNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b14a6e7b798e4c8cbcffa75676b8e071",
+      "statement": "When a provider both stops explicitly and supports persistent resume (usesProviderManagedStop: Daytona, E2B, OpenComputer), the manager skips snapshotting on inactivity and heartbeat stops because nothing is lost, and clearing access URLs preserves the stored code-server/VNC passwords (only URLs are cleared), whereas non-resume providers lose both values because their restores rotate passwords; E2B kills instead of pausing only for terminal stop reasons (connecting_timeout, respawn).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1163-L1230",
+          "version": "repo-lines-v1:sha256:672be2de2c0b8532efd98263ba030b9725fce4d9891735fd8dad14418ead3d00:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmNmVjMWExMzA0MWU3ZGNlZTBkODA0ZTJkMWRjZThjNGUxZjU5OTkzNTY1YmU2Njg2ZjM4MzdiNDcyNWU2YzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3ZmJjZDUxY2MxNTBhMWM3YzY4Mjc2YWYwY2Y1MWI0MDlhODIwYWY4YTM3ZGFlNmM4NzdiYTkxOTRhYjczYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5ODliNGZlOGI1MmU1YjkxOGM4Y2I4NDk4ZDhkZDYzM2Y3MzdiMDQ2MDc2OTYzMzcxMWE3N2I2NmFlYjFkY2MifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1397-L1417",
+          "version": "repo-lines-v1:sha256:575549d855b33b2e73effc1b8ed1511d3d997e218031402060cc5c6bcbe81646:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3YmY2YTA3ZDdkMWZjNzEyMWQxMDcwODRmZDljZTMzMDU5ZjBlNWJmYjAwMGZiMjFiMGU3MTZkZGJjODFkNjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YjA0NDkxNDY5NzIyZTgzNjNhOTRlNDA0NDUzOGUwMTNhMmEyMTdlMzZiMWU1NjhiYTYwYWNiN2I0YzhmMmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE1YTIzYThmZDI2N2U2ZDliZGUzNzMwNTNjYmY5NWNjNTE0ZGMyYzQ4MmQ5YzlkYjFhYzliMmY3Y2EyNDY0ZWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0OGI3OTc1MDM3ZmQ1MTYyOGZkZDc0ZjFmMjU2ZmFkNDc0MTc4MDc3NDllZjE5MjczZmE1ZGE2MDZlZWEzNTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/providers/e2b-provider.ts#L169-L197",
+          "version": "repo-lines-v1:sha256:204d82d75c2b4c0076a17876e52404ae08770301b94c9cd20ce79c999b64198d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhNGY2ODk1ODkxNGE5NzVlZmM4MGQ2NTlmNTBjMDVhNGQ2NDY2NjgwZTI2MDZjYmQ2YmEzZjY4NTlmYTg0Y2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0ZjJiMjhlOTZjZDM4NmRlMWIzZThkZTljODgxNWE3ZmZiNzQ0N2U4Y2VkZGIwZWMwNmJjYTlkYWZkN2FjNmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_145ee799656d4213a9d35e4985246c52",
+      "statement": "resumeSandbox reuses the stored auth identity via updateSandboxForResume (no credential rotation, no logical sandbox ID change), sets connecting, and calls the provider's resumeSandbox; shouldSpawnFresh in the result falls back to a fresh spawn, and other failures mark the sandbox failed and report the error.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L138-L139",
+          "version": "repo-lines-v1:sha256:83e3ebdd2e84dafd46cbb40581a2caccac66e15c3845c1e2ea00a91926b334ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzk1OGYyNjFiODA1ODVkODJkNzYyNzJhOTBkMDhlYTAwZTkwZmI1ZTk3YTFhYWMyM2VlMjRmNjhjMjJjZDg4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ZjNmM2MTI2ZTQ1NzgyODNiZjIzNDM0ZGI4NDc4Zjc0NjhmNzVjZDU2Mjk1NzRhYTdhYmJjYTQxMjM3ZTgxZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGJmODFkNWNkMmQ1MjNjYjFlYTI2MmNiM2IyODEzY2JjOTEwNWY0NzczMzA5ZGI3MDc3ZWY2NjFmMjNmMDdhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWIzNzRkMWU0OTAxZjc0OGJhM2VhYTU4YzE5NTA0ODM4OTBiMTNjMWU0NGVmZGJlMmY1ZGE3MjgzYTBiZjYwMCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L994-L1073",
+          "version": "repo-lines-v1:sha256:ce27631596b380ec5bfc984de8b76667a4a5a487cf9c60f9eea668c8ef833170:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxYWFkNWQ1MjNlYWNiZjM2YTEzOThmMWMxYzkwN2MxNmU3MzJmOTA5NmI2ODg0ODljMDA5OTZiOTU2YzVjZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiYjVmZDY5YzA0ZjI5YmJkNTFhYjExMmFmYmZiODVjMDFmMjNmZDFhYTZlY2I2MmIzMGI3OTUzMzgxMGM2NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZTgzMWM5NjUyN2E0NjA0ZmEzZTdlNzU4ZjY4NGI3MWE3Yzk5MWI4MWY2NDFmMTAwMjgwM2M4MjY1MTJmM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e314caf0700f430bbf5c47350d1f66f5",
+      "statement": "triggerSnapshot is the single control-plane snapshot entry point: it flips the status to snapshotting (unless terminal), calls the provider's snapshot with the stored providerObjectId, and on success stamps the image id together with the sandbox's current runtime_version — the pairing a later restore is gated on; previous status is restored afterwards unless the reason was heartbeat_timeout. Snapshots fire after successful prompt completion (execution_complete), before timeout-driven stops (inactivity_timeout, heartbeat_timeout), and via explicit control-plane triggers.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1078-L1158",
+          "version": "repo-lines-v1:sha256:765cf6cdbd2e48dfcce44458862dbb57fd6f7ebac7be7ee5321f8660d4b9edc0:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2N2E3Zjg4Nzk2NTk0MjkwODUxY2Q4YWU4NGU1MDhlZDg1YTAwMTk3ZmI0ZjY4OTQ0ODVhNGM0OTQ4ZDNhOTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0NmRhZjAwMzg1ZjA3ODQ1MGQxOWEyYzJlMzc1ZWY2ODIxYWVhZjhkMWRhNTU1ZDUwZDhlMDJkMzVhYjU2ZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhYTVhNzdiMWFkMGFhY2MyY2FkMDJhZWU1YTZhZDE3NTNhMzgyNTIwZTI4MDBiNGM4YjgyMDc4OGZjYTM5OGMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider.ts#L248-L274",
+          "version": "repo-lines-v1:sha256:63d1cc7f1cabbcc196317277e92320c08f33ffba86cc7b2f3c4b6bf716f206c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxYTU2MmQzYjgzYjg4MDQwMjVmYjNmNzA0ZTQ0ODAyODM2OWJhYTQwZTg4OTk4Nzc2ZGVhYTI2MTFhMTE4Y2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQzMzkyZmZmNjMwY2U3N2JiOTVhOGMyYmE0MTVjYTc4ZTE0ODYzM2JkZTc1ZjRkMWJlZGMyMzU2ZjEwZDM1MGYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-events/execution.handler.ts#L93-L99",
+          "version": "repo-lines-v1:sha256:951bb5f4e67d811f3fbd5d6a59fd84fc087618a59ba11a0e2fd0e05523175c7a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFkODE5ZmRmODFkYzRiNDVhZjI5ZjI3ZWVkMGRlYjA2ZjQwYmU5ZmFkMzQ2MzFjZjg1MGVjMDJmMTllZjk2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTE5MTI3MGFmOGJlMzY1MDZkMTkxMzgyN2QyOTAzMGE2ZDlkNTZiYmFlZjA5NTNhZDJhNGU3MTE5NWRmMmUxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzA2M2JmMmU3OWYwMGMwOWJmZTA0YTEzNWRmZGM2Zjg1OTVmNTI4NTYyYjMxYWU0MjNjZmQ3YzE0YjYwOWE1YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGY3MzlhMDZjMWNiYjEyNDRlMzM2M2QzOGJjZjlmYTUwY2U4NGZlZDM5OWMyMTkzYTNjN2YwOGQ1OTkxOGIyYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6f346cb560a4479c920f54f54ac50635",
+      "statement": "Restore seeds the sandbox row's runtime version from the snapshot before the provider call — the restored sandbox runs the snapshot's binaries whatever the provider exports at launch — and recordReportedSandboxRuntimeVersion only fills the column when nothing authoritative is recorded, so a bridge ready report cannot overwrite a restore's seeded version or hand a stale filesystem a clean bill of health.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L876-L882",
+          "version": "repo-lines-v1:sha256:a4546540a26fb6ea1b7fa657c94b704d622c18b30f57f9b5d72bd09edb43ed27:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzMwMDBhY2QyZGM1MzYzNjY1NzBmZDY1MzY4ZGQ3N2RmOGFmZWUzYTkzNjZjYjMwZmY3MTdlMDRjN2IwYjgwMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWYyOWRmMzA3NjU3NzdjNDdhODY5N2IwODg2YjRmOWNiYTFjNzBlYjNmNGFhMTYxMmVhZTBmZDFmOTI5NzJhOCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-repository.ts#L210-L226",
+          "version": "repo-lines-v1:sha256:b58a098394b642a3b8b20799afd0239df110f224980fa2d5d966a6997f02e4cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjYmQ4N2ExM2RiNGY1M2JmNGExOGMzNjRkYzRlOTg0ZDI1YmMxY2RlZTE4ZGE5MzlmOGFkZWExOTdiOTRlNDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ba84d25bcf3c423384102915a2f2c6d8",
+      "statement": "evaluateWarmDecision spawns proactively unless a WebSocket is active, a spawn is in flight, or the status is already spawning/connecting; warmSandbox deliberately does not coerce a missing sandbox row to a default status because 'no sandbox row yet' is the ordinary case on the warm-on-typing path, and the manager broadcasts sandbox_warming before spawning.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/decisions.ts#L608-L648",
+          "version": "repo-lines-v1:sha256:1b9986c8837c1608a6322db56fc1c2401df1585a7c515e1c3f0cdd77fe42d4f3:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzNTNmMDIwMDhkYTE4OWVlYmYzZmYwNThkODAyMzhjOTQ4MjBlOGZjZDI4ZjYxNjAyYWJiYjI0ZjM2NDAzZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkNzZlNzFmZTVkMTAyMThlYjJmMmI4NDhjZmMxYjJhZjhhOWU4MDFkZjQ5NzlkZDFhYzNhYmUxOWI2NjdkMWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1515-L1540",
+          "version": "repo-lines-v1:sha256:7243449276e3e1128b141404ead95c7a51beb14fd5afb07a948c974a4aea145a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1NzFjNmI2MzI3ZTA3NjVmZjYxMzE0NWI1ODJiYTE2NTNhZjY2NzcxYTQ3OTFmZjU2OTFhODFjODhkN2M2OTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0OWI0OGNkNjY0NjNlZGI3YTJhMmY1MjljNzFlMzI0N2EwODFkYTQ1ZmUzYjY2ZmNkNWE0ZWMyYzA1OWNjMTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2b8684efe017493ea14824a2b1a282b6",
+      "statement": "Warming is triggered while the user types: the web client debounces prompt-input changes (TYPING_DEBOUNCE_MS=300) and sends a typing WebSocket message, the session router routes it to PresenceService.handleTyping, which broadcasts sandbox_warming and spawns the sandbox when no socket exists and no spawn is in flight — so by the time the user submits, the sandbox may already be ready.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-router.ts#L115-L117",
+          "version": "repo-lines-v1:sha256:0f349717f4d5d2919e98d1cb345abbc4245e5310d6330be4b2ec91283aaba0ae:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQzNTY0NjgwYjQ0ZDQyYjE3ODJjODU2NDViNDRjZDgwZDRlMDBkY2Y5MjBiYTIxNzA4ZWRiYTVmYTQwOTI1NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTZhYWExYjgzNTBjYjEwODExOGYzYjJkN2FiYmIwZjkyOTA0MDY1MjM1Mzc4OTcyMjZhZjY1OTZmMTMzMjU1MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2QwYTIwODFiN2Q1Y2RkNDBhNzRkNjRjZTEyNzFjZmYyNDAyZWE1MDg0MDQxYjEzOWUxZTNmZDcyYWQzNjdmOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjI1MDU5MzJjNDRkN2ZkM2Y3ZGI1YTJiMjMwZmU0MDFiNzlhNTVkYWQ3YTEzMDA0MzRmZDMzMWZmZmJkY2Y2NiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/presence-service.ts#L103-L113",
+          "version": "repo-lines-v1:sha256:d0d6f33e6321e1e11455a476c3f074f72493d5b7fa9388fac189ecb4b4d80ab2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2Y2QwZTc4YzNlNGE2ZTEyNGRlODczNmFjY2JiYjBlNTNmODg0NWVkZDEyZTdjMTE5MTZjM2RmNGUyMDI2NTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-prompt-input.ts#L151-L160",
+          "version": "repo-lines-v1:sha256:022bb9fadc829f32be5d55cb3e65b86b655ac9b3fe453f1b21b541825e9a6b17:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2NzM2YTJhYmRkOTQ1ZjJlN2E3Yzc4YjRiMzAzZTA3NDE4Zjg3OTYzZjlkOGUyNDI3NjU5NTY0N2MxY2ViZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxZTM3MjVkYTAwMmI0NmVkOGI0ZGU4ODAwM2FkOTcxMGRjYWYxOGQ1N2M0NzAxZGMzYmVmZjBiMmM1Y2IxM2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjMGU1NThkZTBjODBjNjI5YjJhMzljNjY0YWEzNzEyODAxZDhmMGM2YWYwYzg0ODJjZDZiYjcyYWQ2MTI0MTgifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/hooks/use-session-socket.ts#L377-L382",
+          "version": "repo-lines-v1:sha256:c71050e60a3d40f5bdc728f024968790de79b1da37226dee596e0a941bfee46b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzhhMWI5NTg2MzM5MmIxZGI4OTE4ODA4OTM0Mzg5ZTU5OTk2YmE3Y2YyNTFjZTIzOTFiNDUxMGNjY2E1N2U2NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWY5N2QyZmFlZDYzNjEyODVhNjA2ZGY0MDExNzgyZmU1ODlkZmI1OTJjNGY4ZTRhODhjNTg2NTJmOWQzYjkwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2IzZWY1ZTMwZTQ0Yjc3YWQwOWY4NGY3ZDIzMWQ4YTM2ZGZlNzRkN2RkYjlhYzNjZDBkNjBjMWQwMWYwZDJjZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODEyMWZjMzkxMzE2YWZlY2QwMTBkNzg4YzQwODZjMTFjZWY4YjYzYTBmMWVhMDllMTQxMDRjN2JiODdiYzE4YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d500358df4d248d4bba67a3d4def69d2",
+      "statement": "Session init schedules warmSandbox as a background task after writing the initial session aggregate, so a brand-new session's sandbox starts booting before any prompt is submitted; sandbox connection admission deliberately permits completed/failed sessions to spawn because warm-on-typing serves follow-up prompts for them.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L594-L605",
+          "version": "repo-lines-v1:sha256:20f104fd436cbb7ba14c3c9c7e7c443759644a62b0313b00982477c506c3474e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhNjYyODc1ZTUwZWE3NjEzMWEyNTE5ZGE5ODRlYjY5MWQ4MzQ0ZTIyYjRjMTI2ZDhjOGQwMmFlN2ExNWE3NjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExYTYxMjVlMjk0MTU4YmRiMjEwY2ZhMzEwYjAwYjkyOTIwOGRjZmQ0NGMyNTAyNWIwNDY0NjBhZDMwM2FhODQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3M2YyZTE1ZWRiZGRlYzAyODVhY2Y4OWRlYWQzYTBkNWI5ZjQyZWI1OGMxYmU3YjVjZWU2YzMxZTNiNmFkYWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/session-init.handler.ts#L79-L96",
+          "version": "repo-lines-v1:sha256:273f5f34a93c16b80970fc2a38ae382bf6f5cb0749f4344ba0d4a4b693ada8af:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyYjc3NWI1NDU2MGU0NDE3ZGQ1MDk1MmJlNTdlOTNkMDNkZWE5NGFhNTU0ZTUxZjc0NTdhYjllMjQxMGQ4ZjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxZGRmMjdlMWZmMTA0MTA0MTM5NTg3Y2VlNDFiYjNiZDMyNzZjMDIxY2NkNWNlNjg5YjlhZGNiMWE0Nzk4NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhYjhiZjJlZWMwZjA2ZjIxNjEwZmFmNjU0YjE3YjM5YTkyMzNlYTk2NjkxM2M0Zjk5Y2E1Y2IwOGQxZmM4YmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_de44e135dd494f75bd3a9eedabd92b65",
+      "statement": "The lifecycle's speed rationale: without caching a first session pays container start (~5–10 s), clone (~10–30 s), dependency install (~30 s–5 min), and agent start — minutes; snapshots capture the workspace after setup so later sessions restore in seconds, prebuilt images give even cold sessions a recent baseline, warming moves boot cost off the first keystroke, and snapshots explain why follow-up prompts are much faster than the first.",
+      "evidence": [
+        {
+          "resource": "repo://docs/HOW_IT_WORKS.md#L501-L549",
+          "version": "repo-lines-v1:sha256:50fa3c2ae83f0c0f0220be0e685c8fb3eb15e297c9b6beeb847b8614008f839a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkNzRmNDFjNjlhMjEwMGI5ZWNjNDk3MTI4Y2UyYzk4NWQyNTU0NmNkODM3ZTgwYmM0ZDBhZDcyMDViNWY2YjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiYTk5N2I0YjUyZTViNmJlNTQ1MjkzZGNlMzk3OGYwNzZlNDY2MDQ1ZjE5ZTkwZTM3ZjExYWNhNmM3ZmE3OTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0bf9d0aa16d040a4b82d31f97cb392e2",
+      "statement": "Providers that cannot enforce configurable sandbox timeouts (resolveSandboxTimeoutSeconds with supportsSandboxTimeout false) reject a configured sandboxTimeoutMs with a permanent SandboxProviderError instead of silently ignoring it; timeout-capable providers receive timeoutSeconds in their create/restore configs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L1623-L1635",
+          "version": "repo-lines-v1:sha256:cc94726823d0832d99a16271ae77f602f7fd5e1a20e392346985ab79890e6d7c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5MjMzMmRiMzJjODU2YTgyMDk3NzJhOWU2YjJjZGJlZTU5ZjMwNTQ2ZmMwMjk2NWE2Yzg5MWJjNWUwMTM2ZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2ZjAzMGRkNDQ0NDQ0YjMwNDZiYmMwNDAzMGQ4N2VlZmM3ZmFhOTU3YjIzMWM5ZDM2ZmM5N2VjYTdhOWJjNmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_44b094540ea44d338d571648b9b7d19b",
+      "statement": "reportSandboxError persists the reason as last_spawn_error (best effort, so a storage failure does not also cost the broadcast) and broadcasts sandbox_error to connected clients, without touching sandbox status — status changes are the callers' decision, which is how the circuit breaker reports a reason without changing state.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L825-L840",
+          "version": "repo-lines-v1:sha256:6268a492d47eaf857186dc35b1204603fdca020168b03e4c12ff01348fc5a655:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZDgxOWIwYmQyZGRmOTk1MDRlNjA3YTNmMjE1MzRjOGVjZWU5NDEwYzM1ZWMwNGNlYWE2MjQ3M2U0NmU5ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmYjIxMzYwMDRmYjgxZmUyMDYwNzhkZmIwODBhODJlNDNkMjNhY2Q4N2U3M2FhMzg4NjQzY2VlYWYzZmUzMDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4Njc4OWE4NjcwNTZmZDZlMTU0ODUyNjE3ZDI3OGRhNGM2YTVmMzZhMWE0NDIxNGFjNTE0NjdlODg1N2QyYWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4bde7f14843d454399921cc9463d8b50",
+      "statement": "Prebuilt-image selection at spawn: environment sessions look up their environment's image and single-repo ad-hoc sessions their repo scope's image, matched against the fingerprint of the session's OWN repository snapshot (not the scope's current repositories) plus the runtime-version floor, cheapest-first; environment sessions never fall back to a repo image, multi-repo ad-hoc sessions never use prebuilt images, and any miss — including lookup failure — falls back to the base image so sessions are never blocked on builds; a provider create failure with a selected image marks the build restore-failed and retries from base with a fresh spawn identity.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/image-selection.ts#L1-L18",
+          "version": "repo-lines-v1:sha256:66d9d41d00baa04a6284af441396e7432a45a38d37309eb37c7ea30b9c61d120:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3ZThhNjdhOGFmZTdiNTc1ZjZkNzJlMjI3ZDJhNGNkZGFiYTI3NDZjYjU2N2M2ZGQxMmUxYjI3OGRiNWEyOWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L541-L563",
+          "version": "repo-lines-v1:sha256:4c6cacb0100deb7b4743956e403d8e4f4ec402fae06cfa856f2ce2df87ca950d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3OTY0ZGVjYWE4M2UyZTQyNzg5NTAwMDdlMTZhOTk1MzkzYTA0OGM3ZGRjZTM2Y2Q2YTI0NzEzMmQ1YjVlMzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3YzJkNzgwYTUzZDI2OWFjMWIzMzg3NTRlNDkyNjJiY2RiMWI2MzU4OTViZTVmNDViN2NlODg3YjRiMjRjODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyZjlkYzNlMWYyOGNiYmRjNmUzMzUxNWY0ZGE3NTNmNWU0NTZhMDIyYjUxZjE3Yzg1NDhlZjU5Njg0YTRkMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjYzc5NjA5NGZkYTg4MGJlMDRjMzg3ZGU5OGE5ZWZmN2JlNjJmOGNhMTc0OTNiZGFmZGIyY2ZlYjA0NTNlMTcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

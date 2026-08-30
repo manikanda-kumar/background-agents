@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:fb8e00fd18a52bce2602fb25ec668416714d012bb86137f2a0460ed123aeb55c",
+  "claims": [
+    {
+      "id": "claim_8134645842ff492f804fae3243886953",
+      "statement": "The control plane receives its entire deployment configuration through the typed `Env` interface in `packages/control-plane/src/types.ts` — D1 `DB`, the `SESSION` Durable Object namespace, `REPOS_CACHE` KV, `MEDIA_BUCKET` R2, optional queue bindings (`IMAGE_BUILD_FINALIZATION_QUEUE`, `AUTOFIX_QUEUE`/`AUTOFIX_DLQ`) and service bindings (`SLACK_BOT`, `LINEAR_BOT`), secrets, and plain-text variables — assembled in production by Terraform (`workers-control-plane.tf`), which binds provider vars conditionally on the selected backend and enabled bots.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/types.ts#L8-L112",
+          "version": "repo-lines-v1:sha256:12228cfb5e89f690cc7ac880afa77aca95087e25b0b369af35a259c3a84ae744:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4ZTc4ZDhkMGE5YjBiNWJiM2QyZTk2MzJlYzA3OTk0ZGJhYTNmNDVmMTUwYzQ5MjYwODczOTkwMjVkZGFmMGM0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwOTFkNmM5YjI3MDVjNTdmY2I1MDU0MGNjMzkzNTQwNTdmNzNmMDc1MjliNDJmZWI4MmU4MmJmM2ZiOGNhNzBhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxYzEzNmU5MmM1MGMzYzQyNGU3YzkwYjU0NmUxNTc5YjM3ZTU5MGVmY2YwOGMwYTYyZjViMjkyY2IxZmFhNDMyIn0"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L37-L217",
+          "version": "repo-lines-v1:sha256:66e85120a30751f0a236d93e2eb8baccf2c54c10249eefd981ba4c8d36b8728c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1MTA1ZDIzNDMwMzc0MDc0ZjRmMTU3MDJhNmNjY2U2ZTc1ZDQwYTc1ZDFkN2IzODlhZDA4ZWI0OTdjMTZlZWQ0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzMDY0OGY3N2ZkNWE5YzYzYjNjZGQwYWY0OWRhYTEyOTkyMjBiNzU0MWU4OGNhMTdlZmUxYTZhMTE0YjlmZjJhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxOGZiOTJiMjg0ZWVlZjBmOTQ5OTY3OGM2MzE2MjU3ZTIzZWI1ZWI5YjQ5YmUwOWE5NGI4YmYzMWFmNDIxODY2IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI1YmQyNWJmZTExNDdiYjJiNDk2ODNjNTlkZTcwZTA0MWU0ODk2Y2M5NDUzN2IwYWE5NjZkM2Y5NWU5YmQ3YTM0In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_16beb2abc1d046b0ad0f2ba11b30f0b8",
+      "statement": "`env-validation.ts` enforces the full encryption-key contract, not mere presence: a key must be present, strictly base64 (whitespace rejected), and decode to exactly 32 bytes for AES-256, because a short key would silently downgrade to AES-128/192 and a malformed one would otherwise only fail at the first secret write mid-spawn; failures carry the generation hint `openssl rand -base64 32`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/env-validation.test.ts#L30-L62",
+          "version": "repo-lines-v1:sha256:eb15f70d0b95dcbce1da99112f230793d8d52612afe69c9399d36b47b11a44be:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3NzNmNTM3YzgyNzc1MDA5M2QxYmFmMDhkMTQwYWRjMDUxZTk3OGY0ZGJhNzczMDM5OTc1ZTMwZWVhZWY4NTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2ZDM5MjQzNjdhMzUxYjU5OGU5NmJiZTZkOGE5NDljYzE2NGZkNmU3NDFiOGI4NDkzZTkzY2EwOWJiZGU5OGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/env-validation.ts#L12-L57",
+          "version": "repo-lines-v1:sha256:fe936afa8ec7ef6e479869e57334ab6c2b21ff32adcc1bfa4ab4545bfb5eddf3:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZWFkZmIxY2E4NGUxYjk3Zjg2OGE1ZDE2NDVjYjY0NzJmNzA3YWExZmZjMDg0NmZiZTVhM2U3ZjRiZDFjYzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZTdmNzkwZjBhNTE0M2NmNTZjNjVjZTkxY2VhYmVlOTk0NDBkYTg2ZTkxMzIyZWRkNzBjOGFkNTQ4MzBmNzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMyYzc5ZjBkYTVlZTZkOGE1YTgwNDMwMWVhZWM4ZGRlNDUwOWRmOWNmMDI2NjNjYjczNTU3Mjk5NTViMzczM2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5976a7b4eaad4753abea472f533f72d8",
+      "statement": "Secrets-at-rest encryption is not optional at runtime: the SessionDO graph construction (`createSessionRuntime`) calls `requireRepoSecretsEncryptionKey` and `requireTokenEncryptionKey` before building components, so a missing or malformed key fails every session request at initialization instead of persisting plaintext; secrets routes and MCP server stores likewise refuse to operate when `REPO_SECRETS_ENCRYPTION_KEY` is absent.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/mcp-servers.ts#L33-L37",
+          "version": "repo-lines-v1:sha256:6f19313cdae97d326ff92fc4bb3226d4d45d0e7ea80591fa5cd92abe4cf023c9:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGQ2YWZhNzBiMzEzZTVmNjk2Y2EzN2Q1MzQxYWM1ZGJiMmRiMDJjNTljYjVlZGJiZjRjZjIzOGFlOWUzZmMzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1MmQ0NGQzZmM0ZjVjMDc0YWQyNDcwMTliODZiNTA3YWFmZjI4YjUwNWFhMGQ3MWM5ZDEwYWVkMTVlYTdiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjU3ODRiZWU0MzI2NzczM2VjZjA1NGE4MzQ1NWJmYzA5YmM2ODcxYjBmZjI5NDI4YTkwMjNjZTgxYjI1ZmExYyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/secrets.ts#L35-L40",
+          "version": "repo-lines-v1:sha256:1dfbe9dec7936879543bbc5defe4bcfd887b650a14a3e70e41961008c71f96a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTEzNWU0NDQxNTdhOTkxNGJkZjBiZThkNWVhMDY0YmU5MDhmZDM5ODJjMTJmZDhiZmZiYWQ5YWY0MWMyMTBlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzY0M2FhOTVlYjhiY2RkMDk5YWU0OThmNmU0YzNhNDMyZjkyZmNhNTg5MzhkMWUzOTkwZDM3ZmVjMDkxOTZmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjQ1MjdkOTYyNjFmZGYxMmEwNWZhNzkyNTVmZDMxMGU2NTEwZTRiNTIwN2ZlMTkzMTdkNTk5ZjQ4ZjgxMDY3NiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L230-L233",
+          "version": "repo-lines-v1:sha256:a3035535c6e4d6f20643a2c8e6106f3c77c0d5a6137759970cab7a48e3c0f84d:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjgzMWRiNDYwZDgyMjI4Mjk2ZWNiMDJhMzE3MzM2YTM3ZjBkMjMzNTUwYmFiZDNiMjExMmExMmNiZDE1NzlmNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTJjNjBkNGUxYzA0YTgzOWJmNWFlYzhiNDljODk3Mjg1OWVhZmIyYmU3ZDgyMWY4ZjMxYTZjOTJhMDVhNmQ4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDYxNmY3ZDRmYjYyMjIyOWVjNmZiZjA0YTA3N2VmOTkzY2Y1NmY5ZWU5MmQ4YjgwZmQyN2U3ZTQ5ZGE4MTg4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDlkYmQ3OWNlZTQ1MGVkZWNiYmJiYWRkMjQxY2U5MmEyNGM5OThkYzg3YmJiNWNiYTAxODAyNzU0YzI3MTUzNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1cb4644dceb44f59a1ee1226154256c7",
+      "statement": "Credential encryption is split into three independent key domains — `TOKEN_ENCRYPTION_KEY` for SCM enrichment tokens in `user_scm_tokens`, `REPO_SECRETS_ENCRYPTION_KEY` for repo/environment/global secrets, MCP credentials, and the commit-signing private key, and `PROVIDER_ACCOUNTS_ENCRYPTION_KEY` for subscription-provider account credentials (Terraform generates and persists a dedicated 32-byte key when the operator does not supply one).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/types.ts#L33-L49",
+          "version": "repo-lines-v1:sha256:9fe9e2c2b588710dc23880ef10cb51aa92ec46cbf7f6e93ab43a007e9668d5d0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNDY1YjZmM2NjOTQxZmRmNTljMGEzMDQ1MjRlOTFiMzlkMDcyYjYxMDE1ZjVhZmQ3NGJjMTA5ZDA4Yjc4Y2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1OTBlODFkMjM0MWU3Yjk5YzQ3ZDM3NWFhYmE4ZTRjMjBkMzlkYjM4NDg1N2IwOGZmNzM3Zjc3MjQ1M2JlYzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhMjhmZjAyZmI5MjMxNzE0ODJiMjlhYzgyMjQyZjBlMTg0OGVmMTA4MjA0NDY5MWFhYzk3OTZiMzhkYWI2NzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3N2FiNTEzNTI3MTJmM2JlN2M5NjQ5MDAxNDJiMGQ4NGI5ZDJkOTQ2NjY4OGZiMzFmMjcwZTA0MThmMmJhODMifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/service-auth.tf#L35-L44",
+          "version": "repo-lines-v1:sha256:59e95503112dda7e3d86b9927e93b2ec071bbbcbe0cf24da9a3e7324de9ca137:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3OWUzOGJkZDQxYzI1NDYwYWYyNmRmZWVlNDE0NWU0OGU3OTRhOGQxNTRhYTc1N2ZhN2RjNzQyNzBhZDAxNWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0NDhlYmY5Nzk4OTg1ZDljZTZkMjIzOTViYjJmYWViMWQ2ZTlkMWY3YzI0M2JiYzkxYmE3MDA1NDJlZDdhNjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e373145f2f12425f8b4e4edebcfd57bd",
+      "statement": "`SANDBOX_PROVIDER` selects the sandbox backend (`modal` default, `daytona`, `vercel`, `opencomputer`, `e2b`); `resolveSandboxBackendName` defaults an unset value to `modal` and throws on anything else, and `createSandboxProviderFromEnv` throws with explicit per-backend messages on missing credentials while parsing numeric/boolean settings (e.g. `E2B_AUTO_PAUSE`, `DAYTONA_AUTO_STOP_INTERVAL_MINUTES`, `VERCEL_SNAPSHOT_EXPIRATION_MS`) at construction so invalid values fail immediately.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider-factory.ts#L24-L203",
+          "version": "repo-lines-v1:sha256:c5422d1c337e88763b05bc2426d9bdc0484625c36b86e3bb2f5bd265505ff819:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5YzY3ZTRjYWRmNTc5NTVlNWExYjBiNDE3Mjg3ZTg2NmMzMTJjMzdkYzE5NGNiZjFjMjJkMWJjMzMxNDZkZTU1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4ZDQ0MGI2MTM0NGY0YzEwNWU2ODEwZjVkMGQ1N2I4NTExZDA3MmRhYTM1ODQzYTU4OTUzNDRiMGFkNDQ4ZmIxIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider-name.ts#L5-L36",
+          "version": "repo-lines-v1:sha256:c8b9ad81bcd7139c3653491d16bbcb80ff24c5770e74881d373eda61aacd5fea:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4OWE3MmFkMzY5MmUyMTJhZTlmMTg0NzU4ODc5Mjg1OWFjNDYyMWYxOTM4OWNiYzJmZGYxZjZkZTUyYTM1MjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlkOTcxZDJjYjQ1OWRmZDhmZDM2NDBiOTg2OTg4NjYxNDY1YWJmN2YzMmYwMjBlNDExOGE5ZGZiODdiN2M3NDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5ef967800b7d456aab8d74450dfc4130",
+      "statement": "Sandbox provider construction happens during SessionDO graph assembly, deliberately: both `resolveSandboxBackendName(env.SANDBOX_PROVIDER)` and `createSandboxProviderFromEnv` run in `createLifecycleManager`, so a misconfigured backend fails every session request at initialization rather than surfacing at the first spawn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider-factory.ts#L165-L184",
+          "version": "repo-lines-v1:sha256:cc1e7c7f91dfcbc14ef0dde915fec5fb0ee59363805d1a3990baf4f749fbe083:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZGRiOGI0ZDQzOGFiZmI4ODc3MjY4ZGRlNWQzMDY4M2VjMmYzODhhZjZjM2MzNjQzYWJlMGEwMWY2ZWE0ZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5YzQ3ZTM3MDk3ZmYyZWYxZDU1ZDBjNzMwODQxNTkzMjg1OTcyN2E1MGZiMGM5ZDJiYjBhMzJmYmUxODdjMGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjZDJjNTNlNjdkZjcwZWM4NzNmNmJlYzU1YThjY2JmMWY3ZGFmOTE5MDQ0NzI2ZDYwZTBjODY4N2Y3NGVkYmEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L865-L869",
+          "version": "repo-lines-v1:sha256:34e43cd02a113a12d99b639fb322c7100ca679eb3d447911132b73e4d217caa7:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RlNzUwNzJkNzA4NzQzNWRkYjRmZDVmNTUzYzhiNzMxMGQ2YWUwMDNiMTgxMDFmMTY2MzYxN2FmYzVkOTc1ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjI1MzRmNWRlNTQyMmNmMDhmZmUxN2QxYmMwNWEyMGJjOTEzYjAwNDZmMjA2MmY1NzA3NzljNzE0OTE3OTRjNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzM4NmVhZDliZTZhMTQ1MjM2Yzk1MmY2ZTQzYzU0ZDExMTIyMWM1MWVkYzU0NzY2MzYwMjcyZGI3YjA5NDViMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTM4MTJhNmVmNjk2MmZjOTllNTRiZDNhYTY3ODM5YmM4MjkxMDJhZGI2NTM5MTVlNGQ1MGI1M2YzZDVlNzIyMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ffde8df670dd47af9a0c38b54c621ae8",
+      "statement": "Terraform enforces the per-backend env contract at plan time with `variables.tf` validation blocks (e.g. `modal_token_id`/`modal_token_secret`/`modal_workspace` required when sandbox_provider = 'modal', `daytona_api_url`/`daytona_api_key`/`daytona_base_snapshot` for daytona, and the e2b/vercel/opencomputer equivalents), and `locals.tf` binds only the selected backend's variables to the worker.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/locals.tf#L1-L7",
+          "version": "repo-lines-v1:sha256:dc798f3f197af77053551821d3c8cdfeffd55224f8caa1deef39b7d1b0850c22:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDBiMzgzYjE1NDNiOTFhZGU3MjUyYzA5NmNmMGU0NDkwMTA4NDk3NzMwZWE2Y2QxMDIzYWNmMDJmMjdmZjRmZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWEyNWFiNzQ0OWEyMzA0N2JiMzU3YjJjOTc1OGFiNDk0N2ViMjNiNDc3ZTJhNTMxMWYyNWI1ZDY0ZTQxMjhkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzg1Mzg2ZWE4M2JhNDNkMjRiYjgwNTFmYjJhZjYzNGJmMTM0ZjA0ODlkNjQwYWU4OGI3ZWQwMmNjMzg0YzJlNSJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L383-L536",
+          "version": "repo-lines-v1:sha256:0be728c19d6d301a2f13dd1b9653d014d97c01ac6713a129a8c432e0c408c5fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MTU0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzYWZhZTYwYTAxODU1NDY1OTRlYjRkYjBjZmFlYzg2OGI3Y2M2YTY3YmM3MTM0MWFkYTk5NTA1ZTNkNDBlNWM3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmYjU4MGU5NjRmODNhNDczZjQzZDQ0Mzg0NjI5NDlkNjhiNTYwMGZkYTc4N2YxNjM3NDVkMDBkZTg5Y2JmMzZhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI1MjJmNDkyMTUwMzgzY2RjYzVmYjA3M2JjZmU2ZGFiYTZjZWQ1NWRhMWFjZjVkNzIxOTdiZGRjNmI1MDEzZjEwIn0"
+        },
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L55-L110",
+          "version": "repo-lines-v1:sha256:09411ee26c994675b3184f4d23712f8265d07b5526a55d236ae4f3679d33e637:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwYTBlYThjNDYxNGFmZjFmYWVjYzUwYzE5YTJjZTBkNWVmMWIwYWUzNzJiM2VkMmIzMDUyNTgzODcyYmU2NzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyMzQxMDU2YzVhOWQxYjFjYzExNTg0MmZkZmJmMTViNTZjMDU4YTkwMGVmZjg5N2MwYTNhOTQ2ZGVlNzlkZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4MDA2MThiM2YwYzgzZTAyMWI1NDM0YmMwYTgxODExMzdkMmJiMzlmY2NmM2IyOTA2YTE4MjZjZDU5N2E4MTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb0463dac4124ea3a666c88d636e9a97",
+      "statement": "Image-build capability is a separate, centralized policy: `image-builds/provider-policy.ts` permits `modal`, `vercel`, `opencomputer`, and `e2b` and rejects Daytona with the message \"Image builds are only available when SANDBOX_PROVIDER=modal, vercel, opencomputer, or e2b\"; the web app mirrors the same list in `packages/web/src/lib/sandbox-provider.ts` so UI copy cannot drift.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/provider-policy.ts#L12-L30",
+          "version": "repo-lines-v1:sha256:b784559bb1d3d8a6a174e435c3236eab94cfa3891815982be055b83231066bc3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxNTRmOWIyMmE2NjY1YjUwOGQ2YzRhYjM4NTA0MzQwODdjOGY1MDA5NGZlYTRlODdiNmQ1MmE5NzM0Mzk5YWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2Nzg0YmY2MjM4YThiNWI5ZTIzZWNmY2Y3YzAyNWE5OTk2ZGVjNjJlNDEwMjMyNTlkYWQ2OTkxM2ExMGQ0MmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNjZGUzNWM5ODg0NGEzMmVhNzAzYWJiZWUyZWRiMDQwNDlmY2IzZjJjM2RjZjVhY2NkMTBkYTJhNzJhMGQ2ZjcifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/sandbox-provider.ts#L15-L22",
+          "version": "repo-lines-v1:sha256:64c2bff8398126838f2570caa8a6d9b539844ad609914b9c9c78fae2c7529843:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTQzMzcwMjRmMWIzNDhmZjI3MWU2NDRmOTJkOTkyZTVhMGM4ODRhNDkyNTcxMTYyNjRkMGY4ZGIxNzFmN2RhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc3ODNjN2Q0OGI2NTIxZTgyZGYzZWIwYTU5YzI3NWJhMDI4MmM0ZTBkZDZhOGU1OTIwYzM4OTU5N2JmNjUzMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmZiZWIxYjNhYTU4ZjAzNmQ0YjFiNzAzMzBjMjVmNDkwMGIwODBiMTFiZDEwMjRjZmI0ODhjNDk4NDgwZjk1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzMxYTMwNWVhODRjMTJhODE3OGNiNDc0ZjYyNTcyY2I4NzlhOGM0YmJhZGU3NDY4MmU3YWI3NThlZGMxY2VlNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cc4856cc08594d7f815c2c407b622c9a",
+      "statement": "`SCM_PROVIDER` selects the single source-control provider per deployment: `resolveScmProviderFromEnv` trims/lowercases, returns the `github` default when unset or empty, accepts only `github`/`gitlab`/`bitbucket`, and throws a permanent `SourceControlProviderError` otherwise; the router caches the resolution keyed by the raw env value and `enforceImplementedScmProvider` answers 501 when a route's `supportedScmProviders` excludes the deployment's provider (the bitbucket case) and 500 when the configuration itself is invalid.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L92-L158",
+          "version": "repo-lines-v1:sha256:29654de51bc9715517a882af73a1523d5242c236dacf9fc938641715db527aac:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNTE0MGFiMDIzNGZkODNhNThjZTUzMjUzOTgyNWYyNjUyNjMyOWVhNjE1YTA4NzNlMjk0NDVjNjk2MGUzODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5ODAxNGU1MzNmNTI2MTY5MDA4ODBiN2JiNTFmZDNkZGFhM2IxYTkwY2VhODQxYjA0MzFkMGI1Yjk2NzEwYmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0YzRlYWI3MzcyMTQ5YmI5MTNhNGE3NmJmZmE3MDUwY2U2ZDE3MGE3ODBmNjdkNGM1NTAyMjA0MzRjNGE3ZmYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L106-L149",
+          "version": "repo-lines-v1:sha256:f7527d7eb4f044adcd6aa625bd8c217a126988756edc92ddbbe17eafb760da9e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmNjM5Mjk5MzBlOGIzNWI0ODdkMzEyZDBlNWFmZDI0MDI4NmUxODBjYjM3OGJmN2ExYWVlNTgxNTJhY2NkZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNzc5M2UwMzk2YjgxY2JkZThlZjFhMDA5MGYyYjZkZjgzNGI3ZGQ1YmU2YzA5OTk0OTUyYWE3M2RjZGRkMjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0YTA0ODFhN2ZjMWEwY2Y2MWJjNzk1MmJlMTdkYzQ0OTY3NjI0ODFiMzFlN2U3OTU5NDcyMmI0MTUyZThjODQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZTNmMzkyMmUxNzQ5YTk0Nzk2M2ZkNjkxMGJlMjI5ZmQ4YTAyNmY0MGM5NWZhZDk1NjIwZmE4YWQxNWM0N2YifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/config.ts#L4-L20",
+          "version": "repo-lines-v1:sha256:bbeee2f42feb07b3ab5f52159cb80e53b44f1a777e51bf5c4ef1a1bc53da7de2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ZTQ3ZjY5OGM4OThlYmRhNDNiODFiMmY3MmY5OTljMzc2ODcxYTA3NDY1NjA4YjhkZWIyNjcyMmVmYzAxNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIwY2JkZWVhYTcxZDIwNmM3YzcxYjk4NGYwN2Q3NWFjYWRjZjJlMzA4ZjI3MTVmYTE3MzRjZmZkMDg3NGRhMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6fe76ef30ea94294b0a39e9d12151da2",
+      "statement": "On GitLab deployments `GITLAB_ACCESS_TOKEN` is required for API access and is threaded into the sandbox provider config for git auth, while `GITLAB_NAMESPACE` scopes repository listing to a group; `createSourceControlProviderFromEnv` only constructs the GitLab credential block when the token is present.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/README.md#L444-L451",
+          "version": "repo-lines-v1:sha256:a1569992ca04dd483120068f5017355d4f156415b39e9de5567171c528470dfc:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFkYWZhOWU2NmUxMDFiMmY4ZDg4YWFhYmVkZmFkNjY1MzkxN2EwNjYzNGJlNzZhMGY4ZmY0Yjk3YjVkMmQxYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDM4Njk3ODg2MmMzYTliZjk3MTA3NDQ1MDI1YzIwYTgzZTM5YTg0YzBmNzY5MjcwNzA1ODYyNWZlZDZkMDg0NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGZiYjYzNjBhY2MxNmRiNWEwMWYyNGJlYmM5YWY1NTQyMzg0MGZlMWU2MDNkMjBlYTkxOTA2M2FmODg2YzVkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2E1ZThhNDA1ZjY5YzI4NDBlODVkOGZiNmIyMjVmYmNlNDYzNGZkNDUzODI1MmIyMzdhOWY5ZmIwYjQ4ZGJjMiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/provider-factory.ts#L121-L125",
+          "version": "repo-lines-v1:sha256:fa015aa25d2121ea58abab5de34bba9d64427b3a244e955af256ae9aa10fd5f9:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjgwNmQ0NTM1YWJkN2Q0ODZiMWRlNDcyOGZlMTYzZDgxYmE0Yjc5YjI5MWJjOTAzOGJlNDA2M2QwOTk1ZjRjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjZiZDhmYzMxNWFhZjYwZGU4ODNiZjkxNjU5MWI5MTg2NTlkMzM2MDJmMjQ0Nzk1OTcxZjE4Y2VmMTQwNWExNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTMzNDNlNjkyNTJhOWFjMDRlNzk4OGM2OTRmOWRmNDY1YmIxZjYyNzQ0YjI3MWI0NzEwNDQ0ZWQyMGU5NDE0ZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/provider-from-env.ts#L9-L30",
+          "version": "repo-lines-v1:sha256:0786b59342c2d684fb2d76c7e41549b102fdf2d7ec7a3609521b1345973f3a0c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyMDZhMzNkOGMzZjNjZTcwNjIzZmExODExYTE3NTRlNTdhZTk1YjhlNmMyM2RiYWFiMmFmMGU3NGJkMjBmODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3Yjg2YjFhODlmYjM0Yzk1MTYwZTk4ZTIzODNkNDkxMDM5NTYwOTM4NzAyY2EzYTg1YTQ4NGJmOTc4MTExYzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1286466cd37045d1a955a5e1c82cdb88",
+      "statement": "User-editable integration settings are persisted in D1 across three tables: `integration_settings` (global defaults keyed by `integration_id`), `integration_repo_settings` (per-repo overrides keyed by `(integration_id, repo)`), and `integration_environment_settings` (per-environment overrides, an owned child of `environments` with ON DELETE CASCADE), created by migrations 0007 and 0038.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/d1/migrations/0007_create_integration_settings.sql#L1-L17",
+          "version": "repo-lines-v1:sha256:6e0ea5e9649ec34e2f506db89b0db7533e24a162e1290b5e221c6f585acf8dde:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhNzJiY2RiMmNjYmI3NDBkMzQyODZjZjIzM2VhYTQzNzhlMWRlYTdmMDRkMTk2ZjM0M2ExZWQ1YWI4ZTg4ZWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0038_integration_environment_settings.sql#L11-L19",
+          "version": "repo-lines-v1:sha256:685bb1e3a14e975b281f61bdb559847a4d76dc1934c24b8db17a6934afba095d:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWRmOTE0NTc4OWZiYjgzYjg0MTc1MDcyODg5Y2RiZWRjMmIyNzU5NGMyMzdlZjJmYTIzZDUwYTRkMmFhMGM5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmE1NDU2NzAwMWE3NzBiZjM4Mjg0NjBkODFlYWZlM2RmOWU3YTAxYmI3OTA2NDA0MzdmZDQxZmJjM2M1MDAxOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d47782b0fe14485cb3b6b5de62df4af8",
+      "statement": "`IntegrationSettingsStore` validates every settings write against the runtime Zod schemas in `packages/shared/src/types/integrations.ts` (the source of truth for all persisted settings types) and re-parses and re-validates stored JSON on every read, so corrupt rows surface as `IntegrationSettingsValidationError`; repo keys and `enabledRepos` entries are lowercased on write.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L55-L134",
+          "version": "repo-lines-v1:sha256:b6254d45ad343fffd5583d3a5d5a84d852543e72b3c50ef5d2af3785b09559b8:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3ZTUzN2YzZWM4MjZiNWYyN2Y2NWJhMzVhNjhlMjY3ZjIwYWQ2YmExZGJkZWU4MGFjOGZjMTVkYTAzNDViOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3MzE1ZmQ2YmY5Y2VmYTAwZGU2ZTZhMjY5OTQwMjBkYzI5MGQ4MTY5ZDAyNzM5M2YzY2VhMDQ5ZTZkYWU2NTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjliYjQ0Y2EyM2VhMTY0Mjc3MzNkNTcxN2U3OWU5Yjg4ZjlhNTYxZDY3NTMwZTZjYTgwZThkOTQ2NzZmMGY0NjMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L72-L84",
+          "version": "repo-lines-v1:sha256:fb15966bcf9c528cd38171d4c4a8d67ba4468a6093b3219ff95b4568c5034536:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjYjNmMzE3MTQ0NTYwNTg4NDJjOWU1Yjc3ZDkxZWEyNDdlYmY2NTJlNTc2M2VhYjZjOGNjMDgyMTgxMzQ3YTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmNzBmNmE4OTcwZmJhZWU5NzM2MzY4MjU4MjBkZTNiOGU0ZTQ0M2Y5NzFhZjdiMmQyYjUyZWZmYTcyZWIyNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2NDNjOWQ2NzQ2NWJhMGJkNDNkNWI0NjBjMGQ0ZjUxNDJmZThkYzlhNTc5ODUxNGViNmEyZGExMTExNjdjZWIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/integrations.ts#L432-L462",
+          "version": "repo-lines-v1:sha256:363f9d74b4834e51bc863c75a7b48b19b402972dc1a40e81ac06d52c27896c77:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZTZmMzMxOGRmNWUzYzQ3Yjk5ZjZlM2JmZTNhMDI3Y2NmODE1ZThmMjE3OTliN2EyODQ5YWQ4NTI4NWU0ZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3NGVlOGE4ZDFhYTg0NTM5MWJjNjc5ZWI3MGNlN2Y0NmEzY2Q2ZmIyZDE2ZmNjYTY3ZmExNzhmNGY4YzFlMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY4ODE3NGQ2YTVkZGFjMWE0NWFmN2RkZjIwMDM4ZWEwMWNiMzE3OWI3YmE4NzNjNDEzN2JiNDI3MTdiMzkzNmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b738d9e7079248c0a876ebeeee9bfb49",
+      "statement": "`getResolvedConfig` resolves settings through a generic later-layer-wins merge — global defaults, then repo overrides, then environment overrides (design §13.5) — in which undefined keys never clobber, and the `enabledRepos` allowlist comes only from the global layer where undefined normalizes to null (all repos), `[]` is the disabled state, and a non-empty list is a case-insensitive allowlist evaluated against the repo (never against the environment).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.test.ts#L819-L844",
+          "version": "repo-lines-v1:sha256:e250ce20f3be79fc2e648de203509644fcc80b02155781dcc4420139606ba2aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk4Y2FmOGRiM2UyOTdjOGJjOTQ0ZTI1YjQ2ZWM3YjU0M2NjMjI1ZTVlN2I2MTAyODU1NTc1NzIzN2UwZDEwYmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQzZjk3MDU1ZGM5N2Q1OGFjY2ViOTNlZTk4MTk1NzM4MTRiODhiMDlkMjk4OWYzZmY3ZDk1Mjk1ZjY1NjczNzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmMmRjYTI0MWE1MmQwMzkxZDE0MjQ3ODE5NTlmODgxYjYwOTdmOGYwZTg5MTA5ZTg4MzA5ZjkxNmI0M2Q4MmEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L302-L352",
+          "version": "repo-lines-v1:sha256:f62daea4c0cfa34fc0b272249363c6472d03d45cd0a054524e94ab942e3d7819:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NzAxYzJlZmNlZGEzM2I3MzIwNjZjYTZlYmQ3NjUzMGY2Y2VlMmJjMGI2NzBkZGQ1Y2NjZTVhODliNzQxOTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjNzMwYzY3YmExMjMwOTJlYTEyNDM2ZjBiZTY0YmNjOTI2MTVkNDMyZGRhZjZhOTRjZTkxY2FhM2U3OWExMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0M2JmOWJmZTExNzExNTA4MzViY2I0OGMzYzRkZDJhOTI4ZmRjY2Y2ZjIyNzY4NTNhYjAyOWZhZmJlMzVkZmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c6bf00077d6240beab53b3beef011e20",
+      "statement": "Only the session-scoped integrations `sandbox`, `code-server`, and `vnc` (`ENVIRONMENT_SETTINGS_INTEGRATION_IDS`) accept environment-level overrides: `supportsEnvironmentSettings` gates the store methods, and the environment-settings routes reject other integrations with 400 and verify the environment exists (404) before reading or writing.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L86-L91",
+          "version": "repo-lines-v1:sha256:8020d63fca645dce9c96427df7401fe627c884b409482b6740fe1ea1420bf825:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc3NTM1MWJmYzJhMWVhMGRhZDVjYWNlZGYwYTg0MzJjNjI0OTE4YTMwMjY5MzNjNjlhY2YwNDAyMWY1YTc1NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTMyNTA3ZTIzNzg3MjMwMTY4NGJhNmVkNjViNWY5MTQyMWIxZjcwYWNjMjE5MjMxNmJkOWMyZGIxNTkwYzczYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWZhM2IxYzM3YmFhZGJlYzk2NjIyNmYwZGE1MzU0NWVkMzU5MjI4NGEyMGU1NzEwYzc2NmM5OWE3NWE1MTI0OSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/integration-settings.ts#L47-L79",
+          "version": "repo-lines-v1:sha256:42071162d4b68cf2c053b66580bac441a4320de2173e3ae31bb2396f82ffac4f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxMzAyOWM1ZGFlYTkxYTg0NTI0OTM4NDE5NWI3ZjRmN2NlODEyMTc4OTUyZTMxNzcyMTdhNGQyOWJkODMyOWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxMzgxNTRiYjNjNWFiZGZiMjE0ZmIwYjEwMGZhNzE5MDc4YTVmZmYyZDBjMTJmM2NkNzVlNDYwMjFiODk0NjMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/integrations.ts#L412-L423",
+          "version": "repo-lines-v1:sha256:66eb962397ff3cd117cab9b9736d2f825f31e7cf79ce6f73c1d1226d3c5ddf60:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjNWJmM2I4YWFiMzQ2MTNkNjhjNGM3ZDJjMzM4Y2UwZDQ1MGU3ODk3OWI3OTBhMWUwYjIyMzljMTRkZGRlMjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwY2M1NWY3YjNjNTQxZDA0OTliYzUyZGM0ZTc5OTZlYmUxZGU4ZjI5M2NkZjA2MjUyMDkyNTQzZjc1NDgzYjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_40c3e09808bc4dfbbc1d51effc43393c",
+      "statement": "The GitHub `autofix` object is the one exception to the flat resolution merge: repo-level autofix fields deep-merge into the global autofix policy instead of replacing it, so a repo can set `maxAttemptsPerPrPer24Hours` without clobbering the global `enabled`/`allowedReviewBots` settings.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.test.ts#L605-L622",
+          "version": "repo-lines-v1:sha256:23be5fcb3ed91745ecf0c69a659e8d03ad2085fda3d3701c9fc05b2b079d738a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkNTQ1ZjU0ZTNmYTliZWVhZWEzNzVmOTc3MTg4OTc4OWY5NzU5YzEzYWIyMzgyYWY0ZDMwNjU5ZmIyNzQ0YTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0OGE2OGQ2YmQwZTg1NDU2OTE5NGRhMjJkNTRkMjhmMDVhMGZlMTM3ZDMwODdlMTVhZjgwYWRmNDA5YTJlNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM4NmRkMjJiYzUwMzhjY2IwYTZjN2ExODMxMDkzMGExZTllYzViM2VlMmEzOTAwYmNkNDU1NzJiN2JiYjQ0ODMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L326-L342",
+          "version": "repo-lines-v1:sha256:d056e3fb4d4ce49500ffbcc837acd19462c0408fb98a9057a4a387647cc756e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxMDQyNjg2YjAyYmEyYjdhZTJmZmI2YWQ1MWFjNjhkMmI1OWY5N2ZiYjI4YzY3M2EwYTk2MTU2YjI3NjlmYjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI5YjdhYmNjMDE0NzUyN2RhMDU2OWM2NzYxYzFjMTAzNDM4MWM5MGFiNWNiM2U2ZGRhZmZlOWY5MWU0MzEyMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhmMGM2YjNlMGRjOTY4Y2Q5MjkwNGJlMjJkZTFhOGE1Y2EzYWI3ZTdlNTc3MzI1NDY4ZTA1ZDE2ZTdmYzk2YjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_21f720a8bf7e4119837b093616fc8e77",
+      "statement": "Sandbox settings are re-normalized at control-plane boundaries via `normalizeSandboxSettings`: writes use `invalid: \"throw\"` (storage errors on invalid values), while stored global/repo/environment blobs and resolved configs are normalized with `invalid: \"omit\"` so stale rows drop invalid keys instead of poisoning spawns.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L344-L373",
+          "version": "repo-lines-v1:sha256:89f8a795805816d3cbfa455e38b5e55ea2188e7a47cd3da0e2d62cb576c944fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjMmNkNmIzOTI5ODM1MmU5OWI0MTY3MDk4MzI5YWM0NDFkN2RkNzVkM2JmM2Y0YWM4MzhlNGYxMTgxYjJhNGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YjlhMGIxNmI5OTEwYmFhNWQwYTRkY2FmZjhhNjBjNDI5NjMzYmYyYWUzY2JhY2M4MjAyOTA3NTgwZDEwY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5MzI4MWVmMzEwYmNkNTQ3ZTYyNTdkZDZlNzNiMWIyMDljNTMzMTZlMWQyYTQ4MDhlNzVlNTFlMzQ3MmZlODIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L401-L406",
+          "version": "repo-lines-v1:sha256:aaf77653dc678361182306e53a9c67bd3980e3403d5f98b1f95cbc2ec1b804f8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmMwNjEyY2Y1ZmMzMjg0ZDNkMmE0YzhhMjg1YzBmYjkyOWJlNDVlY2FkYzllMTJjMmM1ZTUzMDNkMWRkNzU4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzEyOWNjNDVmMDY4ZTQxMTdlN2MzNmQxNTdiMmZlZjRjMmQxZWEwOTc2YzY4NDNkNzM5NjdkZmMwYmI4YmNiMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjMxNjZjYjU5MzI4NmUwOTMyZGY5MmYzYzYzY2Q3MGIxZjdhMTkzNjE3MWY4MTM1M2U5NDgzODhjOTUzNTA4YyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/settings.ts#L23-L48",
+          "version": "repo-lines-v1:sha256:88c2f71f6ed5dcfb9555c17fdee3e07a8a5304487ed9965bdcd453480ee53292:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzMTk5ODAwNGM2OGQ2OTNhNzNiNzQxMmZjZDlkNmFkM2FjYmIwYmIzMjEyOTY0MGY2NTNlZjdlZmUyZjM5NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhYzM2MDU0YTcwZjA0MmNkNDg1YzMxYzI0MTMwNTlkYjU1NDFhNTMxZjIwOWI4ZmE3MjIzMDgyZjY4M2M4YWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_aa57ca417b1a468e950acdc393b5f07c",
+      "statement": "Session-scoped integration settings — code-server enablement, VNC enablement, and sandbox settings — resolve from the session's primary member (position 0 of the repository list, the scalar mirror) with the environment's overrides layered on top when the session launches from a saved environment; `enabledRepos` allowlists stay evaluated against the primary repo; a repo-less session falls back to global sandbox defaults with code-server/VNC disabled; and resolution failures degrade safely to disabled/empty defaults.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/integration-settings-resolution.test.ts#L37-L101",
+          "version": "repo-lines-v1:sha256:1cd07e6e89dfdc23154e76418ad6d602676875ab329a3ffe7d91b9c7eb298c08:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0N2U2Njk5NWZjYWYzMGM1NzUyMTYzOGEyOThhODFhZGMyMGM1ZDEzMTFhNzgwZDRjODVkNDZlMmFmZmE2MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxMTk0MWVjOGIxOWNiNDkxNDc0MDRkYWFlNWQwMWJjNTkzYjdjOTkxYWY1NmQxMDFhZGE1Y2RmMWVhNmI0YTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/integration-settings-resolution.ts#L19-L175",
+          "version": "repo-lines-v1:sha256:6a485cc83ff2079cf75e59a480ff43db777b4cc75417b38f62e0f19b1e21566f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTU3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiMjliZDNlN2RiMTQwNjI2MDNhMjcyNDEyZjllODJkY2QwMGFkNzNhY2JjMTgxYTJkM2QyOThkMTYxOWFhYzhiIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkZDNhYzI1ZWZhNTNiYjcxN2U0Mzg2OGY2ZmYyMGY5ZDU1YjkzMWI2N2VmOGExMzhlZGQ1NmQyYjIyZjIxNTNhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_384e09f7f1924e619643f6bac2463407",
+      "statement": "The primary-member scope rules are consumed uniformly: `handleCreateSession` and the automation scheduler's `launchChild` both call `resolveSessionScopedSettings` with the member list and environment id, child-session spawn inherits the parent's primary repo plus environment for sandbox settings, and MCP servers are the deliberate contrast case, resolving as a union across all session members in `McpServerStore.getDecryptedForSession`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L70-L85",
+          "version": "repo-lines-v1:sha256:ba4a0cb30f250009f00c3a09629d2091a5d3552488827ffaa0b134ae8fdbf44a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiMGUyMmQ0ZTQwYTUzNmI0Zjc0MWVmMjQ4MmVmZmU3NDMxMmY0NzFhOGRjNTY5ZjExZGRjOTFlNmYyNWM0YTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkZDkwNjYyMGM1MjM1YzIzYWVjOWNjYTVjZmI1N2FjMTg1ZTg0NjA1YWUwYmFiN2QzYmFjNzM0ODMyZWJkYTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3YzE4NWQ2MDg5YTMxMzZmMzFhOTI1MWJkMTEzNTY3YTNmZWVjN2YzZGJjMzUwMjA2MDE2YTYwNTJkNDZmODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwNmY0Nzk4YjdiZjU3MGEwODhkZGNkYTI3ZDM1YjU2NjYyODFmYTQxYmM1MjI1MjcxOGFiYzRkYzZlNTRhMTgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L178-L187",
+          "version": "repo-lines-v1:sha256:40ee96b181405a9a74ce543ab300c2ff4646c09763765f68eecf6514940aec6e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmYmM1ZTVlMDIwNmMxNzFkOTZhNjRiYjI0MzI1NDYzMTc3NmFmMGRmYjVlYjliZjQyNmY0YmJlN2Q2YzA4YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5NWQ2MmI3MDNjMmQ0MTFjNzE1ZDdjYTk2ZGM2NDI1OWQzNDJjZTVjNzA5NzEyMDM4ZTNkMmFkY2ExYjBkMTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4ZjdhYTVmNzRiMmVhNmRmNDI1ZTVkNjNhYTE5MTg2ZjY4MTEzNjJlMWZlMTAyYzRkYTAwYWI4NmVmMDcxOGQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L1335-L1347",
+          "version": "repo-lines-v1:sha256:baa5b78c50a036f4868d9049ba441de70bd895da218edf1b937bfa1f827c87ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwZGZiNmVlOTcxYzBiNzRhODk1MjU5NzRjZjA5MWIzZTM4MGQ0MjhhYTU4ZGY4MjVlN2QxMjVkNmRhMmJmMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0ZTQyMDhjZDZmZmI4YzRhMzU0N2IyZjU0YWRhMTk5NzhjM2YzNjVlNzhmOTUwMmVmNTE0NWNkZDJhYTg1NDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMzMDJmZGE3NGE3ODc2ZjcwODExNTVmZThiNjllMmExZTM1ZTM5N2YzZmE3NWU1MmUyODc0OTdkMzEyOTY5YTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5NDA5OGUwNjUwYjU5NzBmYTIwZGMxZGUyODUwM2E4YzhkNDFmM2I5N2FmNTYzZjc2NzBmMjc5OWM3ZTU1M2UifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/integration-settings-resolution.ts#L127-L151",
+          "version": "repo-lines-v1:sha256:e9327a690df8814548bbdde799aaaaaf32817212365b828d48affc4b094c59e0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZmI1ZWZjYTkyOGFkMWQzMTFjZGRlYjViNTVlYzhlODc2YWRhNTBmNTE1NmRkZjlhMDZmNGJhODY5NjcwNGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3NjNkYmU2ZWUwYTU0MGEyNzM5Y2Q4M2Q4ODQ2YTgxM2EzYWRlMjMwMjIzOWVmOWYxYTA0ZjNmNWUwZDY4NTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE2MjBkMTIwNGY1ODA3NmM2ZDg3YzJhYjk1YTFiOWRmNzlmMjg2ODUyOGMwYzkzZWE5MmVkZTA3M2ExNDQ2ZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5295573ca27d43b98c352ee8d199bb9a",
+      "statement": "The Slack agent-notify gate applies the same primary-repo rule on a different call path: the lifecycle manager resolves it live from the scalar mirror via `IntegrationSettingsStore.getResolvedConfig(\"slack\", ...)`, and it short-circuits to disabled when `SLACK_BOT_TOKEN` is absent so a misconfigured deployment never installs a tool that would 503 on every call.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L768-L782",
+          "version": "repo-lines-v1:sha256:b8c79a97c149edeb1a219c2a490a13c568d1ee9dfacf56e1dc0286a2a7d6e978:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0MmQ5YTQzZDJhZTZiZTY2MTFkMzAyNGI5NGY2ZjBjYmNkNGU2OTIwZjY2NWY1Mjg2YjljM2E2YzcyNmVlOTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4YmRkZTE1OWU2NjIxOGZhOWZkNzMxOTUyMjVjZWU0NTcyNTkwNmU2ZTk4OWYzZDBlN2ExNmFlZTNkMjFjOWUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L892-L910",
+          "version": "repo-lines-v1:sha256:bbc9794d1c30641d2f483baacc28f67340bfb79283c0242f1d325aefe4ecc860:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0NzEyNWRmMmI2MzU0MzIyMTYxMjI5MzYxNmE5ZmQ1YzkyMDFlN2Q1ZDQzYmQzNjFlOWE3NGI3MmJjZTYxZWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMDFiODI0ZjMxZjVjYWJlOTU4NjM0OGQzMGExMmYzMWEyZjk0ZTk4NjY1NTA1Zjc3N2EwODU3M2U1NzA0NDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2a5df2f146a841289be451db988f1c88",
+      "statement": "Model enablement is deployment-wide user configuration stored as a single global row in the `model_preferences` D1 table: `PUT /model-preferences` validates every id against `VALID_MODELS`, rejects an empty list (at least one model must stay enabled), and upserts the normalized `provider/model` ids; `GET` reconciles the stored list against the shared catalog — dropping unknown ids via `normalizeValidModels` and falling back to `DEFAULT_ENABLED_MODELS` when the list empties, no row exists, D1 is absent, or storage fails — logging a reconciliation event when repair was needed.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/model-preferences.ts#L16-L75",
+          "version": "repo-lines-v1:sha256:5a1a24ed3a947bda6603c3f703ae1d3e7f65197181adcc9cb007d5511e635089:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzMTI4YzRlZDBmMzM0OWI5N2IyMTRmOThjZjg1Mjk0NGMxOWIxM2RhODg1NjA5ZmU4ZDIwOGNkNzEyYWRlNGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/model-preferences.ts#L22-L106",
+          "version": "repo-lines-v1:sha256:40d8e2f371fd69836d3fb4cd2451127611d7ddaa5f95a53d2c2e475e418937da:eyJzZWxlY3RlZExpbmVDb3VudCI6ODUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2ZmJkOWE2ODhjMTIzZjhjMDYyM2NkMzBmODBlODc4Mjk1Nzk3YjY2Yzc4ZDlhOTFmN2FiNThiN2Q0NjNmNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzMzU2YjE4ZjliNWYzMjA3NGRmYzdkMTI5ZjdkMjE5YTQwNjgxMDBiNjdhY2I1NTQ3MTIzZTllYTU2ODdmZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRmZDkyNWM3NTI4NzU5YzRlZmYwY2Y3NzBlMjhhZjc2Y2IzZGI0MmVmZTY2YzFjYjYwYjllNDJkMjk3YWFjYmIifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0006_create_model_preferences.sql#L1-L5",
+          "version": "repo-lines-v1:sha256:e7fc54ae13b07154bc983542323583c96c065bc7f1e6e95472cdab738eafb556:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2ZlOTBmZjgyMzdmMTQxZDExMjJhNWJjNTgzMTQwMDJmMGFmZDNiNWJkZjczYmE5YmVkMTBkMGVkNWQ1ODE2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb91aac8b6a445a19afff7e0138a1ea2",
+      "statement": "Model preferences are enforced at session creation: child-session spawn loads `getEffectiveEnabledModels` (stored list, else `DEFAULT_ENABLED_MODELS`) and rejects requests for disabled models with `Model \"…\" is not enabled` (400) or returns 503 when preferences are unavailable, while `resolveEnabledModel` applies the fallback policy of desired-if-enabled, else fallback, else first enabled.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L146-L166",
+          "version": "repo-lines-v1:sha256:d9bb41762a9e3d3aa479b7b17dd7948452c15fbe005e8029ebd520fafcc75ed6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2NzRhYzg4ZWRkMjliNWQ1ZTY5MmNkYmJjMzE1M2ZjM2IwOGI1Nzc5ODVlNTY1YWFmNWVjMzAzOWIxYjhhZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyM2MzODkwYTEzMWNjYmEzNDgwZDIwNDczZWY3MTgwMzU3NDk0OTQyOTI1ZTMyZmRjMmViNzY0YjQ0MzdjZGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlZGU5YjM2MmM0ZDI1MDUzYzg3MmJhNjZlNWIwNWQ0MDhiMzFkMTI1NTdiOTlkN2MzNDU1NGIzMmIyOTQ0MzUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/models.ts#L306-L363",
+          "version": "repo-lines-v1:sha256:09cba16818a51146b47fed8f1cb764d3ce8c21f80269cf9eb39c7fcc16f04046:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyMzQ5NzBiNmMyMWNiYmI3NjllODdiOTFjYmM1N2ZhYWQwOWFiODdmZjRhMWNmMTI4N2UwNDZkYjBhM2RhNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxMGY1ZTU5ZGVhZWU5MTJkOTEwYWJmM2U5MjZmOTY3NjQ1MWU2MTViNjUzZjIxNDRjZWRhMzlmOGE4OWUwNmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjMGRkMjc2OTMxN2JiOGE5Mzk5YzcwZDc5ZGVjOGQwNjk4NDA4N2RmNTU5NzAzMTQ1YTQyZWE4NWQ0YjIyN2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c203c91b97ec4341a08300307415388c",
+      "statement": "SCM settings (`alwaysUseDraftMode`, `pullRequestLabel`) are a top-level, provider-agnostic setting kept deliberately outside the integration framework: `ScmSettingsStore` reuses the generic `IntegrationSettingsStore` and its two tables under the fixed storage key `scm` (no schema migration), the shape forbids `enabledRepos`, and the session runtime resolves global-defaults-merged-with-repo-override at PR time via `resolveScmSettings`, retaining built-in defaults when D1 is absent.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/scm-settings.ts#L11-L83",
+          "version": "repo-lines-v1:sha256:3ad64f64d91e00ddf551ea18298a39d98b4ede2380d6ff0bdd63acdd4bb829ac:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2OTdkOGFiM2UzMzI5OTU3NzQ3NzE4MjgyMWY2Y2JlOTFlOWY3M2U2NTJkZjA0ZDJlNTYzMjc3MzhhNDk4NTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/scm-settings-resolution.ts#L7-L20",
+          "version": "repo-lines-v1:sha256:6206fc9ae40796a361a6e597476a4cdf70e2f11a449228c60ef68b71f360cd05:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ4ZTY0NGFmMTRkMWYyNzVkOGU5NTA5ZjdhZmExMjdkZWM3YWZhMDVlNTRiOGEzZmZkZTQxZDIwNzdiODVkY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/integrations.ts#L68-L105",
+          "version": "repo-lines-v1:sha256:0e4a03e6a651b6f305f9872d8200d87625b5615326edb0a94dccc7020f9001f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1N2Q2MWZjMzMyMWQ5Y2UwZGFiMmI3YmE2MmQ1N2VjYmU0YzdmMzllZDk3MjQwNmE0ZWYxN2MyNTc5MTk1ODgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxODA2ZmQxMzQ2NTI0MTY5ZjMwNDkxZjU2ODZlMjFhZDEyNzIzYWRiMjUwZmRiNzg4OWYxZWI4M2U1M2Y5ZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1ZjQyNTFhMDZlYmU4OThhZDY5MTY5NTk4NmVmNTA4ZmJiOWQzMWEyNGM0MzJhNjQzNDY1Y2U4NzRlOWY1ZTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ad78b1974234224afa33cf1a3ef5643",
+      "statement": "SCM settings are served SCM-agnostically on both GitHub and GitLab deployments (`SCM_AGNOSTIC_USER_OR_SERVICE_ROUTE`) at `/scm-settings` and `/scm-settings/repos/:owner/:name`; malformed settings are rejected with 400 before storage and storage failures map to 503 \"SCM settings storage unavailable\", pinned by `scm-settings.test.ts`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/scm-settings.test.ts#L27-L71",
+          "version": "repo-lines-v1:sha256:f11f86855af08fe80f109725e59e6471e799dabb8de289171afe838196158aa5:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiNzNiYzM2Y2YzYjVkNDg0YWJmYjUxNjdlYzMxOGQxNTdhZTkxM2E2MjA3YzFmOTE2NTk1YjUwZTA4MjgyMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMmVmYTkwZWE0YTU3MzM5OGU2ZmViYzIxNWI3MDdkYzYxZmU2OTk3NzE3OTNlYWI2YThlMWRhNGJkYjU3Y2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiMzA3ZTk0ZjM2NGU2OGM4NzgzYmEyOTgwMmNmZDJhYmUzOTU4NjU4YmVmNzUwYzYyYzJhZDJjMDZhNGVhMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYyMzI4NDE1ZjlkZGIxODIyNWRlZWE4ZGE5MGMzNWM0MGJiMDMxMWQyNTEzMWE4NGViYTQwNjUzZDA4YTNhYTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/scm-settings.ts#L1-L50",
+          "version": "repo-lines-v1:sha256:479c5039d8e4793a1a0b60cd83375e40e7e340c934c04f1eec958e5d8d89679d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwNGI2ZmE5Y2JiOGIyNmZkNWFiNmYxZmI0NWRmZmIyY2JiYWI0MmVmMDMwMDk2MWI4MzExMTNiZDAwNTgzMGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/scm-settings.ts#L224-L239",
+          "version": "repo-lines-v1:sha256:6e7017340addbcb7396986961c694afda2698e94573927098edcf44f474efb85:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzMGNiMmJhNTQ2NmVlOGFiNzk1NGIxZjk0MzRmNmIyMmE3YTEzMTAwZGZiY2FkZjcwZjAxMGVlMzI1MTk4OGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L111-L114",
+          "version": "repo-lines-v1:sha256:465457af3242eaacd200608bab922dcba5d90774c29c3c72afea166ad4f51d83:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU5ODE0ZGMwZDMzMDJlMGE2YmMxYTE5MWNjYzA5NWUwMzEyY2Q2ZWMwY2EyMmViYThiYjIwMTJhZTU3N2ViOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTM3NzkzZTAzOTZiODFjYmRlOGVmMWEwMDkwZjJiNmRmODM0YjdkZDViZTZjMDk5OTQ5NTJhYTczZGNkZGQyOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjFhNmVmOTY5NjQxZjI4MGViY2QwODZhYzBhZDRjNzNkNTgwZmViYzM0NDA3YWViYzM1MGY0MTUzOGVkMDRlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTE2OTcwMzg0ODcxMzRlZjNjNDAyZjY3OTMzYTc3MDVhYjMwMzg5YzNhYWZmNDRhY2Q2MWRhOTk2NjVmNTdlZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b76153d479c9487bbbb051bf1917b875",
+      "statement": "Commit signing is deployment-wide configuration in the singleton `commit_signing_configuration` D1 row (`singleton_id = 1`): the OpenSSH Ed25519 private key is stored encrypted with `REPO_SECRETS_ENCRYPTION_KEY` and never sent to a sandbox, while the public key, `SHA256:` fingerprint, and committer identity are plaintext; `PUT /commit-signing` validates the strict request schema and derives the public key/fingerprint from the unencrypted `ssh-ed25519` private key, and a missing encryption key yields 503 \"Commit signing encryption is not configured\" rather than any plaintext path; all commit-signing responses set `Cache-Control: no-store`.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/commit-signing.ts#L52-L142",
+          "version": "repo-lines-v1:sha256:7f2b60d0d090f74dc99996a571ac6efe419565325d8cc94eb1eb3f2945da35d2:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYWRmZDE3OTMyYjBiOTQyZTdjMmUzMmUyODJhMDQ4ODEwNjY4NDZiOGVkYWFlYjNkODEzNzM3ZTEyN2JiZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjZDZhYzliNDJlMmE4ZWQ5OGM5NDk2MjEwOTRjZmZkODI1Y2MyM2I0MzdmN2IzYjFlZDEwYmUwMmY3ZDAyOTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyMDgzZmQwNDUwNjkyYmZjODU0MmRiMmM2YjAyN2JiYmZhMTczNWEwNjhhNGViNDY0OTJlYTI1MTgxN2ZkNjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L24-L134",
+          "version": "repo-lines-v1:sha256:1f5e473d0db0a0296057b972dfda758aa2fd7c3ae354712155d9b3ffd26ee4eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTExLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxZmI3MjZmNTQ3Y2M0YTBkNGExOTg5MjQ3YWYxZDUwYjA1YWM5YmJkZGEyZWZmY2M2NWMyYjdjNDcwZTZjNWI5IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlMDA2YjRiODY3N2U4MGM4OGFlNjA3ZGQzZDNmZTdhZDIzZDQ3Y2I5YTU0OTAwYzZhZjZiMmQ2YWE1NjhlN2JiIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI5N2QwNmI2MzlmZGFjZGM3MWQwNzdjODRiZTc0MzMzNDBhZDUwZmVjYzZlNDg3ZGQwMzM2ODYyZDYyYzJhMjg1In0"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0043_commit_signing_configuration.sql#L1-L9",
+          "version": "repo-lines-v1:sha256:9a23934b1f8345bc79ae148890f01ba121a323fb0539f3331b2b791eeeb202fd:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFhODk2MjdkMWQ1N2I1MDExNWZkZGY4MjlmMjFiNjUzM2IyNzY4MTE3MTRhNTVkNGM2NmRhMjNlNDAwZDkyMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bfb2b7c6418649efbc7a0dc986eafc98",
+      "statement": "The sandbox signing bridge keeps the private key control-plane-side: `GET /sessions/:id/commit-signing` returns only the runtime configuration (committer identity plus public key) or an explicit `{ enabled: false }` on non-GitHub deployments, and `POST /sessions/:id/commit-signing` accepts a payload bounded to 1 MiB on both sides, verifies the `X-Open-Inspect-Signing-Fingerprint` header matches the configured key (409 on key rotation), signs with the decrypted key, and returns the armored SSHSIG signature; the in-sandbox git signer (`gpg.ssh.program` shim) posts the commit payload with the sandbox auth token and fingerprint header.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L136-L212",
+          "version": "repo-lines-v1:sha256:f76e22d5bd40c1d75fca8ccee0428372a55a7a67330d15545720368df978e7fb:eyJzZWxlY3RlZExpbmVDb3VudCI6NzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxZjk1M2JiNzFlOGNjOGQwOWU3MmUwYTFiY2FlYWM4MWI0N2IxMTQyZDIzZWY1MDJkMWRmOGZkY2RhOTYxNTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2NTVlZWVlNmI5ODFmNzVmYmI2MzJiMjJjY2U2MWFlOGY3MDVjNDI5YTJkMzRlMmEwMzMzY2NkOGM1YWE2MTgifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signer.py#L22-L70",
+          "version": "repo-lines-v1:sha256:aed9acb2bac2b35de6f2aaccbebd2cf4a1c16877c8ac567be3deef285acf3e46:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlOGUxMzE3OWQxZTAxMjY0NmIyZWMxMmEyYmNiNDA3MTg1YTMwNWI5MTU5OTYwM2Y4OTUwZjdiMzNiNTFhZTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiYWUzYmQ1ZjE1NzRlMGE0ZWQwYzBhYjgyM2M4YTUzNTRkZGVlYzM2ODMzNWZiN2VmYzVmNmViZDcxZTU2OTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjNDBkYmZmMzMzNzBmNzNjMWVmMzkxMGEzYWNkMjg2NjQ0NGI2OTBlODkwYWRmNmFiNTc3ZDg4NTQ0MzA0NDcifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L126-L157",
+          "version": "repo-lines-v1:sha256:60001a351be4d3eae39ea62c7ce91b204847c4ac05b0016259534c1c5da01add:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1YjE4MjY1OTAyNjYyYmFiMDFlZmUzMjlhOTYxYmMwMGI3MzE4ZGI3ZmVhZWUyM2FjMWQ5YzkxNzhhZDkxMjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmMmYwMmUyNzA4NjU2ZTI0ODAyYjJjNzcyZTI3YTg2Yzc0ODNmOGViZDRmZGZiZTA0YTc1NDhmZGEzODEyZTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNiM2EyNjFjMzM4Yzg3ZDJlNDliOGQ4N2VlMjVlMmU5OWFlOTg5YTk1ZWM2ZmQyZmEyM2I0MGRmZjI2OTQ1ZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0NjExOGE3YWMzNjgwNjlhOWIzZjNiMDk1OTczYmVkOTg2MjE4NjkzNmExNDA0ZTY2OWMzZjhiODNkZTA2MjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_22a74408a7ac4faaa5cf205409fd77ff",
+      "statement": "Secrets are user-editable key/value configuration encrypted at rest in D1 (`repo_secrets`, `global_secrets`, `environment_secrets`) with three scopes served by `routes/secrets.ts` and `routes/environment-secrets.ts` (global, per-repo, per-environment, plus value-free import); list endpoints return metadata only — never values — and every handler refuses with 500/503 when `REPO_SECRETS_ENCRYPTION_KEY` or the DB is absent.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/environment-secrets.ts#L68-L76",
+          "version": "repo-lines-v1:sha256:8b8fdbadb9da881797843ee28a04689a98861978919db648158d73d807b3659c:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTlmMWJmY2JkZTIzN2ExMjE0MTIwNTI0NGE5Y2E0MDMzYjg4ZWRjMDA1OWY2ZDVjMDMzZTQxNzEyZGFhMTIxYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODcwYjNhNmM5MDdjNTljY2Y3MDE2NWRlNzRmNGRlODI2MDVkYjM0NzM2YjRmMjE3ZjA1NjE5OGQ1YzkyZjBmOCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/secrets.ts#L29-L165",
+          "version": "repo-lines-v1:sha256:d255ab3629f8a773c1cad9d014f723efb8d4ae723fa90688e38007306f332770:eyJzZWxlY3RlZExpbmVDb3VudCI6MTM3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzY2IyMDdiODNjYWNiMjRiMDdmZWFjZTI1ZWRiNjU0MDExZmNiMWJhMjMyYTkyNzdkMmNjNDE1MGJlODNjYzlhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4MjkwOTQxYTcyMjJhNjE2ZDZlOTU4YTBjZDAxNDdjN2QyYTc3YzZhMjU3YmJlOTRlOTQ0ODI3Y2IxNjAwOGJlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxMTY4OTcxYjE4ZmUyZGQzNDg4OWYzZTFmNjE1Zjk2YTM1ZTM5NjJkYzY2ZGRiZGNhMzI4MTYxNTU2OWY2ZmRjIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/secrets.ts#L379-L400",
+          "version": "repo-lines-v1:sha256:7b4add12b8047ea42579cc9104363d4389cee9c82dead47d05981191ef8f0a02:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhMzA3N2IxYzdmZjQyMDBiZTA2OGIzZmRjNDZkNmJkZGZhZmRmNmNmMzI0OTMzZDFiOGE2NTczM2M0NmFiNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMTFmMjM5YWM2NWM5ZmVjZDRmNzk3NWQ0ZWUwYzY3N2I1OGE4ZWE2Nzg1MmVhMjVkMjc5MjM5MjUxOGQyZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkZmU4MTMyMDFkYTFjZjE1MWYwMGU0NTYxYWI5ZDBmZDY0ZjE5ZTkzNDZmZWVjZGI5MmJkNTFiNTcyMWFmYmEifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0001_create_repo_secrets.sql#L1-L13",
+          "version": "repo-lines-v1:sha256:47b87990fd3049eefbf3281210997bf5e123d77c92a3a60df473bf88450104a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZjVhMjdlMjllZDEyYjNmYzk1YzFlY2YwNjVkMjA3MjU4YWZhOTI0YWFmYmJlMGM2OGFiYjJlOTU0ZmQxYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4ZjhlNDc5OTA4M2U4YjQ1MjRkNTgzNDIzMjBiOTcxNzUwY2M4M2M3NDk2M2MxNGQ3NDcxOGE2MDIwNzFmNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_71e9f67978184bea88456e761ad687f3",
+      "statement": "Secret key/value validation is shared across scopes: keys must match `[A-Za-z_][A-Za-z0-9_]*` (max 256 chars, uppercased), values max 16 384 bytes, at most 50 secrets per scope, and a reserved-key list (`PYTHONUNBUFFERED`, `SANDBOX_ID`, `CONTROL_PLANE_URL`, `SANDBOX_AUTH_TOKEN`, `PATH`, …) prevents a secret from clobbering the sandbox boot environment; validation failures map to 400.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L1-L53",
+          "version": "repo-lines-v1:sha256:05222ac272f4554a53f637cdff436249787dac02b1712476e07a072d38a71e2f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkN2Y5ZmRmODNlZDM5ODk0NTNkZTc2NWE4MzFkNzU5OWNmZDQxYWQyYjFiYzU5NGQ0Y2RmNmM0NjJlMDRkMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBiM2I0ZjBiZDU5ZWQ0ZDZiY2RhNmY4MWNjZGFmZGFkNmVjODE2MzY4NTk2MGUwMDUwNGUyNDBiMGYzNGE5OWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/secrets.ts#L86-L99",
+          "version": "repo-lines-v1:sha256:84b9d34a2a80cd4e65930401569ff61089df70e34353a2952ef5aee73878da2f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczODEyMTJmNmNmYjRiNWE1YmMzNzcwMDYwMmY3NTE1NmFmNWE2OTFmMzZhYzRiNmVmMzY0YTczYTk1M2Q0NDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZjYWJhOGM2MDVmNTI0YjljYTI0YzU5Zjc1MDUwMGIyZTMxNGRjY2UyOTExZGQ2MjkzODdjNGEzZmFjMjA4NmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_393843f1c3af4281b36176a4838b1ecf",
+      "statement": "Merged secret payloads are capped at 128 KiB (`MAX_COMBINED_SECRETS_BYTES`) with per-source byte attribution, and `SECRETS_CAP_ENFORCEMENT` controls the outcome: the default and any unset/garbled value is fail-closed `enforce` (spawn/build rejected with `SecretsCapExceededError`); only the literal `warn` logs and proceeds.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L156-L210",
+          "version": "repo-lines-v1:sha256:709ccf4f8b358b5b81cf6fd2ecd92ccad4411bac04d1e72a7091cb9412a23f1a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3NTcxOGFjYzc0NjUyNDAyNWY4N2M4OTU5MjVmOWVhODk0M2NjMmE4ODc4MjYxZDgwZDc3YWYzODEwYjg5ZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4NzRhM2NlZTBhNTFjYjJkZGM2NWU4MDhhNzgyYmUwZmU0NTk1MjQ4OWU0NDNkMWFjOWI2YjFkNGVmZmZhNzIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L55-L56",
+          "version": "repo-lines-v1:sha256:6c1498b5c0b80982f27060a07c883d6b47847fda4222d87226c7877ea8861ed9:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDIzZmYzMDEwYTI5ZTBiZTY3OWRiNDMwN2ZlYzQwZGFlYjAyYzk4N2U1OTEyZWU0M2ZjMjM1ZGFlYTVlM2I0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYThjMmI3MGNjZjViODk1MDc5NGIzN2E5YTA5OTAzNTJmNDlhNzVjNDc2NGU2MmEyMTZmNDk5ZmY5MmM1OWU5ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTg3NTI0NzA0MjIzMWE2ZWY2NjI1OWZkNjIzOWVlZmUyYmRjZDRiZTI0ZTdjNTZjNmQ0ZjNkNTQwMmVjY2Q0ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2QxOGMzYzJmYzQ5ZjQ0YTY4YjBhMGM5MjllM2E0NTEwNGU4YmJkYzQ1OGRlNjI1NjJhNGJjOTQwMGM2OGI1ZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scope.ts#L283-L299",
+          "version": "repo-lines-v1:sha256:414a45b0ed2e0a321c374e4543e4638c51cfd7981e386c87137ffa9ce11689bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiNjc5Yzg3Yjg0NTRlMTU2NGMyZGJkOWI2YjcyYWM1NDgwZjQyNTM2Yjk3MWMwM2IxNTIxYmZjODg2ZmNiNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiNjMzZGZkMmU4YjhmMDQ0YmI1ZGU1OGEyZGQxOWQ4M2IxZWFkYzdhNTA0YWVkNTlkOTQ5ZGQ2YjE4YWNjMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzYzhlYTllMTQ3ODFlMTAxYmNlMTgyMGUwZDIyZWQ0NWY2ODA4Y2FhMTI5NzU2NmRiOTJiNzkwMWQ5NzRlYjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fffd34aa254e43cab48a08867c32a35d",
+      "statement": "The web app's `NEXT_PUBLIC_*` variables (`NEXT_PUBLIC_WS_URL`, `NEXT_PUBLIC_SANDBOX_PROVIDER`, `NEXT_PUBLIC_APP_NAME`, `NEXT_PUBLIC_APP_ICON_URL`, `NEXT_PUBLIC_SCM_PROVIDER`) are inlined into the client bundle at build time, so Terraform sets them as build environment (OpenNext/Cloudflare) or Vercel project environment variables and also writes them into the generated `wrangler.production.toml`; changing one requires a web rebuild rather than a redeploy.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/.env.example",
+          "version": "repo-file-v1:sha256:8408a769d7d3ab186d9762e6ce32348e056494d16ea254e2afc5b7c81d6a3a1b"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-cloudflare.tf#L17-L82",
+          "version": "repo-lines-v1:sha256:8fff7c7b5af6a28779081434b43700121544ef0817865d8a8364ba2d8c674fd5:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNiM2Q1NjZjNjNlOWQwNmJlOTU3ZGE2ZGNjNjBmZjZlM2MxYmFiMjA2MTQzYjFhODI1MGY4YmU0NjAxMTgwM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlkZWQ0YWExN2U0N2IxNTY0MDFkYzEwZjI1ZWIzMWMwNmY4ODkwOTgxMGZkOWM4NGQ1ODBhMGY0YjMzZmM3NjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyOTBhZTBkNjgzODAxY2YyYTdmYWIxOTdiMzQ4NzFkMTVkMjRhYjU3NTY4MjE3YTA1ZDU0ODBjNGFjMmJhNDcifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-vercel.tf#L18-L59",
+          "version": "repo-lines-v1:sha256:da6461120672454d917baef8fc74666ecdeed740867b3aa917929d94d835964f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiNjNlY2YzYjdjMDdlYWU0MTEzY2FhNjM2YTJmMTUzZDU5ODk1NTZiMjRkZmQ0NGM2MjA1NThiZTUyNjYzYjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjQ4Zjc3ZmQ1YTljNjNiM2NkZDBhZjQ5ZGFhMTI5OTIyMGI3NTQxZTg4Y2ExN2VmZTFhNmExMTRiOWZmMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiNjgyMDk5ZmQ0ZmZjMTBlODEzYzliODcxN2I2MjdlOWFjNWQ0YzE3Nzk5ZTRmYzllYTM5OGJmODA1YmZhYmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_acd4bb3c58bb4e92ae0c59c5a233030c",
+      "statement": "The web app's `SERVICE_AUTH_SECRET` is its per-service sig1 signing secret and must equal the control plane's `SERVICE_AUTH_SECRET_WEB` binding, which Terraform generates as a 64-character `random_password` in state (operators read the generated value rather than inventing one); `dispatchWebServiceRequest` throws \"SERVICE_AUTH_SECRET not configured\" when absent and signs every outbound request as `service: web` after stripping caller-supplied `Authorization`/actor/service-signature headers.",
+      "evidence": [
+        {
+          "resource": "repo://packages/web/.env.example",
+          "version": "repo-file-v1:sha256:8408a769d7d3ab186d9762e6ce32348e056494d16ea254e2afc5b7c81d6a3a1b"
+        },
+        {
+          "resource": "repo://packages/web/src/lib/control-plane-service.ts#L44-L71",
+          "version": "repo-lines-v1:sha256:9923a6ad38d617dcc41c5359dad8b2c89bc239b06951e0e2bb0bdf6027e3667e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmOTE5MzI1NDEyMzBiYzI4Y2E5ZjRiZjQ4ZDRjNzIxMDAzZGFhNzBmYjhkZWExM2JkMDVmYmM0MWU3ZGFlNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZmJlOTQzZGM4ODQzOTViZWI5ZTZlYTJiYWExZDNmOGFiMDYxNGQwOGViOTExNGJlOWQxNzg4ZDY3Y2I0NjQifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/service-auth.tf#L1-L27",
+          "version": "repo-lines-v1:sha256:551dd184b167acf8f1138f59824bb183cc6616867b735792e543ca6eea35ccfe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiZjU4MjVmNTU4ZmMwYTJhZjJhMzRlODNmYWIwZTE1NDM5MDNmMzcxM2U5ZGM3ZjU2MTBhYzYzZDFhZWJmNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YmI5Y2VmOTMxNzkyZjU3OWU4YTlkODlmNDI5Yjk3MjdiOWM1MDQ3ZTYwOTU5MmViYmNmODIxMzM4MzE1NDQifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/web-vercel.tf#L50-L56",
+          "version": "repo-lines-v1:sha256:a74e63fd118b409a2810d18fca63a42bf429d1517e13ec34339357e0818ad7e4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDU2YTMxMDA3MjY1YTMwZTM0M2YzOGUyYmI4YzliY2U1MDdiN2UxZjI3NDk0OWFmZDYwMzY0NDI1MjYwMTgyOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYwY2RiOTcyYTdiZmI3ZWQyNDZmOWZmNjcyMzg1ZTU1ZjQ5NjhmYzExMDQzZGM1YjY4NGQ1MWRmYTMxZGJjYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2NkYjY0ZmVlOWQ4YTNhOGZlOTRkZThhNjYyZTMyMDZkY2EwNTQ5OGEwOWE5NzE1ZWU0YWY5ZDc4YzcyYWU1MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjBkNWFmYTJjMjgxMDBiYmQ2MTY4YjYwNWI4M2MzMDE3MzEyNGFhZTlkNDFiY2ZkOGZjMjkyNjE3YzFhYWQ0NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e0c2142a3216442682c208c94b49ad76",
+      "statement": "The Modal data plane receives its configuration as Modal secrets created via CLI or Terraform — `llm-api-keys` (`ANTHROPIC_API_KEY`), `github-app` (`GITHUB_APP_ID`, PKCS#8 `GITHUB_APP_PRIVATE_KEY`, `GITHUB_APP_INSTALLATION_ID`), and `internal-api` (`MODAL_API_SECRET`, which must match the control plane's binding, plus the SSRF allowlist `ALLOWED_CONTROL_PLANE_HOSTS` restricting which hosts sandboxes may call back into).",
+      "evidence": [
+        {
+          "resource": "repo://packages/modal-infra/.env.example",
+          "version": "repo-file-v1:sha256:8cfff0078be324cd4cecac0d8a05e2ffefeca41a11777dc109dd0f09abede620"
+        },
+        {
+          "resource": "repo://terraform/environments/production/modal.tf#L39-L61",
+          "version": "repo-lines-v1:sha256:1309abf19299beaa45f238180fef365db0d61957985c53cc807ee9c69bd55d4b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkZmQ3NTI4MWQ3NmEzZDQ0MTY5NDViY2EzZmNmYWRhZjk4MWQwNWM0ZDIzM2U1YWFmYjM4YjU0ODA5M2Q0NTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNjQ4Zjc3ZmQ1YTljNjNiM2NkZDBhZjQ5ZGFhMTI5OTIyMGI3NTQxZTg4Y2ExN2VmZTFhNmExMTRiOWZmMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5NTI3YjZkYmU5OTBkYjA1NmQ0NjIyNmVlNjA2YTZjNGIzMjU0NmYyNjQxZGE5YmFiM2JlZjRkYTQ3NTI5NGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9038076b1c2f4de484dc393dd6d9f717",
+      "statement": "Deployment admission is configuration-gated twice: four comma-separated allowlists (`ALLOWED_USERS`, `ALLOWED_EMAILS`, `ALLOWED_EMAIL_DOMAINS`, `ALLOWED_GITHUB_ORGS`) admit on any match with `UNSAFE_ALLOW_ALL_USERS` as the explicit bypass, and Terraform's `checks.tf` hard-fails the plan when no allowlist is configured and the unsafe flag is unset, also requiring a complete OAuth pair for at least one sign-in provider with a compatible admission rule.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/user/runtime.ts#L98-L129",
+          "version": "repo-lines-v1:sha256:604885d23e8ecc62b12b3564c298cd68b99d1db956f47969ea8f9dd3399ea9cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3MTRhYzBkYmU5NWY4NGQ1MDQxMjc3NDY0NzRmZmRhZGY4MmU5ZDIzNGQ4ZTFjZTBhNDMwZGZjZDUyYjllM2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk2NWE2ZWM1OWUyYmQ5OTEzMzhhMmFiOTUwYzAwZmNiOWY4N2Q2ODRjNzc1YmM5MTQzNDk5NjM5ZGVjYmY2Y2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjNTMzMjQ5MzJjMDYzOTVkOGM3MjdlM2FlNjFmNTBiZDU4OTQ4MzI1NmIxZTljNWZiYTg2MmIwZDE2ZWMwNTMifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/checks.tf#L28-L65",
+          "version": "repo-lines-v1:sha256:ceaa333b4f380db70edd1f73241415f0decba2da4f72c6b32bc104eeb6821535:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwZTM2Njg4YzgxMDRjNmNiNGY1OWI4MjExNDgzNTNlMWVjOTM1OWZiMjkzZmI1ZDBmN2VmY2IwMjQ2NWJmMzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L683-L714",
+          "version": "repo-lines-v1:sha256:0aa0c57da720ed8455b13f63b97d3cd93a7f84812ecb53180faf0bafb74fc42c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0MjdhMjZkOGMxYmZlOGZlM2Q1NDJiZjE3NzE1ZTYwNDBiOTY3OGZlNDdlMDJkNjBkOWYyZDljMmU4ZTZkMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5NjU2ZmVmZWNlMzM0ZmRjNGJkZGNjZWI2NjdlOTllZmI0N2NkNzMxZWVhMDg1ZWFjZTlmZTZlMjczYTVhZGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b8d6f6855694e12867f69691d81d2fa",
+      "statement": "Sandbox lifecycle env configuration: `SANDBOX_INACTIVITY_TIMEOUT_MS` (default 600000 = 10 minutes) feeds the lifecycle manager's inactivity config, `EXECUTION_TIMEOUT_MS` (default 5400000 = 90 minutes) backs both the session watchdog (overridden by a session's persisted `sandboxTimeoutMs`) and the automation recovery sweep, and `LOG_LEVEL` (default `info`) is parsed per entrypoint.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L697-L700",
+          "version": "repo-lines-v1:sha256:966db22772b313b59e7043156bfb7febbabe3e2cb83c1062fc0f36c02f44e4a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjNhMzU5YjQxNWQ2MTAzZTk2MzMzNDBjMDAyMjI1ZWU1ZjkyOWJmMDU5MTgwODA1ZjI4OGM2YzQ0YzVlZDdmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTdkODkyNzEyNjg1ZDU3NGNkMGUyMzg4N2Q3MmRkZjdjMjE2ZDc3OGUyNzcxOWJhZjNiODI2YmI5OWRlYWRmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWMxMmNjZGQwZjU3MTdiYjBiNzQ2YjZjMzRmYzQ4OWM5ZGY5NzIwZjlkMWQ3MDg1ZTBkMDU4NDEwNzMxMmQ3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQxYzIyMzJkY2Y1ZjBlNWU0ZDk4Njc0NWU1ZjIzNjg4NzIzNGE2N2FlYTZmNzc2NjJkNmUwYWI3ODBlYmE5ZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L192-L208",
+          "version": "repo-lines-v1:sha256:2998c9ad7995c188bf84a0a0403a246e082f5dd9851de8893b2699d44290485d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhY2Q0YTYwNGE4OTUyYzA0MWRmZDFjYjM1MGY0YWE5ZWQzNTEzNDFhMWZkOTYzYTVlNjgzOGU5OTQxZGE4NjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFiYmJkYTQwMjZjYzdjZGY3YTBhMGU4NmI0ZGI2NWU5MjM3MGEzMDU5OGNkZTM5ZmJiN2Y3ZjE0OTlmMDU5N2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwNmQ3ZDAwMzlmNWM0ZGIwYzlkNTVhMGQ4MGU4MDY2ZDMwYzIyM2U2NTk0MTk2OWQwNmE0YmY5NzFjNWFiMjMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L918-L930",
+          "version": "repo-lines-v1:sha256:bcffc55da7b7161720d653622c729095867a05b9e8e862d63db97610d508c013:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1MTA1NGIyMTNlNTM0YjU0Yjc1YmVlNDVkOTgxZjJmNjM3MjJhYmNjOGU1NTczM2UwZGMzMzkwZWYyNTExZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlYjJmMjgxNzI0NzhmNTVhYWZhYzRlNzZmMGM0NTczNjA2ZjY2NzUwMTVmOTJlNTA1ZmVmNWM1Y2ViMjAzZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjN2YxODFiM2JhMWZmZTcyMDE1ZmE5ZTZiMTZmZDczMzU4MmYxMGQ3Yzk0MWQ5OWQ2Mzk2YWVmMmJlYzRhODUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

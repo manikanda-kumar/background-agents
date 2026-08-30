@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:15abaf8d7f37d78ceb32ece54ee784fbe6232d81a4bbe4f13dab0ed41170b2fd",
+  "claims": [
+    {
+      "id": "claim_11c577a895b54243a2288d55436bc630",
+      "statement": "The SourceControlProvider interface (packages/control-plane/src/source-control/types.ts) splits its surface into user-authenticated operations (getRepository, createPullRequest) that take a decrypted user token, app-authenticated operations (checkRepositoryAccess, listRepositories, listBranches, getBranchHead, resolveCommit, listTree, readBlob, getPullRequest, generatePushAuth, generateCredentialHelperAuth) that use provider-level credentials configured at construction, and pure builders (buildManualPullRequestUrl, buildGitPushSpec) that perform no I/O.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L338-L504",
+          "version": "repo-lines-v1:sha256:f4bf4c525e3163e5fa226353d37e86a721bfa6faeb21ae9105025133bd962f83:eyJzZWxlY3RlZExpbmVDb3VudCI6MTY3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmMTQ0MzBlZDAzN2IxYWIwNmUzNzAwODM2ODQ3YmY5MmI0NTFlOWRkYjMwYjViNzcwYzlkZmFjMzk5NDI2YzA1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5NmUwM2QzMzg2OTExNjkyZWZjNjM1NjUzMjBjNzkyYzNlOWU3Yjk4Njg5OGZhNjEwYjc3MWRiZDQ5Yzc0NzIwIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjYzk5ODAyNGNkNzU4MDRmODY5YjkwMmI1NDYzZDhlMGYxOTFjMWUzYjIyMWIyMzYxZTk0YjlkZDQ4NWMzOTkzIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L39-L55",
+          "version": "repo-lines-v1:sha256:decb7c16ab487e2e81b576d87f56cf28e596992c651f9c5d8ca5e939c4e3edc7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmOWMyNDczZGUwNjFmNzQ3NzhkM2FlOWJmOWEzMTIxYWVkMzc0YjMxMTYzYTZjNTc2OWQwNTRmYzYyN2JkZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYWQ4YTQ1ZjM1ZWFjNmQxZjNlMzA5NzY2NGI0YTRiYTlkY2I5NGFlZjYzNTA1Njg2NGQzOGE4MTBkNTFlMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0NWM2MGUzMmFiOWMyMjM1MDRjMzUzNjk2YmYwZjM2ZmZlYWNkM2YzOWUyZmQ5MDFiMjNiMTQ5NWMzMTNhNTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_33c2766cec3b4e648f12a2b6921469c5",
+      "statement": "Provider methods throw SourceControlProviderError carrying an errorType of transient (retryable: HTTP 429, 5xx, and network-shaped failures like fetch failures, timeouts, connection resets, aborts) or permanent (configuration, auth, validation), plus the HTTP status when known; both providers classify errors through the shared fromFetchError helper so retry policy is uniform.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/errors.ts#L15-L96",
+          "version": "repo-lines-v1:sha256:aefd6a6ea0200cc29163f56366f5fabb9f0a0d1c6a31e9b45ab643ade5d3d04a:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjNjFjNDMwZDY1NzBkZTQ4YTQxZWI5OGE3NTliNTU0MmI0OWUwMjdmM2YzY2I2N2Q5YWQ3YTA5N2Y0MjQ5NTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2ZTAwNzE3NTFiZDJhZDdkMDFmN2FkZDg0ZGZkZTQ4Yjg5NjA5NmQ4Zjg2YTllZWU2N2UyNTFhMjliZTBjZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyY2M2NDIxYTViOTIzMWI5OTU1YzU0ZDM4MDI2MDhjMDZkNzUxNjVhMDcxOWEwYjhmZmY4MmJhNmEzYTZiYjAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L231-L242",
+          "version": "repo-lines-v1:sha256:f9c25e659218af7bb870708256f5b727df1b24134e5a362929035b61709a45d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5Zjg1NDc0NDY4MDIxYTRkZWNhMDZjNTA2NzUxMmRiYWIzNzQwNjc2MWQ0NjQ4YTgwOGI5Zjc2MDVkZDY1N2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzYmUyNjFiNzA1OTRlNGQzNGVkYmE1MWZhMTg1ZjRmODQyODJlMmMyNjdhYThlMTYwMDkzNjU0NTYxN2M4ZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyYjRhMTMzY2RhY2FkODgzMmM4NTcwNDE3YWE4Y2IyYzM3NDEyNzA1Y2MzNmZlYjY3MWI4MTJhMTZlYjYwNmUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L180-L191",
+          "version": "repo-lines-v1:sha256:8cf39e5ec6e5c2b7546cf3a6f67b470a8d0fe8b782f4b092491b1b64ab3185cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiY2NiM2ExNTFlMDUwNTRkNjgxZWM2NjBhNjQ0ZWVmMDA1ZTNiMDNiODcwNmM4YzgxNjI2Nzc3YmI3ZTYzYTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJhOGM4NGI0ZDFhMTFiYWExYmU0ODkyOTFjYTgyYTNkMzI2OGNlZDkzOWJjZDFiNmVlOWMxMzhjNjZlNTYzMGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiMDQ5YjAzNGFkYzYwNWYxMWYzMzcxNDI0ZjM5MjljYmExYTMxZDczYTY1NTYxODE1MDNlODhhODU3ODc3OTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_82eb769de8524237bec33e4eb9c27955",
+      "statement": "resolveScmProviderFromEnv trims and lower-cases the SCM_PROVIDER value, returns DEFAULT_SCM_PROVIDER (github) when unset or empty, accepts only github/bitbucket/gitlab, and throws a permanent SourceControlProviderError listing supported values otherwise; provider selection comes exclusively from configuration with no auto-detection.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/config.test.ts#L6-L25",
+          "version": "repo-lines-v1:sha256:ac2d93a0ca9180090e24f10c4c0840d7044e1ef600827a69f247e6392e1d6fa8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5M2Y0ZmEwZjdhOGI2ZTE2NTkxNDY0M2UxOTkxOTIyYTU3MDA2MWJiYTVhM2EyM2UxMDhkMDRiYzMzOGU3MjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyNDY4YjRhMTczYzIyNGNiNDRiNDY5MDExMmNkYWUyNGQyZDBmZGQ1MTU1ZjBmYjFkNWMyODZjYTJhYjQ5MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/config.ts#L4-L20",
+          "version": "repo-lines-v1:sha256:bbeee2f42feb07b3ab5f52159cb80e53b44f1a777e51bf5c4ef1a1bc53da7de2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ZTQ3ZjY5OGM4OThlYmRhNDNiODFiMmY3MmY5OTljMzc2ODcxYTA3NDY1NjA4YjhkZWIyNjcyMmVmYzAxNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIwY2JkZWVhYTcxZDIwNmM3YzcxYjk4NGYwN2Q3NWFjYWRjZjJlMzA4ZjI3MTVmYTE3MzRjZmZkMDg3NGRhMzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e80e03c1f24b4c3b93b50352067fd981",
+      "statement": "createSourceControlProvider switches on the provider name: github always constructs, gitlab requires GitLab configuration (missing token is a permanent error), bitbucket throws the explicit \"SCM provider 'bitbucket' is configured but not implemented.\" permanent error, and unknown runtime values hit an exhaustive never-guard; the switch makes adding a provider name a compile-time-forced decision.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/index.test.ts#L7-L48",
+          "version": "repo-lines-v1:sha256:cc084fd60de78d46853fe357ea851e74a9a5c8c469a3ffe8f6167a8ed61dd4de:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjNGQwOGI1YzE0MDdlODllNDgyNjU3ZDk3ZDZlZWE0YjEwZmE4Y2YyYTA5MzA5YzZkNmJlZjgzZWViNTM1MjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0MmIxYTJlNWI3YjIxMjc4MjQ4MzU1YzY1OTNmOTcwZWI2MDNkYjg4NjNmMTdhYjVkNWU3NDA1NjA4YmZmZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/index.ts#L29-L57",
+          "version": "repo-lines-v1:sha256:f923c3c4a9e0474aff135fab801386887a47d2ebf23b0d1553f12c9184c78134:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0ZWZiYzc0ODA2ODNjOWE4YzcxYzgzOWY2M2QzM2I4NTViNjRlY2FmNjY5NjFlNGU5OGVhZmQ0ZmYxMTVlMzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMDFkNDYxYTE0NjNmOTRkM2EwOWJiYmE4NTUwODY2OWIzYzI2MTc3YWU5YzEyNGFiZWU3NWM4N2JmZWViMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e59d31068c3947f394c637ae18595edc",
+      "statement": "createSourceControlProviderFromEnv assembles factory config from Env: GitHub gets the GitHub App config, a KV cache store over env.REPOS_CACHE for installation-token caching, and an app-name User-Agent; GitLab config (GITLAB_ACCESS_TOKEN with optional GITLAB_NAMESPACE) is included only when GITLAB_ACCESS_TOKEN is set.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/provider-from-env.test.ts#L15-L44",
+          "version": "repo-lines-v1:sha256:7a026ca9a26a65cdcec749597c412b2df15cfd5bbb781e1cc16b9e2b1f37130a:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0ZWZkNzcxNWYwNDIxMDIxZWQ4ZWRkMTkyZTM0ODg1MDRmNjMzOTU2OWU4OTQyMGZiYjg5N2E3OGZkNzM4YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVjZTBjMDY2MjFjYzhhMDc2NTkxNWQ3NzZmNTAwZTkwNTNkOTdlYWU5M2UwMjgzZDY5YzM0ZjY5NDQ2MzNmNTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/provider-from-env.ts#L9-L31",
+          "version": "repo-lines-v1:sha256:97ca46b36655873bf5c4623456344a4cfa4f89cc2124281983571bb6a3fb5504:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyMDZhMzNkOGMzZjNjZTcwNjIzZmExODExYTE3NTRlNTdhZTk1YjhlNmMyM2RiYWFiMmFmMGU3NGJkMjBmODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3Yjg2YjFhODlmYjM0Yzk1MTYwZTk4ZTIzODNkNDkxMDM5NTYwOTM4NzAyY2EzYTg1YTQ4NGJmOTc4MTExYzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/types.ts#L11-L30",
+          "version": "repo-lines-v1:sha256:ccb18770c9353d6652b1ab76332c5a4b57f412efeea4f584a58e5b769e9f03e8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1ZjdiYTVhYTk1MWEyYmFhNDA4YTVkZTBkZDI4MWExY2VjZTEzYWI5MDdkMzFkNjRiNDEzMWM2M2M0NjBlZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2M2ZkNWYxODUwZDhmZDNlYmYwOWFmZDkzMTYxNTQ1NDAxMmQyNWJjZmQxMGZkMDhjZTU3ODMyYmU0MmQ5NWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_93a5bcd50f3f4f5980f8a495cb7dadc0",
+      "statement": "The worker router memoizes the deployment-level SCM resolution in a module-level cachedScmProvider keyed by the raw SCM_PROVIDER value (re-validating only when the env value changes and re-throwing a cached permanent error), and enforceImplementedScmProvider returns 501 Not Implemented for routes whose supportedScmProviders exclude the deployment provider and 500 with the resolver message when the configuration itself is invalid.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L498-L501",
+          "version": "repo-lines-v1:sha256:5ae6c3851420c9a097859f992d65b95469b73cddc104590a0192c40091c04eeb:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODA3ZmRkOGQ5MzMyZTNiM2U3MzRiYTZjZTgxMGEzMWMwZWVhODQwMjhmZWE5ZDU4YzQzYjNkY2I3MWE1YzgzZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTdkODYzMmU1NGU5Mjk4YWJiOTU4NzI3ZTJkNTE0MDhhYmFmMTM2NjAzNTM3OTEwMTQwYWJmNjViMzBhYjYxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmM0YTdhYTY1ZDU3YTg3ZDgzNjI0YzI0MzRiMGI3OWVjODRlOGY5NzNmMzY2N2YwZjIwOGVlMjYyOTZmYmNjZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L78-L158",
+          "version": "repo-lines-v1:sha256:bec0b30f9cd4fc492c8aefd64a189f4e0cabaad4af510aec2df2a135e871d03d:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlMWY0M2UxYzU4Njg3ZjM2MDhlY2M1MDZmMDU0ZjJjMTU1NWE0YzhmMWY2Mzg0ZGFjZDNkY2ExZGQ1YmE0NzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0YzRlYWI3MzcyMTQ5YmI5MTNhNGE3NmJmZmE3MDUwY2U2ZDE3MGE3ODBmNjdkNGM1NTAyMjA0MzRjNGE3ZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8f4137b3a25b4bdeac9c05b22cdaac27",
+      "statement": "Authentication runs before the SCM provider gate — an unauthenticated request to a restricted route gets 401 even on a GitLab deployment — while public routes still surface invalid SCM configuration as 500; both orderings are pinned by router policy tests.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L181-L200",
+          "version": "repo-lines-v1:sha256:c7554f204981ab8f5d588f3005b60c5a4c94fa6d24e12971891ec5984bcedb67:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwNzczNjUzNTg1ZTVjZWY5ZGQ0ZDI5NWNmZTA0MzMyNjE3NGNlNzQyYzUzYmU1NzAwODc4OTYzZjk3MDUyZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwMTRmZGVhMDI3NjYwM2U3ODJjZWE5YmRjNjMzNjUxOWQzNDcxMjBmZGM1Y2U3OGExNDZiNTZlNjg0ZTE4YmQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/router.ts#L485-L501",
+          "version": "repo-lines-v1:sha256:e28d3dfd9bf6d3313368d36403db97930eaa486fa741bc6c7eebcb41a4d632a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1MGMxMGEyNTQ5MzdiYWNjZjlmZDMxZThiM2ZhYTQ5ODdlZTA5YWVlZDc1Yjc2M2I1YTAxZTU4YTY4YzExNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YjlhMGIxNmI5OTEwYmFhNWQwYTRkY2FmZjhhNjBjNDI5NjMzYmYyYWUzY2JhY2M4MjAyOTA3NTgwZDEwY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjNGE3YWE2NWQ1N2E4N2Q4MzYyNGMyNDM0YjBiNzllYzg0ZThmOTczZjM2NjdmMGYyMDhlZTI2Mjk2ZmJjY2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8fe89da70bee4d3588fc28d10d2242ab",
+      "statement": "Route policies are pinned as named constants in routes/shared.ts (GITHUB_USER_OR_SERVICE_ROUTE, SCM_AGNOSTIC_* variants, SCM_CREDENTIALS_ROUTE, sandbox-fallback variants); SCM_CREDENTIALS_ROUTE is sandbox-authenticated and is the only route supporting gitlab, while GitHub-specific routes such as ws-token and commit signing are pinned to [\"github\"].",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L148-L159",
+          "version": "repo-lines-v1:sha256:457b60dd3b7fcc4778b766b0345f688239c140e508b160d035911e7f82c59932:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNiZDA2NjQ3OThiYmZjMTY2MDZjMWMzNmU0MDRjN2VjMjY4NTUzY2I0MmIyNjAxYmI4ZTRkYzBlNTc0NDUwNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQzZWFkNzEyODNlODRkMmZkMmU1ZTExMTcxNWMwMjU4NTM4OTgyNTMxY2RiNzc5NmQ5NzE1ZjI2N2I2MTY3MjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEyMWRjMzk5ZTJjNTNhZjFhZjUzMDAxMDAyMjY3OGZmMmQyYTQ3ZjgyMDRmZTQwMzJjZTFjZjYzNjc4ZWQwMmMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L106-L149",
+          "version": "repo-lines-v1:sha256:f7527d7eb4f044adcd6aa625bd8c217a126988756edc92ddbbe17eafb760da9e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmNjM5Mjk5MzBlOGIzNWI0ODdkMzEyZDBlNWFmZDI0MDI4NmUxODBjYjM3OGJmN2ExYWVlNTgxNTJhY2NkZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNzc5M2UwMzk2YjgxY2JkZThlZjFhMDA5MGYyYjZkZjgzNGI3ZGQ1YmU2YzA5OTk0OTUyYWE3M2RjZGRkMjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0YTA0ODFhN2ZjMWEwY2Y2MWJjNzk1MmJlMTdkYzQ0OTY3NjI0ODFiMzFlN2U3OTU5NDcyMmI0MTUyZThjODQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZTNmMzkyMmUxNzQ5YTk0Nzk2M2ZkNjkxMGJlMjI5ZmQ4YTAyNmY0MGM5NWZhZDk1NjIwZmE4YWQxNWM0N2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b035e5f97d141838b75f407ebb80fbe",
+      "statement": "Provider construction is cheap (no I/O), so Worker routes build one per request via createRouteSourceControlProvider, the Session DO constructs its instance eagerly during runtime initialization so a misconfigured deployment fails session requests before any session state is written, and background consumers (scheduler, automations, image builds) construct per firing or receive the provider injected — resolveSessionRepoId takes it as a thunk so legacy rows carrying a repo_id never construct it.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scope.ts#L135-L156",
+          "version": "repo-lines-v1:sha256:834b8d703b920032596f604e98d7e2d1a83a1c73ee838a4ed3c6642ae468cf60:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjOGVlZDZhZjZjZTg0NmJjZjA5NDhiZjI5NTM2MWZjZTFlYzE1OWI5YmJiMGNiNTI1ZTc0ZTZiYTM2ZWQ0YTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzN2M1NzhjNjM4NTdjMjE3MTVhOWFhYTlkNDE1MzBhOTEyZmQ5YjYyYzY0NjhmNmNkZWFkZmFjZDhhMjc0MTcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L207-L213",
+          "version": "repo-lines-v1:sha256:6fe39070bffa768326b2f2be5c9949f5f4392f143930b8abacbc097df8ea310a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjkyODIyODc1NGFhNWEyOTA0MTNmNTA3YTE1MWI5N2EwNDlhNjM0MGQ0YTg2MDNiNDYzOWY1OWQ0MWJmZDY2YiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/components.ts#L275-L282",
+          "version": "repo-lines-v1:sha256:4c56f812e8faa67cb97127bd539a9ffaa076ff8a157fbe3ce6a1461b9a7f3330:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTBhZDllMTdiNjU3ZTYxZmY2NDM3OTdlOTM0MDZmOTM4MmE5NmIwOWUwYjJmN2U3MzRjZjllNDc3NzFkOGRiYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWYzNDYyMzM5OTQzMjU3Nzc4YWU3OGVhOGMzZWE3MjdkNmMyMTI4MDU5OTRhZTNhN2M4ZTA5MjMzYzE1NWNhYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjU2MDA3ZDJkZjVlZjRjM2NhODc5M2I4MDIzNzg4MmUxMGI1MGZjZDkyZjBmYzExYjE1MTEwZDg0MTYwYWMxOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjJhOWQ2ZTdlNTJkNzdlOWExMWQ1ODEwZmQ5MTI3NjMwMzE2NGQ1YzJkNTcyMTNiMzBlZGYwNzZjZmYwNDQ5YSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/repo-id-resolution.ts#L5-L33",
+          "version": "repo-lines-v1:sha256:4e1438ccd71868fa7a82377f853a325b0be2205939f686b2cd77b42974ec1f40:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5M2ViNGIwODAyZDgwNjcyY2FhZmM1MmY1NzUwYWFhMjMwZGRhM2YzODJmNjRiMzNkZjNlMjA3ODNjMWQwMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_22e7779648b74c47a9f5d7a6cb6182b7",
+      "statement": "For existence lookups, a confirmed 404 is absence rather than error: getBranchHead and resolveCommit return null on 404 and throw only for authentication, throttling, and transport failures.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L747-L820",
+          "version": "repo-lines-v1:sha256:fbd8cceb322a2a6a4caf815a21753853886823b9418557c9ac0df2a5629c5f1b:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwMDg2M2M2ZDFhOWVkYWQzZDY1MjlkMWY3N2I2ZDYxZmUzMTNhMGU5N2VlNWRjZjk4MTNjNzkzMzlhMTczYzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmYTA0MzBjYjAxZDIxYjc4NTg4Y2Y2NjIwNzJmNDg0ZTI2ODJhMzUxMWQ0YjI0ZGIzMzk1YTAxNGU4MTUyNzUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L581-L630",
+          "version": "repo-lines-v1:sha256:03e8365c7e8b6d638fbbb694f6a465752b03e718268a735cbdf06f645ccffa9b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwMDg2M2M2ZDFhOWVkYWQzZDY1MjlkMWY3N2I2ZDYxZmUzMTNhMGU5N2VlNWRjZjk4MTNjNzkzMzlhMTczYzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmYTA0MzBjYjAxZDIxYjc4NTg4Y2Y2NjIwNzJmNDg0ZTI2ODJhMzUxMWQ0YjI0ZGIzMzk1YTAxNGU4MTUyNzUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L406-L422",
+          "version": "repo-lines-v1:sha256:d0020825dbc4e75dbd556afbfa3f1634adb8acc3cc6f4508875ac4ba3499e859:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4MDUxZTQyODc1MTk4MTBkMTkwMWNlMGQ4OGE1ODZiNTdiYTllYTQ1MmYxMjc2NmJiYmVlNDVhMmQ4YTcyZjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ2YjgzOGRlYzcwODRhNTk2MmFiNzhiZDg1N2YyODAyM2UwNzVmZDJlZWYyY2Y2NWQwZjBmMzdlNjQxOTc5YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQzNzc2MDU0YzlmMTA5OWUzNzRjZjA0MTRmZTJjZWI5MzlmM2FmMmE3YTM1MmMxZDc2M2NkM2EyZGNkYTMwNWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8422306576304171a8a85feb6bc1652e",
+      "statement": "checkRepositoryAccess returns null when the repository is not available to the deployment (not installed for GitHub, inaccessible/archived/no readable default branch for GitLab) and otherwise returns the stable numeric repoId, lower-cased repoOwner/repoName, and defaultBranch; archived repositories are treated as inaccessible on GitHub and GitLab alike.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L662-L694",
+          "version": "repo-lines-v1:sha256:2358895de808dfd94f088ab7b4ba61f6fcf59603f90b65f6521e7c753bb936b7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjZGFiNTQ3ZmE2Y2VjZTQzMmU1NzhkNzBhYmJiODNkOTVlMzBkNmM4N2NmMDJlNTc3MjVlMThlZjM1ZWU5YjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlOTBkYTljYTFjOTRmYmI0YzAyNDZhMWI2MmVjNzExZjJlYjliZjEyZGQzZmU4ZWZiODBlMjM0MGE5ZTg0ZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3OTVlMzllZDk0ZjY1NWExY2IyMTBkOGI4NWE2YjMyMmIwNWY1NThmZmE1YTE2MzZiN2UwM2MyYzc2OWE2YzkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L438-L484",
+          "version": "repo-lines-v1:sha256:5e0b88091c6b6de89b697cf816e4f208cf37802e624fb784f34811799faee690:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjZGFiNTQ3ZmE2Y2VjZTQzMmU1NzhkNzBhYmJiODNkOTVlMzBkNmM4N2NmMDJlNTc3MjVlMThlZjM1ZWU5YjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViMzFlMmMyZmFlMTI5NTk3NTg0NjFkMWQ1M2M2ODc1ZDNiNTk2NmY4Y2I0ODRjMzBkZWMwZmFlZmVjNmIyNjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlYWIzMTIzZjY4NmFiYjRjZWJhYzIxYTZjOTcxYThjMDM5NDNmM2I5OGY0MTg4ZGQwNDNjZjA3MDg0ZDYyYWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L139-L150",
+          "version": "repo-lines-v1:sha256:3004a87572eda0e7bd895ff69e1de865437efdc2e8cdff400665117e90bffbcb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YzQyNmViYTE5YTVlZDM0Y2E3Zjc4YmQ2NDQ3ZDZjYzg0YjhmY2FmNGFjODVjNjNmY2M5ODRjMzJkODFmYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlhMjNhOTg2MTVhMmZmNDI1ZmRkNGJjN2ZiZjVmNTRiMjg3Y2IxNzc4M2EwZGE3YzVjMjYzY2ZhOTE1ZTA4YmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1699d6c06a194725bd0b2d708a5b5d2d",
+      "statement": "getPullRequest provides rename/transfer tolerance in both providers: on a 404 with a known stable repositoryExternalId, the provider resolves the repository's current owner/name by id (GitHub's GET /repositories/{id} alias; GitLab's GET /projects/{id}) and retries exactly once, degrading best-effort to the original 404 if resolution fails, and treats the successful read's location as canonical for the returned snapshot.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L529-L657",
+          "version": "repo-lines-v1:sha256:f33fd3e89731e0b85cd893069c78626eaf4c15d4fc3667ae2f7e05825732b132:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0ZjJhMmY5OTZmMDhlNjgwYmQyOTIxMzVhNmZhNDk3OGJkYTI2ZTYwMmQ4NGYzM2NiMWQ1OTQ3NzVkNDMwNGI1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwY2YzZTcxMzRjNWVjN2U2Yjc1NjZlZmYxMTFjNGE2MTA5ZWFkODFmZTk3YTczYjUwYmUyYzBhMGY4ODRmOTVlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJiNTE1Mjk5OWJlOTk1OWUzYmNhYjgwMTdiOWFmOTNiM2U1ZTc5ZjhhNDlkYzAzYzhmNjJjYjMxNmQ0ZmI5ZmQ3In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.test.ts#L1133-L1159",
+          "version": "repo-lines-v1:sha256:d8ea81a8ed293892e6eb356532f7a5c94492ec2921abf2fda406d5766aa1361b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzNzdlOTM1YWViY2UyMmU1YzI2MGVjZmM4Y2I2NGMyYzRlZmY5ZmQwZmNiN2U1NGY3MDY5NTllOWFjOTkyNjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjYTgyNjFiZmI4OGVkMzZlMTdhMjZmNGE2MDQ2ZGMxZGI4M2EwZGQzMDEwY2NiMzAyMTNkNGU0MDY1NzQzNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiNWUxN2MwYTdkZTlhYWQxODlmYzkwODI0YTU5N2Y1MTU2ZDY2OWE3MjhjMzc1NjJjMTdhYTVkZTg5NmY4MGEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L351-L433",
+          "version": "repo-lines-v1:sha256:d22d3bb42c28322bd7a550b30a5810c3199bb69fdae75d41cebde1ea3a6cf44d:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlNGUxZmM2ZTJjOTliMzNkMzJjMTQzYzc4ZGViZDBlZjlkNzIwMGM2NDVhMjkzYWZkMzhmNGFiY2U0ODYzOTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyMjUyM2RkYTE1M2VkMTMxMDIzMjhjNGQzMWYzNjllOTNmMGY5NWRlMmEwZmU5OTMzZTliYjhhYTg1NzRmM2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_23246924b3de4fcd9818ad19fc89e6d9",
+      "statement": "Providers return only status facts (lifecycleState plus isDraft); consumers derive display state with toDisplayStatus at their own boundary, so a provider result can never carry an inconsistent pair, with the invariant that isDraft is true only while lifecycleState is open.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L218-L247",
+          "version": "repo-lines-v1:sha256:090240acebf4715eec0ea597564e4e098ba4f3ee4f9ce33c696971bc6cc6679d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhYzFmMDIzZDZmNjM0Nzg1YzlhMjliOTU5MDlmOWY3ZmNhYWQyMjZlMGEwNzNhMjAzMmYzMTFkMDgyNGI1YTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4YTgwNGRhZmE5MjkyMWZlNDUzMmU4NzQ2NmQ0Y2FhMDg0YWRiNWVjODFkOGFhYTQ4ZTFjNDhkOTUwMTMwOGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2MTg4ZTI2ODc5ZWEwZDA0Zjg3ZmExZWE2N2QyZTFlMmY4NGUzZmNiMTdlYjExYTU0YzUwODg0ZjYxZjI1ZGQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L274-L300",
+          "version": "repo-lines-v1:sha256:5fe82e02b637ef8c85051130eabe6304d6e1619a0ce138542f49b8a5c35c34cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExMDhkNTBjYzEyNjJlMjcyN2Y0NzI3NjcxOWU4ZGYzZjRkZTBmOGViY2U2ZjMzY2IwZGY2MzU3NGI5Mjk0MmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwNTliN2E3N2Y2MjY1ODk5OGIwNTBmNWNkM2RlMzVjMTk5ODY0YWU4MDM0MjMxMDVkYzY4MmJlN2RmM2NjYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3YjBhNWI4OWNjMGExNzI5NDA1NzgzNzc3YTE5MjJiZTM4NTc4OGI5ZGRhMDMwZmZhMTA5NmIzNDU3OWUxMTMifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/artifacts.ts#L23-L43",
+          "version": "repo-lines-v1:sha256:44c74a27978726714efcbf03ae76a6e81be460e51fd14b164df2039eccc31697:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwMTllMmUxMjEwMjZlOGMyNzI5NzE2M2RlNTBmM2UwZjE0ZjI1NjRmMTM3Zjk3ZTRhN2Q2YWI4MWQxMzJlZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyNTM2MjQyNTVlNWZiZjdlZjg0YTQ3MTk4Zjk3NGNkZDg0ZGFjYzA3Y2FjOTE3YWQwZjg2MDIwMTdhZjk1NjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhYjM0YmMwOTE3YTc4YmNlYzYzMjcyMTA2ZDJkYTVhNWMwNGNkMzYwYzMwNTQwNmE2MjcwZGM3ZjVlZmZjY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_097a0f97456944d4bbc9ede8354b5412",
+      "statement": "GitHub models merged as state closed plus merged true, so deriveGitHubPullRequestStatus maps merged terminal-first over a stale draft flag, then closed, then open with isDraft = (draft === true); GitLab has a first-class merged state and its deriveGitLabMergeRequestStatus additionally treats the transient mid-merge locked state as open; both mappers are shared by the user-authed create path and the app-authed read path.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L54-L74",
+          "version": "repo-lines-v1:sha256:381e780583e302b801826c6fb881f33f527e7eb1b3654da06b3cd6d5016de159:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjZTdmZGJlZmM2MWIxZWRmOTlmMDVmNGQ1MmE2MDIxNmJjMmJlMmVmOTYwYjM0ZmI0M2IzYWY0MWI3OTA3NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2Yjg1ZGI4ZTI4YjI4ODZlMzExMmRjZDJhZjgzNzA5NjYzNjEwOWFkNjdkNzQyZDhlZDY5ZDg1MDVmM2JhYmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0Y2ZmNzkzNjNkMjdiMmExNGQzMjE3NjM2NzM3NjA5MGE3OWQyZDBlYWYyNDJmZmMyOWJkNTIxMGJhMjE5YWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.test.ts#L1024-L1058",
+          "version": "repo-lines-v1:sha256:76ed90a499fb744a6db51491c6fc7fff903cbe62dedd85221ab947fd61c332e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyZDliYzYxODhhYzg5Yzc2NWMzZjM3NWY3ZGNhOTM0MDg1ZGVkZjdjY2M5OWJjYTc2NTNlNjQxNzAxNjk1MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiZTNmMWJhMTk4MWY0YzlmODZlZmYxNDBmNGNkOWMyODBlNTlmNjcwYzkxZDM0NGE4OWE1NmZkYTJhODAzMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1YzY2M2Y3NDJlZWFmZTVhN2FjZjRhNmM4YjIzNDM3NTExZmM1NTZjMmIyMWY1N2I3Yzg0OGRlMTYyY2FlNTAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L74-L98",
+          "version": "repo-lines-v1:sha256:5d0540c3eed052c8397d92286f02f9971a98c4890b8c76ffe15b425b48111b80:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ1NjUxY2QzZDNlN2M3OGQyOTJhMWZjYWY3MTQzZDEyYmI3ZmE5ZWZjNjQyNTZhMDA3MWRlNWMyMDNlYjQzMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzZGIzNjVkNmMxYjMyODdiOTczMTI4OGVlMDcyYjg5YjY0ODVmZTRlOGM5ODg2MjA4MzY3MmU0NDAzZmUyYTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwNzQ4YTAxNDBiY2QwMjRiZWIwOTI3ZDdjMjIyM2JiNDM2MmRmN2UzYzNkNWY0ZWY2Mzk3YmIwYzg1Njc3NDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0340be07d5a5470d9b4d1470accd526c",
+      "statement": "Repository tree and blob reads are pinned to a commit: listTree lists entries reachable from one commit and readBlob reads by the provider blob id from that listing so content cannot drift with the ref; entries are classified by the shared classifyGitTreeEntry (symlinks, submodules, and unknown modes become \"other\"), listTree reports truncated when a provider cap cuts the listing, and readBlob's maxBytes is a refusal threshold enforced by the shared readResponseBytesWithinLimit helper that cancels oversized bodies rather than buffering them.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/errors.ts#L98-L149",
+          "version": "repo-lines-v1:sha256:8651928cab7c575c290798630d46874d94398825f5d2bf4a78a2777718260d8b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyOWFiNDdiODU0YTg1NWM2YmI0ODliNGY0YmM5ZTE0NjU5NzQyOTQ1ZWZkODZkZDRlYTI5MzRkMzZlZWM1MmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1OTIzY2EzMGIzZmViMzAwYjBiOWM4MGRjZWI1N2ZmYzQ2NzkzMWZkMmNmZTY1ZWVhYzQwZTg3Nzg1N2FlMzYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/git-tree.ts#L4-L9",
+          "version": "repo-lines-v1:sha256:d16d39478687caf40d75d87798a012fa49fb45a0f4d83bde6cde7400405d240b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmU4MDA4OTNjZGYwNTQ3YzVkYzNkZTY4NDM0MDJmNGY5YmIzMzVjZmI2MWMzZTEyOGQwNTYwOGU4N2ZmNzM4NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjIwNDNjZDlhNjM4MzE1OWI0ZDkyMmE3ZjgyYjU0YTkwNTkwODNhMmI2ZjljYzBlZDFmNWZmZjI3NDczMzFhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L160-L191",
+          "version": "repo-lines-v1:sha256:b2d11256e1f164acf211e96596904657d45f486c2e28a8234a92201896188d86:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwYTM5NzBiYjhjZDFkZmJkNzlmMzRhYTg5N2E4ZWY3ZGY3NDI0NWY3ZGIzZWZjNGI1ZTRhZTNlNWE3NDJhYTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5MzdmNTVlMzQxYmFjNDhjODA4YjVlNzFkNTY0OGUwZWQyYzk4OWQ5MGYwYmU0ODNiMzYzZWVjZTI3ZTA1ODUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L424-L454",
+          "version": "repo-lines-v1:sha256:ef99dcfa4c24bd174537e4cadbccf3cf04ba76ee82fce777ca96752bc3d30600:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkZjc0NDlmZmQyMzdkYTQzN2ZiZjhmOTYzZmU1ZTJkNGI3OTAyYmY0OGQ3MzZmZjA5MDdjODMwMDUzNzE4YzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YjA0NGRmZTVkMTlkYTA3NDU5NDVjMWIzNTRiY2Y1NmZlZDIwMTZkZGIxMGZjODBhZWYzMTY4ODY3ODA5NzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4OTc5NzZkZDgwOWJmZTA5NmE5MWE0Njg3YTYxNmYwOTBiNTUwN2YxYjNjODY0NjhhZmUwYzVmM2QzNzQxY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_09b2dff543724da29172db5e15bb87a2",
+      "statement": "The GitHub provider performs user-authenticated getRepository and createPullRequest with the user's Bearer token against api.github.com; createPullRequest maps the response through strict zod schemas (the PR state is a closed enum so schema drift fails the parse), captures headSha, repositoryExternalId from base.repo.id, and providerUpdatedAt, and treats labels and reviewers as best-effort — labels are ensured per-label with a 422 race re-check and any label/reviewer failure is logged without failing PR creation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L1024-L1106",
+          "version": "repo-lines-v1:sha256:4f3d418b5ff7a0b5d17b8eb96d48594c98caf736ce8338fba02a6c0682c933f4:eyJzZWxlY3RlZExpbmVDb3VudCI6ODMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViZDBhYTA0NDkyMjM4NmFkZGE1NGE5NjVhMzI1ZGQ1N2E5MjllY2Q0NGY5NzI3OGNjNGM5MDA4ZTBjYjFhYzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiODQ2MWE2N2Q5ZTQzNzYzMjMyZTM3MDg0YWY2OWY5YjMyMWRlMzA0MjNhODVmNGYwYjAxYTJiNjIwYWJkM2QifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L112-L125",
+          "version": "repo-lines-v1:sha256:6bcbbe463f76f26396ff122d081c95d775c1b4825a677cb42b1b18765c1be78c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzMDVjZmI1NWJhNTBmMWE5Zjk3ZWNlYjMwZGI3ZTExZGVjNGJjYjg0OGNmOTU5ZmY3Nzc5ZjJhODZjZGQ3NjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhYWEyYmQxMDk2Zjg2ZTVjYzVmOWU2NmZkNzM5NmVjZjFmMzhmMjA1ZjIxNGU2OGZmZTNmYmUyZGJjNTUwYTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlhN2M0M2ViNzJhZDk3NmFkODQzMjgxNDYyODY1YWEwYTNmMjY4OTI2Y2U5NGQ5Nzc1YTkwZjQxNDkyY2I1OWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L434-L527",
+          "version": "repo-lines-v1:sha256:51817651226dbe2aeb8de8f15b59e3839640baea7470a2331d0bcca440adeba6:eyJzZWxlY3RlZExpbmVDb3VudCI6OTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE4NmQ2ZjFkODNlMWE3N2FkYzkzYzEyNGU4ZGMzNzQ0ZDg0OTk2NWFjYTMwNTQ1OTU2YTNhZDJjMzU2MjRkMjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3b1d49b3a8a74e05ad7e64b4af99f7dd",
+      "statement": "All app-authenticated GitHub calls go through one appFetch helper that mints an installation token via getCachedInstallationToken (in-memory plus KV cache over the provider's cacheStore) and sends it as Bearer; a missing appConfig is a permanent error at call time, and generateCredentialHelperAuth uses the with-expiry token getter so the returned expiresAtEpochMs is the installation token's true lifetime.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/github-app.ts#L417-L442",
+          "version": "repo-lines-v1:sha256:abc9cda33f95c4f6977c059891523f9282437d059d66c2ce006dbcde0d9a7c19:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2NzljYTk4ZDJiNzQ2ZGViMzQ2MDg2MTU1OTAxY2QyZDc2Y2Y2ZDI0NjM0NDM4OTE5MmM5MTdjMGNjYWQzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhN2RiNDY4ZGUxNzNkZjE1YzA0YzRlOTE0NDcyNjg2ZjQ4MGU4ZjQwOTdhMTJiYWFhN2E2MmQzODQzM2M4N2QifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L886-L940",
+          "version": "repo-lines-v1:sha256:62bc40157a6eec0966d768935cecb6455e462cc4575fdd03846604b3961f72c1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlYmI0ZTE3ZDM1ODM3NzAxYTlhOWNjMTRkZDM0NjEwNmE4NDU4NTU1MmI1MWRmYmI0NDBlNGZjNTUzNDNjMTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5NGRiZGI5YWYzZWY2YTQwNTk4NmM5MmZhOWRmOWQxZjAzN2FiZDU5MGY2YzVjZTgzMDJiNzY5ZDZjOGU4ZGYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L970-L998",
+          "version": "repo-lines-v1:sha256:ed87db8f14e26d7c9e670f98a82c795f9581c94cd0bb5116a144eedba5193c6c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0YzNmODA0NmVjYTc1ZDc0MzlhYmQwNDJlN2Y5ZjIzZDRjODYxMjJmOWU1YzUxM2U5MGQ1MzQzYTJhZTE0ZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmZjE4YWVhNDljMWNiMjBlMTU5MmE4ODNlOGExZjg0YTUyYWVkN2Y4OTFiNDhhNDBhMzUyYzM1Y2Y0MWUwMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5669d34c29084084890c41b0b666f608",
+      "statement": "GitHub's generateCredentialHelperAuth returns username x-access-token (GitHub's HTTPS basic-auth username for installation tokens), a freshly minted installation token as the password, and the token's absolute expiry as expiresAtEpochMs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L970-L998",
+          "version": "repo-lines-v1:sha256:ed87db8f14e26d7c9e670f98a82c795f9581c94cd0bb5116a144eedba5193c6c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0YzNmODA0NmVjYTc1ZDc0MzlhYmQwNDJlN2Y5ZjIzZDRjODYxMjJmOWU1YzUxM2U5MGQ1MzQzYTJhZTE0ZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmZjE4YWVhNDljMWNiMjBlMTU5MmE4ODNlOGExZjg0YTUyYWVkN2Y4OTFiNDhhNDBhMzUyYzM1Y2Y0MWUwMWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L482-L493",
+          "version": "repo-lines-v1:sha256:a6171684aecf708ec32f9e565c567a3263b048b0a0e39e92daaf409093c60034:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxOWU2ODQyYjgzMjc3OGMwYzMzOTdiYjhiOTdiZTBlMzQzOWI2MGIwMDM1MDI0MzhjZjgxNjIwNDcyNjUyYWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1MTIzMTYwMzRjNjc3NGVkYTQwYmVlM2ZjNTc4YzZkODk3YTA0NzIyZDQyZTUzYjE4OTEyNDU1NDVlMDE5MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg5MjFhYTgxNTk4NmMzNGI2NWMzMmYxMzQ1NDY4MWRlM2NjODg5ZDEyY2RiNWM2MmQyNWRjYWJiM2RkYTY5YTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L57-L72",
+          "version": "repo-lines-v1:sha256:09c06843cade066516bcfb7e17cbe9696b0804ec938fab0463e2bbf0b6cafeab:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhODI5N2RlZGMwMzM3OWMxMjdkZGE5YzBlOGI1ODZkYWMzNzA4ZjM1NWY2ZjhlNDVkMDgwMDIxMWUwNDM0Y2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJlOTI2ZTgzMTk4ZGJmMmNjY2NjN2M4ZTZiMjczZWM1ODIwYThhYWQzMWYxNjk0N2RkMmY4YjQ5Njk1MjZhNGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_14ac13f2a3164080922aa6a93322d817",
+      "statement": "GitHub's buildManualPullRequestUrl produces https://github.com/{owner}/{name}/pull/new/{base}...{head} with every component encodeURIComponent-encoded wholesale, and buildGitPushSpec produces a credential-bearing remote URL https://x-access-token:{token}@github.com/{owner}/{name}.git with a redactedRemoteUrl twin (<redacted>) for safe logging, the refspec {sourceRef}:refs/heads/{targetBranch}, and repoOwner/repoName/force fields.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.test.ts#L353-L406",
+          "version": "repo-lines-v1:sha256:4f15cfb788e1c71a4aaf8f7754039ce7bc8cce4243544a7934b5a50b85001d42:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhNTkwMWUwN2NmMTE4YjJlOWM2OWRjM2YwZWIwNmRhMDYxMzg2OWY1OGI2NGY2NmQ4ODVhMDczZmJkZDk5MjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0NzgyOTNhMjkxYzdiMjU0YzVmM2FiMjhiODBmMGUxYWRmNTZmNjg3MmIwZTY5OGZkZGFkM2Y1YmMxNTcxMDgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L1000-L1022",
+          "version": "repo-lines-v1:sha256:8f6b920ee2908260ee507a3474fd33970f6e33d81e582b9e494b90822fb836f9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNmMwZjFkODU5NmNlYzk4N2IyZmQ3ZWFhZjA0NmIwODg3YTEyYTY2YWZhZTRmOTA2NzhkODdlZWQyZTUxNzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3MWM3ZWIyNjAzYTI1NDJmZTg4N2EyNTliNGQwMWViM2NmZGRkMzRjNWNjZDE5YTAzN2IzOTJiMjhiNDYyNTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L107-L126",
+          "version": "repo-lines-v1:sha256:813a3ed5627d20ea1d4050d747fe6b44513abae8cb2998a4d6c61bfcf07b00bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4ZjNiMDFmNDViN2MyN2JmYmE3NzQzMzFkMmNlYjBlMjk1Y2EwMGU1OWVjZDUwYzdmMmNiZmU0OTJmNWIzMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1Y2RlZWU5YTE1NDk4MmUwZDY0NzE4NGY3MjExNzJiNGY5MjRiNTZjOGVlODU4N2M3YzRmMGVhZGFjNWY4NGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b2f2b5dd936648028c09b1d6f89637c2",
+      "statement": "GitHubSourceControlProvider exposes GitHub-only methods outside the portable interface — getPullRequestFeedback (PR comments and reviews with ownership checks binding the object to the requested PR path) and hasPullRequestWritePermission — consumed by the feedback/autofix pipelines; the SourceControlProvider interface is the portable surface, not the whole provider.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L166-L322",
+          "version": "repo-lines-v1:sha256:bb8ab75bffbc24a03ed6d133cd9d3be0646c9787c448b025cfbd8824cd900f22:eyJzZWxlY3RlZExpbmVDb3VudCI6MTU3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4ZDRlZjkxMzZlOWY2YmU1NTYwNzU5OGQzYzk1OTJkYWNiZTY2MWYxYzUzMjk4MGQ4ZTNlYzQ1NmQ4ZjczMzY2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlYTI1ODI3MWQ1ZmI2YzJiMzRiNjFiZTBkMmEzNzhkNjE5OTkwYmNmZWM0N2U3YjQ1ZTFlNDEwNDMxNjM1ZTQ4IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3OWYzMThkM2E3ZjU5MGE4ZTU5ZjE5ZDA0MTA4Yzk2NjQ5ZWRmYTY0NTIyMzc3NzI2OWFiYmU2MTVkMGNmNGQ4In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L306-L322",
+          "version": "repo-lines-v1:sha256:29f82f2c33d1bf9ec8b8e9aa3011b93e4b1af61243e35ef7c358cb1836757fd4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzMDZkYWI0NjUwYmJhNDJkNGY0ZTdjMTAzOTgzNWIwOGI5Y2RiYzIwYjRmZGU5ODFjODRkYWJlYzY3MTI0MmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5ZjMxOGQzYTdmNTkwYThlNTlmMTlkMDQxMDhjOTY2NDllZGZhNjQ1MjIzNzc3MjY5YWJiZTYxNWQwY2Y0ZDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1bd09af8105644f6b2f208416da7776b",
+      "statement": "The GitLab provider is PAT-only: one deployment-configured Personal Access Token (GITLAB_ACCESS_TOKEN, read_api scope for reads and api scope for writes; optional GITLAB_NAMESPACE group scope) authenticates every call to https://gitlab.com/api/v4 with Bearer, and the constructor rejects a blank token permanently so a misconfigured GitLab deployment fails at provider construction.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/README.md#L444-L451",
+          "version": "repo-lines-v1:sha256:a1569992ca04dd483120068f5017355d4f156415b39e9de5567171c528470dfc:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDFkYWZhOWU2NmUxMDFiMmY4ZDg4YWFhYmVkZmFkNjY1MzkxN2EwNjYzNGJlNzZhMGY4ZmY0Yjk3YjVkMmQxYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDM4Njk3ODg2MmMzYTliZjk3MTA3NDQ1MDI1YzIwYTgzZTM5YTg0YzBmNzY5MjcwNzA1ODYyNWZlZDZkMDg0NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGZiYjYzNjBhY2MxNmRiNWEwMWYyNGJlYmM5YWY1NTQyMzg0MGZlMWU2MDNkMjBlYTkxOTA2M2FmODg2YzVkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2E1ZThhNDA1ZjY5YzI4NDBlODVkOGZiNmIyMjVmYmNlNDYzNGZkNDUzODI1MmIyMzdhOWY5ZmIwYjQ4ZGJjMiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L200-L229",
+          "version": "repo-lines-v1:sha256:31716cfdef960079fce070c335a605a10e81cdb20587e6b78e55da012abcb7be:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIxYzkxY2Q2MmZjOTgyZjFmZGMwZmZmMzE5MWY5Yjk3MjRjYmE0MTM1YWQwNDNhN2IxZTljMTUxZDZiNDY5YjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5YmFiODBlNzAzNDdkNWFlOGM5M2E3NDM0NzYzZmRmMWMzMzZjZjkxMTJiYjgwYWRkYzcyOWU4ZGFkMjI5MjQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L39-L61",
+          "version": "repo-lines-v1:sha256:7c9459256ff6f566cd858bd0538bd35ed7ba0a90d10f615074c5032b9ef1dee7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxMDUwZTBmMzY2NzZhMzkxMTViZDQ3Y2M4MDQ0ZGRkMzY4NTg1MWNlZmU0YjkxMGYyZGNjYzRjNjgxOTM5OTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxMzkwY2RmOTUxZjVkNzIyYmJlZTAwYzE1MjM5YTI1NmI2ZjEwZDE5MDRhMWZjNzk4NDI0ZjVhMTI3OTY2ZTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyN2RhMTE1ZWQzNzc1N2YyMDc1ZTg4MWY4MDJiYjFkMDM5YTUwODFkMzQ3YmM2MzZlZjk5MjFiNDFkY2U1YmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a76465ee2f324cc8853f666450d4ef1a",
+      "statement": "The GitLab provider handles nested groups by URL-encoding the whole project path for API calls (owner/name to owner%2Fname) and mapping the project's namespace.full_path — not the bare namespace — to owner, so group/subgroup round-trips through owner/name lookups; a missing default_branch in the repository response is a permanent \"token cannot read repository code\" error because the token can see the project but not its code.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L234-L275",
+          "version": "repo-lines-v1:sha256:c24cb2949b1881c62c31568b4da8fede1581414561ff2ec99d1035f6b254d725:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjOTdlNjE2MmQyMDdkZmQ1MDAxYWZiMDRiMDJkZWYzNGQ3NzMwMGJlYWE1YmQzMGVhNDlkOTUzMjNkMGQ1NDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI1ZTM2NjcxM2JiMDQ5ZWRlY2M5ZjgxZmM1MDY1ZjM3MmI1ZjA2MGYyODZmZjY1NWY1MTNjNjcxNWFjZGY5YTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNWE1ZTg4MmUyNDg2MWVlOTdiYTk0NmFjYTFmNGJkNjczMmZkMTRkMjVkZmNlYjZhM2NiMjBhZGJkNzdiMWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L63-L72",
+          "version": "repo-lines-v1:sha256:049d5aaf3e261b519bd91c56885950253f7fe8581eea3db1479aa649a837a26d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0NTU1NWJhMTBiYWRmYTEyNDA2ZTVkYTQzZTFjMGU4YjAyOWFlZjBkY2FkMWIxZjFhMThlM2VhOTFhOWY3YjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFhNTMzODUzYmMyNjhlNTc4OGUwZDI1YzYxN2JkMGZmYWQ4MGZlZWQxMTAxYmZlNjhmYjJhYWE3YWQ5YzJlMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwYjgyZDhiYjA4MDViM2Y3ZDdkMmNhM2FlZjkyM2RmNGE3ZjZhZDZkMTljYzYyNjMxYWU4OWM0MDA1NDFmNzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7bacb974ed6249178a72ab6f3ce80926",
+      "statement": "GitLab merge-request creation adapts GitHub-shaped config: drafts become a \"Draft: \" title prefix, labels are joined into one field, and reviewer assignment is unsupported (username-to-ID resolution would need an extra API call per reviewer) so it is warned and ignored; the create response captures iid, web_url, the API self link, headSha, project_id as repositoryExternalId, and updated_at.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L120-L123",
+          "version": "repo-lines-v1:sha256:9081a66ca710bd72843f3fce965e3c66f955df0d554af372dac1c038453561b8:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzM5ZjMwMDRmNDg2NGFjYWRhMTI0YjBkM2NkNTBjZTc4M2QwMTJiNTRjZmViNzAzNjhlMWNmZWQ0ZGQyNTRhZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDQ1ZjlhNWIwNzUyYWY4M2UxY2RiMmRjM2E5ZDZmMzk0ODE2MjNjNWVhNTc3Y2YxNDk2Y2NiMWM0ZmViMDcyNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDIwZDI0OTdjYjM1MTI4OTcwYzYzNTA5Y2ZhMjExNTI3NmY0ZmEwYmExZDU0MWNiODA4Nzc3ZjE2ODZhZmU0NiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L280-L348",
+          "version": "repo-lines-v1:sha256:322dd4a7db982fec0b483412b16f982d8cc1e61158ecdaa80a48d6e5f76c695d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiNjIxNWZiMTZiYWE4Njc1ZDBjMmQ5ZjgwNDUzZmZlZjlmMDFmZWI3OTQxZmFjMDM5YjM1YzgzM2ZkZGMwMWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNkZTI5NTA5NjQ1ODhmN2IzYjUyYzVhY2YwMGU4MDgyMzU5MTlkNzc5ODliMjQzNmFkY2NkMjA5MWNlNTFhNDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1NmNjZTc5MjFlMzZiYWRkYmJjMzVmZWZkNjkwZTI1NzU2NDcyZDU3MWEyZTJkNjI4Y2YyMjgxMzNlNmY4ODMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_70f4e424f28b4f7b931b8d157ba50007",
+      "statement": "GitLab listRepositories hits /groups/{ns}/projects with include_subgroups=true when a namespace is configured, else /projects?membership=true, always archived=false, using the project path (URL slug) rather than the display name and dropping projects without a default branch; listTree paginates at per-page 100 and caps at MAX_TREE_PAGES = 20 pages before reporting truncated, reports sizeBytes as always null because GitLab's tree endpoint reports no blob sizes, and treats a 404 on a scoped subtree path (GitLab 17.7+) as an empty listing.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.test.ts#L656-L696",
+          "version": "repo-lines-v1:sha256:2703f5cd53a4d59f00930eef060d22b17d40e382112a5d47f5fad303af2abfcb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0ZThjZjZlYWNhZWViMzVlMDY0MjhmNDEyMGQxNzA1ZmM2MmIzZDM1MDVmNTc2MGEzODBhNTUzMDVjNGI0Y2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlYmY3YTAzZTc0N2ZiZjJlMTcyY2QyMDBjN2MxYWM3YmI5YWVjZGM3MWI3YjFlNTA5ZTllNTJiNDA2MDNiZmIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L42-L55",
+          "version": "repo-lines-v1:sha256:96eee3e30ba75235c840f4088dff018b52f5bf9a02696325f78c8c2912df73c1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMjk3ZWQ0MDRmMDc5YjczMjZkN2I5ZTUzYWE5NGEyMzFjMjI2M2NkODUxODFmMzdhYzMxMWVlMDA2NDE1YjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjYTUxMzhhODI5OWNiOTgyZmIwNGRmMzVjMTI1ZDhhZDYwNWQzMTRmMjY3OWMzN2E5NWRhZmNlMzgzMjI3N2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5MjNiZTFlZjMzNmQ4MjI5NGEyY2QyMmM3NjExOWZlZmMzOGM4OTQ5ZWQ2ZDE4NzhhMGZmZDdmMWQ1ZTNhNWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiNTM4ZTUyYzQzYzVhM2YxZWNlNmY2ZmZkYjAzMmI4Njc4ZmUxYTRhYzMxMWQ5MzI4YWM0YWI0YzVmYjY3NmUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L492-L541",
+          "version": "repo-lines-v1:sha256:fd0fb988090a1f0353096b76a6b5cea4fb43be500f3f557a6396e05c80491949:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmY2FiMzFhOGM1NDIzMGU4NzQ2ZmMzMjEyYTlhNTc5ZTc1MTQ2ZTRjMzY0NzZkOGMyMTM0ZjM5MDQ5MTkzZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ1Y2Y5NDkxNmEwNmM4ZmVkNTA4NTQwNTBlZDQ0ZmRmZjlkY2U5MGEwZTc0YWJjYjU0MTEwMGNmMDZmYzE5NGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI4YTkzZTdkN2I0ZTMzZWYxMDBmZmU0MTZiMDg3MGFiZDgyNTI0YzdhZGMwOTZhNjEzOTYwYjA2YWMzZWFjOTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L632-L674",
+          "version": "repo-lines-v1:sha256:3ab3f3ce44fc69d7fe18587882dc95d95f89e7d09023bc55fb44103af1946f79:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyMjc3ZDdhYTM5OTBlY2M2NjM1NWIyMzUyMDc4YWU3ZDljZTgzYjllYmU5MzFmMjEyMmIzMmE5ZjM4Y2IzYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhNjg4MTRlNjc1OWVlNzM1MjI4NmY0Y2U5NmIyOTQyNDYzY2I3MDkzNDNjZWUyOTZiYzFkYmYxZTFlOWZkZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjMTQ2Njg2MWJjOWM1ZmJhZDdmZmM3MTgzMDNjZDEzZWNjNjg1MDY0NWRjZjBhMzg2MTY3MzlmNjA3MzFmNTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ccb1a8fc583485daa54cd97bb4dcd3c",
+      "statement": "GitLab's generatePushAuth returns the PAT itself (authType pat) since there is no app installation to broker with, and generateCredentialHelperAuth returns username oauth2 with the PAT as password and a fixed one-hour expiry (GITLAB_CREDENTIAL_HELPER_TTL_MS) because GitLab PATs expose no expiry the control plane could read.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L54-L55",
+          "version": "repo-lines-v1:sha256:7f6eebb7e6906f1cda55599aee09426adf5190a4d6a358ae296c9468b9d28e01:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I4MzNiNjI4ODA5YTljOWFkZjdiOTY5YzkxYmE2NTU3ZGEzMjk3YTlkNGJhNzQ5NmRiZGQ1ODY5NjAwYTAxNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2NhNTEzOGE4Mjk5Y2I5ODJmYjA0ZGYzNWMxMjVkOGFkNjA1ZDMxNGYyNjc5YzM3YTk1ZGFmY2UzODMyMjc3ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDZiMDM4ODcxOTA0ZmM0MDA5YjgzYzNjOTNiNWU3YzQwNGI4Yjg3ZWE0MzMxNmM5YTJmMjkyYTJmY2VhODU2NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmI1MzhlNTJjNDNjNWEzZjFlY2U2ZjZmZmRiMDMyYjg2NzhmZTFhNGFjMzExZDkzMjhhYzRhYjRjNWZiNjc2ZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L702-L718",
+          "version": "repo-lines-v1:sha256:9ff8687689b327ea51ff70a6fe161727edd78a9dc1137016c49a54a230f28102:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzOTU1ZjllZWE2OWNkZWYyNDk3MGU2ZGMxNmE4ZGQ2ZDNmZGI2MzY2YjUyZmVkNjAzYjQ5NWQ2YWUxMzFiZTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e169c206a864413c88b9c5c35c8dfa38",
+      "statement": "GitLab's buildManualPullRequestUrl builds https://gitlab.com/{owner}/{name}/-/merge_requests/new?merge_request[source_branch]=…&merge_request[target_branch]=… with the project web path encoded per segment so nested group separators survive as literal slashes, and buildGitPushSpec builds https://oauth2:{token}@gitlab.com/{owner}/{name}.git with deliberately literal (unencoded) path segments because GitLab project paths are URL-safe and git clients expect literal segments, plus the same redacted twin and refspec shape as GitHub.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.test.ts#L895-L1018",
+          "version": "repo-lines-v1:sha256:45a4874a66970c9b62830d016c68645745f82ba8e4f8e5d07cd59195b87ddb38:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1ZTk4YzIxZDhkNGZjMjYzZTdjNDQzZGVmMzQ2NGI5ZTY2MjRjZDRmZTMzMTZiZDAzNDNkMjA1ZTAxNDk0NzEzIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyMmQxMWNhZjQzZTk3ZWYzNjllNmJlZWQxYTI2OGJkMDU4MzhmMjliOWRkMjU0YmY2OWJhNjQ4ODQxNDcyMzRhIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiMTY0OGJjMmFhMjg5ZDZjNmM3MGZkNmYyMTJmNThkMDA1OWJmMzI1MzFlNGE0NTNkZTc3NjYzMjk2ZmQxNTMwIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJiNzc5ZDExOGQ2ZTNjYmY0NTA1Mzk3NDhkZWU3YTQzMDdhY2JlNjQ0NmNiYTI5N2YyNzYwZmE1ZDBiYmExYmMyIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L68-L72",
+          "version": "repo-lines-v1:sha256:31345d1ef108446db25e1413c3f003e4ca2493a3517e553c8d0fd1daabecb22e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2M0NTMwNjg3MGJiM2VlNTFlOWQ4NjE2ZTU4Yzc4YmI0YTRkMTBmNDdlZGZhMjUxYjNkMWY3ZjBhYzQ5NjA5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDllN2ZiOTJkMzdlZGM3NDA4NTI1MDUwYWMwYjY1MTE4NGExMGU4NzM3MmViNTEzYjJhOWQ3M2YxYThkMjc2ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzBiODJkOGJiMDgwNWIzZjdkN2QyY2EzYWVmOTIzZGY0YTdmNmFkNmQxOWNjNjI2MzFhZTg5YzQwMDU0MWY3OSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L720-L747",
+          "version": "repo-lines-v1:sha256:f97766e6b67ef105aff313dc93f2f6a32ad7f3621edadf05b8e1867f71a2d486:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNmMwZjFkODU5NmNlYzk4N2IyZmQ3ZWFhZjA0NmIwODg3YTEyYTY2YWZhZTRmOTA2NzhkODdlZWQyZTUxNzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1033220106a495086658c6a9b723bb0",
+      "statement": "Repository owners may contain '/', and the stack handles this: parseRepositoryFullName splits an owner/name string on the last slash (rejecting empty owner segments) so group/subgroup/web parses as owner group/subgroup and name web; encodeRepositoryPathSegments encodes the owner as one route segment (group%2Fsubgroup/web%20app); route patterns bind :owner to a single [^/]+ segment and extractRepoParams decodes it via decodeRepositoryPathSegments, which rejects an encoded slash in the name and non-canonical encodings with 400.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.test.ts#L4-L26",
+          "version": "repo-lines-v1:sha256:112c13b7c010f2ba325702e32446fd1c48ae5589ca82c75fc08ab50417e5fad3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjZWI3MzdiM2Q4NzVlMzNiNWM0NzQ4ZjlhODhkZGI5YTlmYzM2YzU1N2Q1ZWY1OGZlM2E5NjZmMzRlOGY2YzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyNTgyOTIxMzViZWIxZmE2Y2M3ZTc2NTI1OGUxYWE2Mjk0Zjk4MGZkOGI2ZGFkOWY1Yjg5YjkzNTEwMjkwNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L245-L258",
+          "version": "repo-lines-v1:sha256:be26a826019de3a46b2f2c6c53000125214ccc90e8f2d51d85595e89f58376c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwYmNiNWVjZjExMzczMzFhNmViNzFiODA1MzFlZmI0YjBhNzgwMTVlOWMzYWM1ZGZlMjY2NDlmMTMwYWRhNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkMDgwMDg1YjU3MTRjOTI1ZmI4N2NjYmNjYWRmYjRjZjViNGJkNzMyNDFmNDU1NGIxY2I0NTY1YzJjOWQ5N2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiZjQ3NjViYjNhYWI3OGY2Y2Y0M2RiOTY3MGYzNjA4NTc2NWY4M2UwNTI2N2MyYTZmOTQ2ZWJkZTllNWVkMmIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/repositories.ts#L177-L205",
+          "version": "repo-lines-v1:sha256:06cbf12a5745119208cdfede4421dbf08400e4e0ce604010db01fdb306faf085:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2NmExZDZhNDQ0NmRhODczYjRjOGNiZWI0OWE4MDJiZDhlNmMyNDVjMDI3NmQ2MDM0NjE0OTllZGNkMWM1NTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxMGZiM2U3M2VhMmE3MjE0Y2JjNDliODhhZTRlZjExMDViOWQyYTEzMmQ1NmUzM2YyYTBjYjk4MmU3NjY1ODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhNGNhNWRkYjQ2ZWQ1NGMwYmQ3YzY0MDA3YzBmZDRiYzlmMDc2MDI1NmQ0MjYxNWI2MTdhZmY1ZmVkMDM0NjcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/repository-contracts.test.ts#L17-L43",
+          "version": "repo-lines-v1:sha256:1afb8ad2e2cd2a3847ae8a36914bcdab08c3553f0ff606da281bf88710ecd7d9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmOGFiNTJhODEzNjM4MDhkNzE5NjRlZTE1MDkyM2ViZGQyODEyMjBhMzk3MGE1MTRlNjUzMzFiODMxODAxODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5ZjZjNmRmYmUyZTQ5MmJlYjZlNGY1MzY0OTJmZDlhZmE4Yzk0MmMyNjk0MjQ5MWM5YjE3NzgwM2JjNzJlYmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlYTY2MWI1ZTkyNWE2MWY2NTg5MTM3NjUwMjRhYjE4YjFhNmVkNGZlY2FiYzY4ODMxZGQ5NjhmN2I4NjAyMzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e6920feabf7b4a7dacbf7d7feef6d096",
+      "statement": "resolveGitHubCredentialAuthority selects the credential store backing a user's GitHub identity: a browser-session user resolves through the Better Auth provider-account client with the linked-account list validated per request (malformed list or an account owned by a different user throws \"GitHub account authority is corrupt\", and more than one linked GitHub account throws \"User resolves to multiple GitHub provider accounts\"), a user with no linked GitHub account resolves to githubAccount null (falling back to the shared App bot), and only service actors retain the legacy D1 token-store authority — a user principal without browser-session provenance throws rather than silently downgrading.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L196-L224",
+          "version": "repo-lines-v1:sha256:50e69ba86d1b292e9d2fc020682def2205d11db6a4aaa8197f98189adb7a68fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/github-credential-authority.test.ts#L56-L134",
+          "version": "repo-lines-v1:sha256:e44ce5d18c28b69c338f618432649fe4eb738bb355675b1440d2f213fc15203a:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5ODI5Y2FhNWQ3NTZhZjYzM2M4NmE5YmE3Y2ZmZTNhZmIyNDRkZmJjNTFmZjYxNWIxYzAxZmI1YTNhMGU1ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/github-credential-authority.ts#L42-L92",
+          "version": "repo-lines-v1:sha256:b187dcbc922e7b01ae3dbafbfcbb1ebd1eee6da381ebd9b686c14432914167aa:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI3N2Y1YjM3NTVkMjM0NjNmZTAyZjc1M2ViZDBiNWFhNjAxZGE0NTRlNDIwMmQzM2NhMTE3ZjNkN2JjMjc4ZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9231c910aeb944038482f492f1283cde",
+      "statement": "The credential authority is consumed by resolveGitHubEnrichmentForRequest (legacy path reads the D1 user_scm_tokens store; browser-session path fetches the access token through the account client and encrypts it with the deployment's token-encryption key before it touches session state), and both session-create and session-prompt resolve the authority only when the deployment provider is github — on GitLab deployments the GitHub enrichment path is skipped entirely.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L131-L169",
+          "version": "repo-lines-v1:sha256:e3178bccd238bca3b5cf4b18931c96327ca7c892553f196cd18c74ed7a0c0f9e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxM2FmZTI5ODAzNGU2ODJlZWFiMzBkOTg5YWFjNjkzMzU3YWY3NjY1YzY3MTYxZmIzZjhiOWFhZWU0NTE1MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwODdlYWZlM2ExMzk2NzY0MjUzMTNlYjlmMDY4OWFhN2EwYjk3NTdjYWNkYmY1MTcwOTFkNjFlMTQ3OGRlMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiMmUxN2YyYmU4YTE1NGM0NDQ1MmE4YjgyZTM1MGY5MzI3MzFjZWI3ZTFhYzYzNmM0YmExNzJkYjcyZjcyOTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-prompt.ts#L12-L12",
+          "version": "repo-lines-v1:sha256:bd6a4220286e5486bf72f8932ab679a60c16c9f31ac629e3cedfaab89be7b055:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQ2YTQyMjAyODZlNTQ4NmJmNzJmODkzMmFiNjc5YTYwYzE2YzlmMzFhYzYyOWUzY2VkZmFhYjg5YmU3YjA1NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmQ2YTQyMjAyODZlNTQ4NmJmNzJmODkzMmFiNjc5YTYwYzE2YzlmMzFhYzYyOWUzY2VkZmFhYjg5YmU3YjA1NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWJkMTdjYjQ0OWFlZDc5YWRjZDU5Y2MzYTc1MmM4MTcyMDRhZmEyODQwZTJiOGVmNWMzZTFiMWQ2ZjBmNmI1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzVlNjJhOTA5ZmMxYmMwNjRkMDE5YmM3ZTdlYTdkZmM0N2I3NGYxN2NmM2IyMmE0OGVjN2NkNDVmY2ExNmIyZCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L202-L224",
+          "version": "repo-lines-v1:sha256:d1c11c68f9fc25b7325d4359338bb344c9d0ef1d2a099737f6d1952531b8515e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmMTcwNmU1NjQ1NjhjN2MwYTZjOGQ0OTE4YzdlMTY1MzlmYzUxMjNhN2M0M2MwYWE3MzM0NDRkY2FlZjNmYjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2ZTE5OWZkNzk2ODIxOGQzZmZiZjVmMDg2NmI5OTYwZDFhMGUzM2I5ZjIzMjMwZmJiZTc4NmUxMzlmZDlkOTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fab6cb8ebf20466fb797f928673acdba",
+      "statement": "SessionPullRequestService orchestrates PR creation: it calls generatePushAuth() for the push credential, builds the GitPushSpec for the target repository and head branch, and hands it to SandboxPushService, which performs the sandbox protocol's only request/response exchange — a push command over the sandbox WebSocket settled by push_complete/push_error events with a 360-second timeout, where no connected sandbox counts as success on the assumption the branch was pushed manually; GitPushSpec.repoOwner/repoName select the checkout in multi-repo sandboxes.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L238-L330",
+          "version": "repo-lines-v1:sha256:5e6da3ff0c3d3295e0854901cf6b7860bcd3183150c360019bb1040725616f98:eyJzZWxlY3RlZExpbmVDb3VudCI6OTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0ZjQ4NmM5YjU4MzcxYWExMTgzY2ZlZGY2NGE2YmUwMmFhYzA4MzZiMThlNmI0NWY5OThhNGIzOGM5NGQyNzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4NzYxYTdlMTI1ZDIxZjM1MjU1ZTQ3YzEyMWUyNWU2YWZiODIzY2QzNDFiMjVlNWRjZjY5N2M4NzAwM2E1ZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiOWEyNDAwYjgzOGY5MjNjZTY5ZjdhMThhNGIxM2NmNDg0ZThlNmRjZDM5ODQyZTBjZDg2M2Y5MmQyNTQ5OTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-push-service.ts#L9-L77",
+          "version": "repo-lines-v1:sha256:5353a6a3f3d7bb3ecb550654435297fffde71e41121888699da6e29486af2cf1:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5MjUzZTkwZjY1OWFmZWZjMTNhZmUwMGY1MTJlZDVlOGJhOWQwMDk0ZmM5YjIyN2Q3ZGJmNTU0NjY3NTJiOGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI1ZmU4YmUzMTlkNDVjMTAxYmM5YmMxYTQ3M2I5MzllODU2MTYzMzZmZWQxMWNlMTMzMTJlNmNlMmRhNmJkNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4ZTkwOWRjYjNiNmE5M2I2NDkzYjMyZDQzNjJhNGQ3ZjUxMGY3OWZjZjkwNGY5NTU1NzZiYWZkY2U5OTdhNjkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L107-L126",
+          "version": "repo-lines-v1:sha256:813a3ed5627d20ea1d4050d747fe6b44513abae8cb2998a4d6c61bfcf07b00bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4ZjNiMDFmNDViN2MyN2JmYmE3NzQzMzFkMmNlYjBlMjk1Y2EwMGU1OWVjZDUwYzdmMmNiZmU0OTJmNWIzMmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1Y2RlZWU5YTE1NDk4MmUwZDY0NzE4NGY3MjExNzJiNGY5MjRiNTZjOGVlODU4N2M3YzRmMGVhZGFjNWY4NGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3e1a111c630b40978dc77ec9483a995a",
+      "statement": "PR creation prefers the prompting user's OAuth token for attribution and falls back to the app/PAT token (the path for Linear-spawned sessions and users without a linked GitHub account); the resulting provider result is mapped through a single PullRequestSnapshot mapping into the DO artifact and the best-effort D1 authority record, and creation is serialized per target repository by in-memory claims on the DO instance.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/participant-service.ts#L382-L423",
+          "version": "repo-lines-v1:sha256:f747a3b01113759904c8d6b78e5aa34bb249dcf95e30ebdb6118711ca976a780:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU0N2VjZTg0YTIxMzQ0YWNhNTViZDFkNjY3OTQ5NmZmOTUzN2MxODkyZTg5YjkzNmUzZTRkYzE4MGRhOTQ3ZmIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L107-L130",
+          "version": "repo-lines-v1:sha256:aa6bcee5b24b975b97a1c491e5c109977e80b9c72fb5a13eddaba18d1b5829f5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3NDMzM2VkMTAzNTU5MzliZDk2YTU3MDdhNDM5MjQ1MmVkYzEwMTU2NmYyNjNkOGQ1MjUzYzY0NWYwNzIzMjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkNGE4ZTE5MDVkNDhhOTJmNDE2YzcyYjNjMTkxYzI0OTFkY2U1NmYxMzg5NWIyZmNlZjU0NDkzNzAyODU4YWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmYTk1NTU4MmMyOGE5ZmU2ZjBiYmQ0MWQwMjRlOWFkZmYwMmE5MzM1ZjFhNTczYmM0Yzk4Zjc2NjlmNDE4YmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2ODIzOWQzYTc0NWFjNmU5MDBiMDgyNDU4ZjhiMzMxNTNhMTkxOTJmMzBmMzRkMWRlZDE1NTdhYTRhYjZmMjEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L363-L433",
+          "version": "repo-lines-v1:sha256:c846d6df08a8311edac788d4b482dec786772da54ade5ad7ffc81344d4a739f4:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NmM2MmJhZGQ2ODY2NTMzMGFjNWE4ZWYxZWRiZDM5NzUwZGEwYTc0Yjk2YjNiODRjOGE5MmI0MDA5YzNmYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlMzNkYzczMWU3ZDA3YjFmMGMwNWNmZWJkN2UxOTIyMDIzZTYwNzdiYzBhZTdiYTMwMTQ4ZjUwODMzYTI1YTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkOWM1MTIyYTgxZmU2ZTE5M2VlNTAzODUzMmU0OTliMmVkZDgxMmIxYTEzZDE1MDM1ZTA1YzJiMTE5ZTBhMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjMDBhZThlMzRiNDRmZjRjNmYwMGRiMTg1NWI2MDIwZTMwOTRiZjhlNzI0ZDQyMmQ4MzI3MTI1NjVhMDU4OTIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L460-L480",
+          "version": "repo-lines-v1:sha256:678d1a0c26129cfedc5bec12d095ee10320616ce95878819bec616791499c348:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg3ZGNlYzRkZDQ0NWIyMzhjNTM1Mjc4NDllYjMwZjYzZmNjNzkwMzg0MDM4MjgwOGQ0NzFlOTlkNDU3YTVkOWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4OWE3OTMyODA1ZWEwMmI5ZmIyNmE3M2VkNjZjMWY0ZWI3MTA3ODI3ZDZkYjMxNmM0YWRjNmJkNTVhMDZhMDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cdc1fdc3f0674dd99dbbf1c119e872fc",
+      "statement": "POST /sessions/:id/scm-credentials is a sandbox-authenticated route (github + gitlab only) whose handler wraps generateCredentialHelperAuth in ScmCredentialsService, which validates the response (non-empty username/password, finite expiresAtEpochMs in the future, otherwise 500), maps permanent provider errors to 500 and transient ones to 502 so the sandbox helper exits non-zero and the next git operation retries, and never logs the returned password; integration tests pin the full sandbox-auth → DO → service → provider chain including rejection of user/service credentials.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L141-L144",
+          "version": "repo-lines-v1:sha256:55daa8159f1644764c66f01660e447f949e9604d705d4575afee6ec91427c801:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGNkYTA5MGJkM2QyZTgwN2YwYjNjNDQxZmQyMjU4MDM0MzUyOThlZjhlYjgzZmE5Yjc5Mzk5MWVlODcxNTE2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTM3NzkzZTAzOTZiODFjYmRlOGVmMWEwMDkwZjJiNmRmODM0YjdkZDViZTZjMDk5OTQ5NTJhYTczZGNkZGQyOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGNlYmI4NTJjMzNiOGZiMjI1YjdhZDQ4NjQ1YjM1MzllNDA3YTM5NGNhYjhiNjE0ODhmODZlNWE1MTRhNzViOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2E5ODVkMjQ0MWI2ZmYyMDJlZDA1NGZhZjI3YjYzODJkODNlYWY2NTIxM2YxYzg5NGExZjEzYjlkOGU0NDBiYyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/scm-credentials-service.ts#L14-L77",
+          "version": "repo-lines-v1:sha256:cb46939a1c4abe0c6a985f091d255b5c617ae33427fe284fb36f5badd38d902f:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2MDQzOGZhYTIwN2Q1MDY4Y2ZjNzcwOGIwNTFkM2FjMzUzMmI4NjU3ZmUyMDYyNGEwODlkZjA2YzA4N2JiZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/scm-credentials.test.ts#L37-L111",
+          "version": "repo-lines-v1:sha256:0dd80c340ce909368f9ea0407316bc32f21ac7cf85310a5805478d338cd7af01:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4MzIyMjU2NWMzZTRiNjlhOGFhYjY1MzE2YmZmNzA0ZjQ3MTE4OTkyOTg3MWFlNTZmODE3NGRlZGEwMTU0ZTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2N2VjZTExNmUyYjM2ZTgyYTVhODg3YmUzZDM4NzkyNDk3YjRiZGMyZjNmZDliNDM0NGZlZWM3OWM0MGIyZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3MzZlODc5OWRlNmJmNGVkM2JiNWNkMDRmMWQyNTQ2ZTljMDMzNjA2ZWVlNDJjMTJmMjViNzhkODkxNjlkZWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_095e374e61d24fe5a171f5d85fe24774",
+      "statement": "scmCloneIdentity maps each provider to a sandbox clone identity — host, clone username, and secret hosts (github.com/x-access-token, gitlab.com/oauth2, bitbucket.org/x-token-auth) — applied to sandbox env as VCS_HOST/VCS_CLONE_USERNAME, matching the credential-helper usernames the providers' generateCredentialHelperAuth implementations return.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.test.ts#L118-L145",
+          "version": "repo-lines-v1:sha256:75353b90188c026ad708d1169d34b868da889ac70df6c83998c44d42ee2e8cb0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlNzhiMzFhZDU1M2JiNWZkYWFmZTFiZDExZTQ4ZGE0ZDA4OWJmNTIxMDJjMDIyOTk0NWVkMGY4ODZlM2M4NWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3ZjgxZTgxYTE4ZjIyZjJiOGM3YzY2M2I1Y2RmZGRjNTU0ZmY1MWU0MzZhZjMyMWU4MmQ4MzY2ZTllOWMyMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNTUwY2I2YjYyODZiNWUzMmY3ODg0NWI5NzM5Y2RhNmVhN2QxYjZkMTU3ZDc5ZDk4Y2VjZDQwZmUwODFkMzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/sandbox-env.ts#L194-L228",
+          "version": "repo-lines-v1:sha256:c075ecb616ab56c7b011cb06936f8e4727762ab5f8d9bff391cb4a00257353b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkYTJlZDY3MGNlYzMyMGU0NzNhNmRiOWFkNmFmOGNmYzhiNmRjN2IwM2Y0NTFhNzMyZjMwNTBjNzUwZDQ5MGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyZWNmNTQ5ZGQ1NzNhYmRjOGYwZTcyNmIwMzEzNTMwMWQ1OTAwNGIxYWQzNzljZTc0MDk4MjI2MTkwNWZiYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3YjZkNmRlNDJjZWIxNWMzODdiNmVkYmUwYTc0NWY2YjE4ZmYyNGFiNDk2ZDM5NzkxMWVlMWYxYjQ0YTg0YzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_66e5194146c04d49b2d7b568514ca778",
+      "statement": "The manual-PR path stays part of the provider contract: manual-PR branch artifacts (mode manual_pr with a createPrUrl) are rendered as Create-PR buttons by the Slack bot, the sandbox's create-pull-request tool can surface a manual envelope (kind manual with createPrUrl) when the create response signals the manual path, and prior manual branch artifacts are ignored when a later request creates a real PR.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.test.ts#L786-L812",
+          "version": "repo-lines-v1:sha256:a257fb9f0451ebaa6927317c8650a646854150f326920819f80d64da9135b64e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3NjEyYzUwNDdjYWNhN2RmYzJmNDA1YjRiYzBhMmY4N2MyZDQ5OWMxZmUzMjIzOGYyODgzN2U0ZmRkNDQ4YTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNjQ4YmMyYWEyODlkNmM2YzcwZmQ2ZjIxMmY1OGQwMDU5YmYzMjUzMWU0YTQ1M2RlNzc2NjMyOTZmZDE1MzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmYzI0MWE0NDIzZDJlMDIzYzNhZjRkZDY5ZTVlOWZiZWU0MTFiZDAyYjJlYTBjYWU4ZTE4NDNhYzhlODkxMmUifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L126-L133",
+          "version": "repo-lines-v1:sha256:ef8484eaf21d90b99216cd7fd239e327199de9b0ecfdf0faf7b1266196f46d9f:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzdjMDVkYWFhZmQ4ODc5MmE1NTQ3N2RjOTQ5MDVlOGNiYTI4MDk0ZGVlZjI5NDdkOWNiNWU5MWIyOWE4MzE2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmQwZjJkM2EzYWFkYTI3NTg2NDU3OGQwYTQzOTE1NjM4ZDU0M2ZlY2EyYzk0ODU4ZGI5NDEyMTFlODZjZWYyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjM0NGZhYzQzZDE4OTc4Y2VlNTNjNDE0OTk3ZmVhMmVjNGU2NTQ2NGY5M2FjMzViZWJkOTY1ZDViOGE3NzY1NiJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L290-L298",
+          "version": "repo-lines-v1:sha256:a422ef3e1e5a51a0b591eca72c0c7ccbb83b986b375db5ba3f516b1266bbfc1f:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTU1MjhkNTc4ZDNlY2QzZTk1NmMwZDQyNDdiMmFjYmM5YzIyYTlkODk5MjcwOGU1MWU5YjZhM2Y3NDQ2ZmVkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWIzOTM2OTBjNDg5OTVkMTBlNjllODM4YmJhNDk0ZTc1MmQ0NTY2ZmYwY2NjNmIxZmZkYjExNGEyZjI5NGJjMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDg4YmVmZjUyZDhkNTExNzhlYmMxODFiMGViMGZmZWY5Yzg0MGY2OTk2MmFkNGE0NzgwNjcwMzgwNzEzMTQ5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDQ2NzcyMTlkZWVlOTc4YmZmOTU4YjU5NjUzYTE4YWQxYmIyMjY1ZTI4NjkxNjQxMTE5NWMzMmEwNDQwNzUyNiJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/artifacts.ts#L69-L78",
+          "version": "repo-lines-v1:sha256:da758726b7d764f5d0520e58478eb1355d7186b13a171e978c5dc9d44f2dccd1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3ZTA5YzgwYzgxNmNkZDEwYmUyOWQ2N2RjOGIzNTVjODA0OTZhNmQ2YzU3NTVhOGEyMGE3NWZkZTE1ZDkwMWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4MmViMmEzZWM0YTVjM2U4NDIyNzkxYmE5MTg4YmE5NjgxMDY3OGJjZmM4MDYwYzU5NGI4ZDVjZGI0OWRiZWEifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/completion/blocks.ts#L95-L158",
+          "version": "repo-lines-v1:sha256:8c4d30e7865d990f6312a54c5f2d286ec408619930418a64695304b5160459bd:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwYWFjYWQwYjExNzMxYTg0MGUwYTE5NTEyNTkxY2U3YWViZDMzNjJhZDFlZDQyNDIwY2I2NDQ3YjU0ZDU0ODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkOWY2NzJlMWE1ZTY3NWRkMTc2NjM2YmIwN2M1NDIyYTA3ODRlY2VjNjc3MDZjZjIyOWNjYzIyMmY5ZmRlOWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg1MWUxMjMzNWZlOWRhZjYxZDk5ZGEyMzYyZDE2N2EzN2M2MTNmNWI5OWRjMjA2MTI0NTllZTQyNzQxZjFiY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c4afebc559d74ace9f9d87c00a9459bf",
+      "statement": "Two capabilities degrade explicitly by provider: managed-skill imports consume only the RepositoryReader subset of the interface (checkRepositoryAccess, resolveCommit, listTree, readBlob), and commit signing is GitHub-only — on non-GitHub deployments the sandbox commit-signing endpoints return an explicit { enabled: false } for GET and 409 for POST so unsupported providers degrade safely instead of failing sessions.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L136-L173",
+          "version": "repo-lines-v1:sha256:69ff340aac16e2e601a520dc7be98366ea6eeb31bb9b8004112c7c51c40f8556:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxZjk1M2JiNzFlOGNjOGQwOWU3MmUwYTFiY2FlYWM4MWI0N2IxMTQyZDIzZWY1MDJkMWRmOGZkY2RhOTYxNTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxYmU5NTc0ZjBjMjFmMDFiYmRhYjAxNWNkOTgwMmIwZGZmNjM0MTc4YTU2YmUzNDBlOGM5OWU0YzgzNDY0NGMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/types.ts#L506-L510",
+          "version": "repo-lines-v1:sha256:32042d0e77df3bdf60bf427946d4bd7726cac68d45b19cec31b9ed5a41d050e8:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzYWRjOTk1ZTc4M2E2ZDU0MDEzY2VhZjc0ZjczOTM1ZjY1YzUwMDE5ZDE3MTI2NTRhMDdhMzdmNjMwOTRlNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2M5MDA2OTA4NTE1Y2FiMzRkMTRmYTk4MDFhZDU1YmM3YTBmNWYzN2Y0NzBhODM5NDkzZDZmYjUwMjJkZmMxZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDQyNzRlOGMxYmI5YTU5MGRkZjBhOTI2M2NjOTM0ODA5OTNhMWRkYzNjMzM0YTRkZDIwZjU5MjJmNjdhZjVjMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5fc311969e9d43f9bfe4072ec51c10d4",
+      "statement": "ADR-0001 pins the deployment architecture: single provider per deployment selected by SCM_PROVIDER with no per-session provider state persisted (PR artifact metadata deliberately has no provider field), fail-fast 501 responses for unimplemented providers, provider-specific PR URL construction, push-transport construction, and sandbox credential-helper auth confined to provider implementations with direct GitHub API base URL usage limited to approved auth/provider modules, and guardrails enforced through code review plus focused provider/factory tests.",
+      "evidence": [
+        {
+          "resource": "repo://docs/adr/0001-single-provider-scm-boundaries.md#L16-L53",
+          "version": "repo-lines-v1:sha256:1085e9b8207c6d6d9c9379520a8b50f9ec3d90b587578d7a71f0f207b9416347:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkM2RiYzRlN2U3Y2JlNWRkYzg5MWIwODA3MTJmNjM1MWM5NGI3MjhlYzhiZDg1NTZmNDYxMmIwNzBkMjdiNDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkNjdkMjk3ZDIxY2VjMWJiNmY0OGNjYTU5YzU1NTk1MTNhMmRiN2I1ZDExOTM5Y2IwMTBmMjMzMjQ2NzQ4ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzMzNiN2ZhMzRmMGI4MjhiZmUzNWUxYzcyZjU0MjhkMzE2YzVhMmQ1YzU3MTk4YTllNGU5MjIyZmIwOWY1MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/artifacts.ts#L62-L66",
+          "version": "repo-lines-v1:sha256:d9f435e6e08cd1a98cb5102b3ff0a3920e16be73af85475b8078f3cc39097970:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzU5Yzc0YTdiN2Q1YTY5MWU1MjgxOGRhNmZkODIzMTZmOWZiZjBlZTBhNmEwODZkOTk3MWVmZTM3ODVlOGZhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjA2NjUzNDU2ZTM5YzFkZGY0Mzc5ZjI0ZGFjMTlmYTVjNzMzNmJhZWY2Nzg5Mzg5MzZhZWUwMmY2MTYyZjViOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjFlM2ZlZjE5MzZmYTBkZDM1OGI4MmNhMjBkNWU3MzY1NmQyMGQ3YTRhM2NmNzQ4YTg0NmNlNDkxMTZlZTY0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzc5MjllOTFlMGY5OWMzZTgyNWRlNjliNDM1ZmI2NDg0ZDFiMGExZGYyZjQ2NTYxYWJmMWEyOWYwNDE4OGI4OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_672a55affbba404286aea42f08391aca",
+      "statement": "docs/provider-contribution-checklist.md is the extension guide for adding a provider: implementation under packages/control-plane/src/source-control/providers, an explicit factory case in createSourceControlProvider, the name recognized by the SCM_PROVIDER resolver, user-authenticated repository lookup and PR creation plus push auth, buildManualPullRequestUrl, buildGitPushSpec, and generateCredentialHelperAuth implemented via provider methods (helper auth being a prerequisite for enabling helper-backed sandbox git auth), with test requirements covering factory selection/unsupported behavior, manual PR URL building, push spec building, credential-helper auth, basic API mapping, and non-regression of create-PR branch consistency and Slack manual-PR button tests.",
+      "evidence": [
+        {
+          "resource": "repo://docs/provider-contribution-checklist.md#L1-L38",
+          "version": "repo-lines-v1:sha256:a7ff5ca7dce058edf60924f57c307dcba279dd2e1bf33d2ea9c8d2052eea5ff0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWJkYzYzZGRhODY0MjM5MmY3MmRiMzNlYjg0YWJmNzE3OTU0M2E1MWFmMGNkNWQzZmMzZjE3YjdkMzVlYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlOGUyNTI3ZDVlM2FjZWUyZWVlNTJlM2I1M2I3Y2M3ZDY3YzdiMTkxNzI5NDI2MmM2ZDA3ZDgxN2U0N2JmZTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8a99dc6c7d2b446f8d49fcf7a5d8d3c5",
+      "statement": "The /repos listing route builds a provider per request via createRouteSourceControlProvider, calls listRepositories(), enriches the result with D1 repo metadata, and caches the enriched list in KV under repos:list:v2 with a 5-minute fresh window and 1-hour TTL; a permanent provider error with no HTTP status is treated as \"provider not configured\" rather than a fetch failure.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/repos.ts#L101-L120",
+          "version": "repo-lines-v1:sha256:4ae8210f5d946ac7a593368bacfcb6634ac965fc39d110980089b69c58e72d37:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MzgzOWNiZWE0NjZhYjkzYWUxZGY3NjgxNThlNmNkZDk4YzY4ODAwOTAzZGM1YWY1NjBmMTcxYTkzNDIzNmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ODFhYmI0ZjE4MjI1NGVmMDY0MTE2ZWQ4NjcyZDY4MTc2ZjAzMDVjOTg3ODBmM2FhZmQ3MGViY2QyZTFjOGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjNGFlODJiOTVkODFiZjkxY2VhMTRjNzY2YWY3MWY3YWE3NDVmYTI0MTE1ZDAyNmMxMDNiNDgzYTlmNWJjZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkYjUzY2Q5ZTcxNzMzZDUzMGIyODcwNTQ0NDQ0MDZmODQ4NWQyZTk0OTI4ZTVjYmRhNDQ0NjRlMzk2NDU3NWQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/repos.ts#L31-L85",
+          "version": "repo-lines-v1:sha256:a0e33da008d4521ea63419c7db5f39d96848bccd1dca9ac00578fe35381f39aa:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3MGY2NTA3MmIyYWQxYzg0NTViNWZkOGQ3MDUwMGJjYmJjNWY5OGI4MWJhODFkMmZkODQ2MjZjNTgzZTliMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwMGI5YmM0MzFkNjgxNDBiMzE0ZDZlNzgyZGNkOWJiZTljNmRiMmVmODk5NWQxNjA5ZTNlMDAyNWRkMDEwMzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3NzhhZTkyYTFkMDlkOTI0Mzc3YzUyODIyNWI4ODA2YTg4ODBlN2MxODIyZjZjMTY1YTEwNGM0MTU1YTYwMTAifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

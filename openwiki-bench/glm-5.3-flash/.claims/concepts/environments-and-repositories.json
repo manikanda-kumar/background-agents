@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:24715ed57a174cabf61464c6e2368e8d1db4a3ab86d317efaeefd9280f11f35d",
+  "claims": [
+    {
+      "id": "claim_4c8fe6d60ae149408e31a01bc5a28567",
+      "statement": "An environment is a named, prebuildable, ordered repository set of 1-10 members (position 0 = primary, mirrored onto the session's scalar repo columns), each member carrying its own base branch; it lives in the `environments` table with a case-insensitively unique name and stable `env_<id>` identity, and its member list reuses exactly the session repository-list schema (non-empty, capped at MAX_TARGET_REPOSITORIES, deduplicated by owner/name and by repoName because checkout paths are /workspace/{repoName}).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/environments.ts#L49-L64",
+          "version": "repo-lines-v1:sha256:b0cc1c67f3a33c0897f33b58c31d5a5af790bb17a9f6bdc82f3f3f6999709b03:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmYWM4NzZhMDA4OWU4MzU2OWQ5MmQzY2UyNjg5Y2FkMTVlOGEzMmFiYjlkNjA3NzQzMTJlYWFjMjllMjNiMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhYzI1ZjliYmJiYzQ1ODNjYzE3Zjg0Yjk5MTA4ZGViNmUzMzZjY2U1NDU3NDNkYTE2NTZlMmI2MjFjZjgxYTQifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/environments.ts#L18-L89",
+          "version": "repo-lines-v1:sha256:3f499af1b0162e57723abf363f92394b4670b65d1fcf23bffc9a5678400a0abe:eyJzZWxlY3RlZExpbmVDb3VudCI6NzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1MzEzOWNhNjAwZjU0OTYxODc1NThiMDlkZGNkMzYzYjc4YTRkNjM0ODM3ZDQwNzZjNWNkYmFkZTliYzE1YTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlYWIwOThmNzA4ZWRmOGRiZWU5ZWUyY2FlZmEzMjRjMmU5MmQ3NDVhNDQ0YTkzZDY1YzZhOTVmMjlmMzE0MTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmMDI1NjcxZjU2N2VmMDY1NzhjZmJmMDRmMzhlMGRiY2ZiN2E5NzFmYmFhNTUzZTdjMmZiYmJmNjk3ZjRmNTIifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0033_environments.sql#L16-L47",
+          "version": "repo-lines-v1:sha256:7d1753c8738546419d337e0e3530f1233629b170008a197cd837f372a52adbec:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlZjQ0ZmJlZjczNTdjMjgyMTczZjViYmJmMmQ3ODA2M2YzOTM5ZTE1NmQ3MTQ5NDdiNmYxNGI5OWI5N2QzZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2NTFlYmEwN2U1NWViMTI3NWU1MmNkYjU1ZTAxMzgwNDY5MGJkM2I1OTNmY2NiZGI1YTQzMTk4OWY5MDAxOWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjZTI1NWZjN2ZlZDAyZDhhNTU0ZWMyMThmYWRiYTIyNGEzYWIwNjcxMzI4ZmE4MTg2MmM2NzdmMDM4YWFmNjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d4ab99e202c479ba920889b1a2c8174",
+      "statement": "`isEnvironmentId` (`/^env_[A-Za-z0-9_-]+$/`) is the single gate for 'is this an environment id' across consumers — Slack LLM-target resolution, Slack routing-rule validation, automation environmentIds validation, and integration-settings environment targets — while environment names are user-editable display labels, unique only case-insensitively.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L676-L682",
+          "version": "repo-lines-v1:sha256:96060ff9408dd3aa486b7a14af6eb6fe029e394457a0fc15f8b815f5b2f4b7c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTU4M2JkNmQ5ZDZmZjQyZGJjNzY2OGRlNmZiMDY4NTljYTMyZTk4ZTI1MmU1YjhkYjkzYTUwOGYxYjE2YTgyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWE4NTRkZjMwNmNjZjBiODViMjU3N2E4MjRlOWRhZWY4MGUxODlkZjkwMWJkMTU1ZmRkZGZkMzYyNTNkNGQ2YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODQ1ZjM0MmYwMzk1ZGU3ZDFlZTU2YTU2ZTc3MWQyNjBjNTJkN2YxMjc5ZDQwZjZmN2RlNzBhOGFmZjZkYzQ5OCJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/automations.ts#L109-L127",
+          "version": "repo-lines-v1:sha256:0ac0f5d11907f9c00687e1a6906ac454207f3c90eba081ecc22df4c242dc0281:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhNTYwY2I5NGZiZTAwZmYwNjk4MTAxMzc4ZmI3Y2RmODk0ZDg1YzNiZjE3NjAyOTA1OTY1ZWEyN2RkOThmYzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxZWY3MTgxNWM3ODgwNjJiZDQxYzEzZDRhNmRkMWRiZmUyYzRhNjk0ZjQyY2NmODkyN2MyOTc0ZDY5ZDRlMzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBlZmQ4YWY5MWI4ZDhhN2RhY2QxY2NhOTMyNGZjNjY1OWZlNTNjOGQ1OTU2MjI1MGFlYzVhY2RlM2YwYjA2N2QifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/environments.ts#L11-L20",
+          "version": "repo-lines-v1:sha256:5459c9005d837c03079a7d9353f31dbf437f2e5494f7c7f27194bdfdc6237613:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2OGVlMGM1ZWIwNDY5MTIzOTUxZTg1ZGY5MDExNTFiNjkwNDNmZjAzMjg1ODIxODUwMGMzMWEwNjI0ZjM2NjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjY2QzY2Y5NjBlMTBmNGM4ZTM2NTIxNTEwYThjYWUwOTQ3Mzk2YjFhMjZkZDVhYjFkMjZlOTFmYTg5NDJjYWEifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/routing.ts#L84-L98",
+          "version": "repo-lines-v1:sha256:5b791f0d64a99a5374fd39d2b089862f03a2ac22d1b890a8facec9662fe0d1a1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5ZDFmNTRlZjFmYTNmNjYzNjEzNDFkMmYwY2NiZGRjOTdlYTczMTBkYTA3Yzc5OWI2Mzk4YmIyYmIyYjQ1YWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlYTc4ZDBmOWY4YjNmMjczODk3YWRlNGVjZmU3ZWYzMWZmZDE0Nzk0ZjA1NjA5N2ZmNDM5YjUyZDViMTJmNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0033_environments.sql#L24-L26",
+          "version": "repo-lines-v1:sha256:de32f44c0488b542d5baeb229c6b6f0f5f15c05c16ecfc9a1f282fbd868daf3d:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U4Y2Q3NDkyMzY3NTY1MjdjNDQ0ZjdjYzRlMjNhN2Y4MjJiODQwYWNjZmFjZTc5Nzc5NDNkNDdjYjhkNTUwMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODM2MDI5ZDcyNGVmODMxMjk4NGZjMGY0OGRjOWI5YTY5MmJkZDI1ODFkNGIyYzNhNTU5ZjAwOTZkMDVkOTVhYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWQzYjk4ZWJlY2UxYWRhZWFhMWI0YmRhNGExZjdhNTIwMWMwZWNlMDFlZDJjYTJiNzBiZDkyNGRmOTUwZWM3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzQ3OWJmOGVmYTFmMjE0MTk0Y2Y1YTZlYzg3MDE4NmE2YWMyODBlZWM2MjBmYTY5NDhmZGE4YmM1ZWY3MmFhYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_214c7b0469e34db39dae4a76e5546efc",
+      "statement": "Repository identity is (repo_owner, repo_name) but the owner is not a single path segment: GitLab nested groups put multiple slash-separated segments in the owner, so full names are parsed on the LAST slash (parseRepositoryFullName, splitRepoFullName) and owners are treated as one percent-encoded route segment (encodeRepositoryPathSegments); only repo_name is guaranteed slash-free, which is why checkout-path uniqueness keys on repoName alone.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L48-L53",
+          "version": "repo-lines-v1:sha256:a1745c96da09763b9c3965398d352fd6905e54317fbe19cf211440003521aac9:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjU0YTMzMWFlMzkyOTI2ZjYzYzM0MzU4NGMwNDhlMWY0YWM0OWI0MmY5ZWM3ZTM5MDE1OTE5NTViMTM5NzVhMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjJlZTY0ZWQxYzhkZDhmMmE1ZDMyNTlmZmVkMzkxNTVlZjViOGMyNDRjOWU2YjgyYTM3NzdhZmJkNjE2MTU2NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDJiODUyODEyYmRjN2UyNWFiNDExNDU5NDg5NGU0Mjk5NDBiNjBmMTlkOTJiZTNkMWFhMWJhY2VjNGNiNzEzMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzM5ZjdjMzVlM2FlNjk4ODM2MDY3NjcwOTMwNDRlZDczODUxNmJmMjM4NWYxZTkxZDczMjgyMTU0ZmJmNjdiNSJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L269-L276",
+          "version": "repo-lines-v1:sha256:86e3e6f4368240372ee0de7c3f2f15d185567dfff3ae38b528f92e2fbd8d5962:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjJiZDQzYmQ4NDgyNGQwYWY3ZTJjZDk1OWVlMjE0MzYzMTY2OGVjZDU5MWI4NWIyMzhmZmY3YTk1ODczY2JjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUzM2RjNzMxZTdkMDdiMWYwYzA1Y2ZlYmQ3ZTE5MjIwMjNlNjA3N2JjMGFlN2JhMzAxNDhmNTA4MzNhMjVhOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWRkNTc0Mzg3NDAwMzgzNzYwNzE0ZjAyY2Q1YThjMDAwZWI4YjQ1MjMwYThkYTFiM2Y3MmIyZDZlYjM4ZWJiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTdkODYzMmU1NGU5Mjk4YWJiOTU4NzI3ZTJkNTE0MDhhYmFmMTM2NjAzNTM3OTEwMTQwYWJmNjViMzBhYjYxMyJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/repo.ts#L12-L18",
+          "version": "repo-lines-v1:sha256:6a19c11ad5d2a532fac19d3e7ff55e831a968c257ed19236f82741a736c8a87a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTQ2NWQ4YWJlNDg1MTQzZWM3MDNkNDNjMGFjZDNjMjBjZmFmZjcwN2Y3ZWVmYWE2NDgxZjc5OWEzOGZhNzdjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjU5MTFiN2FkMWFmOWE4ZjdkMDVkOGQzNjE0MDQwYjhmMjQxMjFhMDQ5NTZiMmNhZmY4MWY0ZGUzNWMwNDJlYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/repositories.ts#L177-L205",
+          "version": "repo-lines-v1:sha256:06cbf12a5745119208cdfede4421dbf08400e4e0ce604010db01fdb306faf085:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2NmExZDZhNDQ0NmRhODczYjRjOGNiZWI0OWE4MDJiZDhlNmMyNDVjMDI3NmQ2MDM0NjE0OTllZGNkMWM1NTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxMGZiM2U3M2VhMmE3MjE0Y2JjNDliODhhZTRlZjExMDViOWQyYTEzMmQ1NmUzM2YyYTBjYjk4MmU3NjY1ODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhNGNhNWRkYjQ2ZWQ1NGMwYmQ3YzY0MDA3YzBmZDRiYzlmMDc2MDI1NmQ0MjYxNWI2MTdhZmY1ZmVkMDM0NjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_aa13bc4c97124212a7de27135f7081be",
+      "statement": "`repo_metadata` is the per-repository catalog keyed by lowercased (repo_owner, repo_name) carrying description, aliases, channel_associations, keywords, the per-repo prebuild toggle image_build_enabled, and default_environment_id; its upsert replaces the whole metadata document (omitted fields are cleared, so PUT /repos/:owner/:name/metadata without defaultEnvironmentId clears it), and GET /repos enriches the installation repository list with batched metadata reads.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/repo-metadata.ts#L26-L81",
+          "version": "repo-lines-v1:sha256:0c696ee258f2fca569b9fe75e078822aabd6be5f94486775a62b9956728fcd09:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxZTQ3Y2RkNWFiOTY0NzQ3ZTg5NGM1M2I1MjhlY2M5NTk0MzlhNGY0YjI5NDQxZTcyMTNlOThlNjEwYjFmOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmNDFiZjgyZmNkMGRhZTM1MTczY2E0MmVkOTc2YzlhMjY4OTNlMmE3YWI3MmFiNDIxNGZkZDMxZDc5NzEyYjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzY2Q4YWFmYjFkMzlmZmMyNzA3YjM2NTI2NjVjNjcxMzU1NWExNzRhYTA0ODdhZmE0MjYwMjQxZDA3YmUzNzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/repo-metadata.ts#L83-L112",
+          "version": "repo-lines-v1:sha256:384e956fcda4c65cead5a79ef3a5e4d7e9b861a8361ca118bc029ad2ae7cf03b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MjRkN2ViNWNiZTA0N2ZkY2NhOTcyMzkyZWUzNzA2ZjEzMGVjMTEzMTVlZmM5MDZhOTZkODlkOWM4N2U1ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjNzMwYzY3YmExMjMwOTJlYTEyNDM2ZjBiZTY0YmNjOTI2MTVkNDMyZGRhZjZhOTRjZTkxY2FhM2U3OWExMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5MWEwZmQ2NDU0MTQ3YmZmYmM0OWIzYzAxNjAyMGY4NTI1MjE0Nzc2YjRhOTU1MTMzNjFhYTNhNDg0Y2I1YzQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/repos.ts#L215-L267",
+          "version": "repo-lines-v1:sha256:98273cb15a1925405ee9464192ac1827cf680a471fb69356881df208dcc20ba2:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmNjQzYTBjZTI2ZGY4MzYxZDAyNzhkNzJhZTc3MmEwNWE0ODUyZmQzMTdmNDc3ZTZlMWJjYzBjYThiMWUyNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlNDEyMzA5YTMzMzg3OWI3MjI2MjU5ODk1OGEyNzU4NjFkNjI4NmVkNThkMGY1ODhiYmNmZDhkZjJlYTNmNjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5MjlkNTYyODc2ZGQzOWRkOWU3YjcxNDk4ZTk1NThmMDE3YmYwOTU0NmM5MzY3ZWU2YmI4ZGFlMzUwOWMwMmYifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/repository-catalog.ts#L20-L33",
+          "version": "repo-lines-v1:sha256:f259260246ea1297fc726a6c2c261c15c3f11e1ca9f81344f59563d5577f3374:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0YjM0OWIwMzA1NTBmMmM0MjZiOGFhYzYzYTk4NDYwYmM5MzY5ZTNhNTIyNzNhZDY5NDcwYzYyODBmNjIwZTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2MGU1MzQ4ZjlhYzgxYThmZTE3ODAxOGU4NDc1ZjQyM2MxMjRmNDkwZTMzYzMwODQ0NDViYWQ4ZTc5Mzg0MzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyYTBlYWY1Y2EzOWRiMDg1ODlmZWY5ZGY2YTcyNGJlMWRhNTk0MDNmZGRlN2QyM2U5ZDU4ODFjMzJiMDY4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIzN2MwYWRhM2NlOWY0Yjg1Njk5M2Y1NmVjMWZjNTdkMmI1MDMwNzJhYmQzMjUzOTk0M2U5YmEyZWJlNjg3NjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5f934d74f1f4407a837417a908de60d7",
+      "statement": "The environment cascade model is deliberate: environment_repositories and environment_secrets are owned children with ON DELETE CASCADE, image_builds rows for the scope are superseded (not cascaded, the table is FK-less) so the reaper can still reclaim provider artifacts, and sessions.environment_id is FK-less so a session keeps a benignly dangling provenance id after its source environment is deleted.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/environments.ts#L196-L219",
+          "version": "repo-lines-v1:sha256:d912d5f333bab721ea325e335d6293ba0cc87bece44dc7864740926c72678180:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4MGJhZGUwNjkwNTJjOWJiYmI0MzBlZTg0NjE5ZDUxNmVkOWRjNzQ1ZjVjNzFmOGViMjg3YzJlNjkyNmY0NWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4MDMxNDhlODMxZjBhMGNjMzBhNjViMmM2ZWJlOGFiY2U1ZjE5NWU3MTVlMGFjYTBiNzNhZjcxNTMxMzg5ZDgifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0033_environments.sql#L1-L14",
+          "version": "repo-lines-v1:sha256:69edbbe617240e64b38ca34baa2a51e32ff843b373a0861fc982239f3c6ae652:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxYjg2NWMyYzdmYThlYzA2ODAwNTc4MDdhYzlmOTQ4MDQzYzBlNWUxZWY2N2NiMjc4ODI0MGQ4ODE4Y2UxMjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0MTI0ZDEzMDI1MmE3OGRkZGM0YWMxNDE0YjNjMDUxYzlmN2JlODM2Mjc3MDgzZWEzZmJlZTdjMjM5OWRiZWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3OWEwZWIxYzcxZDc0MmI3NmExNzY3ODQwYjEwNTAxN2Y0ZjFjODMxNzYzYWNkODgwYWI1Yjg5ZjkyN2E2ODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b053c2752ac14cbf822542adf83170c3",
+      "statement": "EnvironmentStore composes its mutations into single db.batch calls: create inserts the environment and all member rows atomically, update writes changed scalar fields and/or replaces the member set wholesale (delete-all + re-insert; a repositories-only edit still bumps updated_at), and delete runs member rows, secret rows, superseding live (building|ready) image builds, and the environment row in one batch, returning existence (idempotent on repeat).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/environments.ts#L165-L219",
+          "version": "repo-lines-v1:sha256:12b0b3669f147161fb15171e6c5f8a4955cd0a807ccf505a942761683221f2bf:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNlNWVlZWVmZWNjM2E5OTRkMTRkMTRhYzJjNjUyYTBiYTEwMTQ5ODU2YzNlZGNmNGZjMzRmMDc4YjA3MjFhNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4MDMxNDhlODMxZjBhMGNjMzBhNjViMmM2ZWJlOGFiY2U1ZjE5NWU3MTVlMGFjYTBiNzNhZjcxNTMxMzg5ZDgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/environments.ts#L285-L303",
+          "version": "repo-lines-v1:sha256:20b7a588ef651755f10d70c408a81ea8f7746901e9f495317ef801fc61990c8e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0YTIyNDkwYjM1NjdjZmE2N2NmY2FmOTY0NTRkZmRjNzZmMzRmYzU3ODk3Y2NhMmVjODU4NzliNDRjNDVmZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/environments.ts#L99-L105",
+          "version": "repo-lines-v1:sha256:42d95c85ec64984b118db4040b2bb01092a0bc58b8c4568a04ff298ebb71e92b:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjY3MDIzMGVkY2IxMTU0ZDZjMzA1ZGM3Y2U1N2ZkM2JmODg3NmY1MzkzNjk4YjY1ODVmZTZkZmQ5MGEwYTVkMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWVhMjYxMmM1MDlkYjdiYjVkYWQ4OGI2NmVjZmM3NzU0OGQwZGRiZTEzMjhjYTlhNWM5NWM2MDVlODQzYmNkZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzcxMmVkNWMwNzU2YjA5Nzk0ZDlkMGI2ZjJiODdhZDgwMzE1YjE2NmNiMDI4MzY5YzU1YmMxY2Q0YWU2MTRjZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4942656bd0a9460ca91939fb01e0aa7d",
+      "statement": "Environment CRUD routes (internal-HMAC authenticated, proxied by the web BFF) resolve every requested repository through the SCM provider concurrently at create/update — first failure in input order wins, base_branch filled from the request branch or the provider default, positions assigned from list order — reject case-insensitive name collisions with 409 via a getByName pre-check, and schedule an immediate image build when a prebuild-enabled environment is saved.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/environments.ts#L112-L163",
+          "version": "repo-lines-v1:sha256:7576c4befde3449988c2570101daed30b0ff81aff8d228f1059a1aefac1ce2af:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3ZDE4MWQ4NzQ3MGY5NjRmNGZkYjIzMDcxYWIwZTY0NTM3N2RlY2M4MjQ2NGI5Yzk0ZTkwNGMyNzg4MmJhZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2M2E1ODMwYTBmMDdiMTRjYmE3Mzg4MWNmZTExOGZkMzY5YTE1MjlkM2M5NDIxOTg4MTBkYmU3YmM0N2EzNDYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/environments.ts#L181-L240",
+          "version": "repo-lines-v1:sha256:3fed8c649e4b2fe92ccaab9d9777d5786e9cbcbf94d0658729a2ba1a18e4b696:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwNTgwNmQ2NzVkNTMzMDAyNjIwNzQ5NWQ0ZDkwOTY5ZDBhMDgwYzVlZDYzZjlmODJhYWMyNDZiNDNkOTBjMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4ZjRhNzBkNmIyN2Q4M2Y0Y2YzNGE5ODMzMDU0NzU4NDUzMzJjNDNhOGI5OTczMGRhN2NjZDE3NDY2MDQ0NmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQzNGYwMjBlZjdlZjlkNmJiZjg2MjdhY2Y3MzIwMDhhYTExMzhiZmYwNzMxN2FlZjM5YWZkMWFkMGZiOTFjZDgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/environments.ts#L265-L275",
+          "version": "repo-lines-v1:sha256:c60897906a530ba9f584913c7af22fa38507e523defa976674bda91bbb56a32a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMTVhMzMyODRmZjNjMDk5NTZhOTEwMGUyZTVhYjQzNzIzZTRhYjZhOGU3NGMzMmNiNjZkYjk1YTk4OTk1YmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmOTE3ZjU4Y2U2MGI1ZGQ2OWIyMmY2OWI0YjhhNTllYTgzNjgxZjdmNDI1NjQyNjRiODc1MDBmZDI4YmZjMzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/environments.ts#L70-L92",
+          "version": "repo-lines-v1:sha256:47151c861ec86330a913dba4b75b3dafa9066ab2962e925766ec238a9d875daf:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0ZTRlODEzYmQzMzA5ZDE3ZTBhMjYxYjM0MzIxOTEzZjFkMGQxOWVkODM0ZjY2Zjg4NDBiNTJhNGM4OWE3MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIxYTliZjBkOGJjYjY4N2E3N2IxZjQxMzc4MmI2Y2Q4NTMzZmQ2ZDI0OGJhODdjMzM3ZDM5MjQ1YTM2OTMyYWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxZjZmNjQxOGYxOWViMDc1ZjFjNTIwMDZiOTQ5MDM5MGMzYmVlNWIwM2M4YWY1MWZjOGI4ZTA2YWIzOTNhZTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L270-L298",
+          "version": "repo-lines-v1:sha256:82ee6ea4254acffc0c28ba82928b022d0b614e4777c5a5b1fabc19f05a40142d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxNzFhNDE2YmFlMmRkZjk2ODk0ZDg1ZTJhNTdlODNhN2IwZjI5NTI2YWZmN2ZkYzBlOTU5ZThjYWEzNjdlODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjMTdhYWQ5MmMxNzg5MDBjNTVmZTBjNjljZTAyZGZlMzE2Y2YxZDE5NzNiOGExYTViMmRiMDM3MDBlMDA2MGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/app/api/environments/route.ts#L6-L20",
+          "version": "repo-lines-v1:sha256:266c01483951dbdc46a886645f5ee8cec47ea4bc06230da2aaa80b493dd0d58c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4NGFhYTE3YjkyYjY2ODE2Nzg3Nzk0MjBjZWMyZDVkYTdmMTE4YzZhY2I5NjE0MjAzOTZmZGVhYjBmNDE1YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViZGU4YmNiMmQ1NTBhNDA5N2JiOTcyZjY5NmQ2ZGFkZjQ2ZmUxMGM0MWI2NDRiMzJiZjJhZDY4ODg1YTZjNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3Y2JmYjBmNmFiZmJkZWM2OTJjNGVkMjg3YTBjYWM0ZGQwYTA1ODE3ZjY5Mjc0NjNjZDI1MjUwZjY1OGE1MzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3ce118365544353b5d19b5fd737c89a",
+      "statement": "There are three secret scopes — global, repository, and environment — sharing one encryption key (REPO_SECRETS_ENCRYPTION_KEY) and one cap set (50 keys/scope, 16 KB per value, 64 KB per scope, 128 KB combined per session). buildSessionTargetSecretSources orders sources lowest-precedence-first: repo-launched and ad-hoc sessions fold global plus each member repository's secrets (merged in reverse position order so the primary wins collisions), while environment-launched sessions fold global plus that environment's secrets ONLY — member repositories never contribute their secrets to an environment session.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SECRETS.md#L43-L55",
+          "version": "repo-lines-v1:sha256:8d9f0d1049cc4375bff74748d9ea4353befa15da3967d4ec8b431df58e486121:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjNWM5YjdlNjUzZGVlMDQ2MTg2MDhjNDUwYzEwMGIzMjg1ZGFhNGRlZDU5OGMwYjE3YWE3N2MyOWJjOTViOGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5ZTFiNmIxMTFhMGZmYTRjNGM5OTc5OGZlNzk5OTkxNDNiYmVhODAzNWU1NzZlN2I0NTQ0ZjMxYTYwNzhhMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxYzYzOWJlZGZhZThiNjYzNDA1NWY2MWZkNDU1Y2E3OTQwYmVlODNkM2M5YjU0ZTNiZTI4ZDI0MDQ3MDRjM2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiZWQxMDQxZDJmNWM0ZTc3MjMzMjIwOWM0MmM3NWZhMGI2OTk3ZTk1NDFkNDY2NGE5ZTg5MmNhNzVjMmEyMmEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/environment-secrets.ts#L1-L12",
+          "version": "repo-lines-v1:sha256:de259ab4492e68b9c851ca56aa5940923242117bca8be7702f77c6f4072cc8f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmNjA2OGEzOTc0YmI4ZDA4ZTMyNGQ0NmI2MDZhNTlmMmY5ZTRlMWY1MjI3ODQ2N2Q4MGFiNjY4OWNmNDMxNDUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/secrets-validation.ts#L94-L121",
+          "version": "repo-lines-v1:sha256:0bebf2c0c3d5234196fa65d71fb5bb142d4ec26db85871439368640eca5a5a54:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI4NWMxNWIzYTk0ZWFjN2Q0NmVkZDE1NGZjNjI5MGFkZDZhYmJmY2FjMzlmMzgzNWUwZTg0YmQwOGE5N2UxNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3NmM3YWE2NjU3MWM4MzFmZWJlMjZiMDY0MGRlNTAzN2ZkOTRmMGZmMjI0YWE2YzZiZjk3ZDgxMjc1ODNkZTMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/session-target-secrets.ts#L33-L86",
+          "version": "repo-lines-v1:sha256:4173393ee8049cd28f2aa1a2ffffe8a1dabf6fd47e59b86a101698d3bb6084b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliZGNkOGU0OWY3YzVkMDBjZmJiNTFkY2Y5MGM3YmYwZjY3Mjk5MzE1OTA1MjQ2ZDI3ZjNmNDUwNjJlNmI5NTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjFiZmNiZGUyMzdhMTIxNDEyMDUyNDRhOWNhNDAzM2I4OGVkYzAwNTlmNmQ1YzAzM2U0MTcxMmRhYTEyMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/user-env-resolver.ts#L126-L149",
+          "version": "repo-lines-v1:sha256:364d2f6338e5bcd1b666355b8e04ba7d107f2d4acd2954f29b531fbf5b69a816:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNmQ3MWE2NWM0OThiYzNhOTU5ZTVmMTM1NmZhNjM3MDAxNTFmODU3NWY1ZWVkODhhYTViZGMzZTY4ODc2MzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiYWZmN2E4ZWUzYTkzOGRjYzI1ZDM5NmMwZGIyNDkyZWIxOWIxNTZiZGI0MjNlZmJlYzE5NDc1ZDFjNzQyZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0NmFkODZiYWY3YjhhMzAwMWY1ZjE4MjJiZWJkMGU2YzJmZmRiNmQ2N2MzZWE4NGM2ZTBhNmMxZjkyNjdmZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1c42750aff20428fa63be9fdfa42fad9",
+      "statement": "Importing repository secrets into an environment copies selected keys ciphertext-verbatim (both scopes share one encryption key, so no decrypt/re-encrypt round trip and plaintext never transits the control plane); the source repo must be a current member of the environment (403 otherwise), and the import is a copy — later repository rotation does not update the environment's copy.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SECRETS.md#L57-L62",
+          "version": "repo-lines-v1:sha256:473009a06fd8065dfb9241bae0990fed1749c99dcd187b6c52b9b1bb10037d9e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjU2ZDBjM2Q4OTZhZmMxMThlYWRlNzI3YzBmN2RlYTczYmZlNzMzMmI3YThhOTMzM2NhOThmNzAzMDFhMDk2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzQ2MmRkODhhZDIzYzZkY2VhMzAwMjc0NzNiZTk2ZGUyMzI4ZGQ0OGU5Zjk2NzRlNjNlMWRhYzIxZGE2MTNkNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWI1MTEyMmFjZTM3YmRkOGUxZjY2OGMyNmEzYTdiZDViYTQ3YzA0ODA0YmQxMTlmOTllN2NjNDRlYzQ1MDk5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWMxYTJkNTg1ODBlYjY5NTg5MjU3MTM0OGQ3YTU3MmE3YzIxZWQxNTcwMzQzZjMyZjFlOTkxZThmMDY5MDA5ZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/environment-secrets.ts#L106-L157",
+          "version": "repo-lines-v1:sha256:07d0f354aa9a0d8e0d87c837a0e1eaca0effbeb737303b4fa111ec741fb1d14b:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlZWM4NWNmYzgwN2RmNjc1MGU5NDBkN2I5NmMwMzMxYmM0YTJlOGIxZjY3MzQ4YjQ1MDhjYzRjMjRiMGU3NzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjMjc3MzYwZjdiODE2ZmM5MmFkMTU5MGQ1NDMxMTY2MjcwOTVhMWY2NzA4OWJkMWRlMWU3NjdkZjc5YjYyMzcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/environment-secrets.ts#L220-L268",
+          "version": "repo-lines-v1:sha256:43e5c7535998d230794f301a97f6cba2508baf8508b45010472f8423b20d7abf:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2ZTcxOTA3ZmViYThiZTBiZWY1ZWY1YjE5MmNlNTdmNDA3Y2M2MzFkZTE1NWQ4MTIzZWZhOTE4NWMyOGI3YTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMwODMzOTFjOGQ1MThkYmNiOTQzNjcxMTQ1YWIxZjJlNTQ2NDY3ZTVhNTMzOTFhYWRjOTIxOGJlZjQyYWNhYmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1464663fec754239a1149b7ff713cb88",
+      "statement": "Saving or deleting an environment secret synchronously supersedes every live (building|ready) image for that environment before the response — fail-visible: a failed supersede returns 500 asking the caller to retry the mutation — then, for prebuild-enabled environments, schedules a detached best-effort rebuild. Rotating repository or global secrets does not invalidate images.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SECRETS.md#L180-L193",
+          "version": "repo-lines-v1:sha256:be65ec54c0eec107219e7ec1d9162ad513fdfbd917f4ca8f16718aa40fb1d2ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllOTgzY2NkN2E5YjUxZGY0YTA1ZmMxY2VkZjZhYzExZmQ5NzQ3N2Q3ZjA2MjFhNjkzMjdlY2M5Yzk4YjI2ZTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NTQ1NjBkM2EyNjI3MGEzNzIwN2Y3YzQ2M2YyNDIxYTc3ZmZhNzcyMTM1YTk3NTM0YTA4NTY1YjI4ZmJkMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQzYmUwNDE0MTZlYmZlZGJjMzBiY2Y2ZWFhMjRmZDZiNTIyOTk1NDMwNjgwMWRiOWViMWY0OGZjZDM4ODQ4ZTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/save-hooks.ts#L21-L86",
+          "version": "repo-lines-v1:sha256:b8de9154253303e47236d6bbe5bf2286a566e0e2d82b0d49f6dc3f0f5d190025:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI5MDYyYWUyMjhkMDUyYjk3MTQwMjI1Y2I2NjA1NGQyNTYyOGY0ZjBiOTRjMWNjYTg5YzQzNTFmN2ViYzIzYjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/environment-secrets.ts#L35-L66",
+          "version": "repo-lines-v1:sha256:5e51191d042e1c7fe7a8d2072b3a7de086f46dcabadbda16d093d6fa57639c3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzYTFkMzMwMmNlMzJhNGY0ODdkMjBhMmRjNDVlZWYyZmMxMTExMDlkODY1OGE0ZTBjM2JjNWU3ZDI5YjQ5YWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiM2M3ZGM2NjRiYjYxNWJjY2ExZDEzN2U1MDhhNjY4NzlkNWE2ZjllYzgzNjVhYTdiMWJmMzQ0NTEyMDhlODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e1d07d42aefd4492b305d50bc2578fb5",
+      "statement": "One image-build subsystem serves two scope kinds — repo (scope_id = lowercase owner/name) and environment (scope_id = environment id) — with enablement from the owning entity (environments.prebuild_enabled or repo_metadata.image_build_enabled; a deleted scope's row is never served). Scope resolution is the only module that switches on scope kind: an environment scope builds its members in position order with a fingerprint over the ordered (owner, name, base_branch) triples, and build-time secrets are exactly what the scope's sessions get, loaded after the build row registers so a concurrent secret change always sees a row to supersede.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/planner.ts#L52-L92",
+          "version": "repo-lines-v1:sha256:375b4a0885a1bdc266e46029c2c3effb5a6c4548ab604152241511117e4ba6c0:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkwOTNlMTI5MDZhNjFmZDVjMDg5ZmVlOGZjYWZkOTUyZTU3YTU5MDlhMjQ5ZGQxMjUwOTQ5OGQyNzFhNzFjOTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5OWQ0YzUwOGE4MjU4NGZmYTMyOWVjNzg4NzNiODEyMGQ4MTc3NjNkYWMwY2E2ZTgzOGMxMzc3ZTdjY2RjZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZlNzliODA4MTE4ZDA2ODlkNGNiMzhmNzQ4M2Q4NmY3MjM2MTcyYTQzN2E1YjRmYmNkMWYwMmE4ZmM3OGM3YTcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scope.ts#L1-L133",
+          "version": "repo-lines-v1:sha256:bfad41a749496d83784775a24407506e8f4acde980d03a70c723572def2bff33:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJhMGQ0ZDE4NDE5OWNmZTMwYmVkNmMwNjJmZjBiN2M5ZDRlOTZlN2M2MzZmOWQ4MWUwY2IwMTU0OTc4N2RjMDFjIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scope.ts#L158-L192",
+          "version": "repo-lines-v1:sha256:57d9f1aecf0c51dfc1880d2b380ffff0dbf80f3a12f8a4d8877af8341291216b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2ZmQ1MGE4ODRiMWEwNWQxYzQ1NDdhMWNiNzQ1NWI1MDFhMzcxNGYzYThlNTlmYjM5YWFjZjEzYjczNjAxNDkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scope.ts#L269-L312",
+          "version": "repo-lines-v1:sha256:0bc7cde9c5cf4601afd9a1b0ef7d8cba8552005db2e5e125ece90a264c80eb1d:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIxOTU2OTk5M2FiNmJhMTVlYTYxMWYxZjNjM2YyNzlmMTllODAxNTNlMTgwY2ZhYTZhNDdmOWI0MzlkN2EzNDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d3f6f53e0d5d46be8254be1a73292243",
+      "statement": "At spawn time an environment session matches its environment's latest ready image against the session's own repository snapshot (fingerprint equality plus a runtime-version floor); environment sessions never fall back to a repo image (it bakes that repository's setup and secrets, not the environment's), ad-hoc multi-repo sessions never use prebuilt images and miss straight to base, and a single-repo ad-hoc session matches its repo scope the same way with the one-element fingerprint reproducing the default-branch filter. A provider restore failure marks the row restore-failed and retries the session from base.",
+      "evidence": [
+        {
+          "resource": "repo://docs/IMAGE_PREBUILD.md#L187-L208",
+          "version": "repo-lines-v1:sha256:99c21877a7a54ec22f966f33a2574aeb67d37aa2054f7bb0bd6c52be1dbf7333:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzOTM5YWE3ZWE4ZjIwNjBlNGYxOWY1YzVmMzRjOTFlMjY5NDY4YjUzOGJiZDRkZTY0OGNjZDUzYWRhYzBmMTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjczNGM5ZmJlZjY0NzU0NWI1MDE0YmZmNGM2MmUzNzRjMTMxMTZiNzJiOGZiNmZiZWRmNDI0YTBmODBlOTRjMDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkOGFmNDhmY2FhNzI2YzIyMGM1NGUzMTBhZDFkNDVmMjVhMWQxODI4M2I3Zjk2NjM4YjgyOWExODZkZTg4NzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/image-selection.ts#L80-L116",
+          "version": "repo-lines-v1:sha256:292c8589076ee8e5510fbf1926f05c9c874c885f42205e8d82a222f9954cab2c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMGNkYjk3MmE3YmZiN2VkMjQ2ZjlmZjY3MjM4NWU1NWY0OTY4ZmMxMTA0M2RjNWI2ODRkNTFkZmEzMWRiY2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI4NDUzMTY0MjJiYTNhYzNhZWU2NDIyYWRjNWI2NDZhMjY1NTJlMmQ0ZWFhZmJmYTBhNjgzYjEwZDRlYTVhMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L541-L561",
+          "version": "repo-lines-v1:sha256:0f0d674d11e0549402cc7eb72f9d61bb4e1fa5407e8bfc7cf7510453299b9dfe:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3OTY0ZGVjYWE4M2UyZTQyNzg5NTAwMDdlMTZhOTk1MzkzYTA0OGM3ZGRjZTM2Y2Q2YTI0NzEzMmQ1YjVlMzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyZjlkYzNlMWYyOGNiYmRjNmUzMzUxNWY0ZGE3NTNmNWU0NTZhMDIyYjUxZjE3Yzg1NDhlZjU5Njg0YTRkMzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlYWFmMDNmNTc5NzE2ZWI1OTdkYjYxYzk2NTM5ZmEyOTkwNmM3NTIxOGNhMGMwYzQ2YjEyOTg1ODdmNTljNTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L595-L615",
+          "version": "repo-lines-v1:sha256:9dc7991b5086c497cbc25a55bde443ed42afe1c0ae831aa1f92a66140eac80d6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwNTJlMGUyZDFlNDUwOGIyMmE1ODY4MDkzNmNiODJkNjRjOTQxYTE5NTBjODc5NjEzYzYyZjlkMzk5Y2MyZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3YTFmY2JhNDBmM2E4NDExN2Q5YTVjOWZlMjhkYjVhZjIzNGFjODVkNDc2MmUxZDJkNzVhZWJmNzU5MDZjY2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAyNGNjNGQ1Yjk2YWQzMDM1NzJmMzAxNzJhYjA0Y2IyYjk5ZjM4YmQ5OTQ1YjQ0NTg5ZDFjYmMxNDhhNDIzYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ1MjYzNGEwMTg3MDI3Y2NhMWUyNjg5YzIwNDExMDFhM2E0MmRjZGJkYzE1MDQ4YjU1MzIxMTFhNTJhOTUxNGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7da4403451c745b8b38006724d1e3398",
+      "statement": "The create-session schema makes the three target modes mutually exclusive — at most one of environmentId, a repositories list, or the scalar repoOwner/repoName/branch form may be present (presence-based, so an empty array cannot smuggle a second mode through; omitting all three is the repo-less session) — and hasExclusiveSessionTarget is the single definition of that rule shared by both the user-facing and internal create schemas.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/repository-contracts.test.ts#L160-L192",
+          "version": "repo-lines-v1:sha256:8509ddede2cfbf1bbe64917df04de00f156da0539fdcfb8fe4beb9f05d43312d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MWUzMGJjODkzMzhkNjQyNThkYzVkNDFlMzllYWI1YzUzY2VjNTk0M2MzYzEyODIyYjk0MzVlM2FkYTI4N2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5MTUxZDkzMWNlZGRiYWVkZjFhNThhNDk3Y2NjOGFlMmVmZDg3NTNmYmMyNThjYTlkNzI4YmM4MTk4YTFkODAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3NzlkMTE4ZDZlM2NiZjQ1MDUzOTc0OGRlZTdhNDMwN2FjYmU2NDQ2Y2JhMjk3ZjI3NjBmYTVkMGJiYTFiYzIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/session-api.ts#L194-L251",
+          "version": "repo-lines-v1:sha256:067939223d1c0c50f5e2b0a7b8e6125a5dbe37b8e2ae7719772bb4ea39a8d373:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyM2UxMGI4MTlmNmQ3MjI3OWMyNzNlYTkzZjU0YTliM2UzZmQzNmU4ODYyZTYyZWI0MWYwNTU3YWM3OWUzZTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYxNWIyOTNjMjBhMmFhZTM0ZTAxOTJkOGM5NDgwZTk0M2UzNGJjY2Q0MWEwMmJkMGMzZWY0MGExYjY3OWNhYTcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/session-api.ts#L255-L280",
+          "version": "repo-lines-v1:sha256:ac765dd761cb4036f066d994316fff61d70253d0d2c0368c698e56aea6d6ab31:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmZjQ4MTEwYmUwZWE5NTdmNDU4MDAxMGZmMmEzMmQ4ZTJhNTg1ZGM4MmM1ZTA0MTkxYzMxNDk5OGMzMTg2NTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxYTc4MmNmMWMxMWFjOWVlOWU4YzhmZDJlNWQ3NmUyNzI1ZjdiYjU5NzFjNjE4OGQ0MjI1ODUzMjljMWZlNDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxNWIyOTNjMjBhMmFhZTM0ZTAxOTJkOGM5NDgwZTk0M2UzNGJjY2Q0MWEwMmJkMGMzZWY0MGExYjY3OWNhYTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkM2NlMjUyNzVlMzZlMDQxN2M0ZmUwYmMxZjViMGVlYmEyMjUwOWFiOTI1ZjFkYWViZWJlYTYyNDZkMDg1YmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f55c79a2a4c1423d8740486477f9c91b",
+      "statement": "The environment-to-session resolution path: resolveEnvironmentTarget loads the environment (404 when missing) and its position-ordered members (500 when empty — the schema guarantees at least one member, so an empty set is a data-integrity fault), then resolveSessionRepositories checks SCM access for every member concurrently and is all-or-nothing (a single unresolvable member fails the create with 400 on clean denial or 500 on lookup error), re-checking distinct full names and distinct repo names on the RESOLVED identities because providers may canonicalize them (GitLab project redirects).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/repos/resolve.ts#L18-L48",
+          "version": "repo-lines-v1:sha256:2ec7544b43cd4e18901254d4144d8c6a4814a572530d2a1e2691dad9fe7e5dcc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwYTI5NjBkZDIzNzQ2ODAzODgwMTdjNWZlYjY3MjE1ODc4YzA5ZGIwNTFkZGU4YTY4YzA1ZjBkZGE0NjcwODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhkOWU2OTZmZmNjOTQ0ODY4YWEzZGExNDU1NThhMzMwNzY2OGU5YzVjYTU5OWEzNTZkMTNjNmE4ZDBjNzUwNTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/repos/resolve.ts#L57-L64",
+          "version": "repo-lines-v1:sha256:dd5b56cd54b6ccdadf052bc8630d34275e0e44156dd3f740b51020270415d53a:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjNjNTY5ZjU4YzdjOGNlZTcyOTMzY2VkYzNjODdmYjIyNmEwYzQzZTEyOGFmYTJkYzE2ZDllOGI5Njc3NzA2OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDczZDYzNmEzYWQ1OWY1NTk5NDU5YTcyZTEwNDU2ZGNiZGQ5M2U4ZGE0YzU1YmJmZjZkNGIyOTJiZTVmNDU4ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTBhYmYzZmVlNTdlMmZiZDA5ZThlOTFmMTIxYmJiOTk1MjNiOThlZjMzMDI5NTBhOGQ1NmQ0NTljNjZmZTRhOSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/repos/resolve.ts#L58-L147",
+          "version": "repo-lines-v1:sha256:f8ad69fd366d46dc6a8ce85d3a8522d88fe0f71129333dfe7a574d523d1e97b4:eyJzZWxlY3RlZExpbmVDb3VudCI6OTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmYTBmMjg5MDI3OWFmMjcxZGY3ODZlMmYxMjkyYmRlMWIzYzc3MGYxNWEwZDE0YTc3YzI4MjZhYTAxMzk3MDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L84-L115",
+          "version": "repo-lines-v1:sha256:5eb2362245af06188c9598c24d82f8b748f2427a7a5e1b59ecde9586be7f867f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3NjE1NGQxZjgyOWJjMWNlMzhmYjI0NjEzOTMzZGE3NjM3OTdiODIzYTZmYTVmOWZhNjQ4N2IzMjBjYmEzZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhkZGJlYmI1OTMxOTMzYTM0NjNlM2U3NzM5NWM2YWE0MDU2OTMzZmYzYjIxOTRiYTlkYzM5MjQwNjk3MTFjMWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYTNkYmEzNDkwMGNkYWIyMGY2MjYxMTgzMGI0NzdkZDFmZDk5OWM0Y2E3Y2VkNDg3ZTNlZjU0MjM3YWM4ZWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_17e80a86ce0e4c1aadeef297c49a3dae",
+      "statement": "The resolved member list is snapshotted onto the session (session_repositories / SessionInitInput.repositories) with environment_id recorded as provenance, so later environment edits or deletion never change what a running session works on (the session page resolves the environment's name live and shows it as gone once deleted). The row-0-mirrors-scalars invariant — repositories[0] must equal the scalar repo_owner/repo_name/repo_id/base-branch mirror — is asserted at both the router and the DO init boundary.",
+      "evidence": [
+        {
+          "resource": "repo://docs/HOW_IT_WORKS.md#L121-L124",
+          "version": "repo-lines-v1:sha256:07f594eb48ebcba62799edd5b45dcaf754ff914e8c50dd631fb7395b5777c0c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzZkMjIwZDMyODVlMzEwNDEyYzdmMWE0NDYzOTg5ZDM1NjlmYjBmMTU0NGIxZWI3NGQ1MDQ2M2MwZmQzYmVjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTRkZjkzMjEwYzI3OWNlYTkwOTg1YzhhNDUzN2MwZTk3ODdiZGQ5OTAzNTk5YjY4ZjliNzhkMTUwM2ZjMzBiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjNhMjE0OGNkZjUzYjkxMWNiYTg0MmVkZGQ4NzdhNGUzMzFjZmU2OTJlNGFmN2Y5MWIyOWY1Zjk0OTZjNDk0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAxZjJlYzE3NTkzYzEwNTRlYjQ2MzY3ZDg0NTNlZjI0YTE3M2NlOTZiNzExN2Q5MWY5YTY4ZDQ0ZmVmOGIwMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/session-init.handler.ts#L157-L222",
+          "version": "repo-lines-v1:sha256:e3722b6824cdd4f8c078dffad450a85f3dd6556017cab4536a7e06e3506797a2:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3NjY4NzFiNzhmYjA4NDc5ZDllZTU1NjQwYzE4ZWYwNzM2MTQ5Y2NmN2NmN2FkZWI4YWUxMDE0ODYxMGJhNjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlZjY5MDA3YTdlNzVjY2RiMmMxOWVmYTlkOTVjNDNiZjc4N2YzM2EyYjljODI2NWM0YTVjZTY0MmZlNmRiZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiMDk3ZDMxZGQ2MDU4OGIwNzlhYWQ2YjUzNWVjN2EyMzAyZDU1NzU1YTgzYmRjYjJhODRiYzRhOWYwN2E1OGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljZGVmOTY5ODkzY2RmM2I3MzFmMGZiMzVhZmZmY2ExNGJkNjA5NTRhNTYzODUzZjA3NjQ3ZjhkMmQ1ZjZjZDMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L32-L134",
+          "version": "repo-lines-v1:sha256:95f480e85cb801077418298f912ea88a50c20c3e1dcb9bb35802b3cd8bc1b618:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0ZjJhMmY5OTZmMDhlNjgwYmQyOTIxMzVhNmZhNDk3OGJkYTI2ZTYwMmQ4NGYzM2NiMWQ1OTQ3NzVkNDMwNGI1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI1YTM3ZGZjYjMzNmM1MzhlZDNiOTMwM2RhMzhkNzQzNGU1MDY5MTM4YjkwMmI4MDEwOWMwMTQ3YmM2YzFjZjk3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI1YWFkN2U3ZDk2OTAyNTIyZGU1NzY2ZjY2MTY0OTFkNzkzZmYwNTBlZjQ2OWFiZTNlOGE3ODliNGJiZWZjMDBkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI4ZDY0NmQ2Mzk4Zjk3NWU5OTRkNmU5NDRiMzYxNDgxMThhYTM2OTM2NTQxNTcxMjZhMWY5MTU4Y2ZmMGQwNTgzIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/snapshot-reader.ts#L124-L144",
+          "version": "repo-lines-v1:sha256:263a5d519bb258cdebd650c6d7112a4ec50f874ec89dee6e2c30ec6862c6c655:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4ZTgxNzMwMjgyYWNkNWQ1M2IwNDI4NjM5ZTQ3MzkxYjlmYjkwNDA2ZmE3ZGM2MjZjZTVjYzg5YTBmZTI4YzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyOGQ3NTY3YjM1NjY4Yjk2MDhjODc0ZmI4OTk1OWMzYjA5MzBkOTdjOTgwYjhiZjUyOWIwNzI1NGViZWYwZTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_466a95b1c3b94a298c1f254cd991b798",
+      "statement": "Session-scoped integration settings resolve from the primary member with the launch environment's overrides as the top layer (unset keys keep inheriting from primary/global layers; enabledRepos allowlists stay evaluated against the repo); only sandbox, code-server, and vnc accept environment-level settings (ENVIRONMENT_SETTINGS_INTEGRATION_IDS), enforced by supportsEnvironmentSettings, and child sessions inherit the parent's environmentId and resolve settings the same way.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L302-L352",
+          "version": "repo-lines-v1:sha256:f62daea4c0cfa34fc0b272249363c6472d03d45cd0a054524e94ab942e3d7819:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NzAxYzJlZmNlZGEzM2I3MzIwNjZjYTZlYmQ3NjUzMGY2Y2VlMmJjMGI2NzBkZGQ1Y2NjZTVhODliNzQxOTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjNzMwYzY3YmExMjMwOTJlYTEyNDM2ZjBiZTY0YmNjOTI2MTVkNDMyZGRhZjZhOTRjZTkxY2FhM2U3OWExMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0M2JmOWJmZTExNzExNTA4MzViY2I0OGMzYzRkZDJhOTI4ZmRjY2Y2ZjIyNzY4NTNhYjAyOWZhZmJlMzVkZmMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L220-L226",
+          "version": "repo-lines-v1:sha256:9da0d515704fdcbb0dadc0092fbfee5c631f7de4a3f982936c8d0f5f3bb256f3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDMwMjU0NzlmYjg0MDFiZTFhZTNkYjM5MmM2OWE2YjVkZDk5OTA4ODRlN2RkYTQ3M2UyZDFiNzNkZjllNzFkZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjgwMDM2ZmQ4MzA5ZjMyMjA0ZWRlN2M5MTI0MjM0NTEzYTkzMzM2Y2QyYTY5MGU3NWQ4YzRhYzczMTYzMmE3MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDQzOTgzNmM2MTE1ZmNlODI4ZjdjMzIwYTE2ZmY2ZjUyZGE5YzE0NjY4ZTdmZjg2NGUxYmQ4MDM2YjAzMjIzMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L69-L80",
+          "version": "repo-lines-v1:sha256:505a090f1dbbaacc34cd767a3aefcdd19be06d65fdff571f7cb82423270117e5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxNjUzZWYwMDBmZGYwY2U1NGFlNWQ5YjA5NjkwNjNjM2RkMGFjNmVkODliYzQwNjljODExMzlkOGIzMDRlMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhNzcyNjEyOTNiOTAxNDQ1ZGYzMTliNTJmNTU1ZDZiZTYxZTA2NWYyMDIwNjJmYjE5Y2UwMDEzYWI5NGFjNTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdiMWFiYjQ2NmVmOTUyMWEzODhjMTcwOWE5YmI3NDA2NzU5YTcwOWFkNDdjZGUwNWFkZjcxY2NjYjYwMTE4NWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyOGNhNTcyMDAyODI5YzlmYzM0YTQ2MTZkNTQzODQ0YmI3ZGZhNTVjYmEwNzJjNzA1MDhlZGJjMGVmZDAyNjUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/integration-settings-resolution.ts#L116-L175",
+          "version": "repo-lines-v1:sha256:960c1d6a5ab780457a7c5e7e430b4034c7d850a51ce56dd9c47343896b64de4f:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/integrations.ts#L412-L423",
+          "version": "repo-lines-v1:sha256:66eb962397ff3cd117cab9b9736d2f825f31e7cf79ce6f73c1d1226d3c5ddf60:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjNWJmM2I4YWFiMzQ2MTNkNjhjNGM3ZDJjMzM4Y2UwZDQ1MGU3ODk3OWI3OTBhMWUwYjIyMzljMTRkZGRlMjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwY2M1NWY3YjNjNTQxZDA0OTliYzUyZGM0ZTc5OTZlYmUxZGU4ZjI5M2NkZjA2MjUyMDkyNTQzZjc1NDgzYjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d2244dc0f20846b2ac1b8e83155de5d6",
+      "statement": "Automations may select environments alongside repositories: environmentIds are validated env_ ids (unique, every id must exist), the combined target cap is MAX_TARGET_REPOSITORIES (10), each firing fans out one run per target, and an environment run resolves the environment's workspace at firing time through the same resolveEnvironmentTarget + resolveSessionRepositories path (a resolution failure throws into the launch-failure path), while the run row carries the firing-time target snapshot.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/automation/session-target.ts#L22-L66",
+          "version": "repo-lines-v1:sha256:084ef01a0d194eda5d9b3aa96bd6f7861eca6749b5498b06a013e98a40b816d6:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwNDY5Y2Q5MjYzNTc1ZWY4OWQxZTMzMDliOWVkNDljNzUwZWQyNGU1MmY3MGVmZjhhYzE0YjNkN2JmZGViMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/automations.ts#L269-L274",
+          "version": "repo-lines-v1:sha256:688a5911140593f07fd79520267c0344988c12db353ea872f965f4c8684e8abb:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWUzZDE5OGNiM2I1N2Q2N2UxNmVmZWU1M2Y4MjE1NTdkODg0ZDQyMDk1ODAyYzhmYzgxZjhmNWYyYzdhOTJmNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTAzYzlmMDA4MDM4N2RiYjM2ZDM1YzE1MzRiZTVkNGFkZWMwZTk4MDBlMGYyZGIyOWJiY2MxZTI0MTY1ZGQxYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzc2Y2Y4OGM2NzEwYjFmZDUyNGE4ZGUzN2Y5NTM0NTgxOTNmMGQ4N2U4NTM5ZjllZTdmMDFmZDc5MzZiN2IzNiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/automations.ts#L276-L307",
+          "version": "repo-lines-v1:sha256:45363d7e8257a97f8488692f58f23b52cfd16316339ac020ad5574b15c57f279:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4NDExYTIxZmUwOGMyODNjYTkxOWQ0Y2E3YWRkNWU2YzEzY2I4NzRlNzNlMzQxMmJlYWJkYWM1OWFhZTUyNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM4ZGVlMzU0MzlhYzNkNDhlZWJlOGYyOTVhOTE5NGQ2YzMyNGRmMDI3Njk2MzU4ZDViNmNkMjcyMWE3MDU1MWMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L1329-L1381",
+          "version": "repo-lines-v1:sha256:be83d1adbd38cae0a2fcdc70d133467337ca34e737a7861eb1feedab3c777faf:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlODk1ZDA0OTMxM2E0MDAyNmQ3YjI0Y2JhOGQ5MWM1ZWZhNzQ5OGZjMWZhODZhN2YzMGRmMWMxZWQxNDlkMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjMGE4MzhjZGMxMzRmYWVlY2E4OGFmYTQxMDI3ZGI2NjE3NzQxMWVjYjJhZjhiNzIyNjRlMDgwYTMzMWE5MjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwZWQ0YWMxNmU2ZjZjNTg4YmNjOThjNzgwZjcxMzdkMWQ3ZWE0NmY0MDI5YWM3MDFhMGIxM2NkMTljNTE2MTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1YmIxNTczNDM2ZmI3MDRkMmFiNmU1NTZmOGIwYmIzYTY2Y2MxOGM3ODIwNjA2MDJlMTI3ZDU3MTBiMTgwNDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_14318fa219374c82ae2fef49b432ead7",
+      "statement": "repo_metadata.default_environment_id is the GitHub-bot redirect: when set, PR-review, PR-opened, @mention, and review-comment sessions open that environment's full workspace instead of a single-repo checkout — but resolution fails open to a repo-bound session whenever the metadata or environment fetch fails, the environment no longer exists, or it no longer contains the trigger repository. Sender authorization extends caller gating to the whole set: an allowedTriggerUsers allowlist vouches without permission checks, otherwise the sender needs write permission on every member repository other than the trigger repo, so an environment launch cannot widen what the sender can reach.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L229-L245",
+          "version": "repo-lines-v1:sha256:3ba4e9d91627ed5bb263f74a722706308ed74f7d37a0b97335790b3793d8ebec:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViYjhjYWE5MmZlMzcyMzg5MjNkNzNmMDYyMWI4MGRhOTdlYTc0ZDM4OGY4MGUyZWZjMDhjMTBiZTY1YTk0MjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYzNTMzZTkwZjliYzdmMmU1YTBiNDA4Mjg2MDkyMWFmMGNiNWZjYTM1MjNlMmRkZDI3ZTE3ODI1ZDgwNmRiZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxM2EzODBiZWYwYWNkZWJkNmFlOTA2MWFlYTI3NjAzMmZiYWFiZTAwNzJkYzY4ZDAxYzUyMWI2MDlmYmFiNmIifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L1-L11",
+          "version": "repo-lines-v1:sha256:9239ea4481980c48fa9b7aac99af309d9babe41d8bb6e6aa0a6ba4a231f8a30a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVhODI2YWYxMjcxMDUxODZhMzQ4Y2IyMmQ5YWU2YmE0ZWZiNzk5YzFlY2QwOWM2NWM4ZjZmYjI5ZTk5ZmE2NGYifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L130-L179",
+          "version": "repo-lines-v1:sha256:af30b4e0b6337c0adff75fc8e7a5addf60de41e9dcca62768e0d1582db84ba8a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0ZjI1NmZiN2NkNmNlOTJkZjQ0MWE4NDkxZGVjZTFjNGY0NTcyY2Y4MzUyMjhmZDdmMTM0NjI3ZDhlN2FiMTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyMTJlY2YzNWQzOWNlMTE5N2E0YTc3MTk1OWM1YzM0OGVmOWI0ZWVkNTVkZTdkMDVjYjNlYmUwODc4MDQ2MjUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L181-L225",
+          "version": "repo-lines-v1:sha256:b2ededfd47383085c4c5675db5abfb89334e9fc57547677aba2e3b284b568ebb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmMGQxMzk5Mjg4YmY2ODVhZTgzOWJkNzhmYjhhNGMyYWVmZWRiM2U5MmVjMjRkNDQ1MjE3MGUyODFjODg1OWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0036_repo_metadata_default_environment.sql#L1-L7",
+          "version": "repo-lines-v1:sha256:140b90ac4690ee737dd901cb61a714516e60d736ca69865f5286032be801bc49:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZiZjNmMWI4MjdmODVkNjM5NGE5ZTU1NDk5MjE2YThlZDc1MmQ5OThmMmQxMDgwZTk5ZWEyMjdlZmM3NTExNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTFjMDkzZDc2MzA4NmI2YTlmMjM4ZjFmMzBhOTc5MmI3NmNlN2U2MjFkZGEzMWVlOWVhNTgwYzNmMWY5ODhhMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f70a0af12184bafabe3a57c6f73a6a8",
+      "statement": "The Slack bot resolves targets over one catalog (repositories + environments fetched concurrently, each cached in-memory → control plane → KV) where environments fail open to an empty list, so an environments outage degrades classification to repository-only instead of breaking messages; a fully empty catalog is the only unclassifiable case, and Slack option values encode environments as env:<id> versus bare repository ids, which cannot collide because repository full names never contain ':'.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L683-L685",
+          "version": "repo-lines-v1:sha256:845f342f0395de7d1ee56a56e771d260c52d7f1279d40f6f7de70a8aff6dc498:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U0N2YxZjAzMGUwZTQ5ZmE0MTZjYzJjNWU2YjgwZTRhNjg2OTVjMDliMTA4ZWMyNGFiNjUyZDYyYzFiMTZmOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGYwOWIyNjE0OWE3MjRjYTlkZDQ4MmQ4ZmExNzhhOGI4ZmEwMDQ3MDMyMGE4ZWVjZjRjNGVkNTg2OTllMTE1MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGZjYWNmMWEzOGM1NzQxNGExOGY2MjQ3ZjAxMDc3ODZkOWNkYmI0ZjUzNTRhOTIyNzQ2MDdhZjYyNmRlYTM1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDc3OWM2YTk5YTAyOTI2NTllNzJmNDUxZDhlYjcyYWI5Zjk0MWUyY2M0ZmI2OTgyNWMzNTEwMGFjYWY2MGIwMCJ9"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/catalog.ts#L19-L30",
+          "version": "repo-lines-v1:sha256:7649adce817422c55a80b4649c42b06db26775e0b951dfe6b519719ef77c380f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2NGM0ZDZlMmFkMWQyZTM3YzlmYWNjMGM5NWQxYzk1ZGYwNTMwNWZmMDI1ZDkwOTYyYjUyZjVkZDc4NWE1NmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/environments.ts#L17-L36",
+          "version": "repo-lines-v1:sha256:6b618972de2f260d614dcaca7a033e63d7038e974961399fc3c46de7b44a1e5d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3YzM1ZjVhYWVlNjE4MDZmMDU2MDM2MWM4OWZkZWFiMjlhZDAxMDZjZjFkNjc3NmFmNmFmNzdjZjgzYjU4YTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhMGMzYWFkZGI4NTE5NzcwZjZmOGRkMWM4ZmM2ODA3MzJmNzFjMzc0YTYxNmJlNjQ4YmViN2QwMTlmNTJhZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3NDc1YTQzNWUxMDllZDVkMGFiMzA1ZGU1MmVhNTI1MDU3ZTA5NTA5YmNlMTM0MGZlZmZiNjE2ZjZjODcwNDQifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/index.ts#L339-L359",
+          "version": "repo-lines-v1:sha256:5324091df7dc6bae28c5a4a137f9d52ba5c7a8549a1493f21b7e333991eeeffc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhMWIzMzM3ZjhiYWVhNTc5MmRiZTQyOTQ3MWIwMjIwNmNiZWFlOWNhYWRhOGRkMDg3ZDVjM2QxZmFmZWM1ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljN2RmOTY4NGQwNTRkNmE4OGE4NDY0NGY4NGNhZGM1ZWI0YjY1NDU5OGQyN2MxMTMzM2M1M2FmNmYyY2MzZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlM2UzYzUwYjcwYjUxZTEzY2I4NjQ0M2E0NDAyNWE0M2NmMWIzZTk1OWI1ZjIyYjYxN2JmNjVjMWVkNjg0ZjgifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/targets.ts#L18-L52",
+          "version": "repo-lines-v1:sha256:b00f41b0f9e0f2e913bae479ae18881039a0d2ad9cd9ef6949fe0b2cd06d3d2e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmYjk4OGNkMzFjMGI0NTk4YmQzOWNjYmQ3MTcwOWE5Yzg0OGFkYjEyNmMzYzQ3YTdiOWZhYmM5ZDY2OTRiNmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkMzNhYjQyODQxNDI4YTgxZjZlMjhiMDc2MmZiNTkzYTU4OWNkMTQyYTAxN2I2Yzc5ODBjYjRhZGI5OWU4NWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwMTczYzEyNGIxMTU5MmZjZDE1NjFkYWU5MjFkNTIwYjI3MmQ5ZWE3NWE1NDU0ZDE0YzUzNjJiOWQ2ZDlkZjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8051719c7f3341b99e75b4127ed8f7b9",
+      "statement": "Slack classification runs three ordered mechanisms: (1) workspace-wide routing rules (keyword → repository owner/name or, with targetType 'environment', the stable env_ id — never the rename-able display name) with stale targets skipped at match time; (2) channel associations over environments.channel_associations and repo_metadata.channel_associations (environments first), where one target launches, several including an environment elicit clarification, and repository-only sets fall through; (3) LLM classification whose returned ids resolve through a deterministic ladder (env_ id → environment only; otherwise repos match on id/fullName, then environments by unique case-insensitive name). Routing rules and channel associations run before the single-repo shortcut so environment targets stay reachable in one-repo workspaces.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/integrations.ts#L292-L390",
+          "version": "repo-lines-v1:sha256:2ed63f8d26ceaf0db7d2a43eb20a70d00838c5d81aec09848353c87c0b992237:eyJzZWxlY3RlZExpbmVDb3VudCI6OTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwZjI0MDJmOGQzZDVlNTA0MWZhZWZiMmM5MzAzMzFjODNhOTg1ZjdkOTRiMDExZWRjYmFjMTI5MWMwOGU5NTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0MDE0NGI5ZTdjZGVhZTJmN2VjOTk4MTQxZTkwMDJkMGM5OGFjYzhkNWI3YTc3MTlhNzIxMDg0ZDM2YTFiMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYyZjE3YzFkODJhMDk3YTBkOGQ3NDJmM2I0YmNkNTVjMzEzYWQ2YTRmYzJiYjYzYjNmZjMxY2EzMGFjMzQ1NTUifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/index.ts#L256-L389",
+          "version": "repo-lines-v1:sha256:4522365fbbe109ae34bb27bcb028cbfde543001ea4cdca707a9ffcd685a7b09f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTM0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1YmFkNDc5NmEzNTg0MmYzNjFkMTU5ZjRlOTcwZDJkN2ZkZjdlYjdkODkwN2RiZmYzMzJhMTNlYTRmYmZhMzU1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0ODkzZjQwZTM3ODFlYjg5NmM4MmQwNDZhMDgwNjdhMTFlMzVjZGYyZjFkZmFmMjZmZWE5MGI4ZGI2Njc2NDEzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5OGI1NTRkNzY3ZTU0YTU4NTA1NDMzM2UwOTk1ZmVjNjk2NzU2MTI0Mjk4NTZjNWVlNzEwNmEzYzc4ZTM2MDc2IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIwODgyOGY4NWQ0ZDYzYzY2MTdkOTMxNzgwOGIwMmJjODRlZWUwYjc3ZjU2YjVhYmM3Mjg2MTVhZDdkMTY4YTlhIn0"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/index.ts#L71-L88",
+          "version": "repo-lines-v1:sha256:5a109db28e70b8f7edd3f3cd0375571b384b4eb5839a58632821a2fc0fffaa2d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjZmJhMGMyNTA4Mzg3NjhiNzgwYjFmZDc3ZGI4NjQwYjFkNmYwY2JlODQzZmU0NTc5ZjQ2MjZhNDM2YzNjMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5MjI4M2E4ZjRiNTliZWY0MGUzMjA2OTE2ZTI0OTIxOTRhOGMyZGM2ZmUyYWE3NGZkMjdiNjg2MjA5Y2I4Y2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3ODM4MDkyNjlkZDBiNTE1MmQ2NWM0MGYzZDQyNmYyMTcyZTFkN2I3MGU5NTY3NTMyM2U2NzVhYTcwYjBiMjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkNDIxY2VjN2FlZjMxZDA1YmI2MTM1NzBmNGUzYTExMTdmNDAyZmEzZjliN2UxNzY1OTE5NjY3MmY1MTAzMDMifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/routing.ts#L29-L98",
+          "version": "repo-lines-v1:sha256:140f0cb06a44b5bb8f18b3dc78881975d2db6b6c738507d86f3115b94510169f:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjYjFjOTJhODM1MzYyMDM4ZWQ3NGM0NjJlYWI5NzU5Yzk2MWM4NTNjYWQxZjJhNDI2Nzc0OGUzZTZiOGZkNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2MjE0YzNkODJiZWU2MmVjZWYzNzJkM2RhMzcwYTQwOGU2NmI3MTBhOTkxMTQ1ZjE0ODk4M2Y2NTQ0ZDNmMjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0035_environment_channel_associations.sql#L1-L10",
+          "version": "repo-lines-v1:sha256:cf6c3c0c3b0378d5d9e09f60e092f8de41813a033b0217fb574bab9cba17c540:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZDEwMjBhNzQ5NWYwNTIzNzAxYzI0NWJkOWU3NjMxYmY1NTA1Y2VlNGEzYTJhZWZmZTQ0NDg0MTIwNzc3Y2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3ZTkxMGJjZDZiZGVmMmRjOWE5MmUyZDMwYTAxOWYwNGQ0ZWM3NTIwZjJlOWQ3MDljMTJjYmU1NDM2YzU4MGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_27959308a00e4d1facc30f58503e9f5c",
+      "statement": "The Linear bot resolves an issue's target through a five-stage ladder (project mapping → team mapping → explicit owner/repo in the comment → Linear repo-suggestions ≥ 0.7 confidence → LLM classification); the KV-backed team/project mappings may name environments as { environmentId } entries (optionally label-filtered for teams, environment variant first in the union so ambiguous stored entries keep resolving to their environment), validated against the live environment list with unknown environments falling through to the next stage; the suggestion and classification stages remain repository-only; and integration settings for an environment target resolve from its primary repository.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L1-L10",
+          "version": "repo-lines-v1:sha256:45c6e2248009618bf893921df6762c9602d676521d4d20abf93c64af4bb12259:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1ZGUxYzlkNDNiOGZjMTRiMTA1YmVjMmY4Nzk4Zjk1OGU0NDgwMzA0ZTEwYTZmZDk2ZmExNTA1OTlhZDk0MTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMTNlMmJiYzFiNDJhNzk5ZDBmMTg1NjNiNDU2N2E0NzBlZjdmMDk4MTM3ZDU2MjE3OGExY2Y1NGMyNGYyMzkifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L170-L244",
+          "version": "repo-lines-v1:sha256:431c83bea6894c4f9ca375a30df4b3e4d1341c77c80231a0bdaa36d91092f1a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjFiZmNiZGUyMzdhMTIxNDEyMDUyNDRhOWNhNDAzM2I4OGVkYzAwNTlmNmQ1YzAzM2U0MTcxMmRhYTEyMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiYzI1OTRhMmQ5YjJjOWJkYmUwYjU2MDY1MTc2ZjNiOTQwMDBkNmQ2YTdjOTAzZWFhNTg5YzRlOGRkZmEyNzgifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L260-L278",
+          "version": "repo-lines-v1:sha256:03d0403d410fcae78ca9fc89345b001f97a659c1e98879a760e413eb034bbc50:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMDBmMjMxOTZjZDJhYzc2YmVkOGRlMmFiYjYyY2ViZmVjMGI2NjNmMTFhMDhmNjdiOTBlZmJlYjIxYTJkZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3NWI2MDYyM2UxMTEzMGZiMjc1MWY0YjcxOTU5MWNmMjQ5ZWI4ZGU0NGY4OWQ0MzZiZjUwZWMwMzdlZmM5YWYifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L82-L132",
+          "version": "repo-lines-v1:sha256:559bec70775c7babc9fbc4b180f430460d5a020321e94ea8a5564e205bb743d3:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY0MDBmZmRjYmNjZDViMzgxMThiNjdiZTY3ZjMzMTgxMmE4ZDQ5ZDNkMmNmM2IyM2JhZTljY2Q5ZjMwZTQxMjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1OGJjMTZlMjc0MWNjYmZlMDllNjZkNDAyMjNjZmY2NWU2MDBjZGY0YzJmNjQzNDFiNjYwMjczMjgyYTIzMjIifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/types.ts#L59-L107",
+          "version": "repo-lines-v1:sha256:36034e0324a9107d290fc9558cd7a3236b372002530851b78514225e30f89097:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNDk0YjYzMTVlNWM2Y2U4YmFlNGY2YmQzMzgwZGRhOGUxYjFlNGUwZjA0ZDEzOWE0M2ZhYzQxNTI3NmRkN2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyODhiMDE2MzcyN2VhYjA0MTVmN2Y5OTNlYTk2Y2VhM2JiMWFlOTYwNmNmYThmOGU1N2E0NzMyN2FlZTExNjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzNjNlMGFiYWQ4ZjQ5MDExMjkyNWU2MjMyM2VmNGY0MjQzNTllMzFmNjcwOTFjMDMwNDg1YmYyMmU4OWMzMjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c8600a5ccbd4adea8ce27aec666f6bd",
+      "statement": "All clients funnel into the same control-plane POST /sessions contract with target fields that are mutually exclusive by schema: a repository target sends repoOwner/repoName (plus optional branch), an environment target sends environmentId only — the environment defines its own branches, so per-user branch preferences do not apply to environment launches (Slack's buildSessionTargetRequestFields and Linear's targetRequestFields both encode this).",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L22-L28",
+          "version": "repo-lines-v1:sha256:f0f7dca8794e208f799bef01fc14ea96db66797229248e2de03bbd2bb6a72494:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjk0MDQ5NmZmNDA1NTA1NGY5ZDQwMTM5MDRiY2MxNDM0Zjc1OGRjMGM5ZTZhZmE1YTAwNmM4YWI4ZjlhNDczNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2I3MmQzYzhiYTQ4ZjVjNWFhMjU3ZmRiYTI2OGYxZGI3Y2FmZDA0YTQxMTM1ZTE5YWEwZjE4NTVmYWM1ZDA5MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTY3ZDQ5YzZmZDZkZDdhM2EwZGNkZTY0MDUwMTM5NjlkNzk4NDRlY2EwYjcxOGE4NzVlMDI4YWJjNjQ2YzJmYSJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L134-L144",
+          "version": "repo-lines-v1:sha256:9bbdd1e88a11ed657cd385fe82d6ef98080675b8368332341de46fd9713f1d09:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3OTNjODM4YmNlNjllZmIwNDM5OTUyOWI4ZjlmN2U2NTBlZDllNDA2YTYwMzllZWQyZDk0NjkxNzFkNjIwM2UifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/sessions/session-launcher.ts#L82-L89",
+          "version": "repo-lines-v1:sha256:668c0fa7efdf24cef477463d65b42a12b5351ca560a048785927189398e2a9fd:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU4YTU4ZTYyMzAwZWJhNjM0MmRiZTk2YWRjYTBlZTQyMDliNjY5ZTljYWE2YjMzMTVmNTRhYWNjM2U0ZmFkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjVmM2EwNmVjODkyOGYyMTc3MDU4OGEwOTQ3NzZjMGU2MDA3NTI4MDE2MDNmYzExYTNmMDBiZGUwMWU1NWY0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzdhZGIwYjk4NDBmMWUwNDZmODE0OGFjMzllOWY4MDFlMGFkNDZhNzk5ODg2ZjM0YmQ3MmI3ZDExNzVhMzAwZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmNhNzJlMWUyZGM0ZmMzZDE1NjJkNzM2YTFiNDQ1ODNlZDhlZmM4ZWE4ZWFhN2NiYWIzOTEwMjFlMWZhNzg2MCJ9"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/targets.ts#L70-L89",
+          "version": "repo-lines-v1:sha256:574b640d6972452bd8e5cad785d6c2f0137b67c6888f7503c54bac5a536c104e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2MzEzMjhjYmZmNGJkMjU3MzUxZTY3M2Y5YzlkZGYyMGYwZmM5MDc2ODY0MWNjM2IyYjYzMzRiZGViYTUwZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1MmZkOTBhMDNmNzNkY2M1MjFiMjI5MjZhODA2Mzk4NmNjZmFhZGNhNTJmZTQ1YmQxNGJjNjY2ODFjZTlhNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c707326cf20e4d479ad2f7536ff39f91",
+      "statement": "Failure semantics split by layer: client-side environment fetches fail open (Slack/Linear environment lists fall back to [] and KV last-known-good copies with malformed entries dropped, a missing default environment yields a repo-bound session, a deleted mapped environment falls through to the next stage), but the session-creation path fails closed and cleanly (404/400/500 naming the failing repositories) rather than booting a partial workspace.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/repos/resolve.ts#L114-L123",
+          "version": "repo-lines-v1:sha256:c28b1f3de617be657c32120040f47ab56019426e47be5771defd7cdb74274e49:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0ZjkyNDI0YmMwZDM2NWQ0OTVjZjczZWNhYjQwY2MzZDUyYThkNzE0ZWUwYWIwOTY3NTU3NDdkYzE4ZTNlZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4Yjk0NTQwMTBiMTY2YTNiMmQwYTdiZWY0NDM2YWM4OTkyMjllZGFlZWUwYTcyNTgxMDIzMzM4NzEyMzY5OTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhYWZkYWJkOTQyYjlhOTViOWFhN2FjMTcyYmU2YWY2MDNjNTk4MTE4ZjI4NjhkOThjOTdlMDAwN2RiNGE0ZDgifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L41-L72",
+          "version": "repo-lines-v1:sha256:fb32b638fc813e796c37a4969a95e1b5283315db274d133d4f5794b5257e47db:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiMWJlMDRhODI2ZDVkYTA3MzhkNGFjNjcwNzFmMGM5OWJlMTVlNjYwY2VkODZiOWMxNGJhMTAyMWUyMWU5ZTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkMTkxOWIxNWE5YzdhZWRjNzZhNGQzNTYzYjE5NGQzYTljMWY4NjRjYjYxOTgzYjk5MzU0ODNmZjY2OGY0NTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4NzcyNDI5ZDYzMDI4ZWUzYTE0MzVlMTYxN2Q4MzlkNDE2YmEyNzRkMDVmYWYxYWU5MTFjMDc3YzY1MzMwNjQifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/environments.ts#L1-L36",
+          "version": "repo-lines-v1:sha256:ebcaa24ae421345a275c02c471f12fd3961aa266c77a6dbefd4655ad7842daf2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3NDc1YTQzNWUxMDllZDVkMGFiMzA1ZGU1MmVhNTI1MDU3ZTA5NTA5YmNlMTM0MGZlZmZiNjE2ZjZjODcwNDQifQ"
+        },
+        {
+          "resource": "repo://packages/slack-bot/src/classifier/environments.ts#L1-L36",
+          "version": "repo-lines-v1:sha256:5ad0d6f9905836d963f93e8fbc9e58aea82c9c57c8b32b26de0c1b8cc9c05d77:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3NDc1YTQzNWUxMDllZDVkMGFiMzA1ZGU1MmVhNTI1MDU3ZTA5NTA5YmNlMTM0MGZlZmZiNjE2ZjZjODcwNDQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

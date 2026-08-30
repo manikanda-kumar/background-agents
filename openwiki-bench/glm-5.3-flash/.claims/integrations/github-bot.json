@@ -1,0 +1,696 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4946c4abe972317c25fa7247f3a2c77bd9e70efeb95ff32ead11db29c87ca49d",
+  "claims": [
+    {
+      "id": "claim_46e72b21c15a4dda8af226b1cb6b0a7f",
+      "statement": "The GitHub bot (packages/github-bot) is a stateless Cloudflare Worker that translates verified GitHub webhook deliveries into Open-Inspect coding-agent sessions: it verifies the webhook, posts an eyes acknowledgment, creates a session via the control plane, and sends one prompt; all GitHub-facing output (reviews, comments, pushes) is produced by the agent in the sandbox via the gh CLI, and the bot itself never fetches PR context.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L1-L55",
+          "version": "repo-lines-v1:sha256:e7d0958462c27c6daf70677f7f4abc17089383b767ae44aa7282197513465969:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmYzljYWY0YjdmNjU0YjQxYWNhNTMxODgyMDc3Mzg5NzM3Y2E4NGI0ZDM5ZjZmMjY2MmQwYmUyZTlkOTU0MDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1ZjUxZjA4YTE0NTFiNWYyOWM1ZDk1OWZkZGNhYTE2MDk3NDhlYTZjYmFjY2JlZGIzNTZjZTllNjNiYTE2YmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxODRiNTAxZWVlMjNkOWQ3YmY3ZWE0MTg1MGQ0OGIyMTI4MmUzMmNlYjcyYzM5YTcwMTY4YTEyZjIwYTQwNWMifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L33-L100",
+          "version": "repo-lines-v1:sha256:78b7bb7b3e7383e6bfe06243f877a307b1cad29827c1b29bfdad5b3db6cb324a:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxNzEyMTZiY2ViMDExZTE1NzI2YTEzNzVjNTllNDQ0YzU2YTQ4YzY2OTBkNTViMTVlMmI4ZTdjODAzZTQwZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3NmIwYTJmYmEwNDRkN2FjZjhmMjI4YmE4MTM0MzVhNWVkMWFhZTViZjA0MzMwYjA5ODUxMmZlNmQwYzQ3M2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmMTczNmQ1ZjY5ZmUxMzg0NWJmZDg2ZDZlZDFkMzYwZjAyOGI5NGI5NGMzNTI3NTc0YTYyYjMzNzQ0NTQ2YmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e76a638b8e144898a16f93912046d64a",
+      "statement": "The worker's environment provides GITHUB_KV (delivery dedupe by X-GitHub-Delivery), AUTOFIX_QUEUE (durable handoff for PR feedback), CONTROL_PLANE (service binding for all internal calls), plain-text bindings (DEPLOYMENT_NAME, APP_NAME, DEFAULT_MODEL, GITHUB_BOT_USERNAME, optional LOG_LEVEL), and secrets (GITHUB_APP_ID, GITHUB_APP_PRIVATE_KEY in PKCS#8, GITHUB_APP_INSTALLATION_ID, GITHUB_WEBHOOK_SECRET, SERVICE_AUTH_SECRET).",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L66-L82",
+          "version": "repo-lines-v1:sha256:2805909ec1063fe73f349e69c1087153b48152bb46d95eef7901fcac7f252b33:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0YTU1NTdjNzY1NzBjNGMxMjA3YTdhMzdlZTk5ZTVkZWFjYzY4NDMyMWRiOWUxNWFhZmRiNWQwMGIzMWU4NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxMzlkMTEwNDViMDMwMzg4MWQxZjU5MjI4ZmVkMzNmYTkxYTEwMTIwMTNhYjhmMTAwZjZkOTRhYzFiYTE4MGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3YzA2YjU5YzdmYzc3YzFlZWE3Zjg3NTVkY2IyZWQ4ZTQ2MGY5ZTM3MTA5OTA0MjEwYTdmNGY0NWVlZDJjMTQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/types.ts#L7-L46",
+          "version": "repo-lines-v1:sha256:947cd6c244baef441e4b2c15e6e4fa8d48b9c68beedfe4086316c5e978cb88bb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlNzhkOGQwYTliMGI1YmIzZDJlOTYzMmVjMDc5OTRkYmFhM2Y0NWYxNTBjNDkyNjA4NzM5OTAyNWRkYWYwYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1OWI2MGI1ZTc0OWUyYmM4MmFkNjc4N2ZkNjVhZDhkYzEzMzdmODBlZWIwZTU0MTdlYTYwZDBiMTVkODBlYjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2YjI0OGY0MzNhYjlmMWQzM2Q4ZjU1ODU5YmRlMjJkMjU1ZjBmMDAzMTAwZWNmNjEwOTQzNTQwYzI5N2VmMzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c39682a0853e4da2807243b2c2d61d7f",
+      "statement": "Terraform deploys the bot as a standalone Cloudflare worker with the two-phase service-binding pattern (deploy with enable_service_bindings=false, then re-apply to attach CONTROL_PLANE), creates the open-inspect-github-autofix-* queue and its dead-letter queue, and registers the control-plane worker as the queue consumer (batch_size 1, max_retries 4, max_concurrency 5).",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L57-L64",
+          "version": "repo-lines-v1:sha256:ad8c12165a0d6519e69ddce54d3b3b3e09329d262de43116ff1a27c7acca6491:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDAyZTJiMzIyZGYxOTNjMTM3ZmU1MGVkNDQ2ZWM3NDZkZWFjZjU4OGM5N2IzNzQwMmRhYTM2MmE4YjNiOWVkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTkzNmUwM2VjMDFkZWQ4ODQ0ODVkNWFjODk0MTlkNTg0ZGUwMzM3ZTM2ZDQ3MmQ1MDYzZDYxYTNkMmE2NGVhMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTZlMzE4YWMyODBkNTgyOTVhNzBlYmRmNWY0NTllZmE5YzYzOGU4YzcxZDA2Y2I0NmYwZDI1YzM2MDYwNmMwYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjJmNzY2OTI4ODQ1ZTg4YTk3MTFmZDg3ZWZlYzRjM2U0MDlkOWMzZmFlZDlkZDMxMTUyZTFjMWQyMWE0ZTMyZiJ9"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-github.tf#L5-L103",
+          "version": "repo-lines-v1:sha256:da7f8c8f8594a9f654f28080275d598c04c6d869e729556d301e318d50529c93:eyJzZWxlY3RlZExpbmVDb3VudCI6OTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjY2I1MTM2YzJmZGU5MmFlNDAzYzE1NDE1MGI2N2ZmOWQ5YmM4NTQzNTU2NTc4OGNhYTZhNjRmODk0MzJhZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ3MzQzMDk3YzJkYTdkNGM2YTkyMjA5Yjc5ZDI5MmRjMGZmMzEwMDM5Y2MyNzlmNzA4YTUyMzI4NDhiNzc2YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b772fc8a31e94bfea2105266af302e2e",
+      "statement": "The Hono app exposes only GET /health and POST /webhooks/github; the webhook endpoint validates the signature and delivery id on the request path, performs the Autofix queue send synchronously, returns 200 immediately, and hands all session work to executionCtx.waitUntil.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L49-L161",
+          "version": "repo-lines-v1:sha256:da6a29522a09606276197e8803da1d1b834fc965509db36a2c248ab79e6fa0cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJkOGI0Y2Y1YmJiMTdlZjJhYmFmNDU5MjZhZDYyZjJkNzlhYzJjNmFlNmIyODdkNjMzZjY1M2JmZWZhOTUwMzg3IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNmY1YjQwYjE1ODQ1N2QxNzg2NGYyMTc5MDc4NmRkNWEyZWNkYjY0YjY2YTY1MWY3ODhkNGUyNWNkMzMwM2QyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkMmRjNzdkMzUzZTRkYzNkOWMzODM1NDJlZTliMjM2MjQ4MTJlMjMzMThlOGJlNzlkYmVlMjMwODdjZTc5Y2YzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxMDRjZWQwNjJiMzU2MWQ5NWE1OGYxNTgwOTQyZjk3NWE4ZGU4YzJhOWY5Y2UzOTkxYjBiNWE3OTYyMTVmNmZjIn0"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/webhook.test.ts#L77-L140",
+          "version": "repo-lines-v1:sha256:ac606e3c707d3f2fa09795ba3da10109878bd0bc7066048a7c57ee1f6ed39b64:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2NDVjZjViN2ZiMGI1MWQwMzdmMzM1ZmQ5NDY5NWE0ZDdiM2FmMTE5YjI2NTFmZTU3MmU3MzM1ODhhYTQ5NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2N2RiY2Y1MmY1YjAyMzk4N2ExNWUyODA4MTY4ODY4MDc1ZTVkZTFjOWVlNzAzZTAwYWVjMDc3OGY5YTBmZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxOGE1YTAxMTQwNDk3MzkwZGE0NWFmNTE3YzI5MTY4MDQ1OTc3MmZhMDU5YjA3OTQ3ZGE1ZDUzNDkzMDZkYjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9d4871e92276408da908553e5942aa44",
+      "statement": "verifyWebhookSignature requires an X-Hub-Signature-256 header of the form sha256=<hex>, computes HMAC-SHA256 of the raw body with GITHUB_WEBHOOK_SECRET, compares constant-time, and rejects missing/malformed/mismatching signatures with 401 (logged as webhook.signature_invalid).",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L60-L64",
+          "version": "repo-lines-v1:sha256:7e2238bd0cad484339aec9534f1060112fb79e37c88134c28785280a61e713e1:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmIwMDJlZDIzNTY4NTg4YjY4NDk2ZDZlODAzMTdmNDQyMzQxZTJiODI5M2M5OTJhNTA4MGFhODdmNDE4M2QwNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmFhMjUyZTAyYTYxYjExNWI0MzcwYWQ1MWY0MzVkMWY0YTdlMDhkMDUxNTYxZDUxZTQ5NDVlY2QzNGNmNmQ0NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzE5N2Q4ZWZlZmIxZDY5ZjNhZjQ5ZTkzZDgwZmU5MTE4M2M4Y2EyZTE3MWMwZWQ5MzRkYmRlYWFiMjA2ZmFjOSJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/verify.ts#L3-L16",
+          "version": "repo-lines-v1:sha256:b11c979d885f796356328df0481437415bf3b3398eda049195bf347915fade78:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3N2E0ZjA0NGEyNTc2MzUyMzQ5ZTRmNTcyMDBhNDcwZDUwMTI2NzYwZTRlZGY1YTJiYWVjMjQwMjRjYmEzZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwZGE2NWMxYWFlYzhiYmRiOTc0NmNkODYyMmM0NGRjOGVhMmEyM2NiOTY4M2Y2OTg2ZWFmYzc0ZmJmM2MyZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/webhook.test.ts#L346-L376",
+          "version": "repo-lines-v1:sha256:c22a3ff660962fe1a38dfc183614237d16554f7c39ec473dd0fdc8d860530369:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3N2FiOGYxZmRkMzU4YTU4MjNkYmFmNGE3OTkxOGU5ZTIwZjRhNzE5YmFmM2Y1ODQ5MWJhZjc2YzEwOTljYmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyMzVlM2U3ZTBlZDVjODU3NGVlMzY3YmEyMzA3ZjllMDI2NTI2OTNmMWZiYTBiNDk0MTM1ZmRmMWViYzFlMTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiOGNkMTgzNjJjM2NlOTRjNzFhZTdlYTIwZDUyZTgxZTg3MTQyMDM4YTVjYTgzNTZlMTRjZTcxOTg4NjFkNzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0038d55a5a6848b1a6aaeb19840c029e",
+      "statement": "Deliveries are deduplicated in GITHUB_KV under key delivery:<X-GitHub-Delivery>: a hit short-circuits with {ok:true,duplicate:true}; otherwise a 'processing' marker is written with a 5-minute TTL, upgraded to 'processed' with a 7-day TTL only after async handling succeeds, and deleted if handling throws so GitHub redelivery can retry; a missing delivery id is tolerated with a warning. KV eventual consistency makes this best-effort, not a strict cross-region lock.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L19-L23",
+          "version": "repo-lines-v1:sha256:b2f80a220fb2c54b9ccb065449b45296b8f958cb878daac73ef344be3f4966f2:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGExMTUxY2I1MjE2MzNlYTFhZmZkNDhhZjM4NzBhNjRkMDhhNThiMDdhMTM3NzUxMzZmYjY2ZGUwYzY5MTI5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2E4ZmZkYTQ2ZTU5NzU0MjExZGVjMTBlZjhhZTM0YzBjOTM3ZDMxZDQ1YWUzNDRjY2E3MDQ5ZTYzOWFhMzA5OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2M1YTg5MTg3ODBiOTJiZmE4MmRjNjg1Y2MxOGU4ZTJiNGQ4NzliN2FkYjZhOGQyNThmYWUyMjFmOTIwYWNkZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTdhNzU3OTk3M2ZiMDZkZGEzZjcwYzIyMzhjNDIxYTFlMDBkZjE2MjEwZGUzMjY3ZGJhYTgyZDRhZTZmNjJkYSJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L122-L158",
+          "version": "repo-lines-v1:sha256:4f1de562c8427a19ca8ae06e45bc2ff87b76199597f0330b65792027ec75287f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkYzIwZTFlNTE5MzA2NTFkZjlhNWRiNTkxZThkM2VhNmFmYmZhYjFiOTZhZTA5YTMyM2I3NjY3ZjRkZTQ0N2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5ZWY2ZTQ4ZmZkY2I3ZjNiMjEwMzM1ZGRjNDI5OTEyNjA0OGQ3M2RhZWZkMWYyM2M5MjM5ZDBiOGI2MTIwZTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L36-L84",
+          "version": "repo-lines-v1:sha256:f6509b0c06d668a2de0ec98c1f1d77f732f02ff972db9787a729e5b0e7e61b45:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4NmM0MzIzZDNkNjA1OTNjN2JkZDg5ODM3ZmRlOGI2N2U0YTAwZTM4MzJkNWJkZDBhYWMwOWU4OWZmNGMyZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ3OTA4YTA5NDBkYTE4YmMzY2RjOGZkZGE4MzFjOWNkYjdjMTA5M2QxZmJiYTc2YmMwMTdhYjY3MTk1ZDIwNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZhMWQwMjVmMmNmMGMwZmQ1ZTA2ZWIzODIyYmQ2YThhZDM0YWEzMGE1MGRiZWY2NTJjZGMzZjNiNTMwNDQ2YmYifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/webhook.test.ts#L486-L583",
+          "version": "repo-lines-v1:sha256:b6596c350d36b9224a79accf51e5cc2ec52c94c3f29ced66cd66b89f9ea0589b:eyJzZWxlY3RlZExpbmVDb3VudCI6OTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY4ZjEwZGRjOWI3MWI5MzhmYmU2ZGY1ZGUwNmU2Njc4NzVkOGVlNDMzNGQyNjljMTA3N2MyYmE2ODgxYWQ3MzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMzMDdlMTU1MjQxMGJjOGIyMTI1ZDJlNWZjZWRkZWI0MzhhNWRmNmZiMTE2N2E4N2U5OTBhOTY2YWM5ODE3ZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyZDlmN2Q1NmEzYTU2NDIzYzU2ZmFlNGFkNDVhZjI4MDBhYzc1OGVkMmIzMjFmMmRiZmUwOTI5NTRhNzI2OTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b9d4f4b90e8e45898ab5f9fcb4316127",
+      "statement": "dispatchHandler recognizes exactly four event/action pairs — pull_request.opened (handlePullRequestOpened), pull_request.review_requested (handleReviewRequested), issue_comment.created (handleIssueComment), and pull_request_review_comment.created (handleReviewComment) — validating each payload against a dedicated Zod schema and skipping everything else with an explicit skip_reason; every handler returns a processed (with session_id, message_id, handler_action) or skipped HandlerResult recorded in the webhook.handled wide event.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L23-L31",
+          "version": "repo-lines-v1:sha256:8b0a58f62bb6782dc7d4d491423e97a9456e5a3aa0a973b67afb4071b4f9fbe4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODUzMTU5Njk4MjNhN2VhZWNiNWRhYWNlYTQ0ODk0YmNhYjJmNzE3MjJlN2JhMDE4MjBhMTVhZTMzOWQxZDU0MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjM5MDBjMzBhYzVkNTg5ZmU2NDI0MGNkOWI1ZDc1OGViMDY2ZDYzNWMyOTJmYzMwZjQ4MGQ4NGQzNDA2YjZjMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmI5YjVlNzY5ZmUzNjdkZTdhZDQ0ZDk3NzNlNmI5ZTAyOTNjMDhiMjM3MDUzODc2NDY1ODM5NDY2ZDc3Zjg2NiJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L255-L309",
+          "version": "repo-lines-v1:sha256:6693f80638d4276f1d26675f473d0db12ed394d9f5a5234630f1cabd19b9f791:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmMjEzMTVkY2Q1ZTgzYjNlY2U3OGEzMDZjNzMwZWFkZWM3MmU0OWViNzE4YzE4ZWJiN2Q1MjRmODQzNGM1OWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwYzRkMmJkNGQyY2FhMWYyM2ExOWRjYjc5NzQ3ZmEyNTkwYmExMzkwMTBlZmM1YmQ2MmZiYjY0YzJkZGIwMGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE5YzBlNDg0NDMyMGRmMTRmY2ViMTY4NjZhODY5MWM1ODkyZmUxNjhkNTVlNWMzMTFmMTZhOTQ0NDI4YWFlNzcifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/payload-schemas.ts#L36-L101",
+          "version": "repo-lines-v1:sha256:c134c1830772d7f4cd2c596ac583f161c405df138ba0185a3f6dbf682c077110:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyNGMyNDk2ZWI4MDQyYTUzOTQzOGZmOTQ1MDllZWE2YWU1ZTRjYzdmZDdkMzlhY2Q0NDczZGZkNGYxYWRlODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3OGY4YWVjZTJjNTg5YzFmYzE4YTc0NmQwNTllZGFlNWUyNmU2OWQzMzFjYzhiNGI0NWZmZDhhM2E4MDAzYTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI1NWJjMzFhYTRmOTEzNWQ3MmM2M2ZmOGUxZjAzMDU2Yjk3NjU0NzY5ODE2MTgwOTE0N2VmMjhkZTg5ZDQ1NjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMwMWM3YzQ2OTZjZjZmY2ZjNWZhMzk5ZWYxN2Y2NmNjMDYyODQ3YjVkNDI2NDFhMzA2MmZhNTI3ZGJmYTliNDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a1ad47222c1463bb4d45bd5adbb1861",
+      "statement": "handleReviewRequested is a webhook-compatibility path (the documented workflow never uses the PR reviewer picker) that fires only when requested_reviewer.login equals GITHUB_BOT_USERNAME; non-matching deliveries skip as review_not_for_bot before any config fetch, token generation, or control-plane call.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L141-L149",
+          "version": "repo-lines-v1:sha256:f2e6a8c491b742d2c0a896ecb4c63ef49490bc1210133da35edfc8388355a82a:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmE0Zjg1MWM5MmEwYzlmMzk4NDI2NmFjYjI3NzNhM2Y1NmU1MWMzZWZmZWIzYWUxMTYzYWE4NTNlMzM1ZTU3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2FhZTU3NjlmOGIxODBkODc5ZmM5NjI0Yzk2OTE4YWVlYTJhNWM2OGNhMTcyNWZiNzZjZjliYTc5YjNjY2M0NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzJhZWVmYjgzZmM4ODliNTU5MWMzYzM1MjY2Y2VjZTAwMDkyYmM1MjE3OWUyNjMwMmIzZDQyM2UyYWQ2NmI3OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTc0NjMyZTFkNGQ0MmZhMTM3MTY5NWU0NWQ3ZGU4MmEwOTZhNDY0YTU3ZjQ5ZTY3NmM0NzU3MjkzNjkzOWEwYSJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L181-L219",
+          "version": "repo-lines-v1:sha256:dfb1dc28888094aa1382224c2001e0d6b6a0ab30202c9ddadd90d84272292e3e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTJlZmYyNTYxZjJlYjVkZDM3NzFkYzdkMzQ1MWM1NTY5ZDczNmI3YTQ3ZTQ3YWYzZTE5MWVhNTY0NDdiMTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4YmZlZjJkYjk2ZmMxMmViNmViODY1Yjc4ZWI1MWZhY2M4MTc4NzFhZDEzNTNmZjYzYWRjMGVmNmQ4NzFiNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ODA4ZWFiY2ZkZTAwNjQ4YzNmYjIzNjlhNmFhYTE2ZTFhZTBhMmFmYWJhNTdlOTg4OTZmYTI2Y2VkNzdmOTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3NTE5MjY5MDM4ODM1OGQ5OGNjZWU0YmJhMzY0M2FjOWQzMzRmN2FhNDE5ZjdlZTFkYjNkNmZmMmFhYjM1MDcifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L270-L276",
+          "version": "repo-lines-v1:sha256:5ee8f3e34323961feea5c40f08ff02df4b01f0a8afc4dc15db622d34df7056d9:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI4MDFlNjgzMjg5ZjFhYThhMGEyYzQ3MWUxYzZhNDk4M2Y1NzNkZTcyY2I0Y2M3ZTA4NGE3NmRjOGYzYjU4YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGQ2Nzg0YmY1MGVjYzcyYTEyZWJlMzcxZDBhMDAwYjczNDE3ODkwNDU0Y2YxODFhMDE3M2I2NDdlZjhmMTA4YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTIyNmE0NjAwNzc4YTcxNjdlMzgzODgxZjkzNzUxZTRjYWIxMWNkZjZmZTNhYjZhMzU2MzEzOWE5ZTUxOWE4ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWNkN2EwYzI4MWQ0YWU4ZWFhMTVkZjE5ZjNmMTUwZmY5M2I3NGI5NjU1ZTI0NDM4MjM2ZjhkOGFhYzA1YjFjMCJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L978-L988",
+          "version": "repo-lines-v1:sha256:484b1b4a84e04c95814a78cb7d8bc605940eb9a5847df6e0f032537b345e56f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4YmVjOTc1YjJiOGQwY2U0YTYzOWRkNjRkNzZlYTJjZDQwYmViYmYyN2Q2OTBiNmRiZWU5ZjM2YzQ4YmZiYmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2ZDM5MjQzNjdhMzUxYjU5OGU5NmJiZTZkOGE5NDljYzE2NGZkNmU3NDFiOGI4NDkzZTkzY2EwOWJiZGU5OGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyODIzODdmYmIzMjhhOTkxMjE1ZGZhMjM1MzdiNDQxNDllMzcxMDViOWMyYzY3YTFhNjU3OWYwOTNiMDYyZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_227da5a234674bfaadaec3c5ebf901b6",
+      "statement": "handlePullRequestOpened skips draft PRs (draft_pr), repositories outside the configured enabledRepos scope (repo_not_enabled), repos with autoReviewOnOpen disabled (auto_review_disabled), and gating rejections; draft-to-ready conversion never re-triggers the path, and a PR opened by the bot itself is auto-reviewed only when the bot login is explicitly listed in allowedTriggerUsers.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/GITHUB.md#L47-L61",
+          "version": "repo-lines-v1:sha256:b63487b3f439dd1a3e2daf60794c9a3fae576586c134cfff14decf1a182ec5aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjZjI5ODY2NTYxMTY4MzFlNjlmZDM1MThhNzU4NmFmNDFiYTAxZmNlYWUxZGY2MmE5YmM5OWYzMWFkYzU0MDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzZjM3NjMzMTM0ZDE0OWQwOWZkZTliOTE4ODllYTRkZGFiMGI4MDU0OTUxZDAxMGU4Y2EzNmQ0ZjYyODg5Y2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5NDY3YTU3NmYzODIwMWM1ODk4ZGFkNjQ5YmE4ZWI1NzY3ODIwN2YxMmRhNGVlMWI3Y2VhOWNhYzczOGU3ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhMzMxMTgwZDkxMTRhM2RkM2JlNDQzYmEwOTMxNTgxNmRhMDNmMmZhNzNkMjY5YzFjNWMwZDJjYzEwNDk4ZWMifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/README.md#L131-L139",
+          "version": "repo-lines-v1:sha256:a8255f606707f94443f8603d7d173a470323102278eccb19b1e9022abf40f91b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2ZhZGZjYzVlN2FmZTE3OGI0NTQ0MjFhNjFjNjc5YjNjNTA5Y2M0MzBhM2JmYzY0NmFmNWU4MWZjZjM0MmYyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTZjMGNhOWNmNDc4ZmQwOTZhMzM2ZDY3MDNjNzk4ZTJjYzUyODk3ODU3OTM2Nzk5Mzk4MzhiZDY0YzhmOTA3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDNjYjAyMWYzMDQyOTNiYmIyZTMyYzY2ZjJjNTVhZDM4ODc5ZmVkNmVkNzJhM2EzZmNhMTU3MzVmZDE0ZTFkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTg4ZThkYTRmNGZjN2Y0ZjY0ODExYWRkMzNkMjQxMzI3ODFlMjdiNjA1ZmNkNmU3ZDYxOTAxYmFhYWZiN2Y3MiJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L283-L324",
+          "version": "repo-lines-v1:sha256:b5ee9e3786bb3d468fdbd329957a6f5b2e68daf72cf846f63bcb7bc64371c727:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhYTFkNGEwMDVmOGYwMDQ3NWI1ZDk1ZDMyMzdlMTI2YzQwZGJkMTQyODAyYzk1ZjgwZTkwZmI4MWQ5MDc5ZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmMWVmZDA2OTY3ZjQ3MTk1MjIxMDM2ZWI2MDc2OWJiNWFhOTIwMmQ2MWUzNDIwMDhjYWM4N2VmZTkyZTc1NzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b317126ebf334de38f4e45c06feab175",
+      "statement": "When the PR author is the bot itself, buildCodeReviewPrompt receives isSelfReview and restricts the review event to COMMENT with an explanatory note, because GitHub does not allow pull request authors to approve their own PRs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L352-L364",
+          "version": "repo-lines-v1:sha256:1d05e27e36012ae67c6966d8128548f8a225f91f6a811b1d9e1bf42cae9d4cca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljNTc4YjdiMDA3Njg0YTExNDYxNmU5ZjFjNjFhYzQ2ZGM5NDY0ZDEzYjRmMzJhMTdhMGU5YWM2NGQ1MGUyYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI1ODNlNTRlYzFjZWVjNDQyMDM5NjExZmYwZjlhYTU0NDQ2ZWRiODliYTcwMjM1ODAwYWJkN2M0ZmNiZDVkMjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzODI0MWZmOWU0NzNiNzUyYzJlNzg2MmU5MTQ4NTUwNmYyZDI1YmU1ZjE3NmZkZDM2ZDYyZGIwODI0Y2Y4OGQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/prompts.ts#L63-L66",
+          "version": "repo-lines-v1:sha256:eeffb1701a52f70cbb6cea5bf78397b700f70ff22d164e011f4f0603d8907878:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQ4OWM2OGY3NmJjNzdlOWEwODFlYTZmNDI1ODIwMTgyZTA2MzZkMGEyMmFmOTBiMDEwNmIxMmFkYmIzYTFkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQ3MWIwZDkzNGM5ODc3ZTRhOTRlNjQ5ZWYwNzU4ZDVjYzEwODI4NjY2YzRjNzBkZDUyMDQwNGZmNDgwNDBkMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjBjMGEzZTllOWNhOGM1ZmVmNjMyZjUxMTQ2ZjU3N2UxYTc2ODI1MTQ0ZWIxODMwNGM5OTVjYTNlNjYzZTQ0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDA1YzFiMjg5YzMwZTlmN2I1OTFkNTgzMGI2OTU1ZjhlMGEzNjRkMmMxN2U2M2E0MjZlZjJiOWVkYjFmMDNjZCJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L276-L306",
+          "version": "repo-lines-v1:sha256:f497d8c8d7ca48d7e0420d655dfda4ea9cc864752b5d69b27d8a8ffe54a0d031:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5Yzc4NmUxOTE1ODI4MDkwYjUxZjY3MjZhODZhMDY0MGUzNDc5MmIzZmExZjQ4MTYwMmNkZmE0NzM4NWM3ODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZjMDczODI1YjNkNjc1YmY5NWM3Y2VlODFjNWRhZWUxYzRjMmY0OWE4NDY5N2RiYTM2ODQ3MzFiMDQyMDlhYjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhZDliYmZiZWE2YWRiN2Y2MzEwNmZkNmU4Y2NiOWYwYmU4MmY4NTk5YmUzMTRmNGVkYzNkN2I0NDk3Y2NhMTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6910b1eed3d74531b05f0cb706458952",
+      "statement": "handleIssueComment and handleReviewComment skip comments on ordinary issues (payload lacks issue.pull_request), comments without a bot mention, and comments authored by the bot (self_comment, loop prevention); mention matching is case-insensitive with a word-boundary guard so a longer username prefix is not treated as the bot, and the mention is stripped before the remaining body becomes the prompt.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/github-mention.ts#L3-L13",
+          "version": "repo-lines-v1:sha256:c0d829dde123228a67c01477311a9f25196ae145ccb7c9c23b17de4e04034c40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1ZGEyY2Y5MDkyMDk0M2M1ZmExYTRiNGFkNWQzZmU0Yzg2MzQ4NDZjMWI4MzM5OGMyYjk0YzY0ZGVlYmU4MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllYjQ2MmExODg3NGU0Y2MxMjFhMDYzOTY5ZWRiNmRkMWVlY2NkNGUwYzQ5ZmM3M2ZlOWNmMjZmYzk5YzNkYzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L388-L417",
+          "version": "repo-lines-v1:sha256:849d007356f2d2dce8c1f8b384335ecd8b3af05570915dba9f030f6eb8ca55a8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzOGQ1NDQzYzE2ZTc4NWRjOGRhYWEzMjVmMjY4ZmQyY2VjZGViYWE2ZjU1MDFkM2RmNjM3ZTEyN2U4OTA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI4YjIyN2YyZjJiMTUyYWQwMjEyNzM0ZWUyZDAxOTZmNzgzZWJmNzhmMGMxNTBkNjY3ODQyYjk3NzI5Y2RjZGQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L513-L547",
+          "version": "repo-lines-v1:sha256:54d940b259230d32cb86a06ec976e9b431685da654ed3a3a2a755a6fbf4478e8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjZTQ2NTNmMTljYzYwZjY1NTQ5NmMxYmMzOTY5ZGRkY2NjYWZjNTNmZTk1Njg5NDg4YjQ5MzZkZWU0MTM0MDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4MzZiODJjZjQ5MjdhY2U3YzgxM2M3MDVhNWExYTdjMTc0NGQwMzQyMTQ5Yjk4OTRjZTdiZjA3NzIzODM5NTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYWZmYmE1MDMzNzFhZDFlNWMzOTMwYzA5ZTkyMjI5NTgwOTM2MWI1ZjJiZmRjNTU1NTM2NDBkZDNlOTMwYjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3NTE5MjY5MDM4ODM1OGQ5OGNjZWU0YmJhMzY0M2FjOWQzMzRmN2FhNDE5ZjdlZTFkYjNkNmZmMmFhYjM1MDcifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/autofix-ingress.test.ts#L41-L47",
+          "version": "repo-lines-v1:sha256:df43643ae41fdc5304dee6500b71346ec6c66a5fbd79a58fa6d30d3e5e62c127:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTM3NThjYzc2NWIwZmVkMjM5MDEwNzViZmQ0YWMxYmI0NDIxNWMxMjU1MTNiNmU4ZjhiZDZlOTQ2ZTRlNDk2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjE2NDhiYzJhYTI4OWQ2YzZjNzBmZDZmMjEyZjU4ZDAwNTliZjMyNTMxZTRhNDUzZGU3NzY2MzI5NmZkMTUzMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_20d4558481c544f48100f8a8e26e4acd",
+      "statement": "Each accepted GitHub webhook delivery starts a new session; GitHub comments never continue an existing session (unlike Slack thread replies), and the agent is instructed to read prior PR conversation itself via gh pr view --comments.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/GITHUB.md#L96-L99",
+          "version": "repo-lines-v1:sha256:ccd452dc7932aac7ffef98ca4828a605f475536ccb2c3e1e38cb453f0a03d203:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGUyNmE2ODhlYzI2MmEwYzA3ODRkMDYwMTVlNGFjNDkzNDk4YTNlODg5NjhiZTk1ZTgxZDhhZTNjZDY5NTU5MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2E3NGVmYWFkNzFjMWY5ZjI2ZDBkZTUzOTUxNDU0Njg2YmFlNzVhMGE0ZWRlZTJiNzJiNGEwOGNlMjRlZjU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDM0Nzk0YWU1OGRmZDU2ZTRjMjlhMjBlZjUyNjljNzg5YTdmZDUzODFkYzI5ZGUxMmFhNTc2MTEyZjAwNTViMCJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/README.md#L50-L55",
+          "version": "repo-lines-v1:sha256:4e3419785832ab21b24ee9d7e3582e134f0686fde3bd83c8c61ce66e254956f7:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2QxYTY1YjdlNDJiYWFiZDIwZjRjMjA2NWE4Y2ExNWRiOGIzODI1NWVjZDA3MjUwNzFjMjEyNmI4Zjc2NzI2NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODVmNTFmMDhhMTQ1MWI1ZjI5YzVkOTU5ZmRkY2FhMTYwOTc0OGVhNmNiYWNjYmVkYjM1NmNlOWU2M2JhMTZiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2UyZGYzMTUyZTk1MzE4MjIzZjFlZTgyYWQ5NmEwODIxNDk1Y2IyMGZmZWVhYTU4ZTNjZmQ3ZjUxMzYxMGE5OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDE4NGI1MDFlZWUyM2Q5ZDdiZjdlYTQxODUwZDQ4YjIxMjgyZTMyY2ViNzJjMzlhNzAxNjhhMTJmMjBhNDA1YyJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/prompts.ts#L195-L196",
+          "version": "repo-lines-v1:sha256:b9c16080a3c7654e0408858cb36c733e46d2b31ce236715afea1da3749e0756b:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGIzYTBmZDdhNzE0MDk0MmE3Y2YyZjFlYzZmNDg1ZjI4NTZjMDFkZGUxYThhYWFhMGM0YzI2MjJmM2Q3NzY0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTU3M2NhMWI2Y2YzYjM5MGY0NzE1NTI0YzJmNDU1ZTI1MTk2OTFlZGUzZGIwOWI3OTljNWIxZGEyMTIyNTYwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODM5MzFhMGVkODFlNWJhYTk0OGRhZWJlMzNiMTVhNGIyNDM2ODNhYzE1OWQ5OGNiM2Q3ODZlYmZmZTE4MWFjYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzRmYWI3ZTMyZDQzYTlhMGVkOTNhNDk4M2E1YTc2Mzg3OWMzOTNhNGU5YzgzYWIxNGQ1NjlmNWIyMDQzODk4OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_28320306863446baace324d7746e609c",
+      "statement": "resolveCallerGating has two modes: when the resolved allowedTriggerUsers is a list, the sender login must match case-insensitively (an empty list rejects everyone) with no GitHub permission calls; when it is null, the bot checks the sender's GitHub collaborator permission requiring write/maintain/admin, with API errors failing closed as permission_check_failed; the installation token generated here is reused for the permission check, the eyes reaction, and environment permission checks.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/github-auth.ts#L122-L157",
+          "version": "repo-lines-v1:sha256:74a7cc867c60fe92a6adff42784054b0df861d388c2bdccf81ddd8f4256de320:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4N2FjMDM4ZTM5NmYxZjAwMjgyMWI2YTYwNmJiYmVhNDk3Yjk1MThmYjlkYjc4YTkxNjQ3NjUyNDI4MDM4YmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1NzQxMGFlMTJkMjcyOTU3MjBmZGM3N2QwM2VjYzJlM2E4MDAyNDNhZTE2NGU4OTI2YWRkYjdjNmQ0YmNhNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzMjA3NTBiMDg0OGZmMDFmYTFkMWQyNzM4N2NiZTIyZTNjZGJmZWQwZDVjYzc0YTczNjEzYTJkMTJjOTRhMmIifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L131-L179",
+          "version": "repo-lines-v1:sha256:2bf671242d4b0119e1d8aeb9fc231b4d57d0823273fad58a6c14d523ad8a5c7e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhMDRlNmU2NDAyNTE3NzE0NzRhYzY1MjU2N2Q2ZWFkMTYxYzI0YTFlMGZlOTM5NWEwNzNkMjE5MTY4NzYyNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhZWQxYzY1YjI0Njc5ZThhNWY4ZTQ2YWZjY2NjNjEyMGE3MzY5ODdmMDg3NzEyOGFhZmE5ODU2OTM1NDU0NDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1ODc1NTJhYTc3MTJiZWZhZmI0MzE3YzFmNzI4ZmFhZDVjZmQ2MWYzOWE3ZGZiZDljMmMwOTEzM2MzZDE4YzQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L861-L952",
+          "version": "repo-lines-v1:sha256:e301c2cc5c1464bdc7838e902f75e217e98eb4399aeae59301a4bdcda1b9f1ce:eyJzZWxlY3RlZExpbmVDb3VudCI6OTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1MTk4ZTNiMThhNzE2YzM3Y2IyNjc0ZmUwYjQ5NDA0ZmQ0ZTBiN2U4ZGVjYzc0YThhMjk4YjNmYTQxYTU2NjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNmYTc4MjhiYTExZWY0ODRhODUwMjNkN2Q0MWRiZDlhMDMzYjBiZTM0ZTg1NTcwZjZkYzAwZTNhYWZkYWQwMjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEyYWQyNGJiYmUwMmUxYjE5OGQzNzZiNWViYzM1Zjc2ZDk2MzgzYWU0YWNkNTgyOTkxYmYxMmY2MDA1YjRiM2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc734698ded644bf97ce2904d9472c57",
+      "statement": "The eyes acknowledgment is posted via withReaction as a fire-and-forget companion to the session flow — the handler never waits for it before proceeding, a failed reaction logs acknowledgment.failed while the session still starts, and the reaction target is the PR's issue-reactions endpoint for auto-review/PR comments and pulls/comments/:id/reactions for review threads.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L102-L122",
+          "version": "repo-lines-v1:sha256:d2e88af8c3d41318599b39fbbe074c89a4c31d73530213e1c6b6166efab04cf3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4NmRmNzM4NWZhMTZiMzc2YjYwY2RhZDhiMDA3ZWU3ZTJmYzliZWJlOWY4N2Y3MzA0NjU2ODM5MTVjZGIxNGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1MzlhNjQ2MzU5NjBlNGY2M2RjN2FiNTcwNjM0NTRkN2Y0YmY1Y2I3NTMzOTJiOTQxYWM4MjBmZjM4NjIxOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0OTJiYTY1YmM3NDllYWMzOWUzY2NmN2EyNWM4ZDg2ODljYzliNTE3YmVmNjcwNTE1MDRkM2UxMTA4MTZmYmIifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L406-L484",
+          "version": "repo-lines-v1:sha256:f6fa8f445fe108cd02090dbcb2fd75c97ff26ff7bd6f913cfa54312a4b437bd6:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwYzIyMDcwYmJmNTY4ZjFlMjYyN2Q4YmZhYmRiMTg5NDdjMTE2ZWU2ZmQ2MDQzYTAwYzdiNzFkOWFlYWM1ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJkNWEwMmI0MGJjYjZhYzEyMTI1Y2EzZjk1ODIzODRjNDU0YmY2M2IxYjQ0ZDViYzkwMTMxZTE0OGUxZjhmMjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUxYzRmMjVhYmEzMjczMTQyYTg0MTMzOGYxNjViYzRlYzA0YmNiMWFjYWNlYTczYjlhYWU3MGUwZmI3MDQ4Y2IifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L777-L787",
+          "version": "repo-lines-v1:sha256:0d529ee6667794c8e4a955da20db6ca8b0a97ea79ea2f6e5ca1f02f6f3954afd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkM2VjYmQ5YWZiNjMzM2Q3MDdmYzQxZGIyMmI4M2E2MDhiYjczMzk2MWEzZWZiMWRiMGU5YThjOWQ1M2U2MWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxZWM1NDA5ZTNjMGRkNTYwMzU4MTRlNTY5ZGExOGU0NWY2MTliMDg4N2FiODMyMTc5ZTg0MGQ3NjJmNzY2MTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3MDgxNzI4MTliOTQwMTUxMjE0YTUzOWY0MjhhN2Q4ZDQxYzRjMzdmNWEyOTVmZmYyNzhhMTI2ZmUxOTc5MGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d407557d304144bc9ef222af90178c55",
+      "statement": "Every session-producing handler resolves behavior via getGitHubConfig, which fetches GET /integration-settings/github/resolved/:owner/:name (owner encoded as a single route segment for nested namespaces) from the control plane; the resolved payload carries model, reasoningEffort, autoReviewOnOpen, enabledRepos, allowedTriggerUsers, codeReviewInstructions, and commentActionInstructions, and the control-plane store merges global defaults → repo overrides → environment overrides field-wise without undefined clobbering.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/integration-settings.ts#L302-L352",
+          "version": "repo-lines-v1:sha256:f62daea4c0cfa34fc0b272249363c6472d03d45cd0a054524e94ab942e3d7819:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0NzAxYzJlZmNlZGEzM2I3MzIwNjZjYTZlYmQ3NjUzMGY2Y2VlMmJjMGI2NzBkZGQ1Y2NjZTVhODliNzQxOTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjNzMwYzY3YmExMjMwOTJlYTEyNDM2ZjBiZTY0YmNjOTI2MTVkNDMyZGRhZjZhOTRjZTkxY2FhM2U3OWExMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0M2JmOWJmZTExNzExNTA4MzViY2I0OGMzYzRkZDJhOTI4ZmRjY2Y2ZjIyNzY4NTNhYjAyOWZhZmJlMzVkZmMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/integration-settings.ts#L377-L416",
+          "version": "repo-lines-v1:sha256:3c81ed4fa7c809ed79cdb6c3ab609ddb061dc8c83f7f445cc822e2984b5aeba2:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhNmNhYzgwNTNiYmEyODQyMDNmOWQzYTNmNjVjYjM0MGYxN2ZmNDBhMzdmOTMyZWNmNTBiYzA5NjIyNTEzNDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwZjA2MjgyMTA5ZTg4MmNlNmEyNzdlMDEyNmM5MThlOTU1NGQ5ZGRkMjUxYWMzM2QyNzdmOGQwODY0YjNiZTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/integration-settings.ts#L545-L550",
+          "version": "repo-lines-v1:sha256:30adcae8edc2392670cb0df51d9d9944c26fbdd4df4367c3d07099a70d882f26:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzk3YjdkZTkzMWM3MTFkMmY5MWY1NDVhNzQ2YTU4YTAxYTc0ZmExNDAzM2I3ODljZDQyNTJlMTJhZmE2OTEwNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMThhNTlhOGQ4ODE5YTc5ZTdiMzllZmI4YmJhNDYxMjExZTY4NjFkYjA4MDViZDRjNzUxMzU1OTVhYzkyMzE5NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTVlMjZjZDkyMzY2ZjYwZDhlZDkyZDAyMzlmMDdmZWY3NGNhYzE0YWE2OWFkZGY5YzJjYzBkMTFlYjAwYTQ2MyJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/utils/integration-config.ts#L43-L118",
+          "version": "repo-lines-v1:sha256:c9f547e4519c9c43a452799978182ed4cd4de195d4d060891f961f2cbf23f97c:eyJzZWxlY3RlZExpbmVDb3VudCI6NzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhMGJiYWE1MTllYzFhNGNmNmUwNDU3ZTJkOWNlYTQyZTE4NDllMTMxNTE2ZDRiMGQzNDQ3YjQ4MGIyYmY2NDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2Njk3OTFhYzM4ZjQ0OTQ5Nzc5ZTgzZTY0MjU1NTNjN2RkNWEzY2UwZWViMjY1OWQ3NzRjNDY5ZGJjZGZhOTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b0fd91ca7b604bfc8b5ffb9c6bdf74bf",
+      "statement": "getGitHubConfig fails closed on fetch errors, non-2xx responses, and invalid bodies — autoReviewOnOpen:false, enabledRepos:[], allowedTriggerUsers:[] — which makes every handler skip without GitHub calls, while only the model falls back to the DEFAULT_MODEL binding; when the control plane returns config:null (no settings configured) permissive defaults apply instead: all repos in scope, auto-review on, and permission-based trigger gating.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/GITHUB.md#L141-L147",
+          "version": "repo-lines-v1:sha256:170741303a2a96a04d76a9d5a9d3ef580425470d95e55ad758aee3baa8b48f7a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzkwMDA2OWRhMTVmNzM2M2Q3ZjA2ZjdlYzMyOTAyMmFlN2U0OTBhZDZhZGYxNDY2MGZmMjcyYzU1NmEzMWUxNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODVmMWJiMzYwMWFmMmIxYzBhODdkNjUyNTkzZGIzYzNlMDExYTViMjVmOTczOTY3OWUzNTUwYTgxMzQ4MmI4OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDI0Y2ZmM2EzNzc0YTIyOGEzZTMxMzg3YTczMGRlZDRiOWUxOTE5NmE4Mzg2ZjE1YzYxNzZmMjRkZjM4NDllZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmZlNzBjMzY3YWJkYmVlMmRiYTYwNGVlMTlmY2UzNTY1MTQ2ODA3MjhlNjAzMzAwMTVjNDcwYmU2MGU0MDg0NiJ9"
+        },
+        {
+          "resource": "repo://docs/integrations/GITHUB.md#L246-L248",
+          "version": "repo-lines-v1:sha256:e70e5aec29846889750c301444b93305041eefe65df9bb1a495a9c808e17051f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjRlY2FiNjAwOTg3YjNjMmU5MDE3YWU3MzdlMzgyNjA1MDYwODFjMTExNGRmNzIzNjVlZWEzNDUyYjY3NTk2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzIxMTJhMjNlOGYwN2UwYzkzY2FkZDRkZDJjZDE4N2M2OTA2NTE5OTVmYjNmYmEwZGQwZjFiNWRkNzE4Y2ZjYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2E0NzQ3MjBhMmNmODhjMzhmOTVjMjg1NWEyYTk1M2YyYmJjZTI3MGY4N2U3Yjg0OTg2OWUyNWUzZTQ3OGIzYiJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/utils/integration-config.ts#L34-L108",
+          "version": "repo-lines-v1:sha256:9a8d9db5e3f5a02baa1cbcf0db7d1ea661264e3c54d1376fa70651db7a09e0e7:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhNGFkN2E5YjdiYjlkY2JhZjNmNmMxNWJmZTdjMzg0MzUxZWYxMGY0OWQ2N2NkNWU3MjkxNDlmMmIzMTRmNmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5ZWZkYTUzNjI4ODkzMGUwNDRiY2Y1OWQwOTUyMTIzNzNiMWJmNDM0MzYwOTRhMGRlZDk2YmQ0MGVkZDIzNzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0MzE2OTliNzViOWUyNzBiY2NiMGY1NzA4NjFhOTJlNTA2ZTkyN2EyNWM4NDI3MjYwYzA5M2MyMzc4OGI3MzgifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L817-L843",
+          "version": "repo-lines-v1:sha256:147602e35178ef162e905a6632c2cb45623eacf365245f8b865543cc96317b1f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhNmM3YzYyYWFkYTdhOTEwMTNhY2MzNThmOGZlOTBjYmM3MDZmOWZjOWNhMmUyMWY3OTY4NjgzYTVkYzI5NjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzYmU0ZDVhZTE1Y2I4MTRjOTc5YmU0MTkzNzYwNjVjNjg4MzRlZmE1YzkzMTU2NjZiMTUwYmQ2MGZlMmU3N2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExYmE4YjQ2MDk5MzQ2YmEzN2MyMjE2N2MxZjQ3NGRkMzEwYjYxMTNlMzVjMGM3MjVkMGEzOTAwZjVhYTY3ODIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a3f862a123984c2ca37552665072844a",
+      "statement": "Resolved config fields flow directly into behavior: config.model and reasoningEffort are set on the session-create body, codeReviewInstructions and commentActionInstructions become the prompts' ## Custom Instructions section only when non-empty, and enabledRepos gating treats null as all repos and an empty array as none.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L237-L258",
+          "version": "repo-lines-v1:sha256:b0c0caf0eef0a6f7acf804c4095c615e9f6449a87408701ae6d3f6729b9ac6f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlMGZhNTgxZTU2MWYxODY5MDAxNWU4Nzc4ZmZlN2EwYjRlYzA4MmQwOTZiM2JjNTI5M2ZiZjBlNGZiMWI4ODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmYzg2NjI5M2I2ZjU2ODE5ODcxNTAxY2ZjYTA2ODhhZTI2MTkyMTljY2MwNGI1ZmVjNzkzMDc3ZTJmOTAzYWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxYTA3OTU1ZTg3MzgxZTIyMTk3OWQ2MDFkNjU0YzRhNTZkMDFmZDJhZDYyOGVhYTU4NjlmMjFjNTI2ZjgzZGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhNDRmODE5YTg0YzFmYjRmNWZkYmFjYmMyMmFlNTRkY2Q4YmUzNGJmZTY1N2I5MGUzZDhmMGVkZjcyNTJhMWMifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/prompts.ts#L1-L4",
+          "version": "repo-lines-v1:sha256:c1fb37225f6c54f4faa3344b27e79cbc841161b7c2a742b6ba9ef4557d55be7f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDdkOTFhNTQ2Mjg1ZTEzNWZlNTIwYmIyN2IxMTdjM2IzZmJjM2Y0MjViYjk2NTU2NDc2NzAxNWQ2ZWQ4ZWJkNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY1MWM4ZDRiZWNiNDcwY2VjZjE5YzAxOTIyYTk4ZjkwNjM2MWE4ZGI0Nzc4YmY2ZmE2ZTJlZjEzMDU1YWQ1ZiJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L800-L815",
+          "version": "repo-lines-v1:sha256:d4e6d4754c4e899afaf458a9754d2704120ca90d733cfa2070dc6b27354f9c10:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmYjllMmY0NTNmNDhiN2M3N2VhZjhiZjViZjM4MThmNTNmMzY4ZDc1N2IzODYwODVhYmU0MjZiNWQ0OWM2ZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2NWY0ZmNjMDUxYWJlNGVmZmNlNWJhNmQ5NWY2YjI1YjhhMzMxODE5NzE4NWI4M2Y2M2EyMDM5NzhhYjRhMTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMzNjUxYzU1Zjg5NzE3MjYzYzBiMmU5ZTJmNmRmNzk2YTU0Mjc3YzhiMDE5ZjU4MzgyZmM0Zjc0ZTVjZWIyZDkifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/prompts.test.ts#L72-L97",
+          "version": "repo-lines-v1:sha256:640794e8ee08042cdc0d5582d801ffe7c82e6c3e88e5d1b0253a63b91410503e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViZDZlZTcwNTA3NGRlOTE2NDUxZDQ1MDFlZDFlNDAwMjE4YTg0NTEzNTljOGUyMDU2ZDgzMTU1NWNiMjcyYWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0ZmJlMjk2ZTI0NTdiNGJlMjcxNTMxN2EzYzhkMDZkN2YxYWY2Njg2NmRiZTVhZmYzYThkNGJjZmViZjc1MzUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzZDY3N2UxMWVlYTM5NWFiNjc5ZTAwZjJiOTJkNDc4ZmU2YWJiODE1N2RmOGU4YmM0ZjQzZWE3ZGI1Yzg0MTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3MmUyNTNiNmFjNjMyMzk5MTg1ODhmOTQ3NTJmMDBiOGMzYzgyZTQzYTkyNTBhNWI4MDNmZmZiNTJhNzgwOGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6d0258ce6b06456fb55b79c51a488edb",
+      "statement": "Sessions are repo-bound by default: the create-session body carries repoOwner/repoName from the webhook payload with no explicit branch, so comment-triggered sessions start from the repository's default branch rather than the PR head branch.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/GITHUB.md#L90-L94",
+          "version": "repo-lines-v1:sha256:2e7a395f11e546106d496c8f5bdfad3800dc375fa643fd3d097e65e37f843b14:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTQzMWE1OTM2MjNhYjM3NTI5YWZhMmE2MmJhNTA4ZWY2YWMxYjk5YmEyYzFjN2JlMGI2ZTU0NzJlODEzZmVkZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjQzNmI3ZGQ4YzI3NzcwMTc5ODM0NWM0ZjM1M2JiZmUwMDg5OTlhNzMyOWQ2ZjRmZmVjMGNmNjcyNjgyZDFhMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWE5ZTE5YTJlNzZkNWU1NDQyN2Q1N2M3YjViNDJjZjQwZDAwYWM5NmZjYTJmMmVjMGQ2MTNiOGY5NWNmZjdlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzk1M2VhYTlhOTk3ZDg5OGQ0ZTdlNzlmODk0M2E0YTQ2ZjdhYmFhMmM0YTI4ZDVkZjA1ZThlZThmOWU3NTk5NyJ9"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L456-L465",
+          "version": "repo-lines-v1:sha256:0db1a0847d58d703092b623a9ae1fa28dc0514262fabe4ab3e7822ca39f0ab5e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjZDcxMDk2Y2ZkMmYzMzRjYzRkMzQ0ZjA5NmM0NzE3ZjhmYzY1MmE0MzI1NjMzMTRhMDA3OWJiMDUzZTVhMTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwNjgwYjI5YzNkY2I0ZTc5ZTk3ZDYwZTJiYjQ0NDcwZDNiMzM2MWM3YTc5MmVjN2Y3NGY4NjQ5ZmZlMzQ4ZDMifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L26-L28",
+          "version": "repo-lines-v1:sha256:1e094a2a376bd78e971104169ef529551ac0badd92607f1697c601e765f451af:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmM3OWU0YTU0YmI3MjA0YjcwMTgyMzM4YTZlNzRhNGU0ZDdjMmRlNzRkNzg5ZmYxOTFiODczNTViODVmMTk4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjk0MDQ5NmZmNDA1NTA1NGY5ZDQwMTM5MDRiY2MxNDM0Zjc1OGRjMGM5ZTZhZmE1YTAwNmM4YWI4ZjlhNDczNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjFkZjY3ODY5ZTdlODk3NjNhMDZiYzBiMWI2M2MwMzRmMzk5ZmQ2NmM4ZDRkMzkxYmIzYTcwOTczMDA4ZDI2MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTY3ZDQ5YzZmZDZkZDdhM2EwZGNkZTY0MDUwMTM5NjlkNzk4NDRlY2EwYjcxOGE4NzVlMDI4YWJjNjQ2YzJmYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b36ccf3911e9400588c0c68a3037355c",
+      "statement": "A repository can opt into launching its saved environment by setting defaultEnvironmentId in repo metadata (PUT/GET /repos/:owner/:name/metadata); resolveSessionTarget then opens the environment's multi-repository workspace only when the metadata names an environment, the environment still exists, it still contains the trigger repository (case-insensitively), and the sender is authorized — every other failure resolves fail-open to the repo-bound target with a target.* warning log, because the session must always be able to check out the PR under review.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/repo-metadata.ts#L52-L81",
+          "version": "repo-lines-v1:sha256:fe5f519f54f3228915db117e8e35cc393506d66380afb6ddbb56093b47454392:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhODVlOWRkYzgzN2QzZDAyZTIyODljNzFlMTY2Mzc4YTM4ZDg5MjA5Zjc0NjlmYTZkOTA3NjJiZjgyODlhYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg0YzVhNGJhYWJjNWMwZjNmYTE3MGE5ODE2NGM5YTMwNjlkYzYxMmI3MGE3NmU1ZTdhYmZmYWU5ZmRiYTQ0MTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzY2Q4YWFmYjFkMzlmZmMyNzA3YjM2NTI2NjVjNjcxMzU1NWExNzRhYTA0ODdhZmE0MjYwMjQxZDA3YmUzNzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/repos.ts#L328-L349",
+          "version": "repo-lines-v1:sha256:81588e441c1f527ff7cdae201936fc19efb6bc3bc516cf150482caddbfd0a7c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlMGJjNTQyM2JmZmEyNzFhZWYwYzhiNmJjYWY3ODU4OTk1NDg4MTRlMmJhMDMxZGUxNTIzZTNhZTQ4OTVlZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L187-L224",
+          "version": "repo-lines-v1:sha256:988d11708c2dd7b154adcb80d578e351c7f3d659c53a44fce9abfa7a1fff7198:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlZDJhOTdhYTI3OWVmODgzYzk3MmFhMGZlYzQ2MTI3OWNkZTM5MGUxMWJkZmE4OThkMDhjM2JmYzViYThlMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyNTEwNzlmMzA3ZGQzZWE0N2Y4MjAyYTNkNDk2YjUzNDVlMDA0MWJlY2M0YzFjYjk2OWJiMDdhYTA3YzE0OWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZlYzAwZmU1ZmJkZWM0OWQxMWU2NDNiZWYwZDg2MTQzZTg3MTJmMzM0Mjg3ZjQ3MWVjNjllNTk1ZWY0MzE1NGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L1123-L1288",
+          "version": "repo-lines-v1:sha256:b4a23df7b1aa8e7e7ecbc352a01256ca519ebf06f70c75fa3bf43bae7adac90a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTY2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjMmNhNzdlZjU3NDE5ODVmZjQxMWY5ZmQxMzY0NmQ5YmMwMTA1Y2U1MDc2NDAzMmVhOTRiNGViNGYxZDc4MGMwIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYTNlNDZmOTQyNzZiNmY2ZjRlZDFmMDJhZjc4YmVmNmEyZWUxYzQzOWRkNTU4NGI5NzM5NDgzMTMyMTRkMmI3IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI1ZTEyYjYxMTg5NDNlMzBjMDA2ODMzZTc4MTYzMGE1M2IzMmY0MTdlZjVmOTc5NWMzZjEyZjMzMDgwMjRjNWQ5IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJkNGI3ZDI2NGE0ZDM4YmMwMjc5YzYxMWI5NTBkZmUzZjk1Nzk4YWNjYmM1MmRkMjE3YjEzMzQ2ZjYxNTgyZGYxIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_341d636b8810480f96d0c4a3d93a122d",
+      "statement": "Sender authorization for an environment extends caller gating to the whole member set: an allowedTriggerUsers allowlist vouches for the sender with no further GitHub calls, otherwise the sender needs write permission on every environment repository other than the trigger repo (already checked by caller gating), so an environment launch never widens what the sender can reach; integration settings always resolve from the trigger repository either way.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L161-L176",
+          "version": "repo-lines-v1:sha256:c3121551a8ef4b34e252bf70b7eedebca279211cddf54ee365fc61c9074d287f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmNjQ0OTQwNmNlYWM0MDg4NDQ5NjI0ZDg1M2Y2NWFmMjZmZmE1YzMwODI0MzU0NGE3YjY2NTIyZTI5YjQ3YjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyYzk2NDk2Nzk5ZDc1YWEwNGUwMTA5NmVkODEzOWUyYzE2MTkwYzdlODA5MGQ5ODBjODExMWFjZjExMGUzMTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjZmNhODM5YTA0MjI4MWNhZmNkYmEyZWRkMmUwZjU5OTA4ZGM5NDgzNzE3ZjkyOThhZjc5YzA5MmIwODQ4ODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwNGQ0MmRjMTA4NjM1NTZmNjU0ZTg3ZDUzZjE3M2M3Njg3M2I0MWE4OTBhNWRiNmM0YjcwNzBiMDk3OTRmYWQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/session-target.ts#L139-L179",
+          "version": "repo-lines-v1:sha256:1594905db0a75fe9de69deb9190c69ebcd93f82bf7e5672ec5a01ec4c62717cb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2OGViYmYwZGJmMGI0YjU5ZjU0NmU5MDEzOTRmZjMxZWM2ZTZmODkyYjkwZTE5ZjgyOGFiM2Y2YmY1NzU0ZjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyYjAzM2Y3YTUzMTA1M2U1NjI3YmU2YWU4NjA2OTRhMWNjMWI0MDM3NmRiMTdiOGMwZjMyOGQ1YjA1YjMyYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyMTJlY2YzNWQzOWNlMTE5N2E0YTc3MTk1OWM1YzM0OGVmOWI0ZWVkNTVkZTdkMDVjYjNlYmUwODc4MDQ2MjUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L1153-L1222",
+          "version": "repo-lines-v1:sha256:ecccd1100fe3692bfc87ff498d7d5f6f625902883e9d69795c28096f2771b74b:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhNTc2NzI0MzJhOTZkYmM4M2M5MTQzYmI3Zjc4MzQyZDg2MjFiNThhNTc2MzczMjM0MGVmOTlkZWNjNTZiZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2ZDM5MjQzNjdhMzUxYjU5OGU5NmJiZTZkOGE5NDljYzE2NGZkNmU3NDFiOGI4NDkzZTkzY2EwOWJiZGU5OGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjMzIwZTNhYTBjNGU2YzVkYjEwMGUwOWUwNjk3YjQwYzI1NDA3Y2Q4NGJiZDkyZDk0YjM0YjE1ZjI0MTExOTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_44c69b1481d14025a5709500b95c1ca1",
+      "statement": "buildCodeReviewPrompt states the repo is cloned and on the PR head branch, wraps the PR title, author, branches, and description each in an escaped <user_content> untrusted block with a do-not-follow-instructions warning, directs the agent to run gh pr diff and submit the review via gh api repos/{owner}/{repo}/pulls/{n}/reviews plus optional inline comments via gh api .../pulls/{n}/comments, and appends custom instructions and comment guidelines.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L209-L226",
+          "version": "repo-lines-v1:sha256:4b6012ad17224a459a98b8dbbc0287c79bdbb9ec95ed820703a18ee39641d2c1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwM2FlMjEyOTAyN2EwMzAxNDUzYjRkOTQ4MTAwMDlmODJhOTYxMDkwOTI4YmZjZDI3MGZkMmZmMzVjNDQ3MjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZkNWQ4NzE1Yjc0MjA4MWI0ZWE5OWMyMzY3MTI2NzRmZGQxZWNmZDIyNWU1NzFmZjZmOWQ1ZTRiZWRlNjQwMDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmZjk4YmJhNjA3NGJiZTk4NTRjNzY3ODgxNDg5MzA2MDhmNmU0NjUzNTJjZjJkYTI2Mzg5NjQxY2Y4ZDg2MWEifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/prompts.ts#L37-L131",
+          "version": "repo-lines-v1:sha256:5dfb2e8d66abc038343bb84967e8079a79fa1c46a29303b16b0f679a1111ca31:eyJzZWxlY3RlZExpbmVDb3VudCI6OTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmNDNmMzcwMzAwNzkzODUxMzFjODE3YmM4MTI4YmVhNmVmODFiNzkxNjgwMmI5NjhhMDFlODE1NDc2OTE4YWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxM2QzZWRmOWFjZTk2ZTIyZTdhODFhNzA4MTliOWVlN2M2ZWExNmM4MTg0ZTM5NDk5MDU2ZmY1MTU5ODAwZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4MzYwY2VhYTJkMDM1YTg0NzM4ZGUwNWMwZjVmZTJkZmI4ZjZhNWEzZDk2NjI4ZWU5N2M4ZmZkNjc4ZDI3MWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_81cacb6654d04dc5a1ac64c67cbd98e4",
+      "statement": "buildCommentActionPrompt embeds the mention-stripped comment body as an untrusted <user_content> block attributed to the commenter, adds ## PR Details when title/branches exist, adds ## Code Location with filePath and diffHunk and a thread-reply instruction (gh api .../pulls/{n}/comments/{id}/replies) when a commentId exists, and instructs the agent to read prior conversation, make changes and push or answer with analysis, and post a summary comment on the PR.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L576-L590",
+          "version": "repo-lines-v1:sha256:32ab3015e52e963a29ae54147f7635c37178dd3d6e95b43e5e4ec42c0f1bd7c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2YmI2NTMxNmVhMjE2ZGE1OGRiNTU2ZTA2YjhiMzAzOTU2YjNkZTlkZDE2OGRjZGZhYWM3YmM2ZGQyOTFkZTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmN2IxMzUwMWM1YTMyMTc5MjNkODBlOWVjN2MzYzc1MDk1ZDZmNTMwZGUzNzU5NWE0ZWY2OGE4M2ZjYjEyYTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzODI0MWZmOWU0NzNiNzUyYzJlNzg2MmU5MTQ4NTUwNmYyZDI1YmU1ZjE3NmZkZDM2ZDYyZGIwODI0Y2Y4OGQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/prompts.ts#L133-L207",
+          "version": "repo-lines-v1:sha256:23a1ba29327e5780e08fb32d9273599742ffe8b0ea9fb8ed05a26da24b35ede3:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyZGJjOTE4YWJiMTQxYzMyNjgyNGIwOTdkYzNjMTFkNzgzNTU4OTk2NmEzZmVmNTQ2NWEwOGIwMzhkZTdlM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUwMDg2NzJmYWI3NzM5MzY0NzZmZDcxMmNmOGM3M2UxMTczZTE3OWZkMmRjZjZhNDBiYzdhNjBmNjYzNDY0ODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_63bbb4ac8cb8434fb85396d3ed434f41",
+      "statement": "buildUntrustedUserContentBlock escapes embedded <user_content and </user_content> sequences in the wrapped content so hostile input cannot forge the block boundary, and prompt tests pin this escaping plus custom-instruction placement before the comment guidelines and the stricter public-repository visibility warning.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/prompts.ts#L17-L35",
+          "version": "repo-lines-v1:sha256:40ab9405b99290a437b27336b585aba8a07c80ae5a64d9112a63c373cee5cb12:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2NDJlMWNjYzQxZmMzZmIxZDlkZTFhMTUxZmY3NjQ5Zjc3NTIzODZmZGM5NTA2MjhhOTIwNGYwZDBjMGVlY2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiMzJlZmRjNmY3OWRmMGIyY2Y4OGIwODczZTlmNWE2Y2EzMDQ2YjMyMjE1YjRhMTg0ZTNlZjg5ZDc2YjI4MDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3Zjk1ZTZhN2VjZDQyZGFkZjA2YjRiMzNhZWNmZmE0MzI1ZmEzMzljZTliMDk1MjkzNGY4M2U4Y2YyNmU4NDcifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/prompts.test.ts#L101-L111",
+          "version": "repo-lines-v1:sha256:6e209227621cfd5b12b730351308da69468353af82e85323d3f8c7f6dc57a510:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2NWJmZDA2NzU4NGE2M2IwMDY0NzIzZjY1YTgyZGIyOTZlNzk0OTNhZTJjNDBlZDE2MDBkYzM2MTBmM2E0MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE3MmUyNTNiNmFjNjMyMzk5MTg1ODhmOTQ3NTJmMDBiOGMzYzgyZTQzYTkyNTBhNWI4MDNmZmZiNTJhNzgwOGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyYjlmNThkNDhiMjA4OWQzNmQxNTYzYjdjMDY3MGI5MTQxNDdjNDdlMjNjN2NhMGFiYjRmYzhkMDI4Njc3NTAifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/prompts.test.ts#L197-L213",
+          "version": "repo-lines-v1:sha256:5dc57aec75909ca542b90679c463a291072cb9759c94af0a3d9524bb50a541da:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1ZDM5Njk1YTFmNzkyYTY4NjFiMjA0YjFjYWIxZjMzZGI0NmM2OTIwNTdkNWJlZjkwNGRmMWM2NzcxNTY3ZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNlNDE5NjRmZjQxYWVhZmYzMDU2NWZmYzllMGVlZjk5YWU0NmNmNmY0NzI1MGVjY2RlNmJiNjQyYzRmOTk0ZGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjZTE0Y2QxNTg3YzZlNGMxODdiZTljOTYzOGM5NDEwYTliMDVjZGYyNGRmNDAwZDU4NTU3NDQ0YTM3YTQzODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_db9a0561640f4158a8ab2cbaa4b34edf",
+      "statement": "All internal calls use signedControlPlaneFetch, which signs each request with the bot's SERVICE_AUTH_SECRET via the shared sig1 mechanism (X-OpenInspect-Service: github-bot) and sends it through the CONTROL_PLANE service binding; the signature binds method, URL, body hash, and asserted actor, so session creation asserts actor github:<senderId> and identity never travels in the body (scmLogin/scmAvatarUrl are display-only), responses are validated against the shared createSessionResponseSchema/sendPromptResponseSchema, and traceId propagates as x-trace-id for cross-service correlation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/handlers.ts#L33-L100",
+          "version": "repo-lines-v1:sha256:78b7bb7b3e7383e6bfe06243f877a307b1cad29827c1b29bfdad5b3db6cb324a:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxNzEyMTZiY2ViMDExZTE1NzI2YTEzNzVjNTllNDQ0YzU2YTQ4YzY2OTBkNTViMTVlMmI4ZTdjODAzZTQwZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3NmIwYTJmYmEwNDRkN2FjZjhmMjI4YmE4MTM0MzVhNWVkMWFhZTViZjA0MzMwYjA5ODUxMmZlNmQwYzQ3M2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmMTczNmQ1ZjY5ZmUxMzg0NWJmZDg2ZDZlZDFkMzYwZjAyOGI5NGI5NGMzNTI3NTc0YTYyYjMzNzQ0NTQ2YmYifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/internal-auth.ts#L1-L21",
+          "version": "repo-lines-v1:sha256:cdfe14edf19928a345f05bb7f5592c2820121c836743f9fbf271dc045455f506:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L216-L229",
+          "version": "repo-lines-v1:sha256:a6e83baa9a73cac81a9e1f9767e2e53e60b26cc82f4bc28cc96056fb5cde418c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkNGZlZGFhZmZhMTc2MTcwNjFiZTIxY2M2OWEwYjU3NjEzOWYzNTFiODQzMmZjNjcyOTU1YzA5NTcyN2VlOGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4ODZhZDE3MGNhMjU1OGJiMzEyNzk2Y2Y0OGY2YTEwNzcyODI1YTNiMGEzZjNmZDdlNDliMjRkMGZjZTJlZGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRjNzdjNzk5Njk2MmQwZDg2YzVmOGVmMDE5M2NkY2U2NTQzMmE3ZWY2ZDFjMzhmZjI1NzFiYWUxNjZkMzMzOTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0OTYxZjY3ODhiZTFjOTc3YmZiOGFkNzBjNTVmYmE4NzAyYjA2MWI3Njk3YzIzMGI5OWZjOTM2ZDQ5NTA2NzQifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/service-auth.ts#L306-L370",
+          "version": "repo-lines-v1:sha256:4516949009cd939292e9dd5f955823dde5151095bbc8504e43093571305285ae:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1YWIwOTIxN2VkNWQ3ZDA4MmUxZWViYjhiZDY3MTQyNGYwZmFmMjFiZGQwYWE5Nzg1YTZlMzU2OTMwMzM3YzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwMzYwNGEyZTA4ZDA5MzQ1MjI2NzUzNmViNmRmM2RkMDYyMzkzOGMwODkxZGQ5OTQyMDlmYjMzZGY5OGQ5MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e2fe79ccd6ed41228ff30eb724cd1077",
+      "statement": "GitHub-side auth duplicates the App JWT → installation-token flow (RS256 signing with crypto.subtle PKCS#8 import, 10-minute JWT expiry with 60-second backdating, 1-hour installation token TTL, 10-second GitHub API timeout) inside the bot rather than extracting it to @open-inspect/shared because of the Workers crypto.subtle RSA import dependency; it is used for reactions and permission checks, not for the agent's sandbox credentials, which come from the control-plane credential helper.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L102-L115",
+          "version": "repo-lines-v1:sha256:1b2a8a76969cc68f5a3bcf9b401ac3e1f59015be63cf533916745682dab106de:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmNDcyMmFlN2M5ZmU1NTkwZGE2NTczODlkYzkxMjVmYTg3ZTVmZGIyY2YxN2ZkNTM2MTRmNmVlMjA5YzI0NzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxODcwYzRkNTE0ODNjYWE0YmQ5MjQ3Mzg1NjE4ODhlZDgzNjM1MDNiZDczN2QwOTQ0ODRhNTQ2ZmEzM2VlMjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1Nzg3YmI0N2NjZTU0YzM4ODI2Nzc2ODkxMjEyYjQzOTIyZDkwYzc5NzEyOTliNDg5NzMxNjRlNmM4YjI5MjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4MDcyOGYyZTc0MmE0NWY1MDllZTJjZjc5ZmEyNGZkMDBiNDk1NGEyNDVlYTY5MWMzZjk2NGU2MjY3NWYxYmIifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/github-auth.ts#L159-L181",
+          "version": "repo-lines-v1:sha256:d37cdda5b0592b053ea91828594b685724e5bb812dfbe58c99ca8ec90e3a2dcb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwMDhkNTNmYjQ4M2UyYTkwNTgxMWUxZDNhMjhkMGIyNjk1YWU0NDZmNzc4ZWEzZWRhY2NjMGRmOGEyYjIxOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/github-auth.ts#L44-L120",
+          "version": "repo-lines-v1:sha256:77281ef78402e4eb5acb577cea17090fa716f4df499c50e8cf0ac70f786a08bf:eyJzZWxlY3RlZExpbmVDb3VudCI6NzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNTY5MWQxZmM5YjVmNjExMDc5NTFkYjk1YzI5MDRkOTQyZGZhNTE5NzUyNWQxMjM0MjVlNGZhYTg5MDRkYTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1Nzg5MTU1NGVjNDMxOGZjMjFjZGY3M2M4YzRjNzZlZmIwYzZjYzA2ZjJiNmI4OTMwOWI2NGNmOWMxODNiNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiNTE1NGZkMjcwMWE1MmRhZjM5ODZlMWJiYTdkZjA1ZGQxNGViNmE2MzllODk3YmQ5NGFhNzg1NjFiMjIxNjQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/github-auth.test.ts#L38-L68",
+          "version": "repo-lines-v1:sha256:5d706d193c41fb8adb109fae9966611551d6ee20f8167fd3e9482edd4b26c0c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlOGY4NTdhZTM1ZmZhNTY2MmMxZDQ4OTI1MTM4MjU2Nzk2MDQ0MjBhZGYxNDgxNjZhOTEwMGE2NGU3MTQ0ZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4ZTdjYTczMzllNDAwY2UwNDUwNjZmZDVjZGEyYTA0NjBlZTNhZjk3MjhiZjI5YjRjZTc3Yzk3ZWY3YzAwOGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhOTk1YWZlYmRiZTgwMjlmZDhmZTY0ZjcwZjU5MjYyZGNhODhmOThhYWNmMTc2MDRjMGVlODY5MTYxNTc5MDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4d731db50ef43a2b2395da20bb17efa",
+      "statement": "toAutofixEnvelope classifies deliveries into a versioned GitHubAutofixEnvelope: issue_comment.created on a PR without a bot mention produces a pr_comment envelope (explicit mentions are excluded since they belong to the direct workflow), pull_request_review.submitted produces a review envelope, and everything else — including individual review comments — produces null; the envelope carries deliveryId, provider object identity (kind + id), the stable repository external id with owner/name, pullRequestNumber, and receivedAt.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/autofix-ingress.ts#L53-L96",
+          "version": "repo-lines-v1:sha256:795652318ea5f98d148077f0fa2865fa282194f1c9f82a78a72b0aebf59076f0:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjODQ4OWZjNzZiN2E1MDFjYmY2ODNlNzM2ZDRkMDA1NWVmYjk4ZGI3MDY3MDJjOTBiMjEwOTcwYTk2MGRiNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/autofix-ingress.test.ts#L33-L47",
+          "version": "repo-lines-v1:sha256:839a760cce6ac31bc186e294d77e972087007144e84ac4485bf21d69844d9885:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNDc1ZmEyOWY3ZTA1ZDE2NjQ4ZDY1YmZjNjZjMjY2ZGE0NzkwZmU2YzBmZGQzYTJiMTAyNGY5MjBkODk5YmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/github-autofix.ts#L10-L41",
+          "version": "repo-lines-v1:sha256:15cca529d8a8f7fff5f22fb4f4c7402820738acffca925743b6613150b2e558e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzMjNmOTZkM2FiYmJhNDdiYjVkNDFlM2I0MTU1MTFiNzcxMmNhYTllMDFhMDlhZDNmOTFiN2EzYTYwNGE0ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhYmI1YmY5ODZkZmE2ZWYyMDZhMzJhZTNmOTBmODVhNGZjODIwNTllOGI3ZjZjYzFhMDg2NWNlZWZjY2FkNmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmNWMzZmY1NzJmOGQzOTBmYzFiNzQwNzZlMTYxZTY2OTk3ZDBlZDM4MTE0OTA4OWU4Y2NhNWIwZWVjYzdkYWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwYzRhNWI0NzY1OTJkMTQ3ZmI5NjJiZjQzMmIzZTZjOWY3NWQzZDBkN2Q3ZGE3OTA3MjNhZTM1YTIyNjNmZWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_18d03fe918304da586160f38b6740b06",
+      "statement": "The Autofix envelope is sent to AUTOFIX_QUEUE synchronously on the request path after signature verification and dedupe; a send failure is logged as webhook.autofix_queue_failed and otherwise swallowed so it never blocks the 200 response, the direct bot workflows, or the automation-event forward.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L103-L120",
+          "version": "repo-lines-v1:sha256:5619b8e463d28dd9601a97588e35a6bf574e06974fb717db7ec92537b08e962c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyOWVmNmMxNjI2NjZhNzQ1YjJhMjA2ZTg3ZDc5YTllNTUxZDZlOTg5NjIzODE5MmNhMDkwN2Q3YjFlMDQ1OGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2YTU4YTdjNjVhMGFhMDI3ZWVkM2RmZTZkNTg3OWU2NTUwNzM5ZjMwZTAzY2U5OTg2OTIzYTYzOGU4MTYxZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3YzMwMmJlOTk5ODBhOWQyMzRiMzkxZTEzYmI2OTU3YWJkYjBjZWVhMjU2MTUxMWIzMjJhOWUxN2U0ZWE5ZWQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/webhook.test.ts#L289-L344",
+          "version": "repo-lines-v1:sha256:932124d8e882cdde6eb5d7203583010f9c0246ce3e55d6a29e8dbcff81b95552:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmZDZjNThjN2ZmMGE0NzM3ODIyZmU1N2MyZWQ1MWVjZmUwYmExN2FiNTdkZDBjZTMxMTAyOWIyNGZhOTRkZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliM2U4ODVlODM4NGY2NGRkYjZmODQwYzk2YmEyMWM4NGQ3NjE1ZmY4YjcxMzI1Nzc5NGI1Y2VjMDYyNWQ1NjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxZmM3NDc3Y2EwYmIwODA0ZTI3ZWY4YmI0NmJkOTZiZmEzMmEyODczYTkyOGM1OTgwNmI0ZTAxMWQyMDQxZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_45a6fbf93f5a439ba3e7abeb12d6e4c0",
+      "statement": "The control-plane worker's queue entrypoint routes any queue named with the open-inspect-github-autofix- prefix to handleAutofixQueue (other queues go to image-build finalization); AutofixQueueConsumer revalidates each message against the shared envelope schema — invalid bodies retry rather than drop — then delegates to AutofixService, records errors on the feedback store, marks permanent provider errors and exhausted-delivery feedback failed and acks, and otherwise retries up to the configured cap.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/handler.ts#L19-L79",
+          "version": "repo-lines-v1:sha256:11c57632decf5be6af71811852c11b667a0ef435532123624fc50b4440172321:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5MmViN2I4NDRjNGY5NDNhYTRlNzljYTZlYjEyZmM4MGM1OGViNjZkOTlhOWJhN2RiYzMwYjFiNTJmNWE4NTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwYjdkMjU2ODBmNjVkNmE5NmUyZGJlMDQ4YTBlODY2YmQ5MTZjZTk5YTdhOGJiMjVlMmNmODBiMjA1MzEyYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMDExYWQxODdmZGIxYTEwZDg5NzNkZjE0YzE3ZmM4Y2MzYTU3YmExNDIxNGE3OThjYWQyOWIwZGI3NzZjOTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/queue-consumer.ts#L39-L77",
+          "version": "repo-lines-v1:sha256:07c4fe8e5328fcac825e01dafe277c7a4b4ba27e43d690b62969337a0aecc720:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNTIwODhjNGQyNzkwYmI2Njk3NWE3ZThjNzcxYjgyZTkzN2MzNmQ0ZjU1NzJhZDdhYzBlYmFjNGVhMzUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2NWQ1NzAyYjg0MGE3NmY5MjEzOWYyMjEwMmUwMTE0MjhiMDdmOWY5N2QzYjYzOWJlNTY3YTRjNzk0MzExZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L82-L89",
+          "version": "repo-lines-v1:sha256:2e320735662cd43928bf1ad72b8eb527d08e75a1a810ea6dee86b3fa556ba5bc:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTMwODdiMmUwMGY3NTlkNDRkZjQyMzM0MzhmYzRjMWE0YWJkMDUxYTA4MDEzYTI4Zjk0YThlYTlhYjhlOTJmYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjAzNWUwYjU1NTA3ZTA0ZTdmN2E4MDNmZDY1MjY0YWEwYmQ3YzIxOWMwYmQ2NDUwYzEwZWFkMjg0YTA0YWU0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWVlY2E5YWZjZTVmMjAzNWQ5N2NiODA0YTA2MjgyYTRhMTIyMzllYzVhMjRhYmI2YWVmZWU3MDNlNDhiOGM4MiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/queue-routing.ts#L1-L3",
+          "version": "repo-lines-v1:sha256:b1074926ad41208d630d207df661f58779d146633c70598b8975011d212bdedf:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjAyN2QwMDA3YzQ5MTg3NjEyMmU3ODYxODE0ZTdlZDVjNDRiZjU0OWE4ZmUyNWNjNzU3YzgyNzAxMjNhNjJhYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c7f9ef426e134cacb767738e2d44b1f7",
+      "statement": "AutofixService.process records a receipt in the pr_autofix_feedback D1 table keyed by the stable feedbackKey github:<kind>:<providerObjectId> and short-circuits on already-terminal receipts, then resolves the owning session and PR artifact through SessionPullRequestStore — only PRs tracked from an Open-Inspect session qualify (skipped as untracked_pull_request otherwise).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L191-L232",
+          "version": "repo-lines-v1:sha256:58d80c6c88d743a5375d3b1a93d0c05c9ccf0e1ef61b9967b9e1c52fa78777c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MjI3Yzk3ODUxOGU0NjJhOTRkNjhiNDk2NjVjY2QxNTFjMjE2NmI5Y2I5NTczZjU5OWUyMmNiYzkzY2YwZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzNzBlYjQ1Yjc5NTU5ODkxM2U2ZTUzMDY4ZGMzNzM3MDllM2RiYjM2YWYyZjVjNDc1MDMyZDRmNGEwNmM4NzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM4MGQ4Mzg4Mzg2MmFjZmY5NjVmM2UyMjYyYjU2ZmQyMGUwNTAxMWFhMGEzZDFhNTg3MzkwMzViN2QyOTI3ZmYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/pr-autofix-feedback-store.ts#L115-L127",
+          "version": "repo-lines-v1:sha256:b13a51faa145ddbf0784a1d453ffbcb23c49e39ac3eae9dc8326579f155d35fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiZjFlZDFjYTgxMDk5NGM0OTBmNDEyM2FmMTk4NGYxMTFhMDRlOGM3NWQxYmU4MGQ1Y2UxOTcwM2I1ZTY2YjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzNWU5Y2YxNzk1MzM0NTQwZTcwMzFhYjMxYTU5NzI1MjgyODY2YjhkZjI5ODk3ZThiMDMwOWZmNzhmNGEyZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1NWMyMDFiZDYwZWUxNTY4MmMwOWFlMjJhOGM3NjYxNzBkMDRmMWIyOTgxMjA5MTVlODljZjg2ZGNmNjVjNmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b1d1f0e765a5476f9d54c72832c91eb7",
+      "statement": "Eligibility requires autofix enabled for the repo, the prCommentsEnabled/reviewsEnabled toggles matching the object kind, an open PR, and an author passing ineligibilityReason: Open-Inspect's own PR comments are always skipped (bot_pr_comment), its reviews only when openInspectReviewsEnabled is on, other bots need an allowedReviewBots entry (reviews only), human authors need PR write permission and must not have explicitly @mentioned the bot, and empty feedback or review states other than COMMENTED/CHANGES_REQUESTED are skipped.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L265-L334",
+          "version": "repo-lines-v1:sha256:a870805575aa1a2ab88e6c72ae3d9dad6e3be2012c92ffa4e7f1f3c467b8d838:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwMDhiMWFiOGU4MGY3Y2M2NDVkMTU1MDM4MmZhMWIzOGM4Y2VjN2ZkZjUyNzRjNjk2NDEzZDAzNDU5M2I3M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0Y2FlYWZjYjY5Y2M4NWUwZmMxZDRlNjM4MGFhYTcwNjhhZjllMmExNGM1MjViODU5YmY1NGZmYTZkZDc1YTcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L418-L456",
+          "version": "repo-lines-v1:sha256:1c8e2f402b7822088d07dd8284d17baaee54837b4aed5a5b29d6e4dc986b3949:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyMTY5NTEzZTc0YmFjZWM3ZDgwMGU4MWFiNDYwYjRkOTJhOGI5OGVhMzdiY2VlNWU4MTZmNTZjYmJiM2Q5ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3NzdhZTY1ZDI3OWNjYTVlODYyNDhkOTM0ZmY1MTc4MzFkMjRkMDYyOGY1N2VlNjcxYzE0NTExMGMwMDFmZDEifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/integrations.ts#L44-L53",
+          "version": "repo-lines-v1:sha256:65146fdf4d83140925ace667979148b76d1ad698f1555fe05f989b0f0a7a792d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwNWU0OWVhODUxOTM1MGJmN2NjYmUzODlkNzViZjZjOTZlZGE3ZDRjZTRjNWI5YzE1OTc1MmFkZDZhMDY4OTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0ZWQxN2RkZjUyYmYzMzVlZjliNjI1Y2ZjMjcyM2Q3YjU4ZjNlYTRjNmQ5ODdkMmRkNWQzNjg0ODQwODJjM2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5ZWM4ZjA0NWQ1MjczOWJkM2VmYzkzMTMwNmU2NTQzY2RmZGUwNTk5MTFmZTVmOTQ4ZGRmY2Q2YzZjNzI2NDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ff47eab49a9438882c90431426b7ff7",
+      "statement": "An eligible object becomes an enqueue_feedback command whose prompt embeds the fetched feedback (URL, body, diff hunks capped at 4000 chars, review comments capped at MAX_GITHUB_AUTOFIX_REVIEW_COMMENTS) as JSON with < and > escaped inside an untrusted github_feedback_data block, bounded by a 200 KB prompt limit (exceeding it is a permanent error); the command is POSTed to the owning session's DO at SessionInternalPaths.autofix (/internal/autofix) with a lookup_feedback recovery path for ambiguous dispatches.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L137-L178",
+          "version": "repo-lines-v1:sha256:2554a7a08eefcd4436a868bd58b2f4eb7d406d080689b97144b176c2cefa637b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMGFlMGE2YTljOGI4NGE5MDViM2U5MTU5MzFmNGJlYjBlNmEwMjhhYzYwYmJkMWVmY2E3ZTAxYjc1OTFhNzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVkNDNiZjFkMWE2ZWExYjgxN2QwMzcxYzYzMmViOWEzOWRkZmM1OTBmMWY2Zjg0NzRiMDgyNWY0MDBiZTQwZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlNjljYmYzZTNkZmUxNjNlOWE5NTQzMWEzZmQyNGNiYTE0ZmI3NDJlOTkxMWI5MjUyNzg1MGY2Zjc0YzE2NzYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L336-L416",
+          "version": "repo-lines-v1:sha256:69fb70672c3075cd286b15a102b33da9529c96378c8ccb65935ccac13d450fe9:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkZWMzOTZkMzdhMDJkZGY3Yjc0ZWJjOGY5MjJhYmE0NmYyYzI0NWZhZDQ5NTAwNjRkY2I4NDE0ZTIyYmZlYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3OWE4OGVlMDUwZWUzYWI1YmQ0NDg5ZWQzZWQ5NzM1M2NkMWMyOGY4MmI2NzRiYmEwZWJmZDFjOTIzZThkYjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1YWE5MDA2OTBkM2E2OWIxMzEyMmIzYWE0OTdjOTY0MTBlN2MzZjdhYjY0Yjk1NTI1ZWQ0YjFmOTA3Mzg1ZWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L458-L479",
+          "version": "repo-lines-v1:sha256:cb83966b34cacd1ff6ba77eb0ac8c72b9d27abdbe5b71fa4ccc431266200d678:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2ODZjY2Q3OWE0ZGUxMThhOTczNjk0ZWM5N2UwZjNkY2EwMTIxNWEwZjAwOTY5NDQ2Y2I1ZTk0NzExMTA2MjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5ZTlmYzJiYTNiZmZjYWE1OWZmNDZhYWYxYTFhMWNiZmJlMmJmMDcyYmQ1MmRmZWU0OTU3MzhhMDcwZDRmZjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwMTA1MTI2ODAzN2I5ZjcwY2E3NTRhYWQ0YjQ3ODRmMTc3ZDEyYWVlMWE2MGM2YWFjYWUyMjFlYTdiY2NjNjYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/contracts.ts#L15-L21",
+          "version": "repo-lines-v1:sha256:6515c40ca6255355d9284545b67acfd0471a6204865024855d47f1e5d89de0db:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY3YmJiOWY2YTNkZWQ2MDM4OTNkMTFlYWE5N2EwMGIzNzBjMjMzNTg1MjJkODc1MjJhODgyOTA4NzYwYzUzNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmYxMDAwMmFjZWY3NjZjNmRhNzk4OTc0YjFlNzE2N2RkNTdkMjhjYjIwZTY1ODgwODY2NjU4YzIxYmE4ZGY4MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzQ4M2QyMjUxODZmMWFlMDllYzU0NGVkYmI1MTA4YjhhZDQ0ZTUzMjY3MThkNWZiNDkwYWFmYjQ4M2QxMTVlZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWIyYTMzNTY2ODgyOGQzMzBkNDBmNGU1OGZmNzM3NjY1YzFmYzBjODVjYjVjNGI1OWIzNWYyMzk4MDZmYjIyMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_82a13be58dc04d1b8b415392161321f8",
+      "statement": "Inside the session DO, admitAutofixMessage is transactional and idempotent: an existing message for the same autofix_feedback_key returns duplicate, a closed/archived session or full prompt queue returns rejected (session_closed/queue_full), and a rolling per-PR attempt limit (maxAttemptsPerPrPer24Hours, default 30, null disables) is enforced over a 24-hour window via the stable autofix_pr_key; an admitted feedback becomes a pending source:github prompt message that redrives the session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L175-L239",
+          "version": "repo-lines-v1:sha256:d27f7346458fe64fcecd99f4ace9f62c11db9f9a71492538b5e4af31ea9c0a60:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjZDM3OGVmY2Q1OWU1NzI1ZmFkODQ3OTZhMjNmYWQyNTRlMDRkZjA3NGQ3ZDUzNzM1ZGU0YWMyOWRkMTc4N2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxMGVmZmQwYTIzY2FmZTc2YmUyNDhiMjQzOGYwMjVjMTMwMWJmOTI1YzEwM2NkNmY5Y2EzYTQzN2NkM2Y4MWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmNmYwYTE1YjdlMTA3YjczNjI2NjMwYzcxNGJlNmRiMTJhODRhYmZiMmFmZGU3NzBkNDgxZWI1ODU1YjdjYTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L80-L80",
+          "version": "repo-lines-v1:sha256:84e74c363cdb8c955197cccc2c79a874646df6e8c7d8bdeeb22f63160e60f115:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlNzRjMzYzY2RiOGM5NTUxOTdjY2NjMmM3OWE4NzQ2NDZkZjZlOGM3ZDhiZGVlYjIyZjYzMTYwZTYwZjExNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlNzRjMzYzY2RiOGM5NTUxOTdjY2NjMmM3OWE4NzQ2NDZkZjZlOGM3ZDhiZGVlYjIyZjYzMTYwZTYwZjExNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTMxYTZkNDhmNThmYTk0NmRhM2E5MWU1M2Y0Mzc2YWE5ZGI4ZjAyNzUyODFmN2EyMTE0MjI3NmJlYjVlNzNkOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmE1NmZjNzAyNDczYmI2N2Q4MGEwYTdkNTY0NDcwZTNhY2Q2NTMxNTA5NDM5OGY2YTMzYzcwMzc5M2YyNWRhNCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-repository.ts#L169-L204",
+          "version": "repo-lines-v1:sha256:58420c5177ef7535f762858569a8568ff28c8c3cb0219b0ee3bbd9ed5a96cbbd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2ZDQ0YmIxN2ExNDU2ZTRiNzI5NmI2MTFhNTI1ZWQwNmJmNGRiNGYxYWU4M2U5OTM0ODRmNDNjMDk5OTY2MzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ4ZDE1ZTg5NjI5ZmI4MTRmNzVkMTA2Zjk5YTZiYWIyZDQ5OTVlMGM4YWM3OGMwMTA4NmNjYzZjZGExNTI3YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjMTU5ZmJjMTdmYjUwZmMzYjkwNDA2OTE0ZGFhYTQ1ZWM4Y2ZhZjQ2ZTUxNjlmY2I4M2U2NDcyN2YwOGQwOTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/schema.ts#L119-L223",
+          "version": "repo-lines-v1:sha256:0ad10e0e10e0399d7d970e04bdfc93cc79db6490052f8eb36f8443341b6d1fbb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxYTBmYWZiODQ4OTMyOTA1M2E4OTc1NGI2Y2I1NmY3Yzg1M2UxNzRlNTcwNjM5NWRlOWYyZDkzMzBhMmZiM2ExIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhNGQzNGU2ZGNkM2EyYTgwZWM2Nzk4YTRlYzNlMDRmYTIyNjRkODgxNjNiOTRiZDBmNDY4ZGYwN2YyODA4NTA4IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI0OGIzZmQyZGVjMzlhOTU4N2ZmYTUwZjUxODZjODE0Yjg0ZTQ0YWM2OGM1MjgxNzlmZjNhMzUxYmEzYTM2ZDFhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI2NGEzNWNiMDRmZTdjZmNhNWJiOGZmNjQxZWFhOTEyYzkyMTE2MTMxNmZjNTMwYmVjNmRiNjBkM2ZjOWJmZGMyIn0"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/github-autofix.ts#L83-L103",
+          "version": "repo-lines-v1:sha256:b689e344510b4cea48a585748051a388ee7e515d02faf8581184fe4a8a99bb7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhY2FiZjliMmQ0Y2FmNDlkN2M1OTM5OWQ2YzJkYmJmMjUyMjAzZmU5Yjk0NmIzOWIyZWI2MzAwODRiMTU4NDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlODU3MzRhNDdmNjBlYzQ2OGU2MTQwYTM2OTUxMTI4MDhhOTdjMTk3NjBlNGQ5YzMzZTY1YzgwMDRkYzViOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViZGIzYjBlZDQwNTUyNWU4OWNlMTA0NjAyMjg0MWE4OTE0MjBmMGQ0ZTA0Mjg5YjQ1MGE3YjhiYTE4MGU4ZTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_686efe282b594807b41eae4e5f6816aa",
+      "statement": "A per-minute control-plane cron inspects the primary Autofix queue and its DLQ metrics and raises autofix.queue_health alerts when the primary backlog exceeds 25 messages or its oldest message exceeds 5 minutes, or when any message lands in the dead-letter queue.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/queue-health.ts#L1-L77",
+          "version": "repo-lines-v1:sha256:05054fb25f1b86fa85d6efff924bb8d6da62bcd882f3153796a0d25acb27afae:eyJzZWxlY3RlZExpbmVDb3VudCI6NzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiOTE5ODA2ZDk1ZjI1MjU3Njg2NmE4ZTFmZjMyNDcwYmYxYzhmMTAwMzRkNGE5ZTI0OTFjZjJhNDdlNGIwNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4MDY0NzVhMmUxODc1YWM4MDgwN2IxYTNhMjk5ODAxNjYyZDU0YmQ3ZmViYWVlMGYzODNjYTMwMGIyZjIwODUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L71-L75",
+          "version": "repo-lines-v1:sha256:6f526fc25d38ce7900acf899e0c119b8d50afac5e508a31660dd9944d7d6db34:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWYwYWU0NjA4Yzc3ODdiMzQ5NWFmMmIwNDRjYTJlNGI0NGQ1MzIwZmRkMDNmNGQwZWVkNWFkMTQ5NmRjOTQ5OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGRkZWQzOGFiYTZkYWMzMjExZjU4ZGQ1ZTIwOWY2NDk4MTUyNmVjMGFiZTI0OGI2ZWFlOGZjYWEyNGM1NDViMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2IzMWI3NzgzM2UxYzZlODYxMjBjOTQzZjdmNzBmZGViMWJiNGE3MjRmYmVmNGM3MWE5YmRhYzBmYmFhMDVhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGVlNDI4YjYxZWE3OTEzMWI0YWQ0ODc5YjUwMmM2ZDhiNmNjNmE0OTc3N2FmZmY4NzRhYmVhZmQ0OGJkODYxNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dff6c6a2afe14d8f837bb33a4e7c5714",
+      "statement": "Independently of session handling, handleWebhook normalizes supported GitHub events (pull_request opened/synchronize/closed, issue_comment created, pull_request_review_comment created, check_suite completed, workflow_run completed, issues opened/labeled) via the shared normalizeGitHubEvent catalog and forwards the normalized event to the control plane's POST /internal/github-event, which requires a service principal of exactly github-bot, forwards to the automation Scheduler, and runs PR-lifecycle tracking additively in the background; unsupported events normalize to null and are not forwarded, and forward failures never affect the session handler's outcome.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/identity-enforcement.ts#L279-L297",
+          "version": "repo-lines-v1:sha256:efdbab328e224becc7c9b2eb9bc4738e508947f5d245aea443279f742c711fbd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhMDQzZjYyNjZlZDNlMGVmOGU4NjkxMDZkNTRlZWU4NDFlNmZjMWE0YjJlYjRjNmI0NTFmOGMxODNiZjY3MjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/github.ts#L97-L131",
+          "version": "repo-lines-v1:sha256:b4f68a2fa378b1fcc1cb3abdc45a2aa4feae054da86d9c7f0bb067814a910001:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxMmJjMjg3NjAxYTQ1MWMxYWViMTU4NGQ0MTg2NzgxOTUxNjIzOTcyZTI1MmEyMzlkOGUxMmY4YmE4ZTljOTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L222-L252",
+          "version": "repo-lines-v1:sha256:c74445b197792dc22084d260ad124c043af448f0907eb7ac373901cea379072c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmOGI1OTMzZjE4MjBmM2Y0NTY0YTE5YjM0YTQ0MGEwNWI3MGZmMDMxNWFmZGE5NDE5YzNmNWQ1ZmNhZGQ1YmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjNTllMWM1ZjU2NDcwNmZlNDFjOGViYTkzOTkyMTkxNGQ5OGVkMGFkOTgwZTgzZWUyMzU1Yjk3NDRhNDkzMjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1ZjJhOWVhODRmN2VkMWEwZjA3MTkzN2E3OTY5MTY3YTc5OWNlNGQ5MTU2Y2Y2M2FmNTlmNGY3ZGI2MWY1MGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiZTdlYjc4YjhlMGIzZGViYzBiMWMzMTk5YmU1ZjVmMzhiODM5Y2Y5OGVhMTQ5MGFlYjI5YTAxNDg2ZGMyZDcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/github/normalizer.ts#L70-L124",
+          "version": "repo-lines-v1:sha256:243e3e6fe2bfcb25580a7966cba4513aae32f2e4d1f157fc620b55dc62231507:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU0OGRiOWJiYTNkOTE4OWExN2M3NWRlNmI5ZjYwNzgzMzQ3MWI5ZGViMTQ0OWUwZmM0YTQwMjhhODFiNTI1NmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczMTUzYjNkNWU0MWQyMDA5ODVlMTk2ZDkxNWJiNzY3ODU3ZTE5NGNjMTE2NzUxODIxOTk3YzJhYzIwMTk4Y2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyMTYyNGU2OWIwMTE3OTFkZTVkN2RiYWE4MDZhNTIwZDg2YTYyOWEyN2M1NDhmNDQ2M2QzNmUzYjdhYTgyZjYifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/triggers/github/webhook-types.ts#L45-L118",
+          "version": "repo-lines-v1:sha256:8aebe8bdc5dd753b5693787ec6204c00bb301f2bee71f55995cd7bae888413ec:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4Yzg5Y2Q5NDRiYzE2MWZhMjhhY2M5NjM1NmY5MzNmZDAyNjUyZTdmY2NlZWIyM2M2N2UzMzhlZGFhZWQyYWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNDJmZjVjMDY4MzExNzBhNzQ2MWY4OWRhOTZlNGIxY2Y4YWJkM2U1YWFmYmQ5NzZiMDFmN2I4YWRkMTk3MWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3NzJmYmQ1YjU2YTI2ZTc3MWQ4YTQ1ZGMwZTRiN2U2YmNmNGQxZDQ5MTZhM2U0MmIzMjEwNjAyNTJiZTc3MjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ODhjNmVhMjI3ZjUyNjg4ZTgxOTk1ODQ0ZTVlNTRiYjFiZmEyYjUxNzg2NGE5NWNlZWQ3ZmM1Y2ZhNmRmMDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b5564e3eccc2482b8d55ccb84319f71a",
+      "statement": "The GitHub App configuration required by the bot covers Pull request, Issue comment, Pull request review, and Pull request review comment event subscriptions with Pull requests: Read & write and Issues: Read & write permissions, and the webhook secret must match the GITHUB_WEBHOOK_SECRET binding.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L83-L100",
+          "version": "repo-lines-v1:sha256:397812d02f5fbba90b25021f7ec356ce4f186874a74912086b85cac62b9024bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmZTRkY2MxOWI1MjdjMzNiMTE3ZjRiMzY1NmFkZGRhYjE3NmEwZDkyYzAzMWExOTNjYjgxMjk3NDIxMmY1NzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3OTg2MWM2N2I2NGZkZDQxNDk4NjgxNjEyNGU4NTkyYzc2YTlkZTJlZmNhMTQzOGVlMzY1MjY1NjA1NmE2ZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhMGY1NzAyM2YzYmY4M2JlYjAxZTI5MjU3YjMzZGNhZTg0Y2VkMzk1MDE0YmExY2RlOWY5OTFkMjNjZGNmNzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3MGE3OTI2N2VmZGQ1ZjMyMGI3OGY3ZjE0NjdjMTIyMjE3YmYzNmNkNWM0YmI1NmM5ODBhMzg3YjUyZGI5YTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6c618470e36841f0bb8ca79da6d96322",
+      "statement": "Logging is structured JSON through the shared logger factory pre-bound to the github-bot service name; each delivery generates a fresh trace_id UUID propagated to the control plane via x-trace-id, and the webhook.handled wide event records outcome, skip_reason or session_id/message_id, duration, and delivery metadata, with dedicated events for duplicate deliveries, dedupe finalize/clear failures, autofix queue failures, gating decisions, and acknowledgment results.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L227-L248",
+          "version": "repo-lines-v1:sha256:bab2287de7c5d54fccbeadebc3d9f8cff12eed11db3c0833cbb71132ecff5f5a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjYTA5MzI2N2Y5Mjc5ZGYxNzcyZDIzZDk1MWZjNzhkZTJlMDVhNjdkNDM0ZGNiNDFjZGJkZTM3NmVkNGM2Y2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiMmYwNDNiY2ViZDExYTRmODY4NzNmOTA4ZjA3MDBiNWU3ZGQxMTcwZTQ4M2UwOTFiNGZhMGYzMTc0NmNiMWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiZGI5M2ZlYzY2OTkwMGU1YmM0NmUyMjlmMjU1MTM1OTk1ODNjYmMwMGY5MjExODA3YzI2MjY4NTM1MDdlNjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3ZjMyMDE4MmVhOWIxMGEzYTUxNDk5ZDliNWM2NzM5MWExNWNmYjVhZjQyMTkwZjFhY2I1NjIyNjU1YWFiMDkifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L163-L253",
+          "version": "repo-lines-v1:sha256:4ab59f1222484203348ae2bbb0a72e6e3ed287b502ff5ee84093bc888f8aa74a:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4OGJjYjkwNjc5NjFiY2IzOWIwMTg4YjY5OTI2OWU1NTY5NDFhYTM0MDY4ODE1NzljZGNiOWI5YzVlMDI2OGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyODQyNmI4MDEzZTg2ZmQ1NmRkNTEwNjE1NDJkOGNkYmNhMTAyNDZhOWM2NWQwZGVkYThkNTk1YWMxNjlhOTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlNzMxOGVjYjgwMDQ2ZTgxZDdjMWE0NjcxMzM3MzViZTA2ZjJhMGFiMGI4YTQ0OGZmYWZjNmRlMmY2MjlmODQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/logger.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:7f185f4dc4d226233739d8ffaa418cee9b47d3cbc1bc76a2ec7ffdd9d2cd9aab:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fe6720f77f154bd0a2b95803ee2b57da",
+      "statement": "The bot runs a deterministic Vitest suite in plain Node (no @cloudflare/vitest-pool-workers — it has no Durable Objects or D1): webhook tests cover signature/dedupe/waitUntil lifecycle and autofix queueing, handler tests cover each skip ladder, both gating modes, identity-not-in-body, instruction propagation, and the default-environment matrix, plus focused suites for autofix ingress classification, prompt escaping, config fail-closed behavior, signature edge cases, and JWT/timing/timeout behavior.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/README.md#L250-L290",
+          "version": "repo-lines-v1:sha256:3f0c188436209073dc50a5d3f43f69035c693276065ce62c1da080496a2c3eee:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzYTE2NTU1YjZkZWFkZDI2MGNhNzJjOTJiZDc0NmY2YjBjOGY2OGJiMTY5ZGFkYzQ1MWI3NjUxNGIyM2JkNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxZjVhZjVmMGZmMGJkZWRhOWFhMDc4ZTc5N2RmY2FiZTIwZTcxN2Q4NzllNWU0NzMxZDk3MTNkZDBlZGNiOTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3ZWMxNjRmZDQ0ZmI3ZjM0MjJiYjhkMzQ1N2RjZWQxMmJkNjFiMDdiNjhhYmRhZGRkZDVkYjE2YmJjYmU3MGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/handlers.test.ts#L1067-L1306",
+          "version": "repo-lines-v1:sha256:ff735800e55d11a82f78efb5cc0f1a342cde63b448a7dfc2c17285694587fffc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjYmE0YTM3Y2M0Mjg5YWRjYmRmOTFlYzkwYTM3NmY5MTQxZTczNjc3M2FmYzA4Njc3Mjg0YTBiZGM5NjgzOGY0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNmY1YjQwYjE1ODQ1N2QxNzg2NGYyMTc5MDc4NmRkNWEyZWNkYjY0YjY2YTY1MWY3ODhkNGUyNWNkMzMwM2QyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiNzc5ZDExOGQ2ZTNjYmY0NTA1Mzk3NDhkZWU3YTQzMDdhY2JlNjQ0NmNiYTI5N2YyNzYwZmE1ZDBiYmExYmMyIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://packages/github-bot/test/webhook.test.ts#L77-L140",
+          "version": "repo-lines-v1:sha256:ac606e3c707d3f2fa09795ba3da10109878bd0bc7066048a7c57ee1f6ed39b64:eyJzZWxlY3RlZExpbmVDb3VudCI6NjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2NDVjZjViN2ZiMGI1MWQwMzdmMzM1ZmQ5NDY5NWE0ZDdiM2FmMTE5YjI2NTFmZTU3MmU3MzM1ODhhYTQ5NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2N2RiY2Y1MmY1YjAyMzk4N2ExNWUyODA4MTY4ODY4MDc1ZTVkZTFjOWVlNzAzZTAwYWVjMDc3OGY5YTBmZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxOGE1YTAxMTQwNDk3MzkwZGE0NWFmNTE3YzI5MTY4MDQ1OTc3MmZhMDU5YjA3OTQ3ZGE1ZDUzNDkzMDZkYjIifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/vitest.config.ts#L1-L15",
+          "version": "repo-lines-v1:sha256:6195c570434d77584633d7943d9146364f956e96bd36e0a37da3dffc162b7851:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxNzRlOWU5MDAzOGViM2EwZGQzNGQzMTMzZjg4OGZhMmVlNTEzZDIyN2NmOTkzZTM2ZTNjNTc1ZDVlOThkYzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

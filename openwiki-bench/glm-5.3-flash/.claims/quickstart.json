@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1364ad6708ade76b3f702b544b7d08387383345dd20e34f1ef9a55ad06c67462",
+  "claims": [
+    {
+      "id": "claim_1516f4b69a4147a9bfb50e1632143b45",
+      "statement": "Open-Inspect is an open-source background coding agent system inspired by Ramp's Inspect: tasks arrive from a web UI, Slack, GitHub PRs, Linear, webhooks, or scheduled automations, run in sandboxed development environments with an AI coding agent, stream back in real time, and end in commits and PRs attributed to the prompting user — three tiers (Next.js web client, Cloudflare Workers control plane with per-session Durable Objects and D1, Python sandboxes on Modal) connected by WebSockets.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L1-L14",
+          "version": "repo-lines-v1:sha256:422813b9e0af442957f461f9d57027dbe9feda9abd9fb33065621dd6fee65215:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4MDc2MDExNDI0YzczNTM0Yzc3ZDZhZjU4NmJjZjFiZjcxM2QwZmYxOGU4YWYwYTgyM2QzMjM0YmMyODc5MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1ZWY1YzRkMGEzODQ2ODVjMjllNjdmZDExOTMwZmQ0ZmJmZWE3MGE1ZjM2YzdmY2ZkYzYwOTkzYzMyMzVjZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiM2EyOTViOWYwY2IxNzA2NTNhOTkyZjk2MjQzNzhlNzU3ODljNWI0NDE1ZGYyOWI3ODBjYTIzMDYzMjI4YjQifQ"
+        },
+        {
+          "resource": "repo://docs/HOW_IT_WORKS.md#L1-L40",
+          "version": "repo-lines-v1:sha256:504385088932e4f97f0e2b1f7ee7efc2771fa5759f242b99d002be26e603be6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlZDI5ZmNmOGIyNmEzOGM1MjY1YTRjNzBiMzI1OTZiOWFhMzc5OTk4Y2FmOWFhNjFmNGQzZWEwOTg5MTVkYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmODU1YTNiOTMxZTNkMTE5NDBmYjg3MGU0MTY4ZDdkNDFhZTFmN2I0M2I2NzhkNjEwYzQ0YzBlOWE2MjY3YzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_beada14d1b814c97b08828ebda581653",
+      "statement": "The bootstrap is bash .openinspect/setup.sh: it checks Node.js ≥ 20 and npm, runs npm install (husky hooks via prepare), builds @open-inspect/shared first, verifies git hooks, and — when Python ≥ 3.12 and uv are available — syncs the modal-infra Python environment via uv sync --frozen --extra dev (falling back to pip editable installs of packages/sandbox-runtime and packages/modal-infra[dev]), finishing with npm run typecheck.",
+      "evidence": [
+        {
+          "resource": "repo://.openinspect/setup.sh#L10-L57",
+          "version": "repo-lines-v1:sha256:6c4ea0534acc4d6623756a76e1b564b1b3cd97c970bacc21d6343979689b84d3:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyNzY4NDIxNTZjYmUyZjMyZjM0OGI0NzE5MGI1NjUyODRiY2VhMGM3YTAxODRjNDgzYjFjY2RjMjJhZmM1ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE1MDhjMzJlZWNhYjg4M2IwNDIxN2FlMzYwYWI3YTA0MDcxZmFkNDhmMDQ0YmUyMGRmNDE1OTUxOGU0MjJhNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwZjk0MjhlMjczN2RmMGE5ZWE1MDU2NmNmZDZjMzdiYzc2M2I4YjAxMjM1M2Y1MGVhM2E1NjBhY2ExYjg4N2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_201a8744044d4ebb979c75630c0bd941",
+      "statement": "Build order matters: @open-inspect/shared must be built first (npm run build -w @open-inspect/shared) whenever shared types change because control-plane, web, and the bots import it at build time; the root build script rebuilds shared before all workspaces, and typecheck does the same.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L31-L37",
+          "version": "repo-lines-v1:sha256:3ef56127274b0d3a46ce057e6d91e402216c99726ba1093798746b2fa1ad0916:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODBiYjA4MGUxNjdjOTIzYjU3OWU2OGU1MWY2Mzg3NjY3OTJkNzI1OTNmODk1NWZlZmMzN2ZhYjZiODQzYTM2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmZiMzhhNjhlMTFlNWQxNTU1Zjg2OGQ0M2Q1MzE3YmM4ZWJkZmRkNzc4MzY2Zjk1NDcyODVkMzM4MWRlYWMyZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjYzZmEzYjlhYWE0ZWNlNDdiYmE3MWMwOTk0ZTgwM2JhNTIwNzk3OTQ2NzEwNmUwYjYxYWYzN2YzNzVmNzA1MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzMzYjhlMzg3NWZjZTEyNmQ3NWM3NTQyMTI1ODhkNDNhOWE1OGMyOTM0Y2QzYzc1OTJmZDQ3N2Y5OWEzNDBjYiJ9"
+        },
+        {
+          "resource": "repo://package.json#L9-L23",
+          "version": "repo-lines-v1:sha256:20f017fa41961d5bfaada4f3af330efd823c349e040a4ad4e52c40b5c2eaccb7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTRlOTJmYTc1NjczOTRmOWFjN2ZmZjU1OTFkZGVhNzdlNmVjY2U3MTg3M2I0ZDQ4ZjlmM2NmOTY4YTQyOTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwMmNhNWI1ODgyZWQ5NTAyMWVmZWY1NWY4NzQwZTE3MTIxMTg5NGQyMTA1ODllYzQwODk1MjdmZmY0OGZkYTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3MDU5NTQ3YTM1MTBjZTVmZmMwODFiMjQxMjFkODAyYTk4MmY5NTk1YmNjMDEzZjQ2YzJjYzU2ZDk1ZDcyNjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eac639dcbb7a4a6989cbd52fa0ce111b",
+      "statement": "The monorepo comprises packages/shared (shared types and contracts), control-plane (CF Workers + Durable Objects + D1 session lifecycle and WebSocket hub), web (Next.js 16 + React 19 dashboard), sandbox-runtime (Python in-sandbox runtime), modal-infra (Python/Modal sandbox provider), daytona-infra / e2b-infra / opencomputer-infra (alternative provider template packages), and the slack-bot / github-bot / linear-bot Hono workers.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L9-L29",
+          "version": "repo-lines-v1:sha256:4aa9566e138758ceea56b84bb05df2f559e468642f59ee15b0b6a88af2230a3d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxMzU5MjA4Mjk2MDYwNDRkZDA0OTVhMmU0ZmY3OWUzNTU2ZDE0MWE5NjRkYjY3Mjg2YWU1MjBlNTkzZjNjODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3YTc1Nzk5NzNmYjA2ZGRhM2Y3MGMyMjM4YzQyMWExZTAwZGYxNjIxMGRlMzI2N2RiYWE4MmQ0YWU2ZjYyZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhZjI2YmI5MDVjZjkxMjNlMWYyZDMxYTE0NWM4ZDI4MjdiMTdmMzdjNDk0NDRjNGU4Y2U1NjdiYzQxODc0OGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/package.json#L1-L30",
+          "version": "repo-lines-v1:sha256:31c304611df7d22c747bbadf1b9be4c545a074e40a2febef2e4a8b70b7d22883:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fe0672358df74f0d9acf4aeefcf4c87d",
+      "statement": "Verification commands: npm run typecheck (builds shared then tsc per workspace), npm run lint:fix for ESLint + Prettier, per-workspace npm test with Vitest, npm run test:integration -w @open-inspect/control-plane for integration tests under workerd/Miniflare with real D1, pytest for modal-infra (pytest tests/ -v) and sandbox-runtime, and ruff check --fix && ruff format for Python linting.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L58-L100",
+          "version": "repo-lines-v1:sha256:abc4fef2ba95d919176aa9d764e332d9eb69856b9caafd1897b8c4402085f330:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjOWE3YWI0NjNhMDM0MmUyOWJmNmU1ZjQ0MDk0M2RjZTJlZTJjNzQ0YTY5OTkyMzM1Y2U4MTdhNWVjOTYwMGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3ODY4YmI3MjhjNWU1NmRiMjgyN2Y2ZmNlMDYzMzI0ZjJiMDQ3MDI2Y2RjZWMwNzM0YmI4ZDZhYzZlZDAxZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2MTFmODU5NDJmM2ZlOTNmMzhlNWI3MmQ1Yzk4MjRmZTFlZjQ0ZmQ2MDZmZDIwNDZlMDVhZGRlODRiYmVjMDkifQ"
+        },
+        {
+          "resource": "repo://package.json#L9-L23",
+          "version": "repo-lines-v1:sha256:20f017fa41961d5bfaada4f3af330efd823c349e040a4ad4e52c40b5c2eaccb7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTRlOTJmYTc1NjczOTRmOWFjN2ZmZjU1OTFkZGVhNzdlNmVjY2U3MTg3M2I0ZDQ4ZjlmM2NmOTY4YTQyOTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwMmNhNWI1ODgyZWQ5NTAyMWVmZWY1NWY4NzQwZTE3MTIxMTg5NGQyMTA1ODllYzQwODk1MjdmZmY0OGZkYTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY3MDU5NTQ3YTM1MTBjZTVmZmMwODFiMjQxMjFkODAyYTk4MmY5NTk1YmNjMDEzZjQ2YzJjYzU2ZDk1ZDcyNjYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/package.json#L9-L12",
+          "version": "repo-lines-v1:sha256:2898a7bc550ac0972deb3decaadd480b364e5c2d5f967687bc76f266939dd3ec:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjQxZmMyNDllZmE3MWIwZTdhOTdmN2Y0ZWI4Yjg5NDk0YTU5Y2IzZjg3ZDcxYmU2YWFkNjNhYTNiYTVlM2QzYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTE0YWFjZGUyNWY4ZjJjNjFmYTZiYjYwMjMwNzcxZTQxMGE0NDkxYTA3NjliNTdkOTk1NTMzYjMzMzFhNjVlYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjQ1M2U0YzhmZGNhZjg3ZWRkNmI0YTY5MDI5OWE5M2UwYzUwNjgxYmZjMzI5MWEzNmFkOWZlZTI0NzM3YmQzMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzYzNGJkZjFlZGMwOThkNGFmM2ZlYzdkMWM1NDk3OGM2NTk5OWUwYzE2OWQyOTMwNjBkNmY1OWNiZWI1YzE4YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_499d759bc6004a5d9fe840f381024b11",
+      "statement": "Control-plane integration tests run inside a real workerd runtime via @cloudflare/vitest-pool-workers with D1 migrations applied automatically from terraform/d1/migrations; they share one D1 instance so tests must clean tables in beforeEach/afterEach to avoid cross-test pollution.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L19-L22",
+          "version": "repo-lines-v1:sha256:8923ac26075dc1e9ddf513ea3a3adac8ad09360c4882059ddbe15d4384506633:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTkyODczNjg5YjI0NjJlNGViMjczYjE2MGQ2N2MwNWJmMWU5ZjNhNjJjY2FiYjIzYWI0YmFiYWMyOWU4YzNkYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQzNTQxOTkyZmVmYjIyMTNjOGJiYjM2N2ZmYjk3ZWQxODljOGZiYjBiODhiZTZiZDA2ODA1MDFlMTI5M2Q0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjZmZjczZDcwZmE2NDlmNGZkNGE0MmU1ZWJmMWE2ZTYyYmM5ZGM2ZTg1ZjdkZjY1MGZlYTUzNjYxNjBlZWM5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmZkZjg0NzI5OGVmNjRlN2E1YmY3ZDAxZjk1Y2RhODI1MWEzNWRjYjVmZjkxNWU1NmVkYTgxODdkOGQ4OTY0NyJ9"
+        },
+        {
+          "resource": "repo://AGENTS.md#L62-L70",
+          "version": "repo-lines-v1:sha256:b1b059c4956b2ddf5c3545049c7ebdb199d2e24817281f2d199863b90c624d9a:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2UxZTAzOGJlNTM4MjMxMTFkNWY3NjZhOTk3YTgxNTdjZDM4MThjYjY0ZGNkMzRiMWYwODgwOWJjYWVlODBiZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzgxMTAxNDI3M2VlZWY3NTE0ZDE4OTA1ZjEyZmMwNTE0ZGMzMTY4MzYwMDk3MDU1YWEzMDE5ZjBjNGY4YjQ3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGUzYThhMTViMjU0ZWRlNGVmZGNmNDFhZDg2ZWYwNzkwMGQ2OGI2NzA1OThmM2FlMDI2MWUwYmZiYjQ3YWFlNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWM5MmYzYTdiZDUyM2M4NjdhNmNkYzliMDc1Yjg4ZWE4YWUxZTUxOGZmMjkzYjZlNzJmOWU4YmFjOWY0MzY3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cadc3b7c5890466a8571edf76de4bf94",
+      "statement": "Open-Inspect is single-tenant only: all users are trusted members of one organization sharing a single GitHub App installation — the control plane mints short-lived installation tokens server-side and brokers them to sandboxes via the git credential helper, every user can access any repo the App is installed on, there is no per-user repository access validation at session creation, and user OAuth tokens (used for PR creation attribution) are not an isolation boundary.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L16-L62",
+          "version": "repo-lines-v1:sha256:ef242f0be4bc4767997da2d960c7dc35dff755efaedc0f20a765e24908b352c8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiYWRjMmViZWZkYzdlNDY3ZDYwMTkzOTE0MTQzODQyYTJiMDM1ZDFmZmViNjMwYTExZTVkNDQzNjE2MDEzMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyZTEzNTgzN2E3OGY3MmU3ZDI3MWI3YWFjNmZhYmYxMGY3ZTY4Y2RkYzFkMmZiMjExMzFhZmUyYWM2MjhiODUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5ZDliZjk3ZGZjOWZmZjI0ZDZhYzkzMTkzMDY2NzdhMDY3ZjA1ZWYyNmZjMGZlYjMwNGVhNmQ3NDNiYjBlOGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1MmMwNDU4NTJiMTdjYTVhNjc0ZDQ0ZmM1MTEzNGYwYzdiZjg3ODUwZmYwMzVmNGVkY2VkNDZkMmZiMWFkZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2a5614b59e994c12bf213e5c1ffeb412",
+      "statement": "AGENTS.md at the repo root carries the working conventions (seconds for Python / milliseconds for TypeScript with encoded units, conventional commits under 72 characters, build shared first, PKCS#8 key conversion, Terraform-generated wrangler config, Modal deploy script) and docs/ carries the deep dives (HOW_IT_WORKS, GETTING_STARTED, SETUP_GUIDE, AUTOMATIONS, IMAGE_PREBUILD, SECRETS, provider guides).",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L120-L131",
+          "version": "repo-lines-v1:sha256:97de06807eca148a26250be5117fc0346f6ac4a44e67aedcc6a6a5142d5b910c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlZDRkYTNkM2QxMjlkNWU4ODBlMjgxMjU0YzkzMWUzYjQwYWVjNjdhNDczYzM3OWFmMmM4Yjg2ZDlhNjdkYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjExMDRmOWU5YWM3ZGVkZjYzMjNjYjZlNDA4MDZkN2ExZjNkNzFiMGU5MDVmZjEwMzU4ODU1YWM5YzQwZWM2YjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlNTQ1OGFjZGM1NzJlNjFmMjdmODRkZTU4MTc5Yjk0YTIwNjQxMDIxZmRlZDY5MGVjZGMzNzlmNTgyNmM2ZDEifQ"
+        },
+        {
+          "resource": "repo://docs/GETTING_STARTED.md",
+          "version": "repo-file-v1:sha256:00e8d97e928b974a19900744bd734b2a3928ee10a5bc4e623531aa5f29535037"
+        }
+      ]
+    },
+    {
+      "id": "claim_8383642fedbb402c923e91dd6e2ae36e",
+      "statement": "The wiki's task-routing map sends questions by type: architecture/ for system shape (control-plane worker, session DO, data model, shared contracts, web client, sandbox providers, sandbox runtime), concepts/ for domain models and invariants (sessions, environments and repositories, sandbox lifecycle, security and tokens, models and provider accounts, managed skills), workflows/ for end-to-end flows (session creation, prompt flow, git auth and pull requests, image builds, automations), integrations/ for bots and the SCM provider abstraction, operations/ for deployment, configuration, and observability, and testing/ for verification strategy.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md#L58-L131",
+          "version": "repo-lines-v1:sha256:481061bc74d7fde962b9a7b8518fe72383fdaf25b3bcb9227381e37a35ea7f3f:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjOWE3YWI0NjNhMDM0MmUyOWJmNmU1ZjQ0MDk0M2RjZTJlZTJjNzQ0YTY5OTkyMzM1Y2U4MTdhNWVjOTYwMGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlZDRkYTNkM2QxMjlkNWU4ODBlMjgxMjU0YzkzMWUzYjQwYWVjNjdhNDczYzM3OWFmMmM4Yjg2ZDlhNjdkYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY3ODY4YmI3MjhjNWU1NmRiMjgyN2Y2ZmNlMDYzMzI0ZjJiMDQ3MDI2Y2RjZWMwNzM0YmI4ZDZhYzZlZDAxZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVlNTQ1OGFjZGM1NzJlNjFmMjdmODRkZTU4MTc5Yjk0YTIwNjQxMDIxZmRlZDY5MGVjZGMzNzlmNTgyNmM2ZDEifQ"
+        },
+        {
+          "resource": "repo://README.md#L16-L62",
+          "version": "repo-lines-v1:sha256:ef242f0be4bc4767997da2d960c7dc35dff755efaedc0f20a765e24908b352c8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiYWRjMmViZWZkYzdlNDY3ZDYwMTkzOTE0MTQzODQyYTJiMDM1ZDFmZmViNjMwYTExZTVkNDQzNjE2MDEzMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyZTEzNTgzN2E3OGY3MmU3ZDI3MWI3YWFjNmZhYmYxMGY3ZTY4Y2RkYzFkMmZiMjExMzFhZmUyYWM2MjhiODUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5ZDliZjk3ZGZjOWZmZjI0ZDZhYzkzMTkzMDY2NzdhMDY3ZjA1ZWYyNmZjMGZlYjMwNGVhNmQ3NDNiYjBlOGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1MmMwNDU4NTJiMTdjYTVhNjc0ZDQ0ZmM1MTEzNGYwYzdiZjg3ODUwZmYwMzVmNGVkY2VkNDZkMmZiMWFkZTMifQ"
+        },
+        {
+          "resource": "repo://docs/GETTING_STARTED.md",
+          "version": "repo-file-v1:sha256:00e8d97e928b974a19900744bd734b2a3928ee10a5bc4e623531aa5f29535037"
+        },
+        {
+          "resource": "repo://docs/HOW_IT_WORKS.md#L1-L40",
+          "version": "repo-lines-v1:sha256:504385088932e4f97f0e2b1f7ee7efc2771fa5759f242b99d002be26e603be6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlZDI5ZmNmOGIyNmEzOGM1MjY1YTRjNzBiMzI1OTZiOWFhMzc5OTk4Y2FmOWFhNjFmNGQzZWEwOTg5MTVkYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBmODU1YTNiOTMxZTNkMTE5NDBmYjg3MGU0MTY4ZDdkNDFhZTFmN2I0M2I2NzhkNjEwYzQ0YzBlOWE2MjY3YzgifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

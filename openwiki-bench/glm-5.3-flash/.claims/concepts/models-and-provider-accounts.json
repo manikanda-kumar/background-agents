@@ -1,0 +1,566 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d13d0f7639f7058da310f2105cbb5b307c434770aa3fecc211cf4fdf363198c5",
+  "claims": [
+    {
+      "id": "claim_680c7d113d374f498235eb89c5071b71",
+      "statement": "MODEL_CATALOG in packages/shared/src/models.ts is the authoritative model registry, grouped by provider in UI display order; Anthropic and OpenAI groups are enabledByDefault, while OpenCode Zen, xAI / SuperGrok, Z.AI Coding Plan, and DeepSeek are opt-in groups excluded from DEFAULT_ENABLED_MODELS until enabled.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/models.ts#L46-L308",
+          "version": "repo-lines-v1:sha256:10c0268079cd81b561063b3921bf0cfd4c453d697fe88d19b9584ba803d0abaa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlNzY1OWMwMTU4YzE0MWQ0NmU5NGMxNGU3NjkyMWZlZjE4OTg3OTU0ZDIyN2Y1MTgyMWNlMDVhOTg1NTk1ZGY0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJlZDRlZjlkYmI3NTg2ZDQ1MTJlMjgzYmNjNzhkZDEzNTgyYzM3N2NmZjlhZTAwOWZjMzMwYWZhOTFkNWI0YTMyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI4YjMxNDEyMWI5MWUyZjIwZjdlN2FiY2M3MWQ5Mzk3NWI2Y2RlYjUxNjlkMzA1ODgxNTZmMDRmYTQ5OTk4MGNmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlN2ZhODg2MzFjZGJjODYwYWRhNzA4YmRmZDcxNTU2OThlMWRhZDM0Y2E5OGM4ZWMwYTc3NTM0NmIyNjZiZTcwIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_561fa51c54ca44298a4c25cfad8c88b7",
+      "statement": "The shared models module derives VALID_MODELS, MODEL_OPTIONS, and DEFAULT_ENABLED_MODELS from MODEL_CATALOG and throws at load time unless exactly one catalog entry is marked default: true; that entry (currently anthropic/claude-sonnet-4-6) defines DEFAULT_MODEL.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/models.ts#L247-L308",
+          "version": "repo-lines-v1:sha256:24e1d25c1a35c0ec3464405f79fc160f952e78550cad53755c73bb7ebfd2e2ce:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0ZWRmM2UwZGE2NmQ5MTk5NzRkZGUyYThhY2U1YzE1M2YyMTkxYWZkM2Q3ZTRjY2Q4NTA3NDU2N2RlNTFiNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNGVmOWRiYjc1ODZkNDUxMmUyODNiY2M3OGRkMTM1ODJjMzc3Y2ZmOWFlMDA5ZmMzMzBhZmE5MWQ1YjRhMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4MTczMjU3NDNjZGY2ZjFjMzIyNTY1MTQxYjM0ZWJkNGZmMzUzMDEwYWMyOWRhNjliNjA0ODRhNWIwY2FkYmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3ZmE4ODYzMWNkYmM4NjBhZGE3MDhiZGZkNzE1NTY5OGUxZGFkMzRjYTk4YzhlYzBhNzc1MzQ2YjI2NmJlNzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_544a622e9aa94d75bc962e332ffc969d",
+      "statement": "normalizeModelId prefixes bare claude-* and gpt-* model IDs with anthropic/ and openai/ respectively, for backward compatibility with existing data in D1, SQLite, and Slack KV; isValidModel and normalizeValidModels normalize before checking the closed catalog.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/models.ts#L310-L343",
+          "version": "repo-lines-v1:sha256:90fb43442bc3a9ba38376b26d0885452a30feb93ccfaad552bfdbedc10b809fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjY2NjZmM1ODVhNTA5ZjJjZTNiOGYyMTE5YTAwNmY2OTBhNDkxNTg0NWMyMzk5MWQ4N2U5ZDY1ZGRhYTlkYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzOTFmNWQ5ODRmZTFhNjczYjdiYjUyYmRmNGQzNDY0NDUzODUxMDg1YTUzMmE5YTEwZjFjMzU1ZGE0NDczZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNhMDY5NWRhZGY5MjRiMmU3ODQ5MzllYTgwZjgyMjA0YmRhNTkwNTFhYTk3NWQ1NjM5ZDg2NzJhZDE5N2Y0MDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_77c0d4212b9443fb8fe4bc9f27c72646",
+      "statement": "Reasoning effort is the closed union none|low|medium|high|xhigh|max; each catalog entry may carry a reasoning block (allowed efforts plus default), and MODEL_REASONING_CONFIG with supportsReasoning/getReasoningConfig/getDefaultReasoningEffort/isValidReasoningEffort exposes per-model validation, so models without a reasoning block do not support reasoning controls.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/models.ts#L10-L41",
+          "version": "repo-lines-v1:sha256:542d46bb828a07006a05c881196ba980881d7f9d98191bc69a6d4765f43357f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzOGIxZGE4OWVmM2Q1YjU5ZWVjZjA5MTdiMjA4ZWNiNjJmODIzOTM5YTcyZWJmZjRmNTg3MzZiMjBjOWUyOTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExNDljMmQ0OTdmZGU1MGRlNWY4OGNlNDRhMGZjYTgwYTQwNjBiZjNhYmZkZWYyMTZjYWQ0NWUyMGFkNDk2ZjcifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/models.ts#L264-L395",
+          "version": "repo-lines-v1:sha256:a9b4e966310fe381d30673237749719b9570f05f2cfd1a12e67b958fb231e21e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIwODk3NzQ3NjQyMTM1OWVjMmQ1ZTI5ODk5YjdjYzU4OGZlNDE0ZTIxYjY1ZDA0MDJlZjMyZWY3ZDRhZjg4ZDVmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5ZDE1MTIyMjBlYzM1MGRkZTEyYjhlMGYyNWNlM2ZhMThhZjIxNmJlMzBiNmMyYzMwOTIwN2FmZGFkOGQzYTNjIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjZDkwNDYzZGUzMGY4YjY3YTQzZDJmMjNlMDgzMjQyZTkwY2ZlZDNjZTA4MzY1Y2M3Y2JkMzc2YWRkNWI4ZGJiIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_95bdfd2f2989419b863dc05a05de3de4",
+      "statement": "resolveEnabledModel implements the canonical fallback policy against the enabled catalog: desired model if valid, else the fallback model, else the first enabled model, else the fallback; enabled models come from getEffectiveEnabledModels, which falls back to DEFAULT_ENABLED_MODELS when no usable stored preferences exist.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/model-preferences.ts#L69-L75",
+          "version": "repo-lines-v1:sha256:ebbaefc2145ecbaba3b7ee2ff8ee1a938519ce4457cfd1cefbc8bd0a55127f3a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDdiYzI4OGJhODNmMWVjYzcyOTA3MzcyNzU2NDhjN2Y4ZmZlZjcwYmE1MjUwMmFiZjExZGU5YmMxYWJhMmQ3YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGU2ZDRjNTZjZDdiOThkNjlmYzY2ZDVmNTAyMTI5Zjk3ODA5MGJiZDcwYjFiZjNkMzMxYmYyMGYwMmU5ODQ3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/shared/src/models.ts#L345-L363",
+          "version": "repo-lines-v1:sha256:617609e4b8b72f137322a7e17c8ae067e566d3741368cf184044994e037c11b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxNTNiYmY4ZTNjNTQ4NmQ5MThjNjQ4N2NjYzAzODA0ODQ3OGU2NTcyMmQ4ZGY3NDU0NTAxOWQ5YzY0YWMzN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwNDJmMDE5MmY3YzE3MmFhOTdmODAxZWI1M2IwZmRhNGE1NWRlMDhmYzlhMDU0YWQ3MWZjOGZmY2FiOWM0YzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjMGRkMjc2OTMxN2JiOGE5Mzk5YzcwZDc5ZGVjOGQwNjk4NDA4N2RmNTU5NzAzMTQ1YTQyZWE4NWQ0YjIyN2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c94ae7bf58e4dc898ceb03e4b383f2a",
+      "statement": "A session's model and reasoning effort are persisted on the D1 sessions row (model and reasoning_effort columns); create and child-spawn routes validate them with getValidModelOrDefault and isValidReasoningEffort, and the session DO's message queue resolves the effective effort per prompt as message.reasoning_effort ?? session.reasoning_effort ?? getDefaultReasoningEffort(model) via validateReasoningEffort, which downgrades invalid efforts to null instead of failing.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L159-L181",
+          "version": "repo-lines-v1:sha256:84711d713fcbb8433f49b05fd9031a8638717b5135bef4f2e0f4d9e12fd8273d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1ZDRkMzcyOTQ3ZDEwYzA5ODdhOWZmNzM1NWUwOTNlZTlkMmI0OTI5OGQyZDEwMGUxOGJhZTkyMmU1M2Y5OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMzZjUyYmRiOWIxMGU2YWJlYjIyZDc2Njc2ZTIzODY0NzhkOGJkYWMyOTE5NjIwNjkwNjgzZTM5MDQ4M2VkZjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0OGUxNmViYTg0YjY3MjM5NzRkMDNkNTZlZmYwN2ZhYWRjZmE1ZDZiZDgzYjYwOWIwNTdlZmI1NDA1OTE4MzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhOGMwZDFmMjRhYmFkN2FkNGE1NTc3OGUyN2ZkYjU5ZjAwZjUxZGZiMjY0YmNkMzExODU1ZTNkODE5NDI0OGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L171-L176",
+          "version": "repo-lines-v1:sha256:e666da315e9a36b3f4069c7ff660628077d1ced22f31ab89211d871c10da65a8:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjNjNTk4YWZjYWFmMzEzMmI1ZTczYzI0YTlkYTY0ZTBmMzVlZjY0YTAxZmYzNmY2OTk5YzJmY2M2MjYzYmQ5ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzNmNTJiZGI5YjEwZTZhYmViMjJkNzY2NzZlMjM4NjQ3OGQ4YmRhYzI5MTk2MjA2OTA2ODNlMzkwNDgzZWRmNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTdkODYzMmU1NGU5Mjk4YWJiOTU4NzI3ZTJkNTE0MDhhYmFmMTM2NjAzNTM3OTEwMTQwYWJmNjViMzBhYjYxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTFjMDU1YmI5MzdkNGRkZmY0NmY1MjUyOWFkNzNlZTFkYmQ1MjY2NjMxNTZhOTZmODdkNzQ5NTg4OWRiMzU5NyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L444-L449",
+          "version": "repo-lines-v1:sha256:b501c6b4f1d9ca8e9508dd7406c3fb236faccdc0040bad031f26b06b42c518c0:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDk4ODU1ZTczNjc3NmY5NGI3MTIyNTFkNmExMmExNjE0NDBmMjE0YmViMjg3ZDlkMDM5ODVlNTY1YjIyZWU5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTc0MzAwOTBkMjY5YzczMTA3N2ZjNDJlMzljMThhZGI2YzY1MTNkMGNmMWYxZGEwZTQ4OGFlMzZhZjFjMTI4OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmFhM2I1NjBkMTBjMmEyYTRkM2YxYWI5ZWZmMWYzYzhkMDAyMGMwYmUzMmViYmI2NzMzNjczYTBhNDVmNGRhNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGQ0N2ZkZTI1ZjRmMDJhNmFjMTk0NjU4OTM4OTkwZjk4MTlkN2Q1ZDA3NThjNzczODBjNzIxNzE0NjAwNTQ2MCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/reasoning-effort.ts#L9-L21",
+          "version": "repo-lines-v1:sha256:b036bb3b2746a281fe157298c8f2abbbcf244cb2b2a9208f234e01a2f0f2e681:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM1OWM5NjM2OGU0MDRjNzY1Y2M5MjNkNjQyMjBlNjZjZjlkZWJlNGFhZjk0MTNjZWZhMWZlMzgwZDg4MmUwMTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUwNGRjY2ZkZDUzZDcxMzdlNDY5NTJiYzhlYWE2NTRiMDczOWFlYzY5ODEwNzcwMTU1YzY2YTU1MDU4ZWI3ZWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_98cb5acd88f0434b83e0c11ccfec44c2",
+      "statement": "Provider accounts split display/status/identity from secret material: model_provider_accounts holds provider, display_name, optional external_account_id, status (active|disabled|reconnect_required), audit and usage columns, archived_at, and lifecycle_version, while a 1:1 credentials table holds only encrypted payload plus credential/exchange versioning; a unique partial index on (provider, external_account_id) among non-archived rows makes one live account per external identity a database invariant.",
+      "evidence": [
+        {
+          "resource": "repo://packages/shared/src/types/provider-accounts.ts#L15-L51",
+          "version": "repo-lines-v1:sha256:62dd289df086ef150ec1bd841043e1a9bb003ece18c2eb2f17e3fb4d8c0d5af3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyMjA4YzYwM2ZjMjdlZmNlYjZlOGVhYzY2NGRkNTkyYjQ3MzkyYzBmYjNhMDc1NTA4ZjE5MjE5MjU2Y2YxYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNmQ5Njg0MjZkNzdlYzkyODg0Njg0MzY0MjdjMWM2OWE5ODk4ZDVhNDlmY2U1NzVlOWJhMDUwMjg0NmZlYmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiNjgwMzg3MDM1YjQ3ODFhN2NhNDdmNWM0ODA1ZWFkMTBlZmIzZjc0ZGI3OTNhOWVhYTNjNmZlNDVjZjQzMGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiN2ZiZmYxMzA5YTNkZjYwYzM1Njg1MjcyNjQ1OTRhNjcyNWJkMDUyNmJiZjgyMWI0ZGNmNWM5ZmE3YWFmNjMifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0064_provider_accounts.sql#L1-L48",
+          "version": "repo-lines-v1:sha256:8ae18fba9a676431b1076b7c0efdbb28bae76289b85ddfba6bf8bda9ff839647:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4ZGRlMzFhZjQ2MGJmMTJmMWM5NWNkZDYzNzBjZmEzNmI4ZDNmYzdmZGE1NjhiN2JhYzI2NWExNzgxNjRiZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlNjI5YWJhNjQ3NmUxYTk0MmRiNGI4YjViMmI1YWMxYjA4ZTg1MTI0YzA0NzE1OGJmYjlhY2Y0NmVjYmIyODIifQ"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0065_provider_account_authorizations.sql#L1-L2",
+          "version": "repo-lines-v1:sha256:cbea7bd1265cf32b3cc23c90feccb81cbc2cad2e306be645288756f421d71107:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZjMTU0MDUzOWE2YjY5ODdlZDg2OTU5MTc3NzdlNTFhZThkYTViNGU0ZWUwMDA3ZDdlYWVkOWJiNmZmNzM2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjM1M2NhNGFiOWUyNGJiOTk0MTNhNWQxOTdiYzY5MjU1NmI1ZDNjYzcwZTM0NDM1M2EwYzU4YTA2OTI3MTA5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGIwYTE1NmQ0MWUyNTU1ZmUwNjAzYWJlYTFhNjFiODg4NGZhMWJiNDBjNDkyMjJkZmNjMmY1OTRkZjg1YzU3MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_250a9972cd4e42ccb5aae5df57f1e0be",
+      "statement": "Provider credentials and device-authorization provider state are encrypted with AES-256-GCM under PROVIDER_ACCOUNTS_ENCRYPTION_KEY (base64 32-byte key) as v1.<iv>.<ciphertext>, with AAD binding the ciphertext to its providerAccountId/provider/credentialSchemaVersion (or transactionId/stateSchemaVersion) context; the key stays control-plane-only and is never returned to browsers or injected into sandboxes.",
+      "evidence": [
+        {
+          "resource": "repo://docs/SECRETS.md#L151-L159",
+          "version": "repo-lines-v1:sha256:439185b377438643f047a7328709863c670253cf3b996101afa0e7177a68a1ea:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTVkMzc4MmM1ZTgyOTYzNWRhMDRhYWNkYjhlNDk0MmU5MzI5NzA0MGZiZjUxMTY5MjNmYjgzNzU3YTllZWY4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDdjMjIzNjJkMDc5ODEzNTQ1ODg1YmVhM2JmNmM1MGMyNjQzNjcxMTQwNTk1ZjQxMGRiZjY2NzNkYTI0NDdjZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjhhYTE1ZTI3MWU3NDgyNDlhNTA3YWFkMTYzMjk3OTgxMjc3MmVjYzM4ZDUyNDg4YzY2MGIzMjdiZjNjN2U4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjdhYzY3NTMwODFmMjA0MTUxYTg2OWU1MjE2YjA5NTg5ZWRiMzEwMDk0OWViNjllYzRkYzUxMGZkMDhhYTM5MiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/provider-account-crypto.ts#L1-L133",
+          "version": "repo-lines-v1:sha256:3f55296350ab822b040c359dbb2f16a4ba7551ae6cf37052e6a491e29d0433f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIyYWQwMzUwNmZlMmFmMDlhNmI0ZWYwNmIwM2Y1OTQ0NTE2YTNjZWMwZDgzZDBhNzE5NTFiM2IzN2VhNzE0NTlkIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd23644c075e49b38430d9f925908951",
+      "statement": "D1ModelProviderAccountAtomicWriter is the sole component that mutates accounts, credentials, defaults, and authorizations together, always as one conditional SQL batch: createAccountWithCredential atomically inserts account+credential and auto-defaults the first active account of a provider, reconnect/complete-verification writes are guarded by expectedCredentialVersion and bump lifecycle_version, and device-authorization finalization statements are guarded by the processing claim and return typed outcomes (created/identity_conflict/claim_lost; connected/target_changed/claim_lost) rather than throwing on races.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/model-provider-account-atomic-writer.ts#L119-L251",
+          "version": "repo-lines-v1:sha256:278ede0320d255ac9f3df81f24506c68f5a3cd89cf0c9fa63c456e5691859de5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjNjU5ZGE4N2U3OWJlZDZhMGU0MGEwZmY3MjUzNDU4ZDViNzVmY2M0MjA5YTI5Mzc5YjgxMDg5MTYyMjE3YTZjIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiZjIxMGExYjU3OTk5Y2E1ZDViOGQ4ZTYyYzBiMjBhZmIzNWU3YjVhMTQ3MDZlMjA1YWQ0ZjFjMjc0NzdmOWRkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIwNjczMjc4NTk5NzQzY2I5YjI5OGQzYzk4MjVhMWY3NTRiY2Q3ZTBjYjlhOGI2MjhkMzY2OGZjMjllMjAxODcxIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/model-provider-account-atomic-writer.ts#L253-L380",
+          "version": "repo-lines-v1:sha256:1ba32050dc4d6ceb8bafb514fe752ba57ceebabd30c40fe94b8b9f95ce575f5f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxMmZhMjhiOTE4YjgzNTczNzYzY2I3MzJjNTZjYWMwODVjNmNmYWE0NTNmZGU5ZTMwZmY2NmU0ZDc1ODY3MTNiIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxNTI3MmIzNTAxYTQ4YTNkZDZmZmMzNWM3MGJlNzIwY2IzNzYxODdiZGNlYjRmNTE4ZDQ5MWE4NTZiOTFjMTFmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmYzI0MjhmZjZmZGI4ZDU3NThiYzNlNGE3NzhkOWRiNWUzNjFhNWY2MzgxMTVhYTRlYzkxZTg2MDQ1OTI5N2U4In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/model-provider-account-atomic-writer.ts#L86-L118",
+          "version": "repo-lines-v1:sha256:c29ea7a52537de2331e026a54901fd40f878aa94658b780c5de1759f832a8f1f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1NzIzNGQwZjA2MmQ3YTg5ZjM0ZmEyYmE3MDZhMDA1MTU0YTg5NTAxMTQ4NTdjZTRkYmYzZTZlNWMzN2M0ZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhZmExZGQ1MjNlMTVlYWMzZTYzOGRlOGE0ZjhmZGMzZWEzYTliOGRiYWJjYjQzNWY0NGU1NzQzZjY4ZjRiYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlZDRhNjczOTQ4MGM2YjlkYWNjOWM1YjAxNzYzYjBjOGNlZmQyOTEwNjI3MTAzOTI5MGNjM2ExZmVhNDU4ZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b17a1c15c69d48e29ff03817520a350b",
+      "statement": "fenceExchangeAndRequireReconnect atomically flips an active account to status 'reconnect_required' and releases its in_flight exchange lease (clearing owner/started-at and incrementing exchange_generation); it is the terminal fence used by ClaimedProviderCredentialExchange for non-retry-safe refresh and completion failures and by the broker for stale leases.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/claimed-provider-credential-exchange.ts#L88-L135",
+          "version": "repo-lines-v1:sha256:9c61e28a4c0d83f9f3896d62707cde5c778aa956857e98c765b4af5b681dd7cf:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1MzFmMWUwYWY3NzQ2MzE2MTNiODI4NGZjZDg1MmIwYjljMTU2MzY2YTUyMmM3ZmU0MTg3YjczYjk1NjBiYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1NzhhYTEyMTQwMGIzNmQ1NjA1NDNkNTMyZGNmZjkyMDMwYTZmZWM2ZDlkYWU5OTNjMjhjNmQ0ODVjOGQwMDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwMjg1YzRhNzBhODY0MjdmZDRmM2Q5ZDBlNWM5YTQwNmIyMTg4MzE3NDc2ZTJkODg3MjNkYzkzYTUwOGM5MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyOTgwNjQ2Mzk3OGU5YTFmZDlhNTQ5ODQ2ZmMxN2I1YzU4NjcwYThhM2RlNjE3ZGJiOWI4MDVmOGMzMTFkZGEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/model-provider-account-atomic-writer.ts#L425-L470",
+          "version": "repo-lines-v1:sha256:fe1d4c089027fe4a414f0fb776b811cabd44c88f75757ddc2cda757de8e38211:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwNDVmNjg1Y2QxMWI4YzMxZWVhNDVlYWViMzViYTAzZDI5ZDI2ZjU3OTljYTE4ODA1Zjc3YjNmNjYyZjNiZGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFlYTI2MTJjNTA5ZGI3YmI1ZGFkODhiNjZlY2ZjNzc1NDhkMGRkYmUxMzI4Y2E5YTVjOTVjNjA1ZTg0M2JjZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f022ad315ccf4bf3bfe5f47ebd1dd1dd",
+      "statement": "providerAccountIneligibility is the canonical lifecycle gate: archived blocks all operations, the reconnect operation accepts any non-archived account because it installs a fresh credential and restores active state, and all other operations (active_use) require status 'active'.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/account-lifecycle-policy.ts#L1-L19",
+          "version": "repo-lines-v1:sha256:f8b44873d7a953cafad0cf8b31e3647ab46fc6f2dc9064a94a3620668047790e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQwN2M2NzhiOWIzMDlmNDdiZDA1OGZkNzk4OGRjNTE2NmMzNmY2NWZhMjdlNDNhMDFkYThkZDc4NjM4ZWI2YjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8c7b35859b10471fa1b40841bf2939c1",
+      "statement": "ModelProviderAccountService implements account management behind /model-provider-accounts routes: create dedupes on (provider, externalAccountId) and converges on a concurrent create's winner, unsavable credentials surface as a 409 'may have been consumed' error, verify runs a claimed credential exchange and commits refreshed credential + active status atomically, reconnect validates the submitted identity against the stored external_account_id, setStatus only permits disabled→active directly (409 otherwise), and a D1 trigger aborts disabling or archiving a provider default account (mapped to 409).",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/service.ts#L311-L368",
+          "version": "repo-lines-v1:sha256:fea01e9e50456423ad50d9d19764d8a6f8819621934b06174674ea399bec8c32:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YWQwZDk1NDRmYzYyNjA5NTJmZGE0ZGI2MjA2OGNmYmQ1M2FjYTU1ZGE2MWFiMWY0NjYwYTE1YjMwYzE2ZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE4ZThmZmZiODg5NGZjZThhYjhhNGNiNTBkNjgwNmNkZGQ4MzE2M2NmNTc1YzUwMTgyN2ZkMTQ1NTkxOTE4MDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE2NGJiOGQ5OWI4OTliOWVkNmQ3NmRiZGM1N2JiMTQ5MzE1MTE4NTZhYzlkODNhYTBjMzkxMzIyOWNlZGI3MWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/service.ts#L95-L201",
+          "version": "repo-lines-v1:sha256:2de6c64e1471f1565bfbf676752f054a19d2aad6ddb001d8b0280c0605f8c238:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzOWM3MjUyNDJhNWVhZmE0MzVhMzdlYTMyOTIyNGQ0ZWU4ZWI4OTgyZDhhZjVlN2Y3NWNkY2ZmODM0MjBjMzJiIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxOGU4ZmZmYjg4OTRmY2U4YWI4YTRjYjUwZDY4MDZjZGRkODMxNjNjZjU3NWM1MDE4MjdmZDE0NTU5MTkxODA1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIzNDMxNWU2MjExMzU5ODk2NDQ2NjViNzk2NWQwNmIyYzQ2NTlkNWYyMzE0MTA1ZDczOWM3MTAwZTQ4Mjc1ZTIyIn0"
+        },
+        {
+          "resource": "repo://terraform/d1/migrations/0064_provider_accounts.sql#L65-L74",
+          "version": "repo-lines-v1:sha256:76d5870784c530bb9d680ee82d79e74bdd1535bd2c5dd27955f4a67a83c12f28:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1ODA4M2ViM2I4YjA4MjNhMGExMTM2OGRkYzE3M2FiMDBjNzU4ZDE0MTI1MjY3ZmQzM2NiNDk5MGNiNjg5MmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjNzgyZTQ4MGQ0NDNlMzM5ODk3NzljNjJjOTQ4Njg0OTliYTU2MmRhYTI5NzdiNWQ4ZWJkMmE0N2JmOGM0MDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEzMDc0NmEyNDdmNWEwYzU1NzYxN2Q3ZDgwYjM4NDU0M2Y0NmMyODFmOGU4YTg0MzU5ZDk1MGU0NDViMTlkNTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwZmU0ZDJmYjEzMzJkZGI1ZTgzNDRjNTMyNWNkZDhhYzgzMzgyYmFjODI3NWNjYTc4MzJjOTYzM2Q3OTdiMjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f37e9a6383044b83be8d5954b6726f41",
+      "statement": "ProviderDeviceAuthorizationService drives a durable device-authorization transaction through initiating → pending → processing → connected, with terminal states denied/expired/failed/cancelled/superseded: start rate-limits to 5 attempts per minute per user and at most 5 live transactions per user (excluding the same target), supersedes live transactions for the same target, caps lifetime at 10 minutes (further capped by provider expiry) and clamps poll intervals to 1–60 seconds; poll resolves durable state idempotently, fails processing claims older than 30 seconds, claims rows before contacting the provider, and re-arms next_poll_at for pending results; only denied is reported as non-retryable.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/provider-account-authorizations.ts#L251-L347",
+          "version": "repo-lines-v1:sha256:6e6ab070d4837549839c4af640ad4b34a387b5ca9adfc98ced20c891c157e0c3:eyJzZWxlY3RlZExpbmVDb3VudCI6OTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZjOGEwNDJlMzkyNjQ1YjQxZGIzMmJkNDUyN2ZlMTg2ZDczM2YyOGU2MDlkYjFhYzA0MzM3YmMwZmEyMmUxMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJjNGUzNmIwMzc0ZjA4NDljYmI4ODgwN2QxNDllMzY4NDJlZjNlNDFhNTAwMmI1ODE3MjQ2OWEyYjcxNTNlMjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY2ZDNjYzUxYjM5NjY2ZTJiNTk5ZGI5NmJiMmNiMWM5ZGZlODhhNWNkNjNmMjU3N2U3NTRhNmI2M2NjYjVmM2EifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/db/provider-account-authorizations.ts#L389-L450",
+          "version": "repo-lines-v1:sha256:3c7a11f4d24a3362902460f1d4ef69636789c0e365e587ea45c1e131876f3325:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNzAzMTI4ODI4NWEyOTAyMTkwODI5MGJjNzU4NGVmZDhiNzg3NGMxYWViN2I4ZDUzZjFlZWM3MWMxYWFjMTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViZTNiYmQ3N2EwZDMzMTlhMmI4YjZiZDg0NGJjYTQzZjEzZTY3YWRlY2E3ODkwNjE1NTk1NTEyOTA3MDM5NTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZiMzRmNjMwOTU3ZGQ0ZmM0ZmQ0YzE5MGNiMDljZDJkMTkzNDIwYjZjODM0NjZkNmU5YmZmNDg4NDI0YWE0YTgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/device-authorization-service.ts#L80-L265",
+          "version": "repo-lines-v1:sha256:a404665cb0d374547b2d2d26b70f02102eac15f33ed4490636547bba6277e961:eyJzZWxlY3RlZExpbmVDb3VudCI6MTg2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI3ZDk2MWU2MWZkODU1YmU5NmFhMzc4ZTNmZjFlYzYzZjY2MTI4OTYyNGIyYzExNjQ0MTU0ZTFhZDU4ZTljMjU5IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwMDQ2ZTQ0ODc0YTliNzEzMjYwODFhMjE2MDIyNWZhNDE0NjE0OTA5ZjkxODUyMjhlMThlMzVkMmUwNGUzMDk3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyMzhjZDhiMWM2Y2RiZGU5MzA5ZWFkNmFjZGEwODU3MjE0ZTdmOTQxNzRhZDliNDQ0ZDk5ZGExOWQxYWE5YmFlIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d49ce08baf0465bba7d719fccb5e778",
+      "statement": "The device-authorization finalizer persists connections atomically: for create it reconnects an existing non-disabled account with the same identity, rejects disabled accounts, and converges on identity_conflict winners; for reconnect it requires the target account's provider, identity, status, and lifecycle_version to match the snapshot taken at start, returning target_changed or claim_lost otherwise; on success the authorization row records the result account, reconnected_existing, and completion time in the same batch.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/model-provider-account-atomic-writer.ts#L382-L423",
+          "version": "repo-lines-v1:sha256:0c7a41e3bc9bf50158bb5969edb3af9ac0eadda0adec8376bb54b934cddd33f1:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxYzQ3NjI1NmI1NzNmMjA1MDdjODUxOWVhMGI5YmUxMzRjNDQ0NTMwMTlhMDQzZDVjNmIyNTNmY2Y2M2RmNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3ZDJjMGY4NDYyZjhhZTE4N2VmYTU5YTIxMjQxZjNmM2NmMzc5OWJjNDQ4ZmVkN2Y2Y2Q0OTkyNGEzYTgyOWYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/device-authorization-finalizer.ts#L27-L113",
+          "version": "repo-lines-v1:sha256:f0800ce12ef6efe6d4cb213b9b4c5af88ea6e9c36774593ff9c0291cb2247393:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZTljOGVkNjNkOGNhMjMzNDgxOTE2M2NlNjUyNjZmNTNmMTk5YzJlYWI0NTA3MzI1NjVlMzM4YzNjMTc3ZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiZDYzMmJkOGRmNDRiZDE4OGFhZjExMDFlZDBkOGMwMDBkZTE3NTQwNjBhNzk0MGY4OGExODIwNWFjZmNjMjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f163a4f7ea82403b9f1df3a6e5bf30a4",
+      "statement": "ClaimedProviderCredentialExchange turns credential refresh into a durable single-writer operation: tryBeginExchange acquires the lease (idle→in_flight with exchange_generation++ and owner) only under matching credential version and account status, refresh failures classified retry_safe release the lease via clearSafeFailure while other failures run the terminal fence marking the account reconnect_required, completion writes under version/generation/owner guards, and when the terminal fence cannot be observed (terminalFence 'lost') callers reconcile by re-reading authoritative state rather than guessing.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/claimed-provider-credential-exchange.ts#L59-L177",
+          "version": "repo-lines-v1:sha256:25323aec896b013393595d626189cfc535a4c733149e24fe850edf2ba981e54c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiZGMzMTdlOTE1NzZkZDI0YjNjMDgyNTg0NTM5YjI3NTZlZWExN2E2Y2Q0NDE2YTFkZjMxMWE5N2I1YTEzZGJhIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmYjU4MGU5NjRmODNhNDczZjQzZDQ0Mzg0NjI5NDlkNjhiNTYwMGZkYTc4N2YxNjM3NDVkMDBkZTg5Y2JmMzZhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MSwiZm9sbG93aW5nQ29udGV4dEhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_62b44ab4ca2d4f338a7f59b3c8bf8f65",
+      "statement": "Provider refresh failures are classified by adapters as unauthorized, ambiguous, or retry_safe via ProviderRefreshError; the OpenAI adapter treats 401/invalid_grant as unauthorized and a missing replacement refresh token as ambiguous, while the xAI adapter treats invalid_grant/unauthorized as unauthorized and everything else as ambiguous.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-adapters.ts#L78-L88",
+          "version": "repo-lines-v1:sha256:18ca1cd33792d53f31a5d04381d87c19098a6fba8606a3412557c194831484fc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1M2RiOGQ5MjVhMDFiODMyYWJlYTE4M2E2MTIwY2NjYWUxMzk2N2ZkOTY3NjdiMjFhNmExMTkxOGUwZDFiMDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljNWFmN2ZjZWJhYWFhOWQ3NDM2MjFjYjQzYmZjNWFkYjNkNTU4Y2ZlYzY3MDczZGJlNzliOTYzNzY2OGRlNjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE2ZTUwZWRmMjhmN2JhYjJhYTU0MjM0NmRjZTJmNTYyYjhlNjkyNzkzMTQ5NjQ5NDk0MTgwOWVkMjJkMWQxNjcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-openai-adapter.ts#L90-L126",
+          "version": "repo-lines-v1:sha256:46f6da3d9ef18f36d9af6f5c3113d3ef80dd980e3294fc1d701cee6789b6e9db:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNGExMjk4YzdkNzUyN2JhM2NhNWZhNTA0NzgxNzZkODMzYmY1ZmY3Yzc0ZGE0NzM4YmVhOGJiMDkzNTNiODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4Y2QyMDkyYzY0MzM5ZDQ3ZGJkYTAzYWM2ZWU3MjkwZjkxZGI2YzVjMWM2NmExY2M1MjI1OTA0OGU1YmMzODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3ZjM0NjRiMWE4ZTExODRhY2ViY2MxYzg1Nzg3OTQ0ODNlODA0NjhiODI2YjZhMzYyOWFkODI1NzdlMDdlMmMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-xai-adapter.ts#L80-L110",
+          "version": "repo-lines-v1:sha256:84d06f8a4bf6bc1f8a491bc0f9ad8a7b6dd1b63fbcf81b9f11927433e8d5b87d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNGExMjk4YzdkNzUyN2JhM2NhNWZhNTA0NzgxNzZkODMzYmY1ZmY3Yzc0ZGE0NzM4YmVhOGJiMDkzNTNiODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4Y2QyMDkyYzY0MzM5ZDQ3ZGJkYTAzYWM2ZWU3MjkwZjkxZGI2YzVjMWM2NmExY2M1MjI1OTA0OGU1YmMzODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4ZmZmMWIzZjNkOWE4N2NkOGYzY2EzNmU1YTVkZjVmN2Y0N2UwMDQ4MjZiOGM5NTVkNDY2YzlkYTgxZjRlNjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_34685b833b9940ec932135957d154d73",
+      "statement": "ModelProviderAccountBroker.getAccess(accountId, expectedProvider) verifies the account is usable (typed codes account_not_found, provider_mismatch, account_archived, account_inactive, credential_not_found) and the adapter exists, returns the adapter's cached access token while it outlives refreshBufferMs (5-minute default), and deduplicates concurrent refreshes per isolate under key accountId:credentialVersion.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-broker.ts#L103-L128",
+          "version": "repo-lines-v1:sha256:6dcbe3032f8467c7f712dcde782d42d9d991625635ee2c09d5e8dc5b1be633db:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkNzI1OTUwZDNlNmYyOGYzMzg0ZGNhMzdlZTY4YzE3MDU5ZjMyYTQ0OGE5ZjFhMTZhZmNmMmZjN2E1ZmViYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNmFjZDA5M2M0NjEwNzZjN2M2Y2IyMzZjYjJlNGJhOGZkNTMzZGRhNzFhNzdjNmYyOWY1MTE5YTlhNWMxMDEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-broker.ts#L271-L296",
+          "version": "repo-lines-v1:sha256:8b406d87bde07374e7b26e89c949bfbfe5a4d521dbb9dfea79700c7d846abbb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmNGNjZjc5NTYzNmMyZGVjNWJiZDNmZjhmZDA1NDE2YTgyYWYzZjlmNzM0MjZhYjY0MWRlM2VhMGViNDM4NjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmMTNkZTEyZjFlMDI2ZWFjYmRkNTViNGRhY2I3YTExMzBjYmJlZWI3MThlMDUwOTU5NzRmNjM4ZDlhYjEzZWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d74cedf82432465ea4a8c1dfaf29dff3",
+      "statement": "The broker polls in_flight leases until its 15-second exchange timeout expires them (then fences stale leases), rereads credential state after concurrent updates and serves the concurrently written token when usable, and throttles last-used attribution via touchLastUsed to at most one write per 15 minutes, deliberately best-effort so usage attribution cannot invalidate persisted auth state.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-broker.ts#L130-L238",
+          "version": "repo-lines-v1:sha256:2879efdeca4410b70d083b3ec7707cda9863f4ac8443770259c8b2b700bed47d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmZTgzNGVlNTQ5YWFmNmJjMWQ2Nzg2ZjFlMTU1MzIzODJmNzgzZGQ2MTJjZmFlYWNiZTMyMWE0ZTc4MTAyMzZlIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxNDNjZTNkOGRhN2YxZTk4MjI1YzdiYmIwOWZlNWNjMTgxZTA3Zjg2M2E4NDVhYmE4MmZiMGUxOTVjZTQ3ZWRmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlNDNkZmI2ZjNiYmZhMDE2NTI3M2RmZDcyN2YzYTBiYWM2Y2ExMWJhMDIzMzdlOWRhMzgzMGIxMmIzYmJkYWFlIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-broker.ts#L24-L26",
+          "version": "repo-lines-v1:sha256:b4492a71108bf38f8c58e1ffae2ea22ca18b7360ff4256fae48134a4fd195900:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVlMzEzMmIxOTFlNjJmNjRhMjZmZjZiZTU2NGJiYjJmYmQ4ZDlkNTk2MzkzOTkwODkwMzMyYWU0NTk2NjUyYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODYxZDMyMTkyOTAwNTllY2Q5YzlhNGM2NDUzOTBlYWJiNjI3ZmU2ZjFhOWY2OTk5YTg0Mjk2MDRjODM1MjIxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTcwZTdhZmJlNTJhYTEwZDFjYmM2OTI0OGNkMDBlNGQwNTNlNmYzNDFiZmUxNDg3NzAzOWQ1Y2I0ZGI4MDA2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjdkYTg1ZmVlMDk2YzAxNDRiYzA1NzhmZGI0ZDJmZTQ5ZjAyZDMwMjEzNjM4NjYxNTAyMmVlNWM4MDBjMzM0MyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-broker.ts#L240-L254",
+          "version": "repo-lines-v1:sha256:5a75411219da709be5184223e306766196b386e36233b99055c765fb6b395217:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkOTdjMzFhYWI1MmU3ZGM0YWNhOGU2Yjk4MTZiOTdhMmRmYjBlNDE1ZmUzYWI0Zjc2NmY5OTljYWU1MGI3YTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjZjcwY2JkNzNlNDVjY2FmMWRlYjg0YTkyMWVhYzg1NjJmNzBiNTlmZWY4NzQxN2VhNTEzNWMxZmJhYTc1NWQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-broker.ts#L368-L378",
+          "version": "repo-lines-v1:sha256:7bf52c96817a3ac2d7b1d0ae75d7e3d089068801efab93aeb63e7751686d4985:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxMWY5NzFhN2Q3MzFiNzE0N2RhYzM4NjI1MmExODE4ZDk3Y2UxYTMyNGZmODg3ZjQ1MTIwYTk4NjgzMmVlOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiMzA2NTRmNTYzMTlkMmZjYTI1NTc3ZTQyYTBjMjlkOTA1MWUwNzNhNjQ4ZGE3OGQ1ZDE5MzMxNWE4OTU2YTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_91b6f147ddac43af869575ec57da7922",
+      "statement": "resolveSessionProviderAuth resolves every subscription provider (openai, xai) to exactly one auth mode per session: explicit api_key or validated provider_account selection first, then the provider default (with unattended runs on api_key when unattendedMode is api_key, otherwise the default account validated as active), and legacy_scoped_oauth fallback when no default exists; selection sources recorded are explicit, installation_default, unattended_policy, and legacy_fallback.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L189-L199",
+          "version": "repo-lines-v1:sha256:7c81a9f9576ee645b83fd6db43dc02ffda2728d941c6fac6d0e40408ad835774:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3N2RiMzU5MmQ3ZjY2OWZiZTFmYjQxNDZiZDY0OTJiZjliMmZhOGY5OGVlYTA5NzRkNTAzYTk1YjQxYzk3OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQzMjgxMTU4ZjVjN2RkZDQ1NTc4OTM0NTQ4MzU2OTAxZmQ0Y2IzZGM4ZmRjOWJiNWY4NjdhZmZhNGRmMDNlMmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYxZTMxZTNhOGM5NDQ3Mzc0YTM0NDdlYWZhMzM2YjI1N2JiZmExMGVmYzY1MTBjNDc5ZWQ2ODU0ZWVkNjEzOTQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/provider-account-resolution.ts#L22-L89",
+          "version": "repo-lines-v1:sha256:6090fe734b116b7a3dfe3f748b4f819266e4a3e799e74e4a56cb2fb526973d54:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNWJjNDY1ZmM2OGI0ZjYzNjFmNjdkODQ5M2MzZTEwYzhlYWZmOTMxMzk3MzNlMTI4M2IwMjUzM2RmNDUxMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiMDdmOWE2M2UxZWUxMTMyNzYyZmI4YmYwN2IzMTg1ZDY4MDJjOTNlYjQxMzg2NmIwMDJjYTQ1NzJmYTZhMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1d3ba1a78c414f1d91328eb35f5f4cdf",
+      "statement": "ProviderAccountSelectionPolicy backs explicit selections and defaults: it rejects malformed account IDs (400), unavailable adapters (409), missing accounts (404), provider mismatch (400), and accounts failing active_use eligibility (409); the same policy validates PUT /model-provider-account-defaults/:provider and automation editor pins.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/automation-provider-selection.ts#L18-L39",
+          "version": "repo-lines-v1:sha256:0cb795006b5404d0333b1d16928c8da170ca56db3b7f649abc0e35fa2ed36d86:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkYTE2M2U2Y2JiYWRlOWI2MzdkNDczMzkxZDgzYmI0NjBjMmFlOGZiZWYzNzIxMWUzMjFiZmJlNDBjMjI3YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/selection-policy.ts#L24-L82",
+          "version": "repo-lines-v1:sha256:612239c9a60a0d99128afeacecf833621fb732676920e219171e1a95b10e243d:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVhYzhlOTU3OTVmODgzZWM0ODRkZTBhNzdhYWI5MjMxNTY3OWI0OGM3NDA0ZjNjNDc3MTZjZGVkMTlkMmUwY2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/model-provider-accounts.ts#L344-L383",
+          "version": "repo-lines-v1:sha256:7f7528ce74d8acea2c770e2f569bdc36ab92701a9a96e72b7c900962fb8dd9fd:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzNDA3MzhjMmU4OTMzMDQ2OTZjY2EzMThhNGEzMmI4Yjg0MzNmNTg4NTA0MmFmYzBkZWE5N2E4Yjc1MTg1MTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwMTk5NWYyYTNlNGEzYTcwZjJlYzZlZWVjZjdiODE2YmQ2OTI3OGQ0ZTNhNjc2YTlmZjQ5MTk0NDBiYWM3MmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3N2FjNzQ0NTI1ODJmNjQ5ZjVhYTRhMjU1MGYyNzM4NTQ1ODk2MGJhMzA1MmJmNDNhOGJlYzI0NGFjZmJkOWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImViMGQzM2ZkMzNiZTIyYmNiNGQ1ZjZjMGJjNDA3YzVhODEyN2MxOWFkN2M2N2YxNzlhYzg4ZTg1ZjgwNGZkMDcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a11cd91970e4147aafdd3b1e669ec77",
+      "statement": "A provider default is optional (the first connected account becomes it automatically), carries unattendedMode provider_account|api_key that decides what Slack, GitHub, Linear, and automation runs use when following the default, and affects only future sessions — never running or existing ones; session create marks a run unattended when spawnSource is anything other than 'user', and the scheduler always resolves automation runs with unattended: true.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/provider-account-defaults.ts#L42-L106",
+          "version": "repo-lines-v1:sha256:1ce4696359bbff00782e1e813f2d71cab5e4d481d50d94b68b95aec45c0fb404:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyOTYwMTgxNmRkMWEyZWY3MjJhOTg5NGQxY2IxOTAyNDM2NmZjYTdiMmE2N2U4ODE5ZGRjNzgxYWYzMzViMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlNDNhOTQyMjgzNzgxZjhhZGY3NDRkYjA3NTBkOTgyNzg5NDVmNzFkZTkzOTk0ZGRlNjNmMWYwNzM5OGU5ZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBkYTdjMDhhOWZiYjg1ODdiOTg0YmVkNGJkMTVhZDRkOGM5YzE1ZTJhN2YwYmFlNTVjNzliZWM1MjJiNjQ0ZTcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-create.ts#L189-L195",
+          "version": "repo-lines-v1:sha256:9c3c52a73754d2428f523da74a8b9fc27e8791dc992e573b6f46b9cf90605d45:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDc3ZGIzNTkyZDdmNjY5ZmJlMWZiNDE0NmJkNjQ5MmJmOWIyZmE4Zjk4ZWVhMDk3NGQ1MDNhOTViNDFjOTc5MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjJkMTFjYWY0M2U5N2VmMzY5ZTZiZWVkMWEyNjhiZDA1ODM4ZjI5YjlkZDI1NGJmNjliYTY0ODg0MTQ3MjM0YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDMyODExNThmNWM3ZGRkNDU1Nzg5MzQ1NDgzNTY5MDFmZDRjYjNkYzhmZGM5YmI1Zjg2N2FmZmE0ZGYwM2UyZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmNmZTFhNjI5MGU0YzliMjhiNmQxYjYwZTQ2MTkxY2IzNGNiZjc0MGM5MTgxODFhNGMzNWVmMGRhODQyMTFkZCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L235-L248",
+          "version": "repo-lines-v1:sha256:e17d770be29a76cb6acae50d896b420bcfee7d2e52a1de46f87f414711d1c930:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiOGJiMWI3ZWNkOGYxNmNhNDAxZWZlYzA0MGI5MDE1YzNmNjdjYmMyMGM3ODUzMWYyOGVlZTMwNDUxYjNhNDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlN2RhZjVkOWVlNTQ2YWE5ZTk1MDE4MjUwNjgyMmRiZmQ5YTNmNTVmNGYwZDg5NTQ5ODVjYTFhMjgzMWM1OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2NzY4MTk3MzExNWE1NTgwN2UxNzZiNWI1NmRjYzE1YzI0OTYzNTlkODdiOWJlODdmNWE0N2Q0ZTBhMTA0YjIifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/provider-accounts.ts#L104-L125",
+          "version": "repo-lines-v1:sha256:25409f76660f574ede1945c28b1d53d8c5ea1ad4ae78393df5b327f237740422:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ODMzMDYxZWQzZjdiNTgyYTU0OTRhY2VhZDVlMzJhMmJiOWFjMDJjZGZlNmZmMzQ3MWM2MDgwM2JjZWI0NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxZTYwZTU0ZmJjYTE2N2ExZjdkMzFhMzZhNDE2NDkyYzZlZTFkOGI5OWJiMDMzMDJiODUwNTNjYmE1NjI5YjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiMTM4MmM3OTlhZjE5NWQ2YmU2Yjc1MDEwZjI5OGFhY2RhOTc1ZjQ5ZDhiZjEwMjgwNzE1NTdhMTI0ZGUwOTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_817af1ef1d974b46b5edc5748ddf267b",
+      "statement": "Legacy scoped OAuth coexists with provider accounts: a provider with no explicit selection and no default resolves to legacy_scoped_oauth for new sessions, existing legacy-bound sessions keep their binding, GET /model-provider-accounts/legacy-credentials inventories remaining OPENAI_OAUTH_*/XAI_OAUTH_* key locations across global/repository/environment scopes for cleanup, and operators must not copy one rotating refresh token into both credential systems.",
+      "evidence": [
+        {
+          "resource": "repo://docs/OPENAI_MODELS.md#L82-L90",
+          "version": "repo-lines-v1:sha256:fff622604c84e0d7f2d6d6d1669a68f146f0125a24dd69bc9e21cc19e298140e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzE4YTcwMzVmZjNiMGIwYThkZmFhNTAyNzQzMjA5YzI5ZDFiZGQyYzMxNWUwMzExOGM4MDBhYWQwYzhmMzQxNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzgzMjA4MzVlZWIyZDcwN2NjNWEzNjBmZGM2NzkwYmRhOWZiMDE5NWQ3N2YzNzg0NjI3NGQ1OTVhZDhjODgzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmM2Y2NjMDgxZmM5MzAxZDI4YjNhNzRhYTkxZjc4ODRlNGFhMTdlNWY1NjhjNzZiZTlkNjExMzM1ZThhMTUwOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAxZjJlYzE3NTkzYzEwNTRlYjQ2MzY3ZDg0NTNlZjI0YTE3M2NlOTZiNzExN2Q5MWY5YTY4ZDQ0ZmVmOGIwMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/legacy-provider-credentials.ts#L5-L66",
+          "version": "repo-lines-v1:sha256:6f3273b9ceb9040589b77425cc72bff6e82e3cb32dd70e63eb7a238998271110:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlZmJkZWJlNjcxY2QzYWEwMmI2ZDc4MjYwMTIzOWZiMTc5NmM2ZDE3NDRjZmIxNzk2MzExODY4OWMwZmQxYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiZTQ1ZTYzOGU0YjcxMjhjYmVlMThhYjVkYTUxMmFjZGRlMGIyODk2NzM1N2U1YjUzOWE0NjM5ZGIyZTBjZWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/provider-account-resolution.ts#L22-L69",
+          "version": "repo-lines-v1:sha256:14bed21d86c09f17a2dc1606ef9a18d4a18e7678444e3bce05552bbd8f3e4b4e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmNWJjNDY1ZmM2OGI0ZjYzNjFmNjdkODQ5M2MzZTEwYzhlYWZmOTMxMzk3MzNlMTI4M2IwMjUzM2RmNDUxMTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiMDdmOWE2M2UxZWUxMTMyNzYyZmI4YmYwN2IzMTg1ZDY4MDJjOTNlYjQxMzg2NmIwMDJjYTQ1NzJmYTZhMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFhOGUxOWM3YTUwZDZhMjE1MjhiNjIwNTIyNjNlNDU4MjJkY2M3Yjc1MDZjNzQ3NWJhYzM1MmVjNWU0ZTM2ZWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a326cab73ce43a493e507d161349182",
+      "statement": "Automations pin per-provider auth choices in automation_model_provider_auth (only provider_account or api_key), validated at save time by parseAndValidateAutomationProviderSelections; at run time the scheduler reads pins, converts them to selections, re-resolves through resolveSessionProviderAuth with unattended: true, and tags explicitly pinned providers with selectionSource 'automation_pin' so unpinned providers follow current defaults each run.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/automation-model-provider-auth.ts#L20-L104",
+          "version": "repo-lines-v1:sha256:f16034652e9cbeb7f4da056b15f838ec091535e7a5d2c91aba45578f82c4de60:eyJzZWxlY3RlZExpbmVDb3VudCI6ODUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjYjA1NDhmNmE5NzcwYjkwNTVlMmM2ZGZmMDY5ZDAyMThjOWNiYmQ3YTRlMTU5ZjE3ZDc3NGIyYzBiZmU3YmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlNGJjYzc3YTBiMTdkYWY5N2VjM2RmNzNlM2VmZGNjMTk0OWJkMzA1MWZjZDRlYTZkYTUzYWQ2ZTQwNGQyMWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/model-provider-accounts/automation-provider-selection.ts#L18-L39",
+          "version": "repo-lines-v1:sha256:0cb795006b5404d0333b1d16928c8da170ca56db3b7f649abc0e35fa2ed36d86:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkYTE2M2U2Y2JiYWRlOWI2MzdkNDczMzkxZDgzYmI0NjBjMmFlOGZiZWYzNzIxMWUzMjFiZmJlNDBjMjI3YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/scheduler/scheduler.ts#L235-L248",
+          "version": "repo-lines-v1:sha256:e17d770be29a76cb6acae50d896b420bcfee7d2e52a1de46f87f414711d1c930:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNiOGJiMWI3ZWNkOGYxNmNhNDAxZWZlYzA0MGI5MDE1YzNmNjdjYmMyMGM3ODUzMWYyOGVlZTMwNDUxYjNhNDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlN2RhZjVkOWVlNTQ2YWE5ZTk1MDE4MjUwNjgyMmRiZmQ5YTNmNTVmNGYwZDg5NTQ5ODVjYTFhMjgzMWM1OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2NzY4MTk3MzExNWE1NTgwN2UxNzZiNWI1NmRjYzE1YzI0OTYzNTlkODdiOWJlODdmNWE0N2Q0ZTBhMTA0YjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2187dd2f421f4d74824f5295f1f05ded",
+      "statement": "Session creation persists provider auth as an immutable snapshot: SessionIndexStore.create validates each row with assertProviderAuthSelection, rejects duplicate providers and incomplete snapshots, and writes session, repository, manifest, and provider-auth rows in one D1 batch; D1 is written before the session Durable Object initializes so failures are caught before any sandbox spawns, and a later default change never rewrites an existing session's snapshot.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L250-L354",
+          "version": "repo-lines-v1:sha256:ed6f2e1389e5df5d5542e97abf6763e7f89296bd8bcf8542231872fd58cec13a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0YjBiOTU0NTMwNzMyOTZmZDJlMWRkMzI2Zjg5YmEzZGRjYjBmZTAyMzcxOGNmMmEzNTYxNWQzY2UyNGE1ODU1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkN2NmOGJjNzI2YmFjNDQ4NmVlOGU4YTlmNTA4ZmZkN2Y4MDA3NTE2ZjRkMjY1NDE2Y2M5ZDU2NzgzZmNiZGRmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI2MzYzODQyZmJiMTE4OTVmYmQ1MmRiM2E4ZGY5NDQ2YWM0MGY2YzlkOGMxNWEyMjlkY2U3ZThjODQ4ZmQ2MGNiIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/initialize.ts#L136-L227",
+          "version": "repo-lines-v1:sha256:9940259c26c93e8e0c29b59ee3f30c0147c4c4d102038b8ded9ad9de202d13db:eyJzZWxlY3RlZExpbmVDb3VudCI6OTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0Y2ExNWRmYWQzN2FkMWFmNTllM2RjNWUxYTExNzI2NzExOWE2MWExMGY5NWYyZWFiMzM3MTJiMWExM2U2MDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxYTc5ZmU2MjYzM2Q0N2VkNTc2ZTk1MzAyMzU3NzQzMjU5MTBhODlmMWIzMjcxYzRjYmVmNDVkOTk1YjMxY2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkYTZlMDA2MGMxMDQ0MzczNjJiNDYyODUyODllMWIzOTJjYmVlNDQ5OGQ2MDRiOGNkM2Q0ZTNjZWFmYjcxMWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/session-provider-auth.test.ts#L21-L80",
+          "version": "repo-lines-v1:sha256:120b1f23dfd22d8bd3405fbcfa7e1dd64c3f5c828f3ce545403f5cb2711fd39d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZDBlNzVlZmY2YWNjYjFmY2E1NzczYWYwYzhhZjQ1NzA3MjIwNmEwNzJlNzUzYzYzMzA5YmNkOGNkMzA5YzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2ZDM5MjQzNjdhMzUxYjU5OGU5NmJiZTZkOGE5NDljYzE2NGZkNmU3NDFiOGI4NDkzZTkzY2EwOWJiZGU5OGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4813b481f2e64e95b93fad6b9fa347d1",
+      "statement": "getCompleteProviderAuth is the fail-closed reader: it throws 'Session provider auth snapshot is incomplete' when a session lacks an auth row for every subscription provider, and getProviderAuthForProvider serves single-provider lookups from the same trusted table; the session DO's environment resolver uses the complete snapshot and fails hard when D1 is unavailable.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L440-L475",
+          "version": "repo-lines-v1:sha256:faf0b783fcf8f54eff4ed6c275ede15aa7287da041d94127e181a34ad1535236:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0NjBkZWRlYmZmYjg5OWI1ZmFiOTFhZDJmYjY2YzkwN2UzNTMwYzMwZjI5MzQ3NWViY2IyNDRmNGUwYWYyMzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1MmQ1YTk0YzA2ODdlYTRjMGRhZWExYWY3ZjNkMjFiOTgxNzliZGYyNTUyMzI0Y2Y1MGJlZDU5NWZhNmU0NjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmNzc5MDQ2ODllOTUwN2I4NTM1OTM4MmQ0ZDJjYzkwN2VlM2FkOWZkOWVkZWI5MDMwMDg0NmEyN2U0YTQwNzEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/user-env-resolver.ts#L110-L175",
+          "version": "repo-lines-v1:sha256:57cf06048f14497febe50387ca9787f99a6cfb1a83f6748829ea4c6c693355c6:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxZTUxMzcxYzk5ZTY5MmMzNWM4Njc5NzhjMTlmZjdkMmM4M2NkOTRiNDk5YjMyYzVlZGE1NzUyN2MzMWE5OTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI0NjJjYTFkNzI3OTQwZGRmNjQ2OGYwYzIwZDRkMjA2YWEzNGJlNTYzNjQzN2ZjZjgwYzhkOTAxYjBkMmVhNjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjYmE0MjEyMTIxZmVlYzAwZDFkYThiZGI4MmE0MGQxMGRlNjhhNjhjZWMyZDgxMTk2YzAwMzRkNzBlODA3ZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/test/integration/d1-session-index.test.ts#L93-L102",
+          "version": "repo-lines-v1:sha256:13d67e1610108a126a91aa6aa5c00830f62648c660850d01a3ec85e5f7adcf1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA1NzhiZTgxZDY0YzMzZjQ4MDY4N2M5ODY1MTYwNDI4ODgwZTZlZjFiMWY3OWY4NmI0NDA5NjY4ZmJlZDNhMTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxYTZmMDhiMDFkYWU4Zjg0NjRiMjMxMjI5NjVkZjViZDJhNDRkNmY0YjMxNzViOGE5NjRlMTEwN2Q2ZDMwZTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzMWE2ZjRiODFkYjJlNGJkNDJjN2FkZWFkMTU5Mjk4YTNjMGM2NWU2ZTIyMTQ5YWFmY2NmMzEyOTI0ZTIyMDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ3Y2U1NDRhNjM2ZWIxODU4OGIyYmQyNDVmNmI3NGI4ZmViODIwZTBkMWFjN2Y2YzM4NzBjMWIyZGVmYjdhMTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_799786897ccc45049d93c03b8cb2bea2",
+      "statement": "Child sessions copy their parent's D1 auth rows rather than re-resolving: the spawn route loads getCompleteProviderAuth(parentId) (returning 503 'Parent provider auth unavailable' on failure), stamps inheritedFromSessionId: parentId on each row, and persists the copies with the child session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/db/session-index.ts#L322-L339",
+          "version": "repo-lines-v1:sha256:07f5ada1f29e57f5c002c88df8055a25072d7656554e80e1fcc817a311c28542:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkYWI1MzdlNmFmMjM5NWM5NjY1YjUzYmM1Y2VhM2Y0OTY3YzJiMWQzYjIwY2UyNTFlZTAxODJiM2FiNmE5NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0ZTQyMDhjZDZmZmI4YzRhMzU0N2IyZjU0YWRhMTk5NzhjM2YzNjVlNzhmOTUwMmVmNTE0NWNkZDJhYTg1NDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRhOTE2NTY4MDZlYzRlNjdiMmNkNzUxMTI2MGJmZjIxNmEzZDJlNWRjZDY4MGRiMWUzNWM3MDFjMDY2MWNhNTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhZjAzNzVmNmI1OWMzYTJjNjQ1NzEwN2Q2OGQ4MzQxZjRmMDliZmE5OGY3MTI4Y2EyMGY5ZGRhMzI3MmYwZGYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L183-L195",
+          "version": "repo-lines-v1:sha256:b13c1639b35e1cd6aac2972dc03f3d915af64a5b56f2d580cc5fe3e6765c2592:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiZWI1ODNmNWE5NDAyOWY3NjU4ZjQxYWEzZGRmNWZjMjZmZjI4YmEwNTcxZmZkNjkxMDY5ODAyYWY0OTI5NjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA1MzIyZDVlOGU1OTVhZWQ2NzljZjhiOGUyZmEzYmRiNGEyOWI2ZjUzODAxODExOWRmYjY3ZjY4YWM3NzAwOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2YWQwNGU2MDM5Y2RiMzZjNGJjNWYzNGUzYzQxODU3OGY3NjhhOGEwZjViOGExNDg4ZDVmMzhiMzZiNjEzM2UifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-child-spawn.ts#L252-L255",
+          "version": "repo-lines-v1:sha256:9c7df0ad518e7dc8b7a8745981914d6116218444471bfd663fd594d8589974cc:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODk2YmU1ODA3M2EzZWJhZWU3ZGVhODBhODRkNjg3NGJjODQzNDFlZjlhMWU3MWI0NWEyNDRmZTQ4OTFmN2IwYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2RiY2FjZDZlZTk3OTE2ZmZiMTg0ZmZjZTI1NDgwMDAyZjE1MzNkYzAyYzU0M2QzOTIxMTczOGFmM2I2MTNjOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2QyYjliY2I2NmI0YzRmN2JhOTQwYTk1OWQxMjIxYTFhMWNiNDM1YzIyODU1Njc0MDVkY2M1YTA4MGI2NmNhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzY5MjIxZGNmZTRiMjRiODMwMDZmOWM4ZDAyOGQ5OWM3YjBmODhiMTA2MTA5MjI3NDI5ODU0YmQxNWU3MGI1ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0bddd71d641a4c57aa6f5e25c1634028",
+      "statement": "In provider-account mode the sandbox receives no credential material: prepareManagedProviderEnv strips control-plane OAuth keys from user secrets, deletes the provider's canonical API key (OPENAI_API_KEY/XAI_API_KEY) so the runtime cannot bypass the subscription, and sets OPENAI_OAUTH_MANAGED=1 / XAI_OAUTH_MANAGED=1 when the session's auth mode is provider_account (or legacy mode with a present legacy refresh token); getProviderAuthenticationError answers whether a chosen model's provider has usable authentication in the assembled environment.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/managed-provider-env.ts#L27-L112",
+          "version": "repo-lines-v1:sha256:ca7272e186329ec63a578ac116e3f4eba34c196a998ea3ae18abfb68ce1a7498:eyJzZWxlY3RlZExpbmVDb3VudCI6ODYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjNDdhYzc3NTA0NDBlNmM5NjBlOWRlYTJiNGUzNzUwZDJjNDcwZTZlNWMwN2VjOGYyYTBhZGIzMzJiYzU0MGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhkMzU4ZjgwMjY4YzI5ZjE5YzgwZGMzYWU4N2FkMmZjMDNmYTY2MjEzNTdhMjUwYTVlZjdlNTc3ZThjYTEwZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/user-env-resolver.ts#L79-L108",
+          "version": "repo-lines-v1:sha256:4dd2243654969354dc4954c52340678fb9338ef3e2fe908e8c31db1da0641355:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwNjE2NmExMDYyYmY1MTAzZTYzM2QyOGU2MzVjZDNmZDg1YTQxOGE0NGQ3YTcyMzliMTYyZjVjYWYzNWNiZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg2OGNkMWNkNWNiNmEyN2E4ZGQ3YzkxM2U4ODAwZWQ2ZWM3MTAyMDQ5Y2Y5NmJlMjU5YjZhYjkzMTU4MzRmMzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1268e3645c24a00bcb96534379ffe9f",
+      "statement": "The sandbox-authenticated endpoint POST /sessions/:id/provider-auth/:provider/access-token (SCM_AGNOSTIC_SANDBOX_ROUTE, Cache-Control: no-store) reads the session's trusted D1 auth binding: legacy_scoped_oauth proxies the session DO's internal openai/xai token-refresh paths, api_key mode returns 409, and provider_account mode runs ModelProviderAccountBroker.getAccess returning short-lived accessToken/expiresIn/providerMetadata; broker errors map account_not_found→404, upstream_retry_safe→502, others→409.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L71-L126",
+          "version": "repo-lines-v1:sha256:b531502bcd227fb5904317149fd9364a70b9b52c080caac3366808e0a8a8afa6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxMjBhZWMyOThiYWVmODY3NGU2NjRjNTFkYmMzYTUyMTFkYTJiNWZiNDUxOGYwNTdhZjIzZTFmZmRjNDQ0ZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiNDI1MTcyNTUxMmRjN2M0NzJiM2MyMjQ1ZGJhMjc4ZjYzMTU0M2RjMWVmYTYwMWVlNGU2ZjY5NzUzZjI0NzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4NTM3YjVkMThkZTJkMzVjMTgyZjIxMDM3OTdhYmE4ODVjNTc3ZmIyYzM2OGMyN2Y5MzU2NjFlYzcyY2I0MjUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/model-provider-accounts.ts#L396-L486",
+          "version": "repo-lines-v1:sha256:52fdc47d61ec5a2c2d14806998190124ed44ea6d6733eb5584aad3382db920f6:eyJzZWxlY3RlZExpbmVDb3VudCI6OTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4NmJjYzVmMzg5MmE0NTZlNjc0Mzc0N2NhYWY1YWM1NjAxOTE0M2EyYzBmZTdkNTY2ZDUzMWM0NTAyYWM4MWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwMmQyYzBkNmRjNWU3NGQ5MmZhMTRiOTFkYmVhMjY0MDkwYmViMzVmZGI5MTg4ZDliMzQxMTgxZGNlOWY0Y2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwOTQwNjU4ZmNjNmVmOWEwNDdkZWZmM2NkNzIwNjAxM2JlMDAwN2UwY2E4NjZmYTYxMWZmYWY1ODc5MDE0MGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4262932d82446e4be7153ca1e4802d5",
+      "statement": "In the sandbox, opencode_server.py reacts to the managed markers by writing OpenCode auth.json sentinels (type oauth, refresh 'managed-by-control-plane') with 0600 permissions via atomic rename and deploying .opencode/plugins/provider-token-broker.js plus the provider plugin (codex-auth-plugin.js for OpenAI, xai-auth-plugin.js for xAI), git-excluding the deployed files.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/opencode_server.py#L322-L383",
+          "version": "repo-lines-v1:sha256:f6bf3a37e92f5e63079499532efec6ef7c2a10c093bc39c3928285f2a1fd7e2b:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkMWI1MDE3MjNmZWUwNDViMmI5MjY3NmJiYmMxYTVkMTMwYTUzMDFiMWRjYjVkOTIwMDlkNTYxYWY2ZTBhMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlNjczODc4OWNmZDAwOGNkMWRlODFkZjYzNTc2Y2ExODMzNzc3NTNmY2QzMDM0NzllNTU5MDZiMTAyYzNhZDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlM2ZkOGVmOGRjYjVlZmUxYmI1Y2YyMTVhOTIzNmRiYjZjZmIxMmYzZGY0ZGY3OWM2MTJlMzhkYWRlNDQ4NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3NDQ1YmZhZDBiMTQ0YTU4OTc5NDMxMzcxZjYzNGY0ZjU2ZjQ5YWQ1MzQ2MmFkYjQzMDE2MzA2Y2VjOTZhYzQifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/opencode_server.py#L503-L529",
+          "version": "repo-lines-v1:sha256:1d08470af0394d8bc076070fb8455137190a6e1c8aadbc29a75793e7969e3d97:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2NDRlZGYyYzY3ZjExNzNjOGU4OTFhNTM2YTgzMzhjNmZjODQyOGY3MmExZGFkMzE4MjA0ZmY4YzE2ZDg1MTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkZWYwYTQ4ZmYyYmYwMGQzYTBkYjdhMzQ1MzQwMWM4ZjFhZDRiMzUxZTdhOWYzY2ZkYzcwNzJiODNlNzliNDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk4ZDZkN2JhNTI1OThlYzQzZTE4MzgzNTJiZDg3YTVlMjM0YTc0MjgyYmI1ZjNhNTRmY2Y1N2ZlMTg3NzgwOGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjExZGIzOGQ1NjNhY2ZmYTc0MGQ1ZTE4ZmUxNDNjZjYyNzY3MWQyMzU5M2ZkNWY0YzhkMjI2ZGRiZDgxYWQwMzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b60602054e054ed9bad7e4d1d0ac4059",
+      "statement": "provider-token-broker.js is a provider-neutral single-flight client: it serves cached tokens until fewer than 5 minutes of validity remain, otherwise POSTs the session access-token endpoint with Authorization Bearer SANDBOX_AUTH_TOKEN and a 30-second timeout, requires CONTROL_PLANE_URL/SANDBOX_AUTH_TOKEN/session id from SESSION_CONFIG, validates the response shape, and one broker instance per auth plugin keeps cached credentials from crossing providers.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/provider-token-broker.js#L1-L79",
+          "version": "repo-lines-v1:sha256:f9511c2e6784f2a66926ff9dcd749cd5d18497ae188e3bc4c3fe1f5215b2f256:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkNDE0MDljYWY4MzAxNzZmY2FkZTA0NTYwODQyZGI5MDlkMDRjOWMwYTNiMGZjZTRlZGZmN2VlZDcxNmMzNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ca0880f3f71b484988e1c96439415de4",
+      "statement": "codex-auth-plugin.js overrides OpenCode's built-in Codex plugin (deduplicated by provider ID, last wins): it filters the model list to Codex-allowed models, injects GPT 5.3 Codex entries when missing, zeroes token costs as subscription-based, strips the dummy API-key authorization header, sets the real Bearer token plus ChatGPT-Account-Id from providerMetadata, and rewrites /v1/responses and /chat/completions to the Codex backend endpoint; xai-auth-plugin.js adds the grok-build-0.1 entry when absent and sets the broker's access token on requests.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/codex-auth-plugin.js#L13-L183",
+          "version": "repo-lines-v1:sha256:8877c26a852084fe71ce7cca2aeb5b101788ec0d1eee104c6f172379766f808e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIwNWNhMmJlMjUwNzNkOTlkOWM2ZjM5MTJhM2Q0M2JhMTEyMjNjOGI5NDE1YjYxMmEwYTQ4MTljYmQ5NGRjNjhjIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJhYTFkMWE2MzM5MDIyOWM3OTgzNDdlODNhMDQwNTQ0MWM5NDAwMDM1Mjg0YWQxNjhjMWJmNmNkZjFkNzBhMzcwIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3NDZhMTNiYTMzYzNmM2U4OWE2NTMzN2QzMzdhYjJkOGZlNjFjNDBhZTQ5YWQ5ZDQxNTVlYmI3ODUyNzAyNDJiIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/xai-auth-plugin.js#L13-L82",
+          "version": "repo-lines-v1:sha256:329a6e3a9b6fc6572bef3917f79683664de00bfbabbe31b9519211569aafddb6:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlYmUzYzliZWExNGE4YTJkMzc4ZThhY2MzYzJjODU5ZjljOTk4NGRjYTM0Y2I5NTI0ZjdjNWNhYjQ0N2U5MmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4ZTA4OWI3ZGNhNDRiNGVlYzk4MWRkODFmZjE3YTlmZjMzZTJjMzU4MGZlNjExYjM4YjNlN2MwMWQ0MDllNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7dc9ce33570846d782a505e11a38c092",
+      "statement": "For legacy_scoped_oauth sessions, OpenAITokenRefreshService resolves the session's secret scope (environment or repository, plus global fallback) and delegates to OpenAITokenBroker, which single-flights refreshes per Worker isolate, serves cached access within a 5-minute buffer, rotates the refresh token, and persists rotated tokens back into the original scope via ScopedOAuthSecretsStore, re-reading after 401 to detect concurrent rotation.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/openai-token-broker.ts#L27-L121",
+          "version": "repo-lines-v1:sha256:901546a5144c29cebf33c87cedd3712f484f8cabcef35d6327a3fb72aded133b:eyJzZWxlY3RlZExpbmVDb3VudCI6OTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkM2QyZjZjYjI4YTFhN2M2OWJhZGMxNTE1OGFiY2ZhZTE5ZGM3MWNiYjk5N2VlMzYzNmQxM2YwZDBmN2ZkZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzOWE0MTExZWU0NWNkYTZmMzUzYTYzMWJhMjJhMjdhNzY4Y2RhNzYzYTIzYWMxZGVlMWNiODdmY2YyNjg3YmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU4YzNkMGQwZDYyMTM1OGE1M2IyYjg1ZmFiN2RlMjQxZmJmZjRlYjFhMDk3MzQzZDMxNDRiNGZkMzRlNGE5ZmYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/openai-token-refresh-service.ts#L20-L47",
+          "version": "repo-lines-v1:sha256:30798475db1aa6d1cd8f277abd047de63cea11c7bbe9188169688dec78abee34:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmZWFkNTg5YjEzNjlmNTNlZjhjYWY2MjM0YjY4MjNjNTgyNWQyMGQxMGJjYTEyZjg1MGU2NmYwNWZlMzBmZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE2OWM3ZGIyZTBkMTFkMzA3OWZjMTY5ODNmZjhiZGEyMzMxOTI1NWZjYzkxY2E0NGM3Y2U2MTM0NWNjZTBhMzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/session-target-secrets.ts#L7-L31",
+          "version": "repo-lines-v1:sha256:82639c088d801779f86d90e164294026829138b185e0d21112597aef759dda24:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyN2IwMjEyZmEwMWNiOWFiMjk2ODBhYTU2MDU2NTliOWM1YTYyNjBiNjEzY2RhMjJiYmY3NmYxZTkyZDIzZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyOTdiNThlODI3YTVjZGQ5OWQ0MzQ5N2ZmOTA5MGRhZGI2NzcyMjYyOWFlZDY1NDY5YmI1MDZhMmMxODVjNDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ5YjBlMDczMDBjNzBiYWIxMzRkZGFhNGU4ZDI2MGQ4YzZjZTgyOGFhZmEwODRhMTc4MjYzMzNiNTk3NzQwYWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac71a47b56334c20952c2254bc9790d9",
+      "statement": "XaiTokenRefreshService reads XAI_OAUTH_* keys (session scope first, then global), serves cached access within a 5-minute buffer, refreshes via refreshXaiToken, persists rotations (logging but not failing when persistence loses a race), and treats invalid_grant/unauthorized as possible concurrent rotation — waiting 500 ms, re-reading, retrying once — before returning 401.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/xai-token-refresh-service.ts#L32-L132",
+          "version": "repo-lines-v1:sha256:3587d1a96f0893f5d40f1129a1a1ab474d292481b16e972ba84115d867576865:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjYTg2YWY3NzRkNmY3MWNjNDU3ZGE2MTFiYmVjOTRkZjJmNGE1MGZjMTNkZDViZTEwNjk1NjFjNmRjMzhlZjMyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI3YzU1MDI3MTFiNzhiZDE3ZTg1MThmMmFiNGEwMmE5NGY2MjE2M2FmN2M4YjEwYWZiYWVlYmIxMjA5NWRmYTQ5IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MSwiZm9sbG93aW5nQ29udGV4dEhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/xai-token-refresh-service.ts#L8-L10",
+          "version": "repo-lines-v1:sha256:488d6347452e1b383328c667081542c34e5ed6adf4f533d14881eb774e17e27a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU2ZmVhNWM3Nzg2NDgxNzliZmZkM2ViZmZkZWFjNGM4NWMxNjFmOGY1YjBjOWJlYTFlMmEzNjg0OWQ1MzU2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGE0NjA4NzM3MDBkMmIxZTdhYTYzOWUxMDQ1NWY0ODM0NzE3MTM5OTQ1OTliYjkzYmY2NGZmYjFhZTNlZjEwNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGIxMDdmOTA4NjViOTMwNTdiOTc3NzUzNGNlMzVmYWI0NDAxNTYyZjkzMjU1Mzg1ZTZjNzMwYzc4Yzk3MGVmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTcxYjNjMDA0Y2RmYWY3ZTg3NDBhNmNmNWMyZTg4ZjU0MWJlNmE0MjZhZWI2YzM2MDdkMDFlOTA5NzcyMTNjNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d9f662c7a2054f829bdb111065c797d6",
+      "statement": "PROVIDER_ACCOUNTS_ENCRYPTION_KEY is generated and persisted by Terraform by default (overridable for existing installations); it must not be changed after storing credentials unless every credential has been re-encrypted and verified through the documented old-key-to-new-key migration before the Worker binding updates, and the Terraform state holding generated keys must be backed up.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/README.md#L169-L175",
+          "version": "repo-lines-v1:sha256:c70bb50b955e803dbc3ba7068c3ba15b50af199f1b681df921512bfb50b1c6e5:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDJhY2FhNjQ4N2M0NGJlNzI1ZWQ3Mzg4OTM1ZWYwZGQ3M2EyNzJlZTdhYzkxOWQwYmU3YTlhNmI2ODBhMTA0MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTJlODM0NjY1Y2Q2MmM4ZjdlNzdjYzIyNTBjNzkxNzkzNTk4MGFhN2ExYjM1YTg2YmQxYTQ2NDU4MGNiNzIwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTQ5NDVmN2JkZTE3MDljMzM2YmJhYmJjYWM2ZTZlZWE1NmIyN2I0YjRmMjliZjA5ZjNkODI3MTE3NTQwMTQ3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGMwN2Q2YTNjMjFiYzY1YTU4ODM3YTk5YmI2ZGVlNDZjNWRkYzQwMjNkZmRhZDU4ZTVmMjM5YzgxNDEwN2Y5OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f2298324cf854efb83f2b802552a6c53",
+      "statement": "The model-provider-account management routes use Cache-Control private, no-store, and the access-token endpoint uses no-store; both policies and the access-token route's bound-sandbox authentication requirement are asserted in router.policy.test.ts.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/router.policy.test.ts#L118-L126",
+          "version": "repo-lines-v1:sha256:a968c61be63a40ac0a86f50593147046423a8c78f6fbf1aad2a3ac6e60fd59c7:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTRmODUyNTA1OTUwMmVkODQ5NGNhODA3N2ZjYTQzYzM0Zjg2ODUwMDNjMGFkM2FmNDQxMGMyM2RhZjJkNDZiMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTZkMzkyNDM2N2EzNTFiNTk4ZTk2YmJlNmQ4YTk0OWNjMTY0ZmQ2ZTc0MWI4Yjg0OTNlOTNjYTA5YmJkZTk4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODg1MzdiNWQxOGRlMmQzNWMxODJmMjEwMzc5N2FiYTg4NWM1NzdmYjJjMzY4YzI3ZjkzNTY2MWVjNzJjYjQyNSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/model-provider-accounts.ts#L171-L187",
+          "version": "repo-lines-v1:sha256:e6bc2ba497db816481efa174ebccbca6f17a0d4caa2cac068878e1aff5ab39e5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmM2FlNmE1MDI1YmRmODBiNTE2MzVkZDY3MTdjYTg5ZWUxZWZmMmFlMDI4ZTJmZWFhMjZmMjE2ZDZlNTRiODQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzMTQ2ZjZkODNiNzU2ZmFkMzcxZmY1YTBjNTYyOGU1Yzc0YTllY2IzMzgwZDY5OGRmZWM1MDBmYzNhODk5NWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5ODMxMDIxYzllNWI3MGVjMDlkNDYwYTRiYWZkMWU4YzIwNTkyYWJjODhlMDBlY2QxOTAwMDU4NjRhOGE1MTYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/model-provider-accounts.ts#L478-L486",
+          "version": "repo-lines-v1:sha256:d88051a925fbac86dc0cc8e93ac35b3c00009a325dedd054102dd3150e621df5:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTNhYjM0Y2ZiYzdiYzUzZTUzZDk1NTQ0NjAxYmM2Y2QxNWY2NjgwNGE2NDc1MTE3YWRkYzdlMThjYTE4ZWFhOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjAyZDJjMGQ2ZGM1ZTc0ZDkyZmExNGI5MWRiZWEyNjQwOTBiZWIzNWZkYjkxODhkOWIzNDExODFkY2U5ZjRjZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_af330beddd994dc6867fb325649a9abc",
+      "statement": "xAI accounts created before device authorization have no bound external identity and retain the one-time refresh-token reconnect path (modelProviderAccountReconnectMethod returns refresh_token only for xai accounts with externalAccountId null); the xAI adapter rejects refresh-token reconnect for identity-bound accounts, and device-authorized xAI accounts capture an external account id via the access token.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-xai-adapter.ts#L121-L141",
+          "version": "repo-lines-v1:sha256:f4a9416a6db6879b551c2c9ed80ed29402a460567678b6edf975291f5fd1f031:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmNGY3OTMyMjcxOWYzODg0ZDNkYjBlZTZkYTEwMDZjMzM5NGFjMTk1NDgyYjMwODg3MDNlMTM0YWQyMzIzYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIyY2FlNzJhNGQzOWU0NDIzMjVlYjZhZjRlY2JlZjE0OTQ4MTNhOTg2NjZjNzcwOTdhNTdhMzEwMTRmMjY5NTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/auth/model-provider-account-xai-device-authorization.ts#L58-L81",
+          "version": "repo-lines-v1:sha256:9ec7f2ff7d9c025ac06044f8efa45a4f4e5b967b41271d0549f280b82364bc63:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlZDNmNTZmMjIwYTc4NWI4N2JiYzFjMzVhYmI5MDI4OTk5ZGQxYTY5OTE1Mzg3MTY5NjRhNzg4OTE5MTU3MGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiMjIwMjlmMDc4NDYzZDIyOTM5N2Q1NjM3YmU2YzQzN2MxNGUyOWQ3M2Y1MzUzMGM1ZDg5MDk3ZTUyNzcwMTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/provider-accounts.ts#L69-L84",
+          "version": "repo-lines-v1:sha256:13e126c29def5238ad061a2e874c9cdca4e79fb2399dc2f535de37012fb87055:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZmQxYWI0MTUzNDI0OTI3YmQxM2QzODE3MDQ3Zjk4MGM0ODhmMzdjYzUyNmM3NWZjYTc0YzA0NDA0Y2RhZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxZWUzZGIzMGQ1Y2RkZjI1MjI4NTQ2YWE2YTgzZWZkZDJmMjc3ODg2MmMxNTkwYzlmNGI2YmIyNDU1ODY1MzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0MThiNWI5MTQ3MjRkZDZlZTZiOTZiNzViY2FmMTU0NDRkYWQ0OGFmNGFmOThmNmNlOGFjMjhhOWUwOTcxMjUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

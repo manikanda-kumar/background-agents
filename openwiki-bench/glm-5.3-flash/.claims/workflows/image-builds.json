@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:721aa3ee200fafeef18c4eebe5575cc945957afc5ed1c13612f357230ae7d1e4",
+  "claims": [
+    {
+      "id": "claim_3e2ce94879014668897d108f9ac2cf5c",
+      "statement": "One provider-neutral image-build subsystem serves two build scopes — a repo scope (single repository built on its default branch) and an environment scope (an ordered set of repositories with per-repo base branches) — with everything below the scope layer generic across both.",
+      "evidence": [
+        {
+          "resource": "repo://docs/IMAGE_PREBUILD.md#L8-L15",
+          "version": "repo-lines-v1:sha256:b98ee9296bdb65d89efbfc48c367b5701aea82f1a4a022cfa1d809a23b276383:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTkzZTM0MmZjMTQ5NmM2YTk1MGE5NThiZmVlZmRmNzQ4ODJjMmZhNmEzY2Y4NmYyZmJlYTllMzJmZGU3NDA2MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjQ2ODdhOTJlMzRjOTJjMTBiYmJhYTgxNTRhNThjZWE5MzA3OWQ1Mzg3Y2Y3NTk3ZTljNTQwYzBkY2E4MDFlYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2Y5Y2JiZTA4YmYyNjc4YmUzNmU5MDc3ZDFlYWVmMWY1NmU4ZDBiODg1ODgyNTc0ODI4MWU4YTJjNmQ4OWQ1YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAxZjJlYzE3NTkzYzEwNTRlYjQ2MzY3ZDg0NTNlZjI0YTE3M2NlOTZiNzExN2Q5MWY5YTY4ZDQ0ZmVmOGIwMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scope.ts#L1-L40",
+          "version": "repo-lines-v1:sha256:bfc0bdae2fe1f727951b3052681f9786552e63a5abb52af4a2d340a9714d2a83:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1MjkzMmFkNWIzOWFkMTcyYWU4NzA1Y2I3Y2MzOWI3Zjk4YjA2ZTFkMzdlMzQ1ZGFlMzFiNjdlODIyNDRlOGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYxMjI5MDMxMTFmYTA0YmM3ZDc0NTlhMThmNTJmN2Q5YThhYTk1ODBmNWQ2NWIzMGI0MjBhOGU3YjIxZjhjNjYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_feecc03a1ae3468f872d5a544fbf8de0",
+      "statement": "Prebuilt images require an artifact-capable sandbox provider (modal, vercel, or opencomputer); the artifact is stored as a Modal image, Vercel snapshot, or OpenComputer checkpoint respectively, while Daytona and E2B deployments use persistent sandboxes or pause/resume and have no image settings.",
+      "evidence": [
+        {
+          "resource": "repo://docs/IMAGE_PREBUILD.md#L36-L40",
+          "version": "repo-lines-v1:sha256:7d6e97da60c42ed5bf62de85deb71887db35a98204406a3e613d764b61bb7650:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmVmODgyNzk4ZDc0MzRkNWJmMDI2ZTExMWExMmU5MDUwYTM5MDI0ZThhNDU5ZGEwYmY4ODgzZThlM2M4NTQyNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTE1YmRiNWVlZjIxYTk2YjQ5NjZlNzI0MTJkYjc0ZjIzZDk1YzA5OWQ4NzE5MzU2ZmU1NmIwYmFiYjUwNjBmZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWI0ZDEzNzJlYzFmMGViN2MzOTE5YjNkZDg3YzhjYzBmNzljMjEwYjU1NGIyN2I2NWI2NmRmMTQyMTg3NTM2ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzgzOGFmOWRiZWY1YjU1MjhlMGNkYzE5OTJkODEyYWZjOGY1MjAzOTljYjhlYWQ2ZGIzZGU4MWQwMTQ4YzUyMyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/model.ts#L1-L40",
+          "version": "repo-lines-v1:sha256:1a6ff5c66737a80dbb79fad32f12bd4c3676ab7fcafd11e00d9860d9697c51af:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyZTlmMmViYzZjM2FhOWE4OTJiN2M1OTY4ODY1MjVmNmNhZTVlMGE2YTFkNGYxMTdjN2Q2OTUwNGQyMTgxYWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVhMGJhY2RjOGI4MTQyMjllOTA1ZTgyNjZkZjc5Mzg1MzhjNTQzMzU4ZjU5MDUwZGE4OTkxMDY5N2I0MDVmMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_58897ac0fa064eed97a1c4f3d1452e5b",
+      "statement": "Every image row records a repositories fingerprint (ordered repository set plus base branches, with a repo scope being the one-element default-branch set), per-repository build SHAs (repository_shas, position-ordered, primary first), and the sandbox runtime version; spawn selection and the rebuild scheduler both key on this identity, so editing a scope retires the old image.",
+      "evidence": [
+        {
+          "resource": "repo://docs/IMAGE_PREBUILD.md#L84-L91",
+          "version": "repo-lines-v1:sha256:03a94c27b628e2b6fc2bedbd630a6b4879d53ae9f48f35324cd5b832586c284c:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWIyYjQ4MDA1YTE0ZDNiYzg5YmYzZjU4MTBlZWQ1ZDVjZmZmNDQ3OWZjZDBkMzkxNDVkOWY4YjRhNTc0NWMyYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2VlZmQyM2RkN2IwOWIzNWU2NWRmMWU5YzdkMzdlZTBkMTI5ZTI0MDk2MTIzMGFiMWFjZWU0YTU3N2RjNTM1MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2FmYTM4MWJmZjNiYTUzNzZiZGY1N2M4YzNmNjFmODM0ZTg0N2FjN2ZmMDU1OWZjOWZhMDE5ZWQ5Mjk4YTM4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWZhMjk2N2IyOWJjMTUzMGExOWU0MzUwMTcyMGVlYmE1MTA5ZjBlNjdlMTVjMmU4NDNkNjcwNTY2OTIyOTIxZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/fingerprint.ts#L1-L37",
+          "version": "repo-lines-v1:sha256:47976a3548c5e48cba125869e506acbf990d5644407bfc194331341cf3799e4f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/image-selection.ts#L1-L28",
+          "version": "repo-lines-v1:sha256:ab12fd651a6022785472bee4e8a9c9d80d8b89a3d75deaf6627b53ca707f9c94:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3MDkwN2E2MDM5Y2UyN2FhNzNmZmQwZjgxYjM5MGVhNDIzMGNlNDZlNmUzZTBkOWYyZjBjMzM3YmQ4MjY4MWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkYWQxNDg1YTRhYzc0MjI4NWU2N2ZhMmNhYTU3MjAwZTM5Yjg2ZjgzZWU1NzQ3NTgzMTRhM2E5NTRlMjliYTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a0ccdf66a67440297827e7c6f952714",
+      "statement": "All trigger sources (cron, save-hooks, manual rebuilds) converge on ImageBuildWorkflow.trigger*, which enforces the per-scope concurrency-1 rule in one place via a cheap getActiveBuild read plus a registerBuild NOT EXISTS insert guard, so a trigger while a build is in flight is a no-op and a lost race reports the winner's build.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/workflow.ts#L196-L262",
+          "version": "repo-lines-v1:sha256:b6211643b24bfa79ce309ea216c3010ec08bc471328a54a0d9148d0898fe0d6d:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyNmE0YWZiOWM5YjI0YWY2ZWM4MDBkMWRmY2NmOTNmOWQ0MDg4NGE5MGNhZjAyN2ZkMWRmZWY0YmVkN2E2YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2OGZlOWZlMmRmYmYwYjVkYjkxMmZlMzUxODQxODgwZWE5NTg3NjRhZjIwN2FmYjE0ZTNiMzU3Zjg3MWYxZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxNzIzNTcyNWE5YjM4MDYxMzc4MjE2Njc2NTgxMTlhN2JlMDFlMjU2ZjBiZjQzYjQ2N2RjZjA0ZjJmZTE1OTkifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/workflow.ts#L86-L128",
+          "version": "repo-lines-v1:sha256:eb4834a3812a8cef87d09e79fd363d6f82abd8faafde2e708a25a05ac2cfc7f2:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY5Zjc1Mjg2NjBiNjdlNjI2MDc3ZmQzMWY4ZDgwOTQ0ODUzNWFkYzNjNGJkODY1YzllNDY4NjZjOWIxOWExZTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZhZTdiYjQ3ODAwZTU0ZjI0MjA1NmEwYzU5NDQxMmJlMWY1NmUwODkxZDJkYTliMDc3OTNiMjRmYTQ5MzQyODcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9799bcf79a2d49d49ea0ce0dd7e688ec",
+      "statement": "At trigger time the workflow validates provider configuration before any database work, lazily marks a scope build stale when its sandbox died without a callback, registers the build row BEFORE secrets are decrypted (keeping pre-registration work cheap and secret-free so the secret-change supersede can see the row), and mints a single-use 64-hex callback token whose HMAC hash only is stored on the row (peppered under the wire-frozen repo-image-callback: prefix, 2-hour TTL); build ids are imgb-<scope id flattened>-<timestamp>-<rand>.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/callback-auth.ts#L1-L58",
+          "version": "repo-lines-v1:sha256:2a78e00417bf8a7b3c559ca332eb400a508147eb00fadd89d9587416ac35a487:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyNjAzOWRjYTM4N2Q3YzQ1MjIxYWRlNjg4NDEyYTQzYWIyY2UyMTg5NzU2NTFiYTcyNzQ3NjgwNGYwOTgwYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/workflow.ts#L130-L243",
+          "version": "repo-lines-v1:sha256:9877e2a6e7465b15bfe81f47df6c9043bf12ec26b7c170a8a3e4f2f83a77bd83:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0ZjJhMmY5OTZmMDhlNjgwYmQyOTIxMzVhNmZhNDk3OGJkYTI2ZTYwMmQ4NGYzM2NiMWQ1OTQ3NzVkNDMwNGI1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxNzc1MWZmZDMyMzYxOTMwOWRiNDQ3ZjhiNTk3NWEzYmFiNjdjZjRhYTllZGZjYTAxMjIwNTZhMmE3OTYwNjdhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIxMDQ3NjgwY2Y3MjM3MTlhMWZjM2YwZmRmYTdkZmVlMGQ4YTExYTkwOTJlOTJmODliNDA1MmNlODQ1ODZjZGUxIn0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/workflow.ts#L508-L524",
+          "version": "repo-lines-v1:sha256:4386faee398494bc055fee14d8c75bf6a998c4a6d13933281243379d694264e8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d22df9b1f9da4c6abcf62df616deef79",
+      "statement": "The planner resolves the target (repository snapshot, fingerprint, the same build-time secret set the scope's sessions get, and the scope's resolved build timeout); the provider adapter starts the build and persists the provider session id onto the row via the bindProviderSession callback, and a failure after binding runs cleanupFailedBuild and marks the row failed.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/planner.ts#L34-L140",
+          "version": "repo-lines-v1:sha256:3f8edb9c463328e65bb3f2415faead833f930458db715548dd5e78f0ec5f1145:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmMzc5NWNmNmM5ZDkwZDY1ZjZjZjQ5Nzg4NGFjMDQ3YWFjNmZlYTNiZDhjNTUxMGRlZTU1MzVhMTY0MzFmNDY5IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI1YThhYjhiZjlhODFmZjA0OGZiNzA2NjdlYTI3NjdjOTBmM2M2NDE4NDg1ZjE5OGE2MjBlZmQ0NjQwMDM1ODIwIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/workflow.ts#L264-L333",
+          "version": "repo-lines-v1:sha256:b04c9c8cda5f6a9412473657c869cee971c7969d35e9afb60b783908925afdcc:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYTE0NTE4OGExMWRlOTJmODliZGY4NzgxMzM2NjZkMDJiZWM4MWY0YzIwMTE0NjUyNmJmMmVjOGYwMmVlYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUxYTQwYjg1NTdiZGZhNTEzYTViOTRiM2E3NDVjMTU2MjI2NDJjOWYzYzQ5NzRlZDU4ZTAwYTI2MWJjNDBlZDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhOTI5M2ZkODA1NGI2ZTQ3MjQ4MzczZjM5ZjRkZDc3ODAwMTA1ZWI3NTgzNDg2ODcyNTQyODVjZDEyODJiNzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_169f146433d84492847cec8ffa7b8043",
+      "statement": "On Modal, the build sandbox launches in build mode (IMAGE_BUILD_MODE=true) with SESSION_CONFIG carrying the ordered repository list, a one-shot VCS_CLONE_TOKEN for its clone (no control plane to broker credentials), and callback URLs injected as reserved env keys scrubbed from user-supplied env; it clones every repository at its base branch (environments sequentially in position order) and runs each .openinspect/setup.sh in order, with a failing setup script failing the whole build and naming the repository for environment scopes.",
+      "evidence": [
+        {
+          "resource": "repo://packages/modal-infra/src/sandbox/build_session.py#L55-L133",
+          "version": "repo-lines-v1:sha256:d03dde237513e3599bd03e90bda658434909bf4c65e6c6814c3b2ad975dea44b:eyJzZWxlY3RlZExpbmVDb3VudCI6NzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1YTc0YWQ2NjIyZDVhNzY3ZWY1Y2ZlYWE2MWM5MTVkMWMyODc0ZDhjNWMxMGE4NTU4NzFiY2IyNmUzNjg1YzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3MWIzMWMzZDE4MjgwZjExNzMzYWQ1MWY1NTRlOGNmOTIxYmZmMjZlNTZhNWY5N2Y3YTJiNmIxMWJmYzFlZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQwMjUzMzg1ZGVhMzc3OThkNmNiMjZkYmI4MTQ4MmFkMmQ1YzU4OTA4MjViMGU2NTQ5YjVjMjY3MWYxNjQxZTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJkNjNkMTZmZGI0OGU1YTliNDFlMDQ4NWJmODg0YTM0OGMyNGExZjZlMmQ2MzcyZjE1ZjVmMjgyYjJkOWNkZTYifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repo_image_callback.py#L1-L50",
+          "version": "repo-lines-v1:sha256:9f5b768f95eeb887279601d9fed00d944f72cd5db00a0f004d348eae84ba3792:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjYjA5YTYzNmY4MmI2OTg2ZjI2NjkyNGU5NjIxN2YwNWQ3M2M0ZGQ2YjZkOTk0ZTMyYTJjMmRmNGEzNGM0MTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyMGI0NTNmNWUwYzkyZDVmNmMyNTFhNWVhMTk2MGQ3MmYzYmQwNzk1NmFlODU3ZGEyMGUzMWE4OGM1NTk2OWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwZmU2NjUzZWM3OTBhNDVkODQ2MDE5M2MzZWIwNGUwMzYyY2IyYjVmOTI1OGVmMDBmOTk1YWZiMDU1MzRmNzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7328d15c79ab4b18b442b01e9d067bbd",
+      "statement": "The build sandbox reports via POST /image-builds/build-complete and /image-builds/build-failed with the single-use bearer token and the exact bound provider session id, retrying with backoff.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/image-builds.ts#L172-L211",
+          "version": "repo-lines-v1:sha256:105c9def95872dd167a31416368c5fd7df82a83e05c0afc617db4276123e8243:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlYzQ0OTVjYWM5MjkxYTlhMTg0YTc5MGEyMmZjYzdmOTNhYmQxMjZhNzc3ZWI1NTgyMDVjNDY4MWZmYTQzZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNmYwZjllNjEzODY4OGYxZjUxYjk4MTE1YmIzZmFmM2RiMjc0MTJmMTZlNjEyN2VkOTc1NDdhNGQ2MjQyZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlOGJkYmE4NDU3NDdjOWJmOGE1ZDU4NzY5YjUxNjQ5NTRlYzc5NGU4ZmNmMjg4YjI2ODY1NjAyN2NiMjE4ZGUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/image-builds.ts#L496-L502",
+          "version": "repo-lines-v1:sha256:1e60eb266bd9db81e0ecf3135722b1b54f3457d9b83c723e0e79950cf9b81721:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzg0NjQzYTliZWNjZGExMWNjYTI2NzhmMGZiY2IxNWI2MjFjYmYyMTg3OTE3Y2M2MTUxYjYwMmJiOTM0MzE0MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM4MWVlMDM3NzNjZThlMjkwOWQxYzM3ZWFkZjQ3ZjYxYmUyYWIxM2IyYjYwNmM3NmZiY2U1ZjQwZDg3NzY1MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWFiZDcyMWNiZWZlMzU4NjA2OTdlYWQ0YWJlMzU4YjBlMjNhMTUyYzZhZTJlYTAwMDYzM2VjMTc0ZmZkNjlhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWQ0ODU5OTZiN2I5YWIwYWQ3MTE2YmM0OTRiNTcxMmFkMDE0MDZhMDMyZTg3NTQwOTY4MmQ4MTc5OTVjOWMwNyJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repo_image_callback.py#L12-L18",
+          "version": "repo-lines-v1:sha256:32a8521f414e8a0d6bd504929bf11940efc006a0ae6722961c8981443f46f936:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTFiOGM4ZTU0ZWZhNWUyZjViZTM0MGIzZmRjODZiZTBkM2ExODQzZGU1ZGJjOWFiYmE1MGYwNjdkYjNkMzU3NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTVkNTc5OWJhOThkNDllMDAyMmM4ZTVkMjJkZGFjMzcyYTdhNTYyZGVmODg2M2E4Yzc3MjgwN2NmOWI0MTY4ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE5YjVmNDM2NmJjN2Y0ODkzMTNkZDU1ODE2NDA0ZWI3NDc2ZGRmODUyODdlNmEzMDMyODA2YjY4MGQ0NjBkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDhiYTFkODZiZmQ2OWY3MjgyZThlN2I4ZjBlZTBlZTJkNjllYzU5ZDU0YzVmZTQzMWNlZTJmNjJkNDc2NzAyNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_25ce04eac4b44ec1924a82d018da45ee",
+      "statement": "Build callbacks are authenticated (token hash match bound to the exact provider session id, non-expired) and durably accepted in D1 through acceptSuccessfulCompletion/acceptFailedCompletion with completion-hash fencing that makes exact retries idempotent; only after durable acceptance is a secret-free command published to IMAGE_BUILD_FINALIZATION_QUEUE, success publishing only while the row is still building and a rejected acceptance throwing to the route error taxonomy.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/workflow.ts#L336-L459",
+          "version": "repo-lines-v1:sha256:a7527950b7c7760c39c387e08b1fa43d8331b6ceab94e7422149b8f3f4b9fc2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0ZjJhMmY5OTZmMDhlNjgwYmQyOTIxMzVhNmZhNDk3OGJkYTI2ZTYwMmQ4NGYzM2NiMWQ1OTQ3NzVkNDMwNGI1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5N2Q4NjMyZTU0ZTkyOThhYmI5NTg3MjdlMmQ1MTQwOGFiYWYxMzY2MDM1Mzc5MTAxNDBhYmY2NWIzMGFiNjEzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjNDA4NGNjM2FhYTk2NjBiN2VhYmVjYTYxNDM5NDNlY2E3ZTYxODgxMTE5YzUxNGU2Y2EzYTkzY2MzM2I4MDAwIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_93c7112c118b476c87fbcc906c72ba09",
+      "statement": "The finalization consumer applies at-least-once queue semantics (invalid commands acked, completed work acked, busy or failed work retried without aborting later batch messages); the finalizer rejects stale commands by completion hash, sends non-building rows straight to terminal cleanup, and serializes provider work with a 6-minute D1 finalization lease (longer than the 5-minute provider attempt deadline), retrying after the active lease expires on a lost claim.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/finalization-consumer.ts#L21-L75",
+          "version": "repo-lines-v1:sha256:cbbbe8a6fa7f620816d9991c63fb54a6e56502bdeb8e9dd489e03de9100d80e6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjNWUwN2Q1ZWVkNDFkNDQzMDIyNmZkMjA0ZmY5Yzc1MWJiMjVmNDVjNWE4OGJhMTg3NjU5NzMzNmUzMDY5MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/finalizer.ts#L14-L31",
+          "version": "repo-lines-v1:sha256:7d6cefa5ddce9649e49a9929c14f72b1d651d52642aaa93b2e867dda7c239801:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3YTcyYzdlMWU2YmVlZWRiODUwMWMyNDM4MzZlYmM3NjQ3NDVlNjE4MjUyMWNkMjljZmNiNTVmYjJjZmRkNjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmYTgzNDZlYTkxYjY1MmEzNzUyMmM1NTg5MmZhMTA0Y2IwNGMzMWRhNGY3MjBlZTYwNzg2NzY1YzdmN2EyMGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJjYzEzYWQzYjNjZTMwZWJiNTg4MzMzOTZlMDI0NDlmOGMxY2JhMWQ2YjliMTdkZjRiMDFlZjkzNTdhNGRjM2MifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/finalizer.ts#L51-L122",
+          "version": "repo-lines-v1:sha256:65437cb15611f50e8d08f0f53a97ef88e8a83c5cdb1782a15b1284c455079f55:eyJzZWxlY3RlZExpbmVDb3VudCI6NzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlY2QyYjZkNTFiYWQ4OGYzNzUzZjNhYzA3MzU0NGMyNWVkNzNmYmE5MDI5N2VjMjRhNzlkMzU5MTQ0NmEzOTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcxYjU5NWY1N2M3MDU3MTA5ZjkyYTdkNjZjNTg2MmJiMTkyMWRiNTc2Y2FkOGE3MTQ3YTZlMDgxYjg5NGRjY2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMxYjcxM2JmZGE1ZWNlNmNkZjgyMmY0MGY0NTcwNDBjY2NmN2MxMWZhZDU2NWVhZWY5MTNjYjViYTMyOTk4ZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_23dc78df1a1b4520a489d5fc2ceb9b86",
+      "statement": "The adapter snapshot/checkpoint runs under a hard 5-minute IMAGE_BUILD_PROVIDER_ATTEMPT_MS deadline; a timeout is ambiguous and fails the build rather than retrying, a provably-uncreated artifact clears the lease and retries, the provider artifact id is fenced into D1 with a re-read-before-compensate rule (unfenced artifacts are deleted, or quarantined on the row if deletion also fails), tryMarkImageBuildReady transitions the row to ready (or superseded), replaced images are reaped, and terminal cleanup runs idempotently.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/finalizer.ts#L115-L185",
+          "version": "repo-lines-v1:sha256:c40f424fb6b27a4d0901cb7b93e46c72242c0dd95e8acb889cd60adee755a2aa:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYmJhZGMyNTU2OTk1Y2IxNTQ1MTEyYTdmMDMzYzQ4YWFlOWUxY2Q0ZDkzZGQ5NDlmZmI0NDU0OWQ5MDA5ZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmYTdmNDA4MWRlMzU1YzM5MmIwYzFkOTZjMTdiYzQ0MTg3ZDllOTlmZTMzMWFiN2FlYWI3NmNhZTc1Njg5ZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgyMjc4NTI1Y2JhYTAwNzlkNDA5OGM2NWM1ODIyMmM5NWQ2YjM2YTBkNjVkOGMwYmE1YzQ1YzZkNjkwYmIwM2MifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/finalizer.ts#L222-L303",
+          "version": "repo-lines-v1:sha256:3c57895ac5b50a31e9b99aa034e727e7ec696688d106a2ee3b6bb46bb8c5ae57:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkNGQzZDFhNzNjODUzZjFlYzA4YmMzZDMxMzAzZTE1ZGUyMTI3MzQwY2VkZmRiOTQ2MWMxMDk5NmI5YjgxZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d0ea458124b742bcaf89247daa788b0f",
+      "statement": "ImageBuildStatus is building | ready | failed | superseded; GET /image-builds/status serves the public-safe aggregate status feed used by settings and the new-session picker (optionally filtered by scope_kind/scope_id), GET /image-builds/enabled and /enabled-repos expose enabled scopes with current fingerprints, and POST /image-builds/trigger/... plus /toggle/repo/:owner/:name form the scope-generic trigger family.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/image-builds.ts#L400-L437",
+          "version": "repo-lines-v1:sha256:b48da95563d7143a571983f24639c7f7b7c1babbfe32bc5f3d12daaa0dd91d82:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyNzNlMTAwMjg4ZDU5ZWU2ODA1ZDg5YWFhYTFkODA5Y2JlNThhMGExYTYyYzdjN2VkOGU0OGFmMjI4YzY3Y2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ2ZTk3MGQ5YTQ5ZTNhMTc4NDc1YzY5NjRkNGM4MGU1NDUxNzExZGZkODk1ZGNlN2FiMTc0NWI2YWIzMTBiMjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/image-builds.ts#L496-L533",
+          "version": "repo-lines-v1:sha256:66e960d59ed58b2759d824e2365a2c4365186e3e5f7f3c8471bec115092db5a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4NDY0M2E5YmVjY2RhMTFjY2EyNjc4ZjBmYmNiMTViNjIxY2JmMjE4NzkxN2NjNjE1MWI2MDJiYjkzNDMxNDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyZTZmY2RkNGQ3Mjc0ODdlOGI4ZDdhNDM3N2YwNjJjZDFiY2U1OTQ0NGQ2ZDczYWE4OGNhNTg0OGY5NGI0ZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFhYmQ3MjFjYmVmZTM1ODYwNjk3ZWFkNGFiZTM1OGIwZTIzYTE1MmM2YWUyZWEwMDA2MzNlYzE3NGZmZDY5YTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwMmQyYzBkNmRjNWU3NGQ5MmZhMTRiOTFkYmVhMjY0MDkwYmViMzVmZGI5MTg4ZDliMzQxMTgxZGNlOWY0Y2UifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/image-builds.ts#L13-L15",
+          "version": "repo-lines-v1:sha256:3ad944948c4ecf12eb0fd1fc0ae189caffc88aacbfd61d99ea9e577bcf72dbe9:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDIyN2FmMjdmMDJjNmNhNGU2YjA3YjExOTFkOWYwNTNmNjdkZjhjNzVmNDI2MzEyYjQ1NzVhZTY1NzM2MTgyMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDBjYmYyODJiZTE5MGNlMDJkNTUxNWQyZmY5NDJmYmI3ZWYyOTgxYzA0ZjcyM2I1NzY5OWFmZTZiNTFmZDgzNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEwYjExYWU3YmZiNjc0OGRlZDU1MzEwNWI2YzYyMzM2OTBkZDRhY2ZiOTlkZTZjN2JiOTA2MzhlMzg5OWJiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWM2ODg3MGM0YWNkODVhYmY0NzVjNzI4MjYzYmNhMDcxZTdmYjA1OGE3OGVjNzI1YzRjN2FmZmQxMTU4N2YxMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ca9bfb089b8b4aa8ae01934bc2f33cb6",
+      "statement": "ImageBuildScheduler.run fires on cron 7,37 * * * * and best-effort executes four phases per tick — republishing recoverable finalizations, marking stale builds failed, cleaning up pending terminal provider sessions, and reconciling scopes — with each phase's failure logged and never blocking the next, ending with the reaper's artifact cleanup.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scheduler.ts#L22-L61",
+          "version": "repo-lines-v1:sha256:b677562901738b8597128c4b9e3024e02f6c1e01439b9d92d0da460639b06087:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmNDQ0YjEzYTJkMWRiNDE3MGZhYTJjOTcxNDlkZjFhODlmZjdkMDJjOTVmMzU1MGE0OGE5MWVmMDg0ZDFjZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjNDAzZjRmNGVkNGIwNDBhZTVlNWM4N2VhZTQ5NTQ3YzQ5YzgzMmUxOGE3NDNhYzdlMzM3NjE1MDBmYTUwZTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0ZWJlMjk4ZDYwMzAwNDE4YTQwMDU2NTA4NzkxNWZiODc2ODQzZDQzYzZkZTU2OWYzZjUwYmY4ZGY1YjlmY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY1ZDAzOTg2ZTg5MzJjZTk1M2IxZTdlOTMwMDI5YzZiYTI1ZDIzZGFjYzYyN2IwNzNiNTFjOTBlNjVmNzJhYzUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scheduler.ts#L81-L135",
+          "version": "repo-lines-v1:sha256:be45d6ca168201fd780db6636055f543b8a161b34ef1ac3556ce0b0f6c88aa95:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExZGY4N2E0NzMxNmM3MDhjNTUwMjA5OGU5YWY2YzQ0NTM0ZWI4MGJlYWRjZjYwNjMwMjhlZmNhODU5MzdhYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1NzM3NjkxNmRkMDE5YTgzYWMzNjViM2M5ZDU4Y2ZjMWIzOTNjMGU1MjhhMjZkY2QxZTg3ZWYyZGQzYzM4Y2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkN2VjNjQ0ZWFhYjY4YTA4ODE5YjNjNmFhMDA3NzQwZjM1ZWYwM2IyMTRhODg5YjAzMGZhMzE1NjI3OWI5YzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f53a92fb8b1a4353a7979059744760e6",
+      "statement": "The scheduler republishes accepted-but-unfinalized builds from D1, fails rows older than DEFAULT_STALE_BUILD_MAX_AGE_MS (the 1-hour maximum build execution plus 10-minute finalization grace plus a 5-minute dispatch grace), and dispatches terminal provider-session cleanup through runMaintenanceTasks which bounds concurrent provider calls — cleanup dispatching from each row's recorded provider independently of the active provider, which is why old provider credentials must outlive a provider switch until the backlog drains.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/concurrency.ts#L1-L33",
+          "version": "repo-lines-v1:sha256:0d38b585520dc649f3672985433ca44b98f3698f2e0e16bb9c355d94e1269676:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwMDUxZmVmZmFhYjk4NGNlMTcxNGRkYmY2YzFmNDM5M2MxOGNkNzc2NzljNWUyZTMwODhmMTczNTM3NGEwODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/maintenance.ts#L2-L21",
+          "version": "repo-lines-v1:sha256:bbb26d4d7619d5b01c3c4b3248efb68ce14f812acf5eb2460b81aaea7fbc39a7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliODA3NjAzZjQ5NzBlOGQ2NzE1MzBlMWMzMTIxYzg3MWRhNDA3ZGE5ZDgzNDQwNjUyZDE4ODY0YWFlMzg4NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyMDI4ZGQ3Y2JhYTI2ZDE1YzlhODY2ODM0OGIzZWMwOTg3N2I5YzRhMDhjZWVkNjk2OGIwYmQ1NjAzYWYxZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoxLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scheduler.ts#L137-L178",
+          "version": "repo-lines-v1:sha256:a058c7cc58290712d57c8c364ee65795b124e0ac80a01a45ddb9f004c25258cf:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiYTY5ZTRkZDkzMDczYWIyNzc2M2ZhYTE5MDRmNGNjODI0ZTA3YjUxNjk4ZDFjNmE2NTBkN2Y5N2UyY2ZjNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3MDQ2M2M2ZjkwOWEyMTM5NTliMzIzODJkYjM3OTU1YmQ0MmIzOGIyYjU4MGE2NWVmMmZiZGM4M2ZhOGY3M2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiYjE1NGYzNjFhZDQzYTc5ZDhjMDE2MDc4Y2M2MjhlN2E3ZGQ0MTdjMTEzZjM3NWUzZTg0N2JjZjQ3YjA1ZGUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/timeouts.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:3bd01712718fc27326cf8eb2edc1244e1a88e6071e40492b77c2c4f22d2222cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3NzQ5ZDVkYTAzZGFhMTVhY2FlNzU2ZWUxZmQzOGMzNWM3YzI2NWU4YWNhOWI4NDUyZDZkYWMxMWFiOTMxZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyYzMzNTcwMmUyZDlmNjZlOTU1ZGY5MTUyYTg5NTNhNjIwYzZhMzFiODY5ZTQ2NjI3MzYzMjIwODMzMDUwYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e69cc1514f524ca2b65bc6a598d51639",
+      "statement": "Scope reconciliation evaluates each enabled scope: skip while building; rebuild on missing current-fingerprint ready image, runtime version below the shared MIN_REBUILD_RUNTIME_VERSION floor, or missing/incomplete provenance; otherwise check branches by reading each repository's live branch head from the SCM provider and rebuilding on any SHA drift, with a missing head not triggering a rebuild.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/rebuild-policy.ts#L1-L57",
+          "version": "repo-lines-v1:sha256:f428f8c4aed775b1b0c5f4f97655aa4a893bec35393b2a3e00772c4f32e6df41:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxN2Y2NjQwZWUwMGRiZjUwNGQyMGNiZWJjYmE2MTdiZTkxMjE0Y2QyMjM2ZGQ5ODllODE4YTQ5NWE1YmY4MTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scheduler.ts#L180-L252",
+          "version": "repo-lines-v1:sha256:27ab7f5515d7ac9904e24b4d56dbe8a4bdb16b8021d907dd8d2de265643fa8fe:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1YThmMzk2MTMzZjAwMmRkYmFkNGI3OGMwNWU1MDRkYjQwN2Y0ODFmNzI5N2E1ODcwNzEyMWVkMmQzMTY2MjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlMTJiNjExODk0M2UzMGMwMDY4MzNlNzgxNjMwYTUzYjMyZjQxN2VmNWY5Nzk1YzNmMTJmMzMwODAyNGM1ZDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE5YmUzMzNiYmEwMTY5MzE3ZDhlNTAzMzg2Yzg2NzU5MDQxNDI5ZDQ3NDQzNzE4N2IxM2VhYTdkYzA3MjA0NGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fda5a430dcf34c7ca428fec901a7ee99",
+      "statement": "ImageBuildReaper.cleanupImages deletes failed rows aged past DEFAULT_ARTIFACT_CLEANUP_MAX_AGE_MS (24 hours) and best-effort reaps the provider artifacts of failed and superseded rows.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/reaper.ts#L44-L97",
+          "version": "repo-lines-v1:sha256:d9abec0f485bd7f95a9d289422ceb427029af339880ef702ac9943d70b83b7e6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0OGQwOTQxYzMyNjhiNDA2ZTk0OGY5Y2IwMGY3MGMyOWY0NzE1MmYzNWEzYTFhMzhkNDZiNzY2NzY1YTY4NjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxZjE3NDNkZjhhMTc1NGM5NmEyOTNiYzBiMGZhNjI3ZjNlZTlkMDBhODE4ZjBjODU0ODI5MGQ1MzM0ODJiMDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTI2NWVhYTM4YjQwZGM0NDFjYWJlNTJjYTMxYTA3ZTM3MTFlMTM1MWQ5ODRjMTJjNzI1MDY0YWMzNzYyYjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwOGQxZTEyNGNlZjNkOWFmNDgzYTE5NTA5Mzk2NzdkNGRhY2ZjODJjZTJjYmNkMGNhMjRiZjFkN2Q2ZDA2NzMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/scheduler.ts#L112-L123",
+          "version": "repo-lines-v1:sha256:8aa5351016360b93804dd90f677294b73091e4bcab31d9eb552ccef9a5081ad1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExZGY4N2E0NzMxNmM3MDhjNTUwMjA5OGU5YWY2YzQ0NTM0ZWI4MGJlYWRjZjYwNjMwMjhlZmNhODU5MzdhYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YjlhMGIxNmI5OTEwYmFhNWQwYTRkY2FmZjhhNjBjNDI5NjMzYmYyYWUzY2JhY2M4MjAyOTA3NTgwZDEwY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwMTU5OWZjZjdmZjJkOTczM2M4MzE4NWIzOWFhMWViZTFlZmY3ZTM0NjQ4MWI3MWEwYmRjM2I3MzdkZmY4MGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a119f0e373904227b844eb90e719dfbb",
+      "statement": "The build timeout is the scope's resolved setting — global defaults overridden by the primary repository's settings and, for environments, the environment's own overrides, defaulting to 30 minutes with a 1-hour hard max — and it covers clone and setup execution.",
+      "evidence": [
+        {
+          "resource": "repo://docs/IMAGE_PREBUILD.md#L241-L245",
+          "version": "repo-lines-v1:sha256:78f821552a7b24d583c6fa355e78b106c2b28093db307ec82e69583da6f08e04:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODU5YTE2MjhlMGYzYWRkZGRhZTQ4M2I1Y2Q2ODVjY2I2NGVlYjI1ZTA2ZjI3NjUxMWVhODI5YmMwYmQ1YjNiZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDA0M2NkYjY5OWM5MTZjMTJlZDQzYWI1ZjRiMWExZGU2MTBjNmNlZDJhOTY3MDk2YjM5Y2MwZDljZDkyNTJjMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGE5OTY4NmU3MmQ4OTk0ZDdmYWJiYzlkZjM5ZWY4YjA3YzE1NDczNjVmOGQ2ZWMyODMyNzhkNTlhNGYwMjZlNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWNhZDlkMTg5ZGI4MDYzZWRmMzE4ZmQ0MjliZmI5NTExZDM3OWVjMzgzYTU3OWRiYWIxNWE4YmYyM2QyZjE3NSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/planner.ts#L95-L101",
+          "version": "repo-lines-v1:sha256:d6659b768c5adc5a42b52fe295b28eceb85a4b646958c92a4070566ca21a6f92:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYThkZGRkYjFjZjViMDEzODA2MzhhZGNlZGIwN2VhZDIxZWM0OThiYzNkYjdjOGIzN2FjOGExMmRkZTJkYTRiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmM2OWNlODNlNzczN2FiYzcwYTAyZjIyY2FkZmYxNjg4MWQxY2Y2YmRiYTRmNmY1N2JlYzA1N2FkNjAxYzg4YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGQzNDgzY2Y1NDJiMGJiY2QyNGUzN2FmMGRhNDIxZWI5MWJjYWQxZjQ0ZDI1NjcyODhhMGRiZDYxMDIwNTk4MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGNlODk2MTQ2ZmJlNTAwN2ViNDY0YWI5NTU5NzkzZTgzZjE2MGM2NTlmNDdkNDA5ZWY4MDU0OGQ0NmNlZTc2MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_560001c5db4443ba84321ae77ff3c96f",
+      "statement": "The provider build session is granted the build budget plus a 10-minute finalization grace (IMAGE_BUILD_FINALIZATION_GRACE_MS) for callback delivery and snapshot/checkpoint; because Vercel caps sandbox lifetime at 45 minutes, Vercel image-build execution is capped at VERCEL_MAX_SANDBOX_TIMEOUT_MS minus the grace = 35 minutes, while Modal and OpenComputer honor the configured timeout up to the shared 1-hour limit.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/timeouts.ts#L1-L22",
+          "version": "repo-lines-v1:sha256:3bd01712718fc27326cf8eb2edc1244e1a88e6071e40492b77c2c4f22d2222cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3NzQ5ZDVkYTAzZGFhMTVhY2FlNzU2ZWUxZmQzOGMzNWM3YzI2NWU4YWNhOWI4NDUyZDZkYWMxMWFiOTMxZTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyYzMzNTcwMmUyZDlmNjZlOTU1ZGY5MTUyYTg5NTNhNjIwYzZhMzFiODY5ZTQ2NjI3MzYzMjIwODMzMDUwYzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/vercel-adapter.ts#L1-L40",
+          "version": "repo-lines-v1:sha256:205e3a55d5b8e0e247a16fb27bf344fa5c96931fd1bc6f8a67dfeb068970b4ae:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkZWFjYTU3YTQ1NWZhZDk3YWIxMDgwYzFhOTE1NWU1ODU4MzQ3Zjg0ODc1NjQwNTVmZDdmZjI4OTVjZmIxOWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZlMzM3MjEyM2M0MzEyOWQyNWRkMzdhOWFjOGIwNmQ0OTY4NzVkOTc5NmEwMmNjNTE0NzkzNzIxZWJjNTQyZjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fb9aadb4dc14a5b8031db2cb5db2049",
+      "statement": "Spawn-time selection (evaluateImageBuildForSpawn) checks the latest ready image on the active provider against the session's OWN repository snapshot — not the scope's current repositories — cheapest-first: enablement-gated ready image exists, artifact id present, runtime version at or above MIN_COMPATIBLE_RUNTIME_VERSION (failing closed on unparseable versions), then fingerprint equality; any miss falls back to the base image so sessions are never blocked on builds.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/image-selection.ts#L1-L118",
+          "version": "repo-lines-v1:sha256:6f350b82e9b0bce93181356f2b9d12296e0c243f87cd30cf2af9e943e18c6fb0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyY2M4OWVlY2RkMGM0NmJhNTkzM2M5M2M4ZDhjZDQ0MjczOWU5MDBjMmIyMjhlZWE1NTA3MjlmMmUzOWJkNGFjIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_f06e972a86554e93845a257c4196ea69",
+      "statement": "The lifecycle manager applies the scope rules: an environment session matches only its environment's image (never a member repo's image, which bakes that repo's setup and secrets), a single-repo ad-hoc session matches its repo scope, and multi-repo ad-hoc sessions never use prebuilt images; the lookup binds enablement resolution and the store, and a selected image passes prebuiltImageId/prebuiltImageSha (the primary repo's baked SHA, informational) to the provider.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/image-builds/lookup.ts#L11-L27",
+          "version": "repo-lines-v1:sha256:369ee50763b6105ecc8913e9cb65fff251c896eeae726c708288722531509218:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1N2Y0NTJkOTM5MjA4ZGFlNTBhMTM5N2E5ZjBmY2UyYWQ2YTZmNDEwMzc0MDk1NmY0MzdhNDMxNWY3MGU1NzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjMDYyYTZmOGRkOWJhNGE4MTIwNzhlYjRhZThkNzMwZjkzNGU0ZjFmMTkwZThjN2I5Mzc2MzM2ZjE2MWIwZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L540-L584",
+          "version": "repo-lines-v1:sha256:8720a586dcf3ee83096ae3ab233ddaa7c5f606aa2e0b9e36066006bc896c4102:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5ZDU4ZmZhNmY3MzhlOGE5YWM0NWRjMWRkYmVhNmM4ZjE1MTZlYmQ2N2YxYzYxNjNjYmM0NGRkNWVhNzI0OGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVmNDczM2ZiZDcyNzMzZWRiMTY0N2EzNGQyNDgzZDA5MDUyZGNkNGRiMDY2YzhkZWQ4YWM5Yjk1OTlkZDNlNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhOTRjNjBkNDdjNWE1OWUwOTM1Zjc3ZjZkODZjMDRkYWNlMDNjNjRlZWNjY2VjNzlhMGEzZGI3MmVjNjc5OWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L700-L762",
+          "version": "repo-lines-v1:sha256:0869fdf787eb0759e7e20ec5f3313a0cd149156bfe1345e2d4669513eaade836:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyNzg4N2ZlZjVmODg5MzY4NTRjMzVkZmUwODBkYzkzZjM5MzMxZWRkOTMzNzc3YTE2ZjdmM2NlNjgzZWFkNDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkYjdkYzdjODkwMDZhNzk3YWQ0MTY5NjIzOWVkNDRlNzBlN2EyMzhiMWQ2NWM2MjEwZjEyM2VjZGU5ZmY0NTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMyZjNjZjkyMTcyOTcxMTJmMjY0ZWFlMjg2ZmFhNmUzNTI3N2I3MGNkNTFlNWRmMWFhOTViYTQ0ZTk1NjEzNjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_94ad0b2b24344b6a9056ab2014e10c8a",
+      "statement": "When booting from a prebuilt image, setup scripts are not re-run and a fast per-repo git sync pulls commits pushed since the build; if the provider restore fails, the image row is marked failed so the cron rebuilds it, the spawn identity (sandbox id and token hash) is rotated to lock out any orphan, and the session retries from base — a provider restore failure is 'no image', not a failed spawn.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/sandbox/lifecycle/manager.ts#L586-L627",
+          "version": "repo-lines-v1:sha256:a4d0a7aa46f3f4d5b60ee446f034a82e45fd09f0f3605291f8a4bf529cc3179a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYwZTQ3NjlkNjVhZGE1Zjg3ZmUwMTVlOWRkYTZiNzBjMjEyMTcwMzcxZmFhODNmNGYzMjI1MmIyYzE5MWFiODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiY2QwMmJmMjdjM2FhODhmNjM0NDA2YzI1N2Y4ZjVkODAzN2M0OTE3NmQyYTQwYjg2OGI1ODNlMzE4NWM4YWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkZWMyNzczMTcyOWMwNzI2OWFlOWE0MGRjYTQ2ZjkyOTMwZmJkNDA0ZmY4OWIxYmNhNDk1Mzg3MTZkZWU5ZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3MzAxZTA0ODZlYWJmYTc0MmJmMzg0Njc4NWJiMTEwY2UyNzc4ZGVhNGZiZDMxZTBhNmFiNTk5ODRkZGIwYzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_943b59b609944299bcfae07399c0e000",
+      "statement": "The sandbox resolves its boot mode from the environment — BUILD when IMAGE_BUILD_MODE=true, SNAPSHOT_RESTORE when RESTORED_FROM_SNAPSHOT=true, REPO_IMAGE when FROM_REPO_IMAGE=true, otherwise FRESH — so build-mode sandboxes run the image-build entrypoint while prebuilt restores skip the setup the image already baked in.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/runtime_config.py#L15-L31",
+          "version": "repo-lines-v1:sha256:116fcd8b34a7abf86c8c4068737f303dd58b2b4aab92735300c8114aa0a2e901:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhOGVhODAwNjY3MjFmZTUwNzYyM2UwNWZiM2Y0ZDNiMjU2NDI0NTE2ZDYwN2Q5NDM1MGJmNjcyZTlmYTAyODUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1OWU3NGE0YzJhMjk2ZDVkNzBjOTllY2FjZjY1NDFmNzQ2MDlkZjUwMDdmYTJhZDlmZDViNWEwN2E5NGQ2NjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3YWQyNWZlM2FlODNiNGI2ZmQyM2QxNzlkMTg5OTZlYmUwZDEyMzBmMTY2NDVhYjc2N2QxZTJhZGVjM2Q5ODAifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

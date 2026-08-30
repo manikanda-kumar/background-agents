@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b38fc4c27c1ca6f6a2d740ef4e37a098b60562b008e2bbaa6973ceaf3e5b2226",
+  "claims": [
+    {
+      "id": "claim_6d15d7866ccd4602bd59c74ba2c065ce",
+      "statement": "The sandbox git credential helper implements git's credential protocol `get` action only, caches successful responses at /run/oi/scm-creds.json (mode 0600) until within 5 minutes of expiry, serializes concurrent refreshes with an advisory flock, and never uses the cache as a fallback for a failed refresh.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L1-L49",
+          "version": "repo-lines-v1:sha256:9c912a1fb1964a2882011ecc05f92e2c956c65ae804524439786f8df9adca1df:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2ODJjYmRiNGM4YjA3NTE4YmY0ODZjNTg5OTBmYzM5MTc4M2FhMjBhOTE2YmZiMjdhZDIxMWViMWQ1YzM2NDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyZmEwNDdhMDhiY2M5YjJmNjgwMWE5MWYxMDlmNTI0ODFiMzM4ZDMzYTY4MjEwZmZjMmU0ODI3YmZlODUzYmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwYWI1ZGZmN2Q3NzZkZWZlMWZkMDAxZGMxM2JiY2ZkZjg5MWZlYjQ1YjRkZjE2NWM1M2QzYmZlMTA0MjY3ZTIifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L152-L255",
+          "version": "repo-lines-v1:sha256:0602dd0185f3fe4b6eeb49a1b97b31c44b7a8ef4f3c1e58d91dbdf6657618344:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA0LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJhNTBjMzlkZjY1YjY4OGExMzVjMDhiZmU5MGQyOWRiMWRiMDJlM2NmYTNkNGYyZTcyMzEwNTgxOWRjNTRmMDljIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJjYzI3NTAzZDZlYjU3YmU3NmY2NDdiYjQ5MWNhYmFlMjc1ZWZkYzQ5YzVjZWIxNDExZmQyODJmN2ZlNGI1NDY5IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxNzQxOWNkYTk5NWM4NzQ3YjljOWMzNTNlZjIzN2VjMjRhM2UxZWFiZjE0NjVkYWM3ZTFjNWQwNTM4ODIzMDkzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJkYjc0OGIwMmVhZWVjNzBhZTA1M2M1NTg2MmNiYmIzM2Q3Y2U0NzJmZjY5MTMyMTk0YzZkYjJhYjViZmM2NjU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_f826637e71684841a83bb584799a293e",
+      "statement": "Before minting credentials, the helper requires protocol=https and host equal to the configured VCS_HOST (default github.com), refusing otherwise with exit 0 and no output, and it deliberately does not scope to the session repository because installation-wide credentials support cloning sibling private repositories.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L123-L149",
+          "version": "repo-lines-v1:sha256:9088f6ba108e425eee6744ea0172f9b1e4229ab76649f14ac54165279ac6f96d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiYzNmZWEzNDI3ZDEwMTk5MzZmZTRjYjRmODAzMjk2YTgzMmE5ZWQ1ZGIyNmQ0NDM2NDZiMGEyMGI1NTNjYTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1NmEwYjMwMTI3YmJiZjE1NTE0ZGVhMjNhMTlkYTQ3ZWQ5OTRkMjdkODAwOTA3NWM3MDRiYTQ5NzAzMjkzMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRmYmQwMDkzMTRiYzI3MDg0MTY3MzRhMDJhZTVmZjM5YTFlNDhhMDUwYmU5MWY0M2IyZmFhOTIwMDJjNjJiZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkMjI1YzEwNjg1YzQ4OGE3OTc4ZTc4NmVhYTA1ZDAzNDQxMWVkOGJhMDZjMGQ0YzE0NmNjMDhhM2RkMTRlMDQifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L332-L350",
+          "version": "repo-lines-v1:sha256:1b19ffd8bb38be9cd981a9c320409c2da450642dfac18d8526e69a63ac004371:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2NGRiMWQ3YzVmN2UyMDIzYjRiZDQxMzY1OGE4YTVmMGEwMGUxMmNlZmU3MjBiMDNlZTgwMDU1ODkxYmU1NzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE2MjMzYjNmZmVhMzJhMjNkZjUzMDY1MzQzNDhmMmRlZTc3NmE1YTZmNzRmYjUzMzE3NWRkYzUzOWE4ZmU0NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0NjE1ZmRhYzEyMTU4NThlOTYxNjQ1MTZkYjFiYTBkMjliZjBmY2JkMTY5ZTA1NjQzOGFhMTc1NzEwODg4ZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkNDEzNDBjYzIzOWExNTljZTliNjAyMmU5ZjYzMjI4MzJlMmVhZDc2Y2FlOWU0NzU0ZDIxMGViOGZiNmQ1ZTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_02f4c0454a3a47dfb7c8d08dfeac626e",
+      "statement": "The helper resolves its control-plane endpoint from CONTROL_PLANE_URL, SANDBOX_AUTH_TOKEN, and SESSION_CONFIG.sessionId and mints fresh credentials via POST /sessions/{sessionId}/scm-credentials, failing loud on an invalid expires_at_epoch_ms.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L191-L211",
+          "version": "repo-lines-v1:sha256:f4fc01a151f4e3ba81d19398954e3c716920888150c88748f5cb7f62d75863e2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwZWNkNjczMmQ1ODExMDIzMGM1OTE5MTBmMmNkM2U2ZmQxNDQwZDkwZjRjMzY5Yzk2NTIxY2MyYjk1MjFkYmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjZjYxNjViYjAzM2JlNTRhMjE1OGY4YjBlNTcyZDg2ZjJjNTU5ODQzNTRkYjI3NDNmZWNhOWNhMjIzYjVkMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVlZmE0OGZkYTliODQ0YjNjZjY4Yjc4NjBjYzZiOTE2NGUwNTVjMjU1ZDBkNTE3ZmQ1N2I3MzVkNjM3MDA3MjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiZjk4ODAxNTVmZjdmM2UyMTZlZDhmNmUyNTQzNzIwNTk3YzUxNTJiNjA4ZTk5YzBhYzg3NmNkN2YyMjM3MjkifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L74-L120",
+          "version": "repo-lines-v1:sha256:3a4be06e4a4203c8537eb10146d6a1b9f0554d0d96f72c6f187cc1de0995189f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwNTIxMTllMTAyYmQxNGJjMDZmZDBlYjQ3NDE0YWZiNDMwZDQ0NTA0OGRjMzcwZTdhMjIyMGM4ZDA3NGJkOTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI2NDUwMTc4NGFkNzlkMzlhMzdhZjg4NjYyNDBlZmM0MDBmNjA3ODBkZTc2Y2Y4ZTU5YjIwNjdlZTk0ZDRkMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyZjJkZTViZGMwYTY3OTM4YTYzMDMzMjc5OGEyMjYxNjk4MTc2MDI3YjMyMGMzZTZiNzE5NjY5NDRjMjdjYjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_97feb526f5924427b4fde7f6c459f475",
+      "statement": "The static VCS_CLONE_TOKEN env fallback is used only when no control-plane context exists at all (image-build sandboxes, treated as good for one hour); when control-plane environment variables are present but incomplete, the helper refuses the fallback and raises.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L214-L236",
+          "version": "repo-lines-v1:sha256:5423518492035f1c422f19bcedb9e434f45d2d2b05b67004f8af05dd6067cb17:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5ZjQ3OWM1ZDYwZDVhYjg2NzJiYmY0MDc1ZTEyYWQ4ZjhlMmZlZDkxY2VjMmJhN2FhMWY4MzM4N2M5ZjkzZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ3NTE1NzZhMjc3NDdlYWMxZWZlYWU4MzNmMTA5YzE4Y2M3NjRjYjNhNDZiMzc3NDE2OTAyNmQ3NjE1YmJiMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiMTk2NzkwN2I4ZTFiYTQ5YmMzZjIyNGM0MjljZmFhMGYxMWE1MWFhM2E4NjlmMDlhYzEwYjNkYTM1MDQzMWQifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L45-L49",
+          "version": "repo-lines-v1:sha256:ef78e749862ccbd2312e98708094e71c32c87b0bb904defa560f930cb557206f:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGMwMzJhMmE0MjdjZWJjN2ViOGViZTQ4NzhiMmVmNDQwYTg0ZDBiOTZkMjU5YjcwNTBlMDA2ZjdiNTdlNjc0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJmYTA0N2EwOGJjYzliMmY2ODAxYTkxZjEwOWY1MjQ4MWIzMzhkMzNhNjgyMTBmZmMyZTQ4MjdiZmU4NTNiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2IxZThlYmIzZjc3ZTZlMzI0NjU2ZjEzMDU0ZDM4MGNlODljODA5MDMxYTgwYTRkZDYwNmM0ZmNmMDY1NjRiMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODBhYjVkZmY3ZDc3NmRlZmUxZmQwMDFkYzEzYmJjZmRmODkxZmViNDViNGRmMTY1YzUzZDNiZmUxMDQyNjdlMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d5eee1c5dbcd4b71bc696fc06dfde9fe",
+      "statement": "POST /sessions/:id/scm-credentials is proxied to the session DO's internal /internal/scm-credentials path under a route policy requiring sandbox authentication bound to the session id, and the handler requires a repository context and returns credentials with Cache-Control: no-store without logging the password.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-runtime-proxy.ts#L399-L405",
+          "version": "repo-lines-v1:sha256:e057948f45623a10e2b0d3799a7ddd0d873433e54e2b44586cd850b30b919948:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTNkNTI1MTY0YzFjZWIwYTAzODU5Y2ExODRlYjdiY2U3OTUxZTg4Zjc5YzMxZmMxN2U5NWIyNjg0MTQzNzNiNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1YmUzNTMyY2QyYzc1YWZkMThjYTc5MzQ4YmI4YTQ3NWRhOWU4Y2MxMTc4OTVlM2M5M2I1MjI1NTQ1YzRkMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjIyZDM1ZmJmODVhMjE1NzFjNDA4NWIzNjk0Y2EyMmY3NzM1MDIzY2ZlY2ZjYmJmMmJlNzE0OWU4YjlkOTg3ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTcwZjgyOTU5Y2E5NDJkNTgzYTY1NDFkNjY4ZmZmOTE4NjQ3YTdhYmMzZjA4YzRhYzllNDdjYmUzODc1NGI0ZSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/shared.ts#L131-L149",
+          "version": "repo-lines-v1:sha256:d57c33ef2e95a36959607fc7357c1a5249d65e5bb26763ce95fa6af4c19c44ec:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4NTZlNzcyMzZiZjhkMDAyYjM4OThlMmM4NzBlY2VmNDkzMjg4ZmZiMzhmMDMyNjNiYTUzODNlNTUyYjMwNDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzNzc5M2UwMzk2YjgxY2JkZThlZjFhMDA5MGYyYjZkZjgzNGI3ZGQ1YmU2YzA5OTk0OTUyYWE3M2RjZGRkMjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjZWJiODUyYzMzYjhmYjIyNWI3YWQ0ODY0NWIzNTM5ZTQwN2EzOTRjYWI4YjYxNDg4Zjg2ZTVhNTE0YTc1YjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZTNmMzkyMmUxNzQ5YTk0Nzk2M2ZkNjkxMGJlMjI5ZmQ4YTAyNmY0MGM5NWZhZDk1NjIwZmE4YWQxNWM0N2YifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/contracts.ts#L40-L46",
+          "version": "repo-lines-v1:sha256:7344694d4ed07c8314550530f7b93df708bcabb6e456f592851e0b68d7ac6ed7:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNkM2FhOGZlZjM5M2M2OTM4NzQ1NzY1MTA5NWQzOTllNTdiY2M0NTQzODRhMDZmMjZhYzRlMDI3M2MyNzUyMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTZkYWY1Y2Y0YTZlMmFlOGViYTExNGQxMmNkNjc3ODgxNWYxNDBiOWI0OGY4ODk5MjEwOTQwOTNmMzVhYTkwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTM5ODJlODBlYzZkZDgzMmZiMjliM2I4ZjY3Y2E5ODQ1NTg3MTRhY2I4ZjZkNDI5NmQ5M2E3MmIzOGNkZTRmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzk5YzIwMTJiNTQ4NzgzNTA4Nzk1Y2E4NWYzZWQ0NDdhOWMyOGNhMDM5YTdiNTdhNDEyNGQ4ZjIyYTZiOThhYyJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/sandbox.handler.ts#L383-L411",
+          "version": "repo-lines-v1:sha256:02d8aafd6221168a3d9bdb7bc3e2553ee1626e302d55c62a8f099e2c98f82495:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiMGM2M2ZjY2MxOWNkMWZlN2QwZGE0ZTdhYzg4ZTZmM2Q1NzIxYzYyNTdmYWM5Mzg2NjRkY2EyMDM4YWVhYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e2ad1b2be92744b0b0e14f007cf36c53",
+      "statement": "ScmCredentialsService wraps provider generateCredentialHelperAuth — GitHub mints a cached App installation token with username x-access-token, GitLab returns oauth2 with its access token — validates the response, and maps provider errors to HTTP 500 for permanent and 502 for transient error types.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/scm-credentials-service.ts#L22-L77",
+          "version": "repo-lines-v1:sha256:10ea9d25e25795e00c492b2329e3de7ea751bc42c2f22a248ca0eb70b46af3ef:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlMDgwOGEwYzNkYTVhNTZjYmU3OGQ4YTIxMjI4M2VmYzEzMjA2NzI0OTYwNmZlOThhMjg0NDhiNmU1MmY2NTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzNjY4OThmMjU2MDVhZmYwZGViMmU2NGQ3MDc2MGU1NzNkOTNjYTU4NmFlYjIxODY5NjcxMWMyMTI1YzM0ZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L970-L998",
+          "version": "repo-lines-v1:sha256:ed87db8f14e26d7c9e670f98a82c795f9581c94cd0bb5116a144eedba5193c6c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0YzNmODA0NmVjYTc1ZDc0MzlhYmQwNDJlN2Y5ZjIzZDRjODYxMjJmOWU1YzUxM2U5MGQ1MzQzYTJhZTE0ZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmZjE4YWVhNDljMWNiMjBlMTU5MmE4ODNlOGExZjg0YTUyYWVkN2Y4OTFiNDhhNDBhMzUyYzM1Y2Y0MWUwMWEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L712-L718",
+          "version": "repo-lines-v1:sha256:39417789d8b583df1448c64b885532d998c6c4a65ee55d82b390afce7df07938:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDRjM2Y4MDQ2ZWNhNzVkNzQzOWFiZDA0MmU3ZjlmMjNkNGM4NjEyMmY5ZTVjNTEzZTkwZDUzNDNhMmFlMTRlMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmVlZWZkZDUxMTNkOTkwNTZmMWUxOWRlMWI3ZDViZWRlNmUwYTMwMWY5ZThmN2JlNGVhZDNmOGY4ZGE4NjZjOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjM5NTVmOWVlYTY5Y2RlZjI0OTcwZTZkYzE2YThkZDZkM2ZkYjYzNjZiNTJmZWQ2MDNiNDk1ZDZhZTEzMWJlOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_07da24213db94bc3b8190da37df313df",
+      "statement": "The credential helper's gh-token action mints a fresh token for the gh CLI wrapper only on github.com deployments when GH_TOKEN is absent and either no token exists or only the system's expiring fallback (marked OI_GITHUB_TOKEN_IS_FALLBACK=1) is present; failures print nothing and exit 0.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/credentials/git_credential_helper.py#L270-L313",
+          "version": "repo-lines-v1:sha256:fd86f9148f45c6c71200634a651f72ad9be408d56989a653d01ebcc651daa9cd:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4YmY3ZTFjZTJkY2NmMzk0ZmY1N2IwZjQyOTZlNjgyZDA0MzY1NjczZWZkMzAxZTA4ODQ5OGI5MTUzMjdiMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxOTViYTNmNzk5MWQzNzE0MmVhMjlhZDlmNDcwYmI0MDAzZmFlMTllY2FmYTQ3N2VmZGY5NTdiMmRlOWNhYzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRjZDk2Y2VlZWI2NDVhNDc2MDdhZDlmN2Q3NmFjN2FhNmQyZmFlZTgwNmIwNThlZjhkMTAwZjZmNDM0YmFmOGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_446ba5d78f9a465b83f318c610ca0d52",
+      "statement": "resolveGitHubCredentialAuthority selects a browser_session authority for user principals (requiring browser-session provenance and exactly one linked GitHub provider account, validated against the principal's user id) and retains the legacy token store only for service actors, rejecting non-user principals that carry browser-session provenance.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/source-control/github-credential-authority.ts#L42-L92",
+          "version": "repo-lines-v1:sha256:b187dcbc922e7b01ae3dbafbfcbb1ebd1eee6da381ebd9b686c14432914167aa:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI3N2Y1YjM3NTVkMjM0NjNmZTAyZjc1M2ViZDBiNWFhNjAxZGE0NTRlNDIwMmQzM2NhMTE3ZjNkN2JjMjc4ZjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e19e8b248eda4287b392ba5b9e18a110",
+      "statement": "The sandbox-shipped create-pull-request tool is the sanctioned PR path (explicitly forbidding gh CLI), resolves the optional repo argument against the repo manifest using canonical manifest casing, and POSTs to /sessions/{id}/pr with sandbox auth.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L156-L245",
+          "version": "repo-lines-v1:sha256:614a209b556d62e28df560f20e23569fbb4d01bc0a77e4521e3dea50e30e437c:eyJzZWxlY3RlZExpbmVDb3VudCI6OTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5ZGViNDY1MDkyYzFiODQzOWUwMWYxMDk0ZDFjNjQ4MTI3ZTc4YmRhOWZlMzM2ZjcxNTRjNjJjYmI1MWQ5YTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4ZDU1NmIzNGUyMTcxMzcyNjRiZDZkZTgwZWUxYTNhZjdmODY0ZDNkYmJlOTc2OTU1MDBkOGVjNGNhNzUxM2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2ZGM5NzhjYjlhMjAzNDQ5ZDY5NDI4MDUxODU3ZWUyNWY0ZWFhNzliM2Q1ZjA1MzkwY2M4NjY1MmQxODVmNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5YTcyNWE2ZmUzMWRhNzJkNGNiM2E3YmZjM2NlMTJkMmE0ODAyYWM2OGM4Y2Y4M2JlNTU3ODEyMmY3Y2NiMWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_89b279ed6b7e4c4894494fe8328be6da",
+      "statement": "The create-PR tool parses a full owner/name string by splitting on the last /, allowing nested namespace owners (GitLab subgroups) with only repo_name as a single path segment, and rejecting empty owner segments.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L78-L94",
+          "version": "repo-lines-v1:sha256:db9b3c6ec50cf0761e52b3e0f725b5596fa8a6225b4826ab1be85b7679074467:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2OWY1ZDg4NWM5MjI4OTcwMGJmZWVjZDhhZTU4OTZmNDBhMTBkOWYwZmEyM2FkMjE3OGE2YTQ4ZDkzZTVkMTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJhNzk5ZGFmM2FjMWJkYTkzOTJhYzAxY2I5NGQ0YmIxOWFlMTdiZDhiMWU1YTJjNDUzNzhjNmVlMmY2YzQwNTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzZWZlNjhiMjMzYjExMzQxNjE0YWRmNDY0NmNmNTJkN2JkNmE3NTkwYjA5YTMyZWEzMGIyN2U2YzlkMjkwMzMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8c1c2089670941868c96285a5fc39cbb",
+      "statement": "PullRequestHandler.createPr re-validates that the requested repository is a session member via resolveSessionRepositoryTarget (outside the session → 403, ambiguous/half-specified → 400), because the route is reachable with sandbox auth, then resolves the prompting participant and its PR auth.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/pull-request.handler.ts#L51-L122",
+          "version": "repo-lines-v1:sha256:0f5e8fc392df8f0c3b4396f4b15c49e97184bbd104a91f4615f6f0250bd68b70:eyJzZWxlY3RlZExpbmVDb3VudCI6NzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhZTc5ODdjM2JjNTMwZjM2NGI0YWI0YTdkYzA4ZmFhNTk5ZGVhYzc4Y2QzNDlmNWI3YzQ0ZDgyNDdmMzVlN2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0ZTQyMDhjZDZmZmI4YzRhMzU0N2IyZjU0YWRhMTk5NzhjM2YzNjVlNzhmOTUwMmVmNTE0NWNkZDJhYTg1NDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1ODg2OTJiODM1MTRjZTRjN2Q2NzVlMjY4MWY3ZTlhOGIwYWEyZWY3YWY2Njc0ZTUyYzY0MWY5ZGNlY2NjOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyM2RmNDU3NWQxM2FlNGY4YzAzZDcxY2ZmMjg2NzFmYTM3MWQ4MzVkYzliMWMyNThkNmYzNWI3YjdlMDRlNDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a2d68f309774515b89fef10b60da59c",
+      "statement": "ParticipantService.resolveAuthForPR returns the prompting user's decrypted OAuth token, or auth:null when the user has no SCM token, the token is expired and refresh fails, or decryption fails.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/participant-service.ts#L390-L445",
+          "version": "repo-lines-v1:sha256:8fbe734416d14a12387f7aa8c798711ff9a2eea4b24425dbfbd2e0dc46d3aa12:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2OGQzNTUwZjJiNTNmYTIxMzdmNzkxODVjMWZhM2Q2NzIzY2JlYTg0MWU1ZjA1ZDhmOTY4NjViNzgwM2FjODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRlNzFkZTEyOTA2ODUyNWNlMGQzMWMwODYwOTM4OWEwY2U2OGVkNTlmMmI2ZDhhY2YxZGIzOGZkMjEyNWRiZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_855b2ccaacf9481885310092973432db",
+      "statement": "When prompting user OAuth is unavailable, PR creation falls back to the App installation token (input.promptingAuth ?? appAuth); the providers retain buildManualPullRequestUrl pull/new URL builders (GitHub /pull/new/<base>...<head>, GitLab merge_requests/new), the sandbox tool recognizes a {status:\"manual\", createPrUrl} response into a manual envelope per the shared pull-request-tool schema, legacy manual_pr branch artifacts with createPrUrl metadata are rendered by the web UI, and the DO's current create path always opens the PR with the resolved auth while ignoring prior manual artifacts when creating.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.test.ts#L786-L794",
+          "version": "repo-lines-v1:sha256:d9b51a68525b0b28c73a4315d14bfe216fd543d7393363278727d119353f6a03:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDc2MTJjNTA0N2NhY2E3ZGZjMmY0MDViNGJjMGEyZjg3YzJkNDk5YzFmZTMyMjM4ZjI4ODM3ZTRmZGQ0NDhhOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTgxOGVjZTU1MWM1NWEyOTEzMzAwMDM4OWZmMzViMzY2ZjE0NjQzMjU5YzEwYzRhMzgxMjY1ZTRkMGZlNGE3YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjE2NDhiYzJhYTI4OWQ2YzZjNzBmZDZmMjEyZjU4ZDAwNTliZjMyNTMxZTRhNDUzZGU3NzY2MzI5NmZkMTUzMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmMzOGNiM2Q0ZjU5ZjIwZmU2MzQ0Njk4Nzg1ZTRlMjMwY2QyZTcyZThhMzQyMGUyYTc5MzI0NGNkNmE1Njc2YiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L176-L180",
+          "version": "repo-lines-v1:sha256:92048cee2c4a56cb2d97423f06c9e9878243bb4f1c762a26a1a81d324c4b27c8:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGYyYTJmOTk2ZjA4ZTY4MGJkMjkyMTM1YTZmYTQ5NzhiZGEyNmU2MDJkODRmMzNjYjFkNTk0Nzc1ZDQzMDRiNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjk0NjdhZmRkYTRhNGQ1M2NhZjJmNjA0NThjOTBmYWFmOTk2Y2M0ODdkZjBmNjMxYjVhMWM0Y2YwYWM2NjYxMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmViYzNlYmYxNjkxNGMwZWM3ZTFiMzZmMzNlNjkxMjhhZjY1ODczYWQzZmE3NjAyNjZjNDQ3MjVhOGQ2MjQxNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWI2NThmYWU5MmYxMjJlZWMyYmE4MGQ3NDI0NzRlYTBlODc1NmY4YTI1MjFiZWQ0ZTI4ZTM3ODk2Mjk3OTlmYiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L363-L365",
+          "version": "repo-lines-v1:sha256:ad0b8d89b7be996a1c48dbaca68e2c4d3aa58a86a3b4c07e5306e2c8bd3fad9d:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTk2YzYyYmFkZDY4NjY1MzMwYWM1YThlZjFlZGJkMzk3NTBkYTBhNzRiOTZiM2I4NGM4YTkyYjQwMDljM2ZiNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWYzNmY5NDkxNzcxM2Y5MzllMTg3MjJlNTVmZGNiNWJjMTRlNjIzYjY1OTRmMzViZjc2NTFlNDFiOTYyMjNmZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGQ5YzUxMjJhODFmZTZlMTkzZWU1MDM4NTMyZTQ5OWIyZWRkODEyYjFhMTNkMTUwMzVlMDVjMmIxMTllMGEyZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWNjZjA2MWI3OWRiZjhhZjQ5MDEzYTM1MjQ0OWZiZTkxOTY2NDdiZTY2OTkxZjBmYWI0OWVhYjdjNGM0ZThkYSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L1000-L1006",
+          "version": "repo-lines-v1:sha256:c3141b2f5c337d711dee29e6ab8068607edcfd7206bf02671131366b492b6416:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzE2YzBmMWQ4NTk2Y2VjOTg3YjJmZDdlYWFmMDQ2YjA4ODdhMTJhNjZhZmFlNGY5MDY3OGQ4N2VlZDJlNTE3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTdkODYzMmU1NGU5Mjk4YWJiOTU4NzI3ZTJkNTE0MDhhYmFmMTM2NjAzNTM3OTEwMTQwYWJmNjViMzBhYjYxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTE5YThhMWNmNThlM2Q5OWM0ZjU0ODE2ODc2N2UwNzRhZjg2MWIwZTA1NzA2ZDU3OWQ3NWEwM2Y0MDE1MTViMCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L720-L729",
+          "version": "repo-lines-v1:sha256:c33fc06325f060be7b465c06415927b7f8c152146949d7938581885a1805d477:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNmMwZjFkODU5NmNlYzk4N2IyZmQ3ZWFhZjA0NmIwODg3YTEyYTY2YWZhZTRmOTA2NzhkODdlZWQyZTUxNzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExOWE4YTFjZjU4ZTNkOTljNGY1NDgxNjg3NjdlMDc0YWY4NjFiMGUwNTcwNmQ1NzlkNzVhMDNmNDAxNTE1YjAifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L292-L295",
+          "version": "repo-lines-v1:sha256:8053b5d4144a8edf8ea597b56ae1c9a99180973ec1704f622825dfc02070c95f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVjNzMzNzQxODkyZmUwNDQ1Y2Q4MWE5YzMxYWI2NDVlMWVlZjRiZWY5MWZmY2I1ZDIyN2YxNjJmNWE2YWJjNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWI2MmY2MGQ4NTkwYTU3OWNmNDZmOGQ2NzM3OGM0YzU3MmI5NjJjZWNjZGI5MGM3YTVmN2I0MmI5NjA3ODJhNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjllMGQ2ZmE0YTc2NjUxNWVhYzY1ZjIyOWFhNTA4NTY0NGM2Mzg5NDY1M2VlNzEwMzcwY2MzYWM1YTBmYTk5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzllZWI0ZDE2NmY4YTM2ZjY0NzA1MGMxNmQwZjBiMWUwNDIzYzgyZmRjYjJiYWY1MjQxMmNhY2QxNjU1YjhlNyJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L96-L133",
+          "version": "repo-lines-v1:sha256:028dbc1d4b47dbcb4e125e6ff4db0e0be63ff687b2fedcd5ccc34e126f8b2094:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmM2RkOTM5NTA5MTQzMDhjMTRkYWQ1NmMwNTQ0ZDY3ODExOGE4ZTEzNDM2N2FlNzE2YjhjZDY0NzM5NjlmMTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ4N2Q2NzlkYmE5MDU3NzMzMjRhNWYwMzk0ZTI3MWYxNTY1YjllNzg5ZWZiNDBiYzcxM2IxZWYwYjlkYzI3ZGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzNDRmYWM0M2QxODk3OGNlZTUzYzQxNDk5N2ZlYTJlYzRlNjU0NjRmOTNhYzM1YmViZDk2NWQ1YjhhNzc2NTYifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/pull-request-tool.ts#L13-L25",
+          "version": "repo-lines-v1:sha256:54bf73561aa8f1512a0a2701b269404d8074a756135d4b741b3720135f73ca47:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5ZTM1YjlmZDE0OTAzNWViZDU0NDljMjVmNWU5Y2MzZmZkZDBmMDc5N2RkYWUwODcwNTU2YjUwYWJkYTNlYjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI3MjM5YWFhMTg1ZWI0N2JkNGVjYzM3MDZlY2Y4MmQyODE3MGI0NGZjMGI4ODg1NzViYzIzZDJlYzlkYzMzODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY1ZGIzOGNhMzMwYzY1ZGMwNWI4MzkyNjhhYzI3OTNjNDgzZDZjMzNmODY4NjE0NWM0OWY0OTQ2MTlhNTZkM2EifQ"
+        },
+        {
+          "resource": "repo://packages/web/src/components/sidebar/metadata-section.tsx#L121-L126",
+          "version": "repo-lines-v1:sha256:2264acbfab7d406a2a0618866d42fa001fb874d4586eded2f25bbccf51371967:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODYzYzBjYWEwOWE1NDM4MjZiOTZmMzkxYTAxY2E1YzUwNTFlMTkzZGY3YzA5NTA1NzU5MmE2MjFhNjRiNzY3YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzMyMDQyNmY3YjBkM2M0YmI0MmE3ZTE1Yjg0MjJlZjM5YzI1MGU5NTczYjQ2YjdiNTE0ODhlNzRkNzgwMDk5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODJlODQzMDdkMTMwMjYwNzNkMDIwNDBmNDYzMWIxZWIzZjI3YWU5NjMyZTUwY2NjN2ExZjkxMmY1YmU4MTkzZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjVjYWUwZjc1NDA4YTE1Y2Y4ZTE1ZjJiNWM5YTUxZjMxMGVlMjIxMjJmMjg1YTk1NGE1OGEzM2Q5MWEzOGZlNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ab1b65f80264a00b4370ad64ce126af",
+      "statement": "SessionPullRequestService.createPullRequest re-resolves the repository target itself (defense in depth), takes a per-repository in-memory claim answering 409 on concurrent creation for the same repo, resolves SCM settings (draft-mode policy, PR label; failure → 503), and generates fresh push auth before pushing.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L107-L133",
+          "version": "repo-lines-v1:sha256:408933ca89b8fa06bb38f9727e4285e1feb25f42e728dc8c4da3dabc5202105c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3NDMzM2VkMTAzNTU5MzliZDk2YTU3MDdhNDM5MjQ1MmVkYzEwMTU2NmYyNjNkOGQ1MjUzYzY0NWYwNzIzMjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmYTk1NTU4MmMyOGE5ZmU2ZjBiYmQ0MWQwMjRlOWFkZmYwMmE5MzM1ZjFhNTczYmM0Yzk4Zjc2NjlmNDE4YmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwYmUyOGJiMjFiZTY5OTg2ZDUxODBlYjYxYzliYzcxZTc5NjNiYWNkNmY5ZjVmY2FhMzU1ZmQxMmE0MzRiYTIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L190-L254",
+          "version": "repo-lines-v1:sha256:184fbd3fbdfbcb14da6a4362c952308a97ba627624fde761e8b0fbfc4c0182fd:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NzczZmVjN2E3ZmUwNmNjNjYwNzU5MmQ0MGMxZDFiMWNmZGMzNDE3OWMyMmI2NjdkMzMyMjVlNWM3NjkxMGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0MGU4MDNhZWNhNTRhMzAzY2UxZjgxMzEwYTRkZTg2MWJlMjM5YjJkYTk0NjRmYjkyMGJiNzVkYjkxYWU2YTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdmMGQyMjdjMTYzNzgzN2ZlZWE1ODhjMDAxYzY1Y2I2MjJjYmUzNDcyYTYwM2Y0ZTlhZDY1YWQ2YmU4MzIzN2UifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c4db2e984a404152ace8a087ce63baca",
+      "statement": "The PR base branch resolves as requested → the target member entry's base branch (row, or scalar mirror for legacy sessions) → the repository's default branch; the head branch resolves via resolveHeadBranchForPr with precedence requested → stored session branch → generated open-inspect/<session-id>, with sanitization rejecting HEAD, leading/trailing / or ., whitespace, .., @{, and refspecial characters, and skipping candidates equal to the base branch.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L265-L294",
+          "version": "repo-lines-v1:sha256:b6b5e4a75c47f45c4d1b3444236bcee53d8d34bc6d93d51617e930e956f2bb3e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3OTAzNjQ0NWZhMDU5MjBkNzEyZTE0ZDQ1OTcxNTZmYjAwZTU1N2Y0MWRjMmUwZDUxZjU3NDFmOTk4OGQ1YTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE4Njk4OTlmNTg1MDBmMzE0ZGJlNTk1NzFjNTU1ZjFmYjNjODk3YTA2YzU4ZGJkNDI3YjVhOGRjYzg2Yjg4MGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0NDg0OWRjMzczYTgzMTdiNWIwNjgxOWNlY2RlZTM0ODRiN2UwYmU2YWEyZWNiNDJmZTQ4ZTA5YTAyODEzMDUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/branch-resolution.ts#L20-L82",
+          "version": "repo-lines-v1:sha256:42db731ea799722a3ecd322af4be3d07e1390ba33f750c7c7fa3c6205a31cc39:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5YmVmMTNiNjA5ODQ2ZTcyNTljMTM2MWYzM2RhMjkwMGVlYjA0NTRhMTg0NjM2ZmU1ZTcyYjA5OWE4ZGM3MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwOWNkMGY1MjMzNjQ3MjQzZWNhNTc5MDZlOTI0ZmYxNWRjMWI5ZGQ0ZjRkODY2OGI2MWEzMWY2ZDNmNGZjNWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/git.ts#L8-L24",
+          "version": "repo-lines-v1:sha256:bc3644b7dc7dd464670f14e7df44cc33980e6e7b330271db8cf598a5449d2162:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4NDQyZDQ3YjJjNzE5MjY0MzllODQyYzQyODc2MjcxNWFlNGQ2MmUyYTc2Mjc4NmMzMTM4ZjRjN2ViYTQ2NGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMTE2MGE5MmVlNWQ3YzE0MjlhNDNhNDI0NTczMzg5OGIyMTY5NjE5NWJmZjlkYzJjYmFhN2VjMjRkZDcyNjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRmYTlmZWNhZThmYmFmMzhjMWY0MGIwYTMxNzUwMzUzNmI3MDI5OWNiNzhlNmRjMjNlODg3Y2Y2OWU5YjNkZTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2MWUzZDczOTIwMDMxMWIwODAyZDFjODMwMDg2ODliOWU4YmM3ZmNhOTRhYWYxYjE0YmI4ODQ4NTE3MDM5YzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_74875834dae84f28ab312f7e3d8a9496",
+      "statement": "The provider buildGitPushSpec produces a token-embedded HTTPS remote URL plus a redacted twin and a refspec force-pushing HEAD onto the sanitized head branch; SandboxPushService delivers the push command over the sandbox WebSocket keyed by (repoOwner, repoName, targetBranch) and assumes a manual push succeeded when no sandbox is connected.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/sandbox-push-service.ts#L40-L90",
+          "version": "repo-lines-v1:sha256:37ef122917f17b78c79f4d10867834baebdd8c7fe52fd1096a251dfb021df907:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlNzExMjdmN2Y1ZjE3MTdiOTZlN2U5NzY5MGE3ZDE4MWE1MDcyMzdmY2FkMTg4NDBiYmIwOTM0MDIyYTkyMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRjMjFhYWY2ZjgwZmI0NzZmMDQwMGE2Zjk3YzA5YTExZWI0YjMwNjkzODE1NmM0ZTMyMjQ5ODk1MmE2MDExNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0Mzk3MzRhZmVkMmI0YTE2MzRmZTJhMTgyYTdlZWNlN2Y4NzRiMWU4M2U4NDkzYjA3MTNiNTFjN2NlN2E5MjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYyOTk3MTFjZjNmMzcyYzgwMTdiODQ2NjY2YjQxYjI3ZDYwYWE1ZDBiMTAyMjMxYzJkNTk3NzVlNWM5NGI1YjAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/github-provider.ts#L1008-L1010",
+          "version": "repo-lines-v1:sha256:205f925ff78d338c63e30bd50d22636e26a7f787d8d3644bdbb85659a8061e79:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDA4MmNjNzYwYjFhOWFmZDI1M2I2NzRjZTZiOWNhNGRlNWMwODMwODEwZjJmNDMwMTgwNzczYmY5NmVlNGQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjYwYmEwODEzOTY5YTBiZmE4YzJjMTRmZmFjZDllZWVkZGJlYmMzOGIyZjE4MTQ4ZmQwYzc5ZWEyOGI0MTcwYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzBhMTkzYWRkMjlkYzZkZGRhNDk2MWNkOTA5NGQyNDAyYTEyY2VjNDUyMGI4YTMyMTQ5ZDZjOTE0YjczMDU4ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTgxOGU2OGY4NDg0MzUwZDc1ZmUzOWQ0YTdmYTVmNGQxNTA2YjRmYjRmOTllOGFiZmIzMzQ2YTMzZjg1OGYxMSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L731-L747",
+          "version": "repo-lines-v1:sha256:c44de4c8263bc875272cb55840403b748be8f891f2cdb872c1583c891e71037b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwODJjYzc2MGIxYTlhZmQyNTNiNjc0Y2U2YjljYTRkZTVjMDgzMDgxMGYyZjQzMDE4MDc3M2JmOTZlZTRkNmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYjNlN2NkMGMzYTYyMzA0NzY2ODE2MWQxMDRlOTlkODYyMDljYTNlNzc1NGEyNWIxMTlhNDkwNzg3ODA0MjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3OTI5ZTkxZTBmOTljM2U4MjVkZTY5YjQzNWZiNjQ4NGQxYjBhMWRmMmY0NjU2MWFiZjFhMjlmMDQxODhiODgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6e7ea5b611bc49b095661a1cefe2cac4",
+      "statement": "PR creation serializes in-flight requests with PullRequestCreationClaims (a DO-instance-scoped in-memory set keyed by lowercase owner/name), because PR creation spans multiple awaits during which the DO serves other requests.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L98-L133",
+          "version": "repo-lines-v1:sha256:53a3a250b59f75c4073b6308b5a3f317f25e5b6223e936c508ad8e5965d2d143:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVhNzcxMTYxYzc2YmEzNWQ5NDEwZjlmZmI5NDczZWUwNDNkNzg3NWQyNGFlYTAwMmNlZjQzOTY0ZDRiYmVhZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwYmUyOGJiMjFiZTY5OTg2ZDUxODBlYjYxYzliYzcxZTc5NjNiYWNkNmY5ZjVmY2FhMzU1ZmQxMmE0MzRiYTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_37e92bfb994d43cebea23af95881e99f",
+      "statement": "The existing-open-PR walk resolves persisted pr artifacts matching the head branch against the provider's live state: merged/closed live PRs release their head and heal the stale-open artifact via the canonical snapshot application; a genuinely open PR is reused (force-push + updated:true) only when the head is the checkout (explicitly requested branch or the generated session branch), an open PR holding a fallback-resolved custom branch answers 409, an explicitly different base continues the walk for a separate PR, and unverifiable numberless legacy candidates keep the head claimed with 409.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L296-L361",
+          "version": "repo-lines-v1:sha256:a8f526850bcdc487259394299d18498c9fd02d570c70928f2d1610457f4abbfe:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNmNjQ3M2E5Nzc5Y2ZkMDkzMDBlMDViZTVkMTZiMmIwOGU3MGYyZGY1ZjcyNGMwZGUzYzc1MTNlOTY2Y2QwNzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkOWM1MTIyYTgxZmU2ZTE5M2VlNTAzODUzMmU0OTliMmVkZDgxMmIxYTEzZDE1MDM1ZTA1YzJiMTE5ZTBhMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRmMzk0MGM5NzE5NTIxYzliNDJlODYzODY2MzcyMWQ2NWI4MTAzZWYyODVkYjZlZTJjZGU2ZDA5NTU3ODM3MzcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L482-L598",
+          "version": "repo-lines-v1:sha256:cda45ebebaa399caa0fe10d979c3f0d9f5521ef7eb7dbbdb1dc70b8f86011fb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0ZjJhMmY5OTZmMDhlNjgwYmQyOTIxMzVhNmZhNDk3OGJkYTI2ZTYwMmQ4NGYzM2NiMWQ1OTQ3NzVkNDMwNGI1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5N2Q4NjMyZTU0ZTkyOThhYmI5NTg3MjdlMmQ1MTQwOGFiYWYxMzY2MDM1Mzc5MTAxNDBhYmY2NWIzMGFiNjEzIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlZmZhYjI2MGQwNTE5NGFmNDNkN2I3NGZmNGJhYTE1MzMyMDI3YWQ0MDU1M2Q5MzFhOTA4Yzk2MjlkNGFjNjkwIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_8db2c407dedb4a59a224cae32feb08ea",
+      "statement": "On new PR creation, the service appends the 'Created with [app](sessionUrl)' footer, writes a DO pr artifact whose metadata derives from the single snapshot mapping in pull-request-snapshot.ts, best-effort upserts the D1 authority record (failures logged and swallowed, repaired by the first webhook or read-through), and broadcasts artifact_created and session_branch events after updating member rows and the scalar branch.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L363-L433",
+          "version": "repo-lines-v1:sha256:c846d6df08a8311edac788d4b482dec786772da54ade5ad7ffc81344d4a739f4:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NmM2MmJhZGQ2ODY2NTMzMGFjNWE4ZWYxZWRiZDM5NzUwZGEwYTc0Yjk2YjNiODRjOGE5MmI0MDA5YzNmYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlMzNkYzczMWU3ZDA3YjFmMGMwNWNmZWJkN2UxOTIyMDIzZTYwNzdiYzBhZTdiYTMwMTQ4ZjUwODMzYTI1YTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkOWM1MTIyYTgxZmU2ZTE5M2VlNTAzODUzMmU0OTliMmVkZDgxMmIxYTEzZDE1MDM1ZTA1YzJiMTE5ZTBhMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjMDBhZThlMzRiNDRmZjRjNmYwMGRiMTg1NWI2MDIwZTMwOTRiZjhlNzI0ZDQyMmQ4MzI3MTI1NjVhMDU4OTIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-service.ts#L461-L480",
+          "version": "repo-lines-v1:sha256:321c1a6288cd48aa0ba0cb0efbc2c1b4dd2bca213d31a82813e06d5e3c800a95:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4OWE3OTMyODA1ZWEwMmI5ZmIyNmE3M2VkNjZjMWY0ZWI3MTA3ODI3ZDZkYjMxNmM0YWRjNmJkNTVhMDZhMDMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/pull-request-snapshot.ts#L1-L179",
+          "version": "repo-lines-v1:sha256:b124986cbae1f5911d26960f0c6945e4db08367712a189728658a5a9b122d08e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTc5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_21b4165a77104c969cf81bf259982e66",
+      "statement": "The bridge's push executor normalizes the pushSpec into a PushRequest (absent fields to empty/false), rejects missing specs, partial repo identity, missing target branch, and missing refspec/push URL, resolves the checkout from the supervisor-written manifest entry path (spec strings never become filesystem paths; legacy single-repo sessions use the sole /workspace clone), and runs git push with a 300-second timeout, terminate-then-kill escalation, and redacted stderr, emitting push_complete or a single push_error carrying branchName and repo fields.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L79-L152",
+          "version": "repo-lines-v1:sha256:7889dd218c321cf7c10797342a8b977fd642006e2bb2bc00fb78a8553e128442:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2OWExMzk3NWMyNTZlYzgzMjBlMjAxNjA4M2M5NmRmNjM3Y2EzZDM1YmViZGUyMzE0YmVlM2E0NzExYjU2Y2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0NDVlMTdhZGVkMzA5NzQ1ZmZkYTMyOWZjZDY1ODYyZDUyOTZjNGVkN2IwZmVjZWIzMzA0NzVmNmUyNzRjNjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwODgwMzAxNGI0NjRhNmFiYWExZGZlOGZiOWJiYjgzYTAwNzRmOTY0NmJjNDlhOWQzMTc5ZGViMmZkZjAxYjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5OTI0MGZmOTM5NTQ1YWY3ZjgxNGY3OTlhMWQ0NGYzYWM1YjliMmY4NWM4MDJhOWNlODdjNGQ3ZWVlZjRjOGEifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L844-L1051",
+          "version": "repo-lines-v1:sha256:33727807d73ccdb5f1011bf830b1ed259e1301c0af3649cf278f1730b272af0d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjA4LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJiY2EzY2U5YjA5MTM1NGVmNDI0ZGU1ZDExZTJkYWNmOGEzOGM4MGQ5Y2RkN2VlZGMyN2UxMTY2M2MzOTM4NWZjIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI1OTA5YTUzYTYxOGQwMjhlMWQzMDAwYzBhN2FiY2VlY2JlNWZiMzdmNGU1MTFlZmU0NjY0M2ZhZDZlNjY4NzJmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlZjNlODIyNGNkODdkMTVjMTQxYTU5NDU0YTk3NGU1NTEzZDJjMDkwYzBlMDk2ZDc5YmIxNjA5YTNmOGU1MzZlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJhMTA4NTJhM2ZmYjllZGU3ZjJlNzhkOWExNGQ1YmFlODliNzdmNWYyMDI1N2Y2MmJkZGQyNjQ3ZjQyOWM2MmQxIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_20f741b65d9f49d092a5b2548b08fbe9",
+      "statement": "The control plane's internal POST /internal/github-event route receives pre-normalized GitHubAutomationEvents from the github-bot with poster identity enforced, forwards them to the scheduler for automation matching, and piggybacks PR lifecycle tracking in waitUntil, where a lifecycle failure never affects automation matching.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/github.ts#L1-L27",
+          "version": "repo-lines-v1:sha256:e7837aba4c96a2651b3cf309ed876a38bae127241389012e020d8c5efd438e37:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwMGQ2MDAwODE3Y2RlMTYxN2FkZTI3NzI2NDU4NDdkNjAwZmVjMjY2Y2E5YjZlMDVlZGJmMTAyM2YxZDI1ZWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjNTAwMWIyMWE1ZDc2NzlkODcxOTAxZWRjYzNkZmM3NTU4MjQ0ODJlNWIwOGZjNjVhOTkxZjQ0NTdlZDkyOTIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/github.ts#L82-L131",
+          "version": "repo-lines-v1:sha256:a46a727f640708194a390a493990f4c50a5b5f5bf4d20b32b55a2f9666e77302:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyMTlkYjJlYzdhOTc4ZTRiMDUwNjM3MjM5MjI1NmJkNWEwYzI4OGJhZDFiZWRjYzEzNjRjY2QyNWI2ZTZlZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5ZTk1YTBlZjJmYjcyZTc2NTg3MmJlNzc3OTIwZjNiODE0NWUwMmVjYmFlZTk0ZGE4ZDM3MjYxZDMzY2Q2MTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7bf52535b2eb42b7bd969f853c5ff1b9",
+      "statement": "processPullRequestLifecycleEvent correlates identity-first by (repository_external_id, repoOwner, repoName, pr_number); on a hit it builds a PullRequestSnapshot from webhook facts (state+merged disambiguate merged/closed; draft only while open) and runs authority-then-mirror: upsert the D1 record and only if the monotonic guard accepted the write push the snapshot into the session DO's artifact mirror, while a thrown upsert still mirrors and reports record_write_failed.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/pull-request-lifecycle.ts#L1-L14",
+          "version": "repo-lines-v1:sha256:6568f12e54ec37f0fa4fa58a0ffb93d9b2ae9504483cbc36c9d8182860057e7c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmNmVmZmNhYjMwNWM0OGIwY2IzMWUwZjhhZDBhZTM5MTAxZmMwZGE3YzczZDhmODRiNjc2OTVkMzllYzc3YjgifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/pull-request-lifecycle.ts#L70-L190",
+          "version": "repo-lines-v1:sha256:071ab1929798183c85df101a9997006cc8c26652a5c5fd13b2a562f675e25e59:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlYWYyMmNmMDczMjU5MmMyNDcxNDFjYmU2MWVmYTExMDEyNjEyZjVhMzEyMmI5YWY5YmJhZjUyZjU3MjRkMTk0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI1ODNlMTgzNjliZTk0ZTVhMzAwY2I0YTVjMzQ1MDEzZDc5OTI1MjA2YTFkYjFmMzMwNGRhZWQ1NGMzOTVlMTY0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjMGYzOTk3Yzk2NWIzNzAyYmI0MTc1YzNjYjQ4NjE0NmEyMjFhYTA5YWZmMTVjMGNiZjMxM2IwNWJkZWYzOTMwIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_6eac4c9aa29a416e8b98ad5663ddd560",
+      "statement": "On a record miss, the lifecycle branch fallback derives the session id from the open-inspect/<session> branch convention and requires the session to be associated with the event's repository, drops cross-repository (fork) heads, requires a matching DO pr artifact (preferring the artifact with the webhook's PR number, numberless legacy metadata only when no numbered artifact matches), and requires sufficient payload facts, with a distinct outcome for each guard failure.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/pull-request-lifecycle.ts#L126-L148",
+          "version": "repo-lines-v1:sha256:3e06ea721b8ceb1caeaa349e679a59962509e9c5a843af718a9d3822ae5efc4e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4ZDZlMDI1NmU2NjE2MzY5YjRiOTYyMGI2MGU2NTc3ODdkOTQ4N2YzZWE1MmExZWRmOTU2MDZhMDYwOWU0NjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkwOTcwOTE2ZGM0NjVjZTg1ZTU1OGNkYWZiZjNjMjk0ODRmNjIzMTU2MGI5MzRjNWExYTRiNzJhZjZmMmU4NzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2YmMzNjE4OTBhZDEyZTllYTg3MGI1OTFiMjc1ZDM1YzQxMDU0MjY5M2VhYjE0MTgxZmI1ZDk4OTBjZDRhZDQifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/webhooks/pull-request-lifecycle.ts#L192-L264",
+          "version": "repo-lines-v1:sha256:1d4e71d228ad866b24b26cf3d80eacc7d01e10cada1f4d5b0d0df5cd91c362e0:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_468be584756d47449814b066af4ca81d",
+      "statement": "POST /sessions/:id/pull-requests/refresh forwards to the session DO's internal refresh route, kicks a background read-through, and answers 202 immediately without touching the session index so PR changes never reorder the session list.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/session-pull-requests.ts#L12-L37",
+          "version": "repo-lines-v1:sha256:489aa972795fa3732c5773aae00d9f2b4fbca0b6482a08b8ad031f5c0746f054:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyZTZmY2RkNGQ3Mjc0ODdlOGI4ZDdhNDM3N2YwNjJjZDFiY2U1OTQ0NGQ2ZDczYWE4OGNhNTg0OGY5NGI0ZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YjIxM2IzZWQ2MGUyOWY2MDQxYTI1ZDZhOTYyNTliNzkwODNkMWU4ZDZjNThlZmM1Nzc1MzY3NmI2MjI0NjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1ZTI2Y2Q5MjM2NmY2MGQ4ZWQ5MmQwMjM5ZjA3ZmVmNzRjYWMxNGFhNjlhZGRmOWMyY2MwZDExZWIwMGE0NjMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/http/handlers/pull-request.handler.ts#L178-L187",
+          "version": "repo-lines-v1:sha256:c6b52b072c79b2b7421de581112f32eedaca62deb4f9857fc28c51a3af04811b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmMmEyZjk5NmYwOGU2ODBiZDI5MjEzNWE2ZmE0OTc4YmRhMjZlNjAyZDg0ZjMzY2IxZDU5NDc3NWQ0MzA0YjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhNGUxYTMyMjhiNTA5OTU5ZmFjNjYwM2ZhMTJiZmEzMGUxNmQxOGE3NTdmOWIxYmY3ZWM2ODU4ZWE3MGM0ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6272d32a00c4de4bab75897af09f714",
+      "statement": "The github-bot normalizes issue_comment-created events on PRs (excluding explicit bot mentions) and submitted pull_request_review events into GitHubAutofixEnvelopes and sends them to the AUTOFIX_QUEUE; enqueue failure is logged and does not block main webhook handling.",
+      "evidence": [
+        {
+          "resource": "repo://packages/github-bot/src/autofix-ingress.ts#L51-L80",
+          "version": "repo-lines-v1:sha256:b1ad3e05a875418f4c5daa7d67ca041074ec63a8856b976eedc6241788a5a25f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5MzJmOTExMDVmNTc0YTMwYTRkNGI3NmY4NDAzNDM5OWI2ZGZkYzVlMmIwMDE0NmE1MzQ2Njg1YTQ5MjgzMWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYxNDQwMWNiMzA4YTI4NmE0NDg0YWUzOWExNTlhZGVkMDcxNTNjZDQ5MzM0MGU4ZjY4Njk2YmJlZjUxYWYwZTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2ZmY0ZmFkM2MxMzY4NDRiZTdlODQ3ZDQxNDkwODZmM2U0NWMyZTgwOGMyNGNjMDcyMzFmMTNkYTQ0N2ZkYmYifQ"
+        },
+        {
+          "resource": "repo://packages/github-bot/src/index.ts#L101-L118",
+          "version": "repo-lines-v1:sha256:fab6750ff7fd6bac6981721cd42cfe8af9a6941d50fb19247d5beb5e90c34e31:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0NjhjNjg4ZGViMGViY2M4MjZiYzhiNjk2NjdlNWQ1Mzg5MzdlODc1MTdiYzMwYmRhNDE4ZWM4Yjc3MGJjZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c60366f2489d433fac6de340d5f712db",
+      "statement": "The control plane worker's queue handler routes queues whose name starts with open-inspect-github-autofix- to handleAutofixQueue and everything else to image-build finalization; the AutofixQueueConsumer retries unparsable envelopes, marks feedback failed on permanent SourceControlProviderError, records errors otherwise, and after 5 delivery attempts marks failed (delivery_attempts_exhausted) unless a concurrent writer won the terminal transition, then retries.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/handler.ts#L39-L47",
+          "version": "repo-lines-v1:sha256:8fe2531f9451520f6fb70e147f0053ee154b502f2428ab278bb287100ad07da3:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjc3MDIwYWE1YjAxMzQwYmIxOGEwMTkzOTlkOTZjYWZkNGNlNzQzMmU1ODIzYTQ1NDdjMjVlM2VmM2MxYmE4OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWQ1MWFlMjg0OWIyODMyMWY5MGE5Zjk0ODBjYWYxZjAwYjdjMGNjMTliMWE3NjkxMDhkNWQzNzBlYWFhMGZiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTAwMTc0YmQzNmEyOTUwN2Q0MjA1OTNjYzJhOTk1YmQ2Y2ExOGFhNGMyNTJjOGVlNzk1NDQ5ZTY3ZDUzNmMyZiJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/queue-consumer.ts#L39-L77",
+          "version": "repo-lines-v1:sha256:07c4fe8e5328fcac825e01dafe277c7a4b4ba27e43d690b62969337a0aecc720:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNTIwODhjNGQyNzkwYmI2Njk3NWE3ZThjNzcxYjgyZTkzN2MzNmQ0ZjU1NzJhZDdhYzBlYmFjNGVhMzUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2NWQ1NzAyYjg0MGE3NmY5MjEzOWYyMjEwMmUwMTE0MjhiMDdmOWY5N2QzYjYzOWJlNTY3YTRjNzk0MzExZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L86-L92",
+          "version": "repo-lines-v1:sha256:f1614e3850d0022da8def49400d1e1e3eee22071ef1d2bbd7f4318c361815c93:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWFmMjJjZjA3MzI1OTJjMjQ3MTQxY2JlNjFlZmExMTAxMjYxMmY1YTMxMjJiOWFmOWJiYWY1MmY1NzI0ZDE5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmE5YTFkNTU5N2MzNWMxYzUzZWU0OWY4YWRjM2VhNjEwY2RjMDdjYjMyNjFmNTFhYmE0NzEzYTA3ZjVkNmU4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTgwYjE4NGEwN2Q4NmNmNGZmYzQ4YjcyMDY5ZDQ2Mzk5ZGEyZTBhZGQ1MWMxOWYwMjNjYTdmMWE3MzdkZDU3OSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/queue-routing.ts#L1-L3",
+          "version": "repo-lines-v1:sha256:b1074926ad41208d630d207df661f58779d146633c70598b8975011d212bdedf:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjAyN2QwMDA3YzQ5MTg3NjEyMmU3ODYxODE0ZTdlZDVjNDRiZjU0OWE4ZmUyNWNjNzU3YzgyNzAxMjNhNjJhYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9cf031b59424e8090f3ebb23c9b4171",
+      "statement": "AutofixService dedupes via a FeedbackStore receipt, skips untracked PRs lacking a D1 authority record, recovers prior ambiguous dispatches via lookup_feedback against the session DO, enforces eligibility (per-repo enablement, prComments/reviews toggles, open PR, author rules: own bot comments skipped, own reviews only when openInspectReviewsEnabled, explicit mentions skipped, human authors need write permission, other bots must be allowlisted, non-empty actionable feedback), builds a size-capped prompt (50 review comments, 4000-char diff hunks, 200000-byte prompt) wrapping feedback in an explicitly untrusted <github_feedback_data> block, and dispatches an enqueue_feedback command to the session DO's /internal/autofix path, marking queued on enqueued/duplicate and skipped on rejected.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L137-L178",
+          "version": "repo-lines-v1:sha256:2554a7a08eefcd4436a868bd58b2f4eb7d406d080689b97144b176c2cefa637b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMGFlMGE2YTljOGI4NGE5MDViM2U5MTU5MzFmNGJlYjBlNmEwMjhhYzYwYmJkMWVmY2E3ZTAxYjc1OTFhNzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVkNDNiZjFkMWE2ZWExYjgxN2QwMzcxYzYzMmViOWEzOWRkZmM1OTBmMWY2Zjg0NzRiMDgyNWY0MDBiZTQwZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlNjljYmYzZTNkZmUxNjNlOWE5NTQzMWEzZmQyNGNiYTE0ZmI3NDJlOTkxMWI5MjUyNzg1MGY2Zjc0YzE2NzYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L191-L213",
+          "version": "repo-lines-v1:sha256:83f8f5b036569c528fb3ab7a3e1f4563e1beedcd6438dbac2bb040ee41ecd9dd:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MjI3Yzk3ODUxOGU0NjJhOTRkNjhiNDk2NjVjY2QxNTFjMjE2NmI5Y2I5NTczZjU5OWUyMmNiYzkzY2YwZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzNzBlYjQ1Yjc5NTU5ODkxM2U2ZTUzMDY4ZGMzNzM3MDllM2RiYjM2YWYyZjVjNDc1MDMyZDRmNGEwNmM4NzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MTA2ZmIxYTZlZDNkMjQ1MjMzYWY3NWExYzkyZGI0MDdhMDE4OTg0MzU4MDJhYTViZWM2NDk3YTM4MWNlN2MifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L265-L334",
+          "version": "repo-lines-v1:sha256:a870805575aa1a2ab88e6c72ae3d9dad6e3be2012c92ffa4e7f1f3c467b8d838:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwMDhiMWFiOGU4MGY3Y2M2NDVkMTU1MDM4MmZhMWIzOGM4Y2VjN2ZkZjUyNzRjNjk2NDEzZDAzNDU5M2I3M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0Y2FlYWZjYjY5Y2M4NWUwZmMxZDRlNjM4MGFhYTcwNjhhZjllMmExNGM1MjViODU5YmY1NGZmYTZkZDc1YTcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L336-L416",
+          "version": "repo-lines-v1:sha256:69fb70672c3075cd286b15a102b33da9529c96378c8ccb65935ccac13d450fe9:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkZWMzOTZkMzdhMDJkZGY3Yjc0ZWJjOGY5MjJhYmE0NmYyYzI0NWZhZDQ5NTAwNjRkY2I4NDE0ZTIyYmZlYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3OWE4OGVlMDUwZWUzYWI1YmQ0NDg5ZWQzZWQ5NzM1M2NkMWMyOGY4MmI2NzRiYmEwZWJmZDFjOTIzZThkYjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1YWE5MDA2OTBkM2E2OWIxMzEyMmIzYWE0OTdjOTY0MTBlN2MzZjdhYjY0Yjk1NTI1ZWQ0YjFmOTA3Mzg1ZWIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/service.ts#L418-L456",
+          "version": "repo-lines-v1:sha256:1c8e2f402b7822088d07dd8284d17baaee54837b4aed5a5b29d6e4dc986b3949:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIyMTY5NTEzZTc0YmFjZWM3ZDgwMGU4MWFiNDYwYjRkOTJhOGI5OGVhMzdiY2VlNWU4MTZmNTZjYmJiM2Q5ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDg2MzJlNTRlOTI5OGFiYjk1ODcyN2UyZDUxNDA4YWJhZjEzNjYwMzUzNzkxMDE0MGFiZjY1YjMwYWI2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3NzdhZTY1ZDI3OWNjYTVlODYyNDhkOTM0ZmY1MTc4MzFkMjRkMDYyOGY1N2VlNjcxYzE0NTExMGMwMDFmZDEifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/contracts.ts#L20-L24",
+          "version": "repo-lines-v1:sha256:85c957e00a9e78d12db40357ab3d1ceb390d8c83040302dda667c1c1f1a8e091:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmRjZGY3OGIwZWEzYzdmZjZlYjEwNTQ5NDdjYzA2MWFmODNlNGRmZDgzNjU2Yjc3NGE5NzE1MWQxZDgxZjY2YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmE3ZDU0NWIyOGQ1Mjk4ZGNmYjliNjc3MTkzNTExOTkzN2NlYmUyZjU5YjhmMDdjZWE4N2JhZjI4Y2MzOWNmMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmZkNjRhN2I1MTJkNDI3NzQ5ZDVjNWMyMjNhZTM2YmIyN2RlMjFiMzRiOTBhY2YyNGE3YWYxN2NkNTIzNzc0NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2YwZTk1N2UzM2EzZjlkOTgwNmVmMjQ4NTVmMjcwYzM3YTc2MjYyODQ2ODk1NDBhNDVmMzk2YmMwYzAxMTZiMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f2ab602c5304c2984da0447eeaf5f8a",
+      "statement": "The worker's every-minute cron runs checkAutofixQueueHealth, logging an autofix.queue_health error when the primary queue backlog exceeds 25 messages or its oldest message exceeds 5 minutes, or when the dead-letter queue holds any messages.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/autofix/queue-health.ts#L1-L3",
+          "version": "repo-lines-v1:sha256:f2abc7af7bb57ee1f540145a07a7f5575b23792b1dcd3fd68f722579c3759696:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I5MTk4MDZkOTVmMjUyNTc2ODY2YThlMWZmMzI0NzBiZjFjOGYxMDAzNGQ0YTllMjQ5MWNmMmE0N2U0YjA2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODA1ODM4ZDYzZGNjNTgyYTc1NDg1NDRkYTRlZjgwYTg2YTg2Y2JiZjI5NTg2NGVlMjFiNGI0NzI1ZDBlMTMyMCJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/autofix/queue-health.ts#L55-L94",
+          "version": "repo-lines-v1:sha256:3a057af748d4f5e32d2293e1979e82017e1327cd79e05661bcc00f004eb4c7f3:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxMDNjNzRmZWI1MzliOGJmMTAyOWMzYjcwNTE5ZmE0Y2ZjMzhkOWIwMTYwMjI1YjRhNzk1YTk1Njg1M2Y5MTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2ZTUxZTBkMDA4ZjE2YzdhMmI3MDAyZThiYzQ2NTQ4N2FlMmY1YTMzYjA4ZjczZjUzNWQwMGJmMjhiODdmZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/index.ts#L68-L69",
+          "version": "repo-lines-v1:sha256:4cf9d6bb7e405b379c3889670a2db302185341154ef4cb7a2f2911cd29fe8844:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU1M2UxNTU2ZWU2MDc0MGRhODQ3NTI3Nzc1OWRhMGJiYzYxODllMTkwM2Q4OTU5NTdiZjFlYWQ0NjBhOWRiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTc5MmY4NDdiYjIxY2IyOTJkZDA5ZjdmYTZlN2NhYzRhOGMxNGQ5N2QzODk2MzNiM2QxNTIwZWExNGI1YjFkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2M2OTdmNGYwZDg5NzBjMWJlMWQyZDE2Njk5ODhmZGFlNDBmMGJhOTgzNmUwY2YzZGNhNjZkYzRiNjhhMjEwOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWJiODAwZmU3YzQ4NmZiM2ZiNTc4ZjA5ZTI3NjZlZjIwZTI3NDcyZjM4NDk5NmVlYWI1YTExMmQ4ZTM5NzY5MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_249e26b00bc1460bbd568c803d399fab",
+      "statement": "Prompt dispatch resolves the author identity via resolveParticipantGitIdentity → resolveGitAuthorIdentity (GitHub: valid numeric SCM user id + login yields the author name and ID-based noreply email, otherwise null; non-GitHub providers use stored name/email with an OpenInspect fallback) and carries it on the prompt command as author.gitIdentity, either {mode:\"attributed-user\", name, email} or {mode:\"agent-only\"}, with no sandbox-side inference.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L23-L52",
+          "version": "repo-lines-v1:sha256:ded7994d72e7f80b0bb4849eb650db3fc115cd01dbfecfc85ac1a7231421d0fc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjNGFhY2VjOThkOGY4NjA0NzM3ZTBkNzRiZjYyZTljMGQxMmUxYzg2NWIwZWQxYzUwYWJhY2YzZDNkYTZmMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ2YzM0YTU0YmJmMjc5ODY2ZWQ3N2Q0YjE3ODE1MmNiNDZkNzIwMmFjZTEyN2JkNTY5YmJiNmM4ZDZiNjZiOWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIwODMwOTJjYTA0YWRmMjBlYzQ2YjYwNTE1Mzg1ZDhhN2E1ZTI4ZGE0Njk3OTQxNWJjZGU5YTI1OGM5ODE5MGIifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L128-L150",
+          "version": "repo-lines-v1:sha256:d65204bc6d2190ead27c9e8fe3f596d5481a5c461bb41550340c76eb1c996a14:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjYzk4YWY3YzM0M2IxN2M3MDFkNGVlNWNlNzZjNTU5ZDBhZmYwNTQ0ZTgxMWQ4YjY5YmE4MWFjNjA4NzZhMTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzMGYwZjNhOGIwNWU5MTg1YWU0MWUzYmFjNTVlMGZjNzZmZjc3NjQ3ZDcwYWQyNTc1ZmE0MGU2N2E2Nzg5ZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE1YjE2MWExYmRhMzE3OTZjZmQzYzQzZDU2ZjEwYmM3ODFhMWY0Y2ZiNDE5MDI5OGY0ODZlMzg5MmQ0ZWE1NTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjYzhmNTRlM2M4ZmJjMDk2ZWNmMmRjM2UyNGNhYzAwNzI4ZTM1MjllYzhhZTliMGY0MDUzZjUxY2E1NzllNmYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L443-L459",
+          "version": "repo-lines-v1:sha256:837b9489f7bf686eebeb04078d1a090ef116e277fdc23ac2377520ae60532598:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyYTRhMDAxNWVmY2YzOThhN2MyNjM2NjNjZjE1MDA0YzNjYTQ1YmRlODY4NjM4NWUyMDRkMDljNGI2Zjg5NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3ZTBiNjhkMmJkNmIwYTZjOTY4YmY3NWEzODIyNzhiOGM3OTE3ODMwODg4ZGY0ZWE0ZDhiMzBlYTcwNjA5M2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlYjMxMThjZWNjNDFmYjgxNTJmYzdmM2U0MzI0Nzc5YzRkN2JjNWU0ODJiZjJlOGEyNjhlZjhhMzVlODA5ODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2YzgzMjU3OWU5N2NiMzNiYzhmY2MyMWI1YmFhNWYyYzMwYWE4NDgwMzg3MzdmMjRkYTEzNWUxNDAwZjJlMzcifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/types.ts#L21-L26",
+          "version": "repo-lines-v1:sha256:5129de8bc303c21a6ba58db4fce378e5ba4712224e08c767355da61c3ff9670e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTQ3ODkwMTE5NDU3ZWM3YTA4YjZiMGM3YTM4M2NkMDM1M2E5NWQzNjgyNzI3NDQzNGFlYmNkNWE2MjdkY2U0MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWUzM2MxNGM2MWU2YmU4MjRiZTRkYzhlNDlmMTU0MzUxZTBjNzdlOTQ0NzZmMDU0NDUzODhjNmM2ZDVmZjg0MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDE4ZmI3NTc0NTEzZGMxNWY5NWMwMDQ1MTNlZjI3YTgxOTc1YzY4NjAwMWVmMDM0M2E4NjZjMzhhODRiMjYwYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f981bf6fa7cf470c9a613959907c801d",
+      "statement": "The bridge validates the control plane's explicit git identity mode (agent-only → no author override) and GitSigningRuntime fetches GET /sessions/{id}/commit-signing (sandbox bearer auth) returning either {enabled:false} or {enabled:true, committerName, committerEmail, publicKey} where publicKey must be an ssh-ed25519 key, then applies local git config to every manifest repository: signing enabled sets committer.name/email to the bot identity, gpg.format=ssh, gpg.ssh.program to the oi-git-sign binary, user.signingkey to key::<publicKey>, and commit.gpgsign=true, with the author (author.*/user.*) set to the prompting user when attributed else the committer identity; disabled signing unsets SIGNING_CONFIG_KEYS and uses the prompting user or the OpenInspect unsigned fallback.",
+      "evidence": [
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L1053-L1055",
+          "version": "repo-lines-v1:sha256:a06385724330be16e01c0a675b8abfdf414c4585a35af2dc18eec91c9a2d6fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmY1ZWQ1YTc2OGI1ZjQzN2NmMWYyZmJiNTNiMjA3NmM1MWRmZjM2MTU5M2YzM2E2MDQ5Y2FhZjVlY2E3MzJiOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWNjNDg3MDMzMGVjNzkzNmY2ZjIyYzkzN2E5NTU4NDIwMmYyZGNkNDk3ZDcyNWJlNWQ0ZWJmZjYwY2M1Nzg2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWRmMTYyODBjYTUzYjJkYzYyNGMzZTk5MTNiOGE1ZmFkYmM4OTY1NWRjOTcxMDA1ZDM0YmQ1OTljOWNhNjM4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTZhNjIyYWEyYWQ0OWE5ODlkYzg3ZTE2YjkxYWYyOGUxZGZjNTM4ODRjMjFhOTRiMjE3Y2MxZTMzZDRjYTg0ZCJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L55-L76",
+          "version": "repo-lines-v1:sha256:1ba1be7566729c28563fe96f7bd37eb261a66599379e942b0ef652a423cf0f6a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0ODE4MjI4Yzg5ZjQyNWIyOTE5MjY3ODU3MDAzMDIxZjk0ZjU2Y2JlYzZhOGUwNmQ0OGIwNDkwNTI4ZDA5ZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiYzE2MjI3ZmUwMzc2ODAxMTVhMGM4YzAxMGI0Y2VjNjM2ZDczMjk5NjdmMjg1NThlN2RjYmY5YmM5NGEzYzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzMjBiZmQ0MDM2NjZiYmFlMjA3NzEyYjk3MmE2YjFlNzRiZmQxMDc1OWQ5NTVlNDM0YjcyY2NlMTIwMjYxMGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwY2UzZjI0YWI0N2MyZjVhOWQzMzdmMzc3ZWQ4NTczZmE1NjU4NDA3NjQwMmYxYWYwNTRhM2RlZDYxOTQ2MmYifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L156-L240",
+          "version": "repo-lines-v1:sha256:eb37f00549caf2c0151919e1604f5e319f03b2b4e570eac2d626c3f415d6380a:eyJzZWxlY3RlZExpbmVDb3VudCI6ODUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2ZjAyMDY0NTI5ZDc0MmRjYTkyYzc3NDQxMTNiMDU2NTQ4NTAxNjAxM2IyM2JmZTRhZTNkZWU2MWYyNmFjNmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0M2E1ODRiNDQ3MTg4ODE1MGRkZTg3NmY1YjcwZTdhNDExNWFjZjI0NzJlNDEyNThjMzUzNTViNjIzYTRkZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L17-L97",
+          "version": "repo-lines-v1:sha256:1fc5f854bfc08eacc789ce0ff5b78447e6e9047eb72e5b9712a951f2f8501207:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiMzdhZDFmMjU5MDhlMmExYzllNTg4ZGIxMDJkNDc3ODYwNDIzNTEzNjFjODVmMzQ4OTM0NGEyZmMwNWQ4YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3NzU5OTdlMmM0NzUzYzA3NDVmZmQyYWFlYjI2Y2I4NDg1MTE3ZWQ2NzExMmYxNTYyNTQ0ZjI3YTQ1OWExYTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0707d90ea3af4720a5470dcf57e98507",
+      "statement": "Git signing runtime errors are bounded GitSigningErrors that never include secret configuration values, the runtime refreshes signing state on every prompt, and the commit-signing route caps signing payloads at 1 MiB and requires REPO_SECRETS_ENCRYPTION_KEY for its store.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L15-L16",
+          "version": "repo-lines-v1:sha256:137dc7ec2d37308670e42575872d2b1b36578ffb15c8ca3f169b3de9af8fc9aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTU1MDc5Yzc1NjY2NzViNDk5MjFiNDIwY2JhMWZmYzY5NTlhMmEyY2E0MDI0NDY0Y2ZlMGZmNTJmOTQwZDIxMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTg5MmY1NDA4YjZjMjU2ZWVhNmVkYzhiMGZmYzhlZjExMWRjOWVhNzk4NjRmNjExMTc4ZTIxYjY0ZjI5ZjZjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTY5ZjgxNzhmN2M0ODE2MTg2MzBlYjFmYTJjMDk2N2RjMDJiYmE0M2M3MGFiYTY5NTAwMjVmNTg1Y2JiMDU5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDY5YjZiNjRhYTRlYzY5OWZlZTk1NWNkZDI4ZTA4MjQyYjEyNTMxOGU2M2RlZjE0M2M0ZjNiNGRhNTUwNGZmYSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/routes/commit-signing.ts#L33-L37",
+          "version": "repo-lines-v1:sha256:0208d23d02d870f737352a8cfb3cb47a964bdbfec6299a62a0e0c5038d3ea545:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjE0OTczZTRlMGY5OWQ4ZmM5NDYzNGI1OTkyOTkxMGMxNTk5ODlmNGQ4OGEzNzQwODIzYTZjMTdhNmUwMWJlOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWRkNmRkMzJjMWFmMzE1ODUwOGZkZjBkMDZmNDdmZjhhMjkwN2U4Zjg1MjExY2E3MDI2ODgxNmRlMTczOTRhMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmJkYTZjZDNmYWQ0MjIwMmU1NGZmMTRlY2Y1NjA3OTc3NjYwNDY3MjljZjYwNzQxOTVhNGE4MDdiMjE4YWQ2MCJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/bridge.py#L167-L177",
+          "version": "repo-lines-v1:sha256:06783b493a98dd4c6d277f50f536196f2f7801b3e4c3c8e27191f14db1cc5e6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjOTgzMGVhN2QxYzFmZTY4YzkwNzBhYmViMzUzMmExZjgzMGJjNThhOWZmNGVlZGIxZTVhY2M4MjAwODljZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmZDdhMDdhODNkZDE5OTZmYjUxNjg0YjQyYWVjYWY0ZTkwZmI3OGJhNzIzMGU1NDJlZDdiZDAxZDQyMzAxYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ2NTFkOGExMTJhNWRjNmQ5ZDJlNDVhMDI1ZDcwZGNmM2FjOGNiZmM4N2U0OWY1ZDI0MDljZjNhYmJiNWE2OTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzNzhmZDJhODFlMTYyZWU1Y2QxNmUwZmE0OWE2ZDNmODRmMTk5MmMzOGJmM2VhNmQ3OTNmZjUxYTNhMjFhMWEifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L18-L19",
+          "version": "repo-lines-v1:sha256:2d598df365762ddf4600a46b93beb34dfe1acbdbfa11c11a584575334b1384e3:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGQ1ZTFlYTJmYTJhZTg2ZGJkOTBkOTJjOTFiY2Q5MjcyYWNiMjY3ZmNiZDQ0NGIwOWUzOTAyYTVhYzI0NzYyNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDIyZWIwMTQ3ZWMyMDVmMjA5MDkzNGMzZDA1NmY5OGFmM2I2NTdkYTI4ZDJkYmNkMjI0ZTRmNmQyOGNlYjJkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmJhM2IwYWE4OTdkNjA2MGRhZWFlZWY4MWNkY2YyNzdiOTkwMWZkNzRkOWIwN2I4YjYwNGQ3NzcyNDFkMzUxYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzgzNGNiM2JjZTMwOWFmNDRiMzgwYjBjODg2YjUzMjEzNTJkMTEyMjg2YTExOTA4YmQyZmUwYTU2YmRiYWNiZiJ9"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/git_signing.py#L43-L47",
+          "version": "repo-lines-v1:sha256:1dc9573ffc1fcb99c135058f65d35b88382717234b9a0b5353f54d34e1450869:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODQxM2U5ZTMzYjc4YWUxNzE4NmUwM2EwMWY0MTA0YzFmNGMzODkyNDRkYzQyNGNmODAzY2I4ZTNlZmMxNWZkYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzIwYWVhZGUyOWJiMTFhMDViNjcyOGM2NTFkMWYxZjNhNGU0ZDhiZWMzM2FjM2RjM2IzMDU5OWY0MmVhMjU4NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTg3NmU4NWJjZGM4MWY3MzlhY2MzNWEzZjljZmZmNmYxYWEzMmQyYTYyMTQ3OThhOGM4ODRjOWEwYTNiNDk2MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c5da25c758324e2b9b573f17d20fcb5a",
+      "statement": "Repo owners may be nested namespace paths (GitLab subgroups): is_safe_repo_owner accepts a namespace path of safe segments rejecting only empty segments and traversal, parse_repositories accepts /-joined owners, only repo_name is a single checkout segment, and full owner/name strings are split on the last / with empty-segment rejection while casing is preserved from canonical sources and comparisons normalize case.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/repository-target.ts#L1-L58",
+          "version": "repo-lines-v1:sha256:0f283ff654054cea97b2a255574f31e9ca5df46c9dab9e7a0a18f361c649820e:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5NzhlMjUwM2I4Y2YzN2EwNmY3ZDZmMGEzYTZiNmZlMzU2OTFmYmNhYjUwYjg3NzVjYWI2ZmFiYzcxYzU5MmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2NDIwM2MzMjY2ZWI0ODRhZDc2Yzc0MGMzOGViN2Q1YzhjZDQ3MTJmY2ZkYWE3NWI0OTZkYTcwNjA5NDc3MmMifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/source-control/providers/gitlab-provider.ts#L720-L729",
+          "version": "repo-lines-v1:sha256:c33fc06325f060be7b465c06415927b7f8c152146949d7938581885a1805d477:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNmMwZjFkODU5NmNlYzk4N2IyZmQ3ZWFhZjA0NmIwODg3YTEyYTY2YWZhZTRmOTA2NzhkODdlZWQyZTUxNzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImExOWE4YTFjZjU4ZTNkOTljNGY1NDgxNjg3NjdlMDc0YWY4NjFiMGUwNTcwNmQ1NzlkNzVhMDNmNDAxNTE1YjAifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/plugins/inspect-plugin.js#L78-L94",
+          "version": "repo-lines-v1:sha256:db9b3c6ec50cf0761e52b3e0f725b5596fa8a6225b4826ab1be85b7679074467:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg2OWY1ZDg4NWM5MjI4OTcwMGJmZWVjZDhhZTU4OTZmNDBhMTBkOWYwZmEyM2FkMjE3OGE2YTQ4ZDkzZTVkMTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJhNzk5ZGFmM2FjMWJkYTkzOTJhYzAxY2I5NGQ0YmIxOWFlMTdiZDhiMWU1YTJjNDUzNzhjNmVlMmY2YzQwNTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzZWZlNjhiMjMzYjExMzQxNjE0YWRmNDY0NmNmNTJkN2JkNmE3NTkwYjA5YTMyZWEzMGIyN2U2YzlkMjkwMzMifQ"
+        },
+        {
+          "resource": "repo://packages/sandbox-runtime/src/sandbox_runtime/repo_config.py#L53-L71",
+          "version": "repo-lines-v1:sha256:b3fb031810086e666468d3957eaeda866879479e2c988dd7421cadd9acad6156:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiNmI4NjhhYmZhYTJjMTBjYjIyZTFiODIzMjhkMWNhZTM4NGY4OGJhMjgwZmUxYjI1ZTgzOTA3ZDMwM2E5MmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQzMzI0MDU1MTBmYjcxMzkwYWUyNWY2YWM1YzEzNmU2MDc4MTcyOTE3YmM4MjgzZmY1NDk3YTU3OTYyN2Q5MDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0MzRkNGY3Y2YwZmYzZTNkMzc3MTViMzBjYmU1ZmNjYmI5OTU0Y2YyMTQyOTI0YmE5ZjM4ZmQ3N2Y5NThiMGUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

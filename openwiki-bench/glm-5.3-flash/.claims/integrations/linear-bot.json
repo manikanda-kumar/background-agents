@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a7fb0df4939f4db166d77d74f6ca4b3160be738a65cfa10bda307f621534c1aa",
+  "claims": [
+    {
+      "id": "claim_509e821ae822485ab37bc13661d1652b",
+      "statement": "Every Linear webhook is HMAC-SHA256-verified against LINEAR_WEBHOOK_SECRET with a constant-time compare before any processing; a missing or mismatching linear-signature header is rejected with 401.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/index.ts#L103-L120",
+          "version": "repo-lines-v1:sha256:adfd1164b83aae6f62b5d8a836f8eddc3a71ec80266627a0cc91ef280ef04fa4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NDkwYWYzYWFiMzk1YzBhY2JiNzJmOGI2NGZlN2JhZTQ2NTU1MGI4M2Q2NDI1ZjIxOWU0YjYyMGQwZmE5YjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3MWUyYzZhMjc4NjU4ZmU5OThmZTQ0YzdiYzgzMTlkNTFmMTFjZTU0M2ExYThkZWE0ZmEwMmUwZTI2NWUxYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0ZjgyNzJjZWE0YmY2YmZlZGY4OTk3NzE3NTY2YmM3ODE2MTg1ZjI1NzRiMjU0OWY0ZWE4ZjJjNTQ3NjFlODUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-client.ts#L387-L395",
+          "version": "repo-lines-v1:sha256:3e2914dfeae2eb2d4e98bc0f1ff29e746b46c1c9901f4ead2a3bbfc6324cb6fa:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJmNDZmN2YxMWExYzdjNDc1MjZiNDJiNzZlYjhjNDRmMWY3N2Y1MTllNWFhOTM2MGQ1NmEzN2JlY2YwMTUzMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzNlMzU2ZWM2YmE3NGU5MjA3ODliMjVjOTljMDZjYjBiOTYwMTAyNTc4YzFmYTg4N2E2YmE0OTgxMWJiY2M1NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmUzZTZjNjJhOTgwZGM3NjdlMmVlYjQ2YWM2MzMzMGJmMjAzZWY3YTlhZDcwZGY3ZDIwYzdhYWFhNjMzYjI3ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8bdaebad7669417e9dc78f8fa47f81d5",
+      "statement": "AgentSessionEvent processing requires a Linear-Delivery header (a missing header is a 400 before any KV access) and dedupes redeliveries on the KV marker event:{deliveryId} with a 1-hour TTL; the payload's webhookId is deliberately not the dedupe key because it is the registered-webhook id and constant across deliveries. Only AgentSessionEvent payloads are acted on — other subscribed event types are acknowledged and skipped.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/index.ts#L131-L174",
+          "version": "repo-lines-v1:sha256:dbe66dd49e97a31cf37969fc74e10589669970d16f68eff80d18ddb04d444403:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmMjZhYzMwMmYzYWVhOTgxNWI0ODQ1MzdiMjU0OTc3ZDI2NGI5YjNmZTc3Y2JkOTE2MjUxMmMwOWQ3MDM0ZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4MjI5M2Y2Y2JjMTFiYWE0NTQ1NzE5YWYxNDg4MjM4ZDIyM2QyZjcwM2ViNzYyZDU2YzhkY2RkYjE5OTQ2MDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwZTNmMjk5MTQwNmQzMDg0YjM4MDNjNDZkYmZhNGNkMjJiYjJjYmE0OTMxYjg0MGY4NmI5NDUyMWYwOTkyOTcifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/kv-store.ts#L130-L135",
+          "version": "repo-lines-v1:sha256:6d3902a593933a86da652f498a06df2452c02084aeec17c59f3ae0fd466ec5d9:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmRkOTBjMGVhNjk2NmVhNWM1MDliNTk4MmI2MTg5MzQ2YzUwNGI2NTc5ZjkyMjU1ZGY0MjQyZTk0NWQxZTRhNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmViNzNhNzRiYTVjODNiZmY1NjBjN2VkZjc3MTk4ZGNjMjZkZjc0ZmRjYjJmM2I4YWExZjgwNTMwNTRiMTUwZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_528c0a73aec54461bd25370255ab5fa8",
+      "statement": "The webhook endpoint responds 200 immediately and runs handleAgentSessionEvent under executionCtx.waitUntil; a strict payload-shape gate (type, action, organizationId, appUserId, webhookId, agentSession.id) rejects malformed AgentSessionEvents with 400 before dedupe.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/index.ts#L131-L170",
+          "version": "repo-lines-v1:sha256:753280c771b0dfe744d95e3bd673937d4387e816434509e801254d09124640b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmMjZhYzMwMmYzYWVhOTgxNWI0ODQ1MzdiMjU0OTc3ZDI2NGI5YjNmZTc3Y2JkOTE2MjUxMmMwOWQ3MDM0ZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4MjI5M2Y2Y2JjMTFiYWE0NTQ1NzE5YWYxNDg4MjM4ZDIyM2QyZjcwM2ViNzYyZDU2YzhkY2RkYjE5OTQ2MDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc2ZTBkMDY4ODM5N2JmYmUwY2NlZjM0ZjA0ZGZiMjU4MGVjOTE3ZTA0NmNkOGZmMTFlNjVhODUyMGU2NDNkMWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5a3d0f4622df48dd98a925603a5998a4",
+      "statement": "handleAgentSessionEvent routes by action and signal: stop/cancel (agentActivity.signal === \"stop\" or action stopped/cancelled) stops the mapped control-plane session and deletes the issue mapping only after a successful stop call; a prompted action with an existing issue→session mapping becomes a follow-up; everything else — including a prompted event with no mapping, which is a reply to a clarification elicitation — starts a new session whose resolution comment is the clarification reply and whose actor is the replier.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L218-L266",
+          "version": "repo-lines-v1:sha256:0b4d42c252babb8f2b8b16cf1d0f590c94daa69899a460117f0ff8b07f1dde29:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcyYjI5MDc5ZWRkMGNiYjZjMDQ4ZjVhN2JiZmIzZTQ5YzE4NjYzODFiMWQ3ZjM0NzIyMzlhYTQyZGUyOTc3NWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFiMTE0OWQwNDNhMmRmYjY2MDYzMTVmMjU2OGVmODY3ZDljYjJiYzE2Y2RhMGZkYjg2MTA2ZTdjZDhmNThhMWUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L268-L301",
+          "version": "repo-lines-v1:sha256:8bd7d2ed608c41e95c97144bfbba94cdad69198855bd64442021df53db0c5943:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJkMGYyZDNhM2FhZGEyNzU4NjQ1NzhkMGE0MzkxNTYzOGQ1NDNmZWNhMmM5NDg1OGRiOTQxMjExZTg2Y2VmMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYwODg2OTk5NjExYzYyMzE5ZGM4MmMwMjgxMDE1NTQwMzY4MTJhNjUwMzBlZWNhODQyMmNhMTlmN2U0ZTNjMTMifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L722-L762",
+          "version": "repo-lines-v1:sha256:49105a413a98cfff2816694e2bb58388e1d337c942f8cfde505114bcadaa127f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNmYzZGFhYmEzY2Q3YjViMDQ0NTNkMGUwODY4ZmYyMzYzM2RkNDQ4Yzc5NDEzMWY1ZDZhYTEyZDUzYTAzNTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzNmE5YWUzYWMwZDU4N2FkZDQxNDBhNjE2ZjEwNjkyODJmMWZjYTY1N2MzMzU5YmEwMDdhZTNjM2YzMDMwZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJmYTM0MWI0ZDNiZTFmYWZhYjRlY2E1YTI1ZjdlY2M0Yjg5NjVhNTUyZTdjZTBjYzgzN2UzNjlmYTVlYTJhZDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_43861d5b19bc4c82bdb6a2185d8cbc5a",
+      "statement": "Runtime Linear API access uses OAuth2 client-credentials tokens minted from LINEAR_CLIENT_ID/LINEAR_CLIENT_SECRET (30-day app-actor tokens), verified by a viewer identity query that must match the webhook organizationId and the installed appUserId, cached in KV at oauth:client-credentials:{organizationId} with the token lifetime as the KV TTL; no refresh token is kept for runtime access, and persisting a verified token deletes the legacy oauth:token:{organizationId} record.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/README.md#L50-L57",
+          "version": "repo-lines-v1:sha256:621d96a71cd8b8b1abc66a39f98254efdcad6447d1e90fea0cdb360c72c3c8a7:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWUxNmUwZDlkOGRmMGE3ODgzMjA3ODViZmViZGQ2M2YyMjM2NDhmZDhiMzViNTA1ODhlOTg1ODAxZjdiMWQxOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI5NDNiNjFiMmZjZTNiMGYyMTU2NWUzYzg3NTAzZmQzNThkN2ExNzlhOWUzZGU4NTA1MTE2ZmQ1ZmNmZjBhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjYzYTc5YmVlNzg3NmYxOTJiNmZhMDllNmM2YThmOWViOGQwMDBlYTVhYzkyODc2YTIwZTJlZDQyOGQzNjI1OCJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credential-cache.ts#L8-L72",
+          "version": "repo-lines-v1:sha256:99611601b7f1face7fee5a2d4d9e1217e3d649700886a8d0ec8cc6a1df3816a4:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1MzUzNjdkZGZmYjRlNWM1NWE0MTFlZWMyMTU4NTRjNTM2MDQ2YzFjMzRlYTI5MGE2NjQ3ZDZiNjdmNGZiNGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNGE3NDdmZTEzNTAyNTA5NjQ0M2Y4MmE0NjY1YjJhNmUwNjFhNWU0YmEwMGMwZmQzNTZlZGM0MDNhYWQyYzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credentials.ts#L30-L201",
+          "version": "repo-lines-v1:sha256:01781a7f46e3e3d227f28d60789cc82f1f477f4d108af51a94010f153aa04120:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlZjg2YTViNjY0ZmE3N2MyZDRkZDg1MjliZWE0NWFiZDA4NjY1MjFjZWExNzRkNTBjYzE2YjY1YWNjMDRhOGI4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIwNTE3N2FhMzVjNTQ2NWI4MzhmOGZkNTQ5YTM3OWE5NjgwNDYzZDVkM2E5YzBkMmJmZGY0ZTlhMDA2YWYwODg3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_074fec17413149fca3196c07df2877a1",
+      "statement": "A cached client-credentials token counts as a hit only if it parses against the stored-token schema, carries the canonical scope set, has expires_at > issued_at with a 5-minute expiry skew, and matches the organizationId (and the expected appUserId); invalid or unreadable cache entries are treated as misses and trigger re-issuance, and a KV read or write failure never fails the request.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credential-cache.ts#L19-L59",
+          "version": "repo-lines-v1:sha256:7910ab74819ca012a739e4d2b14cd586b8e26fdb2eea99a986075ddba2ff3092:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzZjY3NmZiMWFhODAzYTc2NTk3YWMwYTJmYTQ3ZDg1NGJiMjAyYjg5Mjk5ZDA2OTBiOWU2NGYyZjlmMjQ2ZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2MDgyOWY0MzIzZWRlYzFjMDkxZmE3MTgxNzk3YjhmMDFmMjI2OGFiYThjYzIyNTI5NDM0MDAwMGMyOTRhYjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUyYjIwOWNkYTI3NzM2NjBjZDcxMDlkOWFhNTRlZjg5YWQyNzRmYzQ2NWE5YjFmNDg4ZjViYTliNDNiZDIxMTAifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credentials.ts#L114-L159",
+          "version": "repo-lines-v1:sha256:c564b33bb6fd4602ab15d7b9b0514fe94d3d14973816a1b72014c5847d3810fd:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzYjVlMTdjODM2ZjdlMjEzZDAyYWM4YzllMjk3YzMwZDY3OTRmOTQ5YzU4ZTIwZjJhMWUyYmE5MjM4MmE5ZTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkY2M2YjM1NGMzOWYxYWI0ZDNiNThjYjE2OTQ3NjNhMjgwYTZhZjA0YWRiMjExZWQ1YTUzNjJjYzRlMjc0YTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_511d18f1376d4afdaf336168d7df5c58",
+      "statement": "Each Linear GraphQL call carries a 15-second timeout; on HTTP 401 the client forces a token renewal and retries the rejected request exactly once before raising LinearAuthError (client_credentials_rejected), so rotating LINEAR_CLIENT_SECRET recovers on the next cache miss or 401 without reinstalling the app.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-client.ts#L109-L163",
+          "version": "repo-lines-v1:sha256:a8122315f1869e23a1c6cf55926029b17bdbf1c103669fc0211f8444a45b3a26:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3ODhjNzA4NTUwZGQzZTdlNzY0ODViMjQxMWE3Y2VhYTBmNGNjMWNjNTA0MDBjNzk4YjI5YjE2NTA3M2U1MGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3NWFlYmM4Yzc5ODUwOWJmOTFmY2M2MzY2Y2NhODU4NzZjNDcwZGEyOWQyODNiNjMxODk0NDU3MDU1NWU1OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxNWU3OWQ2NDAyYWVjOWM2MDQxODdiYjRkYTA2YWQ3OWJhMzU5YjhjMjZlYjgyMjM5MTRhODE1NjI5ZDc1ZTUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credentials.ts#L161-L184",
+          "version": "repo-lines-v1:sha256:e39eebb69985f1a20f134d1415c14d7ded3e589e01f1c1801a7f9a130222fe46:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OWRmMWZjYTYzODUwOTc1YTIzY2MxNGVlYWY3NzNhM2JhYzE5YzhhMmIxYjE3MWU0MWM3OTM3YzdlZjY3MzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5ZTA5Y2Y0NGVlOGYwZDQzOTY5M2Q0NDBjZTQ1NDU1MGQ4OGI2ZWFiN2M4M2ZjZGVmZjg5N2ViZjUyN2QxN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlODQxYmUyZTU4Y2U4NjBjZmQwNjliMGI0ZTZjNjk0YjFhYzJhMTI2NDI3N2E2YTZjNWEyMWEyOGNmY2ViODAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5be89d4601854a1496a17f863445f5be",
+      "statement": "Client-credentials issuance is deduplicated per (organizationId, expectedAppUserId) with an in-flight promise map, so concurrent webhook and callback handlers share one token request.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credentials.ts#L161-L184",
+          "version": "repo-lines-v1:sha256:e39eebb69985f1a20f134d1415c14d7ded3e589e01f1c1801a7f9a130222fe46:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4OWRmMWZjYTYzODUwOTc1YTIzY2MxNGVlYWY3NzNhM2JhYzE5YzhhMmIxYjE3MWU0MWM3OTM3YzdlZjY3MzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5ZTA5Y2Y0NGVlOGYwZDQzOTY5M2Q0NDBjZTQ1NDU1MGQ4OGI2ZWFiN2M4M2ZjZGVmZjg5N2ViZjUyN2QxN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlODQxYmUyZTU4Y2U4NjBjZmQwNjliMGI0ZTZjNjk0YjFhYzJhMTI2NDI3N2E2YTZjNWEyMWEyOGNmY2ViODAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_54f94a5a24e74ef8b1e0eff01b5abddf",
+      "statement": "GET /oauth/authorize redirects to Linear's authorize URL with actor=app and scope read,write,app:assignable,app:mentionable to install the agent; the OAuth callback exchanges the code, mints and verifies a runtime client-credentials token, and persists it before reporting success, so the installation is complete only when a later Worker invocation can load the credential from KV.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/index.ts#L79-L99",
+          "version": "repo-lines-v1:sha256:cf7f26cfbc9465235a93526040c354726b326276c4c8c202b1dc4b1d3147a47b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxOWFmYTdjMmY1OTFlOWU4YzRjYmYxZWVmNmQwMzMxNjVmZGIwYjFmN2JjMjE5N2YzMDEzMzViMjc5YjU5OWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmMGZlZTAzNzZkYzhkNTQ2OGUzMDBmMTYxMGVlNzgxYWIwMjI0YzI1MTE0ZGZiN2U4MGViMjIyMDkyYmZhODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE3MWUyYzZhMjc4NjU4ZmU5OThmZTQ0YzdiYzgzMTlkNTFmMTFjZTU0M2ExYThkZWE0ZmEwMmUwZTI2NWUxYjcifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-client.ts#L59-L67",
+          "version": "repo-lines-v1:sha256:2a896b2d216826d3c02efbf437769e616ce5ad722200b4bb469fa40b9031b0cf:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWQ5ZTdjNmVlNzdjYzZhZTE4MjhjNzVhOWY3ZDJlOTQyNjlhNDY2Y2ZkYzcyNDI2Zjc5NWZmOWVlODE4MDY4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzE5MGE1NDA0NDg0ZmFkMzRkZDVlMjRmNTYwN2Q4NDAwMzNiNTQ3OTY2NjhlZmZiMjc3NTJkNjhlNzExNTkyYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTg3OTk5ZGVmNGUzZDU4Y2Y4NTExMTQ1Yzc0ODU3MWUzMGY2YjBjMjIzZmU2ZWRkZDI3NWQ2N2FiODNmYWM2NCJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/utils/linear-credentials.ts#L186-L201",
+          "version": "repo-lines-v1:sha256:e6da0db633498bc80c9eda246570f11e1b5d364a8ed2aa1ac825254f7db116eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3YzE3NWIzMTRiMDNkMTFjZGRlZjQyOWI1ZGY4Mzg4NjYzNjM5MTRiOTNkZjk1ZTU1ZGFiZjQ1ZmRjMWJkY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cf6beaca508b4a5598e7e2a67608ad97",
+      "statement": "When client credentials cannot be issued or verified (LinearAuthError), the agent-session handler logs agent_session.no_oauth_token and aborts without creating a session, calling the control plane, or falling back to a legacy refresh token.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L189-L216",
+          "version": "repo-lines-v1:sha256:74a58521ee1c924057965be9b2d407a63e6ead49f2bbf60f0f480c77b11df1c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2OTM2YTJiYzUwMTk4NGZkNjBiNDgxYTQ5ZGMxMDA4M2NhMzBhY2VlZDgxMThlNjVlNjU4MmEyNTgwYmM3OWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllNjc3MDZhMzZkMDRlNjNkM2RkYWIxN2I2MmFmNDBkYzQyYzZkYjI5NzE5YWQ0NjYyYjYwZDQyNjU2ZWE1ZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2MWVmYTU5ZjgxMDA0ODRkMjY4ZWMxNjA2OWM2ODQ4NjkzZTJjMDVlMzdkNGZiMzc0ZjA1NGNjZDA1Mjc3ZTMifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L494-L503",
+          "version": "repo-lines-v1:sha256:62ef5c996e46aa880d24f2cc28162190b252b1f8a445eada0288a22c4ccced3a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkMDU1YTNiYjFiNzNmZDEyNGJlZGUzZDk1MzRmMzM2NjIxYjU0MzcxNTAzY2UxYTFlMjZkN2Y0MzcwMTk4ODYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlYzYxZDFkYTRmMTc1Yjg4ZWI5NTFmNzVmMDA0ZDYxOTY4MDlmODkwZjllZTRiM2ExMGU1ZmQ2MzQyZGM0ZGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiZWQ3OWVlOWY5YmI2NWI0MTlkZmFlM2Q2MGVlYTgzMmYwODhiOTcyN2NkMTM5ZDA2ODdiMmFiNTM0ZGM5ODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNGI4YmZmN2E5ZmIyNzdmMDdiMTBhMTU0NGI4MzM0NWJjY2FjNGIxMWI1NDExZWJjNjYwNWVkNDkyOTQ4MWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a1eafaf2ded346e8ad584a83961d5483",
+      "statement": "resolveSessionTarget resolves the session target via a five-stage ladder — project→target mapping, label-filtered team→target mapping, an explicit owner/repo in the trigger or clarification-reply comment, Linear's issueRepositorySuggestions API (accepting the top suggestion with confidence ≥ 0.7), and an LLM classifier — returning null (no session created) when classification is too uncertain.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L215-L330",
+          "version": "repo-lines-v1:sha256:fa6382f460a9a92fab4b83f1a5931a087b505e0d05185e7f517b7b65c1521fc2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTE2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIxZWQyYTk3YWEyNzllZjg4M2M5NzJhYTBmZWM0NjEyNzljZGUzOTBlMTFiZGZhODk4ZDA4YzNiZmM1YmE4ZTA2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI1ZGMyMWI1MjkwMjYzNTZiMTdlNzU3OGVhZWE1YTkyMTA1NTFhZmNkMWRhOTk0MWQ1MzcyMTRlY2E1MjBhNDdjIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e8813f1db4b45afbb5141c10c9915b6",
+      "statement": "matchExplicitRepo matches repository full names case-insensitively with boundary guards (a neighbor that extends the repository path, including runs of dots connecting to a path character, defeats the match), and returns null when zero or several repositories are named, leaving the ambiguity to the classifier.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L30-L65",
+          "version": "repo-lines-v1:sha256:cdc9d5c31e65b626fc374b7548810a144c1f4b50836114cad0e1c5df327bdb73:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyMTIzZjMzNzRmOGY5NGFlOTA4ZjZiOGYwNTA5YzAwNThmMTdkNjFhZjI3MjczNTQ3ODgxNGJhNGQzZTM5MGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzMzQyYTY0MGQxYmNlZWUxNGFhZmIxNzk3YTBjMDMyMzVmZjkzOTdlNDgyMDdhOTVkMGI2ZmJjMGM0NDFjODAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhOTU0YjBlNDUxMjdkYWM3ZGNhMzk2ZTYwZGJiNDc4Nzg1ODBlZjUxMzZlMjVjOTBhNzZmZGFkYTZkY2Y5MGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_053fdefff5c94d4792a45417aab3177e",
+      "statement": "The LLM classifier short-circuits before any model call when zero or one repositories are available; it requests clarification when no repo matched, confidence is low, or confidence is medium with alternatives, and classifier errors also produce a clarification rather than a session. The classification model comes from CLASSIFICATION_MODEL (default claude-haiku-4-5), whose id alone selects the Anthropic or OpenAI provider, and exactly the matching provider key must be bound.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/classifier/index.ts#L213-L318",
+          "version": "repo-lines-v1:sha256:cfbf8d759675048fd3dfcc70d68fa2ccbc99ae5637e70899259059f111669b5d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJmYTBjNmY5ZWZkZTU5M2Y3NDg1MjdhZDJlN2E2ZjQ1MmZiNDYwNDk2MjcxZjlmOTE5ZWVhOWQxOWVjOTEwZGYzIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIyN2U1Nzg4ZDVkOWQ3M2QyNGE4MWRiYzBhNWE3NGJmYTgyYzljM2IzYWY5OWU1MmFmNzk2ZTkwYjQ2OGE4YTNkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiZjNkZTUwZDIwODJhYzE5MjNmZDY3NWQxM2UwOGE4MTVkNDdhOTFjMDBhZThlY2UwY2E5MjFmY2Q2MmVlNDNhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MSwiZm9sbG93aW5nQ29udGV4dEhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIn0"
+        },
+        {
+          "resource": "repo://packages/shared/src/classification.ts#L18-L82",
+          "version": "repo-lines-v1:sha256:8232c6e904193de4f3c4510c9be57f0bcad893cd5b622182341924d57601b084:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzODNjMDNkYjdlMzZkZGY3YTQ5NjQ3MmI2MTNmNTIwOWJkYWZkMzA1ZDUwMGY3OGY1MjMzOGFmNjcxNDY2NjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjExZGVlMjU1NWY4MjIwODlmNzQ1Njk0M2EyMWNjYjg5OTY0Zjg4ZjJiZDk4Y2E2OTA0M2FlNzg3N2I1YzA2YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4MTllMzI5NjA4MDRhZjU4MDE1NTYzYWMyNjVkMjdkZDVmNzhmZDNlMzU1ZTAzNjRiZjM2ZmYyYjY4YWY4MGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_562081a3a88445ada4f584b8d112ab20",
+      "statement": "Team and project repo mappings are operator-managed KV records (config:team-repos, config:project-repos) validated key by key on read, so one malformed entry costs only its own key and falls through to the next resolution stage; entries are environment-first unions, so a stored entry carrying both environmentId and repo keys keeps resolving to its environment.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/kv-store.ts#L25-L80",
+          "version": "repo-lines-v1:sha256:8ee1abfd46d2889c7aedad47b0eefc4a89438928ffe04ef5565d5ffd77268bef:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyNzg2NjAxZWJjMGZjYjYwMmJjMmU2MjEzNjdlMGY2OGNiNmQxYjNiZTRmZWMzODNhOGM5MjJkYzhmMDQyODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3N2E3OGQxZmVmZGZiNTIwNzY0ZTliY2Y5YmU2Nzc4NjgzOTQxOTYyNDg2MWI4YTU5ZjUwM2YzMzRlODViNWEifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/types.ts#L59-L107",
+          "version": "repo-lines-v1:sha256:36034e0324a9107d290fc9558cd7a3236b372002530851b78514225e30f89097:eyJzZWxlY3RlZExpbmVDb3VudCI6NDksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNDk0YjYzMTVlNWM2Y2U4YmFlNGY2YmQzMzgwZGRhOGUxYjFlNGUwZjA0ZDEzOWE0M2ZhYzQxNTI3NmRkN2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyODhiMDE2MzcyN2VhYjA0MTVmN2Y5OTNlYTk2Y2VhM2JiMWFlOTYwNmNmYThmOGU1N2E0NzMyN2FlZTExNjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzNjNlMGFiYWQ4ZjQ5MDExMjkyNWU2MjMyM2VmNGY0MjQzNTllMzFmNjcwOTFjMDMwNDg1YmYyMmU4OWMzMjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a87e96f45844335a8bd091315f4cd85",
+      "statement": "Mapping entries may name a repository (owner/name) or a saved environment (environmentId); environment entries are validated against the live environment list and skipped — falling through to the next stage — when the environment is deleted or unfetchable, and the create-session request carries exactly one of repoOwner/repoName or environmentId.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L138-L144",
+          "version": "repo-lines-v1:sha256:f93eaf1f1e3278fcbec953b15f139bb651bdf99f21f78adb927873f540fed40b:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjAxNmVmODlhYjFhYTYwNzM1ODIyZWIxYTFiMmQxNjFlYjJmYWZmMDNkY2E2YjZkOWNlZDhjYmI5MTJkZTI3YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ5MTA0NWNkMzBkYzY1NzdhZTNmYmQzNzhlN2ZkMmRhZDRmMzBmMzIzN2YxNDMyN2VmM2U2ZTZjYWI0ZDM3ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTc5M2M4MzhiY2U2OWVmYjA0Mzk5NTI5YjhmOWY3ZTY1MGVkOWU0MDZhNjAzOWVlZDJkOTQ2OTE3MWQ2MjAzZSJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L176-L193",
+          "version": "repo-lines-v1:sha256:ef2002d9b34484b9119ad565bdd7c8f261fecac712b186e1320d915f26d340ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyMjNiM2IwZjdlODQ3MjlhZmI0YTIxZDFlYTM3M2E0ZWRkYjE0NTllNGI5ODE1MTAyNDg4M2Y3ODE1MWY3OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3YjY0MjljMTI0NWI1OGE1YTRkNWU2ZDgxYmJjMzgxNWFlMzc3M2NlMzc2NzI5NDViOGM2NWI5MGFmOGVhY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3MTYyNTQxMTkyZWZmMGVmYjNiZDc0YWI1M2ZiZDBkMzI3YTJkYjkwZDBlYzY4OTkyYjAxOGZkOGM3MWVjYzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_659a99bbe850402d884736dbb676de67",
+      "statement": "For environment targets, integration settings, the enabled-repos allowlist check, and the callback context's repoFullName are governed by the environment's first (primary) repository, centralized in resolveTargetIntegration so future environment-level settings change exactly one function.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L89-L132",
+          "version": "repo-lines-v1:sha256:d5d6c7382fe39bc1727a7cb7c2f6dc0006ea2907afdf8443aa68c276dac0ad70:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2OGQ3YzExMjQzN2IzNWM0MjI1M2RlNjY0NzYxOTU5MTkyM2IyYjE4MzFlZjI0ODhlNmUxMjcxOTVjMjRkMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFiMGI3NmU0Mzg1NjU0NzVhNGRkNDgzODY4YjhmMTVkMjczOWI3YTdlNGNkNzE5MTk2ZTJiZjBmOWQzNWZjNzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1OGJjMTZlMjc0MWNjYmZlMDllNjZkNDAyMjNjZmY2NWU2MDBjZGY0YzJmNjQzNDFiNjYwMjczMjgyYTIzMjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd66c3dc2c3440419604c1cb642106bd",
+      "statement": "A resolved target outside the integration's enabledRepos allowlist produces an error activity naming the subject (repository, or environment and its primary repository) and no session is created; with no configured settings the defaults are permissive — all accessible repositories in scope, both model overrides allowed, tool progress on.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/utils/integration-config.ts#L25-L66",
+          "version": "repo-lines-v1:sha256:8ca70eb27dc198b6a93673b3978ac4e9b37a222828acc2f6b0a68c9a887790e2:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlMDk1MDg3MjY3ZTVmNjcxZDExOTkwNjgyMDBlMDM3MzE0YjA3ZWJjNDg5ZTVhNzNhYWYwMmYzZWE1Yjc5ZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlZjI0OTEwNTU4N2JmNThjMzQ1YWM3Nzk4NTc1ZTAzNjY5ODEzZTBlMTJkYThhNTcwNTc1YmIyOGU2ZmYxYzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L539-L553",
+          "version": "repo-lines-v1:sha256:9bc2735994ca2e1bfd715e95e46cf265677042a1f828877a44c1aa2ae6769cae:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkMDZlZTI5MDkxNDc1YWIwMDg2ZGVjM2Q2OWE2MDA2ZTg4NDM2YjJkMTA5NDFhYjFhMzE4YjJjODliMTM3Y2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMjQxOTlmYmI3NzYyZmYwNTFkYmI1ZjQ4NTRhZDljYjM5ZjE3Zjc1Y2VlOGVhZjQwNWMwZDEyZDVhYzU3N2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5NWY0MTdlNmNkM2Q5MmVmOTY2NWIwNWM0ZmI2ZDg2MWE0MGVmYjE1ZDRmMWIyZGVmYmU5YWU4MGNkZTNjMTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e6826edc4e14c3586cf6ce6e58fd3ce",
+      "statement": "Repository and environment catalogs are read through a fail-open cache — in-memory 60 s → signed control-plane GET → KV last-known-good copy (KV TTL 300 s) → fallback empty list — where a malformed fresh response never overwrites the last-known-good copy; a total failure surfaces as no environments/repos, causing mapping stages to fall through and the classifier to ask for clarification.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/cached-resource.ts#L46-L99",
+          "version": "repo-lines-v1:sha256:11076ae9fe9972d41e75dab75f8b6195f4c2e8840024f8294f5c758df91010a8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiZTJkYTAwM2NiNjA4NmNkNmY0ZTc2OTU0ZjhjMWY2Yjc1NTkyOTQ4OWMyYmJmN2Y3NDk2OGIxNDUwNjExZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdlMmJjZGMzZTA5NTZmMTAzYThlMDU1YmFiNGI1ZGJjZjM3ZDdjNzY0MzRjYTU5MjdjNDJmZjY3MzM3ZDUyOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlhYTJiY2VkYzUxZjY2YjYxYzg2YzQ5NDc3YjIwNDRkYzhhZTA4YmJlN2EzMDFkMzMzYTVhY2Y5ZTMwZDcyMDUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/control-plane.ts#L10-L17",
+          "version": "repo-lines-v1:sha256:ccece8ae6bcf721d78b6991a057364f5b29bbff14ce819eb318a753b7abe862c:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGQ5YzJkY2Q0NmU0NWE3ZGFjZDE2M2E0MzAyODU0N2MzNWIzNGU0OWM5M2ZlMzkyZDhhOTEzNzA0OWY1MWY2ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDIwMTg5NTFkMGNlNDMwMDEzYzg2NTkyOTY0MTg1NzRmMjkwMWMyYTJiMmU1MDVjYmExOTM1OTVlNTY5MTE5ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjE5ZGI1MjlhYzUwOGUxNmVjMWQyMGQzYTg5NzNjYmMxMWI4N2RkNjJlOTMwNTI4NTJjNzA4OWM4ZTdjZWMwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDdhOGU0YWM0M2ZmODgxODVkOWY5YWIyMDFiNjhiMjRkYWNlNTY3MmY1YWQzNGYyNjU0MGQ4M2MyYTA4NTVlYyJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/environments.ts#L19-L43",
+          "version": "repo-lines-v1:sha256:75710a814b3e63fc2289b94cf6e5efce5183d36fd4d2083013bdd93ded3a6668:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyNDUzMzMyYWZmNGEyNmNjNDczYzVlMzBkNWFlMzJjNGRmZGI1Zjk3Mzg4ZjUxODIwMDhmMjAwYTBkNzRmZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBhMGMzYWFkZGI4NTE5NzcwZjZmOGRkMWM4ZmM2ODA3MzJmNzFjMzc0YTYxNmJlNjQ4YmViN2QwMTlmNTJhZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2ZGQyMGIzMTUwYTI4ODRjNzZiZWUyMjQ0OTU3YTU2NDNhMzNlNTg1ZGJhODBkZDczNjI5MTEwZTg2NDA3YWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_500d626a7a7847ed8ca48791654a4e43",
+      "statement": "Session model resolution applies the priority model:* issue label (when allowLabelModelOverride) > user KV preference (when allowUserPreferenceOverride) > repository/environment integration config > env.DEFAULT_MODEL, normalized through the shared model catalog; reasoning effort uses the user's preference when allowed and valid for the model, else the config's effort only when the model itself came from config/default, else the model's default effort.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/model-resolution.ts#L55-L114",
+          "version": "repo-lines-v1:sha256:c5e74546b71b2ff62166dc9979f1429a1d74d954ab4104c493e05aec3acc80c5:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2MDE0NWRjZTk3Mzc1YjkzYTFmMzYxYTk3NjdkYzI4Mjg0NzZlYTdkZTA0ZmI0MDBjZTRmNDI0OTBhOTc3NzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiNmE4MGUwNDdjZTZiY2M2MGI0NTE0NjEzMjc5YjRhNzQxMjJhZjBiZmZkMDdmYWNlMTIwMWU2ZTIzYWIxYzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L555-L583",
+          "version": "repo-lines-v1:sha256:8254caa0f81ba3a3ab80a672077ae1224953071041d49c11713d4d26046259c8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxNzg0YWFlZDA0MmM0NDg5ZDFhN2YzM2I2OGY4ZjBhZGRiYWQwODM5NzRlMWFmM2EwMDFlYTVjMGY3OGUwNTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM2ZTUxZTBkMDA4ZjE2YzdhMmI3MDAyZThiYzQ2NTQ4N2FlMmY1YTMzYjA4ZjczZjUzNWQwMGJmMjhiODdmZTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRmOGZiOTZlNWE4OGFlZmE4ZTIwYWFkYjFjOWE2OWRiYTU1ZTQ2NmIwOGUxNDEyYzU3ZjkwZjMzYzA5ZDFmMGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_06b5e4c48d5b40cba11957e5f587610c",
+      "statement": "Per-user model and reasoning preferences are admin/API-managed KV records under user_prefs:{userId} (not settable from a self-service Linear screen), and the triggering user's Linear profile supplies actorDisplayName/actorEmail for session attribution.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/kv-store.ts#L82-L97",
+          "version": "repo-lines-v1:sha256:2712d57ec808092eaf578ec88e1c60111ef9de84e20e3953fdcc64cb5a33d8df:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyZTY4OWUxZjgwZWVkODRmNWM3OGUyMjI4NzYwNTNmM2E1MTk2MGEzYTY2YTJhOWE2ZjViODBmMDM0NjcyNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5YjU2NmNlOWVjNGFmOGNkYmMyZmQxZGQ4ODI2YjUwMWJmZTMzMzllZTZkY2FhZDU3NGJhZWNiMzdjNDhlZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyNDNlMDk2MGU5Yjc5NTU4M2JiMDNjNzVlY2ExZWMyMzc3ZDRkYWUxZDhlMzE1YTMyZWEyMDU1MzczMGM4ZDkifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L557-L571",
+          "version": "repo-lines-v1:sha256:ab2d67caec8bb1c8b7206781ed5e4377b0f24c482a140ee6217711bcc9a469bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYWYyZjM4MjEyODZmZWY2NGZjZTc1ODZkYTEyOTU2ODlhNmY3YTM2MmE3MzAyNGU1ODU4ZWNmODgxNGIwMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5NWY0MTdlNmNkM2Q5MmVmOTY2NWIwNWM0ZmI2ZDg2MWE0MGVmYjE1ZDRmMWIyZGVmYmU5YWU4MGNkZTNjMTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI3MGQ4NzQ1M2M0YjgzZGUwYWFjYTE1NTlkMDhmODc3NWEzZTljN2RkYTM3NmQxODY4YWU3OWY1YzIwNWRmNmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_053e842ceda3471d83a7280f72af7997",
+      "statement": "All Linear-sourced text in prompts — issue title, description, recent comments, the agent instruction, clarification replies, and Linear's promptContext — is escaped and wrapped in tagged <user_content> blocks with an explicit do-not-follow directive, including already-escaped marker variants; Linear's promptContext is preferred over assembling the prompt from issue fields, and integration issueSessionInstructions is appended verbatim.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L54-L135",
+          "version": "repo-lines-v1:sha256:ad418715a215e0151c38c0cca7a522fa2a8738a88f62069b47fcf229a15e3d67:eyJzZWxlY3RlZExpbmVDb3VudCI6ODIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0N2Q1MmNkYzM4YmRhYWY2MjMwNDM1OTM5MTA3YzU5NTNiZTczMzkwZjNlYTE5ZWEzNmRjM2ViOGExMTE2NTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzYmUyNjFiNzA1OTRlNGQzNGVkYmE1MWZhMTg1ZjRmODQyODJlMmMyNjdhYThlMTYwMDkzNjU0NTYxN2M4ZTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVlNTdhMTg1MjBmMGY1MzI5ZGE2YWFjYWQxZjcyNjM2MzUyY2I2ZmJhNjRkOTY3YmI0N2I2OTdiOWE2YzQzMDQifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L656-L665",
+          "version": "repo-lines-v1:sha256:38a7aae7181212fd4017d4451dfa60d5ec9bcb0e5258c3c89274546926113b8b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0NmJhYWEwOTBkOGQ1N2IwMTE2NmEyYTQ5ZDk1NDUxMWRlZDRiMTg5MGRjMTQzZDM5MzAxN2Q5ZTkyZDg0NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhZTI2YzhkMmI3YjU5MDdjYWIwM2I0YzcwNWJiMGUxNDc1ZjAxNzliZjkyNGU2YWVmOWQzODBiOTkxN2Q0Y2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyMTRkN2U0ZmUxZmYzNWNjY2UxZTliOTRlYzVlZmU0ZDFiZDJlNDk4NjY0MjdlNmViN2E5MDM5Y2JhNzQ1YzIifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L766-L861",
+          "version": "repo-lines-v1:sha256:a947248a7d8e511692157a833b5d05ea2863748489aecb0f71bba024fa3da3cd:eyJzZWxlY3RlZExpbmVDb3VudCI6OTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1Y2ZhMjAxOGYzYmUyMDMwMzMxZmUxMTA2NmQ5MjU0YTRmMmRiN2M1MmI3OTAyMTU2MTQ5MmYyYjU3ZDQ3ODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmYTM0MWI0ZDNiZTFmYWZhYjRlY2E1YTI1ZjdlY2M0Yjg5NjVhNTUyZTdjZTBjYzgzN2UzNjlmYTVlYTJhZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_39f890b4edd14da2bda31c6e784c967b",
+      "statement": "handleNewSession creates the session via a sig1-signed POST to https://internal/sessions (target fields, title \"{identifier}: {title}\", model, reasoning effort, actor display/email) validated by createSessionResponseSchema, stores the issue→session mapping, attaches the View Session external URL and plan stages, then POSTs the prompt to https://internal/sessions/{id}/prompt with { content, source: \"linear\", callbackContext }; failures emit error activities with the HTTP status and control_plane.* logs.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L140-L185",
+          "version": "repo-lines-v1:sha256:48b41b6ec47b3a88bb261c8a2f5fa9ce9c5431aaf395492c7e594cb5dbb207e4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxNzEyMTZiY2ViMDExZTE1NzI2YTEzNzVjNTllNDQ0YzU2YTQ4YzY2OTBkNTViMTVlMmI4ZTdjODAzZTQwZWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdkNTNhOTBjMmRlZjg5NGY3NGUyZjA1ZTEwZmMwNTEwOTQzNTJhYzg1Y2E5YTg5ZmIzYTEwZTA2NzhlOGFlNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllNjc3MDZhMzZkMDRlNjNkM2RkYWIxN2I2MmFmNDBkYzQyYzZkYjI5NzE5YWQ0NjYyYjYwZDQyNjU2ZWE1ZWIifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L598-L654",
+          "version": "repo-lines-v1:sha256:7ceeba0f07211aca2a27466047a831b5ea2cc08f70886ac43604565104b638d9:eyJzZWxlY3RlZExpbmVDb3VudCI6NTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjN2I2OTdjNWZlYjEwZTFkNjFhM2M2ZGU1YTE2MGYzYjYyMjdkYjAzMmQ5MzBhYzEwMjY4MjFlNTg3NzgyMzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0Mjg3MjI2OTAyMjJhNzBhODc1MWZlZTM4Yjc1NjZkYThlMTRkZGRjMWNmZmQwOTgxMTc2ZGM3MTE5NmIyZGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcxMWUyOGIyMTE1YjJhNjdlOTgwMjFlNWIzZmIzYTI4MWNiMDUzNmJmNjUwMTc3ZWQzYjNhODdiYWE5ZmVkYzkifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L667-L718",
+          "version": "repo-lines-v1:sha256:08d526d3ef0420a2183ad26898829bef41f0640f536e187aa42df0166403e9dc:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZDkyMTAwNTNmZjU0NjcwZGUwYTBlN2M4MmQzZDA2ODQyOTEzYzIyYjVlODkzZWUwNTY3MjAwYjc0MWJjNjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5YTBlMjllNGRkZGJiZDQ5NDFiOWEwOTE3NGJlYzc0YzUzNTljNzYyNzNkN2M1MzYxZWYzODVkYTY3YWVjOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzNmE5YWUzYWMwZDU4N2FkZDQxNDBhNjE2ZjEwNjkyODJmMWZjYTY1N2MzMzU5YmEwMDdhZTNjM2YzMDMwZDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c59eea3a4e0a4ce2acffb18e36fa5dfd",
+      "statement": "The issue→session mapping is stored under issue:{issueId} with a 7-day TTL and schema-validated on read; it routes follow-ups to the existing session, lets stop/cancel kill the sandbox session, and rehydrates the stored target identity for follow-up integration lookups; expired or absent mappings mean the next agent request legitimately starts a new session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/kv-store.ts#L99-L125",
+          "version": "repo-lines-v1:sha256:716dd54ea697e81e103b47f75760bf71a2406bf74b61c637e84c028d829fef19:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExNTU4NzkyNGVhODFiMmQ4ZDM0NWM3MjVjZjFiNDc0NDVjYTE3YWE4OTliY2ViODlhZTQxZTZjNDViOGZlOGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjFiZmNiZGUyMzdhMTIxNDEyMDUyNDRhOWNhNDAzM2I4OGVkYzAwNTlmNmQ1YzAzM2U0MTcxMmRhYTEyMWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3OWI2NTg0YWZjYTgxZjNmZGIwOGZhZmY0MzYyZDkzNWY5OTAzNWIxZTlhZWZmNWEzZTk4OTkzMjQ5YzNjZTEifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/target-resolution.ts#L150-L168",
+          "version": "repo-lines-v1:sha256:78b00ddb02b75357e2eb1c52118bc3effd61ed0594dc2a96c1036321efdc568c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3MTU4OGM5OTBiMThiYjM1OTcwYmVlMjRmOWYwNTNlZjM3ZmRlNTFkMzQwNWM3ODNjNjcyZjA3YTMzM2Q3MzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliODA4MDIxZjU4MGRlNGE3YjgwMTBlMTZjZGVlMTA1ZDdhYjEwYjdlYjQ3NGUyMzkwNzQxN2I3MjhkYzI0NzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4MGFkZDhmMzYyZTQxOTk1NTIxNzgzYjdjNDZjODM0Y2VmZjMwODc0MWFlMTIxNDAxMDU0MzQzMTdiNmFlYWMifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/types.ts#L109-L130",
+          "version": "repo-lines-v1:sha256:3020510afb0bb5e7ba42373ea1ab5be51f5af9ddcd52d141f587f71c2662a2c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjM2JlYmNmMzk4MTZhOTAxNjQ1N2M2NTQwZWYzOTg1ZjJjZDhkNTkwMmVkYzE4NmI3MzEzNzQ0MzA4NzA0NmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjYzhiYmY3NDYwZGE0NWUxODJjYTc3MmVjMjU5ZjUzNDRkYTg0MTc4ODhhMTM1NzE2YzgxNzY1ZmEwYzY5OTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI3MWM3OWMwOTFmYzJiODhlYTdjZWQxYjhlYjBmOGYxODcwMmE3YTQwOGRmZDUyZDBhOWY5NDZkNDUxZmI2MTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhNzVlYTk5NjVkN2YxOWQ2NGVlNTk1ZmUzNzJjZjdiNGJkNzQ3MTAwYWJkOWYwNzA0NWNhYTYzNjlhZjJkY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd0b5d7f8c5940e6882b5d451fd6b291",
+      "statement": "handleFollowUp re-attaches a rebuilt callback context (callback context is message-scoped, not inherited by the control plane), optionally includes a 500-character summary of the session's latest token event, wraps follow-up text and the agent summary in isolated untrusted blocks, and reports the prompt result back to Linear as a thought (with session link) or an error activity, logging agent_session.followup either way.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/INTEGRATION.md#L65-L79",
+          "version": "repo-lines-v1:sha256:b2a5ebf1d660d183ecb0a91d52895008dd5cc78ebf0de6f003ee2d7414ef86b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4YWRmZTc4ZWI1YzNjYTdhNTIyM2FmMjE3MGRjMjhlNTZlZWRmZjY3ZmE4ZTE3MjViNTAyYjAxYWRhOWQxNjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViNTI4ZTBhMTU2MTkzNDVjYjhiNWRkOWE1NWZkM2VjYmVjM2Q5MjE1ZmU0ZGI1ZWNkNWRmMjJjODRkYzFjZTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwOGZkMDc3MDE0NmVjNGJhN2U2ZTk5NDA3NDIzNmQwNDczMDY2MzZkMjZlY2ZhMGUyZTZmODY3N2E5YTljNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmY2MzYjEwNDMxMWNkODgzZWRlMDUwZjUzYjVhYTU3MTNlYmIwNWY4ZDI4ZTUxMjZjZjUzMzcyNDlhYWZiNGMifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L370-L476",
+          "version": "repo-lines-v1:sha256:4c1b81c6bdfd087eb61dfc36d50efb6bba20214195a6b21cbf3248e793180537:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlZjc4ZjE0NTZlNzBjNzI2M2ZhZWI5ZTkxMTY1ZGI3N2Q5NzYzMzNkNGRlY2U2ZGNkZjYzYWYzYThkMWFiNGM2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5MjA0MGUwOTVhOTRlMmFkYTc0ZTQyMWYzNzE4NzUxYTkxYTgxMGJmZDY2ZjQ4ZjRlOTM5YzdiNzQ4MGViNjcwIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlNzc2NzQwYzUxYjMwYjgwN2YwNWY4ZjdjZDRiODczZmJmNTU0Y2UyNzIwMzQyZDRmNzI4ZDEwMjA1ZTEwYzAxIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_bf6b24819d1047c6b7a8adf5a9740df6",
+      "statement": "The agent session's Linear plan is a five-step checklist (Analyze issue, Resolve repository, Create coding session, Code changes, Open PR) driven through makePlan stages start/repo_resolved/session_created during dispatch and completed/failed at completion.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks.ts#L279-L281",
+          "version": "repo-lines-v1:sha256:24cb8f2cde6018ea4255323e853c2ec70de70ed262d11035f09c57c9dd8500b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU0OTE5ZGUzMzIxNzkxMzU2MzdmNzM4YjQwMzI1OTUyNTJhNjc2YmRmYmZiYjVkZjc5YTgyMzFiMTkyOTk5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTljMTM1OTA2NjU2MzIzZDFjNWVhNDE2NTRlZTY2YWZiNTg1YWNkY2ZhZWFjYTEyMWQ1ZTMwYmYxOTNlZWRkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzAyODU1ZDA4ZTUyMDliNjM3Yjg2YzY5MTM2MDFiMmM5NDU0ZjRmZGNmN2ExZDI0NGQwMzM5YWYxOWE1YmIwNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGI2MzE4OGQ3MmJiYjIwMGVlNTJlNDRlNDZmMzQ2Yzk2OGI2NmJlOTE2YzUxMjMyOWE3MjIwNjY1MzRmM2U5MCJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/plan.ts#L12-L31",
+          "version": "repo-lines-v1:sha256:3780f04b2651b876a67b7d9b205bea0272bbfc334feedbfc2579946d352fe406:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4Zjg0NzUwM2JmMGYwMmRlODU2ZWQ0MDQzODJlMjQ5YTE1OGZjYzY5MDE0Mjc3MWZmOTc4ZmRiNTk0NzM1ZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxNjhjNDNhOGU0ODRkNmRhNWY3NzYzZmIzMGQwZTgxNzRjMmJlNjI3NmVjYTNmYzEzNDI5NWEwMzRlYmZiYWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L505-L514",
+          "version": "repo-lines-v1:sha256:f2c5b90258c8c09155843016946b79850da0a098337097505086551f9bc69475:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3ODZmMWE2NTVjNzE2OWY0OWZhMDFkZDdjNGU0MTU1YWYxN2JlMWIzNTY0ODdlYzU5NTM0Mzc0NjA1MGMwOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5YWU0ZGZiY2UxMjA0NDVhNTcyZmQ0ZDE2MTIyYTA3OGEzNTQ5NmM0NjZkYTA1ZTNjY2ZlMTY0YjkwZDEyZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMzY2I5YzQwYjlmMDg4OGM5NjQ1MmMxZWU0NTU3ZWQxZWUyM2Y5OWE0MDRlN2UwYjY1MWI5MjVhZTQ0ZTU1YjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7d38b9721d2402e952d3d3c3bc64be1",
+      "statement": "The control plane signs each callback with the destination bot's per-service SERVICE_AUTH_SECRET over the JSON of the payload without the signature field (original key order); the worker requires its own secret (500 if unset) and verifies the signature over the raw received object (401 on mismatch) via the shared rejectInvalidCallback guard, while non-linear sources route to the slack-bot binding for backward compatibility.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L108-L129",
+          "version": "repo-lines-v1:sha256:592f4a3dce494d286b4c19a21060ea1f61bda1587e9f523e58b44834d1563e23:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2NzRiOGJhNjllY2VlNmY1ZmE4ZDcwODhiNmFiYmFkMDRkMjExOWZlM2IxMDZiMjNjZWFhYTExMDdiMjg1ZmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5MzY3ZGRhNWVhNjc3YjFjOWVkYjM2ODQ4ZDMyNjA3NWYxNjdlMWRlZjk4NGUxNDA2ZmIwNWY5MGNjNWMwYzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ1NWQ3Nzc3MzJkMGZmMmU5YjcwZDllNGI5OGIwNzRkOTNjNmM5NDhiNjAyNGEyOGE0MWJhZTk5NTQxMTdhODAifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L224-L243",
+          "version": "repo-lines-v1:sha256:81a4a38ec782f09f117a00fc6ba23557e51689f215afbd340b0d51c5fc07cd48:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiZjg0NTA3ZTBjYzUxNjM2YTM1MDNkZWJhNmQ5MTVhMzNlODY3MjNiYWMwMTAwODM0NjA2MjQzM2YxNjY1Y2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiOTU3ZmYyNTg4MWFmNmY0OGYwZTZmNTUyODQ3YTMyMTVlMGIwNWVmZDQ3NTgyMWYyYTM5MzA4MjEwZDAzYWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM0NWJjNWMxNTJiNGZlOGQyYTFhNzQ5MGE0YmE1YWJmOGRiMDRmZDA0ZGY4YmU3ZDQ0ZWZlOTE0MzA4ZDUzMTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwNmY5MmMxZGNmMzkwYzJmZmJhOWM5OWE1ZGQ3YWRlOWVjOGQwMzIyMjAzZWY3MTQ3OWQwNDZmMzhlMzBkMGUifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks/reject-invalid-callback.ts#L16-L53",
+          "version": "repo-lines-v1:sha256:f58e157bfca50a4f33eb6a5ee19c0dabad0745e3dabbf4649563c562a54cca2e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjMWQ5ZjY0MmZjMjQzMzRhNzYzYzMwZDlkZDBiYzU5YjlhNDJhNThhZDYzNzBiN2ZjNGU4YzFlMzM1YzI0NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllNTQwNTM3OTYxNmYyOTAxMmZjYjY3OTZlODY0YTQ4NGZjYWJmY2FhZWE4ZTk3ZWNmMjM2OTZhMjM2OTRhMzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/auth.ts#L85-L113",
+          "version": "repo-lines-v1:sha256:3ee35ee0476c65ea3c91355516e7d6424c71ec7489b0aeef60b5b62b9ea402a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhNmJlYTBjMjliNjZhMzhkMmRkMTNhMDcwMzliMjM2OTlkODIyMjBjNzVjZDUzNDRmMDUwNDkwMTBmZjg4MzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjEyM2Y0N2JmMTUzYTYyMzNlNmIxODk3YWZkMWU1NDQ0OWY2YjFlZjg3YjY2M2RlNDhiMjUyMjU0OTVlNDFjODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9bc1d825db444f5cbb29b44c6174f429",
+      "statement": "A queued message without a callback context has no safe callback destination — completion delivery is intentionally skipped, visible as has_callback_context:false on the control plane's prompt.enqueue log — and the LinearCallbackContext schema is a strict union in which the transitionIssueOnStart:true variant requires organizationId and appUserId.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L134-L141",
+          "version": "repo-lines-v1:sha256:c2d0a4e6bc48e00e3c1d09466beb444c366bc078ac4c90c10d6b850ac0a7c3ed:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY3M2Q4ODMyMmZmMGZkOTUyNzBjMWNhYmQ1OTVlNGRjNTQ1OTUxOWE5MDJjNDFhNzlhOTdmYjBmYjdiYjQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODIzMTE4NWY2MGFkM2Y0NmYxMWM4Nzc4YmQyOTE4NjQ1MWI1N2Y1NjQ5NjE3MmUyOGE4ZmExZDM2NThmMDRmNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGIyZmE5M2I4ZGJmNzMxNjU1YzdiYzA3YmQzMTlmYWZkYzU1NGYzMmZiYjc2YzJjYWNmNzdhYTM5ZmI3Zjk3YSJ9"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L849-L865",
+          "version": "repo-lines-v1:sha256:3b66376d86be79067791df4b8c89b5ecf6cf4351ccc3318d75d3b1c95f8088ae:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjNDg4YTM5MDdmYWVjM2Y3ZjAyMWZkNjQzMjk0NjlmZTZlMmRhOWZmMDBhYjMwNTQ4ODdkZjc2M2FhMjI1YzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwYmI1MzE2YjI5OGVhNDk4YTk4M2ZkMTQ4OGNjNTcxNDQwYzNmYzdkZTI2NjFlZDVjZjQ0ZGIxMjJiZGQ5YzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwMjY4NGRkMzQ5ZDE3Y2MxMDc5YWFlMDczZWIyM2YxZGU5N2NjNTgzYmVjZjVmZTM0ZTE0YmM2YmYwMjQ4ZGQifQ"
+        },
+        {
+          "resource": "repo://packages/shared/src/types/session-api.ts#L49-L76",
+          "version": "repo-lines-v1:sha256:ab0baa3fc1267d7b4279054c0305d8f39d52467edfe531bcfe66eb72f7600c03:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5MTc3ZDQ2ZDczNTUwNGUzNmZjODUyYzBhYzUxNjQ3NDdiNWFjZmZlNzQ3YWMxZWVhYzc3OGIzZTBlZGM1NDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjMzc0YzliYmU4YjVhNWRkMGRlNjhjNTFmZGMxZjYzMDVmOWE0YmEzYTlkNDU3ODQyZDE2YzhiNmRiMGU0YWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzMTBkNzljY2ExM2RiNDY4OTBjNDk4MjI3NjhjZWYwN2RjMDExYzY1YzNiNTExNmY1ZTZlYmJiNTQ0NWZmZmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMzZjFjMTQ4ZTdjNDZhYTc4Y2RkZmU1MjFkNjVlZmNlMGZmZmJhZjgwZTEzMzExNDk3NTM4Zjc0YTY2YjJlOWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8401e7f534174bb38ba01686e935c764",
+      "statement": "Start and completion callbacks are delivered with one retry (2 attempts, 1 s apart, 10 s per-attempt timeout) by the shared delivery helper; notifyStarted fires as a background task only when a Linear-source message with callback context is dispatched to the sandbox WebSocket.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-delivery.ts#L1-L59",
+          "version": "repo-lines-v1:sha256:d6b643f7ae49240f5da97a2a777767193ddd25e46a2fb131e271a3aef7e7e986:eyJzZWxlY3RlZExpbmVDb3VudCI6NTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwNGVmZTgzMzNmYzhlZTZjYzRhNmY4OWQ5NDRiZTViMThjOWVlOTZhNDU2NmYzMGJmZjkzYWM0NTgyZjVjZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwYzFmNDIxNjMwNjkxODEzMGEyZjg2NDQ4YmI1NWNlNGQyYzA2M2UyMTQ4MjVjMDg0ODFmMmNiNGNjNzkyYzYifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L131-L170",
+          "version": "repo-lines-v1:sha256:adbe32cd7cc4357f10daf000010c8c09d5e68ea0e57b485f9e3a75a0a9d5e644:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0NzgxNWVlNDhkYzZkYjI4YTM2OGI1MmZkY2I5MDRmNTdmYTgyMmViODMxNTNlNGQyYjgwYzVhYmIyMmM5YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlZWVmZGQ1MTEzZDk5MDU2ZjFlMTlkZTFiN2Q1YmVkZTZlMGEzMDFmOWU4ZjdiZTRlYWQzZjhmOGRhODY2YzgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3MjA2MzQ5MGU3ZGVlNWNkZDk3Y2FmZTAxMmE4YWU3YzMyMTAxOGJkZTNjN2M5MjQ4NzgwZGY3YmJlNmZlNTUifQ"
+        },
+        {
+          "resource": "repo://packages/control-plane/src/session/message-queue.ts#L476-L496",
+          "version": "repo-lines-v1:sha256:3752add3d0f7e3bb8f7ea42c718b4dc0ef85d9d9c824360938d78c02079d0f46:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4ZDQ3ZjA3MmIwM2U1ZWNkNmY2YjRhMWFlMmRjODViZmEzYTViZGEwZjE4ODkxZGRhMDY5MjAwNWMxNTcwMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhNDFkNzNjNDUyMmJlYTM5ZmY4MTVlMjRiY2YxMzExODUzMWQ2NzFlYjNjZjUzMTIxODg1ZTExYTFjNDcyNGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU3NjYxNzFiZWU5ZTUwNDYxNGYyZmIzZjI1ZmE5NGY2ZDc0ZmExNTdlNzU4Mzg5ZTIzOTI3NDgxNzk3ZmY2ZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f8fc140e7d644a6badac24732d7e740a",
+      "statement": "POST /callbacks/start moves the issue to its team's started workflow only when the context carries transitionIssueOnStart:true — set only for action \"created\" webhooks with a human creatorId — and is acknowledged with outcome stale_callback when the signed payload is older than 5 minutes or more than 60 s in the future; Linear calls are bounded by a 20-second abort signal (504 on timeout, 503 on auth failure, 502 on transition failure), and a skipped, rejected, or failed transition never blocks agent execution.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks/start-callback.ts#L12-L74",
+          "version": "repo-lines-v1:sha256:427c797080e8fccddcfd25d4b2bc71e31924463a3a8d4589e03c754ca5429ad3:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3NTgyMWMzZTdkZDNjZTVkNjdiMDMxNmQzY2UyN2VjNmNlNzU3ZDIzMzQzMzlmNWMxYmMzOGQzOGFhNzRhY2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3NDI3YTA2YzA2OGYxMTk5MWE0ZjFlOGFhY2E0NWYxZmIxZjhmODZhZThiZTI0MWQwY2RlMzg3NWI0YzNmZWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgzM2RhZjU1MzM5NDFkNzQ2NzhkNWE4YWU5NGExNTZhOThlNjFkMmQ0NmI3MDI5ZmMzYTVjNGM4ZGVmNGYyMmQifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks/start-callback.ts#L76-L133",
+          "version": "repo-lines-v1:sha256:e9d956b2257e0dbdf3b201e3466466df90ec161264950dc70f54c4cd1c7ed91e:eyJzZWxlY3RlZExpbmVDb3VudCI6NTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwZmJhY2ZlNTZiOTJiZWY1YjM0ODdhYzk5ZDVjM2Q0ZThkYTdjMWUyOWFlMmI2ZjE3M2MzOGMyYzYxN2Y0MTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyZTUyYjFiZWI2OWU3M2NhNDlkYzA5MTRkMWUzYjM3MjFhOWMwZTkyYWQ4NTkzZjg2ZGNhNDQ5YWRhOWUxN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwZWNlNzdkNjU0OTRmMTUxZDg1ZjQwNzgxMWY0N2JiMDYzN2U3NGY1MDk1YzVhMjFjNWJkMDJjZTg3NGMwMzAifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L303-L305",
+          "version": "repo-lines-v1:sha256:51a61b3e5bd733367564eb8c9829fd0f0300996db04a8eaffe6520ebbd7cfd48:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2FkZjU5ODM0ZWI0ZDZhYTY4NGE0YTcwMDI2MjgwYjhmOWJmY2VlYzZmOTA3YTdjYjJjODNkZjcwNDQyYTllOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTIwNDBlMDk1YTk0ZTJhZGE3NGU0MjFmMzcxODc1MWE5MWE4MTBiZmQ2NmY0OGY0ZTkzOWM3Yjc0ODBlYjY3MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmRlNzEyMjU2MDdhZmI4NDE1MjdlZGE5Yzg4MmRiNDcyZjc1ZjVjOWZkOTRmYmZkMmRiZmI0MGRhYWI4ZmEyMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9263019999ee4cd49e1b8da43cb75fe3",
+      "statement": "transitionIssueToStarted moves an issue forward to the team's lowest-position started workflow state in one context query plus one issueUpdate, classifying everything else as a no-op (already_started, terminal_completed, terminal_canceled, no_started_state, issue_not_found); follow-ups, automation sessions, and already-progressed issues remain unchanged.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/utils/issue-start-transition.ts#L31-L110",
+          "version": "repo-lines-v1:sha256:355f105c8dc297bb9a7c6e1a0d7cf29369f90dc96ee3f7c0969e8b88ed7c3e58:eyJzZWxlY3RlZExpbmVDb3VudCI6ODAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNTM0YzI5ZjQzNzUzMzhiMjQ0OTk2Njc4OTQ4M2FiNjRhYmRiZWZkMGQ3MDAzOGE1OGZiMzYyMGY1ZGZlZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkMTkxOWIxNWE5YzdhZWRjNzZhNGQzNTYzYjE5NGQzYTljMWY4NjRjYjYxOTgzYjk5MzU0ODNmZjY2OGY0NTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b1ac7d69c5604e56bbe15cc564940d07",
+      "statement": "The control plane throttles tool_call callbacks to one per 3 seconds per session and dedupes per tool callId, marking a callId delivered only on success; the worker skips when the context lacks agentSessionId/organizationId/appUserId or when emitToolProgressActivities is explicitly false (defaulting to enabled for contexts that predate the field), formats tools into Linear's action/parameter shape with truncation and non-empty placeholders, and swallows emission failures.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/callback-notification-service.ts#L368-L473",
+          "version": "repo-lines-v1:sha256:467381c448ec3d61b01285fafc444a9ec33c72f3f32b45ab4e7ccd8391149fb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTA2LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1ZjFjNThhNjFmYWI2ZWI1ZmZlODFjMDUxMjA3NDVjOWY5ZTkwMmIyMjkxYmIwNmQwOTg1YzVmOTViODY5YzNmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmNDkyMjc2MDE1Yjk5N2UwNTc4ZjcwOGY3NWVkZWViNzFmZDAzZjU0YmM4YzUwYjg3YWM4ODIzYzM5M2Q0OGQzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmMTk3MjZhNTY2NmM2ZDViOGM3NDg2NjBlYmRhZDM4YjMyNzNmNjBkZDZhMDY0NWQ3ODViYmU3MjM5YjM3NTJjIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIyYTFkZDM1ZGNiMDcyMGJkMzBiNjY2MzVhNDM4MzQ3MmZmNjA5NDNmYjQ1MTcyMzhkOWVhMzIwNmJmN2RkOWViIn0"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks.ts#L146-L218",
+          "version": "repo-lines-v1:sha256:ca7ed5b2084745b1fbdeb2ee85898bd2a3fa10771594c0fd82816db207b864e1:eyJzZWxlY3RlZExpbmVDb3VudCI6NzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkYzIwZTFlNTE5MzA2NTFkZjlhNWRiNTkxZThkM2VhNmFmYmZhYjFiOTZhZTA5YTMyM2I3NjY3ZjRkZTQ0N2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliNjJmNjBkODU5MGE1NzljZjQ2ZjhkNjczNzhjNGM1NzJiOTYyY2VjY2RiOTBjN2E1ZjdiNDJiOTYwNzgyYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3ZWM4ZWZkMGFjY2Y0ZmY1Yjc3OGMwMjE1MTQxMWQ1YjkyYzJiNTA2YTU4ZjMxNTU3Nzk0ZGU0NzAyOGVjYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgwODQ1YjFhMjgwOTljMDUwZDgxYjQ2NDRjMTU4ZWI0ODgyNTcxM2M2ODJiMzY0NDE1NThjNjFiMTNjY2YzYzgifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks.ts#L84-L111",
+          "version": "repo-lines-v1:sha256:dd1fd56a0ef9555a5f1e6f0417d8137c0f09caa4cec237987704025a0e18fa40:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNDc5ZWJlMjcwYjVjNzA2OTVkMjQ3MmRjMTRjZDA4ZDQ0NmYzZGRjYTA5YjVhZmYzMTdkMjllYjk0YjM3OTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4OGZkZTNiNDFiNTg0MWNlYjY4NDkxYjBlNzFjODc3NmNjYTZlZjJmNWY2ZDJjNDU1YjdjYWMwNjE4MmRiM2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f43fac075244fec9ebcfac08cd38e59",
+      "statement": "On /callbacks/complete the worker extracts the agent response from control-plane events and artifacts, emits a response (success) or error (failure) terminal activity, updates the agent session's plan to completed/failed, and when a PR artifact exists sets externalUrls to View Session plus Pull Request links; Linear leaves \"Working\" only after the terminal activity is delivered, and a skipped completion cannot repair itself later — recovery is a new follow-up through the same agent session.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks.ts#L227-L314",
+          "version": "repo-lines-v1:sha256:594220f39ae60825b3ff47d579abb6d3d50f3f44cd0747efe9caebcd8878fc13:eyJzZWxlY3RlZExpbmVDb3VudCI6ODgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhMjcwZGYxZGFiMGQ1ODBjZjc0NDEwNWYwZDUxM2UyZmEwZTU1OGU5Y2YyNThjNWQxYzg1YjkzOWM4OWQzYjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiMTAxMGZkNTZkNzM0MzJiZDdlMjI5OGYwYWE3N2MyZDE3MzgyODE4MGE4YzhkYjRlZTYzMGM5OThmNDAzNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhODU3MzAwNGRiMzEzOTViOWEzNmU1MmVmOTcxNzVjMjg3YzU2MTZlMzBhNzg2MTBhYjNjNDdkYTgzYmJlMWQifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/completion/extractor.ts#L22-L72",
+          "version": "repo-lines-v1:sha256:fca84c4765f84fcc0ac7bc9d11df493dc2bf8a13290af55379306b3d77155ab8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwZmYxYWJhODFlN2ViYzczY2YwYmIzMjZiMmZlNjlhN2ZkM2ZmNTNhMjk5OTIyOTU5MTEwMGM0NjVhNTQwOWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZiODM5MGU2NmZjYzEyNDM3MDdjODVhNjQzMWVhN2NlMWY5ODIwNWYyMjNhYTkyMzc5NjJiMjk3M2EzYmI3MzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e3a07edabf39459bbd6503e74efb54c4",
+      "statement": "When the completion callback context lacks Agent API identity, the worker falls back to posting an issue comment via the optional LINEAR_API_KEY; without that key configured it logs callback.no_linear_api_key and gives up.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/callbacks.ts#L316-L341",
+          "version": "repo-lines-v1:sha256:06a9444d19bdd57af642afa672c2c4a985c6945f83d0a2e7c90411dc87b4bae5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkMmNkODI0MjdiYzhjYjhjZjgwNjE4ODE4ODUzYTZlOGNlNzlhNTQ0NTZmMmQ1YzZmN2Y1MzZkZjRhY2ZmMGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlZGJmODM4NzUzNjg5NjZmMzEzYWU2Mzk1MzljNDAzNzAwNDViYTUzZTJlMmNlZTkzYmI2N2Q1ZGExN2I5ODAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwNjNiZjJlNzlmMDBjMDliZmUwNGExMzVkZmRjNmY4NTk1ZjUyODU2MmIzMWFlNDIzY2ZkN2MxNGI2MDlhNWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmOTkyOGIwNDJlMzg0NjM2MmMyYzI5ODQ4ZjNhZmNhZTc1NDliNzExOWQ5ZjdhMjQxMzhlN2ZkZThmZjFiZGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a58ba4c6a37a4c33a6bb8664262653ad",
+      "statement": "All bot→control-plane calls (session create, prompt, stop, repos, environments, integration settings) are signed sig1 as service \"linear-bot\" with the worker's own SERVICE_AUTH_SECRET and sent through the CONTROL_PLANE service binding; session-creation and prompt calls assert the actor header linear:{linearUserId}, which the control plane parses as a bot-format author id for identity linking.",
+      "evidence": [
+        {
+          "resource": "repo://packages/control-plane/src/session/identity.ts#L143-L153",
+          "version": "repo-lines-v1:sha256:a4f94140666ca45ae463d3bf222eb725da66d13ab24d064a512265b4ea593872:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNiMjczOGJjOTFkYzEwMjliMGU5MGExN2Y1NGRiMTdmYTM1OGY4YzU5N2Q2ZDAyOWQxM2RlYWE4NWFlZGY3MTAifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/internal-auth.ts#L15-L21",
+          "version": "repo-lines-v1:sha256:a39b1fd663395a0a27abf5c055cf862197a22cff54ce1e6d39437f7d780f7145:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjljMWQyODRiYTExN2ZmZGMyNGNlYjU1ZTRkNmFhMmYxOTQ1NzM1MmVmN2JkZTlkYjE0NTUzZDczNGQwZDBhZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjliMTIyMDJlNTViYzBmYjNkN2ZlMjc3OTM3NThlZjUzMGUxNWZiODc3ZTdiOWYxYzk0MWE2ZmNjZTRlMDJmMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L162-L168",
+          "version": "repo-lines-v1:sha256:a2be22cec117011a5ab04539b27f57469dcc796d66143bfd65f67c237d0952fb:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU1YWRlMTI5NTQ1NTUwYzM0ODIxYWE0NDY3OTMxZDIwNWQ2N2RiOGIwOWE2YWQ3ZjEyYTk0OTdkZjBiMDUzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDMyMjU4YzBjYWExNzBlNDI3YzY4YmI0ZWY2MWFmYTYwYTNhNTVkOTJlMTJmNDU1ZGFhZDc2MWNmMTBkMjkxNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjg2ZTczZGZlZjFkNDFiNDFkYzg5ODhiODc3OGJkODcyY2I4NjdhNDA2ZjRhM2NlNGM4NDY5OTZkZGZmNWMyYSJ9"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/webhook-handler.ts#L667-L679",
+          "version": "repo-lines-v1:sha256:764ee536a996445d269e61db13db49aca59d2ec30e4fe7e6c059664422575ca9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjZDkyMTAwNTNmZjU0NjcwZGUwYTBlN2M4MmQzZDA2ODQyOTEzYzIyYjVlODkzZWUwNTY3MjAwYjc0MWJjNjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhM2U0NmY5NDI3NmI2ZjZmNGVkMWYwMmFmNzhiZWY2YTJlZTFjNDM5ZGQ1NTg0Yjk3Mzk0ODMxMzIxNGQyYjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5YTBlMjllNGRkZGJiZDQ5NDFiOWEwOTE3NGJlYzc0YzUzNTljNzYyNzNkN2M1MzYxZWYzODVkYTY3YWVjOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4YTE5NWFkN2I0OGFmNzJmNmY4ZmY3MTcyN2VkNWE1ZGQ1OTc0MGZjODRkMTNhZWE2NGUzMjhlYjMzMjNlMWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_18977d10fd2b4c8ba852905c895cc2a6",
+      "statement": "The worker's HTTP surface is exactly /health, /oauth/authorize, /oauth/callback, /webhook, and /callbacks/{start,complete,tool_call}; there are no /config/* endpoints in the router — team/project mappings and user preferences are operator-managed KV keys edited with wrangler, and integration settings resolve from the control plane.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/README.md#L187-L203",
+          "version": "repo-lines-v1:sha256:e54dc9717ad78e6d3daba7df948a3e0cc4ae726a7825a64e4ab1a80d324c737d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5MWM2OTQ3MGY1NjZmMGNlODE1Y2I3ZmVjOTA3NWZjMTU0MjdmY2U2YzZhYzZiMjYzZTZjYTA3OGY3ZTJkY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0ODEzZjBkNDYyYmJhNWJiMjFjZGU5ZTcwYTY3ZDcwMTRhNjkzZDJlZGY3OTE0NWFmMjIzMGI4YmQ3N2ZhZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlZWU3MmNkYzNkNzhjYTc4Nzg0Y2U4NDhkMWU3NTMwZmZhNWNmYzdiZGNlYWM3YjgxNjI4ZjJiMjg5Y2E0NmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU1YmZiNDY2Y2JlY2ZjNDUwMTkwZGVkYmE3MzkyY2I4ODk4NmRlMGNjMTNlOTZkYzM3NDQyZWM3OWJiNDVlODYifQ"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/index.ts#L69-L179",
+          "version": "repo-lines-v1:sha256:58252afa870c7e75e0c54751ef759bcb4a661e85e3215869464606c96f2ecd0f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTExLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIzZDNiNjRjNDg4ZTFlZTZkN2U2NGY2NTAzNDBkOGQ3NWMyYWUyYWJjYzlhMDQ5NDI1ZDYyNGM2ZWIzMzM1ZDA2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0ZTU3OTBjNGMxNzhiZjRlYjQxNmU3MzY5MzZmZTg4MjQ1OTg1NjVjZGFlZjQxNTE4MTYzYTNiODIwZWZhN2RiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI2ZmY0NjQ4YzI4ZGVjZTI3YmIwZDc3ZjdmZDk3ZTg4MjhlZGI1OTI3Y2UzMGYyZDM4YTk5ZWRlZjliMWJhMjZkIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        },
+        {
+          "resource": "repo://packages/linear-bot/src/kv-store.ts#L1-L10",
+          "version": "repo-lines-v1:sha256:2fc41559cadb3c52ecea695d90e997c759a5539d62a64d29a0d77e4801ebdd72:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhZjIyY2YwNzMyNTkyYzI0NzE0MWNiZTYxZWZhMTEwMTI2MTJmNWEzMTIyYjlhZjliYmFmNTJmNTcyNGQxOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk3MmE0MjkzODJiMmUxNDcxOGUwZTM3YjA1NzBhOGExNzAyOTkxZmNkODQ5OGNkODQwNjBhOGJmNGYwNTAxN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5YmY1ZGM4NGE4MTAxNjM4YTdlYjA3NjQ1NjY0NjdiZTQ2ZWY3OWQzMmM1ZjNiYTRkZGEzYjBlYmY3M2QwODAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a07b15b8c897481196b963fe062f7f78",
+      "statement": "The worker's Env requires the LINEAR_KV KV namespace and the CONTROL_PLANE service binding plus the Linear OAuth/webhook secrets; the classifier binds exactly one of ANTHROPIC_API_KEY/OPENAI_API_KEY selected by CLASSIFICATION_MODEL, and LINEAR_API_KEY is an optional legacy fallback.",
+      "evidence": [
+        {
+          "resource": "repo://packages/linear-bot/src/types.ts#L11-L45",
+          "version": "repo-lines-v1:sha256:7ccab918aaae9ff7de65caa486a47d50817001385e3755d91ffa2349e4635df4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhlNzhkOGQwYTliMGI1YmIzZDJlOTYzMmVjMDc5OTRkYmFhM2Y0NWYxNTBjNDkyNjA4NzM5OTAyNWRkYWYwYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAzMGU2ZTIzNjU2NWNlYjUwZmZiNmYzZDlkNTMwZjU0ZjZmNmU5NGNiNGI2OGI4ZjE2NzYzMjhkNjY1ZjRiZDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4MDU5NTExYTk5Y2Q4NzAyZDQ5NTVhZWE1N2U4M2E3YTlkNzZiN2EyZTM3YzYzNGJiOTM3NmUyNzVhM2U2ZmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_db8bafbf247e4bd182dd4ab861d27069",
+      "statement": "Terraform deploys the linear-bot worker when enable_linear_bot is true (validation requires non-empty linear_client_id, linear_client_secret, and linear_webhook_secret), wires the LINEAR_KV namespace and the CONTROL_PLANE service binding, attaches the reciprocal LINEAR_BOT service binding to the control-plane worker together with SERVICE_AUTH_SECRET_LINEAR_BOT, and outputs the webhook and OAuth authorize URLs.",
+      "evidence": [
+        {
+          "resource": "repo://terraform/environments/production/variables.tf#L242-L254",
+          "version": "repo-lines-v1:sha256:a0a07a95ce4e8b9aff3203fba6aa8ec01de97c9484b468a01f839ced35cb567e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1Y2UyZTEzZGE0NWJkMmFjNzBmMjg3YTEwYTViNjFlY2ZkMWVlZDQ2MjRjNjIzNjlhZjhjZGMyZjMzMDA5MzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwNzZiM2Q5YzVlYzhiYTU2M2JlNDczOWY4NTEwNDRhNDYzMzMwZTFmNzdlNmI1OGE3MTJiODFkODljNGI1M2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0MGVkZmU5MzVhMTQ5NjJmNzVlMmI4ODA5YzVhOTZjNDgyNGMxZGIyZDFlOGZhNjk3MTRiMjRjNTMyMjE0ZDEifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-control-plane.tf#L81-L92",
+          "version": "repo-lines-v1:sha256:4850607ba1ff69d603ac749ce162ff449da8ae4696b76410fb6af082479a172f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5NWI4YzViZjg2Mzc0MzY3MWRlZjNmNjMwZWIyMzJkNTlhN2E2MzRhMDcwZmM0MzZlZWMzN2E4Njc0ZTZjMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3ZmE5MDdhMTIzY2E5MmIwZGRlYmM2NjkxN2FiNjMxOGE3MjIxYTIwZmIyMmJkNjkwYTNjYTJiYzNhMTczZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI5YWY2OWY1Zjg3ZDU5ZDlkMzA5MTUzOTg4M2Q3OTJjZjEwYTQxYjdkMWQ3ZWI2OWY1OTFjZmYyOWRhMTBlNTgifQ"
+        },
+        {
+          "resource": "repo://terraform/environments/production/workers-linear.tf#L19-L68",
+          "version": "repo-lines-v1:sha256:89148d5d24fdfbb5c020af1d758f12aca302a6c377ad09798db5bc37f51243b6:eyJzZWxlY3RlZExpbmVDb3VudCI6NTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ZDNjY2RkOTljMjFiMWI5ZGRkNDMwZDdhMzA4NDkyNzU1YTNlYjM0M2ZhODI4YWRmNmYxOThkMzhlNTgzNDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxMzc5ZjA3YzE5OTNjYzU3ZDFlYTQxNGNkMjgyODc2NzQxY2ZjZGMwMmM5N2MwOTgyMjEwNzU1OGJiMjNlOTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_afa8130961784865ac8bab47a04bcbb2",
+      "statement": "Security posture of the Linear path: Linear client credentials, runtime access tokens, webhook secrets, and callback secrets stay server-side; Linear does not provide Git credentials — repository access comes from the deployment's source-control integration such as the GitHub App — and Linear issue titles, descriptions, comments, and agent prompts may be sent to the coding agent, so they must not contain secrets.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/LINEAR.md#L157-L172",
+          "version": "repo-lines-v1:sha256:32fa1d3ec70eeefe72e4e5ea2778c1095fa08715f5980da8db7da405de73d1cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwZTE4OWIxZjk0ZDZlZjZjZGJjNzUwODI4NDNlYWJhZTUyMmYxZDc1NzU4NDVjOWEzZDNhMzg5ZmQyZmFiNjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE1NDRiYWI2ODI3MmYxZWE3ZWM4ODA3NjUwMjNmNzJlYzYxNmQ3ZGI0OGM3MmI3ODdhOTc2MGFiZTRlYzM2YmUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T06:58:43.189Z"
+  }
+}

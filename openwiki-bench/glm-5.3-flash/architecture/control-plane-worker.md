@@ -6,6 +6,136 @@ tags: [architecture, control-plane, cloudflare-workers, router, authentication, 
 verified:
   - by: openwiki/0.4.3
     at: 2026-08-29T06:58:43.189Z
+sources:
+  - id: openwiki-source-276795f6d5ad19adb078c64e
+    resource: repo://eslint.config.js
+  - id: openwiki-source-333fb60a4bff5e1935e75098
+    resource: repo://packages/control-plane/README.md
+  - id: openwiki-source-c6bb3d9059aee3f5eada2df9
+    resource: repo://packages/control-plane/src/auth/authenticate.ts
+  - id: openwiki-source-71a37d5d3a20cd1941385eef
+    resource: repo://packages/control-plane/src/auth/identity-enforcement.ts
+  - id: openwiki-source-a3c621c8706fc9e74c890e6b
+    resource: repo://packages/control-plane/src/auth/principal.ts
+  - id: openwiki-source-c94f52d0fabcda20e306c93f
+    resource: repo://packages/control-plane/src/auth/service/config.ts
+  - id: openwiki-source-c720d6ba47bd3b5556146efd
+    resource: repo://packages/control-plane/src/auth/service/request-authenticator.ts
+  - id: openwiki-source-04e95a73b27ac15dee270647
+    resource: repo://packages/control-plane/src/auth/user/admission-policy.ts
+  - id: openwiki-source-0dbba27228cbefcea15be278
+    resource: repo://packages/control-plane/src/auth/user/runtime.ts
+  - id: openwiki-source-dfd17894a55827ebbc727f66
+    resource: repo://packages/control-plane/src/auth/user/session-authenticator.ts
+  - id: openwiki-source-02d3d70cb0b58626d6823905
+    resource: repo://packages/control-plane/src/auth/webhook-key.ts
+  - id: openwiki-source-d6db273a7260c26ff3ad7e5c
+    resource: repo://packages/control-plane/src/autofix/handler.ts
+  - id: openwiki-source-e19487d3171a83931c8c0e95
+    resource: repo://packages/control-plane/src/autofix/queue-consumer.ts
+  - id: openwiki-source-96704df00a4363d571830513
+    resource: repo://packages/control-plane/src/autofix/queue-health.ts
+  - id: openwiki-source-d2fc007eee0cf9d358d38e6b
+    resource: repo://packages/control-plane/src/background-tasks.test-support.ts
+  - id: openwiki-source-c91450f5bded72fdeae64b10
+    resource: repo://packages/control-plane/src/cloudflare/background-tasks.ts
+  - id: openwiki-source-3a7ac9f1def780bcacf7f603
+    resource: repo://packages/control-plane/src/db/automation-store.ts
+  - id: openwiki-source-6742148b866ee5c7b9533092
+    resource: repo://packages/control-plane/src/db/instrumented-d1.ts
+  - id: openwiki-source-ad15a302aac7be1dd07e9481
+    resource: repo://packages/control-plane/src/db/session-index.ts
+  - id: openwiki-source-3f6e224b2e23c9dabfe00dba
+    resource: repo://packages/control-plane/src/db/skills.ts
+  - id: openwiki-source-d2de27bfae64ae9ec188830b
+    resource: repo://packages/control-plane/src/db/sql-database.ts
+  - id: openwiki-source-30255558c57139f891a6f651
+    resource: repo://packages/control-plane/src/env-validation.test.ts
+  - id: openwiki-source-557254ea34d55b02eef467a0
+    resource: repo://packages/control-plane/src/env-validation.ts
+  - id: openwiki-source-ae36133dde52a5b02b299597
+    resource: repo://packages/control-plane/src/image-builds/callback-auth.ts
+  - id: openwiki-source-bb4971132a91d2f43607be8b
+    resource: repo://packages/control-plane/src/image-builds/finalization-consumer.ts
+  - id: openwiki-source-c8e21f4ccfbf567f5639d58e
+    resource: repo://packages/control-plane/src/image-builds/finalization-job.ts
+  - id: openwiki-source-673ec691c62d90c8d2f67ec2
+    resource: repo://packages/control-plane/src/image-builds/finalizer.ts
+  - id: openwiki-source-57015c95a31da54d996279ed
+    resource: repo://packages/control-plane/src/image-builds/maintenance.ts
+  - id: openwiki-source-80aff97ff79271d718ef6339
+    resource: repo://packages/control-plane/src/image-builds/provider-policy.ts
+  - id: openwiki-source-c62c8bf45ebf44a989a34ca3
+    resource: repo://packages/control-plane/src/image-builds/save-hooks.ts
+  - id: openwiki-source-c17bbe00abbcf37cbd7991f3
+    resource: repo://packages/control-plane/src/image-builds/scheduler.ts
+  - id: openwiki-source-78d79c9c9f6ae2582d131b7d
+    resource: repo://packages/control-plane/src/image-builds/timeouts.ts
+  - id: openwiki-source-d67978cdb180862cca3ffb24
+    resource: repo://packages/control-plane/src/image-builds/workflow.ts
+  - id: openwiki-source-78da2b6e3769fd428b85fe5a
+    resource: repo://packages/control-plane/src/index.ts
+  - id: openwiki-source-d16c987124fdfadaa298d4c3
+    resource: repo://packages/control-plane/src/logger.ts
+  - id: openwiki-source-a05ce8009f9cb787cde8c07b
+    resource: repo://packages/control-plane/src/platform-ports.ts
+  - id: openwiki-source-1e06a164af80acf0b6233ad5
+    resource: repo://packages/control-plane/src/queue-routing.test.ts
+  - id: openwiki-source-820b9ad986724854db571bee
+    resource: repo://packages/control-plane/src/queue-routing.ts
+  - id: openwiki-source-0a240d9d55b59497107011c3
+    resource: repo://packages/control-plane/src/router.auth.test.ts
+  - id: openwiki-source-57571062f6cb1fdb094e8d3c
+    resource: repo://packages/control-plane/src/router.policy.test.ts
+  - id: openwiki-source-9175ccc37c339f0a3dfd984e
+    resource: repo://packages/control-plane/src/router.ts
+  - id: openwiki-source-9634c81ea81a2f17d2906353
+    resource: repo://packages/control-plane/src/routes/automations.ts
+  - id: openwiki-source-4541aa742c69d8bf1c2769c4
+    resource: repo://packages/control-plane/src/routes/repos.ts
+  - id: openwiki-source-9246d18e19b8882678924a05
+    resource: repo://packages/control-plane/src/routes/session-create.ts
+  - id: openwiki-source-c09c35fc90a1a24cabefd0b7
+    resource: repo://packages/control-plane/src/routes/session-route.ts
+  - id: openwiki-source-04b0572caf81600821dd1779
+    resource: repo://packages/control-plane/src/routes/session-ws-token.ts
+  - id: openwiki-source-f49c3ab49317a2ad215805d3
+    resource: repo://packages/control-plane/src/routes/shared.ts
+  - id: openwiki-source-c4555138a5e7037195c9f18b
+    resource: repo://packages/control-plane/src/scheduler/scheduler.ts
+  - id: openwiki-source-93cf7d35cafae73be72279c1
+    resource: repo://packages/control-plane/src/session/abandoned-draft-sweep.ts
+  - id: openwiki-source-e3a0ae08e1f115f1cd7e107f
+    resource: repo://packages/control-plane/src/session/connection-authenticator.ts
+  - id: openwiki-source-b79e53115bc683bdc83c24f9
+    resource: repo://packages/control-plane/src/session/contracts.ts
+  - id: openwiki-source-0f7dc7a19c00389ea0e86e0f
+    resource: repo://packages/control-plane/src/session/durable-object.ts
+  - id: openwiki-source-e58da5f2ecafdcbe6a535567
+    resource: repo://packages/control-plane/src/session/http/handlers/ws-token.handler.ts
+  - id: openwiki-source-ceac3551ab349e518118540c
+    resource: repo://packages/control-plane/src/session/runtime-client.ts
+  - id: openwiki-source-c1cc0e9304c0e13ec9a4cccc
+    resource: repo://packages/control-plane/src/source-control/config.ts
+  - id: openwiki-source-62f0c3ec6051610d33bdebe9
+    resource: repo://packages/control-plane/src/storage/object-storage.ts
+  - id: openwiki-source-968c4bcc9fbda1c7281a4e02
+    resource: repo://packages/control-plane/src/types.ts
+  - id: openwiki-source-cbea7893971cabb5d5ab1e82
+    resource: repo://packages/control-plane/src/webhooks/automation-event.ts
+  - id: openwiki-source-abe988e8dffbde9a14072128
+    resource: repo://packages/control-plane/src/webhooks/automation-webhook.ts
+  - id: openwiki-source-30bf9ff94b6bc0d008787863
+    resource: repo://packages/control-plane/src/webhooks/github.ts
+  - id: openwiki-source-98ec39b0bdf44d5bed52d40d
+    resource: repo://packages/control-plane/src/webhooks/slack.ts
+  - id: openwiki-source-6280f60dc37d39f1e28b6fd5
+    resource: repo://packages/control-plane/wrangler.jsonc
+  - id: openwiki-source-5856d6dafe718ec27f678566
+    resource: repo://packages/shared/src/service-auth.ts
+  - id: openwiki-source-4167b211967d9a75eed01b74
+    resource: repo://terraform/environments/production/workers-control-plane.tf
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T06:58:43.189Z" }
 ---
 
 # Control Plane Worker
@@ -54,7 +184,7 @@ The WebSocket upgrade path validates the session against the D1 index (404 for a
 7. **Handler execution.** A thrown `HttpError` becomes `error(message, status)`; any other error is logged with full context and returns a generic 500.
 8. **Response shaping.** Every response is wrapped with `Access-Control-Allow-Origin: *`, `x-request-id`, and `x-trace-id`; a route-level `cacheControl` (`no-store` | `private, no-store`) is applied when declared; the `http.request` wide event is logged.
 
-The wide event carries the request's D1 aggregates (`ctx.metrics.summarize()`) alongside method, path, status, duration, and outcome — the observability seam shared with [Observability](/openwiki/operations/observability.md).
+The wide event carries the request's D1 aggregates (`ctx.metrics.summarize()`) alongside method, path, status, duration, and outcome — the observability seam shared with the platform's wide-event logging.
 
 ## Routing framework
 
@@ -290,6 +420,5 @@ Production bindings are Terraform-managed (`terraform/environments/production/wo
 - [Data model](/openwiki/architecture/data-model.md) — the D1 schema the stores own.
 - [Session Durable Object](/openwiki/architecture/session-durable-object.md) — the per-session runtime this shell forwards to.
 - [Security and tokens](/openwiki/concepts/security-and-tokens.md) — token and key domains across the edges.
-- [Observability](/openwiki/operations/observability.md) — wide events, correlation IDs, and alerting.
 - [Automations](/openwiki/workflows/automations.md) — invocation/run semantics the scheduler implements.
 - [Image builds](/openwiki/workflows/image-builds.md) — the prebuild lifecycle the schedulers and finalizer drive.
